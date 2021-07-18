@@ -15,6 +15,17 @@
 
 数据库部分因为涉及用户隐私，且当前平台开发中，表结构不断变化亦不便于进行脱敏处理。将会在项目架构稳定并上线后将其开源。
 
+## 运行环境
+
+ - PHP 8.0 及以上版本
+ - MySQL 8.0 及以上版本
+ - Nginx 21 及以上版本
+
+## 依赖的外部环境
+
+ 1. 平台整体依赖于 [Cavalcade](https://github.com/humanmade/Cavalcade) 项目用于处理Cron队列
+ 2. 翻译平台的翻译记忆库的实现依赖于 [Pontoon](https://github.com/mozilla/pontoon)
+
 ## 一些话
 
 虽然litepress.cn的构建完全基于GPL协议授权的代码，但因为这是服务性质的私有化平台，而非公开发行的代码，所以我们本来是没义务对其开源的。
