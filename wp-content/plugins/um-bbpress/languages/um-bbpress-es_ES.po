@@ -1,0 +1,255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ultimate Member\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-25 14:36+0200\n"
+"PO-Revision-Date: 2015-05-18 13:14-0500\n"
+"Last-Translator: Calum Allison <umplugin@gmail.com>\n"
+"Language-Team: Ultimate Member <umplugin@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Language: es\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: EDD_SL_Plugin_Updater.php:177
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" class="
+"\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+msgstr ""
+
+#: EDD_SL_Plugin_Updater.php:184
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" class="
+"\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s"
+"\">update now</a>."
+msgstr ""
+
+#: EDD_SL_Plugin_Updater.php:324
+msgid "You do not have permission to install plugin updates"
+msgstr "Usted no tiene el permiso para actualizar éste plugin."
+
+#: EDD_SL_Plugin_Updater.php:324
+msgid "Error"
+msgstr "Error"
+
+#: admin/templates/access/bbpress.php:2
+msgid "Which roles can create new topics in this forum"
+msgstr "Cuáles roles pueden crear nuevos temas en este foro."
+
+#: admin/templates/access/bbpress.php:16
+msgid "Which roles can create new replies in this forum"
+msgstr "Cuáles roles pueden crear nuevas respuestas en este foro."
+
+#: admin/templates/role/bbpress.php:8
+msgid "Can have forums tab?"
+msgstr "¿Puede tener la pestaña Foro?"
+
+#: admin/templates/role/bbpress.php:8
+msgid ""
+"If you turn this off, this role will not have a forums tab active in their "
+"profile."
+msgstr ""
+"Si usted selecciona apagar, este rol no tendrá la pestaña Foro activa en su "
+"perfil."
+
+#: admin/templates/role/bbpress.php:13
+msgid "Can create new topics?"
+msgstr "¿Puede crear nuevos temas?"
+
+#: admin/templates/role/bbpress.php:13
+msgid ""
+"Generally, decide If this role can create new topics in the forums or not."
+msgstr ""
+"En general, decida si éste rol puede crear nuevos temas en los foros o no."
+
+#: admin/templates/role/bbpress.php:18
+msgid "Custom message to show if you force locking new topic"
+msgstr "Mensaje personalizado a mostrar si usted intenta bloquear un tema."
+
+#: admin/templates/role/bbpress.php:27
+msgid "Can create new replies?"
+msgstr "¿Puede crear nuevas respuestas?"
+
+#: admin/templates/role/bbpress.php:27
+msgid ""
+"Generally, decide If this role can create new replies in the forums or not."
+msgstr ""
+"En general, decida si éste rol puede crear nuevas respuestas en los foros o "
+"no."
+
+#: admin/templates/role/bbpress.php:32
+msgid "Disable new topics during these weekdays"
+msgstr "Inhabilitar nuevos temas durante estos días de la semana"
+
+#: admin/templates/role/bbpress.php:32
+msgid ""
+"Choose week days to disable this role from creating new topics on those days"
+msgstr ""
+"Eliga los días de la semana en los que éste rol no puede crear nuevos temas."
+
+#: admin/templates/role/bbpress.php:44
+msgid ""
+"Custom message to show to user if user cannot post in the above selected days"
+msgstr ""
+"Mensaje personalizado a mostrar si el usuario no puede publicar en los "
+"selecionados días de la semana"
+
+#: core/actions/um-bbpress-admin.php:13
+msgid "Permissions"
+msgstr "Permisos"
+
+#: core/actions/um-bbpress-admin.php:28
+#: core/filters/um-bbpress-settings.php:13
+msgid "bbPress"
+msgstr "bbPress"
+
+#: core/filters/um-bbpress-settings.php:20
+msgid "Hide forums tab from Guests"
+msgstr "Ocultar la pestaña Foro de los vistantes"
+
+#: core/filters/um-bbpress-settings.php:21
+msgid ""
+"Enable this option If you do not want to show the forums tab for guests."
+msgstr ""
+"Habilitar esta opción si usted no quiere mostrar la pestaña Foro a los "
+"visitantes."
+
+#: core/filters/um-bbpress-settings.php:22
+msgid "On"
+msgstr "Encendido"
+
+#: core/filters/um-bbpress-settings.php:23
+msgid "Off"
+msgstr "Apagado"
+
+#: core/filters/um-bbpress-tabs.php:14
+msgid "Forums"
+msgstr "Foros"
+
+#: core/filters/um-bbpress-tabs.php:17
+msgid "Topics Started"
+msgstr "Temas Publicados"
+
+#: core/filters/um-bbpress-tabs.php:18
+msgid "Replies Created"
+msgstr "Respuestas Creadas"
+
+#: core/filters/um-bbpress-tabs.php:19
+msgid "Favorites"
+msgstr "Favoritos"
+
+#: core/filters/um-bbpress-tabs.php:20
+msgid "Subscriptions"
+msgstr "Suscripciones"
+
+#: core/um-bbpress-init.php:24
+#, php-format
+msgid ""
+"The <strong>%s</strong> extension requires the Ultimate Member plugin to be "
+"activated to work properly. You can download it <a href=\"https://wordpress."
+"org/plugins/ultimate-member\">here</a>"
+msgstr ""
+
+#: core/um-bbpress-init.php:29
+#, php-format
+msgid ""
+"Sorry. You must activate the <strong>bbPress</strong> plugin to use the %s."
+msgstr ""
+
+#: core/um-bbpress-init.php:34
+#, php-format
+msgid ""
+"The <strong>%s</strong> extension requires a <a href=\"https://wordpress.org/"
+"plugins/ultimate-member\">newer version</a> of Ultimate Member to work "
+"properly."
+msgstr ""
+
+#: templates/favorites.php:18
+msgid "Remove"
+msgstr "Remover"
+
+#: templates/favorites.php:25 templates/subscriptions.php:25
+#: templates/topics-single.php:6
+#, php-format
+msgid "in: <a href=\"%1$s\">%2$s</a>"
+msgstr "en: <a href=\"%1$s\">%2$s</a>"
+
+#: templates/favorites.php:28 templates/subscriptions.php:28
+#: templates/topics-single.php:9
+#, php-format
+msgid "Last active %s"
+msgstr "Último activo %s"
+
+#: templates/favorites.php:36
+msgid "You currently have no favorite topics."
+msgstr "Usted no tiene temas favoritos."
+
+#: templates/favorites.php:36
+msgid "This user has no favorite topics."
+msgstr "Este usuario no tiene temas favoritos."
+
+#: templates/replies-single.php:6
+#, php-format
+msgid "This topic has %s more replies"
+msgstr "Este tema tiene %s más respuestas."
+
+#: templates/replies-single.php:15 templates/replies.php:14
+msgid "load more replies"
+msgstr "ver más respuestas"
+
+#: templates/replies.php:23
+msgid "You have not replied to any topics."
+msgstr "Usted no ha respondido ningún tema."
+
+#: templates/replies.php:23
+msgid "This user has not replied to any topics."
+msgstr "Este usuario no ha respondido ningún tema."
+
+#: templates/subscriptions.php:18
+msgid "Unsubscribe"
+msgstr "Cancelar Subscripción"
+
+#: templates/subscriptions.php:36
+msgid "You are not currently subscribed to any topics."
+msgstr "Usted no está subscripto a ningún tema."
+
+#: templates/subscriptions.php:36
+msgid "This user is not currently subscribed to any topics."
+msgstr "Este usuario no está subscripto a ningún tema."
+
+#: templates/topics-single.php:4
+msgid "Locked"
+msgstr "Bloqueado"
+
+#: templates/topics-single.php:18 templates/topics.php:14
+msgid "load more topics"
+msgstr "ver más temas"
+
+#: templates/topics.php:23
+msgid "You have not created any topics."
+msgstr "Usted no tiene temas publicados."
+
+#: templates/topics.php:23
+msgid "This user has not created any topics."
+msgstr "Este usuario no tiene temas publicados."
+
+msgid "outdatedBrowser_page_message"
+msgstr ""
+"The site you are visiting can only be viewed using a modern browser. Please "
+"upgrade your browser to increase safety and your browsing experience. Choose "
+"one of the browsers above. If you don't care <a href=\"?"
+"forwardOutdatedBrowser=1\">click here</a>"
+
+msgid "404_page_message"
+msgstr ""
+"The Page you are looking for doesn't exist or an other error occurred. <a "
+"href=\"javascript:history.go(-1)\">Go back</a>, or head over to <a href=\"%s"
+"\">%s</a> to choose a new direction."

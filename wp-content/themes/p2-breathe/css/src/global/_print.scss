@@ -1,0 +1,50 @@
+@media print {
+
+	* {
+		color: $gray-100 !important;
+		background-color: #fff !important;
+		box-shadow: none;
+	}
+
+	body {
+		background-color: #fff !important;
+	}
+
+	#secondary,
+	.o2-app-new-post,
+	.author-avatar,
+	.entry-actions,
+	.sharedaddy,
+	.o2-post-comments-collapsed,
+	.comment-likes,
+	.o2-app-page-title,
+	#wpstats,
+	#wpeditor-container,
+	.widget.widget_office-hours-widget,
+	#respond, 
+	footer, 
+	#static-footer,
+	.navigation,
+	.o2-comment-actions,
+	.o2-dropdown-actions,
+	.o2-dropdown-actions-disclosure.genericon.genericon-ellipsis,
+	#superadminbar{
+		display: none !important;
+	}
+
+	#masthead {
+		display: none;
+	}
+
+	#primary {
+		width: 100%;
+	}
+
+	.entry-content,
+	.entry-header,
+	.entry-meta,
+	.entry-title {
+		margin-left: 0 !important;
+		padding-left: 0!important;
+	}
+}

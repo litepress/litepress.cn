@@ -1,0 +1,18 @@
+{
+  "name": "premmerce/wordpress-sdk",
+  "description": "Wordpress SDK for premmerce plugins",
+  "type": "library",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Premmerce",
+      "email": "info@premme.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Premmerce\\SDK\\": "src"
+    }
+  },
+  "minimum-stability": "stable"
+}

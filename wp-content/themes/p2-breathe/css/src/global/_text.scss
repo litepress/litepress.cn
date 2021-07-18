@@ -1,0 +1,339 @@
+//* TEXT */
+// Baseline styles devoted specifically to HTML elements that contain blocks of text.
+
+body {
+	-webkit-overflow-scrolling: touch;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+	color: $gray-70;
+	font-family: $serif;
+	font-weight: 400;
+}
+code {
+	background: $gray-5;
+	color: $gray-90;
+	padding: .4em .65em;
+	font-size: 0.8em;
+	@include rounded( 3px );
+}
+
+/* Headings */
+hr {
+	background-color: $gray-10;
+	border: 0;
+	height: 1px;
+	margin-bottom: 1.2em;
+}
+
+/* Text elements */
+a {
+	text-decoration: none;
+
+	&:hover {
+	}
+}
+
+
+p {
+	margin-bottom: 1.2em;
+}
+
+ul,
+ol {
+	margin: 0 0 1.2em 2.4em;
+}
+
+ul {
+	list-style: disc;
+}
+
+ol {
+	list-style: decimal;
+}
+
+li > ul,
+li > ol {
+	margin-bottom: 0;
+	margin-left: 1.2em;
+}
+
+dt {
+	font-weight: 600;
+}
+
+dd {
+	margin: 0 1.2em 1.2em;
+}
+
+b,
+strong {
+	font-weight: 600;
+}
+
+dfn,
+cite,
+em,
+i {
+	font-style: italic;
+}
+
+blockquote {
+	background: $gray-5;
+	color: $gray-90;
+	font-style: italic;
+	font-weight: 300;
+	margin: 0 0 1.2em;
+	padding: 1.2em 1.2em 0 1.2em;
+	overflow: auto;
+
+	code {
+		background: $gray-2;
+	}
+
+	em {
+		font-style: normal;
+	}
+
+	&.wp-embedded-content {
+		padding: 1.2em;
+	}
+}
+
+address {
+	margin: 0 0 1.5em;
+}
+
+pre {
+	background: $gray-5;
+	color: $gray-90;
+	font-size: 11px;
+	font-size: 1.1rem;
+	line-height: 1.4;
+	margin-bottom: 1.2em;
+	padding: 1.2em;
+	overflow: auto;
+	max-width: 100%;
+}
+
+pre,
+code,
+kbd,
+tt,
+var {
+	font: $mono-font;
+}
+
+abbr,
+acronym {
+	border-bottom: 1px dotted $gray-10;
+	cursor: help;
+}
+
+mark,
+ins {
+	background: $gray-5;
+	text-decoration: none;
+}
+
+sup,
+sub {
+	font-size: 75%;
+	height: 0;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	bottom: 1ex;
+}
+
+sub {
+	top: .5ex;
+}
+
+small {
+	font-size: 75%;
+}
+
+big {
+	font-size: 125%;
+}
+
+figure {
+	margin: 0;
+}
+
+table {
+	margin: 0 0 1.2em;
+	width: 100%;
+}
+
+th {
+	font-weight: 600;
+}
+
+img {
+	height: auto; /* Make sure images are scaled correctly. */
+	max-width: 100%; /* Limit to container width. */
+}
+
+/* Text meant only for screen readers */
+.screen-reader-text {
+	clip: rect( 1px, 1px, 1px, 1px );
+	position: absolute !important;
+}
+
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus {
+	background-color: $gray-5;
+	box-shadow: 0 0 2px 2px rgba( $gray-100, 0.6 );
+	clip: auto !important;
+	color: $blue-35;
+	display: block;
+	font-size: 14px;
+	font-weight: 600;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar */
+}
+
+code,
+pre {
+	font-family: $mono;
+}
+#primary {
+	font-size: 1.3em;
+}
+
+p,
+ul,
+ol {
+	font-size: 1.05em;
+	line-height: 1.6;
+}
+
+#secondary aside {
+	font-size: 1.2em;
+}
+
+.entry-meta,
+.comment-meta {
+	font-size: 1.05em;
+	font-weight: 300;
+	line-height: 1.8;
+	font-weight:700;
+}
+
+.entry-author {
+	font-family: $sans;
+	font-size: 1.2em;
+}
+
+.entry-meta abbr,
+.comment-meta abbr {
+	border: none;
+	cursor: default;
+}
+
+.entry-meta em,
+.comment-meta em {
+	font-style: normal;
+}
+
+.entry-meta .entry-date,
+.entry-meta .entry-actions,
+.entry-meta .entry-tags,
+.comment-meta .comment-date,
+.comment-meta .comment-actions {
+	font-size: 0.8em;
+	font-weight: 300;
+	line-height: 1.2;
+	color: $gray-50;
+}
+
+.entry-meta .entry-date:hover,
+.comment-meta .comment-date:hover {
+	color: $blue-10;
+}
+
+.entry-meta .entry-actions,
+.comment-meta .comment-actions {
+	padding-top: 0.8em;
+}
+
+.entry-meta .entry-actions,
+.entry-meta .entry-actions a,
+.comment-meta .comment-actions,
+.comment-meta .comment-actions a {
+	color: $gray-50;
+}
+
+.category-quote blockquote p,
+.format-quote blockquote p {
+	margin-bottom: 8px;
+	font-size: 1.2em !important;
+}
+
+.category-quote blockquote cite,
+.format-quote blockquote cite {
+	display: block;
+	text-align: right;
+}
+
+.category-quote blockquote cite:before,
+.format-quote blockquote cite:before {
+	content: "&mdash;&nbsp;";
+}
+
+.entry-content, .comment-content {
+
+	a{
+		&.tag,
+		&.po-xpost{
+			text-decoration: none;
+
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+
+		&.mention{
+			text-decoration: none;
+			font-weight: bold;
+			&:hover{
+				text-decoration: underline;
+			}
+
+		}
+	}
+
+
+
+}
+
+p {
+	margin: 1.2em 0;
+}
+
+ul,
+ol {
+	margin-left: 25px;
+	padding-left: 0;
+}
+
+.highlight {
+	background-color: rgba( $yellow-0, 1 );
+}
+

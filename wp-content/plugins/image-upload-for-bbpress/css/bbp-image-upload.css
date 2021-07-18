@@ -1,0 +1,19 @@
+/**
+ * Author: Aspen Grove Studios
+ * License: GNU General Public License version 3 or later
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+/* Following code used to hide the caption field - disabled because no longer needed */
+/*
+body.bbpress .mce-panel[aria-label="Insert/edit image"] .mce-form > .mce-container-body > .mce-last,
+body.buddypress.forum .mce-panel[aria-label="Insert/edit image"] .mce-form > .mce-container-body > .mce-last {
+	display: none;
+}
+*/
+
+#hm_bbpui_file_frame {
+	width: 1px;
+	height: 1px;
+	border: 0;
+}

@@ -1,0 +1,263 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ultimate Member\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-25 14:36+0200\n"
+"PO-Revision-Date: 2015-05-11 22:53+0200\n"
+"Last-Translator: Calum Allison <umplugin@gmail.com>\n"
+"Language-Team: Ultimate Member <umplugin@gmail.com>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: EDD_SL_Plugin_Updater.php:177
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" class="
+"\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+msgstr ""
+"Es gibt eine neue Version von %1$s. <a target=\"_blank\" class=\"thickbox\" "
+"href=\"%2$s\">Details zur Version %3$s anzeigen</a>."
+
+#: EDD_SL_Plugin_Updater.php:184
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" class="
+"\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s"
+"\">update now</a>."
+msgstr ""
+"Es gibt eine neue Version von %1$s. <a target=\"_blank\" class=\"thickbox\" "
+"href=\"%2$s\">Details zur Version %3$s anzeigen</a> oder <a href=\"%4$s"
+"\">jetzt updaten</a>."
+
+#: EDD_SL_Plugin_Updater.php:324
+msgid "You do not have permission to install plugin updates"
+msgstr "Ihnen fehlt die BErechtigung zur Installation von Plugin-Updates"
+
+#: EDD_SL_Plugin_Updater.php:324
+msgid "Error"
+msgstr "Fehler"
+
+#: admin/templates/access/bbpress.php:2
+msgid "Which roles can create new topics in this forum"
+msgstr "Welche Rollen dürfen neue Themen im Forum erstellen"
+
+#: admin/templates/access/bbpress.php:16
+msgid "Which roles can create new replies in this forum"
+msgstr "Welche Rollen dürfen auf Themen antworten"
+
+#: admin/templates/role/bbpress.php:8
+msgid "Can have forums tab?"
+msgstr "Forum-Tab aktivieren?"
+
+#: admin/templates/role/bbpress.php:8
+msgid ""
+"If you turn this off, this role will not have a forums tab active in their "
+"profile."
+msgstr ""
+"Wenn Sie diese Option deaktivieren, wird für diese Rolle kein Forum-Tab im "
+"Benutzerprofil angezeigt."
+
+#: admin/templates/role/bbpress.php:13
+msgid "Can create new topics?"
+msgstr "Darf neue Themen erstellen?"
+
+#: admin/templates/role/bbpress.php:13
+msgid ""
+"Generally, decide If this role can create new topics in the forums or not."
+msgstr "Legt fest, ob diese Rolle neue Themen im Forum erstellen darf."
+
+#: admin/templates/role/bbpress.php:18
+msgid "Custom message to show if you force locking new topic"
+msgstr ""
+"Benutzerdefinierte Nachricht, wenn der Benutzer keine Themen erstellen darf"
+
+#: admin/templates/role/bbpress.php:27
+msgid "Can create new replies?"
+msgstr "Darf Antworten erstellen?"
+
+#: admin/templates/role/bbpress.php:27
+msgid ""
+"Generally, decide If this role can create new replies in the forums or not."
+msgstr "Legt fest, ob diese Rolle Antworten im Forum erstellen darf."
+
+#: admin/templates/role/bbpress.php:32
+msgid "Disable new topics during these weekdays"
+msgstr "Erstellung neuer Themen an diesen Tagen deaktivieren"
+
+#: admin/templates/role/bbpress.php:32
+msgid ""
+"Choose week days to disable this role from creating new topics on those days"
+msgstr "Wochentage, an denen diese Rolle keine Beiträge erstellen darf"
+
+#: admin/templates/role/bbpress.php:44
+msgid ""
+"Custom message to show to user if user cannot post in the above selected days"
+msgstr ""
+"Benutzerdefinierte Nachricht, die dem Benutzer angezeigt wird, wenn der "
+"Benutzer an den ausgewählten Tagen keine Beiträge erstellen kann"
+
+#: core/actions/um-bbpress-admin.php:13
+msgid "Permissions"
+msgstr "Berechtigungen"
+
+#: core/actions/um-bbpress-admin.php:28
+#: core/filters/um-bbpress-settings.php:13
+msgid "bbPress"
+msgstr "bbPress"
+
+#: core/filters/um-bbpress-settings.php:20
+msgid "Hide forums tab from Guests"
+msgstr "Forum-Tab für Gäste ausblenden"
+
+#: core/filters/um-bbpress-settings.php:21
+msgid ""
+"Enable this option If you do not want to show the forums tab for guests."
+msgstr ""
+"Aktivieren Sie diese Option, wenn sie den Forum-Tab für Gäste ausblenden "
+"wollen."
+
+#: core/filters/um-bbpress-settings.php:22
+msgid "On"
+msgstr "An"
+
+#: core/filters/um-bbpress-settings.php:23
+msgid "Off"
+msgstr "Aus"
+
+#: core/filters/um-bbpress-tabs.php:14
+msgid "Forums"
+msgstr "Foren"
+
+#: core/filters/um-bbpress-tabs.php:17
+msgid "Topics Started"
+msgstr "Eröffnete Themen"
+
+#: core/filters/um-bbpress-tabs.php:18
+msgid "Replies Created"
+msgstr "Erstellte Antworten"
+
+#: core/filters/um-bbpress-tabs.php:19
+msgid "Favorites"
+msgstr "Favoriten"
+
+#: core/filters/um-bbpress-tabs.php:20
+msgid "Subscriptions"
+msgstr "Abonnements"
+
+#: core/um-bbpress-init.php:24
+#, php-format
+msgid ""
+"The <strong>%s</strong> extension requires the Ultimate Member plugin to be "
+"activated to work properly. You can download it <a href=\"https://wordpress."
+"org/plugins/ultimate-member\">here</a>"
+msgstr ""
+"Für die <strong>%s</strong> Erweiterung muss das Ultimate Member Pluigin "
+"aktiviert sein und ordnungsgemäß funktionieren. Sie können das Plugin <a "
+"href=\"https://wordpress.org/plugins/ultimate-member\">hier</a> "
+"herunterladen."
+
+#: core/um-bbpress-init.php:29
+#, php-format
+msgid ""
+"Sorry. You must activate the <strong>bbPress</strong> plugin to use the %s."
+msgstr ""
+"Entschuldigung. Das <strong>bbPress</strong> Plugin muss aktiviert sein, um "
+"%s nutzen zu können."
+
+#: core/um-bbpress-init.php:34
+#, php-format
+msgid ""
+"The <strong>%s</strong> extension requires a <a href=\"https://wordpress.org/"
+"plugins/ultimate-member\">newer version</a> of Ultimate Member to work "
+"properly."
+msgstr "Die <strong>%s</strong> Extension ben&ouml;"
+
+#: templates/favorites.php:18
+msgid "Remove"
+msgstr "Entfernen"
+
+#: templates/favorites.php:25 templates/subscriptions.php:25
+#: templates/topics-single.php:6
+#, php-format
+msgid "in: <a href=\"%1$s\">%2$s</a>"
+msgstr "in: <a href=\"%1$s\">%2$s</a>"
+
+#: templates/favorites.php:28 templates/subscriptions.php:28
+#: templates/topics-single.php:9
+#, php-format
+msgid "Last active %s"
+msgstr "Letzte Aktivität %s"
+
+#: templates/favorites.php:36
+msgid "You currently have no favorite topics."
+msgstr "Sie haben keine Favoriten."
+
+#: templates/favorites.php:36
+msgid "This user has no favorite topics."
+msgstr "Dieser Benutzer hat keine Favoriten."
+
+#: templates/replies-single.php:6
+#, php-format
+msgid "This topic has %s more replies"
+msgstr "Dieses Thema hat noch %s weitere Antworten."
+
+#: templates/replies-single.php:15 templates/replies.php:14
+msgid "load more replies"
+msgstr "mehr Antworten laden"
+
+#: templates/replies.php:23
+msgid "You have not replied to any topics."
+msgstr "Sie haben noch zu keinem Thema geantwortet."
+
+#: templates/replies.php:23
+msgid "This user has not replied to any topics."
+msgstr "Dieser User hat noch zu keinem Thema geantwortet."
+
+#: templates/subscriptions.php:18
+msgid "Unsubscribe"
+msgstr "Abbestellen"
+
+#: templates/subscriptions.php:36
+msgid "You are not currently subscribed to any topics."
+msgstr "Sie haben momentan keine Themen abonniert."
+
+#: templates/subscriptions.php:36
+msgid "This user is not currently subscribed to any topics."
+msgstr "Dieser User hat momentan keine Themen abonniert."
+
+#: templates/topics-single.php:4
+msgid "Locked"
+msgstr "Gesperrt"
+
+#: templates/topics-single.php:18 templates/topics.php:14
+msgid "load more topics"
+msgstr "weitere Themen laden"
+
+#: templates/topics.php:23
+msgid "You have not created any topics."
+msgstr "Sie haben noch keine Themen erstellt."
+
+#: templates/topics.php:23
+msgid "This user has not created any topics."
+msgstr "Dieser Benutzer hat noch keine Themen erstellt."
+
+#~ msgid "outdatedBrowser_page_message"
+#~ msgstr ""
+#~ "The site you are visiting can only be viewed using a modern browser. "
+#~ "Please upgrade your browser to increase safety and your browsing "
+#~ "experience. Choose one of the browsers above. If you don't care <a href="
+#~ "\"?forwardOutdatedBrowser=1\">click here</a>"
+
+#~ msgid "404_page_message"
+#~ msgstr ""
+#~ "The Page you are looking for doesn't exist or an other error occurred. <a "
+#~ "href=\"javascript:history.go(-1)\">Go back</a>, or head over to <a href="
+#~ "\"%s\">%s</a> to choose a new direction."

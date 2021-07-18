@@ -1,0 +1,14 @@
+.woo-permalink-manager-banner {
+    background: #1b2f43;
+    color: #81a0cc;
+    border: 1px solid #fff;
+    padding: 30px 10px;
+    text-align: center;
+    box-shadow: none;
+    padding: 25px;
+    position: relative;
+}
+
+.woo-permalink-manager-banner--heading {
+    color: #fff;
+}

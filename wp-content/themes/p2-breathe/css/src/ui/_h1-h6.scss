@@ -1,0 +1,31 @@
+/* HEADINGS 1-6 */
+h1,
+h2,
+h3,
+h4 {
+	font-weight: 400;
+}
+
+h1 {
+	font-size: 2.2em;
+	line-height: 1.1;
+}
+
+h2 {
+	font-size: 2em;
+}
+
+h3 {
+	color: $gray-70;
+	font-size: 1.6em;
+}
+
+h4 {
+	color: $gray-70;
+	font-size: 1.4em;
+}
+
+.content-area h1,
+.content-area h2 {
+	margin: 0.4em 0 1.1em 0;
+}

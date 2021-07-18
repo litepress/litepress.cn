@@ -1,0 +1,20 @@
+<?php if (!defined('ENLIGHTER_INIT')) die('DIRECT ACCESS PROHIBITED'); ?>
+
+<!-- Visual Editor -->
+<div class="postbox enlighter-postbox">
+    <h3 class="hndle"><span><?php _e('Gutenberg Editor Extension', 'enlighter'); ?></span></h3>
+    <div class="inside enlighter-setting-section">
+
+        <h4><?php _e('Visual Editor Integration', 'enlighter'); ?></h4>
+        <p><?php _e('Use EnlighterJS within Gutenberg Editor.', 'enlighter'); ?><br />
+        </p>
+        <?php $this->_settingsUtility->displayCheckbox(
+            __('Backend Integration', 'enlighter'),
+            'gutenberg-backend',
+            array(
+                'label' => 'Enable',
+                'description' => __('Full Gutenberg Editor integration including "Enlighter Sourcecode" block.', 'enlighter')
+            )
+        ); ?>
+    </div>
+</div>

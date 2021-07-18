@@ -1,0 +1,33 @@
+<wpml-config>
+    <custom-types>
+        <custom-type translate="1">ywtm_tab</custom-type>
+    </custom-types>
+    <custom-fields>
+        <custom-field action="copy">_ywtm_tab_type</custom-field>
+        <custom-field action="copy">_ywtm_show_tab</custom-field>
+        <custom-field action="copy">_ywtm_order_tab</custom-field>
+        <custom-field action="copy">_ywtm_icon_tab</custom-field>
+        <custom-field action="copy">_ywtm_layout_type</custom-field>
+        <custom-field action="copy">_ywtm_gallery_columns</custom-field>
+        <custom-field action="copy">_ywtm_gallery</custom-field>
+        <custom-field action="copy">_ywtm_video</custom-field>
+        <custom-field action="copy">_ywtm_google_map_full_width</custom-field>
+        <custom-field action="copy">_ywtm_google_map_width</custom-field>
+        <custom-field action="copy">_ywtm_google_map_height</custom-field>
+        <custom-field action="copy">_ywtm_google_map_overlay_address</custom-field>
+        <custom-field action="copy">_ywtm_google_map_overlay_zoom</custom-field>
+        <custom-field action="translate" style="visual">_ywtm_text_tab</custom-field>
+        <custom-field action="copy">_ywtm_shortcode_tab</custom-field>
+        <custom-field action="copy">_ywtm_enable_custom_content</custom-field>
+        <custom-field action="translate">_ywtm_faqs</custom-field>
+        <custom-field action="translate">_ywtm_download</custom-field>
+        <custom-field action="copy">_ywtm_form_tab</custom-field>
+
+    </custom-fields>
+    <admin-texts>
+        <key name="woocommerce_yith_tab_manager_send_info_settings">
+            <key name="heading"/>
+            <key name="email-description"/>
+        </key>
+    </admin-texts>
+</wpml-config>

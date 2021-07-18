@@ -1,0 +1,35 @@
+/* No comment provided by engineer. */
+"Normal String" = "Normal String";
+
+/* No comment provided by engineer. */
+"I\'m with a quote" = "I'm with a quote";
+
+/* The place where deleted posts first go */
+"Trash-noun" = "Trash";
+
+/* The act of deleting a post into trash */
+"Trash-verb" = "Trash";
+
+/* No comment provided by engineer. */
+"double \"quotes\"" = "double \"quotes\"";
+
+/* No comment provided by engineer. */
+"питка" = "питка";
+
+/* No comment provided by engineer. */
+"you < me" = "you < me";
+
+/* No comment provided by engineer. */
+"me > you" = "me > you";
+
+/* No comment provided by engineer. */
+"me & you are not &amp;" = "me & you are not &amp;";
+
+/* Me, myself & Irene */
+"baba" = "baba";
+
+/* This is
+   a multiline
+   comment which is
+   also supposed to work. */
+"multiline" = "multiline";

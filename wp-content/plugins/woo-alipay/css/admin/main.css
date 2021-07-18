@@ -1,0 +1,109 @@
+.woo-alipay-settings .spinner,
+.woo-alipay-settings .test-status {
+	display: inline-block;
+    float: none;
+    vertical-align: middle;
+}
+
+.woo-alipay-settings .spinner {
+    background-size: 20px 20px;
+    opacity: .7;
+    filter: alpha(opacity=70);
+}
+
+.woo-alipay-settings .test-status .success {
+	color: #46b450;
+}
+
+.woo-alipay-settings .test-status .failure,
+.woo-alipay-settings .test-status .error {
+	color: #dc3232;
+}
+
+.woo-alipay-settings .test-status .dashicons {
+	margin: 4px 10px 8px;
+	display: none;
+}
+
+.woo-alipay-settings .test-status .dashicons.is-active {
+	display: inline-block;
+}
+
+.woo-alipay-settings .test-status-message.success,
+.woo-alipay-settings .test-status-message.failure,
+.woo-alipay-settings .test-status-message.error,
+.woo-alipay-settings .description.help {
+	display: none;
+}
+
+.woo-alipay-settings .test-status-message.is-active,
+.woo-alipay-settings .description.help.is-active {
+	display: block;
+}
+
+.woo-alipay-config-help {
+	max-width: 800px;
+}
+
+.woo-alipay-config-help ul {
+    margin-left: 30px;
+}
+
+.woo-alipay-config-help li {
+    list-style: disc;
+}
+
+.woo-alipay-config-help .inside {
+	padding: 0 30px 12px;
+}
+
+.woo-alipay-config-help .handle {
+	border-bottom: 1px solid #ccd0d4;
+	line-height: 1.4em;
+	font-size: 14px;
+	margin: 0;
+	padding: 8px 12px;
+}
+
+.js .woo-alipay-config-help .handlediv {
+    display: block;
+}
+
+.woo-alipay-config-help .handlediv {
+    display: none;
+    float: right;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: 0 0;
+    cursor: pointer;
+}
+
+.woo-alipay-config-help .handlediv,
+.woo-alipay-config-help .handlediv.button-link {
+    color: #72777c;
+}
+
+.woo-alipay-config-help .handlediv .toggle-indicator:before {
+    margin-top: 4px;
+    width: 20px;
+    border-radius: 50%;
+    text-indent: -1px;
+    content: "\f142";
+	display: inline-block;
+	font: normal 20px/1 dashicons;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-decoration: none!important;
+}
+
+.woo-alipay-config-help.closed .handlediv .toggle-indicator:before {
+	content: "\f140";
+}
+
+.woo-alipay-config-help.closed .inside {
+	display: none;
+}

@@ -1,0 +1,177 @@
+.d4p-clear {
+    clear: both;
+}
+
+.d4p-copyright {
+    margin-top: 15px;
+    padding-top: 15px;
+    font-size: 11px;
+    border-top: 1px solid #CCCCCC;
+}
+
+.d4p-settings,
+.d4p-information {
+    padding: 0 30px 15px 0;
+    width: 600px;
+    float: left;
+}
+
+.d4p-settings-second,
+.d4p-information-second {
+    width: 250px;
+    float: left;
+}
+
+.d4p-information,
+.d4p-settings {
+    > fieldset {
+        background-color: #FFF;
+        border-radius: 6px;
+        padding: 15px;
+        margin: 15px 0 0;
+    }
+}
+
+.d4p-bbpress-toolbox {
+    > fieldset {
+        background-color: #D9FAFF;
+        border-radius: 6px;
+        padding: 10px;
+        margin: 15px 0 0;
+        text-align: center;
+
+        &.the-top {
+            background-color: #224760;
+            color: #fff;
+
+            a {
+                color: #fff;
+            }
+
+            h3 {
+                margin: 5px 0;
+                font-weight: bold;
+                font-size: 18px;
+            }
+
+            h4 {
+                margin: 5px 0;
+                padding: 5px 0 0;
+                border-top: 1px solid #eee;
+            }
+        }
+    }
+}
+
+.d4p-bbpress-toolbox,
+.d4p-information,
+.d4p-settings {
+    > fieldset {
+        > * {
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.d4p-settings,
+.d4p-settings-second {
+    .form-table {
+        th {
+            padding: 10px 5px;
+            width: 200px;
+        }
+
+        td {
+            vertical-align: middle;
+            padding: 10px 5px;
+        }
+    }
+}
+
+.form-table {
+    tr.line-on-top {
+        border-top: 1px solid #BBB;
+    }
+}
+
+#d4p-panel {
+    &.d4p-panel-faq {
+        h4 {
+            margin: 1em 0 0;
+        }
+
+        p {
+            margin: 0 0 1em;
+        }
+    }
+
+    .regular-text {
+        width: 14em;
+    }
+}
+
+div.d4p-updated {
+    font-size: 13px;
+    line-height: 22px !important;
+    margin: 10px 0 15px;
+    padding: 10px !important;
+}
+
+.d4p-tab-toolbox {
+    color: #cc0000 !important;
+    font-weight: bold !important;
+}
+
+.d4p-bbcodes-table {
+    th, td {
+        vertical-align: top !important;
+    }
+
+    th {
+        width: 20px !important;
+    }
+}
+
+.button-primary.gdbb-tools-submit {
+    font-size: larger;
+    padding: 5px 40px;
+    height: 40px;
+}
+
+.d4p-tabber-ctrl {
+    .dashicons {
+        float: left;
+        margin: 2px 0 0 0;
+    }
+
+    .tab-title {
+        margin-left: 4px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .d4p-settings,
+    .d4p-information {
+        padding: 0 0 30px 0;
+        width: 100%;
+        float: none;
+    }
+
+    .d4p-settings-second,
+    .d4p-information-second {
+        width: 100%;
+        float: none;
+    }
+
+    .d4p-tabber-ctrl {
+        .tab-title {
+            display: none;
+        }
+    }
+}

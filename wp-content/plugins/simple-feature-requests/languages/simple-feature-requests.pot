@@ -1,0 +1,929 @@
+# Copyright (C) 2020 simple-feature-requests
+# This file is distributed under the same license as the simple-feature-requests package.
+msgid ""
+msgstr ""
+"Project-Id-Version: simple-feature-requests\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simple-feature-requests.php:162, simple-feature-requests.php:165, inc/class-settings.php:38, svn/trunk/simple-feature-requests.php:146, svn/trunk/simple-feature-requests.php:149, svn/tags/1.0.4/simple-feature-requests.php:132, svn/tags/1.0.4/simple-feature-requests.php:135, svn/tags/1.0.5/simple-feature-requests.php:131, svn/tags/1.0.5/simple-feature-requests.php:134, svn/tags/1.0.6/simple-feature-requests.php:131, svn/tags/1.0.6/simple-feature-requests.php:134, svn/tags/2.0.0/simple-feature-requests.php:143, svn/tags/2.0.0/simple-feature-requests.php:146, svn/tags/2.0.1/simple-feature-requests.php:143, svn/tags/2.0.1/simple-feature-requests.php:146, svn/tags/2.1.0/simple-feature-requests.php:143, svn/tags/2.1.0/simple-feature-requests.php:146, svn/tags/2.1.1/simple-feature-requests.php:142, svn/tags/2.1.1/simple-feature-requests.php:145, svn/tags/2.1.2/simple-feature-requests.php:146, svn/tags/2.1.2/simple-feature-requests.php:149, svn/trunk/inc/class-settings.php:51, svn/tags/1.0.4/inc/class-settings.php:45, svn/tags/1.0.5/inc/class-settings.php:45, svn/tags/1.0.5/trunk/simple-feature-requests.php:131, svn/tags/1.0.5/trunk/simple-feature-requests.php:134, svn/tags/1.0.6/inc/class-settings.php:46, svn/tags/2.0.0/inc/class-settings.php:51, svn/tags/2.0.1/inc/class-settings.php:51, svn/tags/2.1.0/inc/class-settings.php:51, svn/tags/2.1.1/inc/class-settings.php:51, svn/tags/2.1.2/inc/class-settings.php:51, svn/tags/1.0.5/trunk/inc/class-settings.php:45
+msgid "Simple Feature Requests"
+msgstr ""
+
+#: simple-feature-requests.php:198, svn/trunk/simple-feature-requests.php:182, svn/tags/2.0.0/simple-feature-requests.php:177, svn/tags/2.0.1/simple-feature-requests.php:178, svn/tags/2.1.0/simple-feature-requests.php:179, svn/tags/2.1.1/simple-feature-requests.php:178, svn/tags/2.1.2/simple-feature-requests.php:182
+msgid "Available in Pro"
+msgstr ""
+
+#: inc/class-ajax.php:49, inc/class-ajax.php:102, svn/trunk/inc/class-ajax.php:49, svn/trunk/inc/class-ajax.php:102, svn/tags/1.0.0/inc/class-ajax.php:49, svn/tags/1.0.0/inc/class-ajax.php:104, svn/tags/1.0.1/inc/class-ajax.php:49, svn/tags/1.0.1/inc/class-ajax.php:104, svn/tags/1.0.2/inc/class-ajax.php:49, svn/tags/1.0.2/inc/class-ajax.php:104, svn/tags/1.0.3/inc/class-ajax.php:49, svn/tags/1.0.3/inc/class-ajax.php:104, svn/tags/1.0.4/inc/class-ajax.php:49, svn/tags/1.0.4/inc/class-ajax.php:104, svn/tags/1.0.5/inc/class-ajax.php:49, svn/tags/1.0.5/inc/class-ajax.php:104, svn/tags/1.0.6/inc/class-ajax.php:49, svn/tags/1.0.6/inc/class-ajax.php:104, svn/tags/2.0.0/inc/class-ajax.php:49, svn/tags/2.0.0/inc/class-ajax.php:102, svn/tags/2.0.1/inc/class-ajax.php:49, svn/tags/2.0.1/inc/class-ajax.php:102, svn/tags/2.1.0/inc/class-ajax.php:49, svn/tags/2.1.0/inc/class-ajax.php:102, svn/tags/2.1.1/inc/class-ajax.php:49, svn/tags/2.1.1/inc/class-ajax.php:102, svn/tags/2.1.2/inc/class-ajax.php:49, svn/tags/2.1.2/inc/class-ajax.php:102, svn/tags/1.0.5/trunk/inc/class-ajax.php:49, svn/tags/1.0.5/trunk/inc/class-ajax.php:104
+msgid "Nonce check failed."
+msgstr ""
+
+#: inc/class-ajax.php:57, svn/trunk/inc/class-ajax.php:57, svn/tags/1.0.0/inc/class-ajax.php:57, svn/tags/1.0.1/inc/class-ajax.php:57, svn/tags/1.0.2/inc/class-ajax.php:57, svn/tags/1.0.3/inc/class-ajax.php:57, svn/tags/1.0.4/inc/class-ajax.php:57, svn/tags/1.0.5/inc/class-ajax.php:57, svn/tags/1.0.6/inc/class-ajax.php:57, svn/tags/2.0.0/inc/class-ajax.php:57, svn/tags/2.0.1/inc/class-ajax.php:57, svn/tags/2.1.0/inc/class-ajax.php:57, svn/tags/2.1.1/inc/class-ajax.php:57, svn/tags/2.1.2/inc/class-ajax.php:57, svn/tags/1.0.5/trunk/inc/class-ajax.php:57
+msgid "Simple Feature Requests: No post ID sent to AJAX."
+msgstr ""
+
+#: inc/class-ajax.php:64, svn/trunk/inc/class-ajax.php:64, svn/tags/1.0.0/inc/class-ajax.php:64, svn/tags/1.0.1/inc/class-ajax.php:64, svn/tags/1.0.2/inc/class-ajax.php:64, svn/tags/1.0.3/inc/class-ajax.php:64, svn/tags/1.0.4/inc/class-ajax.php:64, svn/tags/1.0.5/inc/class-ajax.php:64, svn/tags/1.0.6/inc/class-ajax.php:64, svn/tags/2.0.0/inc/class-ajax.php:64, svn/tags/2.0.1/inc/class-ajax.php:64, svn/tags/2.1.0/inc/class-ajax.php:64, svn/tags/2.1.1/inc/class-ajax.php:64, svn/tags/2.1.2/inc/class-ajax.php:64, svn/tags/1.0.5/trunk/inc/class-ajax.php:64
+msgid "Simple Feature Requests: No post found for ID %d"
+msgstr ""
+
+#: inc/class-ajax.php:79, inc/class-template-methods.php:149, svn/trunk/inc/class-ajax.php:79, svn/trunk/inc/class-template-methods.php:195, svn/tags/1.0.0/inc/class-template-methods.php:79, svn/tags/1.0.1/inc/class-template-methods.php:79, svn/tags/1.0.2/inc/class-template-methods.php:147, svn/tags/1.0.3/inc/class-template-methods.php:147, svn/tags/1.0.4/inc/class-template-methods.php:190, svn/tags/1.0.5/inc/class-template-methods.php:190, svn/tags/1.0.6/inc/class-template-methods.php:190, svn/tags/2.0.0/inc/class-template-methods.php:190, svn/tags/2.0.1/inc/class-template-methods.php:190, svn/tags/2.1.0/inc/class-template-methods.php:193, svn/tags/2.1.1/inc/class-template-methods.php:193, svn/tags/2.1.2/inc/class-ajax.php:79, svn/tags/2.1.2/inc/class-template-methods.php:195, svn/tags/1.0.5/trunk/inc/class-template-methods.php:190
+msgid "vote"
+msgid_plural "votes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-assets.php:44, inc/class-feature-request.php:303, inc/class-post-types.php:414, svn/trunk/inc/class-assets.php:44, svn/trunk/inc/class-feature-request.php:270, svn/tags/1.0.0/inc/class-assets.php:43, svn/tags/1.0.1/inc/class-assets.php:43, svn/tags/1.0.2/inc/class-assets.php:43, svn/tags/1.0.3/inc/class-assets.php:43, svn/tags/1.0.4/inc/class-assets.php:43, svn/tags/1.0.5/inc/class-assets.php:43, svn/tags/1.0.6/inc/class-assets.php:43, svn/tags/2.0.0/inc/class-assets.php:44, svn/tags/2.0.1/inc/class-assets.php:44, svn/tags/2.1.0/inc/class-assets.php:44, svn/tags/2.1.1/inc/class-assets.php:44, svn/tags/2.1.2/inc/class-assets.php:44, svn/tags/2.1.2/inc/class-feature-request.php:270, svn/tags/1.0.5/trunk/inc/class-assets.php:43
+msgid "Vote"
+msgid_plural "Votes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-assets.php:45, svn/trunk/inc/class-assets.php:45, svn/tags/1.0.0/inc/class-assets.php:44, svn/tags/1.0.1/inc/class-assets.php:44, svn/tags/1.0.2/inc/class-assets.php:44, svn/tags/1.0.3/inc/class-assets.php:44, svn/tags/1.0.4/inc/class-assets.php:44, svn/tags/1.0.5/inc/class-assets.php:44, svn/tags/1.0.6/inc/class-assets.php:44, svn/tags/2.0.0/inc/class-assets.php:45, svn/tags/2.0.1/inc/class-assets.php:45, svn/tags/2.1.0/inc/class-assets.php:45, svn/tags/2.1.1/inc/class-assets.php:45, svn/tags/2.1.2/inc/class-assets.php:45, svn/tags/1.0.5/trunk/inc/class-assets.php:44
+msgid "Voting"
+msgstr ""
+
+#: inc/class-assets.php:46, inc/class-feature-request.php:303, svn/trunk/inc/class-assets.php:46, svn/trunk/inc/class-feature-request.php:270, svn/tags/1.0.0/inc/class-assets.php:45, svn/tags/1.0.1/inc/class-assets.php:45, svn/tags/1.0.2/inc/class-assets.php:45, svn/tags/1.0.3/inc/class-assets.php:45, svn/tags/1.0.4/inc/class-assets.php:45, svn/tags/1.0.5/inc/class-assets.php:45, svn/tags/1.0.6/inc/class-assets.php:45, svn/tags/2.0.0/inc/class-assets.php:46, svn/tags/2.0.1/inc/class-assets.php:46, svn/tags/2.1.0/inc/class-assets.php:46, svn/tags/2.1.1/inc/class-assets.php:46, svn/tags/2.1.2/inc/class-assets.php:46, svn/tags/2.1.2/inc/class-feature-request.php:270, svn/tags/1.0.5/trunk/inc/class-assets.php:45
+msgid "Voted"
+msgstr ""
+
+#: inc/class-core-cross-sells.php:70, svn/trunk/inc/class-core-cross-sells.php:70, svn/tags/1.0.4/inc/class-core-cross-sells.php:69, svn/tags/1.0.5/inc/class-core-cross-sells.php:69, svn/tags/1.0.6/inc/class-core-cross-sells.php:69, svn/tags/2.0.0/inc/class-core-cross-sells.php:69, svn/tags/2.0.1/inc/class-core-cross-sells.php:69, svn/tags/2.1.0/inc/class-core-cross-sells.php:70, svn/tags/2.1.1/inc/class-core-cross-sells.php:70, svn/tags/2.1.2/inc/class-core-cross-sells.php:70, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:69
+msgid "Display individual product variations of a variable product in your product listings. Make it easy for your customers to view and filter product variations."
+msgstr ""
+
+#: inc/class-core-cross-sells.php:81, svn/trunk/inc/class-core-cross-sells.php:81, svn/tags/1.0.4/inc/class-core-cross-sells.php:80, svn/tags/1.0.5/inc/class-core-cross-sells.php:80, svn/tags/1.0.6/inc/class-core-cross-sells.php:80, svn/tags/2.0.0/inc/class-core-cross-sells.php:80, svn/tags/2.0.1/inc/class-core-cross-sells.php:80, svn/tags/2.1.0/inc/class-core-cross-sells.php:81, svn/tags/2.1.1/inc/class-core-cross-sells.php:81, svn/tags/2.1.2/inc/class-core-cross-sells.php:81, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:80
+msgid "Enable zoom, sliders, video, fullscreen, multiple images per variation, and customisable layout options for your product imagery."
+msgstr ""
+
+#: inc/class-core-cross-sells.php:92, svn/trunk/inc/class-core-cross-sells.php:92, svn/tags/1.0.4/inc/class-core-cross-sells.php:91, svn/tags/1.0.5/inc/class-core-cross-sells.php:91, svn/tags/1.0.6/inc/class-core-cross-sells.php:91, svn/tags/2.0.0/inc/class-core-cross-sells.php:91, svn/tags/2.0.1/inc/class-core-cross-sells.php:91, svn/tags/2.1.0/inc/class-core-cross-sells.php:92, svn/tags/2.1.1/inc/class-core-cross-sells.php:92, svn/tags/2.1.2/inc/class-core-cross-sells.php:92, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:91
+msgid "Choose a delivery date and time for each order. Add a limit to the number of allowed reservations, restrict time slots to specific delivery methods, and so much more."
+msgstr ""
+
+#: inc/class-core-cross-sells.php:103, svn/trunk/inc/class-core-cross-sells.php:103, svn/tags/1.0.4/inc/class-core-cross-sells.php:102, svn/tags/1.0.5/inc/class-core-cross-sells.php:102, svn/tags/1.0.6/inc/class-core-cross-sells.php:102, svn/tags/2.0.0/inc/class-core-cross-sells.php:102, svn/tags/2.0.1/inc/class-core-cross-sells.php:102, svn/tags/2.1.0/inc/class-core-cross-sells.php:103, svn/tags/2.1.1/inc/class-core-cross-sells.php:103, svn/tags/2.1.2/inc/class-core-cross-sells.php:103, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:102
+msgid "Link a group of WooCommerce products together by their attributes; a new way to handle product variations."
+msgstr ""
+
+#: inc/class-core-cross-sells.php:114, svn/trunk/inc/class-core-cross-sells.php:114, svn/tags/1.0.4/inc/class-core-cross-sells.php:113, svn/tags/1.0.5/inc/class-core-cross-sells.php:113, svn/tags/1.0.6/inc/class-core-cross-sells.php:113, svn/tags/2.0.0/inc/class-core-cross-sells.php:113, svn/tags/2.0.1/inc/class-core-cross-sells.php:113, svn/tags/2.1.0/inc/class-core-cross-sells.php:114, svn/tags/2.1.1/inc/class-core-cross-sells.php:114, svn/tags/2.1.2/inc/class-core-cross-sells.php:114, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:113
+msgid "Use transparent image layers for your variable products, removing the need to create hundreds of final product variation images."
+msgstr ""
+
+#: inc/class-core-cross-sells.php:125, svn/trunk/inc/class-core-cross-sells.php:125, svn/tags/1.0.4/inc/class-core-cross-sells.php:124, svn/tags/1.0.5/inc/class-core-cross-sells.php:124, svn/tags/1.0.6/inc/class-core-cross-sells.php:124, svn/tags/2.0.0/inc/class-core-cross-sells.php:124, svn/tags/2.0.1/inc/class-core-cross-sells.php:124, svn/tags/2.1.0/inc/class-core-cross-sells.php:125, svn/tags/2.1.1/inc/class-core-cross-sells.php:125, svn/tags/2.1.2/inc/class-core-cross-sells.php:125, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:124
+msgid "A modern take on quick view for WooCommerce; expand product details within your product listings for a convenient shopping experience."
+msgstr ""
+
+#: inc/class-core-cross-sells.php:132, svn/trunk/inc/class-core-cross-sells.php:132, svn/tags/1.0.4/inc/class-core-cross-sells.php:131, svn/tags/1.0.5/inc/class-core-cross-sells.php:131, svn/tags/1.0.6/inc/class-core-cross-sells.php:131, svn/tags/2.0.0/inc/class-core-cross-sells.php:131, svn/tags/2.0.1/inc/class-core-cross-sells.php:131, svn/tags/2.1.0/inc/class-core-cross-sells.php:132, svn/tags/2.1.1/inc/class-core-cross-sells.php:132, svn/tags/2.1.2/inc/class-core-cross-sells.php:132, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:131
+msgid "Add and manage pages in your WooCommerce \"My Account\" area using the native WordPress \"Pages\" functionality."
+msgstr ""
+
+#: inc/class-core-cross-sells.php:139, svn/trunk/inc/class-core-cross-sells.php:139, svn/tags/1.0.4/inc/class-core-cross-sells.php:138, svn/tags/1.0.5/inc/class-core-cross-sells.php:138, svn/tags/1.0.6/inc/class-core-cross-sells.php:138, svn/tags/2.0.0/inc/class-core-cross-sells.php:138, svn/tags/2.0.1/inc/class-core-cross-sells.php:138, svn/tags/2.1.0/inc/class-core-cross-sells.php:139, svn/tags/2.1.1/inc/class-core-cross-sells.php:139, svn/tags/2.1.2/inc/class-core-cross-sells.php:139, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:138
+msgid "Quickly view any product from the catalog, without reloading the page. Encourage sales with easy and efficient product browsing."
+msgstr ""
+
+#: inc/class-core-cross-sells.php:150, svn/trunk/inc/class-core-cross-sells.php:150, svn/tags/1.0.4/inc/class-core-cross-sells.php:149, svn/tags/1.0.5/inc/class-core-cross-sells.php:149, svn/tags/1.0.6/inc/class-core-cross-sells.php:149, svn/tags/2.0.0/inc/class-core-cross-sells.php:149, svn/tags/2.0.1/inc/class-core-cross-sells.php:149, svn/tags/2.1.0/inc/class-core-cross-sells.php:150, svn/tags/2.1.1/inc/class-core-cross-sells.php:150, svn/tags/2.1.2/inc/class-core-cross-sells.php:150, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:149
+msgid "Bored of the standard dropdown fields when viewing a variable product? Turn them into colour, image, or text swatches!"
+msgstr ""
+
+#: inc/class-core-cross-sells.php:161, svn/trunk/inc/class-core-cross-sells.php:161, svn/tags/1.0.4/inc/class-core-cross-sells.php:160, svn/tags/1.0.5/inc/class-core-cross-sells.php:160, svn/tags/1.0.6/inc/class-core-cross-sells.php:160, svn/tags/2.0.0/inc/class-core-cross-sells.php:160, svn/tags/2.0.1/inc/class-core-cross-sells.php:160, svn/tags/2.1.0/inc/class-core-cross-sells.php:161, svn/tags/2.1.1/inc/class-core-cross-sells.php:161, svn/tags/2.1.2/inc/class-core-cross-sells.php:161, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:160
+msgid "Easily add custom fields to your product variations; the perfect way to display organised additional product data to your customers."
+msgstr ""
+
+#: inc/class-core-cross-sells.php:168, svn/trunk/inc/class-core-cross-sells.php:168, svn/tags/1.0.4/inc/class-core-cross-sells.php:167, svn/tags/1.0.5/inc/class-core-cross-sells.php:167, svn/tags/1.0.6/inc/class-core-cross-sells.php:167, svn/tags/2.0.0/inc/class-core-cross-sells.php:167, svn/tags/2.0.1/inc/class-core-cross-sells.php:167, svn/tags/2.1.0/inc/class-core-cross-sells.php:168, svn/tags/2.1.1/inc/class-core-cross-sells.php:168, svn/tags/2.1.2/inc/class-core-cross-sells.php:168, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:167
+msgid "Bundle a selection of products on a single product page. It even works with variable products!"
+msgstr ""
+
+#: inc/class-core-cross-sells.php:232, svn/trunk/inc/class-core-cross-sells.php:232, svn/tags/1.0.4/inc/class-core-cross-sells.php:231, svn/tags/1.0.5/inc/class-core-cross-sells.php:231, svn/tags/1.0.6/inc/class-core-cross-sells.php:231, svn/tags/2.0.0/inc/class-core-cross-sells.php:231, svn/tags/2.0.1/inc/class-core-cross-sells.php:231, svn/tags/2.1.0/inc/class-core-cross-sells.php:232, svn/tags/2.1.1/inc/class-core-cross-sells.php:232, svn/tags/2.1.2/inc/class-core-cross-sells.php:232, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:231
+msgid "Learn More"
+msgstr ""
+
+#: inc/class-core-cross-sells.php:241, svn/trunk/inc/class-core-cross-sells.php:241, svn/tags/1.0.4/inc/class-core-cross-sells.php:240, svn/tags/1.0.5/inc/class-core-cross-sells.php:240, svn/tags/1.0.6/inc/class-core-cross-sells.php:240, svn/tags/2.0.0/inc/class-core-cross-sells.php:240, svn/tags/2.0.1/inc/class-core-cross-sells.php:240, svn/tags/2.1.0/inc/class-core-cross-sells.php:241, svn/tags/2.1.1/inc/class-core-cross-sells.php:241, svn/tags/2.1.2/inc/class-core-cross-sells.php:241, svn/tags/1.0.5/trunk/inc/class-core-cross-sells.php:240
+msgid "View All Iconic Plugins"
+msgstr ""
+
+#: inc/class-core-cross-sells.php:246, svn/trunk/inc/class-core-cross-sells.php:246, svn/tags/2.1.0/inc/class-core-cross-sells.php:246, svn/tags/2.1.1/inc/class-core-cross-sells.php:246, svn/tags/2.1.2/inc/class-core-cross-sells.php:246
+msgid "Trusted by over 10,000 WooCommerce Businesses and Online Shops"
+msgstr ""
+
+#: inc/class-core-licence.php:171, svn/trunk/inc/class-core-licence.php:177, svn/tags/1.0.4/inc/class-core-licence.php:177, svn/tags/1.0.5/inc/class-core-licence.php:177, svn/tags/1.0.6/inc/class-core-licence.php:177, svn/tags/2.0.0/inc/class-core-licence.php:177, svn/tags/2.0.1/inc/class-core-licence.php:177, svn/tags/2.1.0/inc/class-core-licence.php:177, svn/tags/2.1.1/inc/class-core-licence.php:177, svn/tags/2.1.2/inc/class-core-licence.php:177, svn/tags/1.0.5/trunk/inc/class-core-licence.php:177
+msgid "Back to Settings"
+msgstr ""
+
+#: inc/class-core-licence.php:197, svn/trunk/inc/class-core-licence.php:206, svn/tags/1.0.4/inc/class-core-licence.php:206, svn/tags/1.0.5/inc/class-core-licence.php:206, svn/tags/1.0.6/inc/class-core-licence.php:206, svn/tags/2.0.0/inc/class-core-licence.php:206, svn/tags/2.0.1/inc/class-core-licence.php:206, svn/tags/2.1.0/inc/class-core-licence.php:206, svn/tags/2.1.1/inc/class-core-licence.php:206, svn/tags/2.1.2/inc/class-core-licence.php:206, svn/tags/1.0.5/trunk/inc/class-core-licence.php:206
+msgid "Changelog"
+msgstr ""
+
+#: inc/class-core-licence.php:208, svn/trunk/inc/class-core-licence.php:217, svn/tags/1.0.4/inc/class-core-licence.php:217, svn/tags/1.0.5/inc/class-core-licence.php:217, svn/tags/1.0.6/inc/class-core-licence.php:217, svn/tags/2.0.0/inc/class-core-licence.php:217, svn/tags/2.0.1/inc/class-core-licence.php:217, svn/tags/2.1.0/inc/class-core-licence.php:217, svn/tags/2.1.1/inc/class-core-licence.php:217, svn/tags/2.1.2/inc/class-core-licence.php:217, svn/tags/1.0.5/trunk/inc/class-core-licence.php:217
+msgid "Manage Licence &amp; Billing"
+msgstr ""
+
+#: inc/class-core-settings.php:301, svn/trunk/inc/class-core-settings.php:324, svn/tags/1.0.4/inc/class-core-settings.php:259, svn/tags/1.0.5/inc/class-core-settings.php:259, svn/tags/1.0.6/inc/class-core-settings.php:307, svn/tags/2.0.0/inc/class-core-settings.php:307, svn/tags/2.0.1/inc/class-core-settings.php:307, svn/tags/2.1.0/inc/class-core-settings.php:324, svn/tags/2.1.1/inc/class-core-settings.php:324, svn/tags/2.1.2/inc/class-core-settings.php:324, svn/tags/1.0.5/trunk/inc/class-core-settings.php:259
+msgid "Thank you for choosing Iconic. We've put together some useful links to help you get started:"
+msgstr ""
+
+#: inc/class-core-settings.php:306, svn/trunk/inc/class-core-settings.php:329, svn/tags/1.0.6/inc/class-core-settings.php:311, svn/tags/2.0.0/inc/class-core-settings.php:311, svn/tags/2.0.1/inc/class-core-settings.php:311, svn/tags/2.1.0/inc/class-core-settings.php:329, svn/tags/2.1.1/inc/class-core-settings.php:329, svn/tags/2.1.2/inc/class-core-settings.php:329
+msgid "Need some help?"
+msgstr ""
+
+#. translators: Documentation URL.
+#. translators: Documentation URL.
+#. translators: Documentation URL.
+#. translators: Documentation URL.
+#. translators: Documentation URL.
+#: inc/class-core-settings.php:310, svn/trunk/inc/class-core-settings.php:333, svn/tags/2.1.0/inc/class-core-settings.php:333, svn/tags/2.1.1/inc/class-core-settings.php:333, svn/tags/2.1.2/inc/class-core-settings.php:333
+msgid "Take a look at our <a href=\"%s?utm_source=Iconic&utm_medium=Plugin&utm_campaign=simple-feature-requests&utm_content=need-some-help\" target=\"_blank\">troubleshooting documentation</a>."
+msgstr ""
+
+#: inc/class-core-settings.php:314, svn/trunk/inc/class-core-settings.php:337, svn/tags/1.0.4/inc/class-core-settings.php:264, svn/tags/1.0.5/inc/class-core-settings.php:264, svn/tags/1.0.6/inc/class-core-settings.php:312, svn/tags/2.0.0/inc/class-core-settings.php:312, svn/tags/2.0.1/inc/class-core-settings.php:312, svn/tags/2.1.0/inc/class-core-settings.php:337, svn/tags/2.1.1/inc/class-core-settings.php:337, svn/tags/2.1.2/inc/class-core-settings.php:337, svn/tags/1.0.5/trunk/inc/class-core-settings.php:264
+msgid "There is a permanent link to the plugin documentation in the \"Support\" section below."
+msgstr ""
+
+#: inc/class-core-settings.php:387, svn/trunk/inc/class-core-settings.php:410, svn/tags/1.0.4/inc/class-core-settings.php:335, svn/tags/1.0.5/inc/class-core-settings.php:335, svn/tags/1.0.6/inc/class-core-settings.php:383, svn/tags/2.0.0/inc/class-core-settings.php:383, svn/tags/2.0.1/inc/class-core-settings.php:383, svn/tags/2.1.0/inc/class-core-settings.php:410, svn/tags/2.1.1/inc/class-core-settings.php:410, svn/tags/2.1.2/inc/class-core-settings.php:410, svn/tags/1.0.5/trunk/inc/class-core-settings.php:335
+msgid "Getting Started"
+msgstr ""
+
+#: inc/class-core-settings.php:431, svn/trunk/inc/class-core-settings.php:454, svn/tags/1.0.4/inc/class-core-settings.php:378, svn/tags/1.0.5/inc/class-core-settings.php:378, svn/tags/1.0.6/inc/class-core-settings.php:426, svn/tags/2.0.0/inc/class-core-settings.php:426, svn/tags/2.0.1/inc/class-core-settings.php:426, svn/tags/2.1.0/inc/class-core-settings.php:454, svn/tags/2.1.1/inc/class-core-settings.php:454, svn/tags/2.1.2/inc/class-core-settings.php:454, svn/tags/1.0.5/trunk/inc/class-core-settings.php:378
+msgid "Dashboard"
+msgstr ""
+
+#: inc/class-core-settings.php:438, svn/trunk/inc/class-core-settings.php:461, svn/tags/1.0.4/inc/class-core-settings.php:385, svn/tags/1.0.5/inc/class-core-settings.php:385, svn/tags/1.0.6/inc/class-core-settings.php:433, svn/tags/2.0.0/inc/class-core-settings.php:433, svn/tags/2.0.1/inc/class-core-settings.php:433, svn/tags/2.1.0/inc/class-core-settings.php:461, svn/tags/2.1.1/inc/class-core-settings.php:461, svn/tags/2.1.2/inc/class-core-settings.php:461, svn/tags/1.0.5/trunk/inc/class-core-settings.php:385
+msgid "License &amp; Account Settings"
+msgstr ""
+
+#: inc/class-core-settings.php:444, svn/trunk/inc/class-core-settings.php:467, svn/tags/1.0.4/inc/class-core-settings.php:391, svn/tags/1.0.5/inc/class-core-settings.php:391, svn/tags/1.0.6/inc/class-core-settings.php:439, svn/tags/2.0.0/inc/class-core-settings.php:439, svn/tags/2.0.1/inc/class-core-settings.php:439, svn/tags/2.1.0/inc/class-core-settings.php:467, svn/tags/2.1.1/inc/class-core-settings.php:467, svn/tags/2.1.2/inc/class-core-settings.php:467, svn/tags/1.0.5/trunk/inc/class-core-settings.php:391
+msgid "License &amp; Billing"
+msgstr ""
+
+#: inc/class-core-settings.php:445, svn/trunk/inc/class-core-settings.php:468, svn/tags/1.0.4/inc/class-core-settings.php:392, svn/tags/1.0.5/inc/class-core-settings.php:392, svn/tags/1.0.6/inc/class-core-settings.php:440, svn/tags/2.0.0/inc/class-core-settings.php:440, svn/tags/2.0.1/inc/class-core-settings.php:440, svn/tags/2.1.0/inc/class-core-settings.php:468, svn/tags/2.1.1/inc/class-core-settings.php:468, svn/tags/2.1.2/inc/class-core-settings.php:468, svn/tags/1.0.5/trunk/inc/class-core-settings.php:392
+msgid "Activate or sync your license, cancel your subscription, print invoices, and manage your account information."
+msgstr ""
+
+#: inc/class-core-settings.php:451, svn/trunk/inc/class-core-settings.php:474, svn/tags/1.0.4/inc/class-core-settings.php:398, svn/tags/1.0.5/inc/class-core-settings.php:398, svn/tags/1.0.6/inc/class-core-settings.php:446, svn/tags/2.0.0/inc/class-core-settings.php:446, svn/tags/2.0.1/inc/class-core-settings.php:446, svn/tags/2.1.0/inc/class-core-settings.php:474, svn/tags/2.1.1/inc/class-core-settings.php:474, svn/tags/2.1.2/inc/class-core-settings.php:474, svn/tags/1.0.5/trunk/inc/class-core-settings.php:398
+msgid "Your Account"
+msgstr ""
+
+#: inc/class-core-settings.php:452, svn/trunk/inc/class-core-settings.php:475, svn/tags/1.0.4/inc/class-core-settings.php:399, svn/tags/1.0.5/inc/class-core-settings.php:399, svn/tags/1.0.6/inc/class-core-settings.php:447, svn/tags/2.0.0/inc/class-core-settings.php:447, svn/tags/2.0.1/inc/class-core-settings.php:447, svn/tags/2.1.0/inc/class-core-settings.php:475, svn/tags/2.1.1/inc/class-core-settings.php:475, svn/tags/2.1.2/inc/class-core-settings.php:475, svn/tags/1.0.5/trunk/inc/class-core-settings.php:399
+msgid "Manage all of your Iconic plugins, supscriptions, renewals, and more."
+msgstr ""
+
+#: inc/class-core-settings.php:464, inc/class-core-settings.php:470, inc/class-settings.php:41, svn/trunk/inc/class-core-settings.php:487, svn/trunk/inc/class-core-settings.php:493, svn/trunk/inc/class-settings.php:58, svn/tags/1.0.4/inc/class-core-settings.php:411, svn/tags/1.0.4/inc/class-core-settings.php:417, svn/tags/1.0.5/inc/class-core-settings.php:411, svn/tags/1.0.5/inc/class-core-settings.php:417, svn/tags/1.0.6/inc/class-core-settings.php:459, svn/tags/1.0.6/inc/class-core-settings.php:465, svn/tags/2.0.0/inc/class-core-settings.php:459, svn/tags/2.0.0/inc/class-core-settings.php:465, svn/tags/2.0.0/inc/class-settings.php:58, svn/tags/2.0.1/inc/class-core-settings.php:459, svn/tags/2.0.1/inc/class-core-settings.php:465, svn/tags/2.0.1/inc/class-settings.php:58, svn/tags/2.1.0/inc/class-core-settings.php:487, svn/tags/2.1.0/inc/class-core-settings.php:493, svn/tags/2.1.0/inc/class-settings.php:58, svn/tags/2.1.1/inc/class-core-settings.php:487, svn/tags/2.1.1/inc/class-core-settings.php:493, svn/tags/2.1.1/inc/class-settings.php:58, svn/tags/2.1.2/inc/class-core-settings.php:487, svn/tags/2.1.2/inc/class-core-settings.php:493, svn/tags/2.1.2/inc/class-settings.php:58, svn/tags/1.0.5/trunk/inc/class-core-settings.php:411, svn/tags/1.0.5/trunk/inc/class-core-settings.php:417
+msgid "Support"
+msgstr ""
+
+#: inc/class-core-settings.php:471, svn/trunk/inc/class-core-settings.php:494, svn/tags/1.0.4/inc/class-core-settings.php:418, svn/tags/1.0.5/inc/class-core-settings.php:418, svn/tags/1.0.6/inc/class-core-settings.php:466, svn/tags/2.0.0/inc/class-core-settings.php:466, svn/tags/2.0.1/inc/class-core-settings.php:466, svn/tags/2.1.0/inc/class-core-settings.php:494, svn/tags/2.1.1/inc/class-core-settings.php:494, svn/tags/2.1.2/inc/class-core-settings.php:494, svn/tags/1.0.5/trunk/inc/class-core-settings.php:418
+msgid "Get premium support with a valid license."
+msgstr ""
+
+#: inc/class-core-settings.php:477, inc/class-settings.php:40, svn/trunk/inc/class-core-settings.php:500, svn/trunk/inc/class-settings.php:57, svn/tags/1.0.4/inc/class-core-settings.php:424, svn/tags/1.0.5/inc/class-core-settings.php:424, svn/tags/1.0.6/inc/class-core-settings.php:472, svn/tags/2.0.0/inc/class-core-settings.php:472, svn/tags/2.0.0/inc/class-settings.php:57, svn/tags/2.0.1/inc/class-core-settings.php:472, svn/tags/2.0.1/inc/class-settings.php:57, svn/tags/2.1.0/inc/class-core-settings.php:500, svn/tags/2.1.0/inc/class-settings.php:57, svn/tags/2.1.1/inc/class-core-settings.php:500, svn/tags/2.1.1/inc/class-settings.php:57, svn/tags/2.1.2/inc/class-core-settings.php:500, svn/tags/2.1.2/inc/class-settings.php:57, svn/tags/1.0.5/trunk/inc/class-core-settings.php:424
+msgid "Documentation"
+msgstr ""
+
+#: inc/class-core-settings.php:478, svn/trunk/inc/class-core-settings.php:501, svn/tags/1.0.4/inc/class-core-settings.php:425, svn/tags/1.0.5/inc/class-core-settings.php:425, svn/tags/1.0.6/inc/class-core-settings.php:473, svn/tags/2.0.0/inc/class-core-settings.php:473, svn/tags/2.0.1/inc/class-core-settings.php:473, svn/tags/2.1.0/inc/class-core-settings.php:501, svn/tags/2.1.1/inc/class-core-settings.php:501, svn/tags/2.1.2/inc/class-core-settings.php:501, svn/tags/1.0.5/trunk/inc/class-core-settings.php:425
+msgid "Read the plugin documentation."
+msgstr ""
+
+#: inc/class-core-settings.php:494, svn/trunk/inc/class-core-settings.php:517, svn/tags/1.0.4/inc/class-core-settings.php:441, svn/tags/1.0.5/inc/class-core-settings.php:441, svn/tags/1.0.6/inc/class-core-settings.php:489, svn/tags/2.0.0/inc/class-core-settings.php:489, svn/tags/2.0.1/inc/class-core-settings.php:489, svn/tags/2.1.0/inc/class-core-settings.php:517, svn/tags/2.1.1/inc/class-core-settings.php:517, svn/tags/2.1.2/inc/class-core-settings.php:517, svn/tags/1.0.5/trunk/inc/class-core-settings.php:441
+msgid "Works Well With..."
+msgstr ""
+
+#: inc/class-core-settings.php:511, inc/class-settings.php:94, svn/trunk/inc/class-core-settings.php:534, svn/trunk/inc/class-settings.php:111, svn/tags/1.0.4/inc/class-core-settings.php:458, svn/tags/1.0.4/inc/class-settings.php:103, svn/tags/1.0.5/inc/class-core-settings.php:458, svn/tags/1.0.5/inc/class-settings.php:103, svn/tags/1.0.6/inc/class-core-settings.php:506, svn/tags/1.0.6/inc/class-settings.php:104, svn/tags/2.0.0/inc/class-core-settings.php:506, svn/tags/2.0.0/inc/class-settings.php:111, svn/tags/2.0.1/inc/class-core-settings.php:506, svn/tags/2.0.1/inc/class-settings.php:111, svn/tags/2.1.0/inc/class-core-settings.php:534, svn/tags/2.1.0/inc/class-settings.php:111, svn/tags/2.1.1/inc/class-core-settings.php:534, svn/tags/2.1.1/inc/class-settings.php:111, svn/tags/2.1.2/inc/class-core-settings.php:534, svn/tags/2.1.2/inc/class-settings.php:111, svn/tags/1.0.5/trunk/inc/class-core-settings.php:458, svn/tags/1.0.5/trunk/inc/class-settings.php:103
+msgid "Submit Ticket"
+msgstr ""
+
+#: inc/class-core-settings.php:520, inc/class-settings.php:103, svn/trunk/inc/class-core-settings.php:543, svn/trunk/inc/class-settings.php:121, svn/tags/1.0.4/inc/class-core-settings.php:467, svn/tags/1.0.4/inc/class-settings.php:113, svn/tags/1.0.5/inc/class-core-settings.php:467, svn/tags/1.0.5/inc/class-settings.php:113, svn/tags/1.0.6/inc/class-core-settings.php:515, svn/tags/1.0.6/inc/class-settings.php:114, svn/tags/2.0.0/inc/class-core-settings.php:515, svn/tags/2.0.0/inc/class-settings.php:121, svn/tags/2.0.1/inc/class-core-settings.php:515, svn/tags/2.0.1/inc/class-settings.php:121, svn/tags/2.1.0/inc/class-core-settings.php:543, svn/tags/2.1.0/inc/class-settings.php:121, svn/tags/2.1.1/inc/class-core-settings.php:543, svn/tags/2.1.1/inc/class-settings.php:121, svn/tags/2.1.2/inc/class-core-settings.php:543, svn/tags/2.1.2/inc/class-settings.php:121, svn/tags/1.0.5/trunk/inc/class-core-settings.php:467, svn/tags/1.0.5/trunk/inc/class-settings.php:113
+msgid "Read Documentation"
+msgstr ""
+
+#: inc/class-core-settings.php:529, svn/trunk/inc/class-core-settings.php:552, svn/tags/1.0.4/inc/class-core-settings.php:476, svn/tags/1.0.5/inc/class-core-settings.php:476, svn/tags/1.0.6/inc/class-core-settings.php:524, svn/tags/2.0.0/inc/class-core-settings.php:524, svn/tags/2.0.1/inc/class-core-settings.php:524, svn/tags/2.1.0/inc/class-core-settings.php:552, svn/tags/2.1.1/inc/class-core-settings.php:552, svn/tags/2.1.2/inc/class-core-settings.php:552, svn/tags/1.0.5/trunk/inc/class-core-settings.php:476
+msgid "Manage Your Account"
+msgstr ""
+
+#: inc/class-factory.php:113, svn/trunk/inc/class-factory.php:116, svn/tags/1.0.0/inc/class-factory.php:41, svn/tags/1.0.1/inc/class-factory.php:41, svn/tags/1.0.2/inc/class-factory.php:119, svn/tags/1.0.3/inc/class-factory.php:119, svn/tags/1.0.4/inc/class-factory.php:120, svn/tags/1.0.5/inc/class-factory.php:120, svn/tags/1.0.6/inc/class-factory.php:120, svn/tags/2.0.0/inc/class-factory.php:116, svn/tags/2.0.1/inc/class-factory.php:116, svn/tags/2.1.0/inc/class-factory.php:116, svn/tags/2.1.1/inc/class-factory.php:116, svn/tags/2.1.2/inc/class-factory.php:116, svn/tags/1.0.5/trunk/inc/class-factory.php:120
+msgid "A request with that title already exists."
+msgstr ""
+
+#: inc/class-factory.php:135, svn/trunk/inc/class-factory.php:138, svn/tags/1.0.0/inc/class-factory.php:56, svn/tags/1.0.1/inc/class-factory.php:56, svn/tags/1.0.2/inc/class-factory.php:137, svn/tags/1.0.3/inc/class-factory.php:137, svn/tags/1.0.4/inc/class-factory.php:136, svn/tags/1.0.5/inc/class-factory.php:136, svn/tags/1.0.6/inc/class-factory.php:136, svn/tags/2.0.0/inc/class-factory.php:138, svn/tags/2.0.1/inc/class-factory.php:138, svn/tags/2.1.0/inc/class-factory.php:138, svn/tags/2.1.1/inc/class-factory.php:138, svn/tags/2.1.2/inc/class-factory.php:138, svn/tags/1.0.5/trunk/inc/class-factory.php:136
+msgid "There was an error adding your feature request. Please try again."
+msgstr ""
+
+#: inc/class-factory.php:150, svn/trunk/inc/class-factory.php:153, svn/tags/1.0.2/inc/class-factory.php:149, svn/tags/1.0.3/inc/class-factory.php:149, svn/tags/1.0.4/inc/class-factory.php:151, svn/tags/1.0.5/inc/class-factory.php:151, svn/tags/1.0.6/inc/class-factory.php:151, svn/tags/2.0.0/inc/class-factory.php:153, svn/tags/2.0.1/inc/class-factory.php:153, svn/tags/2.1.0/inc/class-factory.php:153, svn/tags/2.1.1/inc/class-factory.php:153, svn/tags/2.1.2/inc/class-factory.php:153, svn/tags/1.0.5/trunk/inc/class-factory.php:151
+msgid "Thank you for your request."
+msgstr ""
+
+#: inc/class-factory.php:153, svn/trunk/inc/class-factory.php:156, svn/tags/1.0.2/inc/class-factory.php:152, svn/tags/1.0.3/inc/class-factory.php:152, svn/tags/1.0.4/inc/class-factory.php:154, svn/tags/1.0.5/inc/class-factory.php:154, svn/tags/1.0.6/inc/class-factory.php:154, svn/tags/2.0.0/inc/class-factory.php:156, svn/tags/2.0.1/inc/class-factory.php:156, svn/tags/2.1.0/inc/class-factory.php:156, svn/tags/2.1.1/inc/class-factory.php:156, svn/tags/2.1.2/inc/class-factory.php:156, svn/tags/1.0.5/trunk/inc/class-factory.php:154
+msgid "It is currently %s."
+msgstr ""
+
+#: inc/class-feature-request.php:36
+msgid "This post is not a feature request."
+msgstr ""
+
+#: inc/class-notifications.php:192
+msgid "Feature request status changed to \"%s\""
+msgstr ""
+
+#: inc/class-notifications.php:234
+msgid "Feature request has been merged"
+msgstr ""
+
+#: inc/class-notifications.php:294, inc/class-notifications.php:388, svn/trunk/inc/class-notifications.php:141, svn/tags/1.0.6/inc/class-notifications.php:165, svn/tags/2.0.0/inc/class-notifications.php:165, svn/tags/2.0.1/inc/class-notifications.php:165, svn/tags/2.1.0/inc/class-notifications.php:165, svn/tags/2.1.1/inc/class-notifications.php:165, svn/tags/2.1.2/inc/class-notifications.php:141
+msgid "Hello,"
+msgstr ""
+
+#: inc/class-notifications.php:295, svn/trunk/inc/class-notifications.php:144, svn/tags/1.0.6/inc/class-notifications.php:168, svn/tags/2.0.0/inc/class-notifications.php:168, svn/tags/2.0.1/inc/class-notifications.php:168, svn/tags/2.1.0/inc/class-notifications.php:168, svn/tags/2.1.1/inc/class-notifications.php:168, svn/tags/2.1.2/inc/class-notifications.php:144
+msgid "A new %s has been posted by \"%s\" to your site."
+msgstr ""
+
+#: inc/class-notifications.php:295, svn/trunk/inc/class-notifications.php:144, svn/tags/1.0.6/inc/class-notifications.php:168, svn/tags/2.0.0/inc/class-notifications.php:168, svn/tags/2.0.1/inc/class-notifications.php:168, svn/tags/2.1.0/inc/class-notifications.php:168, svn/tags/2.1.1/inc/class-notifications.php:168, svn/tags/2.1.2/inc/class-notifications.php:144
+msgid "feature request"
+msgstr ""
+
+#: inc/class-notifications.php:328, inc/class-notifications.php:358
+msgid "Hello %s,"
+msgstr ""
+
+#: inc/class-notifications.php:329
+msgid "We thought you'd like to know the status of <a href=\"%s\">%s</a> has changed to <strong>%s</strong>."
+msgstr ""
+
+#: inc/class-notifications.php:359
+msgid "A feature request you voted on has been merged with a similar request in order to combine votes."
+msgstr ""
+
+#: inc/class-notifications.php:360
+msgid "<strong>%s</strong> has been merged into <a href=\"%s\">%s</a>. The request status is currently <strong>%s</strong>."
+msgstr ""
+
+#: inc/class-notifications.php:389
+msgid "Someone has posted a new comment on <a href=\"%s\">%s</a>:"
+msgstr ""
+
+#: inc/class-notifications.php:522
+msgid "New feature request comment"
+msgstr ""
+
+#: inc/class-notifications.php:549
+msgid "New feature request"
+msgstr ""
+
+#: inc/class-post-types.php:95, svn/trunk/inc/class-post-types.php:121, svn/tags/1.0.0/inc/class-post-types.php:30, svn/tags/1.0.1/inc/class-post-types.php:30, svn/tags/1.0.2/inc/class-post-types.php:30, svn/tags/1.0.3/inc/class-post-types.php:30, svn/tags/1.0.4/inc/class-post-types.php:55, svn/tags/1.0.5/inc/class-post-types.php:55, svn/tags/1.0.6/inc/class-post-types.php:55, svn/tags/2.0.0/inc/class-post-types.php:119, svn/tags/2.0.1/inc/class-post-types.php:124, svn/tags/2.1.0/inc/class-post-types.php:120, svn/tags/2.1.1/inc/class-post-types.php:121, svn/tags/2.1.2/inc/class-post-types.php:121, svn/tags/1.0.5/trunk/inc/class-post-types.php:55
+msgid "Feature Requests"
+msgstr ""
+
+#: inc/class-post-types.php:96, svn/trunk/inc/class-post-types.php:122, svn/tags/1.0.0/inc/class-post-types.php:31, svn/tags/1.0.1/inc/class-post-types.php:31, svn/tags/1.0.2/inc/class-post-types.php:31, svn/tags/1.0.3/inc/class-post-types.php:31, svn/tags/1.0.4/inc/class-post-types.php:56, svn/tags/1.0.5/inc/class-post-types.php:56, svn/tags/1.0.6/inc/class-notifications.php:143, svn/tags/1.0.6/inc/class-post-types.php:56, svn/tags/2.0.0/inc/class-notifications.php:143, svn/tags/2.0.0/inc/class-post-types.php:120, svn/tags/2.0.1/inc/class-notifications.php:143, svn/tags/2.0.1/inc/class-post-types.php:125, svn/tags/2.1.0/inc/class-notifications.php:143, svn/tags/2.1.0/inc/class-post-types.php:121, svn/tags/2.1.1/inc/class-notifications.php:143, svn/tags/2.1.1/inc/class-post-types.php:122, svn/tags/2.1.2/inc/class-post-types.php:122, svn/tags/1.0.5/trunk/inc/class-post-types.php:56
+msgid "Feature Request"
+msgstr ""
+
+#: inc/class-post-types.php:97, svn/trunk/inc/class-post-types.php:123, svn/tags/1.0.4/inc/class-post-types.php:57, svn/tags/1.0.5/inc/class-post-types.php:57, svn/tags/1.0.6/inc/class-post-types.php:57, svn/tags/2.0.0/inc/class-post-types.php:121, svn/tags/2.0.1/inc/class-post-types.php:126, svn/tags/2.1.0/inc/class-post-types.php:122, svn/tags/2.1.1/inc/class-post-types.php:123, svn/tags/2.1.2/inc/class-post-types.php:123, svn/tags/1.0.5/trunk/inc/class-post-types.php:57
+msgid "All Requests"
+msgstr ""
+
+#: inc/class-post-types.php:388, inc/class-post-types.php:517, inc/class-settings.php:475, inc/class-settings.php:489, inc/class-settings.php:503, svn/trunk/inc/class-post-types.php:395, svn/tags/1.0.0/inc/class-post-types.php:183, svn/tags/1.0.1/inc/class-post-types.php:183, svn/tags/1.0.2/inc/class-post-types.php:183, svn/tags/1.0.3/inc/class-post-types.php:183, svn/tags/1.0.4/inc/class-post-types.php:212, svn/tags/1.0.5/inc/class-post-types.php:212, svn/tags/1.0.6/inc/class-post-types.php:217, svn/tags/2.0.0/inc/class-post-types.php:380, svn/tags/2.0.1/inc/class-post-types.php:386, svn/tags/2.1.0/inc/class-post-types.php:386, svn/tags/2.1.1/inc/class-post-types.php:387, svn/tags/2.1.2/inc/class-post-types.php:395, svn/tags/1.0.5/trunk/inc/class-post-types.php:212
+msgid "Author"
+msgstr ""
+
+#: inc/class-post-types.php:389, inc/class-post-types.php:509, inc/class-template-methods.php:48, svn/trunk/inc/class-post-types.php:396, svn/trunk/inc/class-template-methods.php:51, svn/tags/1.0.0/inc/class-post-types.php:184, svn/tags/1.0.1/inc/class-post-types.php:184, svn/tags/1.0.2/inc/class-post-types.php:184, svn/tags/1.0.2/inc/class-template-methods.php:48, svn/tags/1.0.3/inc/class-post-types.php:184, svn/tags/1.0.3/inc/class-template-methods.php:48, svn/tags/1.0.4/inc/class-post-types.php:213, svn/tags/1.0.4/inc/class-template-methods.php:51, svn/tags/1.0.5/inc/class-post-types.php:213, svn/tags/1.0.5/inc/class-template-methods.php:51, svn/tags/1.0.6/inc/class-post-types.php:218, svn/tags/1.0.6/inc/class-template-methods.php:51, svn/tags/2.0.0/inc/class-post-types.php:381, svn/tags/2.0.0/inc/class-template-methods.php:51, svn/tags/2.0.1/inc/class-post-types.php:387, svn/tags/2.0.1/inc/class-template-methods.php:51, svn/tags/2.1.0/inc/class-post-types.php:387, svn/tags/2.1.0/inc/class-template-methods.php:51, svn/tags/2.1.1/inc/class-post-types.php:388, svn/tags/2.1.1/inc/class-template-methods.php:51, svn/tags/2.1.2/inc/class-post-types.php:396, svn/tags/2.1.2/inc/class-template-methods.php:51, svn/tags/1.0.5/trunk/inc/class-post-types.php:213, svn/tags/1.0.5/trunk/inc/class-template-methods.php:51
+msgid "Status"
+msgstr ""
+
+#: inc/class-post-types.php:390, inc/class-post-types.php:513, inc/class-post-types.php:1330, inc/class-settings.php:216, svn/trunk/inc/class-post-types.php:397, svn/trunk/inc/class-settings.php:220, svn/tags/1.0.0/inc/class-post-types.php:185, svn/tags/1.0.1/inc/class-post-types.php:185, svn/tags/1.0.2/inc/class-post-types.php:185, svn/tags/1.0.3/inc/class-post-types.php:185, svn/tags/1.0.4/inc/class-post-types.php:214, svn/tags/1.0.5/inc/class-post-types.php:214, svn/tags/1.0.6/inc/class-post-types.php:219, svn/tags/2.0.0/inc/class-post-types.php:382, svn/tags/2.0.0/inc/class-settings.php:220, svn/tags/2.0.1/inc/class-post-types.php:388, svn/tags/2.0.1/inc/class-settings.php:220, svn/tags/2.1.0/inc/class-post-types.php:388, svn/tags/2.1.0/inc/class-settings.php:220, svn/tags/2.1.1/inc/class-post-types.php:389, svn/tags/2.1.1/inc/class-settings.php:220, svn/tags/2.1.2/inc/class-post-types.php:397, svn/tags/2.1.2/inc/class-settings.php:220, svn/tags/1.0.5/trunk/inc/class-post-types.php:214
+msgid "Votes"
+msgstr ""
+
+#: inc/class-post-types.php:459, inc/class-post-types.php:1060, svn/trunk/inc/class-post-types.php:470, svn/tags/2.0.0/inc/class-post-types.php:455, svn/tags/2.0.1/inc/class-post-types.php:461, svn/tags/2.1.0/inc/class-post-types.php:461, svn/tags/2.1.1/inc/class-post-types.php:462, svn/tags/2.1.2/inc/class-post-types.php:470
+msgid "Categories"
+msgstr ""
+
+#: inc/class-post-types.php:469, svn/trunk/inc/class-post-types.php:479, svn/tags/1.0.0/inc/class-post-types.php:248, svn/tags/1.0.1/inc/class-post-types.php:248, svn/tags/1.0.2/inc/class-post-types.php:248, svn/tags/1.0.3/inc/class-post-types.php:248, svn/tags/1.0.4/inc/class-post-types.php:285, svn/tags/1.0.5/inc/class-post-types.php:285, svn/tags/1.0.6/inc/class-post-types.php:290, svn/tags/2.0.0/inc/class-post-types.php:464, svn/tags/2.0.1/inc/class-post-types.php:470, svn/tags/2.1.0/inc/class-post-types.php:470, svn/tags/2.1.1/inc/class-post-types.php:471, svn/tags/2.1.2/inc/class-post-types.php:479, svn/tags/1.0.5/trunk/inc/class-post-types.php:285
+msgid "Information"
+msgstr ""
+
+#: inc/class-post-types.php:768, inc/class-post-types.php:783, svn/tags/1.0.4/simple-feature-requests.php:134, svn/tags/1.0.5/simple-feature-requests.php:133, svn/tags/1.0.6/simple-feature-requests.php:133, svn/tags/2.0.0/simple-feature-requests.php:145, svn/tags/2.0.1/simple-feature-requests.php:145, svn/tags/2.1.0/simple-feature-requests.php:145, svn/tags/2.1.1/simple-feature-requests.php:144, svn/trunk/inc/class-post-types.php:761, svn/trunk/inc/class-post-types.php:787, svn/tags/1.0.0/inc/class-post-types.php:32, svn/tags/1.0.1/inc/class-post-types.php:32, svn/tags/1.0.2/inc/class-post-types.php:32, svn/tags/1.0.3/inc/class-post-types.php:32, svn/tags/1.0.5/trunk/simple-feature-requests.php:133, svn/tags/2.0.0/inc/class-post-types.php:726, svn/tags/2.0.1/inc/class-post-types.php:730, svn/tags/2.1.0/inc/class-post-types.php:748, svn/tags/2.1.1/inc/class-post-types.php:749, svn/tags/2.1.2/inc/class-post-types.php:761, svn/tags/2.1.2/inc/class-post-types.php:787
+msgid "Requests"
+msgstr ""
+
+#: inc/class-post-types.php:771, svn/trunk/inc/class-post-types.php:767, svn/tags/2.0.0/inc/class-post-types.php:732, svn/tags/2.0.1/inc/class-post-types.php:736, svn/tags/2.1.0/inc/class-post-types.php:754, svn/tags/2.1.1/inc/class-post-types.php:755, svn/tags/2.1.2/inc/class-post-types.php:767
+msgid "Edit Feature Request"
+msgstr ""
+
+#: inc/class-post-types.php:774, svn/trunk/inc/class-post-types.php:774, svn/tags/2.0.0/inc/class-post-types.php:739, svn/tags/2.0.1/inc/class-post-types.php:743, svn/tags/2.1.0/inc/class-post-types.php:761, svn/tags/2.1.1/inc/class-post-types.php:762, svn/tags/2.1.2/inc/class-post-types.php:774
+msgid "Manage Feature Requests"
+msgstr ""
+
+#: inc/class-post-types.php:912, inc/class-post-types.php:1149, inc/class-post-types.php:1170, inc/class-post-types.php:1199
+msgid "Merge Requests"
+msgstr ""
+
+#: inc/class-post-types.php:915
+msgid "Set Status to %s"
+msgstr ""
+
+#: inc/class-post-types.php:1013
+msgid "%s status updated."
+msgid_plural "%s statuses udpated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-post-types.php:1021
+msgid "Requests successfully merged."
+msgstr ""
+
+#: inc/class-post-types.php:1039, inc/class-template-methods.php:354
+msgid "Category"
+msgstr ""
+
+#: inc/class-post-types.php:1045
+msgctxt "taxonomy general name"
+msgid "Categories"
+msgstr ""
+
+#: inc/class-post-types.php:1046
+msgctxt "taxonomy singular name"
+msgid "Category"
+msgstr ""
+
+#: inc/class-post-types.php:1047
+msgid "Search Categories"
+msgstr ""
+
+#: inc/class-post-types.php:1048
+msgid "Popular Categories"
+msgstr ""
+
+#: inc/class-post-types.php:1049
+msgid "All Categories"
+msgstr ""
+
+#: inc/class-post-types.php:1052
+msgid "Edit Category"
+msgstr ""
+
+#: inc/class-post-types.php:1053
+msgid "Update Category"
+msgstr ""
+
+#: inc/class-post-types.php:1054
+msgid "Add New Category"
+msgstr ""
+
+#: inc/class-post-types.php:1055
+msgid "New Category Name"
+msgstr ""
+
+#: inc/class-post-types.php:1056
+msgid "Separate categories with commas"
+msgstr ""
+
+#: inc/class-post-types.php:1057
+msgid "Add or remove categories"
+msgstr ""
+
+#: inc/class-post-types.php:1058
+msgid "Choose from the most used categories"
+msgstr ""
+
+#: inc/class-post-types.php:1059
+msgid "No categories found."
+msgstr ""
+
+#: inc/class-post-types.php:1172
+msgid "You have specified the following requests to be merged:"
+msgstr ""
+
+#: inc/class-post-types.php:1181
+msgid "%d vote"
+msgid_plural "%d votes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-post-types.php:1202
+msgid "Note: Merged requests will be trashed. The request authors of the merged requests will be notified of the merge via email (depending on your settings)."
+msgstr ""
+
+#: inc/class-post-types.php:1335
+msgid "Voters"
+msgstr ""
+
+#: inc/class-post-types.php:1336
+msgid "View All"
+msgstr ""
+
+#: inc/class-settings.php:38, svn/trunk/inc/class-settings.php:52, svn/tags/1.0.4/inc/class-settings.php:46, svn/tags/1.0.5/inc/class-settings.php:46, svn/tags/1.0.6/inc/class-settings.php:47, svn/tags/2.0.0/inc/class-settings.php:52, svn/tags/2.0.1/inc/class-settings.php:52, svn/tags/2.1.0/inc/class-settings.php:52, svn/tags/2.1.1/inc/class-settings.php:52, svn/tags/2.1.2/inc/class-settings.php:52, svn/tags/1.0.5/trunk/inc/class-settings.php:46
+msgid "Settings"
+msgstr ""
+
+#: inc/class-settings.php:137, svn/trunk/inc/class-settings.php:153, svn/tags/1.0.6/inc/class-settings.php:146, svn/tags/2.0.0/inc/class-settings.php:153, svn/tags/2.0.1/inc/class-settings.php:153, svn/tags/2.1.0/inc/class-settings.php:153, svn/tags/2.1.1/inc/class-settings.php:153, svn/tags/2.1.2/inc/class-settings.php:153
+msgid "General"
+msgstr ""
+
+#: inc/class-settings.php:143, svn/trunk/inc/class-settings.php:158, svn/tags/2.0.0/inc/class-settings.php:158, svn/tags/2.0.1/inc/class-settings.php:158, svn/tags/2.1.0/inc/class-settings.php:158, svn/tags/2.1.1/inc/class-settings.php:158, svn/tags/2.1.2/inc/class-settings.php:158
+msgid "Setup"
+msgstr ""
+
+#: inc/class-settings.php:149, svn/trunk/inc/class-settings.php:164, svn/tags/2.0.0/inc/class-settings.php:164, svn/tags/2.0.1/inc/class-settings.php:164, svn/tags/2.1.0/inc/class-settings.php:164, svn/tags/2.1.1/inc/class-settings.php:164, svn/tags/2.1.2/inc/class-settings.php:164
+msgid "Archive Page"
+msgstr ""
+
+#: inc/class-settings.php:150, svn/trunk/inc/class-settings.php:165, svn/tags/2.0.0/inc/class-settings.php:165, svn/tags/2.0.1/inc/class-settings.php:165, svn/tags/2.1.0/inc/class-settings.php:165, svn/tags/2.1.1/inc/class-settings.php:165, svn/tags/2.1.2/inc/class-settings.php:165
+msgid "Select the archive page for your feature requests. Make sure you add the [simple-feature-requests] shortcode to the selected page."
+msgstr ""
+
+#: inc/class-settings.php:161, svn/trunk/inc/class-settings.php:175, svn/tags/2.0.0/inc/class-settings.php:175, svn/tags/2.0.1/inc/class-settings.php:175, svn/tags/2.1.0/inc/class-settings.php:175, svn/tags/2.1.1/inc/class-settings.php:175, svn/tags/2.1.2/inc/class-settings.php:175
+msgid "Comments"
+msgstr ""
+
+#: inc/class-settings.php:167, svn/trunk/inc/class-settings.php:180, svn/tags/2.0.0/inc/class-settings.php:180, svn/tags/2.0.1/inc/class-settings.php:180, svn/tags/2.1.0/inc/class-settings.php:180, svn/tags/2.1.1/inc/class-settings.php:180, svn/tags/2.1.2/inc/class-settings.php:180
+msgid "Enable Comments"
+msgstr ""
+
+#: inc/class-settings.php:168, svn/trunk/inc/class-settings.php:181, svn/tags/2.0.0/inc/class-settings.php:181, svn/tags/2.0.1/inc/class-settings.php:181, svn/tags/2.1.0/inc/class-settings.php:181, svn/tags/2.1.1/inc/class-settings.php:181, svn/tags/2.1.2/inc/class-settings.php:181
+msgid "When enabled, users will be able to comment on feature requests."
+msgstr ""
+
+#: inc/class-settings.php:178, svn/trunk/inc/class-settings.php:189, svn/tags/1.0.6/inc/class-settings.php:151, svn/tags/2.0.0/inc/class-settings.php:189, svn/tags/2.0.1/inc/class-settings.php:189, svn/tags/2.1.0/inc/class-settings.php:189, svn/tags/2.1.1/inc/class-settings.php:189, svn/tags/2.1.2/inc/class-settings.php:189
+msgid "Credit"
+msgstr ""
+
+#: inc/class-settings.php:184, svn/trunk/inc/class-settings.php:194, svn/tags/1.0.6/inc/class-settings.php:156, svn/tags/2.0.0/inc/class-settings.php:194, svn/tags/2.0.1/inc/class-settings.php:194, svn/tags/2.1.0/inc/class-settings.php:194, svn/tags/2.1.1/inc/class-settings.php:194, svn/tags/2.1.2/inc/class-settings.php:194
+msgid "Enable Credit"
+msgstr ""
+
+#: inc/class-settings.php:185, svn/trunk/inc/class-settings.php:195, svn/tags/2.0.0/inc/class-settings.php:195, svn/tags/2.0.1/inc/class-settings.php:195, svn/tags/2.1.0/inc/class-settings.php:195, svn/tags/2.1.1/inc/class-settings.php:195, svn/tags/2.1.2/inc/class-settings.php:195
+msgid "When enabled, a \"powered by\" link will be displayed in the footer of the feature requests templates. Help us spread the word!"
+msgstr ""
+
+#: inc/class-settings.php:194, svn/trunk/inc/class-settings.php:202, svn/tags/1.0.6/inc/class-settings.php:164, svn/tags/2.0.0/inc/class-settings.php:202, svn/tags/2.0.1/inc/class-settings.php:202, svn/tags/2.1.0/inc/class-settings.php:202, svn/tags/2.1.1/inc/class-settings.php:202, svn/tags/2.1.2/inc/class-settings.php:202
+msgid "Notifications"
+msgstr ""
+
+#: inc/class-settings.php:200, svn/trunk/inc/class-settings.php:207, svn/tags/1.0.6/inc/class-settings.php:169, svn/tags/2.0.0/inc/class-settings.php:207, svn/tags/2.0.1/inc/class-settings.php:207, svn/tags/2.1.0/inc/class-settings.php:207, svn/tags/2.1.1/inc/class-settings.php:207, svn/tags/2.1.2/inc/class-settings.php:207
+msgid "Email Contents"
+msgstr ""
+
+#: inc/class-settings.php:206, svn/trunk/inc/class-settings.php:212, svn/tags/1.0.6/inc/class-settings.php:174, svn/tags/2.0.0/inc/class-settings.php:212, svn/tags/2.0.1/inc/class-settings.php:212, svn/tags/2.1.0/inc/class-settings.php:212, svn/tags/2.1.1/inc/class-settings.php:212, svn/tags/2.1.2/inc/class-settings.php:212
+msgid "Signature"
+msgstr ""
+
+#: inc/class-settings.php:207, svn/trunk/inc/class-settings.php:213, svn/tags/1.0.6/inc/class-settings.php:175, svn/tags/2.0.0/inc/class-settings.php:213, svn/tags/2.0.1/inc/class-settings.php:213, svn/tags/2.1.0/inc/class-settings.php:213, svn/tags/2.1.1/inc/class-settings.php:213, svn/tags/2.1.2/inc/class-settings.php:213
+msgid "Used to sign off notification emails. You can use %site_name% and %site_url%."
+msgstr ""
+
+#: inc/class-settings.php:209, svn/trunk/inc/class-settings.php:215, svn/tags/1.0.6/inc/class-settings.php:177, svn/tags/2.0.0/inc/class-settings.php:215, svn/tags/2.0.1/inc/class-settings.php:215, svn/tags/2.1.0/inc/class-settings.php:215, svn/tags/2.1.1/inc/class-settings.php:215, svn/tags/2.1.2/inc/class-settings.php:215
+msgid "Thank you"
+msgstr ""
+
+#: inc/class-settings.php:222, svn/trunk/inc/class-settings.php:225, svn/tags/2.0.0/inc/class-settings.php:225, svn/tags/2.0.1/inc/class-settings.php:225, svn/tags/2.1.0/inc/class-settings.php:225, svn/tags/2.1.1/inc/class-settings.php:225, svn/tags/2.1.2/inc/class-settings.php:225
+msgid "Voting Settings"
+msgstr ""
+
+#: inc/class-settings.php:228, svn/trunk/inc/class-settings.php:230, svn/tags/2.0.0/inc/class-settings.php:230, svn/tags/2.0.1/inc/class-settings.php:230, svn/tags/2.1.0/inc/class-settings.php:230, svn/tags/2.1.1/inc/class-settings.php:230, svn/tags/2.1.2/inc/class-settings.php:230
+msgid "Allow Own Vote Removal?"
+msgstr ""
+
+#: inc/class-settings.php:229, svn/trunk/inc/class-settings.php:231, svn/tags/2.0.0/inc/class-settings.php:231, svn/tags/2.0.1/inc/class-settings.php:231, svn/tags/2.1.0/inc/class-settings.php:231, svn/tags/2.1.1/inc/class-settings.php:231, svn/tags/2.1.2/inc/class-settings.php:231
+msgid "Do you want to allow your users to remove their votes on their own requests?"
+msgstr ""
+
+#: inc/class-settings.php:255, inc/class-settings.php:412, svn/trunk/inc/class-settings.php:254, svn/tags/2.1.0/inc/class-settings.php:254, svn/tags/2.1.1/inc/class-settings.php:254, svn/tags/2.1.2/inc/class-settings.php:254
+msgid "Default Request Status"
+msgstr ""
+
+#: inc/class-settings.php:256, svn/trunk/inc/class-settings.php:255, svn/tags/2.1.0/inc/class-settings.php:255, svn/tags/2.1.1/inc/class-settings.php:255, svn/tags/2.1.2/inc/class-settings.php:255
+msgid "Set the default request status."
+msgstr ""
+
+#: inc/class-settings.php:263, inc/class-settings.php:421, svn/trunk/inc/class-settings.php:261, svn/tags/2.1.2/inc/class-settings.php:261
+msgid "Requests Per Page"
+msgstr ""
+
+#: inc/class-settings.php:264, inc/class-settings.php:422, svn/trunk/inc/class-settings.php:262, svn/tags/2.1.2/inc/class-settings.php:262
+msgid "How many requests to show per page in the archive."
+msgstr ""
+
+#: inc/class-settings.php:272, inc/class-settings.php:430, svn/trunk/inc/class-settings.php:269, svn/tags/2.1.2/inc/class-settings.php:269
+msgid "Admin"
+msgstr ""
+
+#: inc/class-settings.php:278, svn/trunk/inc/class-settings.php:274, svn/tags/2.1.2/inc/class-settings.php:274
+msgid "Email Addresses"
+msgstr ""
+
+#: inc/class-settings.php:279, svn/trunk/inc/class-settings.php:275, svn/tags/2.1.2/inc/class-settings.php:275
+msgid "Set the admin email addresses for sending and receiving email notifications."
+msgstr ""
+
+#: inc/class-settings.php:289, inc/class-settings.php:454, svn/trunk/inc/class-settings.php:283, svn/tags/2.0.0/inc/class-settings.php:255, svn/tags/2.0.1/inc/class-settings.php:255, svn/tags/2.1.0/inc/class-settings.php:262, svn/tags/2.1.1/inc/class-settings.php:262, svn/tags/2.1.2/inc/class-settings.php:283
+msgid "Events"
+msgstr ""
+
+#: inc/class-settings.php:295, inc/class-settings.php:460, svn/trunk/inc/class-settings.php:288, svn/tags/2.1.2/inc/class-settings.php:288
+msgid "New Request"
+msgstr ""
+
+#: inc/class-settings.php:296, inc/class-settings.php:461, svn/trunk/inc/class-settings.php:289, svn/tags/2.1.2/inc/class-settings.php:289
+msgid "Send a notification to the admin email address when a new request is added."
+msgstr ""
+
+#: inc/class-settings.php:302, inc/class-settings.php:467, svn/trunk/inc/class-settings.php:294, svn/tags/2.0.0/inc/class-settings.php:260, svn/tags/2.0.1/inc/class-settings.php:260, svn/tags/2.1.0/inc/class-settings.php:267, svn/tags/2.1.1/inc/class-settings.php:267, svn/tags/2.1.2/inc/class-settings.php:294
+msgid "Status Change"
+msgstr ""
+
+#: inc/class-settings.php:303, inc/class-settings.php:468, svn/trunk/inc/class-settings.php:295, svn/tags/2.0.0/inc/class-settings.php:261, svn/tags/2.0.1/inc/class-settings.php:261, svn/tags/2.1.0/inc/class-settings.php:268, svn/tags/2.1.1/inc/class-settings.php:268, svn/tags/2.1.2/inc/class-settings.php:295
+msgid "Send a notification when the request status changes."
+msgstr ""
+
+#: inc/class-settings.php:309, inc/class-settings.php:481
+msgid "Merge Request"
+msgstr ""
+
+#: inc/class-settings.php:310, inc/class-settings.php:482
+msgid "Send a notification to the author/voters of merged requests."
+msgstr ""
+
+#: inc/class-settings.php:316, inc/class-settings.php:495, svn/trunk/inc/class-settings.php:300, svn/tags/2.1.2/inc/class-settings.php:300
+msgid "Comment"
+msgstr ""
+
+#: inc/class-settings.php:317, inc/class-settings.php:496, svn/trunk/inc/class-settings.php:301, svn/tags/2.1.2/inc/class-settings.php:301
+msgid "Send a notification when a new comment is added to the request."
+msgstr ""
+
+#: inc/class-settings.php:327, inc/class-settings.php:513, svn/trunk/inc/class-settings.php:309, svn/tags/2.0.0/inc/class-settings.php:269, svn/tags/2.0.1/inc/class-settings.php:269, svn/tags/2.1.0/inc/class-settings.php:276, svn/tags/2.1.1/inc/class-settings.php:276, svn/tags/2.1.2/inc/class-settings.php:309
+msgid "Voting Limits"
+msgstr ""
+
+#: inc/class-settings.php:333, inc/class-settings.php:519, svn/trunk/inc/class-settings.php:314, svn/tags/2.0.0/inc/class-settings.php:274, svn/tags/2.0.1/inc/class-settings.php:274, svn/tags/2.1.0/inc/class-settings.php:281, svn/tags/2.1.1/inc/class-settings.php:281, svn/tags/2.1.2/inc/class-settings.php:314
+msgid "Votes Limit"
+msgstr ""
+
+#: inc/class-settings.php:334, inc/class-settings.php:520, svn/trunk/inc/class-settings.php:315, svn/tags/2.0.0/inc/class-settings.php:275, svn/tags/2.0.1/inc/class-settings.php:275, svn/tags/2.1.0/inc/class-settings.php:282, svn/tags/2.1.1/inc/class-settings.php:282, svn/tags/2.1.2/inc/class-settings.php:315
+msgid "How many votes should each user get? Enter 0 or leave empty for no limit."
+msgstr ""
+
+#: inc/class-settings.php:388, svn/trunk/inc/class-settings.php:365, svn/tags/2.0.0/inc/class-settings.php:325, svn/tags/2.0.1/inc/class-settings.php:325, svn/tags/2.1.0/inc/class-settings.php:332, svn/tags/2.1.1/inc/class-settings.php:332, svn/tags/2.1.2/inc/class-settings.php:365
+msgid "Important!"
+msgstr ""
+
+#: inc/class-settings.php:389, svn/trunk/inc/class-settings.php:368, svn/tags/2.0.0/inc/class-settings.php:328, svn/tags/2.0.1/inc/class-settings.php:328, svn/tags/2.1.0/inc/class-settings.php:335, svn/tags/2.1.1/inc/class-settings.php:335, svn/tags/2.1.2/inc/class-settings.php:368
+msgid "You need to <a href=\"%s\">set an archive page</a> for Simple Feature Requests, under the \"General\" tab."
+msgstr ""
+
+#: inc/class-settings.php:413
+msgid "The default status for when a request is first created."
+msgstr ""
+
+#: inc/class-settings.php:436
+msgid "Admin Email"
+msgstr ""
+
+#: inc/class-settings.php:437
+msgid "Admin notifications will be sent to this email address."
+msgstr ""
+
+#: inc/class-settings.php:443
+msgid "From Email"
+msgstr ""
+
+#: inc/class-settings.php:444
+msgid "Notifications will be sent \"from\" this email address."
+msgstr ""
+
+#: inc/class-settings.php:476, inc/class-settings.php:490, inc/class-settings.php:504
+msgid "Voter"
+msgstr ""
+
+#: inc/class-settings.php:526
+msgid "Reimburse Votes"
+msgstr ""
+
+#: inc/class-settings.php:527
+msgid "Reimburse votes to a user when a request they voted on has any of the selected statuses."
+msgstr ""
+
+#: inc/class-shortcodes.php:40, svn/trunk/inc/class-shortcodes.php:40, svn/tags/2.0.0/inc/class-shortcodes.php:40, svn/tags/2.0.1/inc/class-shortcodes.php:40, svn/tags/2.1.0/inc/class-shortcodes.php:40, svn/tags/2.1.1/inc/class-shortcodes.php:40, svn/tags/2.1.2/inc/class-shortcodes.php:40
+msgid "Please select this page (%s) as the <strong>Archive Page</strong> in <a href=\"%s\">the settings</a>, under the \"General\" tab."
+msgstr ""
+
+#: inc/class-shortcodes.php:118
+msgid "Please set a \"type\" parameter for this widget."
+msgstr ""
+
+#: inc/class-shortcodes.php:139
+msgid "Sorry, the taxonomy \"%s\" does not exist."
+msgstr ""
+
+#: inc/class-shortcodes.php:190
+msgid "There's nothing on the roadmap right now."
+msgstr ""
+
+#: inc/class-shortcodes.php:239
+msgid "View all &rarr;"
+msgstr ""
+
+#: inc/class-submission.php:37, svn/trunk/inc/class-submission.php:39, svn/tags/1.0.0/inc/class-submission.php:37, svn/tags/1.0.1/inc/class-submission.php:37, svn/tags/1.0.2/inc/class-submission.php:37, svn/tags/1.0.3/inc/class-submission.php:37, svn/tags/1.0.4/inc/class-submission.php:39, svn/tags/1.0.5/inc/class-submission.php:39, svn/tags/1.0.6/inc/class-submission.php:39, svn/tags/2.0.0/inc/class-submission.php:39, svn/tags/2.0.1/inc/class-submission.php:39, svn/tags/2.1.0/inc/class-submission.php:39, svn/tags/2.1.1/inc/class-submission.php:39, svn/tags/2.1.2/inc/class-submission.php:39, svn/tags/1.0.5/trunk/inc/class-submission.php:39
+msgid "There was an error submitting your request."
+msgstr ""
+
+#: inc/class-submission.php:41, svn/trunk/inc/class-submission.php:42, svn/tags/1.0.0/inc/class-submission.php:41, svn/tags/1.0.1/inc/class-submission.php:41, svn/tags/1.0.2/inc/class-submission.php:41, svn/tags/1.0.3/inc/class-submission.php:41, svn/tags/1.0.4/inc/class-submission.php:42, svn/tags/1.0.5/inc/class-submission.php:42, svn/tags/1.0.6/inc/class-submission.php:42, svn/tags/2.0.0/inc/class-submission.php:42, svn/tags/2.0.1/inc/class-submission.php:42, svn/tags/2.1.0/inc/class-submission.php:42, svn/tags/2.1.1/inc/class-submission.php:42, svn/tags/2.1.2/inc/class-submission.php:42, svn/tags/1.0.5/trunk/inc/class-submission.php:42
+msgid "Please enter a request title."
+msgstr ""
+
+#: inc/class-submission.php:45, svn/trunk/inc/class-submission.php:45, svn/tags/1.0.0/inc/class-submission.php:45, svn/tags/1.0.1/inc/class-submission.php:45, svn/tags/1.0.2/inc/class-submission.php:45, svn/tags/1.0.3/inc/class-submission.php:45, svn/tags/1.0.4/inc/class-submission.php:45, svn/tags/1.0.5/inc/class-submission.php:45, svn/tags/1.0.6/inc/class-submission.php:45, svn/tags/2.0.0/inc/class-submission.php:45, svn/tags/2.0.1/inc/class-submission.php:45, svn/tags/2.1.0/inc/class-submission.php:45, svn/tags/2.1.1/inc/class-submission.php:45, svn/tags/2.1.2/inc/class-submission.php:45, svn/tags/1.0.5/trunk/inc/class-submission.php:45
+msgid "Please enter a request description."
+msgstr ""
+
+#: inc/class-submission.php:69, svn/trunk/inc/class-submission.php:71, svn/tags/1.0.4/inc/class-submission.php:71, svn/tags/1.0.5/inc/class-submission.php:71, svn/tags/1.0.6/inc/class-submission.php:71, svn/tags/2.0.0/inc/class-submission.php:71, svn/tags/2.0.1/inc/class-submission.php:71, svn/tags/2.1.0/inc/class-submission.php:71, svn/tags/2.1.1/inc/class-submission.php:71, svn/tags/2.1.2/inc/class-submission.php:71, svn/tags/1.0.5/trunk/inc/class-submission.php:71
+msgid "Sorry, there was an issue adding that request. Please try again."
+msgstr ""
+
+#: inc/class-submission.php:112
+msgid "Please select a %s."
+msgstr ""
+
+#: inc/class-template-hooks.php:262, svn/trunk/inc/class-template-hooks.php:244, svn/tags/1.0.0/inc/class-template-hooks.php:227, svn/tags/1.0.1/inc/class-template-hooks.php:227, svn/tags/1.0.2/inc/class-template-hooks.php:227, svn/tags/1.0.3/inc/class-template-hooks.php:227, svn/tags/1.0.4/inc/class-template-hooks.php:229, svn/tags/1.0.5/inc/class-template-hooks.php:229, svn/tags/1.0.6/inc/class-template-hooks.php:233, svn/tags/2.0.0/inc/class-template-hooks.php:233, svn/tags/2.0.1/inc/class-template-hooks.php:233, svn/tags/2.1.0/inc/class-template-hooks.php:244, svn/tags/2.1.1/inc/class-template-hooks.php:244, svn/tags/2.1.2/inc/class-template-hooks.php:244, svn/tags/1.0.5/trunk/inc/class-template-hooks.php:229
+msgid "Powered by"
+msgstr ""
+
+#: inc/class-template-hooks.php:264, svn/trunk/inc/class-template-hooks.php:248, svn/tags/1.0.0/inc/class-template-hooks.php:229, svn/tags/1.0.1/inc/class-template-hooks.php:229, svn/tags/1.0.2/inc/class-template-hooks.php:229, svn/tags/1.0.3/inc/class-template-hooks.php:229, svn/tags/1.0.4/inc/class-template-hooks.php:233, svn/tags/1.0.5/inc/class-template-hooks.php:233, svn/tags/1.0.6/inc/class-template-hooks.php:237, svn/tags/2.0.0/inc/class-template-hooks.php:237, svn/tags/2.0.1/inc/class-template-hooks.php:237, svn/tags/2.1.0/inc/class-template-hooks.php:248, svn/tags/2.1.1/inc/class-template-hooks.php:248, svn/tags/2.1.2/inc/class-template-hooks.php:248, svn/tags/1.0.5/trunk/inc/class-template-hooks.php:233
+msgid "Simple feature Requests"
+msgstr ""
+
+#: inc/class-template-methods.php:24, svn/trunk/inc/class-template-methods.php:26, svn/tags/1.0.0/inc/class-template-methods.php:23, svn/tags/1.0.1/inc/class-template-methods.php:23, svn/tags/1.0.2/inc/class-template-methods.php:24, svn/tags/1.0.3/inc/class-template-methods.php:24, svn/tags/1.0.4/inc/class-template-methods.php:26, svn/tags/1.0.5/inc/class-template-methods.php:26, svn/tags/1.0.6/inc/class-template-methods.php:26, svn/tags/2.0.0/inc/class-template-methods.php:26, svn/tags/2.0.1/inc/class-template-methods.php:26, svn/tags/2.1.0/inc/class-template-methods.php:26, svn/tags/2.1.1/inc/class-template-methods.php:26, svn/tags/2.1.2/inc/class-template-methods.php:26, svn/tags/1.0.5/trunk/inc/class-template-methods.php:26
+msgid "Latest"
+msgstr ""
+
+#: inc/class-template-methods.php:30, svn/trunk/inc/class-template-methods.php:34, svn/tags/1.0.0/inc/class-template-methods.php:28, svn/tags/1.0.1/inc/class-template-methods.php:28, svn/tags/1.0.2/inc/class-template-methods.php:30, svn/tags/1.0.3/inc/class-template-methods.php:30, svn/tags/1.0.4/inc/class-template-methods.php:34, svn/tags/1.0.5/inc/class-template-methods.php:34, svn/tags/1.0.6/inc/class-template-methods.php:34, svn/tags/2.0.0/inc/class-template-methods.php:34, svn/tags/2.0.1/inc/class-template-methods.php:34, svn/tags/2.1.0/inc/class-template-methods.php:34, svn/tags/2.1.1/inc/class-template-methods.php:34, svn/tags/2.1.2/inc/class-template-methods.php:34, svn/tags/1.0.5/trunk/inc/class-template-methods.php:34
+msgid "Top"
+msgstr ""
+
+#: inc/class-template-methods.php:39, svn/trunk/inc/class-template-methods.php:44, svn/tags/1.0.0/inc/class-template-methods.php:36, svn/tags/1.0.1/inc/class-template-methods.php:36, svn/tags/1.0.2/inc/class-template-methods.php:39, svn/tags/1.0.3/inc/class-template-methods.php:39, svn/tags/1.0.4/inc/class-template-methods.php:44, svn/tags/1.0.5/inc/class-template-methods.php:44, svn/tags/1.0.6/inc/class-template-methods.php:44, svn/tags/2.0.0/inc/class-template-methods.php:44, svn/tags/2.0.1/inc/class-template-methods.php:44, svn/tags/2.1.0/inc/class-template-methods.php:44, svn/tags/2.1.1/inc/class-template-methods.php:44, svn/tags/2.1.2/inc/class-template-methods.php:44, svn/tags/1.0.5/trunk/inc/class-template-methods.php:44
+msgid "My Requests"
+msgstr ""
+
+#: inc/class-template-methods.php:108, svn/trunk/inc/class-template-methods.php:124, svn/tags/1.0.4/inc/class-template-methods.php:122, svn/tags/1.0.5/inc/class-template-methods.php:122, svn/tags/1.0.6/inc/class-template-methods.php:122, svn/tags/2.0.0/inc/class-template-methods.php:122, svn/tags/2.0.1/inc/class-template-methods.php:122, svn/tags/2.1.0/inc/class-template-methods.php:122, svn/tags/2.1.1/inc/class-template-methods.php:122, svn/tags/2.1.2/inc/class-template-methods.php:124, svn/tags/1.0.5/trunk/inc/class-template-methods.php:122
+msgid "Any"
+msgstr ""
+
+#: inc/class-template-methods.php:223, svn/trunk/inc/class-template-methods.php:304, svn/tags/1.0.0/inc/class-template-methods.php:121, svn/tags/1.0.1/inc/class-template-methods.php:121, svn/tags/1.0.2/inc/class-template-methods.php:199, svn/tags/1.0.3/inc/class-template-methods.php:199, svn/tags/1.0.4/inc/class-template-methods.php:269, svn/tags/1.0.5/inc/class-template-methods.php:269, svn/tags/1.0.6/inc/class-template-methods.php:269, svn/tags/2.0.0/inc/class-template-methods.php:269, svn/tags/2.0.1/inc/class-template-methods.php:269, svn/tags/2.1.0/inc/class-template-methods.php:302, svn/tags/2.1.1/inc/class-template-methods.php:302, svn/tags/2.1.2/inc/class-template-methods.php:304, svn/tags/1.0.5/trunk/inc/class-template-methods.php:269
+msgid "shared this idea"
+msgstr ""
+
+#: inc/class-template-methods.php:256, svn/trunk/inc/class-template-methods.php:340, svn/tags/2.1.2/inc/class-template-methods.php:340
+msgid "%d comment"
+msgid_plural "%d comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/class-template-methods.php:283, svn/trunk/inc/class-template-methods.php:383, svn/tags/1.0.0/inc/class-template-methods.php:177, svn/tags/1.0.1/inc/class-template-methods.php:177, svn/tags/1.0.2/inc/class-template-methods.php:255, svn/tags/1.0.3/inc/class-template-methods.php:255, svn/tags/1.0.4/inc/class-template-methods.php:343, svn/tags/1.0.5/inc/class-template-methods.php:343, svn/tags/1.0.6/inc/class-template-methods.php:343, svn/tags/2.0.0/inc/class-template-methods.php:343, svn/tags/2.0.1/inc/class-template-methods.php:343, svn/tags/2.1.0/inc/class-template-methods.php:376, svn/tags/2.1.1/inc/class-template-methods.php:376, svn/tags/2.1.2/inc/class-template-methods.php:383, svn/tags/1.0.5/trunk/inc/class-template-methods.php:343
+msgid "&larr; All Feature Requests"
+msgstr ""
+
+#: inc/class-template-methods.php:380
+msgid "Select a %s..."
+msgstr ""
+
+#: inc/class-user.php:72, svn/trunk/inc/class-user.php:89, svn/tags/1.0.0/inc/class-user.php:86, svn/tags/1.0.1/inc/class-user.php:86, svn/tags/1.0.2/inc/class-user.php:86, svn/tags/1.0.3/inc/class-user.php:86, svn/tags/1.0.4/inc/class-user.php:86, svn/tags/1.0.5/inc/class-user.php:86, svn/tags/1.0.6/inc/class-user.php:86, svn/tags/2.0.0/inc/class-user.php:89, svn/tags/2.0.1/inc/class-user.php:89, svn/tags/2.1.0/inc/class-user.php:89, svn/tags/2.1.1/inc/class-user.php:89, svn/tags/2.1.2/inc/class-user.php:89, svn/tags/1.0.5/trunk/inc/class-user.php:86
+msgid "There was an error logging you in."
+msgstr ""
+
+#: inc/class-user.php:201, svn/trunk/inc/class-user.php:225, svn/tags/1.0.0/inc/class-user.php:176, svn/tags/1.0.1/inc/class-user.php:176, svn/tags/1.0.2/inc/class-user.php:176, svn/tags/1.0.3/inc/class-user.php:176, svn/tags/1.0.4/inc/class-user.php:176, svn/tags/1.0.5/inc/class-user.php:176, svn/tags/1.0.6/inc/class-user.php:176, svn/tags/2.0.0/inc/class-user.php:225, svn/tags/2.0.1/inc/class-user.php:225, svn/tags/2.1.0/inc/class-user.php:225, svn/tags/2.1.1/inc/class-user.php:225, svn/tags/2.1.2/inc/class-user.php:225, svn/tags/1.0.5/trunk/inc/class-user.php:176
+msgid "You need to login to vote for a feature."
+msgstr ""
+
+#: inc/class-user.php:207, svn/trunk/inc/class-user.php:231, svn/tags/1.0.0/inc/class-user.php:182, svn/tags/1.0.1/inc/class-user.php:182, svn/tags/1.0.2/inc/class-user.php:182, svn/tags/1.0.3/inc/class-user.php:182, svn/tags/1.0.4/inc/class-user.php:182, svn/tags/1.0.5/inc/class-user.php:182, svn/tags/1.0.6/inc/class-user.php:182, svn/tags/2.0.0/inc/class-user.php:231, svn/tags/2.0.1/inc/class-user.php:231, svn/tags/2.1.0/inc/class-user.php:231, svn/tags/2.1.1/inc/class-user.php:231, svn/tags/2.1.2/inc/class-user.php:231, svn/tags/1.0.5/trunk/inc/class-user.php:182
+msgid "You have already voted for this feature."
+msgstr ""
+
+#: inc/class-user.php:217, svn/trunk/inc/class-user.php:239, svn/tags/2.0.0/inc/class-user.php:239, svn/tags/2.0.1/inc/class-user.php:239, svn/tags/2.1.0/inc/class-user.php:239, svn/tags/2.1.1/inc/class-user.php:239, svn/tags/2.1.2/inc/class-user.php:239
+msgid "Sorry, you do not have any votes remaining."
+msgstr ""
+
+#: inc/class-user.php:228, svn/trunk/inc/class-user.php:248, svn/tags/1.0.0/inc/class-user.php:194, svn/tags/1.0.1/inc/class-user.php:194, svn/tags/1.0.2/inc/class-user.php:194, svn/tags/1.0.3/inc/class-user.php:194, svn/tags/1.0.4/inc/class-user.php:194, svn/tags/1.0.5/inc/class-user.php:194, svn/tags/1.0.6/inc/class-user.php:194, svn/tags/2.0.0/inc/class-user.php:248, svn/tags/2.0.1/inc/class-user.php:248, svn/tags/2.1.0/inc/class-user.php:248, svn/tags/2.1.1/inc/class-user.php:248, svn/tags/2.1.2/inc/class-user.php:248, svn/tags/1.0.5/trunk/inc/class-user.php:194
+msgid "There was an error adding your vote."
+msgstr ""
+
+#: inc/class-user.php:252, svn/trunk/inc/class-user.php:273, svn/tags/1.0.0/inc/class-user.php:221, svn/tags/1.0.1/inc/class-user.php:221, svn/tags/1.0.2/inc/class-user.php:221, svn/tags/1.0.3/inc/class-user.php:221, svn/tags/1.0.4/inc/class-user.php:221, svn/tags/1.0.5/inc/class-user.php:221, svn/tags/1.0.6/inc/class-user.php:221, svn/tags/2.0.0/inc/class-user.php:273, svn/tags/2.0.1/inc/class-user.php:273, svn/tags/2.1.0/inc/class-user.php:273, svn/tags/2.1.1/inc/class-user.php:273, svn/tags/2.1.2/inc/class-user.php:273, svn/tags/1.0.5/trunk/inc/class-user.php:221
+msgid "You need to login to remove a vote from a feature."
+msgstr ""
+
+#: inc/class-user.php:258, svn/trunk/inc/class-user.php:279, svn/tags/1.0.0/inc/class-user.php:227, svn/tags/1.0.1/inc/class-user.php:227, svn/tags/1.0.2/inc/class-user.php:227, svn/tags/1.0.3/inc/class-user.php:227, svn/tags/1.0.4/inc/class-user.php:227, svn/tags/1.0.5/inc/class-user.php:227, svn/tags/1.0.6/inc/class-user.php:227, svn/tags/2.0.0/inc/class-user.php:279, svn/tags/2.0.1/inc/class-user.php:279, svn/tags/2.1.0/inc/class-user.php:279, svn/tags/2.1.1/inc/class-user.php:279, svn/tags/2.1.2/inc/class-user.php:279, svn/tags/1.0.5/trunk/inc/class-user.php:227
+msgid "You have not voted for this feature yet."
+msgstr ""
+
+#: inc/class-user.php:268, svn/trunk/inc/class-user.php:287, svn/tags/1.0.0/inc/class-user.php:235, svn/tags/1.0.1/inc/class-user.php:235, svn/tags/1.0.2/inc/class-user.php:235, svn/tags/1.0.3/inc/class-user.php:235, svn/tags/1.0.4/inc/class-user.php:235, svn/tags/1.0.5/inc/class-user.php:235, svn/tags/1.0.6/inc/class-user.php:235, svn/tags/2.0.0/inc/class-user.php:287, svn/tags/2.0.1/inc/class-user.php:287, svn/tags/2.1.0/inc/class-user.php:287, svn/tags/2.1.1/inc/class-user.php:287, svn/tags/2.1.2/inc/class-user.php:287, svn/tags/1.0.5/trunk/inc/class-user.php:235
+msgid "You cannot remove a vote for your own request."
+msgstr ""
+
+#: inc/class-user.php:281, svn/trunk/inc/class-user.php:297, svn/tags/1.0.0/inc/class-user.php:248, svn/tags/1.0.1/inc/class-user.php:248, svn/tags/1.0.2/inc/class-user.php:248, svn/tags/1.0.3/inc/class-user.php:248, svn/tags/1.0.4/inc/class-user.php:248, svn/tags/1.0.5/inc/class-user.php:248, svn/tags/1.0.6/inc/class-user.php:248, svn/tags/2.0.0/inc/class-user.php:297, svn/tags/2.0.1/inc/class-user.php:297, svn/tags/2.1.0/inc/class-user.php:297, svn/tags/2.1.1/inc/class-user.php:297, svn/tags/2.1.2/inc/class-user.php:297, svn/tags/1.0.5/trunk/inc/class-user.php:248
+msgid "There was an error removing your vote."
+msgstr ""
+
+#: inc/class-user.php:326, inc/class-user.php:374, svn/trunk/inc/class-user.php:335, svn/trunk/inc/class-user.php:387, svn/tags/1.0.0/inc/class-user.php:275, svn/tags/1.0.0/inc/class-user.php:323, svn/tags/1.0.1/inc/class-user.php:275, svn/tags/1.0.1/inc/class-user.php:323, svn/tags/1.0.2/inc/class-user.php:275, svn/tags/1.0.2/inc/class-user.php:323, svn/tags/1.0.3/inc/class-user.php:275, svn/tags/1.0.3/inc/class-user.php:323, svn/tags/1.0.4/inc/class-user.php:275, svn/tags/1.0.4/inc/class-user.php:323, svn/tags/1.0.5/inc/class-user.php:275, svn/tags/1.0.5/inc/class-user.php:323, svn/tags/1.0.6/inc/class-user.php:275, svn/tags/1.0.6/inc/class-user.php:323, svn/tags/2.0.0/inc/class-user.php:335, svn/tags/2.0.0/inc/class-user.php:387, svn/tags/2.0.1/inc/class-user.php:335, svn/tags/2.0.1/inc/class-user.php:387, svn/tags/2.1.0/inc/class-user.php:335, svn/tags/2.1.0/inc/class-user.php:387, svn/tags/2.1.1/inc/class-user.php:335, svn/tags/2.1.1/inc/class-user.php:387, svn/tags/2.1.2/inc/class-user.php:335, svn/tags/2.1.2/inc/class-user.php:387, svn/tags/1.0.5/trunk/inc/class-user.php:275, svn/tags/1.0.5/trunk/inc/class-user.php:323
+msgid "Please enter an email."
+msgstr ""
+
+#: inc/class-user.php:331, inc/class-user.php:379, svn/trunk/inc/class-user.php:341, svn/trunk/inc/class-user.php:393, svn/tags/1.0.0/inc/class-user.php:280, svn/tags/1.0.0/inc/class-user.php:328, svn/tags/1.0.1/inc/class-user.php:280, svn/tags/1.0.1/inc/class-user.php:328, svn/tags/1.0.2/inc/class-user.php:280, svn/tags/1.0.2/inc/class-user.php:328, svn/tags/1.0.3/inc/class-user.php:280, svn/tags/1.0.3/inc/class-user.php:328, svn/tags/1.0.4/inc/class-user.php:280, svn/tags/1.0.4/inc/class-user.php:328, svn/tags/1.0.5/inc/class-user.php:280, svn/tags/1.0.5/inc/class-user.php:328, svn/tags/1.0.6/inc/class-user.php:280, svn/tags/1.0.6/inc/class-user.php:328, svn/tags/2.0.0/inc/class-user.php:341, svn/tags/2.0.0/inc/class-user.php:393, svn/tags/2.0.1/inc/class-user.php:341, svn/tags/2.0.1/inc/class-user.php:393, svn/tags/2.1.0/inc/class-user.php:341, svn/tags/2.1.0/inc/class-user.php:393, svn/tags/2.1.1/inc/class-user.php:341, svn/tags/2.1.1/inc/class-user.php:393, svn/tags/2.1.2/inc/class-user.php:341, svn/tags/2.1.2/inc/class-user.php:393, svn/tags/1.0.5/trunk/inc/class-user.php:280, svn/tags/1.0.5/trunk/inc/class-user.php:328
+msgid "Please enter a password."
+msgstr ""
+
+#: inc/class-user.php:369, svn/trunk/inc/class-user.php:381, svn/tags/1.0.0/inc/class-user.php:318, svn/tags/1.0.1/inc/class-user.php:318, svn/tags/1.0.2/inc/class-user.php:318, svn/tags/1.0.3/inc/class-user.php:318, svn/tags/1.0.4/inc/class-user.php:318, svn/tags/1.0.5/inc/class-user.php:318, svn/tags/1.0.6/inc/class-user.php:318, svn/tags/2.0.0/inc/class-user.php:381, svn/tags/2.0.1/inc/class-user.php:381, svn/tags/2.1.0/inc/class-user.php:381, svn/tags/2.1.1/inc/class-user.php:381, svn/tags/2.1.2/inc/class-user.php:381, svn/tags/1.0.5/trunk/inc/class-user.php:318
+msgid "Please enter a username."
+msgstr ""
+
+#: inc/class-user.php:384, svn/trunk/inc/class-user.php:399, svn/tags/1.0.0/inc/class-user.php:333, svn/tags/1.0.1/inc/class-user.php:333, svn/tags/1.0.2/inc/class-user.php:333, svn/tags/1.0.3/inc/class-user.php:333, svn/tags/1.0.4/inc/class-user.php:333, svn/tags/1.0.5/inc/class-user.php:333, svn/tags/1.0.6/inc/class-user.php:333, svn/tags/2.0.0/inc/class-user.php:399, svn/tags/2.0.1/inc/class-user.php:399, svn/tags/2.1.0/inc/class-user.php:399, svn/tags/2.1.1/inc/class-user.php:399, svn/tags/2.1.2/inc/class-user.php:399, svn/tags/1.0.5/trunk/inc/class-user.php:333
+msgid "Please enter a repeat password."
+msgstr ""
+
+#: inc/class-user.php:389, svn/trunk/inc/class-user.php:405, svn/tags/1.0.0/inc/class-user.php:338, svn/tags/1.0.1/inc/class-user.php:338, svn/tags/1.0.2/inc/class-user.php:338, svn/tags/1.0.3/inc/class-user.php:338, svn/tags/1.0.4/inc/class-user.php:338, svn/tags/1.0.5/inc/class-user.php:338, svn/tags/1.0.6/inc/class-user.php:338, svn/tags/2.0.0/inc/class-user.php:405, svn/tags/2.0.1/inc/class-user.php:405, svn/tags/2.1.0/inc/class-user.php:405, svn/tags/2.1.1/inc/class-user.php:405, svn/tags/2.1.2/inc/class-user.php:405, svn/tags/1.0.5/trunk/inc/class-user.php:338
+msgid "Your passwords did not match."
+msgstr ""
+
+#: inc/class-user.php:401, svn/trunk/inc/class-user.php:416, svn/tags/1.0.0/inc/class-user.php:350, svn/tags/1.0.1/inc/class-user.php:350, svn/tags/1.0.2/inc/class-user.php:350, svn/tags/1.0.3/inc/class-user.php:350, svn/tags/1.0.4/inc/class-user.php:350, svn/tags/1.0.5/inc/class-user.php:350, svn/tags/1.0.6/inc/class-user.php:350, svn/tags/2.0.0/inc/class-user.php:416, svn/tags/2.0.1/inc/class-user.php:416, svn/tags/2.1.0/inc/class-user.php:416, svn/tags/2.1.1/inc/class-user.php:416, svn/tags/2.1.2/inc/class-user.php:416, svn/tags/1.0.5/trunk/inc/class-user.php:350
+msgid "That username has already been registered."
+msgstr ""
+
+#: inc/class-user.php:406, svn/trunk/inc/class-user.php:422, svn/tags/1.0.0/inc/class-user.php:355, svn/tags/1.0.1/inc/class-user.php:355, svn/tags/1.0.2/inc/class-user.php:355, svn/tags/1.0.3/inc/class-user.php:355, svn/tags/1.0.4/inc/class-user.php:355, svn/tags/1.0.5/inc/class-user.php:355, svn/tags/1.0.6/inc/class-user.php:355, svn/tags/2.0.0/inc/class-user.php:422, svn/tags/2.0.1/inc/class-user.php:422, svn/tags/2.1.0/inc/class-user.php:422, svn/tags/2.1.1/inc/class-user.php:422, svn/tags/2.1.2/inc/class-user.php:422, svn/tags/1.0.5/trunk/inc/class-user.php:355
+msgid "That email has already been registered."
+msgstr ""
+
+#: inc/class-user.php:424, svn/trunk/inc/class-user.php:437, svn/tags/1.0.0/inc/class-user.php:366, svn/tags/1.0.1/inc/class-user.php:366, svn/tags/1.0.2/inc/class-user.php:366, svn/tags/1.0.3/inc/class-user.php:366, svn/tags/1.0.4/inc/class-user.php:366, svn/tags/1.0.5/inc/class-user.php:366, svn/tags/1.0.6/inc/class-user.php:366, svn/tags/2.0.0/inc/class-user.php:432, svn/tags/2.0.1/inc/class-user.php:432, svn/tags/2.1.0/inc/class-user.php:432, svn/tags/2.1.1/inc/class-user.php:432, svn/tags/2.1.2/inc/class-user.php:437, svn/tags/1.0.5/trunk/inc/class-user.php:366
+msgid "There was an issue registering your account. Please try again."
+msgstr ""
+
+#: inc/functions.php:16, svn/trunk/inc/functions.php:16, svn/tags/1.0.0/inc/class-template-methods.php:100, svn/tags/1.0.1/inc/class-template-methods.php:100, svn/tags/2.1.2/inc/functions.php:16
+msgid "Pending"
+msgstr ""
+
+#: inc/functions.php:17, svn/trunk/inc/functions.php:17, svn/tags/2.1.2/inc/functions.php:17
+msgid "Published"
+msgstr ""
+
+#: inc/functions.php:18, svn/trunk/inc/functions.php:18, svn/tags/2.1.2/inc/functions.php:18
+msgid "Under Review"
+msgstr ""
+
+#: inc/functions.php:19, svn/trunk/inc/functions.php:19, svn/tags/2.1.2/inc/functions.php:19
+msgid "Planned"
+msgstr ""
+
+#: inc/functions.php:20, svn/trunk/inc/functions.php:20, svn/tags/2.1.2/inc/functions.php:20
+msgid "Started"
+msgstr ""
+
+#: inc/functions.php:21, svn/trunk/inc/functions.php:21, svn/tags/2.1.2/inc/functions.php:21
+msgid "Completed"
+msgstr ""
+
+#: inc/functions.php:22, svn/trunk/inc/functions.php:22, svn/tags/2.1.2/inc/functions.php:22
+msgid "Declined"
+msgstr ""
+
+#: inc/functions.php:43
+msgid "The request is pending approval from an admin."
+msgstr ""
+
+#: inc/functions.php:44
+msgid "The request is now published on the site."
+msgstr ""
+
+#: inc/functions.php:45
+msgid "The request is being considered for development."
+msgstr ""
+
+#: inc/functions.php:46
+msgid "Good news! The request has been planned for development."
+msgstr ""
+
+#: inc/functions.php:47
+msgid "Good news! The request has been started."
+msgstr ""
+
+#: inc/functions.php:48
+msgid "Good news! The request has now been completed."
+msgstr ""
+
+#: inc/functions.php:49
+msgid "Sorry, the request has been declined."
+msgstr ""
+
+#: templates/archive/submission-form.php:26, svn/trunk/templates/archive/submission-form.php:26, svn/tags/1.0.0/templates/archive/submission-form.php:22, svn/tags/1.0.1/templates/archive/submission-form.php:22, svn/tags/1.0.2/templates/archive/submission-form.php:22, svn/tags/1.0.3/templates/archive/submission-form.php:22, svn/tags/1.0.4/templates/archive/submission-form.php:22, svn/tags/1.0.5/templates/archive/submission-form.php:22, svn/tags/1.0.6/templates/archive/submission-form.php:25, svn/tags/2.0.0/templates/archive/submission-form.php:25, svn/tags/2.0.1/templates/archive/submission-form.php:25, svn/tags/2.1.0/templates/archive/submission-form.php:26, svn/tags/2.1.1/templates/archive/submission-form.php:26, svn/tags/2.1.2/templates/archive/submission-form.php:26, svn/tags/1.0.5/trunk/templates/archive/submission-form.php:22
+msgid "Your Request"
+msgstr ""
+
+#: templates/archive/submission-form.php:28, svn/trunk/templates/archive/submission-form.php:28, svn/tags/1.0.0/templates/archive/submission-form.php:24, svn/tags/1.0.1/templates/archive/submission-form.php:24, svn/tags/1.0.2/templates/archive/submission-form.php:24, svn/tags/1.0.3/templates/archive/submission-form.php:24, svn/tags/1.0.4/templates/archive/submission-form.php:24, svn/tags/1.0.5/templates/archive/submission-form.php:24, svn/tags/1.0.6/templates/archive/submission-form.php:27, svn/tags/2.0.0/templates/archive/submission-form.php:27, svn/tags/2.0.1/templates/archive/submission-form.php:27, svn/tags/2.1.0/templates/archive/submission-form.php:28, svn/tags/2.1.1/templates/archive/submission-form.php:28, svn/tags/2.1.2/templates/archive/submission-form.php:28, svn/tags/1.0.5/trunk/templates/archive/submission-form.php:24
+msgid "Enter your request..."
+msgstr ""
+
+#: templates/archive/submission-form.php:41, svn/trunk/templates/archive/submission-form.php:41, svn/tags/1.0.0/templates/archive/submission-form.php:31, svn/tags/1.0.1/templates/archive/submission-form.php:31, svn/tags/1.0.2/templates/archive/submission-form.php:31, svn/tags/1.0.3/templates/archive/submission-form.php:31, svn/tags/1.0.4/templates/archive/submission-form.php:31, svn/tags/1.0.5/templates/archive/submission-form.php:31, svn/tags/1.0.6/templates/archive/submission-form.php:38, svn/tags/2.0.0/templates/archive/submission-form.php:38, svn/tags/2.0.1/templates/archive/submission-form.php:38, svn/tags/2.1.0/templates/archive/submission-form.php:41, svn/tags/2.1.1/templates/archive/submission-form.php:41, svn/tags/2.1.2/templates/archive/submission-form.php:41, svn/tags/1.0.5/trunk/templates/archive/submission-form.php:31
+msgid "Description"
+msgstr ""
+
+#: templates/archive/submission-form.php:55, svn/trunk/templates/archive/submission-form.php:55, svn/tags/1.0.0/templates/archive/submission-form.php:47, svn/tags/1.0.1/templates/archive/submission-form.php:47, svn/tags/1.0.2/templates/archive/submission-form.php:47, svn/tags/1.0.3/templates/archive/submission-form.php:47, svn/tags/1.0.4/templates/archive/submission-form.php:45, svn/tags/1.0.5/templates/archive/submission-form.php:45, svn/tags/1.0.6/templates/archive/submission-form.php:52, svn/tags/2.0.0/templates/archive/submission-form.php:52, svn/tags/2.0.1/templates/archive/submission-form.php:52, svn/tags/2.1.0/templates/archive/submission-form.php:55, svn/tags/2.1.1/templates/archive/submission-form.php:55, svn/tags/2.1.2/templates/archive/submission-form.php:55, svn/tags/1.0.5/trunk/templates/archive/submission-form.php:45
+msgid "Submit"
+msgstr ""
+
+#: templates/archive/submission-form.php:60, svn/trunk/templates/archive/submission-form.php:60, svn/tags/1.0.0/templates/archive/submission-form.php:52, svn/tags/1.0.1/templates/archive/submission-form.php:52, svn/tags/1.0.2/templates/archive/submission-form.php:52, svn/tags/1.0.3/templates/archive/submission-form.php:52, svn/tags/1.0.4/templates/archive/submission-form.php:50, svn/tags/1.0.5/templates/archive/submission-form.php:50, svn/tags/1.0.6/templates/archive/submission-form.php:57, svn/tags/2.0.0/templates/archive/submission-form.php:57, svn/tags/2.0.1/templates/archive/submission-form.php:57, svn/tags/2.1.0/templates/archive/submission-form.php:60, svn/tags/2.1.1/templates/archive/submission-form.php:60, svn/tags/2.1.2/templates/archive/submission-form.php:60, svn/tags/1.0.5/trunk/templates/archive/submission-form.php:50
+msgid "Vote for an existing request (%s)"
+msgstr ""
+
+#: templates/archive/submission-form.php:62, svn/trunk/templates/archive/submission-form.php:62, svn/tags/1.0.0/templates/archive/submission-form.php:54, svn/tags/1.0.1/templates/archive/submission-form.php:54, svn/tags/1.0.2/templates/archive/submission-form.php:54, svn/tags/1.0.3/templates/archive/submission-form.php:54, svn/tags/1.0.4/templates/archive/submission-form.php:52, svn/tags/1.0.5/templates/archive/submission-form.php:52, svn/tags/1.0.6/templates/archive/submission-form.php:59, svn/tags/2.0.0/templates/archive/submission-form.php:59, svn/tags/2.0.1/templates/archive/submission-form.php:59, svn/tags/2.1.0/templates/archive/submission-form.php:62, svn/tags/2.1.1/templates/archive/submission-form.php:62, svn/tags/2.1.2/templates/archive/submission-form.php:62, svn/tags/1.0.5/trunk/templates/archive/submission-form.php:52
+msgid "Post a new request"
+msgstr ""
+
+#: templates/components/login-form-fields.php:19, svn/trunk/templates/components/login-form-fields.php:19, svn/tags/1.0.0/templates/components/login-form-fields.php:19, svn/tags/1.0.1/templates/components/login-form-fields.php:19, svn/tags/1.0.2/templates/components/login-form-fields.php:19, svn/tags/1.0.3/templates/components/login-form-fields.php:19, svn/tags/1.0.4/templates/components/login-form-fields.php:19, svn/tags/1.0.5/templates/components/login-form-fields.php:19, svn/tags/1.0.6/templates/components/login-form-fields.php:19, svn/tags/2.0.0/templates/components/login-form-fields.php:19, svn/tags/2.0.1/templates/components/login-form-fields.php:19, svn/tags/2.1.0/templates/components/login-form-fields.php:19, svn/tags/2.1.1/templates/components/login-form-fields.php:19, svn/tags/2.1.2/templates/components/login-form-fields.php:19, svn/tags/1.0.5/trunk/templates/components/login-form-fields.php:19
+msgid "Don't have an account?"
+msgstr ""
+
+#: templates/components/login-form-fields.php:21, templates/sidebar/login.php:29, svn/trunk/templates/components/login-form-fields.php:21, svn/trunk/templates/sidebar/login.php:29, svn/tags/1.0.0/templates/components/login-form-fields.php:21, svn/tags/1.0.0/templates/sidebar/login.php:29, svn/tags/1.0.1/templates/components/login-form-fields.php:21, svn/tags/1.0.1/templates/sidebar/login.php:29, svn/tags/1.0.2/templates/components/login-form-fields.php:21, svn/tags/1.0.2/templates/sidebar/login.php:29, svn/tags/1.0.3/templates/components/login-form-fields.php:21, svn/tags/1.0.3/templates/sidebar/login.php:29, svn/tags/1.0.4/templates/components/login-form-fields.php:21, svn/tags/1.0.4/templates/sidebar/login.php:29, svn/tags/1.0.5/templates/components/login-form-fields.php:21, svn/tags/1.0.5/templates/sidebar/login.php:29, svn/tags/1.0.6/templates/components/login-form-fields.php:21, svn/tags/1.0.6/templates/sidebar/login.php:29, svn/tags/2.0.0/templates/components/login-form-fields.php:21, svn/tags/2.0.0/templates/sidebar/login.php:29, svn/tags/2.0.1/templates/components/login-form-fields.php:21, svn/tags/2.0.1/templates/sidebar/login.php:29, svn/tags/2.1.0/templates/components/login-form-fields.php:21, svn/tags/2.1.0/templates/sidebar/login.php:29, svn/tags/2.1.1/templates/components/login-form-fields.php:21, svn/tags/2.1.1/templates/sidebar/login.php:29, svn/tags/2.1.2/templates/components/login-form-fields.php:21, svn/tags/2.1.2/templates/sidebar/login.php:29, svn/tags/1.0.5/trunk/templates/components/login-form-fields.php:21, svn/tags/1.0.5/trunk/templates/sidebar/login.php:29
+msgid "Register"
+msgstr ""
+
+#: templates/components/login-form-fields.php:25, svn/trunk/templates/components/login-form-fields.php:25, svn/tags/1.0.0/templates/components/login-form-fields.php:25, svn/tags/1.0.1/templates/components/login-form-fields.php:25, svn/tags/1.0.2/templates/components/login-form-fields.php:25, svn/tags/1.0.3/templates/components/login-form-fields.php:25, svn/tags/1.0.4/templates/components/login-form-fields.php:25, svn/tags/1.0.5/templates/components/login-form-fields.php:25, svn/tags/1.0.6/templates/components/login-form-fields.php:25, svn/tags/2.0.0/templates/components/login-form-fields.php:25, svn/tags/2.0.1/templates/components/login-form-fields.php:25, svn/tags/2.1.0/templates/components/login-form-fields.php:25, svn/tags/2.1.1/templates/components/login-form-fields.php:25, svn/tags/2.1.2/templates/components/login-form-fields.php:25, svn/tags/1.0.5/trunk/templates/components/login-form-fields.php:25
+msgid "Already have an account?"
+msgstr ""
+
+#: templates/components/login-form-fields.php:27, templates/sidebar/login.php:28, svn/trunk/templates/components/login-form-fields.php:27, svn/trunk/templates/sidebar/login.php:28, svn/tags/1.0.0/templates/components/login-form-fields.php:27, svn/tags/1.0.0/templates/sidebar/login.php:28, svn/tags/1.0.1/templates/components/login-form-fields.php:27, svn/tags/1.0.1/templates/sidebar/login.php:28, svn/tags/1.0.2/templates/components/login-form-fields.php:27, svn/tags/1.0.2/templates/sidebar/login.php:28, svn/tags/1.0.3/templates/components/login-form-fields.php:27, svn/tags/1.0.3/templates/sidebar/login.php:28, svn/tags/1.0.4/templates/components/login-form-fields.php:27, svn/tags/1.0.4/templates/sidebar/login.php:28, svn/tags/1.0.5/templates/components/login-form-fields.php:27, svn/tags/1.0.5/templates/sidebar/login.php:28, svn/tags/1.0.6/templates/components/login-form-fields.php:27, svn/tags/1.0.6/templates/sidebar/login.php:28, svn/tags/2.0.0/templates/components/login-form-fields.php:27, svn/tags/2.0.0/templates/sidebar/login.php:28, svn/tags/2.0.1/templates/components/login-form-fields.php:27, svn/tags/2.0.1/templates/sidebar/login.php:28, svn/tags/2.1.0/templates/components/login-form-fields.php:27, svn/tags/2.1.0/templates/sidebar/login.php:28, svn/tags/2.1.1/templates/components/login-form-fields.php:27, svn/tags/2.1.1/templates/sidebar/login.php:28, svn/tags/2.1.2/templates/components/login-form-fields.php:27, svn/tags/2.1.2/templates/sidebar/login.php:28, svn/tags/1.0.5/trunk/templates/components/login-form-fields.php:27, svn/tags/1.0.5/trunk/templates/sidebar/login.php:28
+msgid "Login"
+msgstr ""
+
+#: templates/components/login-form-fields.php:33, templates/components/login-form-fields.php:38, svn/trunk/templates/components/login-form-fields.php:33, svn/trunk/templates/components/login-form-fields.php:38, svn/tags/1.0.0/templates/components/login-form-fields.php:33, svn/tags/1.0.0/templates/components/login-form-fields.php:38, svn/tags/1.0.1/templates/components/login-form-fields.php:33, svn/tags/1.0.1/templates/components/login-form-fields.php:38, svn/tags/1.0.2/templates/components/login-form-fields.php:33, svn/tags/1.0.2/templates/components/login-form-fields.php:38, svn/tags/1.0.3/templates/components/login-form-fields.php:33, svn/tags/1.0.3/templates/components/login-form-fields.php:38, svn/tags/1.0.4/templates/components/login-form-fields.php:33, svn/tags/1.0.4/templates/components/login-form-fields.php:38, svn/tags/1.0.5/templates/components/login-form-fields.php:33, svn/tags/1.0.5/templates/components/login-form-fields.php:38, svn/tags/1.0.6/templates/components/login-form-fields.php:33, svn/tags/1.0.6/templates/components/login-form-fields.php:38, svn/tags/2.0.0/templates/components/login-form-fields.php:33, svn/tags/2.0.0/templates/components/login-form-fields.php:38, svn/tags/2.0.1/templates/components/login-form-fields.php:33, svn/tags/2.0.1/templates/components/login-form-fields.php:38, svn/tags/2.1.0/templates/components/login-form-fields.php:33, svn/tags/2.1.0/templates/components/login-form-fields.php:38, svn/tags/2.1.1/templates/components/login-form-fields.php:33, svn/tags/2.1.1/templates/components/login-form-fields.php:38, svn/tags/2.1.2/templates/components/login-form-fields.php:33, svn/tags/2.1.2/templates/components/login-form-fields.php:38, svn/tags/1.0.5/trunk/templates/components/login-form-fields.php:33, svn/tags/1.0.5/trunk/templates/components/login-form-fields.php:38
+msgid "Username"
+msgstr ""
+
+#: templates/components/login-form-fields.php:38, svn/trunk/templates/components/login-form-fields.php:38, svn/tags/1.0.0/templates/components/login-form-fields.php:38, svn/tags/1.0.1/templates/components/login-form-fields.php:38, svn/tags/1.0.2/templates/components/login-form-fields.php:38, svn/tags/1.0.3/templates/components/login-form-fields.php:38, svn/tags/1.0.4/templates/components/login-form-fields.php:38, svn/tags/1.0.5/templates/components/login-form-fields.php:38, svn/tags/1.0.6/templates/components/login-form-fields.php:38, svn/tags/2.0.0/templates/components/login-form-fields.php:38, svn/tags/2.0.1/templates/components/login-form-fields.php:38, svn/tags/2.1.0/templates/components/login-form-fields.php:38, svn/tags/2.1.1/templates/components/login-form-fields.php:38, svn/tags/2.1.2/templates/components/login-form-fields.php:38, svn/tags/1.0.5/trunk/templates/components/login-form-fields.php:38
+msgid "Email"
+msgstr ""
+
+#: templates/components/login-form-fields.php:43, svn/trunk/templates/components/login-form-fields.php:43, svn/tags/1.0.0/templates/components/login-form-fields.php:43, svn/tags/1.0.1/templates/components/login-form-fields.php:43, svn/tags/1.0.2/templates/components/login-form-fields.php:43, svn/tags/1.0.3/templates/components/login-form-fields.php:43, svn/tags/1.0.4/templates/components/login-form-fields.php:43, svn/tags/1.0.5/templates/components/login-form-fields.php:43, svn/tags/1.0.6/templates/components/login-form-fields.php:43, svn/tags/2.0.0/templates/components/login-form-fields.php:43, svn/tags/2.0.1/templates/components/login-form-fields.php:43, svn/tags/2.1.0/templates/components/login-form-fields.php:43, svn/tags/2.1.1/templates/components/login-form-fields.php:43, svn/tags/2.1.2/templates/components/login-form-fields.php:43, svn/tags/1.0.5/trunk/templates/components/login-form-fields.php:43
+msgid "Password"
+msgstr ""
+
+#: templates/components/login-form-fields.php:48, svn/trunk/templates/components/login-form-fields.php:48, svn/tags/1.0.0/templates/components/login-form-fields.php:48, svn/tags/1.0.1/templates/components/login-form-fields.php:48, svn/tags/1.0.2/templates/components/login-form-fields.php:48, svn/tags/1.0.3/templates/components/login-form-fields.php:48, svn/tags/1.0.4/templates/components/login-form-fields.php:48, svn/tags/1.0.5/templates/components/login-form-fields.php:48, svn/tags/1.0.6/templates/components/login-form-fields.php:48, svn/tags/2.0.0/templates/components/login-form-fields.php:48, svn/tags/2.0.1/templates/components/login-form-fields.php:48, svn/tags/2.1.0/templates/components/login-form-fields.php:48, svn/tags/2.1.1/templates/components/login-form-fields.php:48, svn/tags/2.1.2/templates/components/login-form-fields.php:48, svn/tags/1.0.5/trunk/templates/components/login-form-fields.php:48
+msgid "Repeat Password"
+msgstr ""
+
+#: templates/loop/no-requests-found.php:14, svn/trunk/templates/loop/no-requests-found.php:14, svn/tags/1.0.0/templates/loop/no-requests-found.php:14, svn/tags/1.0.1/templates/loop/no-requests-found.php:14, svn/tags/1.0.2/templates/loop/no-requests-found.php:14, svn/tags/1.0.3/templates/loop/no-requests-found.php:14, svn/tags/1.0.4/templates/loop/no-requests-found.php:14, svn/tags/1.0.5/templates/loop/no-requests-found.php:14, svn/tags/1.0.6/templates/loop/no-requests-found.php:14, svn/tags/2.0.0/templates/loop/no-requests-found.php:14, svn/tags/2.0.1/templates/loop/no-requests-found.php:14, svn/tags/2.1.0/templates/loop/no-requests-found.php:14, svn/tags/2.1.1/templates/loop/no-requests-found.php:14, svn/tags/2.1.2/templates/loop/no-requests-found.php:14, svn/tags/1.0.5/trunk/templates/loop/no-requests-found.php:14
+msgid "Sorry, no feature requests were found."
+msgstr ""
+
+#: templates/sidebar/login.php:39, svn/trunk/templates/sidebar/login.php:36, svn/tags/1.0.0/templates/sidebar/login.php:36, svn/tags/1.0.1/templates/sidebar/login.php:36, svn/tags/1.0.2/templates/sidebar/login.php:36, svn/tags/1.0.3/templates/sidebar/login.php:36, svn/tags/1.0.4/templates/sidebar/login.php:36, svn/tags/1.0.5/templates/sidebar/login.php:36, svn/tags/1.0.6/templates/sidebar/login.php:36, svn/tags/2.0.0/templates/sidebar/login.php:36, svn/tags/2.0.1/templates/sidebar/login.php:36, svn/tags/2.1.0/templates/sidebar/login.php:36, svn/tags/2.1.1/templates/sidebar/login.php:36, svn/tags/2.1.2/templates/sidebar/login.php:36, svn/tags/1.0.5/trunk/templates/sidebar/login.php:36
+msgid "Hey, %s."
+msgstr ""
+
+#: templates/sidebar/login.php:41, svn/trunk/templates/sidebar/login.php:37, svn/tags/1.0.0/templates/sidebar/login.php:37, svn/tags/1.0.1/templates/sidebar/login.php:37, svn/tags/1.0.2/templates/sidebar/login.php:37, svn/tags/1.0.3/templates/sidebar/login.php:37, svn/tags/1.0.4/templates/sidebar/login.php:37, svn/tags/1.0.5/templates/sidebar/login.php:37, svn/tags/1.0.6/templates/sidebar/login.php:37, svn/tags/2.0.0/templates/sidebar/login.php:37, svn/tags/2.0.1/templates/sidebar/login.php:37, svn/tags/2.1.0/templates/sidebar/login.php:37, svn/tags/2.1.1/templates/sidebar/login.php:37, svn/tags/2.1.2/templates/sidebar/login.php:37, svn/tags/1.0.5/trunk/templates/sidebar/login.php:37
+msgid "Logout"
+msgstr ""
+
+#: templates/sidebar/top-requests.php:21
+msgid "Top Requests"
+msgstr ""
+
+#: templates/sidebar/top-requests.php:27
+msgid "%d Vote"
+msgid_plural "%d Votes"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: Plugin name, plugin url.
+#. translators: Plugin name, plugin url.
+#. translators: Plugin name, plugin url.
+#. translators: Plugin name, plugin url.
+#: svn/trunk/inc/class-core-settings.php:228, svn/tags/2.1.0/inc/class-core-settings.php:228, svn/tags/2.1.1/inc/class-core-settings.php:228, svn/tags/2.1.2/inc/class-core-settings.php:228
+msgid "Thank you for installing %1$s. Check out the <a href=\"%2$s\">plugin dashboard</a>."
+msgstr ""
+
+#: svn/tags/1.0.4/inc/class-core-settings.php:255, svn/tags/1.0.5/inc/class-core-settings.php:255, svn/tags/1.0.5/trunk/inc/class-core-settings.php:255
+msgid "Dismiss"
+msgstr ""
+
+#: svn/tags/1.0.4/inc/class-core-settings.php:263, svn/tags/1.0.5/inc/class-core-settings.php:263, svn/tags/1.0.5/trunk/inc/class-core-settings.php:263
+msgid "Is something not quite right?"
+msgstr ""
+
+#: svn/tags/1.0.4/inc/class-core-settings.php:263, svn/tags/1.0.5/inc/class-core-settings.php:263, svn/tags/1.0.5/trunk/inc/class-core-settings.php:263
+msgid ""
+"Take a look at our\n"
+"				<a href=\"%s\" target=\"_blank\">troubleshooting documentation</a>"
+msgstr ""
+
+#: svn/tags/1.0.6/inc/class-core-settings.php:213, svn/tags/2.0.0/inc/class-core-settings.php:213, svn/tags/2.0.1/inc/class-core-settings.php:213
+msgid "Thank you for installing %s. Check out the <a href=\"%s\">plugin dashboard</a>."
+msgstr ""
+
+#: svn/tags/1.0.6/inc/class-core-settings.php:311, svn/tags/2.0.0/inc/class-core-settings.php:311, svn/tags/2.0.1/inc/class-core-settings.php:311
+msgid ""
+"Take a look at our\n"
+"				<a href=\"%s?utm_source=plugin&utm_medium=simple-feature-requests&utm_campaign=need-some-help\" target=\"_blank\">troubleshooting documentation</a>"
+msgstr ""
+
+#: svn/tags/1.0.6/inc/class-notifications.php:143, svn/tags/2.0.0/inc/class-notifications.php:143, svn/tags/2.0.1/inc/class-notifications.php:143, svn/tags/2.1.0/inc/class-notifications.php:143, svn/tags/2.1.1/inc/class-notifications.php:143
+msgid "New %s"
+msgstr ""
+
+#: svn/tags/1.0.6/inc/class-settings.php:157
+msgid "When enabled, a \"powered by\" link will be displayed in the footer of the feature requests templates. Help us spread the word!    "
+msgstr ""

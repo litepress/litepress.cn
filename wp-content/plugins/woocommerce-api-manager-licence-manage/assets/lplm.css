@@ -1,0 +1,60 @@
+#the-list pre{
+    /*white-space: break-spaces;*/
+    overflow: auto;
+    scrollbar-color: #e5e5e5 #f7f7f9;
+    scrollbar-width: thin;
+}
+#the-list pre::-webkit-scrollbar {
+    height: 8px;
+    width: 10px;
+
+}
+#the-list pre::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    background-color:#c1c1c1
+}
+#the-list pre::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    background: #ececec;
+}
+.modal form{
+    padding: 20px 0;
+}
+.modal main{
+    margin-top: 25px;
+}
+.modal main > div{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+.modal  label{
+    margin-right: 10px;
+    width: 22%;
+}
+.modal main textarea,.remodal main input,.remodal main article{
+
+}
+.modal h3 {
+    margin-top: 7px;
+    text-align: center;
+
+}
+.modal footer{margin-top: 25px;    text-align: center;}
+.modal .order_id_show{
+    text-align: left;
+}
+.modal footer .button-primary{
+    margin-left: 20px;
+}
+.modal main .none{
+    display: none;
+}
+#modal_ban article{
+    min-width: 151px;
+}
+@media only screen and (min-width: 641px) {
+    .remodal {
+        max-width: 400px;
+    }
+}

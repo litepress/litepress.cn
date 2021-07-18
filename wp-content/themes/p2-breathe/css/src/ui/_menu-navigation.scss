@@ -1,0 +1,303 @@
+/* TOP MENU and POST NAVIGATION */
+
+.navigation {
+	border-top: 1px solid #ccc;
+
+	p {
+		float: left;
+		width: 50%;
+
+		&.nav-newer {
+			float: right;
+			text-align: right;
+		}
+	}
+}
+
+/*
+ * Keyboard navigation
+ */
+.keyselected {
+	border-left: 2px solid #FF9912;
+}
+
+#nav-below {
+	padding: 15px;
+	border-top: 1px solid $gray-25;
+}
+
+#nav-below {
+	clear: both;
+	overflow: hidden;
+
+	div {
+		float: left;
+		width: 50%;
+	}
+
+	div.nav-next {
+		float: right;
+		text-align: right;
+	}
+}
+
+/* =Menu
+----------------------------------------------- */
+.navigation-main {
+	clear: both;
+	display: block;
+	max-width: 1200px;
+	margin: 0;
+	padding: 0 20px;
+	background: rgba( $gray-0, 0.75 );
+
+	@include  breakpoint( 'tablet-portrait' ){
+		top: 0;
+		left: 0;
+		right: 0;
+		position: relative;
+	}
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+		display: block;
+		z-index: 10000;
+		width: 100%;
+		max-width: 1200px;
+
+		li {
+			float: left;
+			position: relative;
+			margin: 0;
+			padding: 0;
+			white-space: nowrap;
+
+			@include  breakpoint( 'tablet-portrait' ){
+				float: none;
+				padding-right: 0 !important;
+			}
+
+			&:hover {
+				> a {
+					background: $blue-10;
+					color: $gray-0;
+
+					@include  breakpoint( 'tablet-portrait' ){
+						background-color: none !important;
+						color: $gray-100;
+					}
+				}
+
+				> ul {
+					display: block;
+				}
+			}
+
+			&.current-menu-item {
+				a {
+					color: $gray-0;
+					background: $blue-10;
+				}
+			}
+
+			a {
+				background: transparent;
+				display: block;
+				padding: 8px 1.2em;
+				text-decoration: none;
+				font-family: $sans;
+
+				@include  breakpoint( 'tablet-portrait' ){
+					padding: 0.1em 0 0.1em 0.5em !important;
+					width: 100%;
+				}
+
+				&:hover {
+					color: $gray-0;
+				}
+			}
+
+			li {
+				white-space: normal;
+				width: 200px;
+
+				&:hover {
+					> a {
+						color: $gray-0;
+					}
+				}
+
+				a {
+					padding: 8px 10px;
+					line-height: 1.6;
+					background: $gray-0;
+
+					@include  breakpoint( 'tablet-portrait' ){
+						background: inherit;
+					}
+
+					&:hover {
+						color: $gray-0;
+						background-color: $blue-10;
+					}
+				}
+			}
+		}
+
+		ul {
+			border-right: 1px solid $gray-5;
+			border-bottom: 1px solid $gray-5;
+			border-left: 1px solid $gray-5;
+			background: $gray-0;
+			display: none;
+			float: left;
+			position: absolute;
+			left: -1px;
+			width: 200px;
+			z-index: 99999;
+			margin: 0;
+			padding: 0;
+
+			ul {
+				border: 1px solid $gray-5;
+				top: -1px;
+				left: 100%;
+
+				@include  breakpoint( 'tablet-portrait' ){
+					display: block;
+					float: none;
+					position: relative;
+					border: none;
+					font-size: 100%;
+				}
+
+				ul{
+
+					@include  breakpoint( 'tablet-portrait' ){
+						border: none;
+						top: 0;
+						left: 0;
+					}
+				}
+			}
+
+			a {
+				width: auto;
+			}
+
+			li {
+				&:hover > a {
+					background: $blue-10;
+					color: $gray-0;
+				}
+			}
+		}
+	}
+
+	.menu {
+		font-size: 1.2em;
+	}
+}
+
+.no-sidebar {
+	.navigation-main {
+		max-width: 1000px;
+	}
+}
+
+
+/* =Navigation
+----------------------------------------------- */
+.navigation {
+	margin: 0 0 2em;
+	padding: 0;
+	overflow: hidden;
+
+	.previous,
+	.nav-older {
+		float: left;
+		margin: 0;
+		padding: 0;
+		width: 50%;
+	}
+
+	.next,
+	.nav-newer {
+		float: right;
+		margin: 0;
+		padding: 0;
+		text-align: right;
+		width: 50%;
+	}
+
+	a {
+		display: block;
+		padding: 1.2em;
+	}
+
+	.nav-older a {
+		border-right: 1px solid $gray-20;
+	}
+
+	a:hover {
+		background: $gray-2;
+	}
+}
+
+@include breakpoint('web'){
+	body:not(.custom-menu) {
+		#primary {
+			margin-top: 0 !important;
+		}
+	}
+}
+
+#secondary-toggle {
+	display: none;
+}
+
+@include breakpoint( 'tablet-portrait' ) {
+
+	#primary {
+		height: 100%;
+	}
+
+	#secondary-toggle {
+		display: block;
+		float: left;
+		margin-right: 20px;
+		width: 48px;
+		height: 48px;
+		white-space: nowrap;
+		position: relative;
+		z-index: 1;
+
+		&:before {
+			content: '\f419';
+			-webkit-font-smoothing: antialiased;
+			font: normal 32px/1 'Genericons';
+			position: relative;
+			top: 8px;
+		}
+
+		strong {
+			display: none;
+		}
+	}
+}
+
+@media only screen and (min-width: $tablet-portrait ) {
+	.site-header {
+		width: 25%;
+		float: right;
+	}
+
+	.navigation-main {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+}

@@ -1,0 +1,15 @@
+{
+    "name": "sxy/wcy-woo-data-entry",
+    "authors": [
+        {
+            "name": "sunxiyuan",
+            "email": "sxy@ibadboy.net"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    }
+}

@@ -1,0 +1,1267 @@
+# Copyright (C) 2015 YIThemes
+# This file is distributed under the same license as the YITH Plugin Starter package.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH Plugin Starter 1.0.0 Plugin FW\n"
+"Report-Msgid-Bugs-To: Your Inspiration Themes <plugins@yithemes.com>\n"
+"POT-Creation-Date: 2020-01-14 17:17+0100\n"
+"PO-Revision-Date: 2020-01-14 17:19+0100\n"
+"Last-Translator: \n"
+"Language-Team: YIThemes <plugins@yithemes.com>\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: lib/yit-licence.php:116 templates/panel/activation/activation-panel.php:23
+msgid "YITH License Activation"
+msgstr "Attivazione licenza YITH"
+
+#: lib/yit-licence.php:210
+#, php-format
+msgctxt "%s = field name"
+msgid "Please, insert a valid %s"
+msgstr "Per favore, inserisci una %s valida"
+
+#: lib/yit-licence.php:211
+#, php-format
+msgid "Please, insert a valid %s and a valid %s"
+msgstr "Per favore, inserire una %s valida ed una %s valida"
+
+#: lib/yit-licence.php:212
+msgid "Unable to contact the remote server, please try again later. Thanks!"
+msgstr "Impossibile contattare il server remoto, prova più tardi. Grazie!"
+
+#: lib/yit-licence.php:213
+msgid "email address"
+msgstr "email"
+
+#: lib/yit-licence.php:214
+msgid "license key"
+msgstr "chiave di licenza"
+
+#: lib/yit-licence.php:215
+msgid "Are you sure you want to deactivate the license for current site?"
+msgstr "Sei sicuro di voler disattivare la licenza per questo sito?"
+
+#: lib/yit-licence.php:793
+msgid "Invalid Request"
+msgstr "Richiesta non valida"
+
+#: lib/yit-licence.php:794
+msgid "Invalid license key"
+msgstr "Chiave di licenza non valida"
+
+#: lib/yit-licence.php:795
+msgid "Software has been deactivated"
+msgstr "Il software è stato disattivato"
+
+#: lib/yit-licence.php:796
+msgid "Maximum number of activations exceeded"
+msgstr "Hai raggiunto il numero massimo di attivazioni"
+
+#: lib/yit-licence.php:797
+msgid "Invalid instance ID"
+msgstr "Istanza ID non valida"
+
+#: lib/yit-licence.php:798
+msgid "Invalid security key"
+msgstr "Chiave di sicurezza non valida"
+
+#: lib/yit-licence.php:799
+msgid "License key has expired"
+msgstr "La chiave di licenza è scaduta"
+
+#: lib/yit-licence.php:800
+msgid "License key has been banned"
+msgstr "La chiave di licenza è stata bloccata"
+
+#: lib/yit-licence.php:801
+msgid "Current product is not included in your YITH Club Subscription key"
+msgstr "Questo prodotto non è incluso nella tua licenze YITH Club Subscription"
+
+#: lib/yit-licence.php:802
+msgid "Great"
+msgstr "Grande!"
+
+#: lib/yit-licence.php:802
+msgid "License successfully activated"
+msgstr "Licenza attivata con successo"
+
+#: lib/yit-licence.php:803
+msgid "License key deactivated for website"
+msgstr "Chiave di licenza disattivata per il sito web"
+
+#: lib/yit-plugin-licence.php:67 lib/yit-plugin-licence.php:68
+#: lib/yit-theme-licence.php:69 lib/yit-theme-licence.php:70
+#: lib/yit-theme-licence.php:109 lib/yit-theme-licence.php:110
+msgid "License Activation"
+msgstr "Attivazione licenza"
+
+#: lib/yit-plugin-upgrade.php:95
+msgid "An unexpected error occurred, please try again later. Thanks!"
+msgstr "Si è verificato un errore inaspettato, riprova più tardi. Grazie!"
+
+#: lib/yit-plugin-upgrade.php:196
+msgid "There is a new version of %plugin_name% available."
+msgstr "Una nuova versione di %plugin_name% è disponibile."
+
+#: lib/yit-plugin-upgrade.php:197
+msgid "View version %latest% details."
+msgstr "Visualizza i dettagli della versione %latest%."
+
+#: lib/yit-plugin-upgrade.php:198
+msgid "Automatic update is unavailable for this plugin,"
+msgstr "L'aggiornamento automatico non è disponibile per questo plugin,"
+
+#: lib/yit-plugin-upgrade.php:199
+msgid ""
+"please <a href=\"%activate_link%\">activate</a> your copy of %plugin_name%."
+msgstr ""
+"per favore, <a href=\"%activate_link%\">attiva</a> la tua copia di "
+"%plugin_name%."
+
+#: lib/yit-plugin-upgrade.php:200
+msgid "Update now."
+msgstr "Aggiorna adesso."
+
+#: lib/yit-plugin-upgrade.php:201
+msgid ""
+"<br/><b>Please note:</b> You are using a higher version than the latest "
+"available one. </em>Please, make sure you've downloaded the latest version "
+"of <em>%plugin_name%</em> from the only <a href=\"https://yithemes.com\" "
+"target=\"_blank\">YITH official website</a>, specifically, from your <a href="
+"\"https://yithemes.com/my-account/recent-downloads/\" target=\"_blank"
+"\">Downloads page</a>. This is the only way to be sure the version you are "
+"using is 100% malware-free."
+msgstr ""
+"<br/><b>Attenzione:</b> Stai utilizzando una versione superiore all'ultima "
+"disponibile. </em>Assicurati di aver scaricato la versione più recente di "
+"<em>%plugin_name%</em> dall'unico <a href=\"https://yithemes.com\" target="
+"\"_blank\">sito ufficiale YITH</a>, nello specifico dalla tua <a href="
+"\"https://yithemes.com/my-account/recent-downloads/\" target=\"_blank"
+"\">pagina Downloads</a>. Questo è l'unico modo per essere sicuri che la "
+"versione in uso sia al 100% priva di malware."
+
+#: lib/yit-plugin-upgrade.php:238
+#, php-format
+msgctxt "plugin-fw"
+msgid "Updating %s..."
+msgstr "Sto aggiornando %s..."
+
+#: lib/yit-plugin-upgrade.php:240
+#, php-format
+msgctxt "plugin-fw"
+msgid "%s updated!"
+msgstr "%s aggiornato!"
+
+#: lib/yit-plugin-upgrade.php:242
+#, php-format
+msgctxt "plugin-fw"
+msgid "%s update failed"
+msgstr "Aggiornamento di %s non riiuscito"
+
+#: lib/yit-plugin-upgrade.php:316
+msgctxt "[Update Plugin Message: License not enabled]"
+msgid "You have to activate the plugin to benefit from automatic updates."
+msgstr "Devi attivare il plugin per usufruire degli aggiornamenti automatici."
+
+#: lib/yit-plugin-upgrade.php:338
+msgid "YITH Repository"
+msgstr "Repository YITH"
+
+#: lib/yit-plugin-upgrade.php:372
+msgid "Invalid URL Provided."
+msgstr "L'URL inserito non è valido."
+
+#: lib/yit-plugin-upgrade.php:385
+msgid "Could not create Temporary file."
+msgstr "Non è stato possibile creare il file temporaneo."
+
+#: lib/yit-plugin-upgrade.php:586
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">View version "
+"%4$s details</a>."
+msgstr ""
+"È disponibile una nuova versione di %1$s. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button\" title=\"%3$s\">Visualizza i dettagli della versione "
+"%4$s</a>."
+
+#: lib/yit-plugin-upgrade.php:588
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">View version "
+"%4$s details</a>. <em>You have to activate the plugin on a single site of "
+"the network to benefit from automatic updates.</em>"
+msgstr ""
+"È disponibile una nuova versione di %1$s. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button\" title=\"%3$s\">Visualizza i dettagli della versione "
+"%4$s</a>. <em>Per poter usufruire degli aggiornamenti automatici è "
+"necessario attivare il plugin su un solo sito.</em>"
+
+#: lib/yit-plugin-upgrade.php:590
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">View version "
+"%4$s details</a>. <em>Automatic update is unavailable for this plugin, "
+"please <a href=\"%5$s\" title=\"License activation\">activate</a> your copy "
+"of %6s.</em>"
+msgstr ""
+"È disponibile una nuova versione di %1$s. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button\" title=\"%3$s\">Visualizza i dettagli della versione "
+"%4$s</a>. <em>Gli aggiornamenti automatici non sono disponibili per questo "
+"plugin, per piacere <a href=\"%5$s\" title=\"License activation\">attiva</a> "
+"la tua copia di %6s.</em>"
+
+#: lib/yit-plugin-upgrade.php:592
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">View version "
+"%4$s details</a> or <a href=\"%5$s\" class=\"%6$s\" data-plugin=\"%7$s\" "
+"data-slug=\"%8$s\" data-name=\"%1$s\">update now</a>."
+msgstr ""
+"È disponibile una nuova versioni di %1$s. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">Visualizza i "
+"dettagli della versione %4$s</a> oppure <a href=\"%5$s\" class=\"%6$s\" data-"
+"plugin=\"%7$s\" data-slug=\"%8$s\" data-name=\"%1$s\">aggiorna adesso</a>."
+
+#: lib/yit-plugin-upgrade.php:596
+#, php-format
+msgid ""
+"<br/><b>Please note:</b> You are using a higher version than the latest "
+"available one. </em>Please, make sure you've downloaded the latest version "
+"of <em>%1$s</em> from the only <a href=\"https://yithemes.com\" target="
+"\"_blank\">YITH official website</a>, specifically, from your <a href="
+"\"https://yithemes.com/my-account/recent-downloads/\" target=\"_blank"
+"\">Downloads page</a>. This is the only way to be sure the version you are "
+"using is 100%% malware-free."
+msgstr ""
+"<br/><b>Attenzione:</b> Stai utilizzando una versione superiore all'ultima "
+"disponibile. </em>Per favore assicurati di aver scaricato la versione più "
+"recente di <em>%1$s</em> dall'unico <a href=\"https://yithemes.com\" target="
+"\"_blank\">sito ufficiale YITH</a>, nello specifico dalla tua <a href="
+"\"https://yithemes.com/my-account/recent-downloads/\" target=\"_blank"
+"\">pagina Downloads</a>. Questo è l'unico modo per essere sicuri che la "
+"versione in uso sia al 100%% priva di malware."
+
+#: lib/yit-plugin-upgrade.php:668
+msgid "You can't update the plugins for this site."
+msgstr "Non è possibile aggiornare i plugin per questo sito."
+
+#: lib/yit-plugin-upgrade.php:672
+msgid ""
+"You do not have sufficient permissions to update the plugins for this site."
+msgstr ""
+"Non sei in possesso delle autorizzazioni necessarie per aggiornare i plugin "
+"in questo sito."
+
+#: lib/yit-plugin-upgrade.php:679
+msgid "Update Plugin"
+msgstr "Aggiorna plugin"
+
+#: lib/yit-theme-licence.php:117 lib/yit-theme-licence.php:118
+#, php-format
+msgid "%s"
+msgstr "%s"
+
+#: lib/yit-theme-licence.php:159
+msgid ""
+"I cannot find the license key for activating the theme I have bought some "
+"time ago. Where can I find it?"
+msgstr ""
+"Non riesco a trovare la chiave di licenza per l'attivazione del tema che ho "
+"acquistato diverso tempo fa. Dove posso trovarla?"
+
+#: lib/yit-theme-licence.php:163
+msgid ""
+"If you have purchased one of our products before 27 January 2015, you can "
+"benefit from support and updates (the services offered with the license)\n"
+"                    until 27 January 2016 and you do not have to purchase it "
+"again to get a new license key, because, before this date, your license used "
+"to be activated automatically by our system.\n"
+"                    After 27 January 2016, instead, if you want to benefit "
+"from support and updates you have to buy a new license and activate it "
+"through the license key you will be\n"
+"                    provided with and that you can find in your YITH "
+"account, in section \"My licenses\"."
+msgstr ""
+"Se hai acquistato uno dei nostri prodotti prima del 27 gennaio 2015, potrai "
+"usufruire di supporto e aggiornamenti (servizi inclusi nella licenza)\n"
+"fino al 27 gennaio 2016 e non dovrai riacquistare il prodotto per ottenere "
+"una chiave di licenza, poiché prima di questa data il tuo prodotto veniva "
+"automaticamente attivato dal nostro sistema.\n"
+"Dopo il 27 gennaio 2016, invece, se vorrai usufruire di supporto e "
+"aggiornamenti dovrai acquistare una nuova licenza e attivarla con il codice "
+"che ti verrà\n"
+"fornito e che puoi trovare nella tua area riservata su YITH, nella sezione "
+"\"My licenses\"."
+
+#: templates/panel/activation/activation-panel.php:26
+msgid "License expiry date"
+msgstr "Data di scadenza della licenza"
+
+#: templates/panel/activation/activation-panel.php:29
+msgid ""
+"If you have renewed your product license key and the expiry date does not "
+"appear up-to-date, please, click on the button <em>Check Expiry Date</em> "
+"below and it will update."
+msgstr ""
+"Se hai rinnovato la chiave di licenza del tuo prodotto e la data di scadenza "
+"non risulta aggiornata, ti invitiamo a fare clic sul pulsante <em>Check "
+"Expiry Date</em> in modo da aggiornarla."
+
+#: templates/panel/activation/activation-panel.php:32
+msgid "Check expiry date"
+msgstr "Controlla la data di scadenza"
+
+#: templates/panel/activation/activation-panel.php:46
+msgid "Product to activate"
+msgid_plural "Products to activate"
+msgstr[0] "Prodotto da attivare"
+msgstr[1] "Prodotti da attivare"
+
+#: templates/panel/activation/activation-panel.php:49
+msgid "Are you having issues with the license activation?"
+msgstr "Stai riscontrando problemi con l'attivazione della licenza?"
+
+#: templates/panel/activation/activation-panel.php:49
+msgctxt ""
+"[Part of]: Are you having issues with the license activation? Read this "
+"article"
+msgid "Read this article"
+msgstr "Leggi questo articolo"
+
+#: templates/panel/activation/activation-panel.php:63
+msgctxt "Placeholder"
+msgid "Your email on yithemes.com"
+msgstr "Il tuo indirizzo email su yithemes.com"
+
+#: templates/panel/activation/activation-panel.php:66
+msgctxt "Placeholder"
+msgid "License Key"
+msgstr "Chiave di licenza"
+
+#: templates/panel/activation/activation-panel.php:69
+msgid "Activate"
+msgstr "Attiva"
+
+#: templates/panel/activation/activation-panel.php:88
+msgid "Activated"
+msgstr "Attivato"
+
+#: templates/panel/activation/activation-panel.php:94
+#: templates/panel/activation/activation-panel.php:172
+#: templates/panel/activation/activation-panel.php:202
+msgid "Product Name"
+msgstr "Nome prodotto"
+
+#: templates/panel/activation/activation-panel.php:96
+#: templates/panel/activation/activation-panel.php:174
+#: templates/panel/activation/activation-panel.php:205
+msgid "Email"
+msgstr "Email"
+
+#: templates/panel/activation/activation-panel.php:97
+#: templates/panel/activation/activation-panel.php:175
+#: templates/panel/activation/activation-panel.php:206
+msgid "License Key"
+msgstr "Chiave di licenza"
+
+#: templates/panel/activation/activation-panel.php:100
+#: templates/panel/activation/activation-panel.php:209
+msgid "Expires"
+msgstr "Scadenza"
+
+#: templates/panel/activation/activation-panel.php:103
+msgid "Remaining"
+msgstr "Tempo rimanente"
+
+#: templates/panel/activation/activation-panel.php:105
+msgid "Club Subscription"
+msgstr "Club Subscription"
+
+#: templates/panel/activation/activation-panel.php:134
+#, php-format
+msgid "%1s out of %2s"
+msgstr "%1s di %2s"
+
+#: templates/panel/activation/activation-panel.php:150
+msgid "Deactivate"
+msgstr "Disattiva"
+
+#: templates/panel/activation/activation-panel.php:155
+#: templates/panel/activation/activation-panel.php:212
+msgid "Renew"
+msgstr "Rinnova"
+
+#: templates/panel/activation/activation-panel.php:168
+msgid "Banned"
+msgstr "Bloccato"
+
+#: templates/panel/activation/activation-panel.php:198
+msgid "Expired"
+msgstr "Non più valido"
+
+#: templates/panel/activation/activation-panel.php:234
+msgid "Order again"
+msgstr "Acquista di nuovo"
+
+#: templates/panel/activation/activation-panel.php:236
+msgid "Renew license"
+msgstr "Rinnova la licenza"
+
+#~ msgctxt ""
+#~ "[Part of]: Warning! You didn't set license key for the following products:"
+#~ "[Plugins List] which means you're missing out on updates and support. "
+#~ "Enter your license key, please."
+#~ msgid "Warning!"
+#~ msgstr "Attenzione!"
+
+#~ msgctxt ""
+#~ "[Part of]: Warning! You didn't set license key for the following products:"
+#~ "[Plugins List] which means you're missing out on updates and support. "
+#~ "Enter your license key, please."
+#~ msgid "You didn't set license key for the following YITH products"
+#~ msgstr ""
+#~ "Non hai impostato alcuna chiave di licenza per i seguenti prodotti YITH"
+
+#~ msgctxt ""
+#~ "[Part of]: Warning! You didn't set license key for the following products:"
+#~ "[Plugins List] which means you're missing out on updates and support. "
+#~ "Enter your license key, please."
+#~ msgid "which means you're missing out on updates and support"
+#~ msgstr "il che significa che ti stai perdendo aggiornamenti e supporto"
+
+#~ msgctxt ""
+#~ "[Part of]: Warning! You didn't set license key for the following products:"
+#~ "[Plugins List] which means you're missing out on updates and support. "
+#~ "Enter your license key, please."
+#~ msgid "Enter your license key"
+#~ msgstr "Inserisci la tua chiave di licenza"
+
+#~ msgctxt ""
+#~ "[Part of]: Warning! You didn't set license key for the following products:"
+#~ "[Plugins List] which means you're missing out on updates and support. "
+#~ "Enter your license key, please."
+#~ msgid "please"
+#~ msgstr "per favore"
+
+#~ msgctxt "Privacy Policy Guide Title"
+#~ msgid "YITH Plugins"
+#~ msgstr "YITH Plugins"
+
+#~ msgctxt "Privacy Policy Content"
+#~ msgid ""
+#~ "This sample language includes the basics around what personal data your "
+#~ "store may be collecting, storing and sharing, as well as who may have "
+#~ "access to that data. Depending on what settings are enabled and which "
+#~ "additional plugins are used, the specific information shared by your "
+#~ "store will vary. We recommend consulting with a lawyer when deciding what "
+#~ "information to disclose on your privacy policy."
+#~ msgstr ""
+#~ "Questo esempio include gli elementi di base sulla raccolta dei dati "
+#~ "personali, la memorizzazione e la condivisione, nonché su chi è "
+#~ "autorizzato ad accedere a tali dati. In base alle impostazioni abilitate "
+#~ "e ai moduli di estensione aggiuntivi utilizzati, le informazioni "
+#~ "specifiche condivise dal nostro negozio possono variare. Ti consigliamo "
+#~ "di consultare un legale al momento di decidere quali informazioni "
+#~ "divulgare nell'informativa sulla privacy."
+
+#~ msgctxt "Privacy Policy Content"
+#~ msgid "What we collect and store"
+#~ msgstr "Cosa raccogliamo e salviamo"
+
+#~ msgctxt "Privacy Policy Content"
+#~ msgid "Who on our team has access"
+#~ msgstr "Persone del nostro gruppo di lavoro che hanno accesso"
+
+#~ msgctxt "Privacy Policy Content"
+#~ msgid "What we share with others"
+#~ msgstr "Cosa condividiamo con gli altri"
+
+#~ msgctxt "Privacy Policy Content"
+#~ msgid "Payments"
+#~ msgstr "Pagamenti"
+
+#~ msgid "Add %s"
+#~ msgstr "Aggiungi %s"
+
+#~ msgid "Add New %s"
+#~ msgstr "Aggiungi nuovo %s"
+
+#~ msgid "Edit %s"
+#~ msgstr "Modifica %s"
+
+#~ msgid "New %s"
+#~ msgstr "Nuovo %s"
+
+#~ msgid "All %s"
+#~ msgstr "Tutti %s"
+
+#~ msgid "View %s"
+#~ msgstr "Visualizza %s"
+
+#~ msgid "Search %s"
+#~ msgstr "Cerca %s"
+
+#~ msgid "No %s found"
+#~ msgstr "Nessun %s trovato"
+
+#~ msgid "No %s found in Trash"
+#~ msgstr "Nessun %s trovato nel cestino"
+
+#~ msgctxt "taxonomy general name"
+#~ msgid "%s Categories"
+#~ msgstr "%s Categorie"
+
+#~ msgctxt "taxonomy singular name"
+#~ msgid "Category"
+#~ msgstr "Categoria"
+
+#~ msgid "Search Categories"
+#~ msgstr "Cerca categorie"
+
+#~ msgid "All Categories"
+#~ msgstr "Tutte le categorie"
+
+#~ msgid "Parent Category"
+#~ msgstr "Categoria genitore"
+
+#~ msgid "Parent Category:"
+#~ msgstr "Categoria genitore:"
+
+#~ msgid "Edit Category"
+#~ msgstr "Modifica categoria"
+
+#~ msgid "Update Category"
+#~ msgstr "Aggiorna categoria"
+
+#~ msgid "Add New Category"
+#~ msgstr "Aggiungi nuova categoria"
+
+#~ msgid "New Category Name"
+#~ msgstr "Nuovo nome categoria"
+
+#~ msgid "Category"
+#~ msgstr "Categoria"
+
+#~ msgid "Categories"
+#~ msgstr "Categorie"
+
+#~ msgid "%s Settings"
+#~ msgstr "Impostazioni %s"
+
+#~ msgid "Settings"
+#~ msgstr "Impostazioni"
+
+#~ msgid "Type"
+#~ msgstr "Tipologia"
+
+#~ msgid "Layout for this %s"
+#~ msgstr "Layout per questo %s"
+
+#~ msgid "Rewrite"
+#~ msgstr "Riscrivi"
+
+#~ msgid ""
+#~ "Univocal identification name in the URL for each product (slug from post "
+#~ "if empty)"
+#~ msgstr ""
+#~ "Nome identificativo univoco nell'URL per singolo prodotto (usa slug dal "
+#~ "post se vuoto)"
+
+#~ msgid "Label in Singular"
+#~ msgstr "Etichetta singolare"
+
+#~ msgid "Set a label in singular (title of portfolio if empty)"
+#~ msgstr "Imposta un'etichetta singolare (titolo del portfolio se vuoto)"
+
+#~ msgid "Label in Plural"
+#~ msgstr "Etichetta plurale"
+
+#~ msgid "Set a label in plural (title of portfolio if empty)"
+#~ msgstr "Imposta un'etichetta plurale (titolo del portfolio se vuoto)"
+
+#~ msgid "Taxonomy"
+#~ msgstr "Tassonomia"
+
+#~ msgid ""
+#~ "If you want to use categories in the portfolio, set a name for taxonomy. "
+#~ "Name should be a slug (must not contain capital letters nor spaces) and "
+#~ "must not be more than 32 characters long (database structure restriction)."
+#~ msgstr ""
+#~ "Se vuoi aggiungere delle categorie nel portfolio, imposta un nome per la "
+#~ "tassonomia. Il nome dovrà essere in forma di slug (non deve contenere "
+#~ "caratteri maiuscoli né spazi) e non più lungo di 32 caratteri "
+#~ "(restrizione di database)."
+
+#~ msgid "Taxonomy Rewrite"
+#~ msgstr "Riscrivi tassonomia"
+
+#~ msgid "Set univocal name for each category page URL."
+#~ msgstr ""
+#~ "Imposta un nome univoco per l'URL della pagina di ciascuna categoria."
+
+#~ msgid "Single layout"
+#~ msgstr "Layout singolo"
+
+#~ msgid "Layout for single page of this portfolio"
+#~ msgstr "Layout per pagina singola per questo portfolio"
+
+#~ msgid "layout settings"
+#~ msgstr "impostazioni di layout"
+
+#~ msgid "Quick links"
+#~ msgstr "Link rapidi"
+
+#~ msgid "Show frontend of the %s"
+#~ msgstr "Mostra front end di %s"
+
+#~ msgid "Name"
+#~ msgstr "Nome"
+
+#~ msgid "Add %s from images"
+#~ msgstr "Aggiungi %s dalla immagini"
+
+#~ msgid "Upload multiple files"
+#~ msgstr "Carica file multipli"
+
+#~ msgid "The changes you have made will be lost if you leave this page."
+#~ msgstr "Perderai tutti i cambiamenti effettuati se lasci questa pagina."
+
+#~ msgid "Plugin Settings"
+#~ msgstr "Impostazioni plugin"
+
+#~ msgid "How to install premium version"
+#~ msgstr "Come installare la versione premium"
+
+#~ msgid "Save Changes"
+#~ msgstr "Salva modifiche"
+
+#~ msgid ""
+#~ "If you continue with this action, you will reset all options in this page."
+#~ msgstr ""
+#~ "Se prosegui con questa azione, tutte le opzioni di questa pagina saranno "
+#~ "reimpostate."
+
+#~ msgid "Reset to default"
+#~ msgstr "Ripristina configurazione predefinita"
+
+#~ msgid "Are you sure?"
+#~ msgstr "Sei sicuro?"
+
+#~ msgid ""
+#~ "The element you have entered already exists. Please, enter another name."
+#~ msgstr ""
+#~ "L'elemento inserito esiste già. Per favore, inserisci un altro nome."
+
+#~ msgid "Settings saved"
+#~ msgstr "Impostazioni salvate"
+
+#~ msgid "Settings reset"
+#~ msgstr "Impostazioni azzerate"
+
+#~ msgid "Element deleted correctly."
+#~ msgstr "Elemento rimosso correttamente."
+
+#~ msgid "Element updated correctly."
+#~ msgstr "Elemento aggiornato correttamente."
+
+#~ msgid "Database imported correctly."
+#~ msgstr "Database importato correttamente."
+
+#~ msgid "An error has occurred during import. Please try again."
+#~ msgstr "Si è verificato un errore durante l'importazione. Prova di nuovo."
+
+#~ msgid "The added file is not valid."
+#~ msgstr "Il file aggiunto non è valido."
+
+#~ msgid "Sorry, import is disabled."
+#~ msgstr "Ci dispiace, l'importazione è disabilitata."
+
+#~ msgid "Sorting successful."
+#~ msgstr "Ordinamento effettuato con successo."
+
+#~ msgid "Plugins Activated"
+#~ msgstr "Plugin attivati"
+
+#~ msgid ""
+#~ "From now on, you can find all plugin options in YITH Plugins menu.\n"
+#~ "                                     Plugin customization settings will "
+#~ "be available as a new entry in YITH Plugins menu."
+#~ msgstr ""
+#~ "Da ora in poi, puoi trovare tutte le opzioni dei tuoi plugin nel menu "
+#~ "YITH Plugins.\n"
+#~ "Troverai le impostazioni di personalizzazione sotto una nuova voce nel "
+#~ "menu YITH Plugins."
+
+#~ msgid "Discover all our plugins available on:"
+#~ msgstr "Scopri tutti i plugin disponibili su:"
+
+#~ msgid "and"
+#~ msgstr "e"
+
+#~ msgid "Plugins Upgraded"
+#~ msgstr "Plugin aggiornati"
+
+#~ msgid ""
+#~ "From now on, you can find the option panel of YITH plugins in YITH "
+#~ "Plugins menu.\n"
+#~ "                                    Every time one of our plugins is "
+#~ "added, a new entry will be added to this menu.\n"
+#~ "                                    For example, after the update, plugin "
+#~ "options (such as for YITH WooCommerce Wishlist, YITH WooCommerce Ajax "
+#~ "Search, etc.)\n"
+#~ "                                    will be moved from previous location "
+#~ "to YITH Plugins tab."
+#~ msgstr ""
+#~ "Da ora in poi, troverai tutte le opzioni dei tuoi plugin nel menu YITH "
+#~ "Plugins.\n"
+#~ "Ogni volta che aggiornerai i nostri plugin, troverai una nuova voce in "
+#~ "questo menu.\n"
+#~ "Per esempio, dopo l'aggiornamento, le opzioni del plugin (come per "
+#~ "esempio quelle di YITH WooCommerce Wishlist, YITH WooCommerce Ajax Search "
+#~ "etc.)\n"
+#~ "saranno trasferite nella scheda YITH Plugins."
+
+#~ msgid "Search Posts"
+#~ msgstr "Cerca articoli"
+
+#~ msgid "Search Product"
+#~ msgstr "Cerca un prodotto"
+
+#~ msgid "Close all"
+#~ msgstr "Chiudi tutti"
+
+#~ msgid "Expand all"
+#~ msgstr "Espandi tutti"
+
+#~ msgid "Remove"
+#~ msgstr "Rimuovi"
+
+#~ msgid "Value"
+#~ msgstr "Valore"
+
+#~ msgid "Content of the tab. (HTML is supported)"
+#~ msgstr "Contenuto della scheda (codice HTML supportato)."
+
+#~ msgid "Add custom product tab"
+#~ msgstr "Aggiungi scheda prodotto personalizzata"
+
+#~ msgid "Do you want to remove the custom tab?"
+#~ msgstr "Vuoi rimuovere la scheda personalizzata?"
+
+#~ msgid "Set Default"
+#~ msgstr "Ripristina impostazioni iniziali"
+
+#~ msgid "Delete image"
+#~ msgstr "Rimuovi immagine"
+
+#~ msgid "Add Images to Gallery"
+#~ msgstr "Aggiungi immagini alla galleria"
+
+#~ msgid "Add to gallery"
+#~ msgstr "Aggiungi alla galleria"
+
+#~ msgid "Add images"
+#~ msgstr "Aggiungi immagini"
+
+#~ msgid "Delete"
+#~ msgstr "Rimuovi"
+
+#~ msgid "Select All"
+#~ msgstr "Seleziona tutto"
+
+#~ msgid "Deselect All"
+#~ msgstr "Deseleziona tutto"
+
+#~ msgid "Left sidebar"
+#~ msgstr "Barra laterale sinistra"
+
+#~ msgid "Right sidebar"
+#~ msgstr "Barra laterale destra"
+
+#~ msgid "No sidebar"
+#~ msgstr "Nessuna barra laterale"
+
+#~ msgid "Left Sidebar"
+#~ msgstr "Barra laterale sinistra"
+
+#~ msgid "Choose a sidebar"
+#~ msgstr "Scegli una barra laterale"
+
+#~ msgid "Right Sidebar"
+#~ msgstr "Barra laterale destra"
+
+#~ msgid "Upload"
+#~ msgstr "Carica"
+
+#~ msgid "Reset"
+#~ msgstr "Ripristina"
+
+#~ msgid "Image preview"
+#~ msgstr "Anteprima immagine"
+
+#~ msgid "(Default: %s <img src=\"%s\"/>)"
+#~ msgstr "(Default: %s <img src=\"%s\"/>)"
+
+#~ msgid "(Default: <i %s></i> )"
+#~ msgstr "(Default: <i %s></i> )"
+
+#~ msgid "Reset Defaults"
+#~ msgstr "Ripristina impostazioni iniziali"
+
+#~ msgctxt "Plugin Row Meta"
+#~ msgid "Live Demo"
+#~ msgstr "Live Demo"
+
+#~ msgctxt "Plugin Row Meta"
+#~ msgid "Documentation"
+#~ msgstr "Documentazione"
+
+#~ msgctxt "Plugin Row Meta"
+#~ msgid "Support"
+#~ msgstr "Assistenza"
+
+#~ msgctxt "Plugin Row Meta"
+#~ msgid "Premium version"
+#~ msgstr "Versione premium"
+
+#~ msgctxt "Action links"
+#~ msgid "Settings"
+#~ msgstr "Impostazioni"
+
+#~ msgid "License"
+#~ msgstr "Chiave di licenza"
+
+#~ msgid ""
+#~ "Have you updated your licenses? Have you asked for an extension? Update "
+#~ "information concerning your products."
+#~ msgstr ""
+#~ "Hai aggiornato la tua licenza? Hai richiesto un'estensione? Aggiorna le "
+#~ "informazioni dei tuoi prodotti."
+
+#~ msgid "Update license information"
+#~ msgstr "Aggiorna informazioni licenza"
+
+#~ msgid "License Actions"
+#~ msgstr "Azioni licenza"
+
+#~ msgctxt "%s = field name"
+#~ msgid "%s field cannot be empty"
+#~ msgstr "Il campo %s non può essere vuoto"
+
+#~ msgid "%s and %s fields cannot be empty"
+#~ msgstr "I campi %s e %s non possono essere vuoti"
+
+#~ msgid "Hide sidebar"
+#~ msgstr "Nascondi barra laterale"
+
+#~ msgid "Show sidebar"
+#~ msgstr "Mostra barra laterale"
+
+#~ msgid ""
+#~ "If you continue with this action, you will reset all the options in this "
+#~ "page."
+#~ msgstr ""
+#~ "Se prosegui con questa azione, tutte le opzioni di questa pagina saranno "
+#~ "reimpostate."
+
+#~ msgid "Yithemes License Activation"
+#~ msgstr "Attivazione licenza YIThemes"
+
+#~ msgid "No categories."
+#~ msgstr "Nessuna categoria"
+
+#~ msgid "+ Add New Category"
+#~ msgstr "+ Aggiungi nuova categoria"
+
+#~ msgid "Add"
+#~ msgstr "Aggiungi"
+
+#~ msgid "Text Input"
+#~ msgstr "Text input"
+
+#~ msgid "Checkbox"
+#~ msgstr "Checkbox"
+
+#~ msgid "Textarea"
+#~ msgstr "Textarea"
+
+#~ msgid "Radio Input"
+#~ msgstr "Radio input"
+
+#~ msgid "Password Field"
+#~ msgstr "Campo password"
+
+#~ msgid "File Upload"
+#~ msgstr "Carica file"
+
+#~ msgid "Theme Icon"
+#~ msgstr "Icona tema"
+
+#~ msgid "Custom Icon"
+#~ msgstr "Icona personalizzata"
+
+#~ msgid "None"
+#~ msgstr "Nessuno"
+
+#~ msgid "Add field"
+#~ msgstr "Aggiungi campo"
+
+#~ msgid "Click to toggle"
+#~ msgstr "Fai clic per aprire/chiudere"
+
+#~ msgid "Field Title"
+#~ msgstr "Titolo campo"
+
+#~ msgid "Insert the title for the field."
+#~ msgstr "Inserisci il titolo per il campo"
+
+#~ msgid "Data Name"
+#~ msgstr "Nome dati"
+
+#~ msgid ""
+#~ "REQUIRED: Field identification name to be entered into email body. "
+#~ "<strong>Note:</strong>Use only lowercase characters and underscores."
+#~ msgstr ""
+#~ "RICHIESTO: Nome identificativo del campo da inserire nel corpo "
+#~ "dell'email. <strong>Nota:</strong>Puoi utilizzare solamente caratteri "
+#~ "minuscoli e underscore."
+
+#~ msgid "Field Type"
+#~ msgstr "Tipologia campo"
+
+#~ msgid "Select the type for this field."
+#~ msgstr "Seleziona il tipo di campo."
+
+#~ msgid "Checked"
+#~ msgstr "Selezionato"
+
+#~ msgid ""
+#~ "Select this option if you want this field appears as already checked."
+#~ msgstr ""
+#~ "Seleziona questa opzione se vuoi che il campo appaia già selezionato."
+
+#~ msgid "Add options "
+#~ msgstr "Aggiungi opzioni"
+
+#~ msgid "Add option"
+#~ msgstr "Aggiungi opzione"
+
+#~ msgid "Selected"
+#~ msgstr "Selezionato"
+
+#~ msgid "Delete option"
+#~ msgstr "Cancella opzione"
+
+#~ msgid "Error Message"
+#~ msgstr "Messaggio di errore"
+
+#~ msgid "Insert the error message for validation."
+#~ msgstr "Inserisci il messaggio di errore per la validazione"
+
+#~ msgid "Required"
+#~ msgstr "Obbligatorio"
+
+#~ msgid "Select this option if it must be required."
+#~ msgstr "Seleziona questa opzione se deve essere obbligatoria."
+
+#~ msgid "Select this option if the email must be valid."
+#~ msgstr "Seleziona questa opzione se l'email inserita deve essere esistente."
+
+#~ msgid "Reply To"
+#~ msgstr "Rispondi a"
+
+#~ msgid "Select this if it is the email you can reply to."
+#~ msgstr "Seleziona questo se è l'email a cui poter rispondere. "
+
+#~ msgid "Class"
+#~ msgstr "Classe"
+
+#~ msgid ""
+#~ "Insert additional class(es) (separated by commas) for more "
+#~ "personalization."
+#~ msgstr ""
+#~ "Inserisci una o più classi (separate da virgole) per una ulteriore "
+#~ "personalizzazione."
+
+#~ msgid "Icon"
+#~ msgstr "Icona"
+
+#~ msgid "Insert an icon for more personalization."
+#~ msgstr "Inserisci un'icona per ulteriore personalizzazione."
+
+#~ msgid "Width"
+#~ msgstr "Larghezza"
+
+#~ msgid "Set field length."
+#~ msgstr "Seleziona lunghezza campo."
+
+#~ msgid "Upload new images"
+#~ msgstr "Carica nuove immagini"
+
+#~ msgid "Are you sure you want to remove this image?"
+#~ msgstr "Confermi di voler rimuovere questa immagine?"
+
+#~ msgid "px"
+#~ msgstr "px"
+
+#~ msgid "em"
+#~ msgstr "em"
+
+#~ msgid "pt"
+#~ msgstr "pt"
+
+#~ msgid "rem"
+#~ msgstr "rem"
+
+#~ msgid "Web fonts"
+#~ msgstr "Web fonts"
+
+#~ msgid "Google fonts"
+#~ msgstr "Google fonts"
+
+#~ msgid "Regular"
+#~ msgstr "Normale"
+
+#~ msgid "Bold"
+#~ msgstr "Grassetto"
+
+#~ msgid "Extra bold"
+#~ msgstr "Extra bold"
+
+#~ msgid "Italic"
+#~ msgstr "Corsivo"
+
+#~ msgid "Italic bold"
+#~ msgstr "Grassetto corsivo"
+
+#~ msgid "Join the club"
+#~ msgstr "Iscriviti al Club"
+
+#~ msgid "Despacho Theme - 100% FREE"
+#~ msgstr "Despacho Theme - 100% GRATUITO"
+
+#~ msgid "FREE!"
+#~ msgstr "GRATIS!"
+
+#~ msgid "Important Links"
+#~ msgstr "Link importanti"
+
+#~ msgid ""
+#~ "Have you purchased the premium version of a plugin? Don't you know how to "
+#~ "activate the license after the purchase?"
+#~ msgstr ""
+#~ "Hai comprato la versione premium di un plugin ? Dopo l'acquisto non trovi "
+#~ "dove attivare la licenza del tuo plugin premium ? "
+
+#~ msgid ""
+#~ "To upgrade from a FREE to a PREMIUM plugin is not suffice to insert the "
+#~ "license key provided after the purchase.\n"
+#~ "        The reason is that they are two distinct products, with "
+#~ "significant differences both for available options and for number of "
+#~ "files included in the plugin package.\n"
+#~ "        To start to use the PREMIUM version of the plugin, you simply "
+#~ "need to download the PREMIUM packet and install it on your site."
+#~ msgstr ""
+#~ "Per passare da un plugin FREE ad uno PREMIUM non basta semplicemnete "
+#~ "inserire la chiave di licenza che ti è stata fornita dopo aver completato "
+#~ "l'acquisto. Questo perchè fisicamente si tratta di due prodotti diversi, "
+#~ "con differenze sostanziali sia nelle opzioni disponibili sia sul numero "
+#~ "di file presenti all'interno del pacchetto del plugin stesso. \n"
+#~ "Per iniziare ad usare il plugin PREMIUM che hai appena acquistato devi "
+#~ "semplicemente scaricare il pacchetto PREMIUM ed installarlo sul tuo sito."
+
+#~ msgid ""
+#~ "%1$sDo you need to know how to do it?%2$s Easy! %1$sFollow this list of "
+#~ "steps%2$s and in a few minutes the plugin you purchased will be installed "
+#~ "on your site"
+#~ msgstr ""
+#~ "%1$sNon sai come fare ?%2$s Non è un problema%1$s, segui i passi elencati "
+#~ "qui sotto%2$s ed in pochi minuti avrai il plugin acquistato correttamente "
+#~ "installato sul tuo sito."
+
+#~ msgid "Go to yithemes.com and login to \"My Account\" page"
+#~ msgstr ""
+#~ "Vai su yithemes.com ed effettua il login alla sezione \"My Account \""
+
+#~ msgid ""
+#~ "From the menu on the left, click on \"My Downloads\", look for the plugin "
+#~ "you want to install among the available downloads and click on \"Download"
+#~ "\" button"
+#~ msgstr ""
+#~ "Dal menù di sinistra clicca su \"My Downloads\" e cerca tra i download "
+#~ "disponibili il plugin che vuoi installare, e clicca su \"Download\""
+
+#~ msgid ""
+#~ "After downloading the packet, go to your website and login to WordPress "
+#~ "administration area."
+#~ msgstr ""
+#~ "Non appena il download del pacchetto sarà completato recati sul tuo sito "
+#~ "web ed effettua il login all'area amministrazione di WordPress."
+
+#~ msgid ""
+#~ "From the menu on the left, click on \"Plugins\". You will be redirected "
+#~ "to the page where you will find the complete list of all the plugins "
+#~ "available on your site. Click on \"Add New\" button that you find above "
+#~ "on the left to add a new plugin"
+#~ msgstr ""
+#~ "Dal menù di sinistra clicca sulla voce Plugins. Verrai indirizzato su una "
+#~ "pagina con la lista dei plugin disponibili sul tuo sito. Clicca sul "
+#~ "pulsante \"Add New\" che trovi in alto a sinistra vicino al titolo della "
+#~ "pagina."
+
+#~ msgid ""
+#~ "You will be redirected to a new page where you will find, above on the "
+#~ "left next to the page title, the \"Upload Plugin\" button."
+#~ msgstr ""
+#~ "Verrai indirizzato su una nuova pagina dove trovi, in alto a sinistra "
+#~ "vicino al titolo della pagina, il pulsante \"Upload Plugin\"."
+
+#~ msgid ""
+#~ "Click on \"Upload Plugins\" button to start the upload of the PREMIUM "
+#~ "version of the plugin previously downloaded. Click on \"Select File\", "
+#~ "search for the download folder related to the plugin and upload the "
+#~ "package. Now you only need to wait a few minutes for the upload and the "
+#~ "installation on your site. (We used YITH Live Chat plugin by way of "
+#~ "example)"
+#~ msgstr ""
+#~ "Cliccando su \"Upload Plugins\", ti troverai in una pagina dove poter "
+#~ "effettuare l'upload del pacchetto del plugin PREMIUM da te "
+#~ "precedentemente scaricato. Clicca quindi su \"Scegli File\", cerca la "
+#~ "cartella di download dove hai scaricato il plugin ed effettua il "
+#~ "caricamento del pacchetto. A questo punto ti basta attendere qualche "
+#~ "minuto che il pacchetto venga caricato ed installato sul tuo sito. "
+#~ "(Abbiamo usato YITH Live Chat come esempio) "
+
+#~ msgid "After completing the installation, click on \"Activate plugin\""
+#~ msgstr "Al termine della procedura di installazione clicca su \"Attiva\""
+
+#~ msgid ""
+#~ "If everything worked allright, your plugin is now correctly installed on "
+#~ "your website. Enjoy it :-)"
+#~ msgstr ""
+#~ "Se tutto è andato per il meglio il tuo plugin è correttamente installato "
+#~ "sul tuo sito web. Enjoy it :-)"
+
+#~ msgid ""
+#~ "In case you had difficulty to recover the license key we sent you by "
+#~ "email, you can easily find it in \"My Licenses\" section of your account "
+#~ "on yithemes.com"
+#~ msgstr ""
+#~ "Se non trovi l'email che ti abbiamo inviato contenete la license key puoi "
+#~ "facilmente recuperarla dalla sezione \"My Licenses\" all'interno della "
+#~ "sezione My Account del nostro sito yithemes.com."
+
+#~ msgid ""
+#~ "The last step is the activation of the plugin through its license key you "
+#~ "received after the purchase. Click on \"License Activation\" that you "
+#~ "find in \"YITH Plugins\" and insert the license key and the email address "
+#~ "you used during the purchas."
+#~ msgstr ""
+#~ "Ultimo step è attivare il plugin con la chiave di licenza che hai "
+#~ "ricevuto dopo l'acquisto. Clicca quindi sul link \"License Activation\" "
+#~ "che trovi sotto \"YITH Plugins\" ed inserisci la license key in tuo "
+#~ "possesso ed email utilizzata in fase di acquisto."
+
+#~ msgid "YIT Plugins"
+#~ msgstr "YIT Plugins"
+
+#~ msgid "Yithemes Repository"
+#~ msgstr "Repository YIThemes"
+
+#~ msgid "Layout for this "
+#~ msgstr "Layout per questo"
+
+#~ msgid "Add with multiupload"
+#~ msgstr "Aggiungi con caricamento multiplo"
+
+#~ msgid "Reset to Default"
+#~ msgstr "Ripristina impostazioni iniziali"
+
+#~ msgid ""
+#~ "There is a new version of %1$s available. <a href=\"%2$s\" class="
+#~ "\"thickbox yit-changelog-button\" title=\"%3$s\">View version %4$s "
+#~ "details</a>. <em>Automatic update is unavailable for this plugin, please "
+#~ "<a href=\"%5$s\" title=\"Licence activation\">activate</a> your copy of "
+#~ "%6s.</em>"
+#~ msgstr ""
+#~ "È disponibile una nuova versioni di %1$s. <a href=\"%2$s\" class="
+#~ "\"thickbox yit-changelog-button\" title=\"%3$s\">Visualizza i dettagli "
+#~ "della versione %4$s</a>. <em>Gli aggiornamenti automatici non sono "
+#~ "disponibili per questo plugi, per favore, <a href=\"%5$s\" title="
+#~ "\"Licence activation\">attiva</a> la tua copia di %6s.</em>"
+
+#~ msgid "Invalid licence key"
+#~ msgstr "Chiave di licenza non valida"
+
+#~ msgid "Licence key has expired"
+#~ msgstr "Questa chiave di licenza è scaduta"
+
+#~ msgid "Licence key has been banned"
+#~ msgstr "Questa chiave di licenza è stata bloccata"
+
+#~ msgid "Licence Activation"
+#~ msgstr "Attivazione licenza"
+
+#~ msgid "Yithemes Licence Activation"
+#~ msgstr "Attivazione licenza YIThemes"
+
+#~ msgid ""
+#~ "If you have purchased one of our products before 27 January 2015, you can "
+#~ "benefit from support and updates (the services offered with the license)\n"
+#~ "            until 27 January 2016 and you do not have to purchase it "
+#~ "again to get a new license key, because, before this date, your license "
+#~ "used to be activated automatically by our system.\n"
+#~ "            After 27 January 2016, instead, if you want to benefit from "
+#~ "support and updates you have to buy a new license and activate it through "
+#~ "the license key you will be\n"
+#~ "            provided with and that you can find in your YIThemes account, "
+#~ "in section \"My licenses\"."
+#~ msgstr ""
+#~ "Se hai acquistato un nostro prodotto prima del 27 gennaio 2015 potrai "
+#~ "accedere al supporto e scaricare gli aggiornamenti fino al 27 gennaio "
+#~ "2016 e non avrai bisogno di una chiave di licenza,\n"
+#~ "in quanto la tua licenza prima di questa data veniva attivata in modo "
+#~ "automatico dal nostro sistema.\n"
+#~ "Dopo il 27 gennaio 2016, invece, per poter usufruire del servizio di "
+#~ "supporto e degli aggiornamenti dovrai riacquistare il prodotto e\n"
+#~ "attivarlo con la chiave di licenza che ti sarà fornita e che puoi trovare "
+#~ "sul tuo account YIThemes, alla voce \"Le mie licenze\"."
+
+#~ msgid "Update licence information"
+#~ msgstr "Aggiorna le informazioni di licenza"
+
+#~ msgid "Products to be activated"
+#~ msgstr "Prodotti da attivare"
+
+#~ msgid "Licence Key"
+#~ msgstr "Chiave di licenza"
+
+#~ msgid "%field_1% and %field_2% fields cannot be empty"
+#~ msgstr "I campi %field_1% e %field_2% non possono essere vuoti"
+
+#~ msgctxt "%field% = field name"
+#~ msgid "%field% field cannot be empty"
+#~ msgstr "Il campo %field% non può essere vuoto"
+
+#~ msgid "%field% testo cannot be empty"
+#~ msgstr "Il campo %field% non può essere vuoto"
+
+#~ msgid "%field% field cannot be empty"
+#~ msgstr "Il campo %field% non può essere vuoto"

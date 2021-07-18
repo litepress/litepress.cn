@@ -1,0 +1,135 @@
+/* SITE HEADER */
+
+.o2-app-header {
+	margin: 0 0.8em;
+}
+
+.o2-app-page-title {
+	font-size: 1.25em;
+	font-weight: 600;
+	margin-bottom: 0.4em;
+	margin-top: 0px;
+	text-transform: uppercase;
+}
+
+.o2-app-header {
+	margin: 0;
+}
+
+@include breakpoint( 'handset-portrait' ) {
+	body:not( .page ) .o2-app-header {
+		display: none;
+	}
+}
+
+.o2-app-page-title {
+	font-family: $sans;
+	padding: 0.8em 1.2em;
+	color: $gray-0;
+	background: $blue-10;
+
+	a {
+		color: $gray-0;
+	}
+}
+
+.site-header {
+	background: $gray-2;
+	margin: 0 0 2em;
+
+	@media only screen and (min-width: $tablet-portrait) {
+		width: 25%;
+		float: right;
+		margin-bottom: 0;
+	}
+
+	@include breakpoint( 'tablet-portrait' ) {
+		/*height: 48px; */
+		background: none;
+	}
+
+	.hgroup {
+		display: block;
+		margin: 0 auto;
+		padding: 1.2em;
+		text-align: left;
+	}
+
+	.site-title {
+		display: inline-block;
+		text-align: left;
+		color: $gray-100;
+		line-height: 1.4em;
+		padding-bottom: 5px;
+		font-family: $serif;
+
+		a {
+			color: $gray-100;
+			line-height: 1.5em;
+
+			&:hover {
+				color: $blue-10;
+			}
+		}
+	}
+
+	.site-description {
+		clear: both;
+		display: block;
+		font-family: $sans;
+		font-size: 1.3em;
+		font-weight: 300;
+		padding: 0;
+		text-align: left;
+		margin: 0 auto;
+		margin-top: 5px;
+		color: $gray-90;
+	}
+
+	.header-image {
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+.no-sidebar .site-header {
+	background: transparent;
+	float: none;
+	width: 100%;
+
+	.hgroup {
+		text-align: center;
+	}
+
+	.site-title {
+		font-size: 3.4em;
+	}
+}
+
+.o2-app-new-post {
+	background: transparent;
+	border-top: none 0;
+
+	h2 {
+		margin: 0;
+	}
+}
+
+.page-header {
+	margin: 0 15px;
+}
+
+@include breakpoint( 'tablet-portrait' ) {
+	#masthead .hgroup {
+		float: left;
+		padding: 0;
+		margin-bottom: 10px;
+
+		.site-header,
+		.site-description {
+			padding: 0;
+			margin: 0;
+			line-height: 1;
+		}
+	}
+}

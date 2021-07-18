@@ -1,0 +1,134 @@
+<?php if (!defined('ENLIGHTER_INIT')) die('DIRECT ACCESS PROHIBITED'); ?>
+
+<!-- Shortcode Processing -->
+<div class="postbox enlighter-postbox">
+    <h3 class="hndle"><span><?php _e('Shortcode Settings', 'enlighter'); ?></span></h3>
+    <div class="inside enlighter-setting-section">
+
+        <p><?php _e('If you do not need shortcodes (use the Visual-Editor-Integration instead!) it is recommended to disable the shortcode processing for performance reasons.', 'enlighter'); ?></p>
+
+        <h4><?php _e('Shortcode Processing', 'enlighter'); ?></h4>
+
+        <p><?php _e('<strong>Notice</strong>: the LowLevel Shortcode Processor is <strong>not invoked</strong> by the <a href="https://developer.wordpress.org/reference/functions/do_shortcode/">do_shortcode</a> function! If you need shortcode processing in other content section, you should consider to use the legacy version or add custom filters!', 'enlighter'); ?></p>
+       
+        <?php 
+            $this->_settingsUtility->displaySelect(
+                __('Processor', 'enlighter'),
+                'shortcode-mode',
+                array(
+                    'disabled' => __('Disable Shortcodes', 'enlighter'),
+                    'modern' => __('Enlighter Low-Level (recommended)', 'enlighter'), 
+                    'legacy' => __('Legacy (WordPress based)', 'enlighter'),
+                ),
+                array(
+                    'description' => __('WordPress provides a build-in Shortcode-API used by all major plugins. This function will cause issues when using it within the text editor and unescaped html characters - especially when posting source-code! To avoid such issues, Enlighter provides its own, fault tolerant, shortcode processor. Applies only to Enlighter shortcodes!', 'enlighter')
+                )
+            );
+        ?>
+
+        <!-- Enable the_content filter -->
+        <?php $this->_settingsUtility->displayCheckbox(
+            __('Inline syntax highlighting', 'enlighter'),
+            'shortcode-inline',
+            array(
+                'label' => __('Enable', 'enlighter'),
+                'description' => __('Should shortcodes without linebreaks insinde handled as inline-code?', 'enlighter')
+            )); 
+        ?>
+
+        <!-- Generic Shortcodes -->
+        <?php $this->_settingsUtility->displayCheckbox(
+            __('Generic shortcode', 'enlighter'),
+            'shortcode-type-generic',
+            array(
+                'label' => __('Enable', 'enlighter'),
+                'description' =>  __('Do you want to use generic [enlighter] shortcode?', 'enlighter')
+            )); 
+        ?>
+
+        <!-- Language Shortcodes -->
+        <?php $this->_settingsUtility->displayCheckbox(
+            __('Language shortcodes', 'enlighter'),
+            'shortcode-type-language',
+            array(
+                'label' => __('Enable', 'enlighter'),
+                'description' =>  __('Do you want to use language shortcodes like [js] ? Disable it when your using other plugins which uses such shortcodes!', 'enlighter')
+            )); 
+        ?>
+
+         <!-- Language Shortcodes -->
+         <?php $this->_settingsUtility->displayCheckbox(
+            __('Codegroup shortcode', 'enlighter'),
+            'shortcode-type-group',
+            array(
+                'label' => __('Enable', 'enlighter'),
+                'description' =>  __('The [codegroup] shortcode allows you to group multiple shortcodes to be displayed as tabs inside enlighter.', 'enlighter')
+            )); 
+        ?>
+
+    </div>
+</div>
+
+<!-- Shortcode Processing -->
+<div class="postbox enlighter-postbox enlighter-selective-section" data-trigger="#enlighter-shortcode-mode" data-condition="==modern">
+    <h3 class="hndle"><span><?php _e('Filter targets', 'enlighter'); ?></span></h3>
+    <div class="inside enlighter-setting-section">
+        <p><?php _e('Choose the content-sections to which the shortcode processor should be applied.', 'enlighter'); ?></p>
+
+        <!-- Enable the_content filter -->
+        <?php $this->_settingsUtility->displayCheckbox(
+            __('the_content', 'enlighter'),
+            'shortcode-filter-content',
+            array(
+                'label' => __('Enable', 'enlighter'),
+                'description' => __('x', 'enlighter'),
+                'readmore' => 'https://codex.wordpress.org/Function_Reference/get_the_content'
+            )); 
+        ?>
+
+        <!-- Enable the_excerpt filter -->
+        <?php $this->_settingsUtility->displayCheckbox(
+            __('the_excerpt', 'enlighter'),
+            'shortcode-filter-excerpt',
+            array(
+                'label' => __('Enable', 'enlighter'),
+                'description' => __('x', 'enlighter'),
+                'readmore' => 'https://developer.wordpress.org/reference/functions/the_excerpt/'
+            )); 
+        ?>
+
+        <!-- Enable Widget-text filter -->
+        <?php $this->_settingsUtility->displayCheckbox(
+            __('widget_text', 'enlighter'),
+            'shortcode-filter-widget',
+            array(
+                'label' => __('Enable', 'enlighter'),
+                'description' => __('x', 'enlighter'),
+                'readmore' => 'https://codex.wordpress.org/Plugin_API/Filter_Reference/widget_text'
+            )); 
+        ?>
+
+        <!-- Enable comment-text filter -->
+        <?php $this->_settingsUtility->displayCheckbox(
+            __('comment_text', 'enlighter'),
+            'shortcode-filter-comment',
+            array(
+                'label' => __('Enable', 'enlighter'),
+                'description' => __('x', 'enlighter'),
+                'readmore' => 'https://codex.wordpress.org/Function_Reference/comment_text'
+            )); 
+        ?>
+
+        <!-- Enable comment-excerpt filter -->
+        <?php $this->_settingsUtility->displayCheckbox(
+            __('comment_excerpt', 'enlighter'),
+            'shortcode-filter-commentexcerpt',
+            array(
+                'label' => __('Enable', 'enlighter'),
+                'description' => __('x', 'enlighter'),
+                'readmore' => 'https://codex.wordpress.org/Function_Reference/comment_excerpt'
+            )); 
+        ?>
+        
+    </div>
+</div>

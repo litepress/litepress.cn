@@ -1,0 +1,3 @@
+迅虎个人支付接口，支持支付宝，微信扫码，jsapi，H5支付
+1.wordpress后台直接上传插件进行安装
+2.上传到系统wp_content/plugins目录下，再到wordpress后台插件里面启用

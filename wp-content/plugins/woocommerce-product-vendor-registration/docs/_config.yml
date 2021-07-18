@@ -1,0 +1,8 @@
+remote_theme: pmarsceill/just-the-docs
+
+title: WordPress实人认证
+description: 本文档是WordPress实人认证插件的开发文档
+
+aux_links:
+  "在GitHub上帮助完善":
+    - "https://github.com/wp-china/wp-real-person-verify/docs"

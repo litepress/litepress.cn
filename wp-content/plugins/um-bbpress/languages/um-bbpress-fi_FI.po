@@ -1,0 +1,316 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ultimate Member - bbPress\n"
+"POT-Creation-Date: 2016-04-07 17:26+0800\n"
+"PO-Revision-Date: 2016-04-08 12:53+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: um-bbpress.php\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: EDD_SL_Plugin_Updater.php:191
+#, php-format
+msgid ""
+"There is a new version of %1$s available. %2$sView version %3$s details%4$s."
+msgstr ""
+
+#: EDD_SL_Plugin_Updater.php:199
+#, php-format
+msgid ""
+"There is a new version of %1$s available. %2$sView version %3$s details%4$s "
+"or %5$supdate now%6$s."
+msgstr ""
+
+#: EDD_SL_Plugin_Updater.php:360
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
+#: EDD_SL_Plugin_Updater.php:360
+msgid "Error"
+msgstr ""
+
+#: admin/templates/access/bbpress.php:2
+msgid "Which roles can create new topics in this forum"
+msgstr ""
+
+#: admin/templates/access/bbpress.php:16
+msgid "Which roles can create new replies in this forum"
+msgstr ""
+
+#: admin/templates/role/bbpress.php:8
+msgid "Can have forums tab?"
+msgstr "Voi olla foorumit välilehti?"
+
+#: admin/templates/role/bbpress.php:8
+msgid ""
+"If you turn this off, this role will not have a forums tab active in their "
+"profile."
+msgstr ""
+
+#: admin/templates/role/bbpress.php:13
+msgid "Can create new topics?"
+msgstr "Voi luoda uusia aiheita?"
+
+#: admin/templates/role/bbpress.php:13
+msgid ""
+"Generally, decide If this role can create new topics in the forums or not."
+msgstr ""
+
+#: admin/templates/role/bbpress.php:18
+msgid "Custom message to show if you force locking new topic"
+msgstr "Mukautettu viesti näyttää, jos pakottaa lukitus uusi viesti"
+
+#: admin/templates/role/bbpress.php:27
+msgid "Can create new replies?"
+msgstr "Voi luoda uusia vastauksia?"
+
+#: admin/templates/role/bbpress.php:27
+msgid ""
+"Generally, decide If this role can create new replies in the forums or not."
+msgstr ""
+
+#: admin/templates/role/bbpress.php:32
+msgid "Disable new topics during these weekdays"
+msgstr "Poista käytöstä uusia aiheita nämä arkisin"
+
+#: admin/templates/role/bbpress.php:32
+msgid ""
+"Choose week days to disable this role from creating new topics on those days"
+msgstr ""
+
+#: admin/templates/role/bbpress.php:44
+msgid ""
+"Custom message to show to user if user cannot post in the above selected days"
+msgstr ""
+"Mukautettu viesti näyttää käyttäjälle, jos käyttäjä voi kirjoittaa yllä "
+"valittuina päivinä"
+
+#: core/actions/um-bbpress-admin.php:13
+msgid "Permissions"
+msgstr ""
+
+#: core/actions/um-bbpress-admin.php:28 core/filters/um-bbpress-settings.php:13
+msgid "bbPress"
+msgstr ""
+
+#: core/filters/um-bbpress-settings.php:20
+msgid "Hide forums tab from Guests"
+msgstr ""
+
+#: core/filters/um-bbpress-settings.php:21
+msgid ""
+"Enable this option If you do not want to show the forums tab for guests."
+msgstr ""
+
+#: core/filters/um-bbpress-settings.php:22
+msgid "On"
+msgstr ""
+
+#: core/filters/um-bbpress-settings.php:23
+msgid "Off"
+msgstr ""
+
+#: core/filters/um-bbpress-tabs.php:14
+msgid "Forums"
+msgstr ""
+
+#: core/filters/um-bbpress-tabs.php:17
+msgid "Topics Started"
+msgstr ""
+
+#: core/filters/um-bbpress-tabs.php:18
+msgid "Replies Created"
+msgstr ""
+
+#: core/filters/um-bbpress-tabs.php:19
+msgid "Favorites"
+msgstr ""
+
+#: core/filters/um-bbpress-tabs.php:20
+msgid "Subscriptions"
+msgstr ""
+
+#: core/um-bbpress-init.php:26
+#, php-format
+msgid ""
+"The <strong>%s</strong> extension requires the Ultimate Member plugin to be "
+"activated to work properly. You can download it <a href=\"https://wordpress."
+"org/plugins/ultimate-member\">here</a>"
+msgstr ""
+
+#: core/um-bbpress-init.php:31
+#, php-format
+msgid ""
+"Sorry. You must activate the <strong>bbPress</strong> plugin to use the %s."
+msgstr ""
+
+#: core/um-bbpress-init.php:36
+#, php-format
+msgid ""
+"The <strong>%s</strong> extension requires a <a href=\"https://wordpress.org/"
+"plugins/ultimate-member\">newer version</a> of Ultimate Member to work "
+"properly."
+msgstr ""
+
+#: core/um-bbpress-init.php:103
+msgid "Sunday"
+msgstr ""
+
+#: core/um-bbpress-init.php:104
+msgid "Monday"
+msgstr ""
+
+#: core/um-bbpress-init.php:105
+msgid "Tuesday"
+msgstr ""
+
+#: core/um-bbpress-init.php:106
+msgid "Wednesday"
+msgstr ""
+
+#: core/um-bbpress-init.php:107
+msgid "Thursday"
+msgstr ""
+
+#: core/um-bbpress-init.php:108
+msgid "Friday"
+msgstr ""
+
+#: core/um-bbpress-init.php:109
+msgid "Saturday"
+msgstr ""
+
+#: templates/favorites.php:18
+msgid "Remove"
+msgstr ""
+
+#: templates/favorites.php:25 templates/topics-single.php:6
+#, php-format
+msgid "in: <a href=\"%1$s\">%2$s</a>"
+msgstr ""
+
+#: templates/favorites.php:26 templates/subscriptions.php:48
+#: templates/topics-single.php:7
+msgid "Voices"
+msgstr ""
+
+#: templates/favorites.php:27 templates/subscriptions.php:49
+#: templates/subscriptions.php:54 templates/topics-single.php:8
+msgid "Replies"
+msgstr ""
+
+#: templates/favorites.php:28 templates/subscriptions.php:50
+#: templates/subscriptions.php:55 templates/topics-single.php:9
+#, php-format
+msgid "Last active %s"
+msgstr ""
+
+#: templates/favorites.php:36
+msgid "You currently have no favorite topics."
+msgstr ""
+
+#: templates/favorites.php:36
+msgid "This user has no favorite topics."
+msgstr ""
+
+#: templates/replies-single.php:6
+#, php-format
+msgid "This topic has %s more replies"
+msgstr ""
+
+#: templates/replies-single.php:15 templates/replies.php:21
+msgid "load more replies"
+msgstr ""
+
+#: templates/replies.php:30
+msgid "You have not replied to any topics."
+msgstr ""
+
+#: templates/replies.php:30
+msgid "This user has not replied to any topics."
+msgstr ""
+
+#: templates/subscriptions.php:14
+#, php-format
+msgid "Show all subscriptions (%d)"
+msgstr ""
+
+#: templates/subscriptions.php:15
+#, php-format
+msgid "Subscribed Topics (%d)"
+msgstr ""
+
+#: templates/subscriptions.php:16
+#, php-format
+msgid "Subscribed Forums (%d)"
+msgstr ""
+
+#: templates/subscriptions.php:35 templates/subscriptions.php:37
+msgid "Unsubscribe"
+msgstr ""
+
+#: templates/subscriptions.php:47
+#, php-format
+msgid " in: <a href=\"%1$s\">%2$s</a>"
+msgstr ""
+
+#: templates/subscriptions.php:53
+msgid "Topics"
+msgstr ""
+
+#: templates/subscriptions.php:66
+msgid "You are not currently subscribed to any topics."
+msgstr ""
+
+#: templates/subscriptions.php:66
+msgid "This user is not currently subscribed to any topics."
+msgstr ""
+
+#: templates/topics-single.php:4
+msgid "Locked"
+msgstr ""
+
+#: templates/topics-single.php:18 templates/topics.php:21
+msgid "load more topics"
+msgstr ""
+
+#: templates/topics.php:30
+msgid "You have not created any topics."
+msgstr ""
+
+#: templates/topics.php:30
+msgid "This user has not created any topics."
+msgstr ""
+
+#: um-bbpress.php:186
+msgid "Invalid License Key"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Ultimate Member - bbPress"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "http://ultimatemember.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Integrates Ultimate Member with bbPress beautifully."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Ultimate Member"
+msgstr ""

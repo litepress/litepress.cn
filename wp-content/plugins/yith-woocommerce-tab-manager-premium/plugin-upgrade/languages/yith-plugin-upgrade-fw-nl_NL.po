@@ -1,0 +1,463 @@
+# Copyright (C) 2015 YIThemes
+# This file is distributed under the same license as the YITH Plugin Starter package.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH Plugin Starter 1.0.0 Plugin FW\n"
+"Report-Msgid-Bugs-To: Your Inspiration Themes <plugins@yithemes.com>\n"
+"POT-Creation-Date: 2020-01-14 17:17+0100\n"
+"PO-Revision-Date: 2020-01-14 17:19+0100\n"
+"Last-Translator: \n"
+"Language-Team: Your Inspiration Themes <info@yithemes.com>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;_x;_ex\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: lib/yit-licence.php:116 templates/panel/activation/activation-panel.php:23
+msgid "YITH License Activation"
+msgstr "YITH licentie activering"
+
+#: lib/yit-licence.php:210
+#, php-format
+msgctxt "%s = field name"
+msgid "Please, insert a valid %s"
+msgstr "Voer alsjeblieft een geldige %s in"
+
+#: lib/yit-licence.php:211
+#, php-format
+msgid "Please, insert a valid %s and a valid %s"
+msgstr "A.u.b. voer een geldige %s en een geldige %s in"
+
+#: lib/yit-licence.php:212
+msgid "Unable to contact the remote server, please try again later. Thanks!"
+msgstr ""
+"Niet in staat contact te maken met de externe server, probeer het later "
+"opnieuw!"
+
+#: lib/yit-licence.php:213
+msgid "email address"
+msgstr "e-mailadres"
+
+#: lib/yit-licence.php:214
+msgid "license key"
+msgstr "licentie sleutel"
+
+#: lib/yit-licence.php:215
+msgid "Are you sure you want to deactivate the license for current site?"
+msgstr "Weet u zeker dat u de licentie voor de huidige site wilt deactiveren?"
+
+#: lib/yit-licence.php:793
+msgid "Invalid Request"
+msgstr "Ongeldig verzoek"
+
+#: lib/yit-licence.php:794
+msgid "Invalid license key"
+msgstr "Ongeldige licentiesleutel"
+
+#: lib/yit-licence.php:795
+msgid "Software has been deactivated"
+msgstr "Software is gedeactiveerd"
+
+#: lib/yit-licence.php:796
+msgid "Maximum number of activations exceeded"
+msgstr "Maximum aantal activeringen overschreden"
+
+#: lib/yit-licence.php:797
+msgid "Invalid instance ID"
+msgstr "Ongeldige instance ID"
+
+#: lib/yit-licence.php:798
+msgid "Invalid security key"
+msgstr "Ongeldige security key"
+
+#: lib/yit-licence.php:799
+msgid "License key has expired"
+msgstr "De licentiesleutel is verlopen"
+
+#: lib/yit-licence.php:800
+msgid "License key has been banned"
+msgstr "De licentiesleutel is verbannen"
+
+#: lib/yit-licence.php:801
+msgid "Current product is not included in your YITH Club Subscription key"
+msgstr "Het huidige product is niet opgenomen in uw YITH Club Subscription key"
+
+#: lib/yit-licence.php:802
+msgid "Great"
+msgstr "Top!"
+
+#: lib/yit-licence.php:802
+msgid "License successfully activated"
+msgstr "Licentie succesvol geactiveerd"
+
+#: lib/yit-licence.php:803
+msgid "License key deactivated for website"
+msgstr "Licentiesleutel gedeactiveerd voor website"
+
+#: lib/yit-plugin-licence.php:67 lib/yit-plugin-licence.php:68
+#: lib/yit-theme-licence.php:69 lib/yit-theme-licence.php:70
+#: lib/yit-theme-licence.php:109 lib/yit-theme-licence.php:110
+msgid "License Activation"
+msgstr "Licentie activering"
+
+#: lib/yit-plugin-upgrade.php:95
+msgid "An unexpected error occurred, please try again later. Thanks!"
+msgstr "Een onverwachte fout heeft zich voorgedaan, probeer het later nog eens!"
+
+#: lib/yit-plugin-upgrade.php:196
+msgid "There is a new version of %plugin_name% available."
+msgstr "Er is een nieuwe versie van %plugin_name% beschikbaar."
+
+#: lib/yit-plugin-upgrade.php:197
+msgid "View version %latest% details."
+msgstr "Bekijk details versie %latest% ."
+
+#: lib/yit-plugin-upgrade.php:198
+msgid "Automatic update is unavailable for this plugin,"
+msgstr "Automatisch bijwerken is niet beschikbaar voor deze plugin,"
+
+#: lib/yit-plugin-upgrade.php:199
+msgid ""
+"please <a href=\"%activate_link%\">activate</a> your copy of %plugin_name%."
+msgstr ""
+"a.u.b. <a href=\"%activate_link%\">activeer</a> uw kopie van %plugin_name%."
+
+#: lib/yit-plugin-upgrade.php:200
+msgid "Update now."
+msgstr "Nu bijwerken."
+
+#: lib/yit-plugin-upgrade.php:201
+msgid ""
+"<br/><b>Please note:</b> You are using a higher version than the latest "
+"available one. </em>Please, make sure you've downloaded the latest version of "
+"<em>%plugin_name%</em> from the only <a href=\"https://yithemes.com\" target="
+"\"_blank\">YITH official website</a>, specifically, from your <a href="
+"\"https://yithemes.com/my-account/recent-downloads/\" target=\"_blank"
+"\">Downloads page</a>. This is the only way to be sure the version you are "
+"using is 100% malware-free."
+msgstr ""
+"<br/><b>Let op:</b> U gebruikt een nieuwere versie dan de laatst beschikbare "
+"</em> download aub de laatste versie van<em>%plugin_name%</em> van de enige "
+"<a href=\"https://yithemes.com\" target=\"_blank\">officiële YITH  website</"
+"a>, in het bijzonder vanaf uw<a href=\"https://yithemes.com/my-account/recent-"
+"downloads/\" target=\"_blank\">Downloads pagina</a>. Dat is de enige manier "
+"om zeker te zijn dat uw gedownloade versie zonder veiligheidsrisico's komt en "
+"100% malware vrij is."
+
+#: lib/yit-plugin-upgrade.php:238
+#, php-format
+msgctxt "plugin-fw"
+msgid "Updating %s..."
+msgstr "Bijwerken %s..."
+
+#: lib/yit-plugin-upgrade.php:240
+#, php-format
+msgctxt "plugin-fw"
+msgid "%s updated!"
+msgstr "%s bijgewerkt!"
+
+#: lib/yit-plugin-upgrade.php:242
+#, php-format
+msgctxt "plugin-fw"
+msgid "%s update failed"
+msgstr "%s bijwerken mislukt"
+
+#: lib/yit-plugin-upgrade.php:316
+msgctxt "[Update Plugin Message: License not enabled]"
+msgid "You have to activate the plugin to benefit from automatic updates."
+msgstr "U moet de plugin activeren om te profiteren van automatische updates."
+
+#: lib/yit-plugin-upgrade.php:338
+msgid "YITH Repository"
+msgstr "YITH Repository"
+
+#: lib/yit-plugin-upgrade.php:372
+msgid "Invalid URL Provided."
+msgstr "Ongeldige URL ingegeven."
+
+#: lib/yit-plugin-upgrade.php:385
+msgid "Could not create Temporary file."
+msgstr "Kan geen tijdelijk bestand aanmaken."
+
+#: lib/yit-plugin-upgrade.php:586
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">View version "
+"%4$s details</a>."
+msgstr ""
+"Er is een nieuwe versie van of %1$s beschikbaar. <a href=\"%2$s\" class="
+"\"thickbox yit-changelog-button open-plugin-details-modal\" title=\"%3$s"
+"\">Bekijk versie %4$s details</a>."
+
+#: lib/yit-plugin-upgrade.php:588
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">View version "
+"%4$s details</a>. <em>You have to activate the plugin on a single site of the "
+"network to benefit from automatic updates.</em>"
+msgstr ""
+"Er is een nieuwe versie van %1$s beschikbaar. <a href=\"%2$s\" class="
+"\"thickbox yit-changelog-button open-plugin-details-modal\" title=\"%3$s"
+"\">Bekijk versie %4$s details</a>. <em>U moet de plugin op een single site "
+"van het netwerk activeren om te profiteren van automatisch bijwerken.</em>"
+
+#: lib/yit-plugin-upgrade.php:590
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">View version "
+"%4$s details</a>. <em>Automatic update is unavailable for this plugin, please "
+"<a href=\"%5$s\" title=\"License activation\">activate</a> your copy of %6s.</"
+"em>"
+msgstr ""
+"Er is een nieuwe versie van  %1$s beschikbaar. <a href=\"%2$s\" class="
+"\"thickbox yit-changelog-button open-plugin-details-modal\" title=\"%3$s"
+"\">Bekijk versie %4$s details</a>. <em>Automatische bijwerking is niet "
+"beschikbaar voor deze plugin <a href=\"%5$s\" title=\"License activation"
+"\">activeer</a> je kopie van %6s.</em>"
+
+#: lib/yit-plugin-upgrade.php:592
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">View version "
+"%4$s details</a> or <a href=\"%5$s\" class=\"%6$s\" data-plugin=\"%7$s\" data-"
+"slug=\"%8$s\" data-name=\"%1$s\">update now</a>."
+msgstr ""
+"Er is een nieuwe versie van%1$s beschikbaar. <a href=\"%2$s\" class="
+"\"thickbox yit-changelog-button open-plugin-details-modal\" title=\"%3$s"
+"\">Bekijk versie %4$s details</a> of <a href=\"%5$s\" class=\"%6$s\" data-"
+"plugin=\"%7$s\" data-slug=\"%8$s\" data-name=\"%1$s\">update nu</a> ."
+
+#: lib/yit-plugin-upgrade.php:596
+#, php-format
+msgid ""
+"<br/><b>Please note:</b> You are using a higher version than the latest "
+"available one. </em>Please, make sure you've downloaded the latest version of "
+"<em>%1$s</em> from the only <a href=\"https://yithemes.com\" target=\"_blank"
+"\">YITH official website</a>, specifically, from your <a href=\"https://"
+"yithemes.com/my-account/recent-downloads/\" target=\"_blank\">Downloads page</"
+"a>. This is the only way to be sure the version you are using is 100%% "
+"malware-free."
+msgstr ""
+"<br/> <b> Let op: </b> u gebruikt een hogere versie dan de laatst beschikbare "
+"versie. </em> Zorg ervoor dat je de laatste versie van <em>%1$s</em> hebt "
+"gedownload van de enige <a href=\"https://yithemes.com\" target=\"_blank\"> "
+"YITH officiële website </a>, in het bijzonder vanaf uw <a href=\"https://"
+"yithemes.com/my-account/recent-downloads/\" target=\"_blank\"> downloadpagina "
+"</a>. Dit is de enige manier om er zeker van te zijn dat de versie die u "
+"gebruikt 100 %% malware-vrij is."
+
+#: lib/yit-plugin-upgrade.php:668
+msgid "You can't update the plugins for this site."
+msgstr "U kunt de plugins voor deze site niet bijwerken"
+
+#: lib/yit-plugin-upgrade.php:672
+msgid ""
+"You do not have sufficient permissions to update the plugins for this site."
+msgstr ""
+"U heeft niet voldoende rechten om de plugins bij te werken voor deze site."
+
+#: lib/yit-plugin-upgrade.php:679
+msgid "Update Plugin"
+msgstr "Plugin updaten"
+
+#: lib/yit-theme-licence.php:117 lib/yit-theme-licence.php:118
+#, php-format
+msgid "%s"
+msgstr "%s"
+
+#: lib/yit-theme-licence.php:159
+msgid ""
+"I cannot find the license key for activating the theme I have bought some "
+"time ago. Where can I find it?"
+msgstr ""
+"Ik kan de licentiesleutel voor het thema dat ik een tijdje geleden heb "
+"gekocht niet vinden, waar kan ik het vinden?"
+
+#: lib/yit-theme-licence.php:163
+msgid ""
+"If you have purchased one of our products before 27 January 2015, you can "
+"benefit from support and updates (the services offered with the license)\n"
+"                    until 27 January 2016 and you do not have to purchase it "
+"again to get a new license key, because, before this date, your license used "
+"to be activated automatically by our system.\n"
+"                    After 27 January 2016, instead, if you want to benefit "
+"from support and updates you have to buy a new license and activate it "
+"through the license key you will be\n"
+"                    provided with and that you can find in your YITH account, "
+"in section \"My licenses\"."
+msgstr ""
+"Als u vóór 27 januari 2015 een van onze producten hebt gekocht, kunt u "
+"profiteren van ondersteuning en updates (de diensten die worden aangeboden "
+"met de licentie)\n"
+"                    tot 27 januari 2016 en u hoeft het niet opnieuw aan te "
+"schaffen om een ​nieuwe licentiesleutel te krijgen, want vóór deze datum werd "
+"u licentie automatisch door ons systeem geactiveerd.\n"
+"                    Na 27 januari 2016, in plaats daarvan, als u wilt "
+"profiteren van ondersteuning en updates, moet u een nieuwe licentie kopen en "
+"deze activeren via de licentiesleutel.\n"
+"                    meegeleverd en die u kunt vinden in uw YIThemes-account, "
+"in het gedeelte “Mijn licenties”."
+
+#: templates/panel/activation/activation-panel.php:26
+msgid "License expiry date"
+msgstr "Vervaldatum licentie"
+
+#: templates/panel/activation/activation-panel.php:29
+msgid ""
+"If you have renewed your product license key and the expiry date does not "
+"appear up-to-date, please, click on the button <em>Check Expiry Date</em> "
+"below and it will update."
+msgstr ""
+"Als u de licentiesleutel van uw product heeft vernieuwd, en de vervaldatum "
+"verschijnt niet up-to-date, klik op de knop <em>Check Expiry Date</em> "
+"hieronder en het zal worden bijgewerkt."
+
+#: templates/panel/activation/activation-panel.php:32
+msgid "Check expiry date"
+msgstr "Vervaldatum controleren"
+
+#: templates/panel/activation/activation-panel.php:46
+msgid "Product to activate"
+msgid_plural "Products to activate"
+msgstr[0] "Product om te activeren"
+msgstr[1] "Producten om te activeren"
+
+#: templates/panel/activation/activation-panel.php:49
+msgid "Are you having issues with the license activation?"
+msgstr "Hebt u problemen met de licentie activering?"
+
+#: templates/panel/activation/activation-panel.php:49
+msgctxt ""
+"[Part of]: Are you having issues with the license activation? Read this "
+"article"
+msgid "Read this article"
+msgstr "Lees dit artikel"
+
+#: templates/panel/activation/activation-panel.php:63
+msgctxt "Placeholder"
+msgid "Your email on yithemes.com"
+msgstr ""
+
+#: templates/panel/activation/activation-panel.php:66
+#, fuzzy
+#| msgid "License Key"
+msgctxt "Placeholder"
+msgid "License Key"
+msgstr "License Key"
+
+#: templates/panel/activation/activation-panel.php:69
+msgid "Activate"
+msgstr "Activeren"
+
+#: templates/panel/activation/activation-panel.php:88
+msgid "Activated"
+msgstr "Geactiveerd"
+
+#: templates/panel/activation/activation-panel.php:94
+#: templates/panel/activation/activation-panel.php:172
+#: templates/panel/activation/activation-panel.php:202
+msgid "Product Name"
+msgstr "Productnaam"
+
+#: templates/panel/activation/activation-panel.php:96
+#: templates/panel/activation/activation-panel.php:174
+#: templates/panel/activation/activation-panel.php:205
+msgid "Email"
+msgstr "E-mail"
+
+#: templates/panel/activation/activation-panel.php:97
+#: templates/panel/activation/activation-panel.php:175
+#: templates/panel/activation/activation-panel.php:206
+msgid "License Key"
+msgstr "License Key"
+
+#: templates/panel/activation/activation-panel.php:100
+#: templates/panel/activation/activation-panel.php:209
+msgid "Expires"
+msgstr "Verloopt"
+
+#: templates/panel/activation/activation-panel.php:103
+msgid "Remaining"
+msgstr "Over"
+
+#: templates/panel/activation/activation-panel.php:105
+msgid "Club Subscription"
+msgstr "Club Abonnement"
+
+#: templates/panel/activation/activation-panel.php:134
+#, php-format
+msgid "%1s out of %2s"
+msgstr "%1s van de %2s"
+
+#: templates/panel/activation/activation-panel.php:150
+msgid "Deactivate"
+msgstr "Deactiveer"
+
+#: templates/panel/activation/activation-panel.php:155
+#: templates/panel/activation/activation-panel.php:212
+msgid "Renew"
+msgstr "Vernieuwen"
+
+#: templates/panel/activation/activation-panel.php:168
+msgid "Banned"
+msgstr "Verbannen"
+
+#: templates/panel/activation/activation-panel.php:198
+msgid "Expired"
+msgstr "Verlopen"
+
+#: templates/panel/activation/activation-panel.php:234
+msgid "Order again"
+msgstr "Bestel opniew"
+
+#: templates/panel/activation/activation-panel.php:236
+msgid "Renew license"
+msgstr "Licentie vernieuwen"
+
+#~ msgctxt ""
+#~ "[Part of]: Warning! You didn't set license key for the following products:"
+#~ "[Plugins List] which means you're missing out on updates and support. "
+#~ "Enter your license key, please."
+#~ msgid "Warning!"
+#~ msgstr "Waarschuwing!"
+
+#~ msgctxt ""
+#~ "[Part of]: Warning! You didn't set license key for the following products:"
+#~ "[Plugins List] which means you're missing out on updates and support. "
+#~ "Enter your license key, please."
+#~ msgid "You didn't set license key for the following YITH products"
+#~ msgstr "U heeft geen licentiesleutel ingegeven voor de volgende producten"
+
+#~ msgctxt ""
+#~ "[Part of]: Warning! You didn't set license key for the following products:"
+#~ "[Plugins List] which means you're missing out on updates and support. "
+#~ "Enter your license key, please."
+#~ msgid "which means you're missing out on updates and support"
+#~ msgstr "wat betekent dat u updates en ondersteuning misloopt"
+
+#~ msgctxt ""
+#~ "[Part of]: Warning! You didn't set license key for the following products:"
+#~ "[Plugins List] which means you're missing out on updates and support. "
+#~ "Enter your license key, please."
+#~ msgid "Enter your license key"
+#~ msgstr "Geef uw licentiesleutel in"
+
+#~ msgctxt ""
+#~ "[Part of]: Warning! You didn't set license key for the following products:"
+#~ "[Plugins List] which means you're missing out on updates and support. "
+#~ "Enter your license key, please."
+#~ msgid "please"
+#~ msgstr "a.u.b."

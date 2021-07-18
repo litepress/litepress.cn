@@ -1,0 +1,146 @@
+#woocommerce-product-data ul.product_data_tabs li.api_tab a:before {
+    font-family: "Dashicons";
+    content: "\f176";
+}
+
+#woocommerce-product-data ul.product_data_tabs li.api_tab.active a {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #f8f8f8;
+}
+
+#wc_am_update_api_keys .inside,
+#wc_am_api_key_activations .inside {
+    margin: 0;
+    padding: 0;
+}
+
+#wc_am_update_api_keys .buttons {
+    float: left;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+}
+
+#activations-table td {
+    padding: 8px;
+    text-align: left;
+    line-height: 26px;
+    vertical-align: top;
+}
+
+.tips {
+    cursor: help;
+    text-decoration: none;
+}
+
+.api_var_heading {
+    text-align: center;
+    font-weight: bold;
+}
+
+h4#api_var_choose {
+    text-align: center;
+}
+
+.red {
+    color: red;
+}
+
+/* Fixes for WP 3.8 */
+.wc-metaboxes-wrapper .wc-metabox table td input.am_checkbox,
+td > input[type=checkbox], .wp-admin p input[type=checkbox].am_checkbox {
+    border-width: 1px;
+    border-style: solid;
+    clear: none;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 0;
+    height: 16px;
+    margin: 2px 3px 2px 0;
+    outline: 0;
+    padding: 0 !important;
+    text-align: center;
+    vertical-align: middle;
+    width: 16px;
+    min-width: 16px;
+    -webkit-appearance: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.woocommerce_options_panel input[type=text].am_short, .woocommerce_options_panel.am_short {
+    width: 25%;
+    float: left;
+}
+
+/* WooCommerce Orders admin table */
+table.wp-list-table .column-api_product {
+    width: 48px;
+    text-align: center;
+}
+
+table.wp-list-table span.normal_order {
+    color: #999;
+}
+
+table.wp-list-table .api_product_head,
+table.wp-list-table .api_product_order_has_activations,
+table.wp-list-table .api_product_order_no_activations {
+    display: block;
+    text-indent: -9999px;
+    position: relative;
+    height: 1em;
+    width: 1em;
+    margin: 0 auto;
+    font-size: 1.5em;
+}
+
+table.wp-list-table .api_product_head:after {
+    font-family: dashicons;
+    color: #4285f4;
+    content: "\f176";
+}
+
+table.wp-list-table .api_product_order_has_activations:after {
+    font-family: dashicons;
+    color: goldenrod;
+    content: "\f112";
+}
+
+table.wp-list-table .api_product_order_no_activations:after {
+    font-family: dashicons;
+    color: #7ad03a;
+    content: "\f147";
+}
+
+table.wp-list-table .api_product_head:after,
+table.wp-list-table .api_product_order_has_activations:after,
+table.wp-list-table .api_product_order_no_activations:after {
+    font-weight: 400;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 16px;
+    top: 0;
+    speak: none;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    left: 0;
+}
+
+@media only screen and (max-width: 782px) {
+    table.wp-list-table .api_product_order_has_activations,
+    table.wp-list-table .api_product_order_no_activations {
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 782px) {
+    table.wp-list-table .column-api_product {
+        text-align: inherit;
+    }
+}
