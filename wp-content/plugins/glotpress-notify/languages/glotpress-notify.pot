@@ -1,0 +1,139 @@
+# copyright (c) 2014-2015 WebAware Pty Ltd
+# This file is distributed under the same license as the plugin package.
+msgid ""
+msgstr ""
+"Project-Id-Version: glotpress-notify 1.0.1\n"
+"Report-Msgid-Bugs-To: translate@webaware.com.au\n"
+"POT-Creation-Date: 2015-12-07 12:07+1100\n"
+"PO-Revision-Date: 2015-12-07 12:07+1100\n"
+"Last-Translator: Ross McKay <rmckay@webaware.com.au>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: includes/class.GPNotifyData.php:71
+#, php-format
+msgid "Not a GlotPress table prefix: %s"
+msgstr ""
+
+#: includes/class.GPNotifyPlugin.php:78 views/settings-form.php:11
+msgid "GlotPress Notify"
+msgstr ""
+
+#: includes/class.GPNotifyPlugin.php:83
+msgid "Subscriptions"
+msgstr ""
+
+#: includes/class.GPNotifyPlugin.php:87 includes/class.GPNotifyPlugin.php:265
+msgid "Settings"
+msgstr ""
+
+#: includes/class.GPNotifyPlugin.php:178
+msgid "Subscriptions saved."
+msgstr ""
+
+#: includes/class.GPNotifyPlugin.php:248
+#, php-format
+msgid "Notification of translations for \"%s\""
+msgstr ""
+
+#: includes/class.GPNotifyPlugin.php:276
+msgctxt "plugin details links"
+msgid "Get help"
+msgstr ""
+
+#: includes/class.GPNotifyPlugin.php:277
+msgctxt "plugin details links"
+msgid "Rating"
+msgstr ""
+
+#: includes/class.GPNotifyPlugin.php:278
+msgctxt "plugin details links"
+msgid "Translate"
+msgstr ""
+
+#: includes/class.GPNotifyPlugin.php:279
+msgctxt "plugin details links"
+msgid "Donate"
+msgstr ""
+
+#: templates/email-waiting.php:27 templates/email-waiting.php:54
+#: views/admin-list-projects.php:26
+msgctxt "translation list heading"
+msgid "Language"
+msgstr ""
+
+#: templates/email-waiting.php:28 templates/email-waiting.php:55
+#: views/admin-list-projects.php:27
+msgctxt "translation list heading"
+msgid "Locale"
+msgstr ""
+
+#: templates/email-waiting.php:29 templates/email-waiting.php:56
+#: views/admin-list-projects.php:28
+msgctxt "translation list heading"
+msgid "Current"
+msgstr ""
+
+#: templates/email-waiting.php:30 templates/email-waiting.php:57
+#: views/admin-list-projects.php:29
+msgctxt "translation list heading"
+msgid "Waiting"
+msgstr ""
+
+#: views/admin-bad-prefix.php:12
+msgid "GlotPress Notify has an invalid GlotPress table prefix."
+msgstr ""
+
+#: views/admin-list-projects.php:11
+msgid "GlotPress Notify Projects"
+msgstr ""
+
+#: views/admin-list-projects.php:15
+msgid "There are no GlotPress projects with translations waiting for approval."
+msgstr ""
+
+#: views/admin-user-fields.php:11
+msgid "GlotPress Notify Subscriptions"
+msgstr ""
+
+#: views/admin-user-fields.php:12
+msgid "Receive notifications for GlotPress translation projects."
+msgstr ""
+
+#: views/admin-user-fields.php:26 views/admin-user-fields.php:34
+msgctxt "subscription settings"
+msgid "Project name"
+msgstr ""
+
+#: views/admin-user-fields.php:27 views/admin-user-fields.php:35
+msgctxt "subscription settings"
+msgid "Project slug"
+msgstr ""
+
+#: views/admin-user-fields.php:28 views/admin-user-fields.php:36
+msgctxt "subscription settings"
+msgid "Waiting"
+msgstr ""
+
+#: views/admin-user-fields.php:67
+msgid "Save Subscriptions"
+msgstr ""
+
+#: views/settings-form.php:20
+msgid "Email sender"
+msgstr ""
+
+#: views/settings-form.php:23
+msgid "Some Name <name@example.com>"
+msgstr ""
+
+#: views/settings-form.php:24
+msgid "(full From: address)"
+msgstr ""
+
+#: views/settings-form.php:29
+msgid "GlotPress table prefix"
+msgstr ""

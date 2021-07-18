@@ -1,0 +1,123 @@
+= 3.3.1 =
+* 2015-04-23
+* Added support to hover text
+
+= 3.3.0 =
+* 2014-10-31
+* <a href="http://genericons.com/2014/10/30/3-3-the-source-release/">Major 3.3 release to Genericons</a>
+
+= 3.2.0 =
+* 2014-10-03
+* <a href="http://genericons.com/2014/10/03/3-2/">Major 3.2 release to Genericons</a>
+
+= 3.1.3 =
+* 2014-08-07
+* Typo :(
+
+= 3.1.2 =
+* 2014-08-06
+* Updating example page
+* Force recache of font CSS
+
+= 3.1.1 =
+* 2014-07-09
+* Version bump to force recache
+
+= 3.1.0 =
+* 2014-07-08
+* <a href="http://genericons.com/2014/07/08/3-1/">Major 3.1 release to Genericons</a>
+
+= 3.0.3.4 =
+* 2014-06-16
+* Adding better link to settings
+* Updating function names
+* Minor Cleanup
+
+= 3.0.3.3 =
+* 2014-03
+* Issue with debugger (<a href="https://wordpress.org/support/topic/debugger-notice">props violacase</a> though I have NO idea why you see the errors and I don't!)
+
+= 3.0.3.2 =
+* 2014-01-10
+* Update of iconset (see <a href="http://genericons.com/2014/01/10/3-0-3/">Genericons 3.0.3 Release Notes</a> for details)
+* Static variable for version in the code, only matters to me.
+* Ignore the fact we were on 3.0.3 branch first. I suck.
+
+= 3.0.3.1 =
+* 2013-11-01
+* New versions of Genericons
+* Fixed regression in 3.0.2
+
+= 3.0.2 =
+* 2013-10-29
+* Typo caused Genericons not to work on back end. Sorry.
+
+= 3.0.2 =
+* 2013-10-25
+* Link to 'settings' from plugins page (per UI testing at WordCamp Boston)
+* Cleaned up 'settings' page (per UI testing at WordCamp Boston)
+* Compatible with 3.7
+
+= 3.0.1 =
+* 2013-09-27
+* Update of iconset (see <a href="http://genericons.com/2013/09/25/3-0-1/">Genericons 3.0.1 Release Notes</a> for details)
+* Forcing remove of other genericons if mine is found. It's not nice, but I update (generally) faster than Jetpack.
+
+= 3.0.0 =
+* 2013-09-11
+* Update of iconset (see <a href="http://genericons.com/2013/09/11/3-0/">Genericons 3.0 Release Notes</a> for details)
+* Reformating the admin page to match the official site (plus look cooler)
+* Adding in 'copy' features like http://genericons.com/ has
+* Moving 'examples' off the page into it's own page (for my sanity)
+
+= 2.0.9.3 =
+* 2013-08-26
+* Jetpack fixed their conflict (no change here)
+* Typo in Genericons example page
+* Minor CSS conflict with MP6 (affected menus)
+
+= 2.0.9.2 =
+* 2013-07-19
+* Rolled back change to correct conflict with Jetpack
+
+= 2.0.9.1 =
+* 2013-07-18
+* Fixed bug with resizing when other themes call in Genericons
+* Change manual nested if into an `in_array()` instead (smarter!)
+* Corrected CSS to match official files 100%
+* Renamed `/lib/` to `/genericons/` (for easier updates)
+* Moved Genericon'd CSS to it's own file and folder (for easier updates)
+* Added in rotate (Credit: <a href="http://fortawesome.github.io/Font-Awesome/examples/#rotated-flipped">Font-Awesome</a>)
+
+= 2.0.9 =
+* 2013-06-26
+* Updated for Genericons 2.0.9 (our numbers are not yours)
+* Hilighting new/updated icons on the admin end
+
+= 2.0 =
+* 2013-05-10
+* 25 new (or updated) Genericons by Joen!
+
+= 1.3.1 =
+* 2013-04-11 <em>NON CRITICAL UPDATE</em>
+* Typo! Spelled pinterest wrong (pintrest vs pinterest ...), props to Quique
+
+= 1.3 =
+* 2013-03-09
+* Changed resize to use multiples of 16px, after talking to Joen.
+* Tumblr added by Joen, in response to bribery of version 1.3
+
+= 1.2 =
+* 2013-03-07
+* Added in variable for size to allow for on-the-fly adjustments to color and size.
+* Changed image size from 16px to 1em (this isn't perfect, but allows for smexier resizing)
+* Fixed broken settings pages.
+
+= 1.1 =
+* 2013-03-06
+* Tweaks and adjustments.
+* New banner (thanks to Joen)
+
+= 1.0 =
+* 2013-02-27
+* Initial release

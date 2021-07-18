@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<ruleset name="Coding Standard for Traduttore">
+	<description>Coding Standard for Traduttore</description>
+
+	<file>.</file>
+	<exclude-pattern>/tests/*</exclude-pattern>
+
+	<rule ref="Required"/>
+
+	<rule ref="PSR1.Files.SideEffects">
+		<exclude-pattern>traduttore\.php</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="traduttore"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="Required\Traduttore"/>
+				<element value="traduttore"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.PHP.DiscouragedPHPFunctions">
+		<properties>
+			<property name="exclude" type="array">
+				<element value="system_calls"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

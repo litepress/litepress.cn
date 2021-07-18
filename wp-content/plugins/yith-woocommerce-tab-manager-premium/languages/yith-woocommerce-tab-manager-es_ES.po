@@ -1,0 +1,1006 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH WooCommerce Tab Manager\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/init\n"
+"POT-Creation-Date: 2019-09-09 12:55+0100\n"
+"PO-Revision-Date: 2019-09-09 14:08+0100\n"
+"Last-Translator: \n"
+"Language-Team: Your Inspiration Themes <plugins@yithemes.com>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPathExcluded-0: ../plugin-fw\n"
+
+#: includes/class.yith-product-tab.php:69
+msgid "WooCommerce Tab"
+msgstr "Pestaña WooCommerce"
+
+#: includes/class.yith-wctm-admin.php:62 includes/metabox/tab-metabox.php:22
+msgid "Settings"
+msgstr "Ajustes"
+
+#: includes/class.yith-wctm-admin.php:66
+msgid "Premium Version"
+msgstr "Versión Premium"
+
+#: includes/class.yith-wctm-admin.php:72
+#: includes/class.yith-wctm-post-type.php:100
+msgid "Tab Manager"
+msgstr "Administrador de pestañas"
+
+#: includes/class.yith-wctm-post-type-premium.php:48
+msgid "Tab type"
+msgstr "Tipo de pestaña"
+
+#: includes/class.yith-wctm-post-type-premium.php:49
+msgid "Tab Layout"
+msgstr "Diseño de pestaña"
+
+#: includes/class.yith-wctm-post-type-premium.php:50
+#: includes/class.yith-wctm-post-type.php:162
+msgid "Date"
+msgstr "Fecha"
+
+#: includes/class.yith-wctm-post-type-premium.php:53
+#: includes/metabox/tab-metabox.php:12
+#: includes/yith-tab-manager-functions.php:52
+msgid "Description"
+msgstr "Descripción"
+
+#: includes/class.yith-wctm-post-type-premium.php:59
+msgid "Last Modified"
+msgstr "Última modificación"
+
+#: includes/class.yith-wctm-post-type-premium.php:103
+msgid "No description"
+msgstr "Sin descripción"
+
+#: includes/class.yith-wctm-post-type-premium.php:105
+msgid "Show more"
+msgstr "Ver más"
+
+#: includes/class.yith-wctm-post-type-premium.php:105
+msgid "Show less"
+msgstr "Ver menos"
+
+#: includes/class.yith-wctm-post-type-premium.php:111
+msgid "Y/m/d g:i:s a"
+msgstr "A/m/d g:i:s a"
+
+#: includes/class.yith-wctm-post-type-premium.php:113
+msgid "Y/m/d"
+msgstr "A/m/d"
+
+#: includes/class.yith-wctm-post-type.php:58
+msgid "ywtm_tab"
+msgstr "ywtm_tab"
+
+#: includes/class.yith-wctm-post-type.php:59
+msgid "Yith Tab Manager Description"
+msgstr "Descripción YITH Tab Manager"
+
+#: includes/class.yith-wctm-post-type.php:98
+msgctxt "Post Type General Name"
+msgid "YITH WooCommerce Tab Manager"
+msgstr "YITH WooCommerce Tab Manager"
+
+#: includes/class.yith-wctm-post-type.php:99
+msgctxt "Post Type Singular Name"
+msgid "Tab"
+msgstr "Pestaña"
+
+#: includes/class.yith-wctm-post-type.php:101
+msgid "Parent Item:"
+msgstr "Elemento padre:"
+
+#: includes/class.yith-wctm-post-type.php:102
+msgid "All Tabs"
+msgstr "Todas las pestañas"
+
+#: includes/class.yith-wctm-post-type.php:103
+msgid "View Tabs"
+msgstr "Ver pestañas"
+
+#: includes/class.yith-wctm-post-type.php:104
+#: includes/class.yith-wctm-post-type.php:105
+msgid "Add New Tab"
+msgstr "Añadir nueva pestaña"
+
+#: includes/class.yith-wctm-post-type.php:106
+msgid "Edit Tab"
+msgstr "Editar pestaña"
+
+#: includes/class.yith-wctm-post-type.php:107
+msgid "Update Tab"
+msgstr "Actualizar pestaña"
+
+#: includes/class.yith-wctm-post-type.php:108
+msgid "Search Tab"
+msgstr "Buscar pestaña"
+
+#: includes/class.yith-wctm-post-type.php:109
+msgid "Not found"
+msgstr "No encontrado"
+
+#: includes/class.yith-wctm-post-type.php:110
+msgid "Not found in Trash"
+msgstr "No encontrado en la basura"
+
+#: includes/class.yith-wctm-post-type.php:131
+#: includes/class.yith-wctm-post-type.php:134
+msgid "%s updated"
+msgstr "%s actualizado"
+
+#: includes/class.yith-wctm-post-type.php:132
+msgid "Custom field updated"
+msgstr "Campo personalizado actualizado"
+
+#: includes/class.yith-wctm-post-type.php:133
+msgid "Custom field deleted"
+msgstr "Campo personalizado borrado"
+
+#: includes/class.yith-wctm-post-type.php:135
+msgid "Tab restored to version %s"
+msgstr "Pestaña restaurada a la versión %s"
+
+#: includes/class.yith-wctm-post-type.php:136
+msgid "%s published"
+msgstr "%s publicado"
+
+#: includes/class.yith-wctm-post-type.php:137
+msgid "%s saved"
+msgstr "%s guardado"
+
+#: includes/class.yith-wctm-post-type.php:138
+msgid "%s submitted"
+msgstr "%s enviado"
+
+#: includes/class.yith-wctm-post-type.php:139
+msgid "%s"
+msgstr "%s"
+
+#: includes/class.yith-wctm-post-type.php:140
+msgid "%s draft updated"
+msgstr "%s borrador actualizado"
+
+#: includes/class.yith-wctm-post-type.php:159
+msgid "Title"
+msgstr "Título"
+
+#: includes/class.yith-wctm-post-type.php:160
+msgid "Is Visible"
+msgstr "Es visible"
+
+#: includes/class.yith-wctm-post-type.php:161
+msgid "Tab Position"
+msgstr "Posición de la pestaña"
+
+#: includes/email/class.yith-tab-manager-email.php:14
+msgid "[YITH Tab Manager] Product Info request"
+msgstr "[YITH Tab Manager] Solicitud de información del producto"
+
+#: includes/email/class.yith-tab-manager-email.php:15
+msgid ""
+"This email is sent when a customer click on \"send\" on the tab manager "
+"contact form"
+msgstr ""
+"Este correo electrónico es enviado cuando el cliente hace clic en ‘’enviar’’ "
+"en el formulario de contacto de tab manager"
+
+#: includes/email/class.yith-tab-manager-email.php:28
+msgid "Ask for {product_name}"
+msgstr "Pedir {product_name}"
+
+#: includes/email/class.yith-tab-manager-email.php:69
+msgid "Message sent!"
+msgstr "¡Mensaje enviado!"
+
+#: includes/email/class.yith-tab-manager-email.php:71
+msgid "Error, Please Try Again!"
+msgstr "Error, ¡por favor, inténtalo de nuevo!"
+
+#: includes/email/class.yith-tab-manager-email.php:85
+msgid "Request from {username}"
+msgstr "Solicitud de {username}"
+
+#: includes/email/class.yith-tab-manager-email.php:136
+msgid "Enable/Disable"
+msgstr "Activar/Desactivar"
+
+#: includes/email/class.yith-tab-manager-email.php:138
+msgid "Enable this email notification"
+msgstr "Activa esta notificación de correo electrónico"
+
+#: includes/email/class.yith-tab-manager-email.php:142
+msgid "Recipient(s)"
+msgstr "Destinatario(s)"
+
+#: includes/email/class.yith-tab-manager-email.php:144
+msgid ""
+"Enter recipients (separated by commas) for this email. Defaults to <code>%s</"
+"code>"
+msgstr ""
+"Introducir destinatarios (separados por comas) para este correo electrónico. "
+"Por defecto a <code>%s</code>"
+
+#: includes/email/class.yith-tab-manager-email.php:150
+msgid "Email Heading"
+msgstr "Encabezado del correo electrónico"
+
+#: includes/email/class.yith-tab-manager-email.php:152
+msgid ""
+"This field lets you change the main heading in email notification. Leave it "
+"blank to use default heading type: <code>%s</code>."
+msgstr ""
+"Este campo te permite cambiar el encabezado principal en ella notificación "
+"de correo electrónico. Déjalo en blanco para usar el tipo de encabezado "
+"predeterminado: <code>%s</code>."
+
+#: includes/email/class.yith-tab-manager-email.php:157
+msgid "Send CC copy"
+msgstr "Enviar una copia"
+
+#: includes/email/class.yith-tab-manager-email.php:159
+msgid "Send a carbon copy to the user"
+msgstr "Enviar una copia al usuario"
+
+#: includes/email/class.yith-tab-manager-email.php:163
+msgid "Email Description"
+msgstr "Descripción del correo electrónico"
+
+#: includes/email/class.yith-tab-manager-email.php:166
+msgid ""
+"Hi administrator, you have just received an email about the following "
+"product:"
+msgstr "Hola administrador, has recibido un email sobre el siguiente producto:"
+
+#: includes/metabox/tab-layout-metabox.php:10
+msgid "Layout"
+msgstr "Diseño"
+
+#: includes/metabox/tab-layout-metabox.php:14
+msgid "Layout Type"
+msgstr "Tipo de diseño"
+
+#: includes/metabox/tab-layout-metabox.php:15
+msgid "Choose the layout of the tab"
+msgstr "Elige el diseño de la pestaña"
+
+#: includes/metabox/tab-layout-metabox.php:22
+msgid "Use the content for all products"
+msgstr "Usar el contenido para todos los productos"
+
+#: includes/metabox/tab-layout-metabox.php:36
+#: includes/yith-tab-manager-functions.php:141
+msgid "FAQ"
+msgstr "FAQ"
+
+#: includes/metabox/tab-layout-metabox.php:48
+#: includes/product/admin/gallery.php:20
+msgid "Images per row"
+msgstr "Imágenes por fila"
+
+#: includes/metabox/tab-layout-metabox.php:49
+#: includes/product/admin/gallery.php:22 includes/product/admin/video.php:21
+msgid "Set how many columns to show"
+msgstr "Establece cuántas columnas se muestran"
+
+#: includes/metabox/tab-layout-metabox.php:62
+#: includes/yith-tab-manager-functions.php:140
+msgid "Image Gallery"
+msgstr "Galería de Imágenes"
+
+#: includes/metabox/tab-layout-metabox.php:63
+msgid "Add images for the gallery"
+msgstr "Añadir imágenes a la galería"
+
+#: includes/metabox/tab-layout-metabox.php:74
+#: includes/yith-tab-manager-functions.php:139
+msgid "Video Gallery"
+msgstr "Galería de Vídeos"
+
+#: includes/metabox/tab-layout-metabox.php:86
+msgid "Attach File"
+msgstr "Adjuntar archivo"
+
+#: includes/metabox/tab-layout-metabox.php:87
+msgid "Upload your PDF file"
+msgstr "Carga tu archivo PDF"
+
+#: includes/metabox/tab-layout-metabox.php:97
+msgid "Full Width"
+msgstr "Ancho completo"
+
+#: includes/metabox/tab-layout-metabox.php:107
+#: includes/product/admin/map.php:34
+msgid "Width"
+msgstr "Ancho"
+
+#: includes/metabox/tab-layout-metabox.php:108
+msgid "Set the width for the Google map"
+msgstr "Establece el ancho para el mapa de Google"
+
+#: includes/metabox/tab-layout-metabox.php:119
+#: includes/product/admin/map.php:38
+msgid "Height"
+msgstr "Altura"
+
+#: includes/metabox/tab-layout-metabox.php:120
+msgid "Set the height for the Google map"
+msgstr "Establece la altura para el mapa de Google"
+
+#: includes/metabox/tab-layout-metabox.php:133
+#: includes/product/admin/map.php:45
+msgid "Address"
+msgstr "Dirección"
+
+#: includes/metabox/tab-layout-metabox.php:134
+msgid ""
+"Set the address (like \"1600 Amphitheatre Parkway, Mountain View, CA\" )"
+msgstr ""
+"Introduce la dirección (como \"1600 Amphitheatre Parkway, Mountain View, CA"
+"\" )"
+
+#: includes/metabox/tab-layout-metabox.php:144
+#: includes/product/admin/map.php:49
+msgid "Zoom"
+msgstr "Zoom"
+
+#: includes/metabox/tab-layout-metabox.php:145
+msgid "Set the zoom of the map (0-19)"
+msgstr "Establece el zoom del mapa (0-19)"
+
+#: includes/metabox/tab-layout-metabox.php:158
+#: includes/product/admin/default.php:24
+#: includes/product/admin/woocommerce-tabs.php:67
+msgid "Tab Content"
+msgstr "Contenido de la pestaña"
+
+#: includes/metabox/tab-layout-metabox.php:170
+msgid "Contact Form"
+msgstr "Formulario de contacto"
+
+#: includes/metabox/tab-layout-metabox.php:181
+#: includes/product/admin/shortcode.php:13
+#: includes/yith-tab-manager-functions.php:145
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: includes/metabox/tab-metabox.php:11
+msgid "WooCommerce Tabs are this priority"
+msgstr "Las pestañas WooCommerce tienen esta prioridad"
+
+#: includes/metabox/tab-metabox.php:13
+msgid "Additional Information"
+msgstr "Información adicional"
+
+#: includes/metabox/tab-metabox.php:14
+#: includes/yith-tab-manager-functions.php:70
+msgid "Reviews"
+msgstr "Reseñas"
+
+#: includes/metabox/tab-metabox.php:16
+msgid "Tab Settings"
+msgstr "Ajustes de pestañas"
+
+#: includes/metabox/tab-metabox.php:26
+msgid "Tab Type"
+msgstr "Tipo de pestaña"
+
+#: includes/metabox/tab-metabox.php:27
+msgid "Choose the type of the tab"
+msgstr "Elige el tipo de pestaña"
+
+#: includes/metabox/tab-metabox.php:35
+msgid "Choose Product Category"
+msgstr "Elige la categoría de producto"
+
+#: includes/metabox/tab-metabox.php:36
+msgid "Choose the product categories in which you want to show the tab"
+msgstr "Elige las categorías de producto en las que quieres mostrar la pestaña"
+
+#: includes/metabox/tab-metabox.php:40
+msgid "Search for a category"
+msgstr "Buscar una categoría &hellip;"
+
+#: includes/metabox/tab-metabox.php:51
+msgid "Choose Product"
+msgstr "Elige producto"
+
+#: includes/metabox/tab-metabox.php:52
+msgid "Choose the Products in which you want to show the tab"
+msgstr "Elige los Productos en los que quieres mostrar la pestaña"
+
+#: includes/metabox/tab-metabox.php:57
+msgid "Search for a product"
+msgstr "Buscar un producto&hellip;"
+
+#: includes/metabox/tab-metabox.php:68
+msgid "Enable Tab"
+msgstr "Habilitar Pestaña"
+
+#: includes/metabox/tab-metabox.php:69
+msgid "Show the tab in the front end"
+msgstr "Mostrar la pestaña en el front end"
+
+#: includes/metabox/tab-metabox.php:75
+msgid "Priority Tab"
+msgstr "Prioridad de prestañas"
+
+#: includes/metabox/tab-metabox.php:84
+msgid "Icon Tab"
+msgstr "Icono de pestaña"
+
+#: includes/metabox/tab-metabox.php:89
+msgid "Theme Icon"
+msgstr "Icono de tema"
+
+#: includes/metabox/tab-metabox.php:90
+#: templates/metaboxes/types/ywtb-iconlist-type.php:50
+msgid "Custom Icon"
+msgstr "Icono personalizado"
+
+#: includes/metabox/tab-metabox.php:91
+#: templates/metaboxes/types/ywtb-iconlist-type.php:51
+msgid "None"
+msgstr "Ninguno"
+
+#: includes/product/admin/contact.php:32 includes/product/admin/download.php:17
+#: templates/emails/ask-product-info.php:31
+#: templates/metaboxes/types/ywtb-forms-type.php:40
+msgid "Name"
+msgstr "Nombre"
+
+#: includes/product/admin/contact.php:37 includes/product/admin/contact.php:46
+#: includes/product/admin/contact.php:56
+#: templates/metaboxes/types/ywtb-forms-type.php:32
+msgid "Check this option to make it required."
+msgstr "Marca esta opción para hacerlo obligatorio."
+
+#: includes/product/admin/contact.php:41 templates/contact_form.php:46
+#: templates/metaboxes/types/ywtb-forms-type.php:72
+msgid "Website"
+msgstr "Sitio web"
+
+#: includes/product/admin/contact.php:51 templates/contact_form.php:57
+#: templates/metaboxes/types/ywtb-forms-type.php:104
+msgid "Subject"
+msgstr "Asunto"
+
+#: includes/product/admin/download.php:12
+msgid "Downloadable Files"
+msgstr "Archivos Descargables"
+
+#: includes/product/admin/download.php:17
+msgid "This is the name of the file that the customer will download."
+msgstr "Este es el nombre del archivo que los clientes se van a descargar."
+
+#: includes/product/admin/download.php:18
+#: templates/metaboxes/types/ywtb-downloads-type.php:25
+msgid "File Description"
+msgstr "Descripción del archivo"
+
+#: includes/product/admin/download.php:18
+msgid "This is a short description of the file."
+msgstr "Esta es una descripción corta del archivo."
+
+#: includes/product/admin/download.php:19
+#: templates/metaboxes/types/ywtb-downloads-type.php:26
+msgid "File URL"
+msgstr "URL de archivo"
+
+#: includes/product/admin/download.php:19
+msgid ""
+"This is the URL or the absolute path of the file available to the users."
+msgstr ""
+"Esta es la URL o la ruta absoluta del archivo disponible a los usuarios."
+
+#: includes/product/admin/download.php:52
+msgid "Add File"
+msgstr "Añadir Archivo"
+
+#: includes/product/admin/faq.php:17
+#: templates/metaboxes/types/ywtb-faqs-type.php:19
+msgid "Question"
+msgstr "Pregunta"
+
+#: includes/product/admin/faq.php:17
+msgid "This is the question shown to the customers."
+msgstr "Esta es la pregunta mostrada a los clientes."
+
+#: includes/product/admin/faq.php:18
+#: templates/metaboxes/types/ywtb-faqs-type.php:20
+msgid "Answer"
+msgstr "Responder"
+
+#: includes/product/admin/faq.php:18
+msgid "This is the answer shown to the customers."
+msgstr "Esta es la respuesta mostrada a los clientes."
+
+#: includes/product/admin/faq.php:47
+msgid "Add Question"
+msgstr "Añadir Pregunta"
+
+#: includes/product/admin/gallery.php:39 includes/product/admin/gallery.php:58
+msgid "Delete image"
+msgstr "Borrar imagen"
+
+#: includes/product/admin/gallery.php:58
+msgid "Add Images to Gallery"
+msgstr "Añadir imagen a la galería"
+
+#: includes/product/admin/gallery.php:58
+msgid "Add to gallery"
+msgstr "Añadir a la galería"
+
+#: includes/product/admin/gallery.php:58
+msgid "Add images"
+msgstr "Añadir imágenes"
+
+#: includes/product/admin/gallery.php:58
+#: includes/product/admin/html-tab-download.php:17
+#: includes/product/admin/html-tab-faq.php:10
+#: includes/product/admin/html-tab-video.php:16
+msgid "Delete"
+msgstr "Borrar"
+
+#: includes/product/admin/html-tab-download.php:8
+#: templates/metaboxes/types/ywtb-downloads-type.php:24
+msgid "File Name"
+msgstr "Nombre de archivo"
+
+#: includes/product/admin/html-tab-download.php:9
+msgid "Insert a short description of the file"
+msgstr "Inserta una descripción corta del archivo"
+
+#: includes/product/admin/html-tab-download.php:14
+msgid "http://"
+msgstr "http://"
+
+#: includes/product/admin/html-tab-download.php:16
+#: templates/metaboxes/types/views/download-table-row.php:34
+msgid "Choose file"
+msgstr "Elegir archivo"
+
+#: includes/product/admin/html-tab-download.php:16
+#: templates/metaboxes/types/views/download-table-row.php:34
+msgid "Insert file URL"
+msgstr "Insertar URL de archivo"
+
+#: includes/product/admin/html-tab-faq.php:8
+msgid "Add a question here"
+msgstr "Añade aquí una pregunta"
+
+#: includes/product/admin/html-tab-faq.php:9
+msgid "Add an answer here"
+msgstr "Añade aquí una respuesta"
+
+#: includes/product/admin/html-tab-video.php:10
+#: templates/metaboxes/types/views/video-table-row.php:22
+msgid "YouTube"
+msgstr "YouTube"
+
+#: includes/product/admin/html-tab-video.php:11
+#: templates/metaboxes/types/views/video-table-row.php:23
+msgid "Vimeo"
+msgstr "Vimeo"
+
+#: includes/product/admin/html-tab-video.php:14
+#: includes/product/admin/video.php:31
+#: templates/metaboxes/types/ywtb-video-gallery-type.php:38
+msgid "Video ID"
+msgstr "ID de vídeo"
+
+#: includes/product/admin/html-tab-video.php:15
+msgid "Add the video URL here"
+msgstr "Añade aquí la URL del vídeo"
+
+#: includes/product/admin/map.php:28
+msgid "Full width"
+msgstr "Ancho completo"
+
+#: includes/product/admin/shortcode.php:14
+msgid "Add a shortcode here"
+msgstr "Añade un shortcode aquí"
+
+#: includes/product/admin/video.php:19
+msgid "Videos per row"
+msgstr "Vídeos por línea"
+
+#: includes/product/admin/video.php:30
+#: templates/metaboxes/types/ywtb-video-gallery-type.php:37
+msgid "Video Hosting Service"
+msgstr "Servicio de alojamiento de vídeo"
+
+#: includes/product/admin/video.php:30
+msgid "This is the service that hosts the video."
+msgstr "Este es el servicio que hospeda el vídeo."
+
+#: includes/product/admin/video.php:31
+msgid "This is the video ID."
+msgstr "Esta es la ID del vídeo"
+
+#: includes/product/admin/video.php:32
+#: templates/metaboxes/types/ywtb-video-gallery-type.php:39
+msgid "Video URL"
+msgstr "URL del vídeo"
+
+#: includes/product/admin/video.php:32
+msgid "This is the video URL."
+msgstr "Esta es la URL del vídeo"
+
+#: includes/product/admin/video.php:63
+msgid "Add Video"
+msgstr "Añadir vídeo"
+
+#: includes/product/admin/woocommerce-tabs.php:43
+msgid "Hide"
+msgstr "Ocultar"
+
+#: includes/product/admin/woocommerce-tabs.php:45
+msgid "Check for hide this tab"
+msgstr "Marca para ocultar esta pestaña"
+
+#: includes/product/admin/woocommerce-tabs.php:49
+msgid "Override"
+msgstr "Dar prioridad"
+
+#: includes/product/admin/woocommerce-tabs.php:51
+msgid "Check for override this tab"
+msgstr "Marca para sobrescribir esta pestaña"
+
+#: includes/product/admin/woocommerce-tabs.php:56
+msgid "Tab Title"
+msgstr "Título de pestaña"
+
+#: includes/product/admin/woocommerce-tabs.php:59
+msgid ""
+"If you want to display the number of the available reviews use %d as a "
+"placeholder"
+msgstr ""
+"Si quieres mostrar el número de valoraciones disponibles, utiliza %s como un "
+"marcados de posición"
+
+#: includes/product/admin/woocommerce-tabs.php:98
+msgid "Priority"
+msgstr "Prioridad"
+
+#: includes/yith-tab-manager-actions.php:101
+msgid "Email is required!"
+msgstr "¡El email es obligatorio!"
+
+#: includes/yith-tab-manager-actions.php:103
+msgid "Email not valid!"
+msgstr "¡El email no es válido!"
+
+#: includes/yith-tab-manager-actions.php:111
+msgid "Name is required!"
+msgstr "¡El nombre es obligatorio!"
+
+#: includes/yith-tab-manager-actions.php:118
+msgid "Subject is required!"
+msgstr "¡El asunto es obligatorio!"
+
+#: includes/yith-tab-manager-actions.php:124
+msgid "Website is required!"
+msgstr "¡El sitio web es obligatorio!"
+
+#: includes/yith-tab-manager-actions.php:129
+msgid "Message is required!"
+msgstr "¡El mensaje es obligatorio!"
+
+#: includes/yith-tab-manager-functions.php:62
+msgid "Additional information"
+msgstr "Información Adicional"
+
+#: includes/yith-tab-manager-functions.php:119
+msgid "Global Tab"
+msgstr "Pestaña global"
+
+#: includes/yith-tab-manager-functions.php:120
+msgid "Category Tab"
+msgstr "Pestaña de categoría"
+
+#: includes/yith-tab-manager-functions.php:121
+msgid "Product Tab"
+msgstr "Pestaña de producto"
+
+#: includes/yith-tab-manager-functions.php:138
+msgid "Editor"
+msgstr "Editor"
+
+#: includes/yith-tab-manager-functions.php:142
+msgid "Download"
+msgstr "Descargar"
+
+#: includes/yith-tab-manager-functions.php:143
+msgid "Map"
+msgstr "Mapa"
+
+#: includes/yith-tab-manager-functions.php:144
+msgid "Contact"
+msgstr "Contacto"
+
+#: init.php:34
+msgid ""
+"YITH WooCommerce Tab Manager is enabled but not effective. It requires "
+"WooCommerce in order to work."
+msgstr ""
+"YITH WooCommerce Tab Manager está habilitado pero no es efectivo. Requiere "
+"WooCommerce para funcionar."
+
+#: plugin-options/settings-options.php:13
+msgid "Insert a valid API KEY or"
+msgstr "Inserta una CLAVE API válida o"
+
+#: plugin-options/settings-options.php:13
+msgid "Get a Key"
+msgstr "Consigue una clave"
+
+#: plugin-options/settings-options.php:20
+msgid "General settings"
+msgstr "Ajustes generales"
+
+#: plugin-options/settings-options.php:26
+msgid "Enable plugin"
+msgstr "Habilitar plugin"
+
+#: plugin-options/settings-options.php:33
+msgid "Hide WooCommerce Description tab"
+msgstr "Ocultar la pestaña de descripción WooCommerce"
+
+#: plugin-options/settings-options.php:34
+msgid "If checked, description tab will not show up on products"
+msgstr ""
+"Si se selecciona, la pestaña de descripción no se mostrará en los productos"
+
+#: plugin-options/settings-options.php:40
+msgid "Hide WooCommerce Reviews tab"
+msgstr "Ocultar la pestaña de Reseñas de WooCommerce"
+
+#: plugin-options/settings-options.php:41
+msgid "If checked, Reviews tab will not show up on products"
+msgstr ""
+"Si se selecciona, la pestaña de reseñas no se mostrará en los productos"
+
+#: plugin-options/settings-options.php:47
+msgid "Hide WooCommerce Additional Information tab"
+msgstr "Ocultar la pestaña de Información Adicional de WooCommerce"
+
+#: plugin-options/settings-options.php:48
+msgid "If checked, Additional information tab will not show up on products"
+msgstr ""
+"Si se selecciona, la pestaña de información adicional no se mostrará en los "
+"productos"
+
+#: plugin-options/settings-options.php:55
+msgid "Hide WooCommerce tab on mobile"
+msgstr "Ocultar pestaña WooCommerce en móviles"
+
+#: plugin-options/settings-options.php:56
+msgid "If checked this option hide woocommerce tab on mobile"
+msgstr ""
+"Si esta opción está marcada, se ocultará la pestaña WooCommerce en móviles"
+
+#: plugin-options/settings-options.php:63
+msgid "Hide plugin tab on mobile"
+msgstr "Ocultar pestaña de plugin en móviles"
+
+#: plugin-options/settings-options.php:64
+msgid "If checked, this option hide plugin tab on mobile"
+msgstr ""
+"Si esta opción está marcada, se ocultará la pestaña de plugin en móviles"
+
+#: plugin-options/settings-options.php:73
+msgid "Google API KEY"
+msgstr "Clave API de Google"
+
+#: plugin-options/settings-options.php:80
+msgid "Custom Style"
+msgstr "Estilo personalizado"
+
+#: plugin-options/settings-options.php:84
+msgid "Insert here your custom CSS"
+msgstr "Inserta aquí tu CSS personalizado"
+
+#: templates/contact_form.php:30
+msgid "Your name"
+msgstr "Tu nombre"
+
+#: templates/contact_form.php:39 templates/emails/ask-product-info.php:33
+msgid "Email"
+msgstr "Email"
+
+#: templates/contact_form.php:65
+msgid "Your Message"
+msgstr "Tu mensaje"
+
+#: templates/contact_form.php:78
+msgid "Send"
+msgstr "Enviar"
+
+#: templates/contact_form.php:85
+msgid "required"
+msgstr "obligatorio"
+
+#: templates/download.php:7
+msgid "No file name"
+msgstr "No hay nombre de archivo"
+
+#: templates/download.php:8
+msgid "No file description"
+msgstr "No hay descripción del archivo"
+
+#: templates/download.php:28
+msgid "Download File"
+msgstr "Descargar Archivo"
+
+#: templates/download.php:34
+msgid "No download for this product"
+msgstr "No hay descargas para este producto"
+
+#: templates/emails/ask-product-info.php:27
+msgid "Customer Details"
+msgstr "Detalles del cliente"
+
+#: templates/emails/ask-product-info.php:30
+msgid "Web Address"
+msgstr "Dirección de la web"
+
+#: templates/emails/ask-product-info.php:32
+msgid "Message"
+msgstr "Mensaje"
+
+#: templates/faq.php:19
+msgid "No FAQ for this product"
+msgstr "No hay FAQ para este producto"
+
+#: templates/map.php:42
+msgid "Show in Google Map"
+msgstr "Mostrar en Google Maps"
+
+#: templates/map.php:46
+msgid "No map for this product"
+msgstr "No hay mapa para este producto"
+
+#: templates/metaboxes/types/views/download-table-row.php:35
+#: templates/metaboxes/types/views/faq-table-row.php:33
+#: templates/metaboxes/types/views/video-table-row.php:32
+msgid "Remove"
+msgstr "Borrar"
+
+#: templates/metaboxes/types/ywtb-downloads-type.php:35
+#: templates/metaboxes/types/ywtb-faqs-type.php:28
+#: templates/metaboxes/types/ywtb-video-gallery-type.php:49
+msgid "Add Row"
+msgstr "Añadir fila"
+
+#: templates/metaboxes/types/ywtb-forms-type.php:33
+msgid "Required"
+msgstr "Necesario"
+
+#: templates/metaboxes/types/ywtb-iconlist-type.php:49
+msgid "Icon"
+msgstr "Icono"
+
+#: templates/metaboxes/types/ywtb-video-gallery-type.php:36
+msgid "Video Name"
+msgstr "Nombre del video"
+
+#: templates/video_gallery.php:31
+msgid "No video found for this product"
+msgstr "No se ha encontrado ningún vídeo para este producto"
+
+#. Plugin Name of the plugin/theme
+msgid "YITH WooCommerce Tab Manager Premium"
+msgstr "YITH WooCommerce Tab Manager Premium"
+
+#. Plugin URI of the plugin/theme
+msgid "https://yithemes.com/themes/plugins/yith-woocommerce-tab-manager/"
+msgstr "https://yithemes.com/themes/plugins/yith-woocommerce-tab-manager/"
+
+#. Description of the plugin/theme
+msgid ""
+"<strong><code>YITH WooCommerce Tab Manager Premium</code></strong>allows you "
+"to add Tabs to products. You can create a global tab or by product or "
+"product categories! You can choose from different tab types like editor, "
+"faq, contact form, etc. <a href =\"https://yithemes.com\">Get more plugins "
+"for your e-commerce shop on <strong>YITH</strong></a>"
+msgstr ""
+"<strong><code>YITH WooCommerce Tab Manager Premium</code></strong>te permite "
+"añadir pestañas a tus productos. ¡Puedes crear una pestaña global o por "
+"producto o  por categorías de producto! to products. Puedes elegir "
+"diferentes tipos de pestaña como editor, preguntas frecuentes, formulario de "
+"contacto, etc. <a href =\"https://yithemes.com\">Obtén más plugins para tu "
+"comercio electrónico en <strong>YITH</strong></a>"
+
+#. Author of the plugin/theme
+msgid "YITH"
+msgstr "YITH"
+
+#. Author URI of the plugin/theme
+msgid "https://yithemes.com/"
+msgstr "https://yithemes.com/"
+
+#~ msgid "New info request"
+#~ msgstr "Nueva solicitud de información"
+
+#~ msgid "Details"
+#~ msgstr "Detalles"
+
+#~ msgid "From: "
+#~ msgstr "De:"
+
+#~ msgid "Plugin Documentation"
+#~ msgstr "Documentación del plugin"
+
+#~ msgid "Premium live demo"
+#~ msgstr "Live demo premium"
+
+#~ msgid "Live demo"
+#~ msgstr "Live demo"
+
+#~ msgid "Close all"
+#~ msgstr "Cerrar todo"
+
+#~ msgid "Expand all"
+#~ msgstr "Expandir todo"
+
+#~ msgid "This is the file name shown to the customers."
+#~ msgstr "Este es el nombre del archivo mostrado a los clientes."
+
+#~ msgid "This is the file URL."
+#~ msgstr "Esta es la URL del archivo."
+
+#~ msgid "Upload"
+#~ msgstr "Cargar"
+
+#~ msgid "This is a short description of your file."
+#~ msgstr "Esta es una descripción corta de tu archivo."
+
+#~ msgid "Write a short description here"
+#~ msgstr "Escribe aquí una descripción corta"
+
+#~ msgid "Do you want to remove this file?"
+#~ msgstr "¿Quieres borrar este archivo?"
+
+#~ msgid "Add FAQ"
+#~ msgstr "Añadir FAQ"
+
+#~ msgid "Do you want to remove this FAQ?"
+#~ msgstr "¿Quieres eliminar estas FAQ?"
+
+#~ msgid "Image preview"
+#~ msgstr "Previsualización de imagen"
+
+#~ msgid "(Default: %s <img src=\"%s\"/>)"
+#~ msgstr "(Por defecto: %s <img src=\"%s\"/>)"
+
+#~ msgid "(Default: <i %s></i> )"
+#~ msgstr "(Por defecto: <i %s></i> )"
+
+#~ msgid "Column number"
+#~ msgstr "Número de columna"
+
+#~ msgid "Set how many columns the video gallery should have"
+#~ msgstr "Establece cuántas columnas debería tener la galería de vídeo"
+
+#~ msgid "Video"
+#~ msgstr "Vídeo"
+
+#~ msgid "Insert a valid video ID here"
+#~ msgstr "Inserta una ID válida de vídeo aquí"
+
+#~ msgid "Insert a valid video URL here"
+#~ msgstr "Inserta una URL válida de vídeo aquí"
+
+#~ msgid "Do you want to remove this video?"
+#~ msgstr "¿Quieres borrar este vídeo?"

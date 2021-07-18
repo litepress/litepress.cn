@@ -1,0 +1,61 @@
+/*
+Theme Name: P2
+Theme URI: http://p2theme.com/
+Author: Automattic
+Author URI: https://wordpress.com/themes/
+Description: Communication is oxygen. P2 "Breathe" is the first o2-enabled theme.
+Version: 1.0-wpcom
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Status: inactive
+Tags: blue, classic-menu, clean, collaboration, custom-background, custom-header, custom-menu, featured-images, front-page-post-form, infinite-scroll, lifestream, light, post-formats, responsive-layout, right-sidebar, rtl-language-support, sticky-post, theme-options, translation-ready, two-columns, white
+Text Domain: p2-breathe
+Supports Oxygen: true
+
+P2 WordPress Theme, Copyright Automattic, Inc.
+P2 is distributed under the terms of the GNU GPL.
+
+P2 is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+
+Resetting and rebuilding styles have been helped along thanks to the fine work of
+Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
+along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+and Blueprint http://www.blueprintcss.org/
+*/
+
+/*
+GLOBAL PARTIALS
+Global partials provide base HTML styling as well as variables and mixins to be used in the UI partials
+*/
+
+// BASE STYLES
+@import "css/src/global/o2-tools";
+@import "css/src/global/reset";
+@import "css/src/global/base";
+@import "css/src/global/print";
+
+
+// CONTENT STYLES
+@import "css/src/global/links";
+@import "css/src/global/media";
+@import "css/src/global/text";
+
+/*
+UI PARTIALS
+UI partials provide the higher-level styles required for o2 to function and display properly
+*/
+
+@import "css/src/ui/layout";
+@import "css/src/ui/header";
+@import "css/src/ui/h1-h6";
+@import "css/src/ui/fields";
+@import "css/src/ui/editor";
+@import "css/src/ui/asides";
+@import "css/src/ui/menu-navigation";
+@import "css/src/ui/buttons";
+@import "css/src/ui/posts";
+@import "css/src/ui/widgets";
+@import "css/src/ui/comments";
+@import "css/src/ui/infinite-scroll.scss";
+@import "css/src/ui/no-editing-fallback";
+@import "css/src/ui/blocks";

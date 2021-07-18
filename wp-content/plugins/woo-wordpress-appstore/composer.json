@@ -1,0 +1,20 @@
+{
+    "name": "sxy/woocommerce-wordpress-app-shop",
+    "type": "project",
+    "authors": [
+        {
+            "name": "sunxiyuan",
+            "email": "sxy@ibadboy.net"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "classmap":[
+            "controllers",
+            "src",
+            "../woocommerce/includes/rest-api/Controllers/Version1",
+            "../woocommerce/includes/rest-api/Controllers/Version2",
+            "../woocommerce/includes/rest-api/Controllers/Version3"
+        ]
+    }
+}

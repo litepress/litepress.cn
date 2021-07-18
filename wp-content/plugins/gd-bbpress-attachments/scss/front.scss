@@ -1,0 +1,225 @@
+.bbp-attachments,
+.bbp-attachments-errors {
+    border-top: 1px solid #dddddd;
+    margin-top: 10px;
+    padding: 10px 0;
+}
+
+#bbpress-forums {
+    .bbp-attachments,
+    .bbp-attachments-errors {
+        h6 {
+            margin: 0 0 5px !important;
+            font-size: 1.2em;
+            font-weight: bold;
+            line-height: 1.4em;
+        }
+
+        ol {
+            margin: 0 !important;
+            list-style: decimal inside none;
+
+            &:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        }
+
+        li {
+            &:last-child {
+                margin: 0 !important;
+            }
+        }
+    }
+
+    .bbp-attachments-errors {
+        li {
+            line-height: 16px;
+            margin: 0 0 8px !important;
+        }
+    }
+
+    .bbp-attachments-count {
+        background: transparent url(gfx/icons.png);
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        float: left;
+        margin-right: 4px;
+    }
+
+    .bbp-attachments-errors {
+        ol {
+            &.with-icons {
+                li {
+                    padding: 0;
+                    list-style: none;
+                    line-height: 20px;
+
+                    .bbp-atticon {
+                        background: transparent url(gfx/icons.png) no-repeat;
+                        display: block;
+                        width: 16px;
+                        height: 16px;
+                        float: left;
+                        margin: 2px 4px 0 0;
+
+                        &.bbp-atticon-error {
+                            background-position: 0 -288px;
+                        }
+                    }
+
+                    .d4p-bbp-att-wrapper {
+                        display: block;
+                        padding: 0 0 0 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .bbp-attachments {
+        ol {
+            &.with-icons {
+                list-style: none;
+
+                li {
+                    padding: 0;
+                    list-style: none;
+                }
+            }
+
+            li {
+                line-height: 20px;
+                margin: 0 0 8px !important;
+
+                a {
+                    text-decoration: none;
+                }
+
+                &.d4p-bbp-attachment {
+                    padding: 0;
+                    height: auto;
+
+                    &.bbp-inline {
+                        float: left;
+                        margin-right: 5px !important;
+                    }
+
+                    .wp-caption {
+                        padding: 5px;
+                        margin: 0;
+                        height: auto;
+
+                        p.wp-caption-text {
+                            margin: 5px 0 !important;
+                            padding: 0;
+                            border: 0;
+                            word-wrap: break-word;
+                            line-height: 1.3em;
+                        }
+
+                        img {
+                            margin: 0;
+                        }
+                    }
+                }
+
+                a {
+                    img {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        ol {
+            &.with-icons {
+                li {
+                    .bbp-atticon {
+                        background: transparent url(gfx/icons.png) no-repeat;
+                        display: block;
+                        width: 16px;
+                        height: 16px;
+                        float: left;
+                        margin: 2px 4px 0 0;
+
+                        &.bbp-atticon-ai {
+                            background-position: 0 -128px;
+                        }
+
+                        &.bbp-atticon-archive {
+                            background-position: 0 -144px;
+                        }
+
+                        &.bbp-atticon-audio {
+                            background-position: 0 -256px;
+                        }
+
+                        &.bbp-atticon-code {
+                            background-position: 0 -32px;
+                        }
+
+                        &.bbp-atticon-documents {
+                            background-position: 0 -240px;
+                        }
+
+                        &.bbp-atticon-excel {
+                            background-position: 0 -64px;
+                        }
+
+                        &.bbp-atticon-generic {
+                            background-position: 0 -16px;
+                        }
+
+                        &.bbp-atticon-html {
+                            background-position: 0 -208px;
+                        }
+
+                        &.bbp-atticon-icon {
+                            background-position: 0 -272px;
+                        }
+
+                        &.bbp-atticon-image {
+                            background-position: 0 -96px;
+                        }
+
+                        &.bbp-atticon-pdf {
+                            background-position: 0 -192px;
+                        }
+
+                        &.bbp-atticon-powerpoint {
+                            background-position: 0 -176px;
+                        }
+
+                        &.bbp-atticon-psd {
+                            background-position: 0 -112px;
+                        }
+
+                        &.bbp-atticon-text {
+                            background-position: 0 -160px;
+                        }
+
+                        &.bbp-atticon-video {
+                            background-position: 0 -224px;
+                        }
+
+                        &.bbp-atticon-word {
+                            background-position: 0 -80px;
+                        }
+
+                        &.bbp-atticon-xml {
+                            background-position: 0 -48px;
+                        }
+                    }
+
+                    .d4p-bbp-att-wrapper {
+                        display: block;
+                        padding: 0 0 0 20px;
+                    }
+                }
+            }
+        }
+    }
+}

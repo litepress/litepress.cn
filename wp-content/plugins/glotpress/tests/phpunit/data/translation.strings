@@ -1,0 +1,41 @@
+﻿/* Translation-Revision-Date: +0000 */
+/* Plural-Forms: nplurals=2; plural=n != 1; */
+/* Generator: GlotPress/[GP VERSION] */
+/* Language: en_US */
+
+/* No comment provided by engineer. */
+"I'm with a quote" = "I'm with a quote";
+
+/* No comment provided by engineer. */
+"Normal String" = "Just A Normal String";
+
+/* The place where deleted posts first go */
+"Trash-noun" = "Cestino";
+
+/* The act of deleting a post into trash */
+"Trash-verb" = "Elimina";
+
+/* Me, myself & Irene */
+"baba" = "баба";
+
+/* No comment provided by engineer. */
+"double \"quotes\"" = "I have double \"quotes\"";
+
+/* No comment provided by engineer. */
+"me & you are not &amp;" = "аз & ти не сме &amp;";
+
+/* No comment provided by engineer. */
+"me > you" = "аз > ти";
+
+/* This is
+   a multiline
+   comment which is
+   also supposed to work. */
+"multiline" = "multiline";
+
+/* No comment provided by engineer. */
+"you < me" = "ти < аз";
+
+/* No comment provided by engineer. */
+"питка" = "баба ми омеси питка";
+

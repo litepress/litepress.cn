@@ -1,0 +1,57 @@
+
+/* Provides a fallback when front-end editing is off. */
+body:not(.o2) {
+	/* Clear after content container */
+	.site-main:before,
+	.site-main:after {
+		content: '';
+		display: table;
+	}
+
+	.site-main:after {
+		clear: both;
+	}
+
+	/* Post navigation */
+	.navigation-post {
+		background: $gray-0;
+	}
+
+	/* Comment navigation */
+	.navigation-comment {
+		padding: 15px 0;
+		border-bottom: 1px solid $gray-25;
+		border-top: 1px solid $gray-25;
+	}
+
+	#comment-nav-above {
+	margin-bottom: 1.2em;
+}
+
+	/* Comments */
+	.content-area aside {
+		background: $gray-0;
+		padding: 1.6em 0;
+	}
+
+	.comments-area .comment-meta {
+		margin-left: 45px;
+	}
+
+	.comments-area .avatar {
+		display: block;
+		float: left;
+		margin-left: 3px;
+		margin-top: 5px;
+	}
+
+	.comments-area .comment-content {
+		padding-right: 1.6em;
+		margin-left: 45px;
+	}
+
+	.comments-area .children {
+		font-size: 1.05em;
+		padding-left: 1.5em;
+	}
+}

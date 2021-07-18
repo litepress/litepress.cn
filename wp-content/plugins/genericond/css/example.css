@@ -1,0 +1,137 @@
+/**
+
+	Genericon'd Example CSS
+
+    Credit: Genericons.com
+*/
+
+span.genericond-icon {
+	width: 80px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    word-wrap: break-word;
+}
+span.genericond-icon svg {
+    width: 75px;
+    height: 75px;
+}
+
+/* Iconlist */
+#icons {
+	padding: 4px 0;
+}
+
+#icons #iconlist {
+	margin: 0 auto;
+}
+
+#iconlist {
+	clear: both;
+	margin-bottom: 20px;
+}
+#iconlist div {
+	padding: 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	font-size: 32px;
+	line-height: 1;
+	position: relative;
+	width: 32px;
+	height: 32px;
+}
+#iconlist div:before {
+	margin-right: 20px;
+}
+#iconlist div:hover {
+	cursor: pointer;
+	color: #d3682e;
+}
+
+#icons .genericon {
+	padding: 10px;
+}
+
+#iconlist div.genericon:hover {
+cursor: pointer;
+color: #E4C05C;
+}
+
+#iconlist .new, #iconlist .update {
+	position: relative;
+}
+
+#iconlist .new:after, #iconlist .update:after {
+	color: #d3682e;
+	display: block;
+	content: "NEW";
+	font: bold 8px/1 sans-serif;
+	position: absolute;
+	top: 0;
+	z-index: 10;
+	text-align: center;
+	width: 100%;
+}
+
+#iconlist .update:after {
+	content: "UPDATE";
+	left: -1px;
+}
+
+/* Glyph */
+#glyph .genericon {
+font-size: 256px;
+width: 256px;
+height: 256px;
+overflow: visible;
+color: #E4C05C;
+}
+
+#glyph {
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	padding: 20px 0;
+}
+
+#glyph .info {
+	float: right;
+	width: 180px;
+	padding: 2.4em 0 0 0;
+}
+#glyph .info strong {
+	font-weight: normal;
+	display: block;
+	padding: 8px 0;
+}
+#glyph .info a {
+	display: block;
+	padding: 8px 0;
+}
+#glyph .info a:hover {
+	color: #ff6a57;
+}
+
+/* Description */
+.description {
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+margin-top: 35px;
+float: right;
+border-left: 2px dotted black;
+padding: 0 0 0 30px;
+max-width: 50%;
+}
+
+#content, #icons {
+margin: 0 auto;
+}
+
+#primary {
+padding-bottom: 20px;
+overflow: hidden;
+}

@@ -1,0 +1,19 @@
+#the-list pre{
+    /*white-space: break-spaces;*/
+    overflow: auto;
+    scrollbar-color: #e5e5e5 #f7f7f9;
+    scrollbar-width: thin;
+}
+#the-list pre::-webkit-scrollbar {
+    height: 8px;
+    width: 10px;
+
+}
+#the-list pre::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    background-color:#c1c1c1
+}
+#the-list pre::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    background: #ececec;
+}

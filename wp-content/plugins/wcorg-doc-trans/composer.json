@@ -1,0 +1,12 @@
+{
+    "name": "sxy/wcorg-doc-trans",
+    "authors": [
+        {
+            "name": "sunxiyuan",
+            "email": "sxy@ibadboy.net"
+        }
+    ],
+    "require": {
+        "voku/simple_html_dom": "^4.7"
+    }
+}

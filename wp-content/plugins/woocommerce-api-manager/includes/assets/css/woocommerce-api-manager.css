@@ -1,0 +1,61 @@
+@media only screen and (max-width: 850px), (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like a table anymore */
+	.woocommerce table.my_account_api_manager,
+	.woocommerce table.my_account_api_manager thead,
+	.woocommerce table.my_account_api_manager tbody,
+	.woocommerce table.my_account_api_manager th,
+	.woocommerce table.my_account_api_manager td,
+	.woocommerce table.my_account_api_manager tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.woocommerce table.my_account_api_manager thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	.woocommerce table.my_account_api_manager tr {
+		border: 1px solid #ccc;
+	}
+
+	/* Make each cell behave like a "row" */
+	.woocommerce table.my_account_api_manager td {
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 35% !important;
+		width: auto;
+	}
+
+	.woocommerce table.my_account_api_manager p {
+		margin-bottom: 0;
+	}
+
+	.woocommerce table.my_account_api_manager td.order-actions {
+		text-align: left;
+		max-width: 60%;
+		min-height: 1.8em;
+	}
+
+	/* Add a row header */
+	.woocommerce table.my_account_api_manager td:before {
+		position: absolute;
+		top: 6px;
+		left: 6px;
+		width: 35%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+
+	/* Label the cells */
+	.woocommerce table.my_account_api_manager td:nth-of-type(1):before { content: attr(data-title); }
+	.woocommerce table.my_account_api_manager td:nth-of-type(2):before { content: attr(data-title); }
+	.woocommerce table.my_account_api_manager td:nth-of-type(3):before { content: attr(data-title); }
+	.woocommerce table.my_account_api_manager td:nth-of-type(4):before { content: attr(data-title); }
+	.woocommerce table.my_account_api_manager td:nth-of-type(5):before { content: attr(data-title); }
+	.woocommerce table.my_account_api_manager td:nth-of-type(6):before { content: attr(data-title); }
+
+}

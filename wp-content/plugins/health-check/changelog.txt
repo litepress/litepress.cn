@@ -1,0 +1,176 @@
+= v1.3.2 =
+* Add polyfill for directory size calculations for sites running WordPress versions older than 5.2.0
+* Fix link for the extended PHP information
+
+= v1.3.1 =
+* Include missing dependency for JavaScript files, first introduced in WordPress 5.2
+
+= v1.3.0 =
+* Plugin moved to the Tools section in the admin menu
+* New UI/UX for the plugin pages
+* New troubleshooting mode UI/UX
+* Removed the backup reminder nag
+* Improved security hardening
+* Changed cookie names for improved hosting compatibility
+* Improved accessibility
+* Automatically check for critical issues once a week (adds a counter next to the menu item)
+* Dates in the email tester now follow your site settings
+
+= v1.2.5 =
+* Fix: Ensure the REST API status test runs as intended.
+* Fix: Remove warning on plugin screens when premium plugins are used.
+* Fix: Backup reminder would not remain dismissed in all scenarios after the recent update.
+
+= v1.2.4 =
+* Security: Prevent arbitrary file viewing through the integrity file actions. Independently reported by Julien Legras of [Synacktiv](https://synacktiv.com) and siliconforks.
+* Security: Site status was available to any user with a subscriber role or higher on a site. Reported by Julien Legras of [Synacktiv](https://synacktiv.com).
+* Security: Hardened the troubleshooting mode session so it is locked to the users location when active.
+* New enhancement: Check that various PHP extensions exist, as recommended by the WordPress Hosting Community.
+* New enhancement: Check if update APIs are being manipulated by plugins or themes.
+* Fix: Copying debug information had the wrong indentation for easier readability.
+* Fix: Toggling plugins and themes from the troubleshooting widget on in the dashboard now lets you expand/collapse them as intended.
+* Fix: When debugging was enabled in WordPress, disabling a plugin in troubleshooting mode would cause a WSOD if the disabled plugin caused a fatal error.
+
+= v1.2.3 =
+* Added REST API availability test to the Site Status
+
+= v 1.2.2 =
+* Added Twenty Nineteen as a recognized core theme.
+
+= v 1.2.1 =
+* Make sure only those with access to the plugin see the backup encouragement notice.
+* Make sure the `is_troubleshooting()` checks are available to the Site Status tester when the MU plugin may not have updated yet.
+* Avoid a warning of an undefined variable if you have the latest WordPress version installed.
+
+= v 1.2.0 =
+* Changed plugin name, it now better describes the plugins two primary purposes.
+* Changed the `Health Check` tab, it's now named `Site Status`, as we used the old name too many places and it was confusing.
+* Site status tests now run asynchronously, making the page load much faster.
+* The HTTPS tests now also check your Site URL settings to make sure they are following recommended best practices.
+* Fixed a warning preventing plugin names from displaying on the front-end in some cases.
+* Fixed an issue where you might get a 500 error if you tried using Troubleshooting Mode while using a child theme.
+* Automatically disable/enable a plugin or theme in Troubleshooting Mode if they are detected to cause errors.
+* Introduce a new dashboard widget during Troubleshooting Mode (and a simplified version on the plugins screen) to better explain what is going on, and make available actions more discoverable than the admin menu is.
+* Some text improvements throughout the plugin.
+* When loopback tests fail, we previously tested all plugins at once, for sites that have many plugins this may fail as the request times out. We now test one plugin at a time to avoid this, while also showing more information at the tests are running to the end user.
+
+= v 1.1.2 =
+* Fixed child themes not displaying properly in Troubleshooting Mode.
+* Improved styling for the backup warning, shown when activating the plugin, so it doesn't block mobile users.
+* Added explanations to the plugins screen if you enter Troubleshooting Mode there, so users know what is going on.
+* Fixed admin menu overflowing if too many plugins exist.
+
+= v 1.1.1 =
+* Fixed a fatal error that would occur if a user had an older version of Troubleshooting Mode on their system.
+
+= v 1.1.0 =
+* Check for theme, plugin and WordPress updates when visiting the debug tab.
+* Improved wording on some failure situations.
+* Made the Debug Information tab a bit easier to read with fixed table styles.
+* Redesigned tools page, with added accordion to avoid information overload, and different features mixing together.
+* Mail test tool now allows you to include an optional customized message.
+* Users can now change between any installed theme while in troubleshooting mode.
+* Renamed the Must-Use plugin, making it align with what features present in the file.
+* Improved the plugin cleanup process, when the plugin is deleted.
+* Show full plugin names, and not slugs, in the troubleshooting admin bar menu.
+* Check if the .htaccess file contains any rules not added by WordPress core in the debug section.
+* Allow the disabling of Troubleshooting Mode from the same page as you previously enabled it from.
+* Removed cURL checks from the automated test page, this was more confusion than help.
+* Add installation size to the debug information.
+
+= v 1.0.1 =
+* Fixed email tester having the wrong class reference, preventing it from running.
+* Add some missing text domains preventing full translations.
+
+= v 1.0.0 =
+* Added minimum PHP version checks with documentation links.
+* Added testing with a default theme to the loopback checker.
+* Added cURL version checker to the health check tab.
+* Added simple e-mail tester.
+* Added core file integrity checker.
+* Added capability checks, to avoid installing things that may modify the database while troubleshooting.
+* Added a prompt to install a default theme if none exist.
+* Added a warning encouraging users to maintain up to date backups when troubleshooting.
+* Fixed MU plugin not always updating (if available) when a user tries to troubleshoot.
+* Fixed fatal error when trying to troubleshoot "too early".
+* Updated troubleshooting drop down, it no longer shows theme switching if no default theme exists.
+* Removed the checkbox requirement from the Troubleshooting tab, it wasn't needed any more, and added pointless complexity now.
+
+= v 0.9.0 =
+* Various string changes, typo fixes and translation enhancements.
+* Added conditional hiding of the plugins list from the admin bar, if there's too many plugins it becomes a bad experience. (Hidden if there are more than 20 active plugins)
+* Added ability to enable/disable plugins in Troubleshooting Mode from the plugins list.
+* Added filter to remove actions from the plugin list in Troubleshooting Mode.
+* Fixed notices on the plugin screen when plugin data may be inconsistent.
+* Fixed jumping directly to troubleshooting mode for single file plugins placed directly in the plugin directory root.
+* Fixed issue where troubleshooting a plugin directly made it impossible to disable it while in Troubleshooting Mode.
+* Fixed so that the original language is returned when translating the debug data for copying.
+* Fixed issue where the Debug screen would turn to half-English when using a non-English language.
+* Fixed an issue where plugins could become truly disabled on a site when in Troubleshooting Mode.
+* Fixed so that enabled/disabled plugins don't carry over between troubleshooting sessions.
+
+= v 0.8.0 =
+* Updated recommended PHP version to mirror WordPress.org.
+* Updated texts for troubleshooting mode.
+* Re-labeled database terms to be more user friendly.
+* Added media information to the debug tab.
+* Added individual `Troubleshoot` links for the list of active plugins.
+* Added automatic copy to clipboard with supported browsers in the debug tab.
+
+= v 0.7.0 =
+* Troubleshooting mode now also switches to a default theme.
+* Introduced a method for toggling default or active theme use when in troubleshooting mode.
+* Introduced a method for enabling/disabling plugins while in troubleshooting mode.
+* Introduced a method for disabling troubleshooting mode without needing to log out and back in again.
+
+= v 0.6.0 =
+* Improved loopback tests
+  * Check if loopbacks can be completed without plugins activated
+  * Test individual plugins to identify loopback blockers
+* Add troubleshooting mode, test your website without any plugins for your session without disabling functionality for visitors.
+
+= v 0.5.1 =
+* Introduced loopback check to the health checker status.
+
+= v 0.5.0 =
+* Added clarity to many text strings.
+* Avoid listing MU directories if it's not being used.
+* Add a Table of Contents heading and make navigating the debug page from it smoother.
+* Only enqueue our CSS and JavaScript if we are on the health check pages.
+* Add some missing version numbers nor being included in text strings.
+* Avoid fatal errors if accessing files directly, caused by translation functions being used when they don't exist.
+* Avoid "empty" strings when author or version is missing from plugins or themes.
+* Make the health checker test background updates.
+* Make the health checker look for missed scheduled events.
+* If using a localized version of WordPress, also display the copy and paste field in English if using an international support resource.
+* Indicate if 64bit values are supported by PHP in the debug section.
+* Improved MariaDB version detection/comparison.
+
+= v 0.4.1 =
+* Better SQL version detection to account for MariaDB versions
+* Added translation support
+* Removed unintentional indentations in the debug copying field
+
+= v 0.4 =
+* Added debug section
+* Added PHP info section
+* Cleaned up the health check
+* Added WordPress.org connectivity check
+* Added HTTPS check
+
+= v 0.3.1 =
+* Fixed a few typos
+
+= v 0.3 =
+* Added recommended PHP and MySQL versions
+* Check for utf8mb4 support
+* Fixed a bunch of PHP warnings
+
+= v 0.2.1 =
+* Fixed version comparision bug - When the server had the exact required versions we reported it as out of date.
+
+= v 0.2 =
+* Updated with actual PHP and MySQL version requirements for WordPress 3.2
+
+= v 0.1 =
+* Initial release with checks for the PHP and MySQL versions we will likely target for WordPress 3.2

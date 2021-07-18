@@ -1,0 +1,325 @@
+.widefat .column-is_show, .widefat .column-tab_position {
+
+    width: 20%;
+    text-align: center;
+}
+
+.widefat .column-is_show mark {
+    display: block;
+    text-indent: -9999px;
+    position: relative;
+    height: 1em;
+    width: 1em;
+    background: 0 0;
+    font-size: 1.4em;
+    margin: 0 auto;
+}
+
+.widefat .column-is_show mark.show:after,
+.widefat .column-is_show mark.hide:after {
+
+    font-family: WooCommerce;
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.widefat .column-is_show mark.hide:after{
+    content: "\e013";
+    color: #a00000;
+}
+
+.widefat .column-is_show mark.show:after{
+    content: "\e015";
+    color: #2ea2cc;
+}
+
+/*Metaboxes style*/
+
+
+#_ywtm_order_tab-container .rm_number .field .spinner-wrapper {
+
+    height: 29px;
+}
+
+#_ywtm_order_tab-container .rm_number .field .spinner-wrapper .spinner-button {
+
+    height: 14px;
+}
+
+#_ywtm_text_tab {
+
+    width: 100%;
+    height: 200px;
+    resize:none;
+}
+
+#yit-icons-manager-wrapper-_ywtm_icon_tab_icon,
+.yith-plugin-fw-upload-field-wrapper{
+    display: none;
+}
+
+table.wp-list-table th.column-thumbnail {
+    border-bottom-width: 1px;
+}
+
+table.wp-list-table .column-thumbnail {
+    border-width: 0;
+    box-shadow: none;
+    width: 80px;
+    border-radius: 0;
+}
+
+.messages-global {
+    max-width: 1170px;
+}
+
+#_ywtm_tab_product_chosen {
+
+    width:400px !important;
+
+}
+/* image gallery and video gallery*/
+.form-field.image-gallery ul li, span.thumbn_video_img {
+    display: inline-block;
+    width: 80px;
+    margin-left: 10px;
+    position: relative;
+}
+.form-field.image-gallery ul li img, span.thumbn_video_img img{
+    width: 80px;
+    border: 1px solid #ccc;
+}
+.form-field.image-gallery ul li ul, .thumbn_video_img ul{
+    position: absolute;
+    top: -6px;
+    right: -1px;
+    width: 20px;
+    height: 20px;
+}
+
+.thumbn_video_img {
+
+    margin: 10px;
+}
+.form-field.image-gallery ul a.delete, .thumbn_video_img ul a.delete{
+    background: url(../images/x.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    display: block;
+    text-indent: -99999px;
+}
+
+/*Video Gallery metabox*/
+
+.video_settings_container{
+
+    margin:10px;
+}
+
+.the-metabox .video_settings_container p.video_form_row {
+    margin-bottom: 10px;
+}
+
+.the-metabox .video_settings_container p.video_form_row input[type="text"], .the-metabox .video_settings_container p.video_form_row select{
+    width:80%;
+}
+
+
+/*Contact form field admin*/
+
+.ywtb-form-row{
+    height: 80px;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+#ywtb-form-field-container .ywtb-field{
+    float:left;
+    margin-right: 50px;
+}
+#ywtb-form-field-container .ywtb-field span{
+    display: inline-block;
+}
+
+/**WooCommerce TABS**/
+
+.ywtm_wc_tab_container .ywtm_wc_tab_option, .ywtm_wc_tab_container .ywtm_wc_tab_content {
+
+    padding:10px 20px 5px 20px;
+    line-height: 24px;
+    min-height: 30px;
+}
+
+.ywtm_wc_tab_option .ywtm_title{
+
+    font-style: italic;
+    width: 150px;
+}
+
+.ywtm_override,.ywtm_hide {
+    float: right;
+    margin-right: 10px;
+}
+.ywtm_override label,.ywtm_hide label, .ywtm_title label{
+
+    float: none;
+    margin: 0!important;
+    padding: 0!important;
+    width:auto!important;
+}
+
+.ywtm_wc_tab_option .ywtm_override .ywtm_override_cb,.ywtm_wc_tab_option .ywtm_hide .ywtm_hide_cb {
+
+    margin: 4px 5px!important;
+}
+#ywtm_content_tab_description{
+
+    height: 200px;
+}
+
+.ywtm_wc_tab_content{
+
+    display: none;
+}
+
+.woocommerce_options_panel .options_group.ywtm_wc_tab_container:last-child{
+    border-bottom: 1px solid #eee;
+}
+
+.ywtm_icon{
+    margin-left: 0!important;
+}
+
+#woocommerce-product-data ul.wc-tabs li.my-tabs_ywtm_wc_tab a::before {
+    font-family: WooCommerce!important;
+    content: '\e03d';
+}
+
+
+/*TAB MANAGER TABLE for video gallery and download*/
+.ywtb-table {
+    width: 98%;
+
+    padding: 0!important;
+}
+
+.ywtb-table th {
+    padding: 7px 0 7px 7px!important;
+}
+
+.ywtb-table th.sort {
+    width: 17px;
+    padding: 7px!important
+}
+.ywtb-table td.sort:before{
+    content: '\f333';
+    font-family: Dashicons;
+    text-align: center;
+    line-height: 1;
+    color: #999;
+    display: block;
+    width: 17px;
+    float: left;
+    height: 100%;
+}
+
+.ywtb-table td{
+    vertical-align: middle!important;
+    position: relative;
+
+}
+
+.ywtb-table td input {
+    width:100%!important;
+}
+
+.ywtb-table td textarea{
+    width: 100%!important;
+}
+.ywtb-table td.faq_name, .woocommerce_options_panel .downloadable_files .ywtb-table td.file_name{
+    vertical-align: top!important;
+}
+
+.ywtb-table td select{
+    width: 200px;
+}
+.ywtb-table td.sort {
+    width: 17px;
+    cursor: move;
+    font-size: 15px;
+    text-align: center;
+    background: #f9f9f9;
+    padding-right: 7px!important;
+}
+
+.ywtb-table td a.delete{
+    display: block;
+    text-indent: -9999px;
+    position: relative;
+    height: 1em;
+    width: 1em;
+    font-size: 1.2em;
+}
+
+.ywtb-table td a.delete:before{
+    font-family: Dashicons;
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    content: "";
+    color: #999;
+}
+
+.ywtb-table td a.delete:hover:before{
+    color:#a00;
+}
+
+.yith-plugin-fw-ywtb-video-gallery-type-field-wrapper .ywtb-table{
+    margin-top: 20px;
+}
+
+.custom_tab_options label{
+    font-weight: bold;
+}
+
+#woocommerce-product-data ul.wc-tabs li.my-tabs a::before{
+    content: ''!important;
+}
+
+.woocommerce_options_panel .custom_tab_options textarea{
+    height:auto!important;
+}
+
+.ywtm_icon.fas{
+    font-family: 'FontAwesome' !important;
+    speak: none !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    line-height: 1 !important;
+    font-style: normal !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}

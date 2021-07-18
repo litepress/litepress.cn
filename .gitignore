@@ -1,0 +1,9 @@
+.idea
+/wp-admin
+/wp-includes
+/wp-content/*
+!/wp-content/mu-plugins
+!/wp-content/plugins
+!/wp-content/themes
+/*.php
+!/system-preload.php

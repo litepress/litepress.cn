@@ -1,0 +1,439 @@
+# Copyright (C) 2015 YIThemes
+# This file is distributed under the same license as the YITH Plugin Starter package.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH Plugin Starter 1.0.0 Plugin FW\n"
+"Report-Msgid-Bugs-To: Your Inspiration Themes <plugins@yithemes.com>\n"
+"POT-Creation-Date: 2020-01-14 17:17+0100\n"
+"PO-Revision-Date: 2020-02-14 22:01+0200\n"
+"Language-Team: Your Inspiration Themes <info@yithemes.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;_x;_ex\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"Last-Translator: \n"
+"Language: el\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: lib/yit-licence.php:116 templates/panel/activation/activation-panel.php:23
+msgid "YITH License Activation"
+msgstr "Ενεργοποίηση Άδειας Χρήσης Προϊόντος YITH"
+
+#: lib/yit-licence.php:210
+#, php-format
+msgctxt "%s = field name"
+msgid "Please, insert a valid %s"
+msgstr "Παρακαλώ, εισάγετε ένα έγκυρο %s"
+
+#: lib/yit-licence.php:211
+#, php-format
+msgid "Please, insert a valid %s and a valid %s"
+msgstr "Παρακαλώ, εισάγετε ένα έγκυρο %s και ένα έγκυρο %s"
+
+#: lib/yit-licence.php:212
+msgid "Unable to contact the remote server, please try again later. Thanks!"
+msgstr ""
+"Δεν είναι δυνατή η επικοινωνία με απομακρυσμένο διακομιστή. Παρακαλώ, "
+"δοκιμάστε ξανά αργότερα. Ευχαριστούμε!"
+
+#: lib/yit-licence.php:213
+msgid "email address"
+msgstr "διεύθυνση ηλεκτρονικού ταχυδρομείου"
+
+#: lib/yit-licence.php:214
+msgid "license key"
+msgstr "κλειδί άδειας χρήσης προϊόντος"
+
+#: lib/yit-licence.php:215
+msgid "Are you sure you want to deactivate the license for current site?"
+msgstr ""
+"Είστε σίγουρος ότι θέλετε να απενεργοποιήσετε την άδειας χρήσης προϊόντος "
+"για την συγκεκριμένη ιστοσελίδα;"
+
+#: lib/yit-licence.php:793
+msgid "Invalid Request"
+msgstr "Άκυρο Αίτημα"
+
+#: lib/yit-licence.php:794
+msgid "Invalid license key"
+msgstr "Άκυρο κλειδί άδειας χρήσης προϊόντος"
+
+#: lib/yit-licence.php:795
+msgid "Software has been deactivated"
+msgstr "Το λογισμικό απενεργοποιήθηκε"
+
+#: lib/yit-licence.php:796
+msgid "Maximum number of activations exceeded"
+msgstr "Υπερβήκατε τον μέγιστο αριθμό ενεργοποιήσεων"
+
+#: lib/yit-licence.php:797
+msgid "Invalid instance ID"
+msgstr "Άκυρο ID περιστατικού"
+
+#: lib/yit-licence.php:798
+msgid "Invalid security key"
+msgstr "Άκυρο κλειδί ασφαλείας"
+
+#: lib/yit-licence.php:799
+msgid "License key has expired"
+msgstr "Το κλειδί άδειας χρήσης προϊόντος έχει λήξει"
+
+#: lib/yit-licence.php:800
+msgid "License key has been banned"
+msgstr "Το κλειδί άδειας χρήσης προϊόντος έχει απαγορευθεί"
+
+#: lib/yit-licence.php:801
+msgid "Current product is not included in your YITH Club Subscription key"
+msgstr ""
+"Το συγκεκριμένο προϊόν δεν περιλαμβάνεται στο κλειδί της YITH Club Εγγραφής "
+"σας"
+
+#: lib/yit-licence.php:802
+msgid "Great"
+msgstr "Τέλεια"
+
+#: lib/yit-licence.php:802
+msgid "License successfully activated"
+msgstr "Η άδειας χρήσης προϊόντος ενεργοποιήθηκε επιτυχώς"
+
+#: lib/yit-licence.php:803
+msgid "License key deactivated for website"
+msgstr "Το κλειδί άδειας χρήσης προϊόντος απενεργοποιήθηκε για την ιστοσελίδα"
+
+#: lib/yit-plugin-licence.php:67 lib/yit-plugin-licence.php:68
+#: lib/yit-theme-licence.php:69 lib/yit-theme-licence.php:70
+#: lib/yit-theme-licence.php:109 lib/yit-theme-licence.php:110
+msgid "License Activation"
+msgstr "Ενεργοποίηση Άδειας Χρήσης Προϊόντος"
+
+#: lib/yit-plugin-upgrade.php:95
+msgid "An unexpected error occurred, please try again later. Thanks!"
+msgstr ""
+"Προέκυψε ένα μη αναμενόμενο σφάλμα. Παρακαλώ, προσπαθήστε ξανά αργότερα. "
+"Ευχαριστούμε!"
+
+#: lib/yit-plugin-upgrade.php:196
+msgid "There is a new version of %plugin_name% available."
+msgstr "Μια νέα έκδοση του %plugin_name% είναι διαθέσιμη."
+
+#: lib/yit-plugin-upgrade.php:197
+msgid "View version %latest% details."
+msgstr "Εμφάνιση %latest% λεπτομερειών έκδοσης."
+
+#: lib/yit-plugin-upgrade.php:198
+msgid "Automatic update is unavailable for this plugin,"
+msgstr "Η αυτόματη αναβάθμιση δεν είναι διαθέσιμη για το πρόσθετο,"
+
+#: lib/yit-plugin-upgrade.php:199
+msgid ""
+"please <a href=\"%activate_link%\">activate</a> your copy of %plugin_name%."
+msgstr ""
+"παρακαλώ <a href=“%activate_link%”>activate</a> το αντίγραφο του %plugin_name"
+"%."
+
+#: lib/yit-plugin-upgrade.php:200
+msgid "Update now."
+msgstr "Αναβάθμιση τώρα."
+
+#: lib/yit-plugin-upgrade.php:201
+msgid ""
+"<br/><b>Please note:</b> You are using a higher version than the latest "
+"available one. </em>Please, make sure you've downloaded the latest version "
+"of <em>%plugin_name%</em> from the only <a href=\"https://yithemes.com\" "
+"target=\"_blank\">YITH official website</a>, specifically, from your <a href="
+"\"https://yithemes.com/my-account/recent-downloads/\" target=\"_blank"
+"\">Downloads page</a>. This is the only way to be sure the version you are "
+"using is 100% malware-free."
+msgstr ""
+"<br/><b>Παρακαλώ σημειώστε:</b> Χρησιμοποιείτε έκδοση μεγαλύτερη από την "
+"τελευταία διαθέσιμη. </em>Παρακαλώ, βεβαιωθείτε ότι έχετε κατεβάσει την "
+"τελευταία έκδοση του <em>%plugin_name%</em> από το μοναδικό <a href=“https://"
+"yithemes.com” target=“_blank”>YITH official website</a>, συγκεκριμένα, από "
+"την <a href=“https://yithemes.com/my-account/recent-downloads/“ "
+"target=“_blank”>Downloads page</a> . Αυτός είναι ο μοναδικός τρόπος για να "
+"επιβεβαιώσετε ότι η έκδοση που χρησιμοποιείτε είναι 100% απαλλαγμένη από "
+"κακόβουλο λογισμικό."
+
+#: lib/yit-plugin-upgrade.php:238
+#, php-format
+msgctxt "plugin-fw"
+msgid "Updating %s..."
+msgstr "Γίνεται αναβάθμιση %s…"
+
+#: lib/yit-plugin-upgrade.php:240
+#, php-format
+msgctxt "plugin-fw"
+msgid "%s updated!"
+msgstr "Αναβαθμίστηκε %s!"
+
+#: lib/yit-plugin-upgrade.php:242
+#, php-format
+msgctxt "plugin-fw"
+msgid "%s update failed"
+msgstr "Αποτυχία αναβάθμισης %s"
+
+#: lib/yit-plugin-upgrade.php:316
+msgctxt "[Update Plugin Message: License not enabled]"
+msgid "You have to activate the plugin to benefit from automatic updates."
+msgstr ""
+"Πρέπει να ενεργοποιήσετε το πρόσθετο για να μπορείτε να επωφελείστε από τις "
+"αυτόματες αναβαθμίσεις."
+
+#: lib/yit-plugin-upgrade.php:338
+msgid "YITH Repository"
+msgstr "Αποθήκη YITH"
+
+#: lib/yit-plugin-upgrade.php:372
+msgid "Invalid URL Provided."
+msgstr "Παραχωρήθηκε ‘Ακυρο URL."
+
+#: lib/yit-plugin-upgrade.php:385
+msgid "Could not create Temporary file."
+msgstr "Δεν ήταν δυνατή η δημιουργία Προσωρινού αρχείου."
+
+#: lib/yit-plugin-upgrade.php:586
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">View version "
+"%4$s details</a>."
+msgstr ""
+"Υπάρχει διαθέσιμη νέα έκδοση του %1$s. <a href=“%2$s” class=“thickbox yit-"
+"changelog-button open-plugin-details-modal” title=“%3$s”>View version %4$s "
+"details</a>."
+
+#: lib/yit-plugin-upgrade.php:588
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">View version "
+"%4$s details</a>. <em>You have to activate the plugin on a single site of "
+"the network to benefit from automatic updates.</em>"
+msgstr ""
+"Υπάρχει διαθέσιμη νέα έκδοση του %1$s. <a href=“%2$s” class=“thickbox yit-"
+"changelog-button open-plugin-details-modal” title=“%3$s”>View version %4$s "
+"details</a>. <em>Πρέπει να ενεργοποιήσετε το πρόσθετο σε μια μόνο ιστοσελίδα "
+"για να μπορείτε να επωφελείστε από τις αυτόματες αναβαθμίσεις.</em>"
+
+#: lib/yit-plugin-upgrade.php:590
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">View version "
+"%4$s details</a>. <em>Automatic update is unavailable for this plugin, "
+"please <a href=\"%5$s\" title=\"License activation\">activate</a> your copy "
+"of %6s.</em>"
+msgstr ""
+"Υπάρχει διαθέσιμη νέα έκδοση του %1$s. <a href=“%2$s” class=“thickbox yit-"
+"changelog-button open-plugin-details-modal” title=“%3$s”>View version %4$s "
+"details</a>. <em>Η αυτόματη αναβάθμιση δεν είναι δυνατή για αυτό το "
+"πρόσθετο, παρακαλώ <a href=“%5$s” title=“License activation”>ενεργοποιείστε</"
+"a> το αντίγραφο του %6s.</em>"
+
+#: lib/yit-plugin-upgrade.php:592
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox "
+"yit-changelog-button open-plugin-details-modal\" title=\"%3$s\">View version "
+"%4$s details</a> or <a href=\"%5$s\" class=\"%6$s\" data-plugin=\"%7$s\" "
+"data-slug=\"%8$s\" data-name=\"%1$s\">update now</a>."
+msgstr ""
+"Υπάρχει διαθέσιμη νέα έκδοση του %1$s. <a href=“%2$s” class=“thickbox yit-"
+"changelog-button open-plugin-details-modal” title=“%3$s”>View version %4$s "
+"details</a> ή <a href=“%5$s” class=“%6$s” data-plugin=“%7$s” data-"
+"slug=“%8$s” data-name=“%1$s”>αναβαθμίστε τώρα</a>."
+
+#: lib/yit-plugin-upgrade.php:596
+#, php-format
+msgid ""
+"<br/><b>Please note:</b> You are using a higher version than the latest "
+"available one. </em>Please, make sure you've downloaded the latest version "
+"of <em>%1$s</em> from the only <a href=\"https://yithemes.com\" target="
+"\"_blank\">YITH official website</a>, specifically, from your <a href="
+"\"https://yithemes.com/my-account/recent-downloads/\" target=\"_blank"
+"\">Downloads page</a>. This is the only way to be sure the version you are "
+"using is 100%% malware-free."
+msgstr ""
+"<br/><b>Παρακαλώ σημειώστε:</b> Χρησιμοποιείτε μεγαλύτερη έκδοση από την "
+"τελευταία διαθέσιμη. </em>Παρακαλώ, βεβαιωθείτε ότι έχετε κατεβάσει την "
+"τελευταία έκδοση του <em>%1$s</em> από το μοναδικό <a href=“https://yithemes."
+"com” target=“_blank”>YITH official website</a>, συγκεκριμένα, από το <a "
+"href=“https://yithemes.com/my-account/recent-downloads/“ "
+"target=“_blank”>Downloads page</a>. Αυτός είναι ο μοναδικός τρόπος για να "
+"επιβεβαιώσετε ότι η έκδοση που χρησιμοποιείτε είναι 100%% απαλλαγμένη από "
+"κακόβουλο λογισμικό."
+
+#: lib/yit-plugin-upgrade.php:668
+msgid "You can't update the plugins for this site."
+msgstr "Δεν μπορείτε να αναβαθμίσετε τα πρόσθετα για αυτή την ιστοσελίδα."
+
+#: lib/yit-plugin-upgrade.php:672
+msgid ""
+"You do not have sufficient permissions to update the plugins for this site."
+msgstr ""
+"Δεν έχετε τις επαρκείς εγκρίσεις για να αναβαθμίσετε τα πρόσθετα αυτής της "
+"ιστοσελίδας."
+
+#: lib/yit-plugin-upgrade.php:679
+msgid "Update Plugin"
+msgstr "Αναβάθμιση Προσθέτου"
+
+#: lib/yit-theme-licence.php:117 lib/yit-theme-licence.php:118
+#, php-format
+msgid "%s"
+msgstr "%s"
+
+#: lib/yit-theme-licence.php:159
+msgid ""
+"I cannot find the license key for activating the theme I have bought some "
+"time ago. Where can I find it?"
+msgstr ""
+"Δεν μπορώ να βρω το κλειδί της άδειας για να ενεργοποιήσω το θέμα που "
+"αγόρασα λίγο καιρό πριν. Πού μπορώ να το βρω;"
+
+#: lib/yit-theme-licence.php:163
+msgid ""
+"If you have purchased one of our products before 27 January 2015, you can "
+"benefit from support and updates (the services offered with the license)\n"
+"                    until 27 January 2016 and you do not have to purchase it "
+"again to get a new license key, because, before this date, your license used "
+"to be activated automatically by our system.\n"
+"                    After 27 January 2016, instead, if you want to benefit "
+"from support and updates you have to buy a new license and activate it "
+"through the license key you will be\n"
+"                    provided with and that you can find in your YITH "
+"account, in section \"My licenses\"."
+msgstr ""
+"Αν έχετε αγοράσει ένα από τα προϊόντα μας πριν τις 27 Ιανουαρίου 2015, "
+"μπορείτε να επωφεληθείτε από την υποστήριξη και τις αναβαθμίσεις (οι "
+"υπηρεσίες παρέχονται με την άδεια)\n"
+"                     έως τις 27 Ιανουαρίου 2016. Δεν χρειάζεται να αγοράσετε "
+"ξανά το πρόσθετο για να αποκτήσετε νέο κλειδί άδειας καθώς πριν την "
+"ημερομηνία αυτή, η άδειά σας θα ενεργοποιείται αυτόματα από το σύστημά "
+"μας. \n"
+"                    Μετά τις 27 Ιανουαρίου 2016 αντιθέτως, αν θέλετε να "
+"επωφεληθείτε από υποστήριξη και αναβαθμίσεις, θα πρέπει να αγοράσετε μια νέα "
+"άδεια και να την ενεργοποιήσετε μέσω του κλειδιού άδειας που θα σας \n"
+"                    παραχωρηθεί και που μπορείτε να βρείτε στον YITH "
+"λογαριασμό σας, στην ενότητα “Οι άδειές μου”."
+
+#: templates/panel/activation/activation-panel.php:26
+msgid "License expiry date"
+msgstr "Ημερομηνία λήξης άδειας"
+
+#: templates/panel/activation/activation-panel.php:29
+msgid ""
+"If you have renewed your product license key and the expiry date does not "
+"appear up-to-date, please, click on the button <em>Check Expiry Date</em> "
+"below and it will update."
+msgstr ""
+"Εάν έχετε ανανεώσει το κλειδί άδειας χρήσης προϊόντος και η ημερομηνία λήξης "
+"δεν εμφανίζεται ενημερωμένη, παρακαλούμε, κάντε κλικ στο κουμπί <em>Ελέγξτε "
+"την ημερομηνία λήξης</em> παρακάτω και θα ενημερωθεί."
+
+#: templates/panel/activation/activation-panel.php:32
+msgid "Check expiry date"
+msgstr "Ελέγξτε ημερομηνία λήξης"
+
+#: templates/panel/activation/activation-panel.php:46
+msgid "Product to activate"
+msgid_plural "Products to activate"
+msgstr[0] "Προϊόν για ενεργοποίηση"
+msgstr[1] ""
+
+#: templates/panel/activation/activation-panel.php:49
+msgid "Are you having issues with the license activation?"
+msgstr "Αντιμετωπίζετε προβλήματα με την ενεργοποίηση της άδειας;"
+
+#: templates/panel/activation/activation-panel.php:49
+msgctxt ""
+"[Part of]: Are you having issues with the license activation? Read this "
+"article"
+msgid "Read this article"
+msgstr "Διαβάστε το άρθρο"
+
+#: templates/panel/activation/activation-panel.php:63
+msgctxt "Placeholder"
+msgid "Your email on yithemes.com"
+msgstr "Η διεύθυνση ηλεκτρονικού ταχυδρομείου σας στο yithemes.com"
+
+#: templates/panel/activation/activation-panel.php:66
+msgctxt "Placeholder"
+msgid "License Key"
+msgstr "Κλειδί Άδειας Χρήσης Προϊόντος"
+
+#: templates/panel/activation/activation-panel.php:69
+msgid "Activate"
+msgstr "Ενεργοποίηση"
+
+#: templates/panel/activation/activation-panel.php:88
+msgid "Activated"
+msgstr "Ενεργοποιήθηκε"
+
+#: templates/panel/activation/activation-panel.php:94
+#: templates/panel/activation/activation-panel.php:172
+#: templates/panel/activation/activation-panel.php:202
+msgid "Product Name"
+msgstr "Όνομα Προϊόντος"
+
+#: templates/panel/activation/activation-panel.php:96
+#: templates/panel/activation/activation-panel.php:174
+#: templates/panel/activation/activation-panel.php:205
+msgid "Email"
+msgstr "Διεύθυνση ηλεκτρονικού ταχυδρομείου"
+
+#: templates/panel/activation/activation-panel.php:97
+#: templates/panel/activation/activation-panel.php:175
+#: templates/panel/activation/activation-panel.php:206
+msgid "License Key"
+msgstr "Κλειδί Άδειας Χρήσης Προϊόντος"
+
+#: templates/panel/activation/activation-panel.php:100
+#: templates/panel/activation/activation-panel.php:209
+msgid "Expires"
+msgstr "Λήγει"
+
+#: templates/panel/activation/activation-panel.php:103
+msgid "Remaining"
+msgstr "Απομένει"
+
+#: templates/panel/activation/activation-panel.php:105
+msgid "Club Subscription"
+msgstr "Εγγραφή στο Club"
+
+#: templates/panel/activation/activation-panel.php:134
+#, php-format
+msgid "%1s out of %2s"
+msgstr "%1s από %2s"
+
+#: templates/panel/activation/activation-panel.php:150
+msgid "Deactivate"
+msgstr "Απενεργοποίηση"
+
+#: templates/panel/activation/activation-panel.php:155
+#: templates/panel/activation/activation-panel.php:212
+msgid "Renew"
+msgstr "Ανανέωση"
+
+#: templates/panel/activation/activation-panel.php:168
+msgid "Banned"
+msgstr "Αποκλείστηκε"
+
+#: templates/panel/activation/activation-panel.php:198
+msgid "Expired"
+msgstr "Έληξε"
+
+#: templates/panel/activation/activation-panel.php:234
+msgid "Order again"
+msgstr "Επαναλάβετε παραγγελία"
+
+#: templates/panel/activation/activation-panel.php:236
+msgid "Renew license"
+msgstr "Ανανέωση άδειας χρήσης προϊόντος"

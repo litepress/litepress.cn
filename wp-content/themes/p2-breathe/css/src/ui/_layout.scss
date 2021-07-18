@@ -1,0 +1,214 @@
+/**
+ * General Layout
+ */
+
+
+/* =Layout
+----------------------------------------------- */
+
+.site {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 40px 20px;
+	position: relative;
+}
+
+.custom-menu .site {
+	padding-top: 60px;
+
+	@include breakpoint( 'tablet-portrait' ) {
+		padding-top: 20px;
+	}
+
+}
+
+.site-main {
+	position: relative;
+}
+
+.widget-area {
+	float: right;
+	overflow: hidden;
+	width: 25%;
+}
+
+.content-area {
+	float: left;
+	margin: 0;
+	width: 75%;
+	padding-right: 20px;
+}
+
+.no-sidebar {
+
+	.site {
+		max-width: 1000px;
+	}
+
+	.site-main {
+		max-width: 1000px;
+	}
+
+	.content-area {
+		float: none;
+		width: 100%;
+		padding-right: 0;
+	}
+
+}
+
+.site-content {
+	margin: 0;
+}
+
+.site-footer {
+	clear: both;
+	width: 100%;
+	max-width: 1200px;
+	margin: 20px auto 0;
+
+	.site-info {
+		margin: 10px 15px;
+	}
+
+}
+
+@include breakpoint( 'tablet-portrait' ) {
+
+	.content-area {
+		width: 100%;
+		padding-right: 0;
+	}
+
+	#primary-modal {
+		display: none;
+	}
+
+}
+
+
+/**
+ * Hamburger menu
+ */
+
+#secondary {
+	clear: right;
+
+	@include breakpoint( 'tablet-portrait' ) {
+		position: absolute;
+		top: 32px;
+		left: -100%;
+		width: 60%;
+		min-width: 300px;
+		background: $gray-0;
+		z-index: 5;
+		box-shadow: 0 0 20px rgba( 0, 0, 0, 0.2 );
+	}
+
+	ul {
+		list-style-type: none;
+		margin: 0;
+
+		li {
+			padding: 5px 10px 5px 0;
+		}
+
+		ul {
+			margin-left: 1em;
+		}
+
+	}
+
+}
+
+
+@include breakpoint( 'tablet-portrait' ) {
+
+	.site-main {
+		clear: both;
+	}
+
+	#secondary-content {
+		display: none;
+	}
+
+	#secondary {
+		position: fixed;
+		z-index: 10;
+		bottom: 0px;
+		overflow-y: auto;
+		transition: all .25s ease;
+	}
+
+	#secondary-content {
+		display: block;
+		background: $gray-0;
+		padding: 20px;
+	}
+
+	#primary-modal {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	// Sidebar is showing
+	body.responsive-show {
+		position: fixed;
+		top: 32px;
+
+		#secondary {
+			left: 0;
+		}
+
+		#primary-modal {
+			display: block;
+		}
+
+		#o2-expand-editor {
+			display: none;
+		}
+
+	}
+
+	#primary,
+	#secondary {
+		-webkit-backface-visibility: hidden;
+	}
+
+}
+
+@media only screen and ( max-width: 782px ) {
+	#secondary {
+		top: 46px;
+	}
+
+	body.responsive-show {
+		position: fixed;
+		top: 46px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		#secondary {
+			left: 0;
+		}
+	}
+}
+
+@media only screen and ( max-width: 480px ) {
+	// Sidebar is showing
+	body.responsive-show {
+		#secondary {
+			top: 46px;
+		}
+		
+		#wpadminbar {
+			top: -46px;
+		}
+	}
+}
+

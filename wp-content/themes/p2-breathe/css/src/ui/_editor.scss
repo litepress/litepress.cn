@@ -1,0 +1,22 @@
+// CONTROLS & EDITORS
+.o2-app-new-post {
+	h2 {
+		font-family: $sans;
+		padding: 0.8em 1.2em;
+		text-transform: uppercase;
+		color: $gray-0;
+		background: $blue-10;
+	}
+}
+
+#o2-expand-editor {
+	background: $blue-10;
+}
+
+.o2-actions {
+	font-family: $sans;
+}
+
+.o2-save {
+	font-family: $sans;
+}

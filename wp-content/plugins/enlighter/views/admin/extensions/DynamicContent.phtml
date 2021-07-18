@@ -1,0 +1,24 @@
+<?php if (!defined('ENLIGHTER_INIT')) die('DIRECT ACCESS PROHIBITED'); ?>
+
+<!-- jQuery -->
+<div class="postbox enlighter-postbox">
+    <h3 class="hndle"><span><?php _e('Dynamic Content', 'enlighter'); ?></span></h3>
+    <div class="inside enlighter-setting-section">
+
+        <p><?php _e('Support for "load more" buttons. It is required to highlight code sections which are dynamically added to your page via AJAX/XHR!', 'enlighter'); ?></p>
+
+        <h4><?php _e('jQuery AJAX', 'enlighter'); ?></h4>
+
+        <!-- enable ajaxComplete support !-->
+        <?php $this->_settingsUtility->displayCheckbox(
+            __('Dynamic Ajax Content', 'enlighter'),
+            'ext-ajaxcomplete',
+            array(
+                'label' => __('Enable', 'enlighter'),
+                'readmore' => 'https://api.jquery.com/ajaxcomplete/',
+                'description' => __('This options adds a trigger to the ajaxComplete event used by jQuery', 'enlighter')
+            )
+        ); ?>
+
+    </div>
+</div>

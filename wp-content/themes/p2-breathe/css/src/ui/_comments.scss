@@ -1,0 +1,386 @@
+
+.o2-comment {
+	-webkit-transform-style: preserve3d;
+
+	margin: 0.8em 0.8em 0 0;
+	padding: 0.8em 0.8em 0 0.8em;
+
+	@include breakpoint( 'handset-portrait' ){
+		margin-top: 5px!important;
+
+		&#respond{
+			padding: 20px 0px 20px 5px !important;
+			border-left: 0px !important;
+		}
+
+		.o2-comment{
+			border-top-width: 0px !important;
+			border-left: 2px darken( $gray-2, 10% ) solid;
+			padding-left: 4px !important;
+			padding-top: 0;
+			margin-bottom: 20px;
+
+			.o2-comment .o2-comment {
+				border-left: 2px #999 solid;
+
+				.o2-comment {
+					border-left: none;
+				}
+			}
+		}
+
+	}
+
+
+
+	.avatar {
+		display: block;
+		float: left;
+		margin-right: 10px;
+	}
+
+	p {
+		margin-bottom: .8em;
+	}
+
+	hr {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+.o2-comment-header {
+	position: relative;
+}
+
+.o2-comment-awaiting-approval {
+	font-style: italic;
+	color: #ddd;
+}
+
+.o2-display-comments-toggle{
+	font-family: $sans;
+	font-weight: normal;
+	.genericon{
+		position: relative;
+		top: 4px;
+	}
+}
+
+#respond {
+	.o2-timestamp {
+		display: none;
+	}
+
+	.o2-comment-header {
+		padding-bottom: 0;
+	}
+}
+
+
+.o2-comment {
+	border-top: 1px solid rgba( $gray-100, 0.13 );
+	margin: 0;
+
+	.o2-comment-header {
+		padding-bottom: 0.4em;
+		padding-left: 1.6em;
+	}
+
+	.avatar {
+		margin-right: 0;
+		margin-left: 3px;
+		margin-top: 5px;
+	}
+
+	p {
+		margin: 0 0 1.2em 0;
+
+		&:empty{
+			margin-bottom: 0;
+		}
+	}
+}
+
+.o2-post-comments {
+	> .o2-comment:nth-of-type( odd ) {
+		background: transparent;
+	}
+
+	> .o2-comment:nth-of-type( even ) {
+		background: transparent;
+	}
+
+	.o2-comment {
+		padding-right: 0;
+
+		.o2-comment-header {
+			padding-left: 0;
+			padding-right: 1.6em;
+		}
+
+		.comment-content {
+			padding-left: 0;
+			padding-right: 1.6em;
+			margin-left: 3.5em;
+		}
+
+		.o2-editor {
+			padding-left: 0;
+			margin-left: 3.5em;
+			margin-right: 1.6em;
+
+			&.o2-editor-footer {
+				margin-top: -0.8em;
+			}
+		}
+
+		.o2-logged-out-editor {
+			margin-top: 0;
+		}
+
+		.o2-child-comments {
+			padding-left: 1.5em;
+		}
+	}
+
+	/* Override padding for every last child */
+	.o2-comment:last-child {
+		margin-bottom: 0;
+	}
+
+	> .o2-comment {
+		/* Override left padding for top level comments */
+
+
+		/* Make sure we have padding on the last top level comment */
+		&:last-child {
+			padding-bottom: 1.0em;
+		}
+	}
+}
+
+.comment-subscription-form {
+	float: right;
+	font-size: 0.9em;
+	margin: 0 0 0.8em 0 !important;
+
+	@include breakpoint( handset-landscape ) {
+		float: none;
+	}
+}
+
+.o2-comment-form-options-extra {
+	clear: both;
+}
+
+.o2-comment-form-options {
+	margin: auto 0;
+}
+
+.o2-post-comments-collapsed {
+	position: relative;
+	top: -30px;
+	left: 60px;
+
+	/* the following is temporary until the new post-actions ui is universally adopted */
+	/* then this style (and the corresponding override in the post-actions module) should */
+	/* be removed */
+	padding-top: 20px;
+
+	@include breakpoint( handset-portrait ) {
+		left: 20px;
+	}
+
+	a {
+		width: auto;
+		font-size: 12px;
+
+			&:before {
+				font-size: 16px;
+				position: relative;
+				top:3px;
+			}
+		span {
+			font-family: $sans;
+			-webkit-font-smoothing: auto;
+		}
+	}
+}
+
+
+@include breakpoint( handset-landscape ) {
+	.o2-post .entry-header .entry-meta .entry-comment-count {
+		display: block;
+	}
+
+	.in-post,
+	.single {
+		.entry-comment-count {
+			display: none !important;
+		}
+	}
+}
+
+/* COMMENTS */
+
+.comment-likes {
+	font-family: $sans;
+}
+
+.comment-subscription-form {
+	font-family: $sans;
+}
+
+.comment-content a {
+	word-wrap: break-word;
+}
+
+.bypostauthor {
+}
+
+.o2-child-views {
+	.comment-content {
+		margin-left: 45px;
+
+			@include breakpoint( 'handset-portrait' ){
+
+			margin-left: 0;
+
+		}
+	}
+}
+
+#comments {
+	margin: 0 15px;
+
+	@include breakpoint( 'handset-portrait' ){
+
+		margin-left: 0;
+
+	}
+}
+
+.comment-meta {
+	margin-left: 45px;
+
+}
+
+.comment-list article {
+	margin: 0;
+}
+
+.comment-content {
+	margin-left: 65px;
+
+	@include breakpoint( 'handset-portrait' ){
+
+		margin-left: 0;
+
+	}
+
+}
+
+@include  breakpoint( 'handset-portrait' ){
+	.o2-actions.comment-actions {
+		font-size: 30px !important;
+		padding: 0.1em 0.2em !important
+	}
+
+	.o2-child-comments {
+		padding: 0.5em 0 0 0 !important;
+
+
+		.o2-comment{
+			padding-left: 1.5em;
+
+			&:last-of-type{
+				margin-bottom: 0;
+			}
+		}
+
+	}
+
+	.o2-comment-header {
+		padding-right: 0 !important;
+	}
+}
+
+
+
+
+/* COMMENTS */
+.o2-comment-actions{
+
+	overflow: hidden;
+	padding: 0 0 0px 0;
+
+	ul{
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+
+		li{
+			a{
+				font-family: $sans;
+				font-size: 12px;
+				text-decoration: none;
+				color: $gray-50;
+				line-height: 1;
+				width: auto;
+				height: auto;
+
+				&:before{
+					font-family: 'Genericons';
+					position: relative;
+					padding-right: 2px;
+					color: $blue-10;
+					font-size: 16px;
+				}
+
+				&:hover{
+					&:before{
+						color: $orange-25;
+					}
+				}
+
+				span{
+					color: $blue-10;
+					line-height: 1;
+					vertical-align: top;
+				}
+
+				&.o2-comment-reply{
+					padding-right: 10px;
+				}
+
+				&.o2-comment-like{
+
+
+					&.liked{
+
+						&:before{
+							color: $orange-25;
+						}
+					}
+				}
+			}
+
+			&.o2-comment-edit{
+				float: right;
+			}
+		}
+	}
+
+
+}
+
+article.tag-p2-xpost{
+	.comment{
+		.avatar{
+			margin-left: -10px;
+			margin-top: 0;
+
+		}
+	}
+}

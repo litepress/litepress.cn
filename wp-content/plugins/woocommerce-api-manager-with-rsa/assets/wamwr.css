@@ -1,0 +1,41 @@
+a {
+    text-decoration: none;
+}
+
+section.lprsa {
+    padding: 1.5em;
+    margin: 0 0 10px;
+    max-width: 1000px;
+}
+
+section.lprsa li {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: space-around;
+}
+
+section.lprsa li a {
+    margin: 0 10px;
+}
+
+section.lprsa .right {
+    min-width: 131px;
+}
+
+section.lprsa textarea {
+    width: 100%;
+}
+
+section.lprsa aside {
+    width: 70%;
+    margin-right: 10px;
+}
+
+section.lprsa > li > label {
+    min-width: 50px;
+    line-height: 2.1;
+}
+section.lprsa .copy{
+    margin-bottom: 10px;
+}

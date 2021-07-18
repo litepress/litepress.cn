@@ -1,0 +1,679 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Woo Alipay\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-29 01:11+0000\n"
+"PO-Revision-Date: 2020-01-29 13:39+0000\n"
+"Last-Translator: adminobt <support@openb.tech>\n"
+"Language-Team: 简体中文\n"
+"Language: zh-CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+#. %1$s is the URL of the link and %2$s is the currency name
+#: inc/class-wc-alipay.php:232
+#, php-format
+msgid ""
+" Please <a href=\"%1$s\">set the %2$s against the Chinese Yuan exchange "
+"rate</a>."
+msgstr "请在<a href=\"%1$s\">设置 %2$s 兑换人民币的汇率</a>."
+
+#: inc/templates/admin/config-help.php:193
+msgid "(option 1)"
+msgstr "（方式一）"
+
+#: inc/templates/admin/config-help.php:247
+msgid "(option 2)"
+msgstr "（方式二）"
+
+#: inc/templates/admin/config-help.php:307
+msgid "(requires completing option 1 or option 2 above)"
+msgstr "(需要通过上面的方式一或方式二生成了应用密钥)"
+
+#: inc/templates/admin/config-help.php:163
+msgid "1 - Generating keys:"
+msgstr "1 - 生成密钥:"
+
+#: inc/templates/admin/config-help.php:353
+msgid ""
+"2 - Using the application private key and finding the Alipay public key:"
+msgstr "2 - 使用应用私钥和查看支付宝公钥："
+
+#: inc/class-wc-email-alipay-orphan-transaction.php:39
+msgid ""
+"[{site_title}]: Order #{order_number} was not found but an Alipay "
+"transaction was registered"
+msgstr "[{site_title}]: 订单 #{order_number} 没有发现，但支付宝交易已经生成。"
+
+#: inc/templates/admin/config-help.php:58
+msgid ""
+"Activate payment features and configure the app with the gateway information "
+"(see \"Register features, website URL and callback\" below)."
+msgstr ""
+"在功能列表中，点击添加功能，一般添加“电脑网站支付”和“快捷手机wap支付”就可以满足大部分应用场景。（支付网关的配置方式，看本指南的“添加功能、网站URL和回调”一章）"
+
+#. Author of the plugin
+msgid "Alexandre Froger"
+msgstr ""
+
+#: inc/class-wc-alipay.php:230
+msgid "Aliay is enabled, but the store currency is not set to Chinese Yuan."
+msgstr "支付宝已经启用，但系统的货币没有设置为人民币（CNY）。"
+
+#: inc/class-wc-alipay.php:578
+msgid "Alipay"
+msgstr "支付宝"
+
+#: inc/class-wc-alipay.php:586
+msgid "Alipay App ID"
+msgstr "支付宝 App ID"
+
+#: inc/class-wc-alipay.php:31
+msgid "Alipay by Woo Alipay"
+msgstr "支付宝"
+
+#. In Chinese, can simply be translated as 支付宝. Mentionning "China" in English and other languages to make it clear to international customers this is NOT a crossborder payment method.
+#: inc/class-wc-alipay.php:30
+msgid "Alipay China"
+msgstr "支付宝中国商家账号"
+
+#: inc/class-wc-alipay.php:137
+msgid ""
+"Alipay closed the transaction ; the refund needs to be handled by other "
+"means."
+msgstr "支付宝关闭交易；退款需要通过其他方式处理。"
+
+#: inc/class-wc-alipay.php:404
+msgid ""
+"Alipay closed the transaction and the order is no longer valid for payment."
+msgstr "支付宝关闭交易，此订单不能付款。"
+
+#: inc/class-wc-alipay.php:35 inc/class-wc-alipay.php:320
+msgid "Alipay is a simple, secure and fast online payment method."
+msgstr "支付宝是简单、安全和快速的在线付款方式。"
+
+#: inc/class-wc-alipay.php:596
+msgid "Alipay Merchant application private key"
+msgstr "支付宝商家账号应用私钥"
+
+#: inc/class-wc-alipay.php:413
+msgid "Alipay notified it is waiting for payment."
+msgstr "支付宝通知它正在等待付款。"
+
+#: inc/class-wc-alipay.php:389
+msgid ""
+"Alipay notified the payment was successful but the order was already paid "
+"for. Please double check that the payment was recorded properly."
+msgstr "支付宝通知付款成功，但在此之前，订单是已付款状态。请仔细检查付款记录。"
+
+#: inc/templates/admin/config-help.php:24
+msgid "Alipay Open Platform"
+msgstr "支付宝开放平台"
+
+#: inc/class-wc-email-alipay-orphan-transaction.php:12
+msgid "Alipay Orphan Transaction"
+msgstr "支付宝无主交易"
+
+#: inc/class-wc-email-alipay-orphan-transaction.php:13
+msgid ""
+"Alipay Orphan Transaction emails are sent when an Alipay transaction has no "
+"counterpart in WooCommerce and could not be refunded automatically."
+msgstr "支付宝无主email已经发送。"
+
+#: inc/class-wc-alipay.php:386
+msgid "Alipay payment completed"
+msgstr "支付宝付款完成"
+
+#: inc/class-wc-alipay.php:319
+msgid "Alipay payment gateway by Woo Alipay"
+msgstr "支付宝商家支付网关"
+
+#: inc/class-wc-alipay.php:591 inc/templates/admin/config-help.php:180
+msgid "Alipay public key"
+msgstr "支付宝公钥"
+
+#. %1$s: Website name
+#: inc/templates/emails/alipay-orphan-transaction.php:29 
+#: inc/templates/emails/plain/alipay-orphan-transaction.php:28
+#, php-format
+msgid ""
+"Alipay returned a notification of successful payment but the order does not "
+"appear to exist on %1$s."
+msgstr "支付宝返回成功付款通知，但订单不不存在 %1$s."
+
+#: inc/templates/admin/config-help.php:207
+msgid "Alipay tools documentation page"
+msgstr "支付宝工具文档页"
+
+#: inc/templates/admin/config-help.php:176
+msgid "application private key"
+msgstr "应用私钥"
+
+#: inc/templates/admin/config-help.php:172
+msgid "application public key"
+msgstr "应用公钥"
+
+#: inc/class-wc-alipay.php:581
+msgid "Checkout page description"
+msgstr "结账页面描述"
+
+#: inc/class-wc-alipay.php:576
+msgid "Checkout page title"
+msgstr "结账页面显示标题"
+
+#: inc/templates/admin/config-help.php:394
+msgid "Click the \"Save changes\" button."
+msgstr "点击“保存更改”按钮。"
+
+#: inc/templates/admin/config-help.php:348
+msgid ""
+"Click the \"保存设置\" button to register the application public key and "
+"generate the Alipay public key."
+msgstr "点击 \"保存设置\" 按钮，提交应用公钥，并生成支付宝公钥。"
+
+#. %1$s is <a target="_blank" href="[url]">Computer website payment "电脑网站支付"</a>, %2$s is <a target="_blank" href="[url]">Mobile website payment "手机网站支付"</a>
+#: inc/templates/admin/config-help.php:94
+#, php-format
+msgid ""
+"Click the add feature button \"添加功能\" and add the computer website payment "
+"\"电脑网站支付\" and the mobile website payment \"手机网站支付\" features - these "
+"features need to have been activated beforehand (process not describe in "
+"this guide - see the Payment products \"支付产品\" %1$s and %2$s)."
+msgstr ""
+"在功能列表中，点击添加功能，添加“电脑网站支付”和“快捷手机wap支付”。这些功能需要被预先激活(激活方法没有包含在本指南中 - 请直接查看 "
+"\"支付产品\" %1$s 和 %2$s)."
+
+#: inc/templates/admin/config-help.php:330 
+#: inc/templates/admin/config-help.php:373
+msgid "Click the link \"接口加签方式\" > \"设置/查看\" to open the configuration modal."
+msgstr "点击 \"接口加签方式\" > \"设置/查看\"，打开配置页面。"
+
+#: inc/templates/admin/config-help.php:125
+msgid ""
+"Click the setup link \"设置\" (or modify link \"修改\") of the application "
+"gateway \"应用网关\" field."
+msgstr "点击“应用网关”后的“设置”链接（或者“修改”链接）"
+
+#: inc/templates/admin/config-help.php:140
+msgid ""
+"Click the setup link \"设置\" (or modify link \"修改\") of the authorization "
+"callback address \"授权回调地址\" field."
+msgstr "点击“授权回调地址”后面的“设置”或“修改”链接。"
+
+#: inc/templates/admin/config-help.php:98
+msgid "Computer website payment \"电脑网站支付\""
+msgstr "电脑网站支付"
+
+#: inc/templates/admin/config-help.php:13
+msgid "Configuration process overview:"
+msgstr "设置指南："
+
+#: inc/templates/admin/gateway-test.php:26
+msgid ""
+"Connexion failed: please make sure to double check the configuration. If "
+"necessary, try \"Enable logging\" and check the log file for more "
+"information."
+msgstr "连接失败：请确保仔细检查配置。 如有必要，请尝试“启用调试日志”并检查日志文件以获取更多信息。"
+
+#: inc/templates/admin/gateway-test.php:23
+msgid "Connexion successful"
+msgstr "连接成功"
+
+#: inc/templates/redirected-pay.php:17
+msgid "Contacting Alipay..."
+msgstr "连接支付宝..."
+
+#. %1$s is <code>alipay_app_private_key.txt</code>, %2$s is <strong>DO NOT SHARE THIS VALUE WITH ANYONE</strong>
+#: inc/templates/admin/config-help.php:228
+#, php-format
+msgid ""
+"Copy the application private key displayed in the \"应用私钥\" text area in a "
+"text file on your computer (referred to as %1$s below) - %2$s."
+msgstr ""
+"复制 \"应用私钥\" 文本区的内容到你的电脑文件 (推荐命名为 %1$s below) "
+"，或直接点击“打开密钥文件路径”按钮，查看系统自动为你保存的文件。- %2$s."
+
+#. %1$s is <code>alipay_app_public_key.txt</code>
+#: inc/templates/admin/config-help.php:219
+#, php-format
+msgid ""
+"Copy the application public key displayed in the \"应用公钥\" text area in a "
+"text file on your computer (referred to as %1$s below)."
+msgstr ""
+"复制 \"应用公钥\" 文本区的内容到你的电脑文件 (推荐命名为 %1$s ).或直接点击“打开密钥文件路径”按钮，查看系统自动为你保存的文件。"
+
+#: inc/class-wc-email-alipay-orphan-transaction.php:121 
+#: inc/class-wc-email-alipay-orphan-transaction.php:125
+msgid "Default value: "
+msgstr "默认值："
+
+#: inc/templates/admin/config-help.php:232 
+#: inc/templates/admin/config-help.php:271
+msgid "DO NOT SHARE THIS VALUE WITH ANYONE"
+msgstr "不要分享这些信息给任何人"
+
+#: inc/class-wc-alipay.php:572
+msgid "Enable Alipay"
+msgstr "启用支付宝"
+
+#: inc/class-wc-alipay.php:604
+msgid "Enable sandbox mode"
+msgstr "启用沙盒模式"
+
+#: inc/class-wc-alipay.php:570
+msgid "Enable/Disable"
+msgstr "启用/关闭"
+
+#: inc/class-wc-alipay.php:627
+msgid "Exchange Rate"
+msgstr "汇率"
+
+#: inc/templates/admin/config-help.php:64
+msgid "Fill in the configuration fields below."
+msgstr "填写支付宝插件的设置字段。"
+
+#: inc/templates/admin/config-help.php:9
+msgid "Gateway configuration help"
+msgstr "支付宝设置帮助（非常重要，请仔细阅读）"
+
+#. %1$s is <code>openssl</code>, %2$s is <strong>(option 2)</strong>
+#: inc/templates/admin/config-help.php:243
+#, php-format
+msgid ""
+"Generate the application keys with %1$s command line in a terminal %2$s:"
+msgstr "你还可以用命令行在终端中通过 %1$s 生成应用密钥  %2$s:"
+
+#. %1$s is <strong>(option 1)</strong>
+#: inc/templates/admin/config-help.php:190
+#, php-format
+msgid ""
+"Generate the application keys with the Alipay Open Platform Development "
+"Assistant application %1$s:"
+msgstr "通过支付宝开放平台的密钥工具生成密钥（方式一）："
+
+#. %1$s is <a target="_blank" href="[url]">Alipay tools documentation page</a>
+#: inc/templates/admin/config-help.php:203
+#, php-format
+msgid ""
+"Go to the %1$s and download the Alipay Open Platform Development Assistant "
+"application for the operating system of your choice (Windows or MacOS)."
+msgstr "前往 %1$s 下载支付宝RSA密钥工具 (支持Windows 和 MacOS操作系统)."
+
+#. %1$s is <a target="_blank" href="[url]">the Alipay Open Platform</a>
+#: inc/templates/admin/config-help.php:20
+#, php-format
+msgid "Go to the %1$s and log in."
+msgstr "前往 %1$s ，并登陆。"
+
+#. %1$s is <code>url with placeholder</code>, %2$s is <code>placeholder</code>
+#: inc/templates/admin/config-help.php:112 
+#: inc/templates/admin/config-help.php:317 
+#: inc/templates/admin/config-help.php:360
+#, php-format
+msgid ""
+"Go to the app information page - accessible via %1$s (replace %2$s with the "
+"App ID to be used by Woo Alipay)."
+msgstr "进入“应用信息”页面，你可以从这个URL %1$s 进入 (其中的 %2$s 替换为你的APPID)."
+
+#. %1$s is <code>url with placeholder</code>, %2$s is <code>placeholder</code>
+#: inc/templates/admin/config-help.php:78
+#, php-format
+msgid ""
+"Go to the app overview page - accessible via %1$s (replace %2$s with the App "
+"ID to be used by Woo Alipay)."
+msgstr ""
+"前往支付宝开放平台，在“我的应用”页面，先点击“网页&移动应用”菜单，你能看到你的应用，点击你创建的应用，你能看到相关信息，在左侧信息栏，你能看到APPID，这个数字就是你的APPID。此时，你的URL地址是"
+" https://openhome.alipay.com/platform/appManage.htm#/app/[[YOUR_APP_ID]]"
+"/appInfo URL中的 [[YOUR_APP_ID]] 就是你的APPID。"
+
+#. Author URI of the plugin
+msgid "https://froger.me"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/froger-me/woo-alipay"
+msgstr ""
+
+#. %1$s is <code>url</code>
+#: inc/templates/admin/config-help.php:33
+#, php-format
+msgid ""
+"If necessary, create a new app by following the options under the create "
+"application \"创建应用\" menu: website & mobile application \"网页&移动应用\" > "
+"payment access \"支付接入\". The application type \"应用类型\" should be web page "
+"application \"网页应用\" and the website URL \"网址url\" should be %1$s. Creating "
+"an app will require one or two working day(s) audit of your website content "
+"by Alipay."
+msgstr ""
+"在“我的应用”页面，先点击“网页&移动应用”菜单，然后将鼠标移至右上角的“创建应用”按钮，在弹出的下拉菜单中选择你需要创建的应用类型，对于本插件的用户，一般会选择“网页&移动应用”中的“支付接入”。在“支付接入”页面，按要求填写相关信息，其中“应用类型”选择“网页应用”，“网址url”填写"
+" %1$s 。然后点击“确认创建”按钮，支付宝需要1～2个工作日审批，请留意你支付宝账号审批通知（email或短信）。"
+
+#: inc/templates/admin/config-help.php:61
+msgid ""
+"If necessary, generate the application public and private keys, register the "
+"application public key in the Alipay Open Platform, and generate the Alipay "
+"public key (see \"Key management\" below)."
+msgstr "你还需要生成支付宝应用公钥和私钥，添加应用公钥到支付宝开放平台，生成支付宝公钥，请看本指南“密钥管理”一章。"
+
+#: inc/templates/admin/config-help.php:376
+msgid ""
+"If necessary, use the associated Alipay account's phone number or password "
+"to authenticate."
+msgstr "使用绑定的手机完成身份认证。"
+
+#. %1$s is <code>url</code>
+#: inc/templates/admin/config-help.php:131
+#, php-format
+msgid ""
+"In the application gateway \"应用网关\" modal, enter %1$s and click the confirm "
+"\"确定\" button."
+msgstr "在打开的应用网关页面的输入框，输入%1$s ，然后点击“确定”按钮。"
+
+#. %1$s is <code>scheme</code>, %2$s is <code>url</code>
+#: inc/templates/admin/config-help.php:146
+#, php-format
+msgid ""
+"In the authorization callback address \"授权回调地址\" modal, enter %1$s in the "
+"callback address type \"回调地址类型\" field, %2$s in the callback address "
+"\"回调地址\" field, and leave the verify domain only \"只验证域名\" checkbox "
+"unchecked for added security, then click the confirm \"确定\" button."
+msgstr ""
+"在打开的 "
+"\"授权回调地址\"设置页面，\"回调地址类型\"输入%1$s，\"回调地址\"输入%2$s，并且选中\"只验证域名\"选项，然后点击“确定”按钮。"
+
+#: inc/templates/admin/config-help.php:379
+msgid ""
+"In the signature completed configuration form (加签管理 | 2 - 加签配置完成), copy the "
+"Alipay public key displayed under \"支付宝公钥\"."
+msgstr "在配置表单 (加签管理 | 2 - 加签配置完成)中， 复制 \"支付宝公钥\"文本区中显示的内容。"
+
+#: inc/templates/admin/config-help.php:336
+msgid ""
+"In the signature key configuration form (加签管理 | 1 - 加签内容配置), select the "
+"public key option \"公钥\"."
+msgstr "在配置表单 (加签管理 | 1 - 加签内容配置), 选择 \"应用公钥\"."
+
+#. Description of the plugin
+msgid "Integrate Woocommerce with Alipay (Mainland China)."
+msgstr "集成支付宝"
+
+#: inc/class-wc-alipay.php:416
+msgid "Invalid Alipay response: "
+msgstr "无效的支付宝响应："
+
+#: inc/class-wc-alipay.php:128
+msgid "Invalid order"
+msgstr "无效订单"
+
+#: inc/templates/admin/config-help.php:160
+msgid "Key management"
+msgstr "密钥管理"
+
+#. %s: URL
+#: inc/class-wc-alipay.php:615
+#, php-format
+msgid ""
+"Log Alipay events inside %s Note: this may log personal information. We "
+"recommend using this for debugging purposes only and deleting the logs when "
+"finished."
+msgstr "支付宝时间日志文件在 %s 备注: 这个文件可能会包含个人信息，我们强烈建议你在调试后删除日志文件。"
+
+#: inc/templates/admin/config-help.php:103
+msgid "Mobile website payment \"手机网站支付\""
+msgstr "手机网站支付"
+
+#. %1$s is <code>url with placeholder</code>, %2$s is <code>placeholder</code>
+#: inc/templates/admin/config-help.php:45
+#, php-format
+msgid ""
+"Once the app is created, go to the app information page - accessible "
+"directly via %1$s (replace %2$s with the App ID to be used by Woo Alipay)."
+msgstr ""
+"当应用的支付接入申请被批准后，前往支付宝开放平台，在“我的应用”页面，先点击“网页&移动应用”菜单，你能看到你的应用，点击你创建的应用，你能看到相关信息，在左侧信息栏，你能看到APPID，这个数字就是你的APPID。此时，你的URL地址是"
+" %1$s URL中的 %2$s 就是你的APPID。"
+
+#: inc/templates/admin/config-help.php:296
+msgid ""
+"Open both files with a text editor, remove all the header, footer, space and "
+"carriage return characters to have each key as a single-line long string, "
+"and save the files."
+msgstr "使用文本编辑器打开这两个文件，删除所有的页眉，页脚，空格和回车符，成为单行长字符串，然后保存文件。"
+
+#: inc/class-wc-email-alipay-orphan-transaction.php:44
+msgid "Orphan order: #{order_number} - Alipay transaction: #{transaction_id}"
+msgstr "无主订单: #{order_number} - 支付宝交易号: #{transaction_id}"
+
+#: inc/templates/admin/config-help.php:382
+msgid "Paste the Alipay public key in the \"Alipay public key\" field below."
+msgstr "粘贴你复制的支付宝公钥到下面支付宝配置字段中的“支付宝公钥”。"
+
+#. %1$s is <code>alipay_app_private_key.txt</code>
+#: inc/templates/admin/config-help.php:388
+#, php-format
+msgid ""
+"Paste the content of the previously saved file %1$s in the \"Alipay merchant "
+"application private key\" field below."
+msgstr "粘贴你前面保存的文件 %1$s 中的内容到下面支付宝配置区的\"支付宝商家账号应用私钥\" 输入框。"
+
+#. %1$s is <code>alipay_app_public_key.txt</code>
+#: inc/templates/admin/config-help.php:342
+#, php-format
+msgid ""
+"Paste the content of the previously saved file %1$s in the \"填写公钥字符\" text "
+"area."
+msgstr "在\"填写公钥字符\" 文本区，粘贴前面所保存的%1$s 文件中的内容。"
+
+#: inc/class-wc-alipay.php:583
+msgid ""
+"Pay via Alipay (Mainland China, incl. Hong Kong and Macau). If you are "
+"unable to pay with an Mainland China Alipay account, please select a "
+"different payment method."
+msgstr "通过支付宝付款（中国大陆、香港、澳门支付宝用户）。如果你没有中国（含港澳）的支付宝账号，请选择其他支付方式。"
+
+#: inc/class-wc-alipay.php:40
+msgid "Pay with Alipay"
+msgstr "通过支付宝付款"
+
+#: inc/class-wc-alipay.php:174
+msgid ""
+"Refund failed - incorrect refund amount (must be more than 0 and less than "
+"the total amount of the order)."
+msgstr "退款失败 - 不正确的退款金额 (必须大于0 和 以及不能超过订单总额)."
+
+#. %1$s: Refund amount, %2$s: Payment method title, %3$s: Refund ID
+#: inc/class-wc-alipay.php:187
+#, php-format
+msgid "Refunded %1$s via %2$s - Refund ID: %3$s"
+msgstr "退款 %1$s 通过 %2$s - 退款 ID: %3$s"
+
+#: inc/templates/admin/config-help.php:68
+msgid "Register features, website URL and callback"
+msgstr "添加功能、网站URL和回调"
+
+#. %1$s is <strong>(requires completing option 1 or option 2 above)</strong>
+#: inc/templates/admin/config-help.php:304
+#, php-format
+msgid ""
+"Register the application public key in Alipay Open Platform and generate the "
+"Alipay public key %1$s:"
+msgstr "前往支付宝开发平台提交应用公钥，并生成支付宝公钥 %1$s:"
+
+#. %s: URL
+#: inc/class-wc-alipay.php:607
+#, php-format
+msgid "Run Alipay in sandbox mode, with the settings found in %1$s."
+msgstr "通过沙盒模式运行支付宝, 相关设置请访问 %1$s."
+
+#: inc/class-wc-alipay.php:602
+msgid "Sandbox"
+msgstr "沙盒模式"
+
+#: inc/templates/emails/alipay-orphan-transaction.php:49
+msgid "See the following basic information:"
+msgstr "请看下面的基本信息："
+
+#: inc/templates/admin/gateway-test.php:20
+msgid "Send a message to Alipay to check if the gateway is properly set up."
+msgstr "发送信息给支付宝，测试支付网关是否设置正确。"
+
+#. %1$s is the currency
+#: inc/class-wc-alipay.php:622
+#, php-format
+msgid ""
+"Set the %1$s against Chinese Yuan exchange rate <br/>(1 %1$s = [field value] "
+"Chinese Yuan)"
+msgstr "设置 %1$s 对人民币汇率 <br/>(1 %1$s = [field value] 人民币)"
+
+#: inc/class-woo-alipay.php:146
+msgid "Settings"
+msgstr "设置"
+
+#: inc/templates/admin/gateway-test.php:8
+msgid "Test Connection"
+msgstr "连接测试"
+
+#: inc/templates/admin/gateway-test.php:12
+msgid "Test Now"
+msgstr "现在测试"
+
+#: inc/class-wc-alipay.php:593
+msgid ""
+"The Alipay public key generated in the Alipay Open Platform (\"支付宝公钥\")."
+msgstr ""
+"通过支付宝开放平台生成支付宝公钥，你可以在这里查看 https://openhome.alipay.com/platform/keyManage.htm?"
+"keyType=partner ，进入页面后，点击“查看开发者公钥”。"
+
+#: inc/class-wc-alipay.php:588
+msgid "The App ID found in Alipay Open Platform"
+msgstr ""
+"支付宝商家账号APPID，你可以在这个页面查看此信息 https://openhome.alipay.com/platform/keyManage.htm"
+
+#. %1$s: Log path
+#: inc/templates/emails/alipay-orphan-transaction.php:69 
+#: inc/templates/emails/plain/alipay-orphan-transaction.php:55
+#, php-format
+msgid ""
+"The complete error data can be found in the log files on the server at the "
+"following location: %1$s"
+msgstr "你可以在：%1$s 的日志文件中，找到完整的错误数据。"
+
+#: inc/class-wc-alipay.php:598
+msgid ""
+"The private key generated with the provided Alipay tool application or the "
+"<code>openssl</code> command line.<br/>\n"
+"This key is secret and is not recorded in Alipay Open Platform - <strong>DO "
+"NOT SHARE THIS VALUE WITH ANYONE</strong>."
+msgstr ""
+"这个应用私钥请参考设置指南的说明通过支付宝开放平台助手工具或者<code>openssl</code> 命令行工具生成。<br/>"
+"这个应用私钥不会保存在支付宝开放平台，请自己保存好。- <strong>不要把它分享给任何人</strong>.\n"
+
+#: inc/templates/admin/config-help.php:71
+msgid ""
+"To communicate with the payment gateway, Alipay needs some features "
+"activated, to know your website URL, and to be aware of the WooCommerce "
+"gateway callback endpoint."
+msgstr "你需要在支付宝后台添加一些功能，设置你的网站URL，并且设置回调地址。"
+
+#. %1$s is <strong>application public key</strong>, %2$s is <strong>application private key</strong>, %3$s is <strong>Alipay public key</strong>
+#: inc/templates/admin/config-help.php:169
+#, php-format
+msgid ""
+"To complete the payment gateway configuration, you need to generate an %1$s, "
+"an %2$s and an %3$s."
+msgstr "为了让支付宝正常工作, 你需要生成一个 %1$s, 一个 %2$s ，一个 %3$s."
+
+#: inc/templates/admin/config-help.php:7
+msgid "Toggle panel: Gateway configuration help"
+msgstr "切换面板：支付宝网关配置帮助"
+
+#: inc/class-wc-alipay.php:141
+msgid "transaction not found."
+msgstr "交易没有发现。"
+
+#: inc/class-woo-alipay.php:158
+msgid "Transaction:"
+msgstr "交易："
+
+#. %1$s is <code>genrsa -out alipay_app_private_key.txt 2048</code>, %2$s is <code>alipay_app_private_key.txt</code>, %3$s is <strong>DO NOT SHARE THIS VALUE WITH ANYONE</strong>
+#: inc/templates/admin/config-help.php:266
+#, php-format
+msgid ""
+"Type %1$s to generate the application private key file (referred to as %2$s "
+"below) - %3$s."
+msgstr "输入 %1$s 生成应用私钥文件 (命名为 %2$s) - %3$s."
+
+#. %1$s is <code>rsa -in alipay_app_private_key.txt -pubout -out alipay_app_public_key.txt</code>, %2$s is <code>alipay_app_public_key.txt</code>
+#: inc/templates/admin/config-help.php:280
+#, php-format
+msgid ""
+"Type %1$s to generate the application public key file (referred to as %2$s "
+"below)."
+msgstr "输入 %1$s 生成应用公钥文件 (命名为 %2$s)."
+
+#. %1$s is <code>openssl</code>
+#: inc/templates/admin/config-help.php:257
+#, php-format
+msgid "Type %1$s to open the OpenSSL command line tool."
+msgstr "输入 %1$s 打开 OpenSSL 命令行工具."
+
+#. %1$s is <code>openssl</code>
+#: inc/templates/admin/config-help.php:290
+#, php-format
+msgid "Type %1$s to quit the command line tool."
+msgstr "输入 %1$s 退出命令行工具。"
+
+#: inc/templates/admin/gateway-test.php:29
+msgid "Unexpected error - please reload the page and try again."
+msgstr "发生意外错误-请重新加载页面，然后重试。"
+
+#: inc/templates/admin/config-help.php:333
+msgid "Use the associated phone number or password to authenticate."
+msgstr "使用绑定的手机完成身份认证。"
+
+#: inc/templates/admin/config-help.php:213
+msgid ""
+"Within the Alipay Open Platform Development Assistant application, in the "
+"\"生成密钥\" section (default screen when opening the Assistant), select \"UTF-"
+"8\" and \"PKCS1非Java使用\" options and click the \"生成密钥\" button to populate "
+"the text areas."
+msgstr ""
+"运行“支付宝开放平台开发助手”（密钥工具）, 点击左侧菜单中的\"生成密钥\" (大多数情况这是该应用的默认界面), 选择\"RSA2\" 和 "
+"\"PKCS1非Java使用\" 选项，然后点击  \"生成密钥\" 按钮 ，在“应用密钥”文本区生成“应用密钥”。"
+
+#. Name of the plugin
+msgid "Woo Alipay"
+msgstr "支付宝付款"
+
+#: inc/templates/emails/alipay-orphan-transaction.php:38 
+#: inc/templates/emails/plain/alipay-orphan-transaction.php:34
+msgid ""
+"Woo Alipay attempted to automatically refund the order but encountered an "
+"error."
+msgstr "支付宝尝试自动退款，但遇到错误。"
+
+#: inc/templates/emails/alipay-orphan-transaction.php:41 
+#: inc/templates/emails/plain/alipay-orphan-transaction.php:36
+msgid ""
+"Woo Alipay could not automatically refund the order because Alipay closed "
+"the transaction."
+msgstr "支付宝不能为此订单自动退款，因为支付宝关闭此交易。"
+
+#: inc/class-wc-alipay.php:441
+msgid "Woo Alipay error: WooCommerce Order not found."
+msgstr "支付宝错误：订单不存在。"
+
+#: inc/templates/emails/plain/alipay-orphan-transaction.php:40
+msgid ""
+"You may need to double check the Alipay transactions in the merchant "
+"platform - see the following basic information:"
+msgstr "你需要在支付宝商家平台仔细检查支付宝交易 - 请看下面的基本信息："
+
+#: inc/class-wc-email-alipay-orphan-transaction.php:104
+msgid ""
+"You may need to double check the Alipay transactions in the merchant "
+"platform and take care of refunds by other means if necessary."
+msgstr "你需要在支付宝商家账号仔细检查支付宝交易，如有必要，请通过其他方式退款。"

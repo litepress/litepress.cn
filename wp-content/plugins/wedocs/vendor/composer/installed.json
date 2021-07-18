@@ -1,0 +1,92 @@
+[
+    {
+        "name": "appsero/client",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Appsero/client.git",
+            "reference": "b313bf878a010a0892496ab3844ec3dddc5a07ac"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Appsero/client/zipball/b313bf878a010a0892496ab3844ec3dddc5a07ac",
+            "reference": "b313bf878a010a0892496ab3844ec3dddc5a07ac",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "time": "2020-05-29T08:26:48+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Appsero\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Tareq Hasan",
+                "email": "tareq@appsero.com"
+            }
+        ],
+        "description": "Appsero Client",
+        "keywords": [
+            "analytics",
+            "plugin",
+            "theme",
+            "wordpress"
+        ]
+    },
+    {
+        "name": "tareq1988/wordpress-settings-api-class",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/tareq1988/wordpress-settings-api-class.git",
+            "reference": "243544eeb83be10e629dd89eb487b96e4170ed57"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/tareq1988/wordpress-settings-api-class/zipball/243544eeb83be10e629dd89eb487b96e4170ed57",
+            "reference": "243544eeb83be10e629dd89eb487b96e4170ed57",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.4"
+        },
+        "time": "2018-05-01T19:33:47+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPLv2"
+        ],
+        "authors": [
+            {
+                "name": "Tareq Hasan",
+                "email": "tareq@wedevs.com",
+                "homepage": "http://tareq.wedevs.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "WordPress settings API Abstraction Class",
+        "homepage": "https://github.com/tareq1988/wordpress-settings-api-class",
+        "keywords": [
+            "settings-api",
+            "wordpress",
+            "wp"
+        ]
+    }
+]

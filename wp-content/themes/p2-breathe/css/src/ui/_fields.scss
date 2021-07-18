@@ -1,0 +1,20 @@
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="search"],
+textarea {
+	color: $gray-90;
+	border: 1px solid $gray-10;
+	padding: 5px;
+
+	&:focus {
+		color: $gray-90;
+	}
+}
+
+textarea {
+	overflow: auto; /* Removes default vertical scrollbar in IE6/7/8/9 */
+	vertical-align: top; /* Improves readability and alignment in all browsers */
+	width: 98%;
+}

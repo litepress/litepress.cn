@@ -1,0 +1,655 @@
+*** API Manager Changelog ***
+
+REQUIRED: WooCommerce 3.4.
+REQUIRED: PHP 7.0.
+REQUIRED: WooCommerce Subscriptions 2.3, if it is installed and active.
+
+2021.04.27 - version 2.3.10
+ * Fix: The WooCommerce Subscription product type API Resources refunded quantity was not incremented, and acitvations purchased were not decremented, when the product line item was refunded on the Order screen after recent WooCommerce Subscriptions update.
+
+2020.12.23 - version 2.3.9
+ * Tweak: Confirm Amazon S3 constants are set in wp-config.php, or WooCommerce > Settings > API Manager > Amazon S3 settings are set, before modifying Amazon S3 product file URL for secure Amazon S3 access.
+ * Fix: SmartCache was not deleting Information or Update API caches as expected when API Key was deactivated.
+
+2020.12.15 - version 2.3.8
+ * Tweak: Clear WC Product cache after Product meta data saved.
+
+2020.12.15 - version 2.3.7
+ * Tweak: Added new hook to save Product Variable variations meta data.
+
+2020.12.15 - version 2.3.6
+ * Tweak: Software Title (string) is no longer displayed on Product edit screen, but still works with old clients. A Product ID (integer) will be required in an upcoming version, so make sure all clients are using a Product ID (integer), not a Software Title (string).
+ * Tweak: In Variable product variations, moved "API Access Expires:" form field so it is only visible if the "Set API options for this variable product only" checkbox is selected.
+
+2020.11.18 - version 2.3.5
+ * Fix: get_endpoint_title() warning.
+
+2020.9.12 - version 2.3.4
+ * Tweak: Clear API cache for single activation deleted in Admin dashboard and My Account dashboard.
+ * Tweak: Removed get_magic_quotes_runtime() check, and set_magic_quotes_runtime() as it was removed in PHP version 7.0.
+
+2020.8.18 - version 2.3.3
+ * Compatibility: Bump version to display compatibility with WooCommerce 4.4 and WordPress 5.5.
+
+2020.05.27 - version 2.3.2
+ * Tweak: API Status requests are now uniquely cached, with individual expire times, if the Instance ID is sent in the request.
+ * Tweak: Auto log SmartCache errors.
+ * Add: Added log_error() method to WC_AM_Log() class.
+ * Add: Added log_info() method to WC_AM_Log() class.
+
+2020.04.05 - version 2.3.1
+ * Fix: URL expire time for local downloads was calculated incorrectly.
+ * Fix: Array to string conversion notice in SmartCache.
+ * Tweak: Set WooCommerce_API_Manager class variables to private. Variable values accessible with getters.
+ * Constants added:
+    - WC_AM_VERSION
+    - WC_AM_WC_MIN_REQUIRED_VERSION
+    - WC_AM_REQUIRED_PHP_VERSION
+    - WC_AM_WC_SUBS_MIN_REQUIRED_VERSION
+
+2020.03.23 - version 2.2.12
+ * Fix: When more than one WooCommerce Subscription product was purchased in an order, only one API Resource was created for one WooCommerce Subscription product, rather than one API Resource for each WooCommerce Subscription product.
+
+2020.03.23 - version 2.2.11
+* Fix: If Parent Product ID does not match the Product _api_resource_product_id, then update _api_resource_product_id. Issue occurs when duplicating/cloning a product. Update is done automatically when product edit screen is displayed.
+
+2020.03.20 - version 2.2.10
+ * Tweak: Tested up to WooCommerce 4.0.1
+
+2020.03.17 - version 2.2.9
+ * Tweak: Tested up to WooCommerce 4.0
+
+2020.02.22 - version 2.2.8
+ * Fix: Refresh API and database SmartCache when WooCommerce Subscription switches subscription status.
+
+2020.01.02 - version 2.2.7
+ * Tweak: Changed Product edit > API tab > Version Required and Version Test Up To description text to be less specific to WordPress since it applies to any platform or framework the software requires.
+ * Fix: User database upgrade routine used database prefix, which broke the implementation on Multisite installations.
+ * Fix: API error response, "No API resources exist ..." did not return the localized message string to sprintf.
+
+2019.12.01 - version 2.2.6
+ * Fix: Escaped error HTML for URL, so it properly displays link.
+
+2019.11.29 - version 2.2.5
+ * Tweak: Removed WP in language such as WP Version Required, since the API Manager will work with any software or service, including WP plugins and themes.
+
+2019.10.01 - version 2.2.4
+ * Tweak: Refresh cache when Order screen > API Resources meta box > Activation Limit field updated.
+
+2019.09.07 - version 2.2.3
+ * Tweak: Delete API Key activation if no matching API Resource exists when API functions status(), information(), or update() are queried and and Instance ID is sent.
+
+2019.09.06 - version 2.2.2
+ * Tweak: If an API Key has been activated successfully, but it no longer has authorization to access the API Resource, and a software update is requested, the API Key activation will be deleted if possible, the error will be logged if enabled, and an error message will be sent to the customer, otherwise the error will be logged if enabled, and an error message will be sent to the customer on how to correct the API Key activation issue.
+
+2019.09.03 - version 2.2.1
+ * Tweak: Lowered API functions status(), information(), and update() cache expiration to 1 hour.
+ * Fix: Warning - Undefined index line 1261 in woocommerce-api-manager/includes/wc-am-product-admin.php.
+
+2019.09.02 - version 2.2.0
+ * Enhancement: Introduced SmartCache.
+ * Enhancement: SmartCache enabled by default.
+ * Enhancement: Added API product specific page cache for pages served by the API to display the more information tabs doc for plugins on plugin update screen.
+ * Enhancement: Refresh API product specific page cache when product edited, trashed, or deleted.
+ * Enhancement: Introduced Unlimited Activations for Products.
+ * Enhancement: Added checkbox on Product edit > API tab. When enabled, Unlimited Activations will override all previous, current, and next product purchase activation limits.
+ * Enhancement: Added 'unlimited_activations' return value to the API functions, activate(), deactivate(), and status(). See API docs for more information.
+ * Enhancement: Added 'wc_api_manager_unlimited_activation_limit' filter to allow third party plugins to change default Unlimited Activation Limit.
+ * Enhancement: Default Unlimited Activation Limit set to 100000, because all resources are finite.
+ * Tweak: Do not send WooCommerce Subscription order email if status is cancelled, expired, trash, or switched.
+ * Tweak: Update action hook from 'woocommerce_settings_tabs_' to 'woocommerce_settings_'. 'woocommerce_settings_tabs_' will be removed in WooCommerce version 4.0.
+
+2019.08.17 - version 2.1.7
+ * Enhancement: Added 'wc_api_manager_status_success' action hook.
+ * Enhancement: Refresh Product specific cached data upon API Key Activation or Deactivation.
+ * Enhancement: Refresh Order specific cached data for a specific Product upon API Key deletion from the Order screen > API Resource Activations metabox.
+ * Enhancement: Refresh Order specific cached data when specific order changes are made.
+ * Tweak: Expanded API activate(), deactivate(), and update() hook arguments.
+
+2019.08.14 - version 2.1.6
+ * Changelog update.
+
+2019.08.13 - version 2.1.5
+ * Enhancement: Added Link to API Manager settings screen on WooCommerce > Status > API Manager section if Amazon S3 region has no value.
+ * Enhancement: Added Product ID section Link, represented by Dashicon, to product in Order screen > API Resources metabox.
+ * Enhancement: Added Product ID section Link, represented by Dashicon, to product in Order screen > API Resource Activations metabox.
+ * Enhancement: Added tooltip to display if order has API Key activations on WooCommerce Orders admin screen contains an API Product column.
+ * Tweak: Replaced 'edit' text Link with Link represented by Dashicon on Product edit > API tab, and Product eidt > Variations > variation > API section.
+ * Tweak: Reformatted WooCommmerce > Orders > API Resource Activations metabox for proper display.
+ * Tweak: Do not display Software Title on Product edit > API tab, or Variable > variation API Manager section, if field has no value.
+ * Fix: PHP warning if timestamp parameter for get_human_time_diff() was a string rather than an integer.
+ * Fix: Display errors on WooCommerce > Status > API Manager section.
+
+2019.08.02 - version 2.1.4
+ * Enhancement: Added action hooks to the API update() method:
+    - wc_api_manager_update_product_id_not_found_error
+    - wc_api_manager_update_non_authenticated_cached_success
+    - wc_api_manager_update_authenticated_cached_success
+ * Tweak: Changed order_time_to_epoch_time_stamp() to get_order_time_to_epoch_time_stamp();
+ * Fix: Modified order_time_to_epoch_time_stamp() to try get_post_meta() before getting order object, to get order creation date, as order object is bloated with too much data when looping over large collection of order IDs. This caused data update to fail silently with memory exhaustion on large data sets.
+
+2019.07.31 - version 2.1.3
+ * Enhancement: Added action hook to the API update() method:
+    - wc_api_manager_update_success
+ * Tweak: Delete all activations when the customer's Master API Key is changed. This includes activations created by Product Order API Key and Associated API Key, since both are granted limited privileges by the Master API Key.
+ * Fix: WooCommerce Orders admin screen contains an API Product column alignment.
+ * Fix: Fatal error when status.php rendered without WooCommerce Subscriptions active.
+ * Fix: Calling get_all_order_ids() for each Product ID in data update caused memory exhaustion that was not logged or displayed, but presented as a silent failure to complete, although it had been completed.
+ * Fix: PHP Warning: trim() expects parameter 1 to be string, array given in /var/www/html/wp-content/plugins/woocommerce-api-manager/includes/wc-am-product-admin.php on line 1203.
+
+2019.07.26 - version 2.1.2
+ * Enhancement: Added a column to the WooCommerce Orders admin screen to indicate whether an order contains an API Product.
+ * Enhancement: Added order screen meta box message "Contains no API Product," for orders that contain no API Products.
+ * Fix: Reverted back to original timestamp option in get_current_time_stamp(), as change to timestamp option returned improper local time offset.
+
+2019.07.25 - version 2.1.1
+ * Fix: Fix 'request' to 'wc_am_action' array key translation in API.
+
+2019.07.25 - version 2.1
+ * Enhancement: Amazon S3 URL format updated to AWS Signature Version 4, which requires a region to be chosen.
+ * Enhancement: Changed 'request' to 'wc_am_action' to avoid some security solutions from blocking API 'request' queries. The use of 'request' will remain valid for backward compatibility.
+ * Enhancement: Added WC_AM_Admin_System_Status class to render API Manager data on WooCommerce > Status screen.
+ * Enhancement: Added templates/admin/status.php.
+ * Enhancement: Added action hooks to API activate() method:
+    - wc_api_manager_activate_api_key_already_activated_error
+    - wc_api_manager_activate_no_api_resources_available_error
+    - wc_api_manager_activate_success
+ * Enhancement: Added action hooks to API deactivate() method:
+    - wc_api_manager_deactivate_cannot_deactivate_api_key_error
+    - wc_api_manager_deactivate_success
+ * Tweak: Check if product object exists in some circumstances to eliminate possibility of error if product does not exist.
+ * Tweak: URL expiration time is now calculated in days rather than minutes to match AWS Signature Version 4, which has a maximum time limit of 604800 seconds, or 7 days.
+ * Fix: Could not find wc_am_update_2_0_20_db_version callback fixed.
+ * Fix: WooCommerce Subscriptions that were Switched did not have API Resources updated properly, which caused them not to be displayed or work for API Key activation.
+
+2019.07.19 - version 2.0.20
+ * Enhancement: Create, and allow access to, API Resources for Order status "processing" if WooCommerce > Settings > Products > Access Restriction > Grant access to downloadable products after payment is selected.
+ * Enhancement: Added method has_status_processing().
+ * Fix: Check if order object exists before proceeding in several methods to avoid errors when order does not exist.
+ * Fix: Clear data cache before deleting/removing order.
+
+2019.07.15 - version 2.0.19
+ * Fix: Check if return value of $order->get_date_created() is null before calling $order->get_date_created()->date() to avoid fatal error in some edge cases.
+ * Enhancement: Added clear_database_cache() to clear cache when order status changes.
+
+2019.06.26 - version 2.0.18
+ * Fix: Some clients may query the API Status function before the API Key activation is completed, causing an inactivate API Key status to be cached and returned, so the errant cache is cleared upon API Key activation if it exists.
+
+2019.05.09 - version 2.0.17
+ * Fix: insert_setting_after() method called only when is_admin() == true caused fatal error in some cases.
+ * Fix: <a tag open in woocommerce-api-manager/includes/api/wc-am-api-requests.php.
+ * Fix: Changed improperly referenced get_row_data_by_activation_id() method to get_activation_resource_by_activation_id().
+
+2019.03.28 - version 2.0.16
+ * Tweak: Expanded API error message "No API resources exist." to provide instruction to both the customer and support to help resolve the issue.
+ * Fix: WooCommerce Subscriptions required version warning was displayed in cases where a very old version of WooCommerce Subscriptions was upgraded to the latest version.
+
+2019.03.27 - version 2.0.15
+ * Fix: WooCommerce Subscriptions required version warning was displayed in cases where a very old version of WooCommerce Subscriptions was upgraded to the latest version.
+
+2019.03.26 - version 2.0.14
+ * Fix: Move _api_activations_parent to _api_activations before orders are moved in upgrade process.
+
+2019.03.25 - version 2.0.13
+ * REQUIRED: WooCommerce 3.4.
+ * Enhancement: Added notice. If WooCommerce Subscriptions is installed and active, the minimum version required is 2.3.
+ * Tweak: If Master API Key is missing on customer profile when authenticating API request, return message and log error.
+ * Tweak: If the Master API Key does not exist when required then create it.
+ * Tweak: If the API Resource Product ID is missing from product meta when required, then update it.
+
+2019.03.23 - version 2.0.12
+ * Fix: When Master API Key was regenerated in the user profile, the Master API Key was not updated in the wc_am_api_resource or wc_am_api_activation database tables.
+ * Tweak: Added version to API Resources and API Resource Activations meta boxes on Order screen.
+ * Tweak: If WooCommerce 2.2 or greater is installed, all expired transients will be deleted on API Manager upgrade.
+ * Tweak: Prevent caching root/home page URL to prevent API query caching.
+ * Enhancement: Added WC_AM_Cache_Handler class.
+
+2019.03.16 - version 2.0.11
+ * Fix: Only load Storefront My Account CSS if Storefront is the selected theme.
+ * Fix: PHP warning if api_key value not sent in request for API Information and Update functions queries when the product_id value is a legacy Software Title string.
+ * Tweak: Minimize CSS files.
+ * Enhancement: Added database caching option to settings.
+ * Enhancement: When enabled, cache some data for Order screen, and My Account tabs: API Keys and API Downloads.
+ * Enhancement: When enabled, cache data for API functions: status, information, and update.
+
+2019.03.14 - version 2.0.10
+ * Fix: Fixed several errors in get_api_information_and_update_product_id() method that caused legacy Software Title string API update function queries to fail.
+ * Enhancement: If 'version' key and value are sent in query string to 2.x API functions activate, status, information, or update, or legacy pre 2.0 API functions plugininformation, or pluginupdatecheck, the 'version' for an API Key activation will be updated in the 'wc_am_api_activation' database table.
+
+2019.03.13 - version 2.0.9
+ * Fix: 'slug' requirement in API Update function removed, as it could cause pre version 2.0 clients to have failed update request.
+ * Fix: Software Title on Product edit > API tab can no longer be updated, as it was deprecated at version 2.0.
+ * Fix: Incorrect product_id was found if the client sent a legacy Software Title string, rather than the new numeric value for the product_id to the API Update function. This caused legacy API Update requests to fail, particularly for Variable products.
+ * Enhancement: Added Requires PHP version data option to the WordPress plugin information API.
+ * Enhancement: Requires PHP version field added on the Product edit API tab, and Variable product variation settings.
+ * Enhancement: Added icons to product API tab.
+ * Enhancement: Added My Account dashboard API Keys and API Downloads tab icon when using Storefront theme.
+ * Enhancement: Added 'wc_api_manager_update_active_required_keys' filter to API Update function.
+
+2019.02.28 - version 2.0.8
+ * Tweak: Optimize get_secure_order_download_url() method.
+ * Tweak: Move WooCommerce version requirement notice before WooCommerce_API_Manager class to be certain the API Manager does not load until after the WooCommerce minimum version requirement has been met.
+ * Tweak: Replace get_all_orders() method with get_all_order_ids() method.
+ * Tweak: Use wc_get_orders() for get_all_order_ids() method to insure compatibility when WooCommerce moves orders to a custom database table.
+ * Tweak: Free memory as wc_am_update_201_data_migrate_access_granted_to_order_created_time() loops through orders to make it more memory efficient.
+ * Tweak: Change api-keys.php template column wording from Product by Product ID to Product Title.
+ * Tweak: Change api-keys.php template column Product ID cell data from URL to plain text to make it easier to copy.
+
+2019.02.13 - version 2.0.7
+ * Tweak: Template overrides for yourtheme/woocommerce/api-keys.php, and yourtheme/woocommerce/api-downloads.php have moved to yourtheme/woocommerce/myaccount/api-keys.php, and yourtheme/woocommerce/myaccount/api-downloads.php
+ * Fix: The API Manager no longer relies on the woocommerce_downloadable_product_permissions table for download data, but rather only looks for the first Downloadable files URL on the product due to issues described in the following docs. Please read https://docs.woocommerce.com/document/digital-downloadable-product-handling/ for more information on how adding/changing Downloadable files URLs on products can cause download/update URLs to stop working since WooCommerce 3.0.
+ * Tweak: Added Product ID to api-keys-order-complete.php email template.
+ * Tweak: Added Product ID to api-keys.php template.
+
+2019.01.29 - version 2.0.6
+ * REQUIRED: PHP 7.0 and above now a hard requirement.
+ * Fix: Order screen displayed default Admin account's Master API Key if API Resource for the order did not exist. Now it displays user's Master API Key as expected.
+ * Fix: Removed wc-am-datetime.php to prevent conflict with core WooCommerce class.
+ * Fix: Fixed localized time offset for date and time display for activations.
+
+2019.01.17 - version 2.0.5
+ * Fix: Failed data migration introduced in 2.0.2.
+
+2019.01.15 - version 2.0.3
+ * Fix: Filter out non active WooCommerce Subscriptions from active API resources.
+ * Fix: Delete non active WooCommerce Subscriptions API Key activations if subscription is no longer active.
+ * Tweak: Do not show the Product ID or Software Title on variable/variable subscription parent product API tab.
+
+2019.01.12 - version 2.0.2
+ * Fix: Year in date display on My Account and Order edit screen.
+ * Fix: WooCommerce Subscriptions subscription item checked for active subscription before creating API resource for item.
+
+2019.01.12 - version 2.0.1
+ * Fix: Newly completed order active subscription check disabled as it returns inconsistent values with a WooCommerce Subscriptions subscription. Broke API resource creation with new subscription product order.
+ * Tweak: Use order creation time for API resource access_granted field.
+ * Tweak: Unlimited activations on product must have a limit value set, such as 1000, rather than 0 or empty.
+ * Tweak: If product activation limit is increased, all API resources with the product will have the activation limit increased to match. Decreasing the activation limit will have no effect on API resources.
+
+2019.01.06 - version 2.0
+ * Warning: The next release may not run if PHP version 7 or above is not installed. Upgrade now if you haven't already.
+ * WooCommerce 3.0 or above is now required.
+ * WooCommerce 3.x Compatibility Release.
+    - Enhancement: Added Order data store to conform to WooCommerce 3.x CRUD.
+    - Enhancement: Added Product data store to conform to WooCommerce 3.x CRUD.
+ * If you are using WooCommerce Subscriptions with the API Manager, then WooCommerce Subscriptions version 2.1.2 or above is required.
+ * The entire plugin has been almost completely rewritten, and built on a new data model, but with full backward compatibility for client software. The changes are too numerous to list here. See docs to learn how everything works.
+ * Enhancement: If API Product is downloadable, then any URL can be used for the remote, or local server, file download.
+ * Enhancement: If API Product is downloadable the download file can be any file type rather than only a .zip file, and can be uploaded locally, using Amazon S3, or be accessible through a remote URL.
+ * Enhancement: API products are no longer required to be downloadable. The product could be a membership, a subscription, or whatever that requires an API Key for access. The API Key could be used as part of an account authentication process.
+ * Enhancement: API Products are no longer required to be virtual or downloadable. API Products can now be anything, even a service.
+ * Enhancement: Refactored and redesigned for version 2.0.
+ * Enhancement: Moved data to custom database tables.
+    - Renamed woocommerce_api_manager_secure_hash to wc_am_secure_hash
+    - Added: wc_am_api_resource
+    - Added: wc_am_api_activation
+    - Added: wc_am_associated_api_key
+ * Enhancement: Dramatically reduced API call response time.
+ * Enhancement: Reformatted API JSON output to adhere closer to JSON API format standards, http://jsonapi.org/, with backward compatibility. See docs for examples.
+ * Enhancement: Added optional pretty formatted API logging in three flavors: debug, error, and API responses only, plus a test log that can be used if manually debugging or testing code blocks.
+ * Enhancement: Support for .selectWoo().
+ * Enhancement: API Access Permission is controlled for the entire account by a Master API Key from the User profile screen.
+ * Enhancement: Introduced verbose and informative API debug and error logging, enabled under WooCommerce > Settings > API Manager > Debug.
+ * Enhancement: Unauthenticated API calls can be made to see if there are software updates available, but are not provided a download URL. Software that has an active API Key will see the update URL, but an inactive API Key will not. In both cases a WordPress plugin or theme will need to be in an activated state to send API queries. See docs for more detail.
+ * Enhancement: Software information and update API calls can use specific request to get serialized or JSON data returned.
+ * Enhancement: The constant WC_AM_TRUSTED_SOURCES can be added to the wp-config.php file to allow only specified servers to authenticate API Keys. WC_AM_TRUSTED_SOURCES has an array value of IP address used as a list of trusted sources, which the API uses to block unauthorized API access. Incoming requests will need to send an ip_address value to be compared against the trust source list. This feature could be used for a remote service that uses the API Manager to authenticate an manage API Keys.
+ * Enhancement: Items can be added/removed on an order in the backend dashboard, which requires an order status change. Adding a WooCommerce Subscription item to an order requires several steps, which will not work as expected when adding a subscription item to a backend existing order. Due to this limitation, WooCommerce Subscriptions must be created with a frontend purchase only.
+ * Enhancement: After a subscription switch both Master API Key, and Product Order API Key, remain unchanged. The number of current activations is reduced to become equal to or less than the total number of activations switched to.
+ * Enhancement: Product ID replaces deprecated Software Title in the product edit > API tab.
+ * Enhancement: Product Order API Keys can be custom generated at the moment a product is purchased using the 'api_manager_custom_product_order_api_key' filter.
+ * Enhancement: API Keys and API Downloads can now have their URL edited in Settings as they are now real endpoints.
+ * Enhancement: Amazon S3 access keys can now be defined in wp-config.php for better security, or saved in settings to the database for convenience but less security. The secret access key is encrypted if saved in the database.
+ * Tweak: Use new WC_AM_Scheduler() scheduler class to schedule batches that build, and rebuild, user API data for new installations only. This will help to manage load on the server, and elminiate exhausting server memory before the build has been completed on stores with a lot of orders.
+ * Tweak: Refresh order screen after adding, or deleting, API Key.
+ * Tweak: Refresh order screen after deleting, or toggle, API Key activation.
+ * Tweak: Cut load time of order screen Add API Key product list in half, and display only products that were purchased.
+ * Tweak: Restyle tool tips on order screen to correct text-overflow, and make them easier on the eyes.
+ * Tweak: Moved templates/email-api-keys-order-complete.php to template/emails/api-keys-order-complete.php.
+ * Tweak: Moved templates/my-api-downloads.php to template/emails/api-downloads.php.
+ * Tweak: Moved templates/my-api-keys.php to template/emails/api-keys.php.
+ * Tweak: Added safeguard to prevent API products that have been purchased, are associated with an order, from being deleted.
+ * Tweak: Once the Product edit screen API checkbox is checked, the product becomes an API product, and the API checkbox cannot be unchecked, making this a permanent API product.
+ * Tweak: API requests directed to the old upgrade-api endpoint will be forwarded to the new wc-am-api endpoint. The API Manager PHP Library will be updated for this change, as should all non-PHP, and non-WordPress software.
+ * Tweak: API requests directed to the old am-software-api endpoint will be forwarded to the new wc-am-api endpoint. The API Manager PHP Library will be updated for this change, as should all non-PHP, and non-WordPress software.
+ * Removed: Add API Key product seletion removed from order screen.
+ * Removed: Per order activation toggle on order screen. API Access Permission can still be turned off for a specific product on the order screen..
+ * Removed: template/email-lost-api-keys.php.
+ * Removed: template/lost-api-key.php.
+ * Removed: WAM_FIRST_TIME_BUILD_BUTTON constant. See WooCommerce API Manager docs on how, and when, to use the WAM_REBUILD_API_DATA_BUTTON constant in a new setup.
+ * Removed: WAM_REBUILD_DOWNLOADBLE_PRODUCT_PERMISSIONS constant.
+ * Removed: Support for .chosen().
+ * Removed: WC_AM_Helpers class.
+ * Removed: Download limit is no longer enforced. Use API Manager expiration, or a WooCommerce Subscription to limit download access.
+ * Removed: Download expiry is no longer enforced. Use API Manager expiration, or a WooCommerce Subscription to limit download access.
+ * Hooks:
+    - Removed: Action api_manager_extra_data.
+    - Removed: Filter api_manager_extra_software_activation_data.
+    - Removed: Filter api_manager_activation_data.
+    - Removed: Filter api_manager_deactivation_data.
+    - Removed: Filter api_manager_extra_software_status_data.
+    - Removed: Filter api_manager_status_data.
+    - Removed: Filter api_manager_extra_update_data.
+    - Breaking changes: Some hooks have been removed or renamed for 2.0.
+    - See https://docs.woocommerce.com/document/woocommerce-api-manager-hook-reference/ for a full list of current hooks.
+ * Fix: Page 404 not found in My Account dashboard for API Keys and API Downloads tabs after WooCommerce deactivated and reactivated on Plugins screen. Allows API Manager to be deactivated and reactivated on Plugins screen to fix 404 error by flushing rewrite rules again after WooCommerce has been reactivated.
+
+2017.07.04 - version 1.5.4
+ * Deprecated: api_manager_extra_software_activation_data has been deprecated. Use api_manager_activation_data.
+ * Enhancement: api_manager_activation_data, api_manager_deactivation_data, api_manager_status_data, filter hooks to the Software API to allow extra data to be filtered and sent to the client application.
+
+2017.02.06 - version 1.5.3
+ * Fix: Adjusts the WooCommerce Helper integration logic to ensure the plugin shows correctly on the license activation screen.
+
+2016.12.30 - version 1.5.2
+ * Fix: Warning html-settings-admin-first-build-button.php and html-settings-admin-tools.php failed to open. The directory path was not updated properly on the last release.
+
+2016.12.28 - version 1.5.1
+ * Fix: Fixed "auth_key will be truncated by openssl_encrypt() since it is 64 bytes" warning.
+ * Fix: Fixed due to missing trailing slash at the end of directory name in autoload class, "Fatal error: Class 'WC_AM_Tools' not found in \wp-content\plugins\woocommerce-api-manager\includes\wc-am-core-functions.php on line 77."
+ * Tweak: Made some admin notices dismissible. Use new admin_notice CSS classes.
+
+2016.12.22 - version 1.5
+ * WARNING: PHP 5.6 will no longer be supported after December 31, 2016. http://php.net/supported-versions.php
+ * Dropped: Support for WooCommerce Subscriptions < 2.0 dropped.
+ * Tweak: Class objects are now autoloaded, so they are only loaded when needed, which results in less memory usage. Some code has been cleaned up and better formatted. Unused files and methods have been removed, and others have been moved to tidy up the directory and file structure.
+ * Tweak: Updated password.php used for older versions of PHP. Will be removed in a future version.
+ * Tweak: Replaced old encryption methods that used mcrypt(), which is slow and no longer maintained, with encryption methods that use openssl(). The result is increased speed and security.
+ * Fix: Switched subscription API Keys and API Downloads now display properly in the My Account dashboard.
+ * Fix: Prevent duplicate API Key generation on order when order status changed from Completed to another status, then back to Completed.
+ * Enhancement: Local secure download URLs expired after one click. Now those URLs will expire as set in Settings > URL Expire Time. Local secure download URLs will now work exactly the same as Amazon S3 URLs work.
+ * Enhancement: When a subscription expires, or is cancelled (not pending-cancellation), the subscription API Keys and API Key activations are deleted.
+ * Enhancement: When a subscription is switched, API Keys and API Key activations are deleted from the old parent and switched orders.
+ * Enhancement: Tabs displayed on Plugin Information screen, aka "View version details" screen, can now be turned on or off. Settings are located at WooCommerce > Settings > API Manager > API Doc Tabs.
+
+2016.6.20 - version 1.4.6.3
+ * Tweak: Update subscription status check method in several classes for consistency.
+
+2016.6.15 - version 1.4.6.2
+ * Fix: remove redundant in_the_loop() call in WC_API_Manager_Query.
+ * Fix: Error on My Account page due to download filters not yet loaded in WC 2.5.x when API Manager filters out API downloads.
+ * Tweak: Replace deprecated get_product() with wc_get_product() in WC_Api_Manager_Downloads.
+
+2016.6.8 - version 1.4.6.1
+ * Tweak: Removed the option to choose to delete API Product download URLs from emails, My Account downloads section, and order view details. This is now the default behavior, but only API products will have download URLs removed. Previously, all download product URLs were removed.
+ * Tweak: Additional template changes for WC 2.6.
+
+2016.6.6 - version 1.4.6
+ * Fix: Forgot to bump the version on the last release. :)
+
+2016.6.6 - version 1.4.5
+ * Fix: Support for WooCommerce Subscriptions < 2.0 in Update API caused "Download permission revoked ..." message to appear erroneously.
+ * Tweak: Remaining support for WooCommerce Subscriptions < 2.0 removed.
+
+2016.6.5 - version 1.4.4
+ * Fix: The message, "Subscription Is Not Active," was returned incorrectly if a non-subscription product was activated, and the order contained the non-subscription product and a subscription product that had a subscription which was cancelled.
+ * Fix: Fix above also fixed in templates/my-api-keys.php and templates/my-api-downloads.php.
+ * Enhancement: Added tabbed My Account pages for WC 2.6. Updated templates/my-api-keys.php and templates/my-api-downloads.php for WC 2.6.
+
+2016.3.24 - version 1.4.3
+ * Fix: Check if WooCommerce Subscriptions is active before trying to remove old API Keys on renewal orders.
+ * Fix: Check if the order exists, and if the order has been trashed, when handling API requests or displaying downloads and API Keys in My Account dashboard. Both my-api-downloads.php and my-api-keys.php will need to be updated if templates are overridden in a theme.
+
+2016.1.12 - version 1.4.2
+ * Fix: Do not modify order completed email by adding a download or API Key section, if the order does not contain a downloadble product, or if the product is not set to use the API.
+ * Fix: Do not display products on My Account dashboard, My API Key or My API Downloads sections, if the product cannot be downloaded according to multiple criteria.
+ * Fix: Don't display API Keys or API Download on My Account dashboard for orders that have been trashed.
+
+2015.12.6 - version 1.4.1
+ * Fix: Update API was allowing cancelled subscriptions access to updates.
+ * Fix: Simple Subscription Product > API tab > Software Activation Limit would not update.
+
+2015.11.8 - version 1.4
+ * Fix: If user_email was different than billing_email, the user_id could not be found, which caused activations and updates to fail.
+ * Fix: The get_download_count() method was used as a check to verify download permission. The method has been rewritten to provide a more reliable verification.
+
+2015.11.3 - version 1.3.13
+ * Fix: Software and Update APIs now determine if an order uses the Subscriptions < 2.0 download permissions, Subscriptions >= 2.0 download permissions, or non-Subscription order download permissions. Hopefully this will catch all edge cases.
+
+2015.10.30 - version 1.3.12
+ * Fix: Products purchased as a WooCommerce Subscription did not show correct My API Downloads download URL if the download file existed on the local server rather than on Amazon S3.
+
+2015.10.28 - version 1.3.11
+ * Fix: If Download Expiry was not set on installations that do not use WooCommerce Subscriptions, downloads did not display. If my-api-downloads.php is used in the theme, be sure to update it.
+
+2015.10.14 - version 1.3.10
+ * Fix: Downloadable product permissions were not correctly detected in Software and Update APIs if the product was not a subscription product.
+
+2015.10.9 - version 1.3.9.9
+ * Fix: My Account templates, my-api-keys.php and my-api-downloads.php, updated to display subscription and non-subscription API Keys and API Downloads. Was only showing subscription API Keys and API Downloads.
+
+2015.10.7 - version 1.3.9.8
+ * WARNING: Support for WooCommerce Subscriptions versions before 2.0 will be dropped in the next update.
+ * Enhancement: Added compatibility with WooCommerce Subscriptions 2.0.
+ * Enhancement: Added variable product variation updates via AJAX.
+ * Enhancement: Added edit link leading to changelog page, or other pages selected for a product, to make editing easier.
+ * Fix: Fixed API product tab used to bulk edit variable product variations to work with WooCommerce 2.4.
+ * Fix: Fixed API product tab fields now display with full width.
+ * Tweak: My Account templates, my-api-keys.php and my-api-downloads.php, updated to only display API Keys and API Downloads for active subscriptions, which includes cancelled subscriptions until the end of the paid term.
+
+2015.7.28 - version 1.3.9.7
+ * Fix: Fixed fatal error in admin/tools/class-wc-am-tools.php from missing closing parenthesis.
+
+2015.7.24 - version 1.3.9.6
+ * Enhancement: Added First-Time Data Build button to settings page, to allow products to be setup and configured on new installs prior to build API data that includes API keys for customers who have already purchased products that are now setup to use the API Manager, so existing customers can start using their new API Keys.
+ * Enhancement: Added message with directions for new installations to do the First-Time Data Build and product configuration.
+ * Tweak: Use direct SQL query for some account first-time data prep to avoid overhead of some WordPress functions.
+ * Tweak: Overall better performance improvements for first-time API data build for new installs, and for emergency data rebuilds.
+ * Tweak: Improved intelligence of emergency data build, so it only replaces API Keys for customers that should have them.
+ * Tweak: Ensure first-time data is built only once manually from the API Manager settings screen, then hide the button. Also hide the button if API data has already been created for customers.
+ * Tweak: Only allow emergency, and first time build, buttons to be displayed on the settings page by defining the following constants in wp-config.php.
+	- WAM_FIRST_TIME_BUILD_BUTTON
+	- WAM_REBUILD_API_DATA_BUTTON && WAM_REBUILD_DOWNLOADBLE_PRODUCT_PERMISSIONS (must be defined at the same time)
+	- For example: define( 'WAM_FIRST_TIME_BUILD_BUTTON', true );
+ * Tweak: Small performance improvements throughout the plugin.
+ * Tweak: On very old installations with WooCommerce Subscriptions activated, API Keys could have been added to subscription renewal orders, when they should only exist on the initial subscription order. Upon upgrade, a routine will remove those old API Keys from subscription renewal orders. The routine will only run once.
+ * Tweak: Fixed Lost API Key form not always sending out API Keys due to missed errors. Added more logic to catch errors, such as an email that does not have an account, so those errors will be displayed on the form.
+
+2015.5.28 - version 1.3.9.5
+ * Fix: Added id and slug response to update API to fix "NOTICE: wp-admin/includes/update.php:281 - Undefined index: plugin" for shiny updates in WordPress 4.2.2
+ * Notice: Update your plugin-update class using the plugin or theme example in the private repo. View Version Details link will be broken until client software is updated, but updates will work properly.
+
+2015.4.27 - version 1.3.9.4
+ * Tweak: Allow animated pulldown menu selection to be deleted on product screen with select2.
+
+2015.4.21 - version 1.3.9.3
+ * Fix: Outgoing API Key and Software Update request URLs are now escaped to prevent possible XSS attack vector. Impacts toddlahman.com customers only.
+
+2015.4.3 - version 1.3.9.2
+ * Fix: License Key API status check returned active for second activated API key, and inactive for first activated API key, when the same API key, but a different instance, was used to activate the same product.
+ * Tweak: Added admin notice when the required PHP 5.4 version or greater is not installed on the server running the API Manager.
+
+2015.2.18 - version 1.3.9.1
+ * Tweak: Replaced deprecated hook woocommerce_admin_css with 2.3 hook admin_enqueue_scripts.
+ * Tweak: Replaced deprecated hook woocommerce_product_write_panels with woocommerce_product_data_panels.
+ * Fix: Reverted template override back to how it was before 1.3.9, as the new approach generated errors on some hosts.
+ * Tweak: Check that $variable_post_ids is an array before processing save for variable product to eliminate PHP notice.
+
+2015.2.14 - version 1.3.9
+ * Tweak: WooCommerce 2.3 UI compatibility
+ * Tweak: Changed template override routine. To override templates in a theme place them as follows:
+	- yourthemeroot/woocommerce/woocommerce-api-manager/my-api-keys.php
+	- yourthemeroot/woocommerce/woocommerce-api-manager/my-api-downloads.php
+ * Tweak: Autoselect API License Key on Order edit screen on mouseover for easier copying.
+
+2014.12.9 - version 1.3.8
+ * Tweak: Enforce API Access Permission order screen checkbox in the License and Update API.
+ * Tweak: When API Access Permission order screen checkbox is unchecked, deactivate all API Key Activations for that API Key on the order screen, and the My Account dashboard.
+ * Tweak: When API Access Permission order screen checkbox is unchecked, list the activation in My Account dashboard as deactivated and prevent deletion by customer.
+ * Tweak: If API Access Permission is unchecked, activation is inactive/disabled, downloads remaining is zero, or access expires has expired, the License and Update APIs will not be accesible by the API Key or activation attached to the order.
+ * Tweak: Added more License and Update API messages in response to queries.
+ * Tweak: APIs now only use unique instance as the means to identify an individual activation.
+ * Enhancement: Added Toggle button to activate/deactivate an activation individually on the order screen. This is enforced in the License and Update API.
+
+2014.9.8 - version 1.3.7
+ * Example plugin and theme code moved to private Github repositories. Send WooThemes support your Github username, so the author can grant access to the repositories.
+ * Enhancement: WooCommerce 2.2 compatible
+ * Enhancement: WordPress 4.0 compatible
+ * Tweak: Sort My API Keys alphabetically in My Account. Located in templates/my-api-keys.php
+ * Tweak: Sort My API Downloads alphabetically, and without duplicates, in My Account. Located in templates/my-api-downloads.php
+ * Tweak: Do not display the Add API Key button on a subscription renewal order.
+ * Tweak: Do not create an API License Key for product orders unless the API and the Downloadable boxes are both checked on the Product edit screen.
+ * Tweak: Moved array methods to their own array class. Located in includes/class-wc-am-array.php
+ * Translation: Updated translation routine. Replaced base .po and .mo files with i18n/languages/woocommerce-api-manager-en_US.po and i18n/languages/woocommerce-api-manager-en_US.mo.
+ * Translation: Added Dutch translation thanks to David de Boer.
+ * Fix: WooThemes Helper License Key field did not display in some WordPress installations, so the plugin could not be activated.
+
+2014.7.21 - version 1.3.6
+ * Tweak: Some web hosts have security policies that block the : (colon) and // (slashes) in http://, so only the host portion of the URL can be sent by the client software. For example the host portion might be www.example.com or example.com. http://www.example.com includes the scheme http, and the host www.example.com. Sending only the host also eliminates issues when a client site changes from http to https, but their activation still uses the original scheme. To send only the host, use a line like the one below:
+	- str_ireplace( array( 'http://', 'https://' ), '', home_url() );
+	- An example of the line above is in the root file of the API Manager example plugin and example theme.
+	- Additional info: https://github.com/woothemes/woocommerce/issues/5616
+	- When the : (colon) and // (slashes) in http:// request are blocked, the example plugin will return the following messages:
+		- The license could not be deactivated. Use the License Deactivation tab to manually deactivate the license before activating a new license.
+		- Connection failed to the License Key API server. Try again later.
+ * Tweak: The esc_url_no_scheme() and esc_url_raw_no_scheme() methods were added to sanitize URLs without prefixing http://, as esc_url() does.
+ * Tweak: Don't display Add API Key option on Subscription renewal orders. The active API License Key exists on the Initial Order for the subscription.
+ * Tweak: templates/my-api-manager.php has been removed, and split into two template files: templates/my-api-keys.php and templates/my-api-downloads.php.
+ * Tweak: Don't display disabled downloads in My Account API Downloads table.
+ * Fix: API License Key activation status checks would return inactive some of the time in error, if more than one product was purchased in the same order. This did not affect activations, deactivations, or updates.
+ * Fix: Invalid argument supplied for foreach() error appeared on order details and email order items templates due to false being returned to the associated filter rather than an empty array.
+ * Fix: <tbody> moved above the <tr> foreach loop, so the table can be formatted with alternating table row colors, in the templates.
+
+2014.6.30 - version 1.3.5
+ * Tweak: Implemented new singleton design pattern to ensure only a single instance of each class exists.
+ * Tweak: Wrote a more complete uninstall routine.
+ * Tweak: Uninstall hash table on plugin uninstall or deactivation.
+ * Tweak: Moved Helper class instance from AMHelpers() to WCAM()->helpers.
+ * Tweak: Improved language translation.
+ * Tweak: Return esc_url_raw() API URLs with better scheme detection.
+ * Fix: Install hash table even if plugin is not being upgraded.
+ * Fix: Undefined variable on plugin activation.
+
+2014.6.12 - version 1.3.4
+ * Required: WooCommerce 2.1 is now required.
+ * Removed: Removed all support for WooCommerce Software Add-On.
+ * Removed: Removed all support for WooCommerce 2.0.
+ * Enhancement: Download URLs for the My Account dashboard, and software updates, are now secured with hashed authentication. The new hash class uses password_hash() for PHP 5.5, a compatibility library for PHP 5.3.7 - 5.4.x to simulate password_hash(), and the WordPress class-phpass.php for PHP < 5.3.7. Download URLs can be set to expire from 5 - 60 minutes after the URL is generated for added security. The woocommerce_api_manager_secure_hash table was added to manage hashed authentication.
+ * Enhancement: Can now set the downloads remaining and access expires under Downloadable Product Permissions to restrict Update API downloads. Number of downloads limit, and time limit when access expires, can be set per product or per order.
+ * Enhancement: Can now set access expires under Downloadable Product Permissions to restrict License Key API activation. Time limit when access expires can be set per product or per order.
+ * Enhancement: New My API Downloads table added to the My Account dashboard with the following columns:
+	- Product
+	- Version
+	- Version date
+	- Documentation
+		- Changelog
+		- Documentation
+	- Download
+		- Download
+		- Save to Dropbox
+ * Enhancement: New setting that allows all download links in email, My Account dashboard, and Order Details to be removed. Emails will provide a link to the My Account dashboard. All download links will still be available from the My API Downloads section of the My Account dashboard.
+ * Enhancement: New setting to enter the Dropbox App Key for the Save to Dropbox link.
+ * Enhancement: New Documentation setting in the product editor. When a documentation page is set, this provides the Documentation link in the My API Downloads section of the My Account dashboard.
+ * Tweak: Refactored API Manager Theme Example code to match approach used in the Plugin example. The theme name/software title is now parsed automatically from the stylesheet Theme Name:. The theme version is now parsed automatically from the stylesheet Version:. The plugin update class now uses the parsed version rather than the last checked transient version.
+ * Tweak: API Manager Theme Example now contains methods and a hook to remove product data and deactivate the license key when switched to a different theme.
+ * Tweak: The API Manager Example Plugin update class now uses the hardcoded software version rather than the last checked transient version.
+ * Tweak: The API Manager Example Plugin update API library can be found in api-manager-plugin-example/classes/class-wc-plugin-update.php.
+ * Tweak: Improved download handling class. Check if buffer is empty before emptying. Check if file exists, before attempting to open.
+ * Tweak: Improved JSON API responses.
+ * Tweak: Improved AJAX responses.
+ * Tweak: Moved Helper class instance from AMHelpers() to WCAM()->helpers().
+ * Tweak: Load shared classes as singular on-demand instances. This approach was also applied to the example plugin also, to prevent duplicate admin messages from the APIs.
+ * Tweak: The My API Keys section of the My Account page is now responsive.
+ * Tweak: Any amazonaws.com URL can now be used for Amazon S3 downloads, not just s3.amazonaws.com.
+ * Tweak: Software Activation Limit for a Simple Product type now returns an empty string rather than zero if no value entered.
+ * Tweak: API Manager Theme Example is now setup as a child theme for easier testing. Choose the parent theme available on your installation, or test with the code integrated into your parent theme.
+ * Tweak: woocommerce_get_template() changed to wc_get_template() for WC >= 2.1.
+ * Tweak: If order is made from United Kingdom, use licence rather than license.
+ * Tweak: APIs no longer check for wc_ prefix in the API License Key string now that support for WooCommerce Software Add-On has been dropped. This will prevent any issues if a prefix other than wc_ is used.
+ * Tweak: Removed unused global variables from local scopes.
+ * Tweak: Check if WP_HTTP_BLOCK_EXTERNAL is defined, and set to true, in the API Manager, example plugin, and example theme.
+ * Tweak: In the example update class, added a timeout of 45 seconds in the plugin_information() method for the wp_remote_get() function. This should provide more time for slow responding sites.
+ * Tweak: Local server WooCommerce download URLs can only be used once. If the URL is on a page, then the page needs to be refreshed to use the download URL again.
+ * Fix: The API Manager Theme Example had the product id and software title data values switched when sending to the Update API, allowing Dashboard > Updates to display, but Appearance > Updates did not display. Now both update screens display updates available.
+ * Fix: If a download URL was obtained, it could be used to download a product file with weak authentication an unlimited number of times. This is default WooCommerce behavior. This was fixed with the new hashing authentication class.
+
+2014.4.8 - version 1.3.3
+ * Fix: $nonce_salt value was set improperly in the encryption class. The WooCommerce > Settings > API Manager > Amazon S3 > Secret Access Key will need to be saved again.
+ * Fix: Deactivation was returning an error, rather than an array. The new 'deactivated' key now returns the value true if the product was deactivated. The new 'activations_remaining' key now returns a string value containing the number of activations remaining, after the deactivation is completed. The 'reset' key has been removed, as it was never returned.
+ * Fix: Email and My Account > Order Details download links were not returning the Amazon S3 URL if that option was set.
+ * Tweak: The API Manager Example plugin wc_am_license_key_deactivation function code has been updated to demonstrate how to return a successful deactivation, and to display deactivation errors.
+ * Tweak: Prevent multiple activations from the same Domain/Platform for the same product. The domain/platform for each activation should be unique, and only one activation is now possible for each unique domain/platform for a product. Existing activations for a unique domain/platform will be removed for a product, so the new activation can be processed.
+ * Tweak: If Amazon S3 option is set, Email and My Account > Order Details download links are set to expire 24 hours after being generated.
+ * Tweak: Under WooCommerce > Settings > API Manager > Amazon S3, there is an option to turn off the download links in email and My Account > Order Details. If the Remove Download Link option is selected, a Download Files section is added to the customer completed order email, with a link to the My Account page to download files from that location.
+
+
+2014.2.12 - version 1.3.2
+ * Enhancement: Amazon S3 support added. See http://docs.woothemes.com/document/woocommerce-api-manager/ for detailed instructions.
+ * Enhancement: Activation status check added to the License Key API. Takes the form of [status_check] => active or [status_check] => inactive. An example can be found in api-manager-plugin-example/am/classes/class-wc-key-api.php under the method name status().
+ * Enhancement: Added 'api_manager_extra_software_activation_data' filter hook to the License Key API to output current order data.
+ * Enhancement: Added 'api_manager_extra_software_status_data' filter hook to the License Key API to output currently active activation data.
+ * Enhancement: Added 'api_manager_my_account_delete' to the My Account template.
+ * Tweak: In api-manager-example.php of the Example Plugin, added several checks in the am_example_inactive_notice method.
+ * Tweak: In api-manager-example.php of the Example Plugin, the Api_Manager_Example_Key class is only instantiated once.
+ * Tweak: Removed urldecode from $_GET. The superglobals $_GET and $_REQUEST are already decoded. Using urldecode() on an element in $_GET or $_REQUEST could have unexpected and dangerous results. See Notes: http://us1.php.net/manual/en/function.urldecode.php.
+
+2014.1.16 - version 1.3.1
+ * Tweak: Improved download handler
+ * Fix: Updated text domain
+ * Fix: On order complete emails, the API License Key and Software Title were blank if an API Manager 1.0 API License Key existed for an order.
+ * Fix: On lost API key emails, the API License Key and Software Title were blank if an API Manager 1.0 API License Key existed for an order.
+
+2014.1.1 - version 1.3
+ * Enhancement: WooCommerce 2.1 compatible
+ * Enhancement: WordPress 3.8 compatible
+ * Enhancement: Added $extra information property to the Update API class. Can be used to send any additional information from the client software. The information can be any data type.
+ * Enhancement: Added api_manager_get_extra_api_data filter hook to access $extra information data sent from client software. This is a very powerful and flexible feature that has a lot of possibilities.
+ * Enhancement: Added new WooCommerce 2.1 hooks that allow the API Manager to cleanup customer data after an order is deleted.
+ * Enhancement: API License Keys can be found using Search Orders field. Limit of 100 License API Keys can be searched for per order.
+ * Enhancement: Can now add multiple products per order support. Multiple products, rather than only individual products, can be handled per order. This allows products to be purchased in multiples, bundles, chained, grouped, composite, etc, and to be assigned a unique API License Key for each item.
+ * Enhancement: Added searchable pull-down menu to add API License Keys to an order. Can now add a unique API License Key on the order screen for any existing line items in the order. Downloadable product permission must also exist for that order item. Only existing lines items for the order will be listed in the Add API License Key pull-down menu.
+ * Enhancement: Added delete API License Key button on order screen.
+ * Enhancement: Can now activate different products from the same domain name/platform on the same order, provided each product activation has its own unique instance id.
+ * Enhancement: Different products from the same domain name/platform on the same order can now check for software updates, provided each product has its own unique instance id.
+ * Enhancement: Added WooCommerce Settings API Manager tab with buttons to rebuild API Manager data, and to rebuild the woocommerce_downloadable_product_permissions database table.
+ * Enhancement: API Manager data will now be automatically built on a new install, so the Account Prep Tool plugin has been deprecated.
+ * Enhancement: Order Note is added for customer software activation/deactivation events. This option can be selected in the WooCommerce Settings API Manager tab.
+ * Enhancement: The software activation version on the order screen will be updated whenever the client software does an Update API query. The API Manager example plugin now has an updated License Key activation class, Api_Manager_Example_Key, that sends the software version along with the other activation data, so the Software activation will show the client software version immediately upon activation, and then it will be updated on each Update query.
+ * Enhancement: Third party plugins can now receive any type of data, and any data type, from client software through the Update API using the following hooks:
+ 	- Filter: api_manager_extra_update_data
+ 	- Action: api_manager_extra_data
+ * Tweak: Software Title in product API tab form must match the product_id the client software sends, or the client software will get an error message. This prevents a product from using the API Key of a different product to access the APIs.
+ * Tweak: Made the API Manager Example Plugin much easier to configure and integrate into products.
+ * Tweak: Classes can now only be instantiated once. Saves memory, and prevents the need to use globals.
+ * Tweak: Tightened security in the plugin code.
+ * Tweak: Added more activation error messages specific to new errors that apply to features added in this version.
+ * Tweak: Method added to output inline JavaScript.
+ * Tweak: Refactored downloads method into its own class.
+ * Tweak: Update API subscription detection for individual orders improved.
+ * Tweak: Updated _file_paths to _downloadable_files for WooCommerce 2.1.
+ * Tweak: Added detection for the new WooCommerce 2.1 wc_ prefix for the post meta _order_key key value.
+ 	- see https://github.com/woothemes/woocommerce/pull/4151
+ * Tweak: Refactored subscription status methods.
+ * Tweak: Refactored the helpers class.
+ * Tweak: Added downloadable product permission check to the License Key API.
+ * Tweak: Software Add-On support is now limited to only allow existing License Keys to access the Update API. The API Manager will no longer create a Software Add-On license key for new orders, and the Software Add-On activation table values will no longer be updated by the API Manager. Limited support for Software Add-On is provided so all existing customers can be migrated over to the API Manager License Keys.
+ * Tweak: Added check for empty product ID, instance ID, and API license key values in License Key API.
+ * Tweak: Added orderly sorting and display of API License Keys on the order and My Account screens.
+ * Tweak: Improved data presentation on the order and My API License Key Products screens.
+ * Tweak: Added Settings | Documentation | Support links to plugin administration screen.
+ * Fix: WooCommerce inactive warning resulted in fatal error due to $text-domain not being called correctly.
+ * Fix: API, Global, and Subscription checkboxes were not displayed properly in WooCommerce 2.1 or WordPress 3.8.
+ * Fix: Added CSS to fix some form elements not displaying properly under WooCommerce 2.1 in WordPress 3.8.
+ * Note: Although $text_domain is used in the update class, a string literal is preferred. For example 'wc_api_manager'. A variable cannot be read by some translation software.
+
+2013.11.15 - version 1.2.1
+ * Enhancement: Added delete button on My Account dashboard to allow customer to delete domain names they activated for an order.
+ * Tweak: public $text_domain to the software update class, so it is now required. See the plugin example.
+ * Fix: class-wc-plugin-update.php in the example plugin, and class-cc-tk-plugin-update.php in the example theme, are now using $this->text_domain to do localization for error messages.
+ * Fix: CSS table column now properly expands on My Account page when the Subscriptions extension is activated.
+ * Fix: My Account page had some text that was not being run through WP translation functions.
+ * Fix: Admin Menu had some text not being run through WP translation functions.
+ * Fix: The API Manager will remove self-upgrade data for itself when it is deactivated for toddlahman.com customers. This change has no impact on WooThemes customers.
+ * Fix: Translation updates applied to plugin example, also applied to theme example.
+ * Localization: Refactored localization to use public $text_domain.
+ * Fix: Invalid request deactivation message was fixed in the example plugin in the class-wc-api-manager-menu.php file using the line:
+	if ( $_REQUEST['option_page'] != 'am_deactivate_example_checkbox' ) {
+ * Fix: Invalid request deactivation message was fixed in the example theme in the class-cc-tk-license-menu.php file using the line:
+ 	if ( $_REQUEST['option_page'] != 'cc_tk_deactivate_checkbox' ) {
+ * Localization: French translation provided by Nicolas Maillard
+
+2013.11.08 - version 1.2
+ * Tweak: In class-wc-api-manager-order-admin.php removed readonly attribute for Software Title and Software Version to allow those fields to be edited.
+ * Fix: Fixed option key typo in API Manager plugin example zip file.
+ * Tweak: Rewrote WooCommerce API Manager Account Prep Tool zip file to build API Manager data for old accounts, and to rebuild data for existing accounts. The rebuild feature allows improperly built data, due to product misconfiguration or bad data that already existed before the API Manager was installed, to be rebuilt by simply activating the plugin, then deactivate.
+
+2013.09.28 - version 1.1.1
+ * First Release

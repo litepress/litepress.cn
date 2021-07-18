@@ -1,0 +1,1431 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce API Manager\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-29 07:16+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.3; wp-5.7.2\n"
+"X-Domain: woocommerce-api-manager"
+
+#: templates/myaccount/api-keys.php:53
+msgid " - Can be used to activate any product."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:673
+#: includes/api/wc-am-api-requests.php:858
+#: includes/api/wc-am-api-requests.php:1154
+msgid " could not be deleted automatically.\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:771
+#: includes/api/wc-am-api-requests.php:1034
+msgid " could not be found in this store."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:764
+#: includes/api/wc-am-api-requests.php:1026
+msgid " could not be found in this store.\""
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:295
+msgid " day"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:295
+msgid " days"
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:669
+#: includes/api/wc-am-api-requests.php:856
+#: includes/api/wc-am-api-requests.php:1152
+msgid ""
+" has an activated API Key, but it does not exist in your API resources. The "
+"API Key activation has been deleted as it should no longer exist without an "
+"authorized API resource.\""
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:263
+msgid " hour"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:280
+msgid " hours"
+msgstr ""
+
+#: templates/myaccount/api-keys.php:172 templates/myaccount/api-keys.php:174
+#: templates/myaccount/api-keys.php:212 templates/myaccount/api-keys.php:214
+msgid " out of "
+msgstr ""
+
+#: includes/admin/meta-boxes/html-order-master-api-key.php:15
+#, php-format
+msgid "%s "
+msgstr ""
+
+#. placeholder is human time diff (e.g. "3 weeks")
+#: includes/wc-am-format.php:57
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:418
+#: includes/api/wc-am-api-requests.php:522
+#, php-format
+msgid "%s out of %s activations remaining"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:349
+#, php-format
+msgid ""
+"%s%sIntegrate plugins and themes easily with %sWooCommerce API Manager PHP "
+"Library for Plugins and Themes%s.%s%sDisplay the Product API tab settings "
+"data automatically on the frontend product page with the %sWooCommerce API "
+"Manager Product Tabs%s extension is implemented.%s%s"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:362
+#, php-format
+msgid "%sLearn how to update%s"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:162
+#, php-format
+msgid "%sPick a region.%s"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:311
+#, php-format
+msgid "%sPostman%s is recommended for API testing."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:443 includes/wc-am-product-admin.php:799
+#: includes/admin/meta-boxes/html-order-api-resources.php:48
+msgid "1"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:327
+#, php-format
+msgid ""
+"<br>Logs error events inside <code>%s</code><br> Log file size %s <a "
+"href=\"%s\">View Log</a>"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:317
+#, php-format
+msgid ""
+"<br>Logs query events inside <code>%s</code><br> Log file size %s <a "
+"href=\"%s\">View Log</a>"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:337
+#, php-format
+msgid ""
+"<br>Logs response events inside <code>%s</code><br> Log file size %s <a "
+"href=\"%s\">View Log</a>"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:298
+msgid ""
+"<br>Sending extended resource data in API responses is not required, and "
+"will slow down response time.<br>Recommended Off."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:705
+msgid ""
+"A checked, and saved, API checkbox CANNOT be unchecked later. This product "
+"will remain a permanent API Manager product, and CANNOT be deleted from the "
+"store. This product will be made available as an API Resource on existing, "
+"and future, purchases."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:272
+msgid "A customer account does not exist for this API Key."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:914
+msgid "A description of the software, and how it works."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:543
+msgid "A description of the software."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:935
+msgid "A list of changes to the software that should be grouped by date."
+msgstr ""
+
+#: templates/emails/api-keys-order-complete.php:43
+msgid "A Master API Key can be used to activate any and all products."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:292
+msgid ""
+"A Master API Key did not exist for this account, but is required, so a A "
+"Master API Key was created. Please try your request again, or contact "
+"support."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:374 includes/wc-am-product-admin.php:815
+msgid "A notice displayed when an update is available."
+msgstr ""
+
+#: templates/emails/api-keys-order-complete.php:51
+msgid ""
+"A Product Order API Key can be used to limit activation to a single product "
+"from a single order."
+msgstr ""
+
+#: templates/myaccount/api-keys.php:71
+msgid ""
+"A Product Order API Key is used to activate a single product from a single "
+"order."
+msgstr ""
+
+#: includes/wc-am-download-handler.php:70
+msgid "Access expired."
+msgstr ""
+
+#: includes/admin/meta-boxes/html-order-api-resources.php:71
+msgid "Access Expires"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:128
+msgid "Access Key ID"
+msgstr ""
+
+#: includes/admin/wc-am-admin-notices.php:138
+msgid "Action failed. Please refresh the page and retry."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:442
+#: includes/admin/meta-boxes/html-order-api-resources.php:45
+msgid "Activation Limit"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:794
+msgid "Activation Limit:"
+msgstr ""
+
+#: templates/myaccount/api-keys.php:92
+msgid "Activations"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:416
+msgid ""
+"All data below is copied to all variations, unless the checkbox is selected "
+"per variation labeled \"Set API options for this variable product only.\" "
+"Activation limit, not listed below, must be set per variation."
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:121
+#: includes/admin/wc-am-settings-admin.php:151
+msgid "Amazon S3"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:142
+msgctxt "Amazon S3 Configured, Label on WooCommerce -> System Status page"
+msgid "Amazon S3 Configured"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:174
+msgid "Amazon S3 Region"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:160
+msgctxt "Amazon S3 Region, Label on WooCommerce -> System Status page"
+msgid "Amazon S3 Region"
+msgstr ""
+
+#: includes/admin/views/html-notice-api-products-update.php:13
+msgid ""
+"An API Product is being added to the API Resources database table in the "
+"background. Depending on the amount of orders that include the API Product "
+"in your store, this may take a while."
+msgstr ""
+
+#. Description of the plugin
+msgid "An API resource manager."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:260
+msgid "An empty API Key was sent."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:274 includes/wc-am-product-admin.php:296
+#: includes/wc-am-product-admin.php:394
+msgid "API"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:473
+msgid "API Access Expires"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:839
+msgid "API Access Expires:"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:261
+msgctxt "API Cache Expires, Label on WooCommerce -> System Status page"
+msgid "API Cache Expires"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:236
+msgid "API Doc Tabs"
+msgstr ""
+
+#: includes/wc-api-manager-query.php:123 includes/wc-api-manager-query.php:146
+#: includes/wc-api-manager-query.php:149 includes/wc-api-manager-query.php:278
+#: templates/emails/api-keys-order-complete.php:29
+msgid "API Downloads"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:326
+msgid "API Error Log"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:177
+msgctxt "API Key Activations Count, Label on WooCommerce -> System Status page"
+msgid "API Key Activations"
+msgstr ""
+
+#: includes/admin/meta-boxes/html-order-api-activations.php:16
+msgid "API Key Used"
+msgstr ""
+
+#: includes/wc-api-manager-query.php:120 includes/wc-api-manager-query.php:145
+#: includes/wc-api-manager-query.php:148 includes/wc-api-manager-query.php:269
+#: includes/admin/wc-am-settings-admin.php:217
+msgid "API Keys"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:68
+msgid "API Manager"
+msgstr ""
+
+#: includes/wc-am-user.php:373
+msgid "API Manager API Key"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:348
+msgid "API Manager Extensions"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:767
+msgid "API Manager Options"
+msgstr ""
+
+#: includes/wc-am-order-admin.php:395
+msgid "API Product"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:194
+msgctxt "API Products Count, Label on WooCommerce -> System Status page"
+msgid "API Products"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:316
+msgid "API Request Log"
+msgstr ""
+
+#: includes/wc-am-order-admin.php:53
+msgid "API Resource Activations"
+msgstr ""
+
+#: includes/wc-am-order-admin.php:49
+msgid "API Resources"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:211
+msgctxt "API Resources Count, Label on WooCommerce -> System Status page"
+msgid "API Resources"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:290
+msgid "API Response"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:336
+msgid "API Response Log"
+msgstr ""
+
+#: includes/wc-am-order-admin.php:239
+msgid "Are you sure you want to delete this activation?"
+msgstr ""
+
+#: includes/admin/meta-boxes/html-order-api-activations.php:36
+msgid "Associated API Key"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:228
+msgctxt "Associated API Keys Count, Label on WooCommerce -> System Status page"
+msgid "Associated API Keys"
+msgstr ""
+
+#: includes/wc-am-download-handler.php:75
+msgid "Authentication failed."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:333
+msgid "Author"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:897
+msgid "Author:"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:245
+msgctxt "Cache Enabled, Label on WooCommerce -> System Status page"
+msgid "Cache Enabled"
+msgstr ""
+
+#: includes/wc-am-order.php:582
+msgid "Cancelled API Products update job."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:440
+msgid "Cannot activate API Key. No API resources available."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:403
+msgid ""
+"Cannot activate API Key. The API Key has already been activated with the "
+"same unique instance ID sent with this request."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:546 includes/wc-am-product-admin.php:935
+#: templates/myaccount/api-downloads.php:152
+#: templates/myaccount/api-downloads.php:252
+msgid "Changelog"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:562
+msgid "Changes in the software."
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:237
+#, php-format
+msgid ""
+"Choose which tabs will display on the WordPress plugin information screen. "
+"Can also be used for non-WordPress software. A changelog is required. "
+"%sScreenshot example%s."
+msgstr ""
+
+#: includes/admin/meta-boxes/html-order-api-resources.php:33
+msgid "Click to toggle"
+msgstr ""
+
+#: woocommerce-api-manager.php:132
+msgid "Cloning is forbidden."
+msgstr ""
+
+#: includes/wc-am-order-admin.php:395
+msgid "Contains API Product"
+msgstr ""
+
+#: includes/wc-am-order-admin.php:69 includes/wc-am-order-admin.php:107
+#: includes/wc-am-order-admin.php:216
+msgid "Contains no API Product."
+msgstr ""
+
+#: includes/admin/meta-boxes/html-order-api-resources.php:51
+msgid "Current Version"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:278
+msgctxt "Database Cache Expires, Label on WooCommerce -> System Status page"
+msgid "Database Cache Expires"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:309
+msgid "Debug"
+msgstr ""
+
+#: templates/myaccount/api-keys.php:243
+#: includes/admin/meta-boxes/html-order-api-activations.php:63
+msgid "Delete"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:527 includes/wc-am-product-admin.php:914
+#: includes/admin/wc-am-settings-admin.php:243
+msgid "Description"
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:444
+#: includes/api/wc-am-api-requests.php:453
+msgid "Details from activate() method."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:544
+#: includes/api/wc-am-api-requests.php:553
+msgid "Details from deactivate() method."
+msgstr ""
+
+#: includes/wc-am-smart-cache.php:392 includes/wc-am-smart-cache.php:438
+msgid "Details from delete_cache() method, random_int() error."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:1385
+msgid ""
+"Details from error_response() method. This is the error response from the "
+"API:"
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:350
+#: includes/api/wc-am-api-requests.php:358
+msgid "Details from get_resources() method."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:909
+msgid "Details from information() method."
+msgstr ""
+
+#: includes/wc-am-smart-cache.php:287 includes/wc-am-smart-cache.php:336
+msgid ""
+"Details from refresh_cache() method, "
+"get_all_api_non_wc_subscription_resources_for_order_id() error."
+msgstr ""
+
+#: includes/wc-am-smart-cache.php:275 includes/wc-am-smart-cache.php:324
+msgid ""
+"Details from refresh_cache() method, get_all_api_resources_for_order_id() "
+"error."
+msgstr ""
+
+#: includes/wc-am-smart-cache.php:281 includes/wc-am-smart-cache.php:330
+msgid ""
+"Details from refresh_cache() method, "
+"get_all_api_resources_for_sub_parent_id() error."
+msgstr ""
+
+#: includes/wc-am-smart-cache.php:293 includes/wc-am-smart-cache.php:342
+msgid ""
+"Details from refresh_cache() method, "
+"get_api_resources_for_user_id_sort_by_product_title() error."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:624
+#: includes/api/wc-am-api-requests.php:635
+msgid "Details from status() method."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:1330
+msgid ""
+"Details from success_response() method. This is the success response from "
+"the API:"
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:1187
+msgid "Details from update() method."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:303
+msgid "Details from verify_user() method."
+msgstr ""
+
+#: includes/wc-am-user.php:392
+msgid "Disable Master API Key"
+msgstr ""
+
+#: templates/myaccount/api-downloads.php:178
+#: templates/myaccount/api-downloads.php:196
+#: templates/myaccount/api-downloads.php:280
+#: templates/myaccount/api-downloads.php:298
+msgid "Disabled"
+msgstr ""
+
+#: includes/admin/views/html-notice-updated.php:11
+#: includes/admin/views/html-notice-custom.php:12
+msgid "Dismiss"
+msgstr ""
+
+#: includes/wc-am-install.php:123
+msgid "Docs"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:508
+#: templates/myaccount/api-downloads.php:51
+#: templates/myaccount/api-downloads.php:163
+#: templates/myaccount/api-downloads.php:263
+msgid "Documentation"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:1040
+msgid "Documentation link for My Account dashboard."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:524
+msgid "Documentation link for My Account."
+msgstr ""
+
+#: templates/myaccount/api-downloads.php:52
+#: templates/myaccount/api-downloads.php:173
+#: templates/myaccount/api-downloads.php:176
+#: templates/myaccount/api-downloads.php:273
+#: templates/myaccount/api-downloads.php:277
+msgid "Download"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:187
+msgid "Download Links"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:298
+msgctxt "Download URLs Expire, Label on WooCommerce -> System Status page"
+msgid "Download URLs Expire"
+msgstr ""
+
+#: templates/emails/api-keys-order-complete.php:32
+msgid "Download Your Files"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:319 includes/wc-am-product-admin.php:856
+msgid "e.g. 1.2.5"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:865
+msgid "e.g. 3.3"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:343
+msgid "e.g. 3.6"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:351 includes/wc-am-product-admin.php:874
+msgid "e.g. 4.0"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:359 includes/wc-am-product-admin.php:883
+msgid "e.g. 7.3"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:433 includes/wc-am-product-admin.php:787
+msgid "Enable for unlimited number of activations."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:275 includes/wc-am-product-admin.php:297
+msgid "Enable this option if this is a resource that requires the API Manager."
+msgstr ""
+
+#: includes/wc-api-manager-query.php:279
+msgid "Endpoint for the My Account &rarr; API Downloads page"
+msgstr ""
+
+#: includes/wc-api-manager-query.php:270
+msgid "Endpoint for the My Account &rarr; API Keys page"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:477 includes/wc-am-product-admin.php:840
+msgid ""
+"Enter the number of days before API access expires, or leave blank to never "
+"expire."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:131
+msgid ""
+"Error in __construct() method. Error message is \"Error code 100. No request "
+"value received.\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:97
+#: includes/api/wc-am-api-requests.php:110
+msgid ""
+"Error in __construct() method. Error message is \"Error code 100. The source "
+"did not send a required IP address.\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:121
+msgid ""
+"Error in __construct() method. Error message is \"Error code 100. The source "
+"is not trusted.\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:114
+msgid ""
+"Error in __construct() method. Error message is \"Error code 100. The "
+"trusted source list does not contain a valid IP address.\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:437
+msgid ""
+"Error in activate() method. Error message is \"Error code 100. Cannot "
+"activate API Key. No API resources available.\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:400
+msgid ""
+"Error in activate() method. Error message is \"Error code 100. Cannot "
+"activate API Key. The API Key has already been activated with the same "
+"unique instance ID sent with this request.\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:343
+msgid ""
+"Error in get_resources() method. Error message is \"Error code 100. No API "
+"resources exist. Verify there are activations remaining, and the API Key and "
+"Product ID are correct.\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:325
+msgid ""
+"Error in required() method. Error message is \"Error code 100. The following "
+"required query string data is missing:\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:241
+msgid ""
+"Error in route_request() method. Error message is \"Error code 100. Request "
+"value does not exist.\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:269
+msgid ""
+"Error in verify_user() method. Error message is \"Error code 100. A customer "
+"account does not exist for this API Key.\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:289
+msgid ""
+"Error in verify_user() method. Error message is \"Error code 100. A Master "
+"API Key did not exist for this customer, and all customers are required to "
+"have a Master API Key, so a Master API Key has been created.\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:257
+msgid ""
+"Error in verify_user() method. Error message is \"Error code 100. An empty "
+"API Key was sent.\""
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:295
+msgid ""
+"Error in verify_user() method. Error message is \"Error code 100. The API "
+"access for this API Key has been disabled, or an API Key was sent that does "
+"not exist on this store.\""
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:195
+msgid ""
+"Expiration time in days, for Amazon S3 and local server WooCommerce URLs."
+msgstr ""
+
+#: templates/myaccount/api-keys.php:201
+msgid "Expired"
+msgstr ""
+
+#: templates/myaccount/api-keys.php:90
+msgid "Expires"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:584 includes/wc-am-product-admin.php:977
+#: includes/admin/wc-am-settings-admin.php:261
+msgid "FAQ"
+msgstr ""
+
+#: includes/wc-am-download-handler.php:417
+msgid "File not found"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:123
+#, php-format
+msgid ""
+"For better security add the following to wp-config.php, so your AWS Keys are "
+"not stored in the database:%s%s%s%s%s%s%s%s"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:977
+msgid "Frequently Asked Questions about the software."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:600
+msgid "Frequently Asked Questions."
+msgstr ""
+
+#: includes/wc-am-user.php:379
+msgid "Generate Master API Key"
+msgstr ""
+
+#: templates/myaccount/api-downloads.php:316
+#: templates/myaccount/api-keys.php:274
+msgid "Go shop"
+msgstr ""
+
+#: includes/wc-am-download-handler.php:609
+msgid "Go to shop"
+msgstr ""
+
+#: includes/wc-am-order-admin.php:415
+msgid "Has activations."
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:225
+msgid ""
+"Hide Product Order API Keys on My Account > API Keys tab screen. Hide if "
+"customers should only use Master API Key."
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:317
+msgctxt ""
+"Hide Product Order API Keys, Label on WooCommerce -> System Status page"
+msgid "Hide Product Order API Keys?"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:350
+msgid ""
+"Highest version platform/framework, such as WordPress, software was tested "
+"on."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:581
+msgid "How to install the software."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:327 includes/wc-am-product-admin.php:911
+msgid "http://myplugin.com"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://woocommerce.com/products/woocommerce-api-manager/"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.toddlahman.com"
+msgstr ""
+
+#. placeholder is human time diff (e.g. "3 weeks")
+#: includes/wc-am-format.php:54
+#, php-format
+msgid "In %s"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:565 includes/wc-am-product-admin.php:956
+#: includes/admin/wc-am-settings-admin.php:252
+msgid "Installation"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:956
+msgid ""
+"Instructions on how to install the software, and notes regarding "
+"installation."
+msgstr ""
+
+#: includes/wc-am-download-handler.php:61
+#: includes/wc-am-download-handler.php:109
+msgid "Invalid download link."
+msgstr ""
+
+#: includes/wc-am-download-handler.php:164
+msgid "Invalid order."
+msgstr ""
+
+#: includes/admin/views/html-notice-update.php:19
+msgid ""
+"It is strongly recommended that you backup your database before proceeding. "
+"Are you sure you wish to run the updater now?"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:353
+msgctxt "label for the system status page"
+msgid "WooCommerce API Manager Template Theme Overrides"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:365
+msgid "Last Updated"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:887
+msgid "Last Updated:"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:446 includes/wc-am-product-admin.php:795
+msgid ""
+"Limits the number of activations. Default is 1 when left empty. If the "
+"product activation limit is increased, all API resources with the product "
+"will have the activation limit increased to match."
+msgstr ""
+
+#: includes/wc-am-order-admin.php:45 templates/myaccount/api-keys.php:53
+#: templates/emails/api-keys-order-complete.php:36
+#: includes/admin/meta-boxes/html-order-api-activations.php:32
+msgid "Master API Key"
+msgstr ""
+
+#: includes/wc-am-user.php:381 templates/emails/api-keys-order-complete.php:39
+msgid "Master API Key:"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:358 includes/wc-am-product-admin.php:879
+msgid "Minimum version of PHP software requires."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:342
+msgid ""
+"Minimum version of platform/framework, such as WordPress, software requires."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:1040
+msgid "My Account Documentation"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:474 includes/wc-am-product-admin.php:843
+#: includes/wc-am-product-admin.php:844
+msgid "Never"
+msgstr ""
+
+#: templates/myaccount/api-keys.php:203
+#: includes/admin/meta-boxes/html-order-api-resources.php:17
+#: includes/admin/meta-boxes/html-order-api-resources.php:23
+msgid "never"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:144
+#: includes/admin/wc-am-admin-system-status.php:247
+#: includes/admin/wc-am-admin-system-status.php:319
+msgid "No"
+msgstr ""
+
+#: includes/wc-am-order-admin.php:227 includes/wc-am-order-admin.php:295
+msgid "No activations yet."
+msgstr ""
+
+#: includes/wc-am-order-admin.php:417
+msgid "No activations."
+msgstr ""
+
+#: templates/myaccount/api-downloads.php:318
+msgid "No API downloads available yet."
+msgstr ""
+
+#: templates/myaccount/api-keys.php:276
+msgid "No API products available yet."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:346
+#, php-format
+msgid ""
+"No API resources exist. Login to %sMy Account%s to verify there are "
+"activations remaining, and the API Key and Product ID are correct."
+msgstr ""
+
+#: includes/wc-am-order-admin.php:92 includes/wc-am-order-admin.php:150
+#: includes/wc-am-order-admin.php:200
+msgid "No API resources for this order."
+msgstr ""
+
+#: templates/myaccount/api-downloads.php:142
+#: templates/myaccount/api-downloads.php:242
+msgid "No Date"
+msgstr ""
+
+#: includes/wc-am-download-handler.php:89
+#: includes/wc-am-download-handler.php:144
+msgid "No file defined"
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:134
+msgid "No request value received."
+msgstr ""
+
+#: includes/admin/meta-boxes/html-order-api-activations.php:20
+msgid "Object"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:375 includes/wc-am-product-admin.php:819
+msgid "Optional"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:638
+msgid "Other details or special facts."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:622 includes/wc-am-product-admin.php:1019
+#: includes/admin/wc-am-settings-admin.php:279
+msgid "Other Notes"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:1019
+msgid "Other notes about the software."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:325
+msgid "Page URL"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:906
+msgid "Page URL:"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:310 templates/myaccount/api-keys.php:83
+#: includes/admin/meta-boxes/html-order-api-activations.php:17
+#: includes/admin/meta-boxes/html-order-api-resources.php:65
+msgid "Product ID"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:803
+#: templates/emails/api-keys-order-complete.php:61
+msgid "Product ID:"
+msgstr ""
+
+#: includes/admin/meta-boxes/html-order-api-resources.php:34
+#, php-format
+msgid ""
+"Product ID: %s | Product Title: %s | Activations: %s out of %s | Current "
+"Version: %s | Expires: %s"
+msgstr ""
+
+#: templates/myaccount/api-keys.php:87
+#: includes/admin/meta-boxes/html-order-api-activations.php:34
+msgid "Product Order API Key"
+msgstr ""
+
+#: templates/emails/api-keys-order-complete.php:66
+msgid "Product Order API Key(s):"
+msgstr ""
+
+#: includes/admin/meta-boxes/html-order-api-resources.php:40
+msgid "Product Order API Key:"
+msgstr ""
+
+#: templates/emails/api-keys-order-complete.php:48
+#: includes/admin/wc-am-settings-admin.php:224
+msgid "Product Order API Keys"
+msgstr ""
+
+#: templates/myaccount/api-downloads.php:48 templates/myaccount/api-keys.php:81
+msgid "Product Title"
+msgstr ""
+
+#: templates/myaccount/api-downloads.php:50
+msgid "Release Date"
+msgstr ""
+
+#: includes/wc-am-user.php:387
+msgid "Replace Master API Key"
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:400
+#: includes/api/wc-am-api-requests.php:437
+msgid "Request data received:"
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:244
+msgid "Request value does not exist."
+msgstr ""
+
+#: includes/admin/meta-boxes/html-order-api-resources.php:54
+#: includes/admin/meta-boxes/html-order-api-resources.php:62
+#: includes/admin/meta-boxes/html-order-api-resources.php:68
+#: includes/admin/meta-boxes/html-order-api-resources.php:74
+msgid "Required"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:357
+msgid "Requires PHP Version"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:878
+msgid "Requires PHP Version:"
+msgstr ""
+
+#: includes/admin/meta-boxes/html-order-api-resources.php:59
+msgid "Resource Title"
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:400
+#: includes/api/wc-am-api-requests.php:437
+msgid "Resources available:"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:164
+msgid "Restore"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:163
+msgid "Restore this item from the Trash"
+msgstr ""
+
+#: includes/admin/views/html-notice-update.php:14
+msgid "Run the updater"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:204
+msgid "Save to Dropbox App Key"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:603 includes/wc-am-product-admin.php:998
+#: includes/admin/wc-am-settings-admin.php:270
+msgid "Screenshots"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:619 includes/wc-am-product-admin.php:998
+msgid "Screenshots of the software."
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:139
+msgid "Secret Access Key"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:333
+msgctxt ""
+"Secure Download URL Hashes Count, Label on WooCommerce -> System Status page"
+msgid "Secure Download URL Hashes"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:524 includes/wc-am-product-admin.php:543
+#: includes/wc-am-product-admin.php:562 includes/wc-am-product-admin.php:581
+#: includes/wc-am-product-admin.php:600 includes/wc-am-product-admin.php:619
+#: includes/wc-am-product-admin.php:638
+msgid "Select a page &hellip;"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:932 includes/wc-am-product-admin.php:974
+#: includes/wc-am-product-admin.php:995 includes/wc-am-product-admin.php:1016
+#: includes/wc-am-product-admin.php:1037 includes/wc-am-product-admin.php:1058
+msgid "Select a page &hellip; (Optional)"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:953
+msgid "Select a page &hellip; (Recommended)"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:297
+msgid "Send API Resource Data"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:775
+msgid "Set API options for this variable product only."
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:200
+msgid ""
+"Sets the time limit in days before a secure URL will expire. If a download "
+"begins before the expiration time limit is reached, the download will "
+"continue until complete."
+msgstr ""
+
+#: includes/wc-am-install.php:108
+msgid "Settings"
+msgstr ""
+
+#: includes/wc-am-download-handler.php:191
+msgid "Sorry, this download has expired"
+msgstr ""
+
+#: includes/wc-am-download-handler.php:178
+msgid "Sorry, you have reached your download limit for this file"
+msgstr ""
+
+#: includes/wc-am-install.php:124
+msgid "Support"
+msgstr ""
+
+#: includes/admin/views/html-notice-updating.php:12
+msgid "Taking a while? Click here to run it now."
+msgstr ""
+
+#: woocommerce-api-manager.php:511
+#, php-format
+msgid ""
+"The %sWooCommerce API Manager is inactive.%s The %sWooCommerce%s plugin must "
+"be active for the WooCommerce API Manager to work. Please activate "
+"WooCommerce on the %splugin page%s once it is installed."
+msgstr ""
+
+#: woocommerce-api-manager.php:529
+#, php-format
+msgid ""
+"The %sWooCommerce API Manager%s is inactive because it requires PHP version "
+"%s or greater, but your server has %s installed. Ask your web host to "
+"upgrade your version of PHP."
+msgstr ""
+
+#: woocommerce-api-manager.php:582
+#, php-format
+msgid ""
+"The %sWooCommerce API Manager%s requires WooCommerce Subscriptions version "
+"%s or greater, but your server has WooCommerce Subscriptions version %s "
+"installed. Please upgrade WooCommerce Subscriptions to version %s or greater."
+msgstr ""
+
+#: woocommerce-api-manager.php:566
+#, php-format
+msgid ""
+"The %sWooCommerce API Manager%s requires WooCommerce version %s or greater, "
+"but your server has WooCommerce version %s installed. The WooCommerce API "
+"Manager will remain disabled until WooCommerce has been upgraded to version "
+"%s or greater."
+msgstr ""
+
+#: includes/data-stores/wc-am-api-activation-data-store.php:912
+#: includes/data-stores/wc-am-api-activation-data-store.php:938
+msgid "The activation could not be deleted."
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:175
+msgid "The Amazon S3 Region where files are stored."
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:129
+msgid "The Amazon Web Services Access Key ID."
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:140
+msgid ""
+"The Amazon Web Services Secret Access Key is securely encrypted in the "
+"database."
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:146
+msgid "The Amazon Web Services Secret Access Key."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:298
+msgid ""
+"The API access for this API Key has been disabled, or an API Key was sent "
+"that does not exist on this store."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:540
+msgid "The API Key could not be deactivated."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:334
+msgid "The author of the software."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:852
+msgid ""
+"The current software version number, which triggers an update notification "
+"if the customer has an older version installed."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:888
+msgid "The date the software was last updated."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:328
+msgid "The following required query string data is missing"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:870
+msgid ""
+"The highest version of platform/framework, such as WordPress, the software "
+"has been tested on."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:777
+msgid "The information set here will only apply to this variable product."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:861
+msgid ""
+"The minimum version of platform/framework, such as WordPress, required to "
+"run the software."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:898
+msgid "The name of the software author."
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:181
+msgid "The region is required."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:326 includes/wc-am-product-admin.php:907
+msgid "The software page URL."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:318
+msgid "The software version number."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:100
+msgid "The source did not send a required IP address."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:124
+msgid "The source is not trusted."
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:355
+msgid "There was an error getting API resources"
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:456
+msgid "There was an error getting API resources in activate()"
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:556
+msgid "There was an error getting API resources in deactivate()"
+msgstr ""
+
+#: includes/api/wc-am-api-requests.php:632
+msgid "There was an error getting API resources in status()"
+msgstr ""
+
+#: templates/myaccount/api-downloads.php:324
+#: templates/myaccount/api-keys.php:282
+msgid "This account has been disabled."
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:205
+#, php-format
+msgid ""
+"This creates a Save to Dropbox link in the My Account > My API Downloads "
+"section. Create an App Key %shere%s."
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:82
+msgid "This section shows information about the WooCommerce API Manager."
+msgstr ""
+
+#: includes/admin/meta-boxes/html-order-api-activations.php:19
+msgid "Time"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:902
+msgid "Todd Lahman"
+msgstr ""
+
+#. Author of the plugin
+#: includes/wc-am-product-admin.php:335
+msgid "Todd Lahman LLC"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:311
+msgid ""
+"Unique ID used to indentify this API resource. Do NOT delete this product or "
+"ID."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:805
+msgid ""
+"Unique ID used to indentify this API resource. Do NOT delete this product."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:431 includes/wc-am-product-admin.php:785
+msgid "Unlimited Activations"
+msgstr ""
+
+#: woocommerce-api-manager.php:141
+msgid "Unserializing instances of this class is forbidden."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:373
+msgid "Upgrade Notice"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:814
+msgid "Upgrade Notice:"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:194
+msgid "URL Expire Time"
+msgstr ""
+
+#: includes/admin/wc-am-settings-admin.php:153
+msgid "Values defined in wp-config.php."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:317
+#: templates/myaccount/api-downloads.php:49
+#: includes/admin/meta-boxes/html-order-api-activations.php:18
+msgid "Version"
+msgstr ""
+
+#. %1$s is the file version, %2$s is the core version
+#: includes/admin/wc-am-admin-system-status.php:407
+#, php-format
+msgid "version %1$s is out of date. The core version is %2$s"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:341
+msgid "Version Required"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:860
+msgid "Version Required:"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:349
+msgid "Version Tested Up To"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:869
+msgid "Version Tested Up To:"
+msgstr ""
+
+#: includes/wc-am-product-admin.php:851
+msgid "Version:"
+msgstr ""
+
+#. placeholders are opening and closing tags. Leads to docs on version 2
+#: woocommerce-api-manager.php:637
+#, php-format
+msgid ""
+"Warning! Version 2.0 is a major update to the WooCommerce API Manager "
+"extension. Before updating, please create a backup, update all WooCommerce "
+"extensions, and test all plugins and custom code with version 2.0 on a "
+"staging site. %sLearn more about the changes in version 2.0 &raquo;%s"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:125
+msgctxt ""
+"WC API Manager Database Version, Label on WooCommerce -> System Status page"
+msgid "WC API Manager Database Version"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:106
+msgctxt "WC API Manager Version, Label on WooCommerce -> System Status page"
+msgid "WC API Manager Version"
+msgstr ""
+
+#: includes/admin/views/html-notice-update.php:11
+msgid "We need to update your database to the latest version."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:366
+msgid "When the software was last updated."
+msgstr ""
+
+#. Name of the plugin
+#: includes/admin/wc-am-admin-system-status.php:81
+msgid "WooCommerce API Manager"
+msgstr ""
+
+#: includes/admin/views/html-notice-update.php:10
+#: includes/admin/views/html-notice-updating.php:10
+msgid "WooCommerce API Manager data update"
+msgstr ""
+
+#: includes/admin/views/html-notice-updated.php:13
+msgid ""
+"WooCommerce API Manager data update complete. Thank you for updating to the "
+"latest version!"
+msgstr ""
+
+#: includes/admin/wc-am-admin-system-status.php:144
+#: includes/admin/wc-am-admin-system-status.php:247
+#: includes/admin/wc-am-admin-system-status.php:319
+msgid "Yes"
+msgstr ""
+
+#: includes/admin/wc-am-admin-notices.php:142
+msgid "You don&#8217;t have permission to do this."
+msgstr ""
+
+#: includes/admin/views/html-notice-updating.php:11
+msgid "Your database is being updated in the background."
+msgstr ""
+
+#: includes/wc-am-product-admin.php:367 includes/wc-am-product-admin.php:893
+msgid "YYYY-MM-DD"
+msgstr ""

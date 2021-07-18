@@ -1,0 +1,92 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 迅虎商店\n"
+"POT-Creation-Date: 2018-03-19 10:22+0800\n"
+"PO-Revision-Date: 2018-03-19 10:22+0800\n"
+"Last-Translator: ranj <ranj@evget.com>\n"
+"Language-Team: 重庆迅虎网络有限公司 <jeff@xunhuweb.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: class-wechat-wc-payment-gateway.php:11
+#: class-wechat-wc-payment-gateway.php:258
+msgid "Wechat Payment"
+msgstr "微信支付"
+
+#: class-wechat-wc-payment-gateway.php:12
+msgid ""
+"Helps to add Wechat payment gateway that supports the features including QR "
+"code payment, OA native payment, exchange rate."
+msgstr "微信网关支付提供二维码扫描支付，H5本地支持，汇率换算等功能。"
+
+#: class-wechat-wc-payment-gateway.php:144
+msgid "Invalid sign!"
+msgstr "错误的签名！"
+
+#: class-wechat-wc-payment-gateway.php:249
+msgid "Enable/Disable"
+msgstr "启用/禁用"
+
+#: class-wechat-wc-payment-gateway.php:251
+msgid "Enable/Disable the wechat payment"
+msgstr "启用/禁用微信支付"
+
+#: class-wechat-wc-payment-gateway.php:256
+msgid "Payment gateway title"
+msgstr "支付网关标题"
+
+#: class-wechat-wc-payment-gateway.php:264
+msgid "Payment gateway description"
+msgstr "支付网关描述"
+
+#: class-wechat-wc-payment-gateway.php:266
+msgid "QR code payment or OA native payment, credit card"
+msgstr "二维码扫描支付或H5本地支付，信用卡支付"
+
+#: class-wechat-wc-payment-gateway.php:272
+msgid "Instructions"
+msgstr "介绍"
+
+#: class-wechat-wc-payment-gateway.php:275
+msgid "Instructions that will be added to the thank you page."
+msgstr "介绍信息会在“Thank you”页面显示"
+
+#: class-wechat-wc-payment-gateway.php:280
+msgid "APP ID"
+msgstr "APP ID"
+
+#: class-wechat-wc-payment-gateway.php:285
+msgid ""
+"<a target=\"_blank\" href=\"http://cp.wordpressopen.com\">register and get "
+"app id</a>."
+msgstr ""
+"<a target=\"_blank\" href=\"http://cp.wordpressopen.com\">注册并获取APP ID</"
+"a>."
+
+#: class-wechat-wc-payment-gateway.php:288
+msgid "APP Secret"
+msgstr "APP Secret"
+
+#: class-wechat-wc-payment-gateway.php:295
+msgid "Transaction_url"
+msgstr "网关地址"
+
+#: class-wechat-wc-payment-gateway.php:302
+msgid "Exchange Rate"
+msgstr "汇率"
+
+#: class-wechat-wc-payment-gateway.php:305
+msgid "Set the exchange rate to RMB. When it is RMB, the default is 1"
+msgstr "设置转换成人民币的汇率，当前货币为人民币时，汇率默认等于1"
+
+#: init.php:27
+msgid "Settings"
+msgstr "设置"

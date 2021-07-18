@@ -1,0 +1,138 @@
+.app-release {
+    display: flex;
+}
+
+.app-release ul {
+    list-style-type: none;
+
+}
+#app-sub-type {
+    display: flex;
+}
+#app-sub-type  li{
+    margin: 0 5px;
+}
+.app-release  .app_release_tabs{
+    width: 20%;
+    background-color: #fafafa;
+}
+#box {
+    width: 80%;
+    padding: 0 15px;
+    min-height: 500px;
+}
+#box label, #box legend {
+    width: 20%;
+    line-height: 26px;
+}
+#box label + div{
+    width: 80%;
+}
+#box label+input {
+    width: 260px;
+}
+
+#box > ul > li {
+    display: none;
+}
+
+#box ul li.active {
+    display: block;
+}
+
+ul.app_release_tabs li {
+    margin: 0;
+    padding: 10px;
+    display: block;
+    box-shadow: none;
+    text-decoration: none;
+    line-height: 20px !important;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+ul.app_release_tabs  li.active {
+    color: #555;
+    position: relative;
+    background-color: #eee;
+}
+.app-release .form-field{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px;
+}
+.app-release .options_group {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #eee;
+}
+#box .options_group:last-child {
+    border: none;
+}
+.theEditor{
+    min-width: 350px;
+    min-height: 100px;
+}
+.app-release div.mce-panel {
+    border: 0 solid #c5c5c5;
+    background-color: #fff;
+}
+ul.app_release_tabs li .dashicons{
+    margin-right: 10px;
+}
+._wcpv_product_commission_field label +.widefat{
+    width: 77%;
+}
+._wcpv_product_commission_field td.sort::before{
+    content: "\f333";
+    font-family: Dashicons;
+    text-align: center;
+    line-height: 1;
+    color: #999;
+    display: block;
+    width: 17px;
+    top: 0;
+    height: fit-content;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+}
+._wcpv_product_commission_field td.sort {
+    width: 17px;
+    cursor: move;
+    font-size: 15px;
+    text-align: center;
+    background: #f9f9f9;
+    padding-right: 7px!important;
+    position: relative;
+}
+._wcpv_product_commission_field .delete::before {
+    font-family: Dashicons;
+    speak: never;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    content: "";
+    color: #999;
+    line-height: 2em;
+}
+._wcpv_product_commission_field .delete{
+    display: block;
+    text-indent: -9999px;
+    position: relative;
+    height: 1em;
+    width: 1em;
+    font-size: 1.2em;
+}
+#box .form-field .description{
+    display: block;
+    margin-top: 5px;
+}

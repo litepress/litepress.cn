@@ -1,0 +1,65 @@
+/* =Infinite Scroll
+----------------------------------------------- */
+.infinite-scroll {
+
+	/* =Infinity Styles
+	-------------------------------------------------------------- */
+	#main:after {
+	}
+
+	#content {
+	}
+
+	.hentry:last-of-type,
+	.hentry.last-before-infinite {
+	}
+
+	/* Elements to hide */
+	.o2-app-footer,
+	#colophon,
+	#team-motto {
+		display: none;
+	}
+
+	/* Hooks to infinity-end body class to restore footer */
+	&.infinity-end #colophon,
+	&.infinity-end #team-motto {
+		display: block;
+	}
+
+	/* Rest the margin when IS is finished */
+	&.infinity-end #content {
+		margin-bottom: 0;
+	}
+}
+
+
+.infinite-wrap {
+}
+
+#infinite-handle,
+.infinite-loader {
+	text-align: center;
+}
+
+.infinite-loader {
+	.blog-info a {
+	}
+
+	.blog-credits {
+		a {
+		}
+	}
+}
+
+.infinity-end.neverending #colophon {
+	display: block;
+}
+/* INFINITE SCROLL */
+
+@include  breakpoint( 'tablet-portrait' ){
+	#infinite-handle span {
+		padding: 18px;
+		font-size: 110%;
+	}
+}
