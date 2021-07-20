@@ -1,6 +1,6 @@
 <?php
 
-namespace LitePress\Lavatar\Inc;
+namespace LitePress\Cravatar\Inc;
 
 use WP_Http;
 

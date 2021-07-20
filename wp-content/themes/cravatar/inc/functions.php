@@ -1,8 +1,8 @@
 <?php
 
-namespace LitePress\Lavatar\Inc;
+namespace LitePress\Cravatar\Inc;
 
-use LitePress\Lavatar\Inc\DataObject\Avatar_Status;
+use LitePress\Cravatar\Inc\DataObject\Avatar_Status;
 use PHPUnit\Runner\Exception;
 use WP_Error;
 

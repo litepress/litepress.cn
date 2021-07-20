@@ -1,6 +1,6 @@
 <?php
 
-use LitePress\Lavatar\Inc\Upyun;
+use LitePress\Cravatar\Inc\Upyun;
 
 define( 'CA_ROOT_PATH', get_stylesheet_directory() );
 define( 'CA_ROOT_URL', get_stylesheet_directory_uri() );

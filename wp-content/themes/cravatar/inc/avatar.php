@@ -1,8 +1,8 @@
 <?php
 
-namespace LitePress\Lavatar\Inc;
+namespace LitePress\Cravatar\Inc;
 
-use LitePress\Lavatar\Inc\DataObject\Avatar_Status;
+use LitePress\Cravatar\Inc\DataObject\Avatar_Status;
 
 function handle_avatar() {
 	$current_url   = add_query_arg( array() );
@@ -82,4 +82,4 @@ function handle_avatar() {
 	}
 }
 
-add_action( 'parse_request', 'LitePress\Lavatar\Inc\handle_avatar' );
+add_action( 'parse_request', 'LitePress\Cravatar\Inc\handle_avatar' );
