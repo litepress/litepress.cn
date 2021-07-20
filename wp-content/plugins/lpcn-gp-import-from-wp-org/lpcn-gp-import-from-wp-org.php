@@ -22,7 +22,7 @@ class GP_Import_From_WP_Org {
 
 	/**
 	 * @param string $slug
-	 * @param int $type 是插件 Or 主题？
+	 * @param string $type 是插件 Or 主题？
 	 *
 	 * @return false
 	 */
