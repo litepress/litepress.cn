@@ -51,7 +51,9 @@ if (!class_exists('Lava_Ajax_Search_bbPress')):
 			foreach( $this->search_results['items'] as $item_id=>$item_html ){
 				$post_ids[] = $item_id;
 			}
-			$qry = new WP_Query( array( 'post_type' =>array( 'forum', 'topic', 'reply' ), 'post__in'=>$post_ids ) );
+
+			$paged = (int)( ! isset( $_GET['paged'] ) || $_GET['paged'] <= 0 ? 1 : $_GET['paged']);
+			$qry = new WP_Query( array( 'post_type' =>array( 'forum', 'topic', 'reply' ), 'post__in'=>$post_ids, 'paged'=> $paged) );
 			if( $qry->have_posts() ){
 				while( $qry->have_posts() ){
 					$qry->the_post();
