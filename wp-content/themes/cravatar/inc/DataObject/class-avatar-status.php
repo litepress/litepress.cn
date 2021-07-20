@@ -1,6 +1,6 @@
 <?php
 
-namespace LitePress\Lavatar\Inc\DataObject;
+namespace LitePress\Cravatar\Inc\DataObject;
 
 final class Avatar_Status {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace LitePress\Lavatar\Inc;
+namespace LitePress\Cravatar\Inc;
 
 add_action( 'admin_menu', function () {
 	add_menu_page(
@@ -8,7 +8,7 @@ add_action( 'admin_menu', function () {
 		'头像审核',
 		'manage_options',
 		'avatar-verify',
-		'LitePress\Lavatar\Inc\avatar_verify',
+		'LitePress\Cravatar\Inc\avatar_verify',
 		'dashicons-cart',
 		80
 	);

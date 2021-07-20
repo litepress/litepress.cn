@@ -4,8 +4,8 @@
  * Description: 我的头像和邮件列表管理
  */
 
-use function LitePress\Lavatar\Inc\get_user_emails;
-use function LitePress\Lavatar\Inc\handle_email_delete;
+use function LitePress\Cravatar\Inc\get_user_emails;
+use function LitePress\Cravatar\Inc\handle_email_delete;
 
 $user = wp_get_current_user();
 if ( empty( $user->ID ) ) {
