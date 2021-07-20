@@ -2,7 +2,8 @@
 
 use LitePress\Lavatar\Inc\Upyun;
 
-define( 'LA_ROOT_PATH', get_stylesheet_directory_uri() );
+define( 'CA_ROOT_PATH', get_stylesheet_directory() );
+define( 'CA_ROOT_URL', get_stylesheet_directory_uri() );
 
 require 'inc/functions.php';
 

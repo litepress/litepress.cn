@@ -131,7 +131,7 @@ function is_status_for_avatar( string $filename, int $status ): bool {
 }
 
 function get_default_avatar_filename(): string {
-	return LA_ROOT_PATH . '/assets/img/default.png';
+	return CA_ROOT_PATH . '/assets/img/default.png';
 }
 
 function get_user_emails( int $user_id ): object|array|null {
