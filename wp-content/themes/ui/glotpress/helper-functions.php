@@ -9,7 +9,6 @@
  */
 
 use LitePress\I18n\i18n;
-use function LitePress\Helper\get_product_type_by_category_ids;
 
 /**
  * Output the bulk actions toolbar in the translations page.
