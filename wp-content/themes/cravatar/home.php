@@ -22,7 +22,7 @@ get_header();
 
 					</div>
 					<div class="col-lg-6 col-12  d-flex justify-content-center align-items-center ">
-						<img src="/lavatar/wp-content/themes/lavatar/assets/img/background-header-image-101b1a9e9b.png">
+						<img src="<?php echo CA_ROOT_URL; ?>/assets/img/background-header-image-101b1a9e9b.png">
 					</div>
 				</div>
 			</div>
