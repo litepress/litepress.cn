@@ -5,17 +5,17 @@ use LitePress\Lavatar\Inc\Upyun;
 define( 'CA_ROOT_PATH', get_stylesheet_directory() );
 define( 'CA_ROOT_URL', get_stylesheet_directory_uri() );
 
-require 'inc/functions.php';
+require CA_ROOT_PATH . '/inc/functions.php';
 
-require 'inc/enqueue-scripts.php';
+require CA_ROOT_PATH . '/inc/enqueue-scripts.php';
 
-require 'inc/class-upyun.php';
+require CA_ROOT_PATH . '/inc/class-upyun.php';
 
-require 'inc/DataObject/class-avatar-status.php';
+require CA_ROOT_PATH . '/inc/DataObject/class-avatar-status.php';
 
-require 'inc/avatar-verify.php';
+require CA_ROOT_PATH . '/inc/avatar-verify.php';
 
-require 'inc/route.php';
+require CA_ROOT_PATH . '/inc/avatar.php';
 
 $upyun = new Upyun();
 /*
