@@ -7,7 +7,7 @@
             <section class="text-center w-100 ">
 
                 <h4 class="display-1 mb-1"></h4>
-                <h3 class="text-gray-soft text-regular mb-4">您需要登录才能添加头像! 😎</h3>
+                <h3 class="text-gray-soft text-regular mb-4">你需要 <a href="/login">登录</a> 才能添加头像! 😎</h3>
 
             </section>
         </div>
