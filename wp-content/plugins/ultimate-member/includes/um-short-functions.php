@@ -699,7 +699,7 @@ function um_user_submitted_registration_formatted( $style = false ) {
 			$fields = UM()->query()->get_attr( 'custom_fields', $submitted_data['form_id'] );
 		}
 
-		if ( isset( $fields ) ) {
+		if ( isset( $fields ) && ! empty( $fields ) ) {
 
 			$fields['form_id'] = array( 'title' => __( 'Form', 'ultimate-member' ) );
 
