@@ -17,7 +17,7 @@ get_header();
 								id="hgr-homepage-header-cta-get_started" href="#pricing">现在开始</a>
 
 						</div>
-						<small class="mt-4 g-color-auxiliary">Craravar对所有人永久免费</small>
+						<small class="mt-4 g-color-auxiliary">Cravatar对所有人永久免费</small>
 
 
 					</div>
