@@ -213,14 +213,14 @@ $(function () {
 
             success: function (s) {
                 var cas = $(".cropper-view").cropper('getCroppedCanvas');
-                cas.toBlob(function (e) {
-                    console.log(e);  //生成Blob的图片格式
-                });
                 $(".avatar-view div").html(cas);
-                window.location.reload()
+                $alert.show().addClass('alert-success').text('上传成功,两秒后刷新当前页面');
+                setTimeout(function(){
+                    window.location.reload();//刷新当前页面.
+                },2000)
             },
             error: function (e) {
-                console.log(e);
+                $alert.show().addClass('alert-error').text(e);
             },
         });
     }
