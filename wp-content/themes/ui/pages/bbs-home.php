@@ -31,7 +31,7 @@ get_header();
                                             class="btn btn-primary align-items-center uabb-btn-two tooltip-show"
                                             data-bs-toggle="tooltip" data-bs-placement="bottom"
                                             title="LitePress将于未来数月内上线，在此期间我们为你准备了最新的WordPress安装包，其中内置WP-China-Yes插件"><i
-                                                class="fab fa-wordpress"></i>WordPress 最新版下载<span class="version">V5.7.2</span>
+                                                class="fab fa-wordpress"></i>WordPress 最新版下载<span class="version">V5.8.0</span>
                                     </button>
                                 </a>
                             </div>
