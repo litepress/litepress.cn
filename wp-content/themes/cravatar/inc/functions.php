@@ -80,7 +80,7 @@ function get_user_id_by_hash( string $md5 ): int {
 function get_gravatar_to_file( string $hash, string $query ): string {
 	global $wpdb;
 
-	$file_path = WP_CONTENT_DIR . '/cache/lavatar/' . $hash;
+	$file_path = WP_CONTENT_DIR . '/cache/cravatar/' . $hash;
 
 	if ( ! file_exists( $file_path ) || fileatime( $file_path ) < ( time() - 2626560 ) ) { // 文件存在且是一月内创建的
 		$url = "http://secure.gravatar.com/avatar/{$hash}" . ( ! empty( $query ) ? "?$query" : '' );
