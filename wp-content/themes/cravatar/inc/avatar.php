@@ -34,7 +34,7 @@ function handle_avatar() {
 
 		$avatar_filename = '';
 		if ( ! empty( $user->user_email ) ) {
-			$avatar_filename = um_get_user_avatar_url( $user->ID ?? 0 );
+			$avatar_filename = um_get_user_avatar_url( $user->ID ?? 0, 400 );
 			$avatar_filename = str_replace( WP_CONTENT_URL, WP_CONTENT_DIR, $avatar_filename );
 			$avatar_filename = explode( '?', $avatar_filename )[0] ?? '';
 		}
