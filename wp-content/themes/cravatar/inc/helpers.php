@@ -160,9 +160,15 @@ function is_status_for_avatar( string $filename, int $status ): bool {
  * @return string
  */
 function get_default_avatar_filename( string $default ): string {
+	// mp有几个别名，需要特别处理下
+	$default = match ( $default ) {
+		'mm' => 'mp',
+		'mystery' => 'mp',
+		default => $default,
+	};
+
 	$default_types = array(
 		'mp'        => 1,
-		'mm'        => 1, // 发现在WordPress中神秘人物的代码是mm，但是Gravatar官方文档中代码分明是mp，不明所以，这里先对两个都提供一下支持吧
 		'ban'       => 1,
 		'blank'     => 1,
 		'identicon' => 1000,
