@@ -27,6 +27,33 @@ function handle_avatar() {
 	$url_area_count = count( $url_area );
 
 	if ( 'avatar' === ( $url_area[ $url_area_count - 2 ] ?? '' ) ) {
+		/**
+		 * 处理用户传入的图像参数
+		 */
+		if ( isset( $_GET['d'] ) ) {
+			$default = $_GET['d'];
+		} elseif ( isset( $_GET['default'] ) ) {
+			$default = $_GET['default'];
+		} else {
+			$default = '';
+		}
+
+		if ( isset( $_GET['s'] ) ) {
+			$size = $_GET['s'];
+		} elseif ( isset( $_GET['size'] ) ) {
+			$size = $_GET['size'];
+		} else {
+			$size = '';
+		}
+
+		if ( isset( $_GET['f'] ) ) {
+			$forcedefault = $_GET['f'];
+		} elseif ( isset( $_GET['forcedefault'] ) ) {
+			$forcedefault = $_GET['forcedefault'];
+		} else {
+			$forcedefault = '';
+		}
+
 		$user_email_hash = $url_area[ $url_area_count - 1 ] ?? '';
 
 		$user_id = get_user_id_by_hash( $user_email_hash ?? '' );
@@ -34,11 +61,7 @@ function handle_avatar() {
 
 		$avatar_filename = '';
 		if (
-			! empty( $user->user_email ) &&
-			(
-				! isset( $_GET['f'] ) &&
-				! isset( $_GET['forcedefault'] )
-			)
+			! empty( $user->user_email ) && 'y' === $forcedefault
 		) {
 			$avatar_filename = um_get_user_avatar_url( $user->ID ?? 0, 400 );
 			$avatar_filename = str_replace( WP_CONTENT_URL, WP_CONTENT_DIR, $avatar_filename );
@@ -53,11 +76,7 @@ function handle_avatar() {
 				empty( $user->user_email ) ||
 				empty( $avatar_filename ) ||
 				stristr( $avatar_filename, 'default_avatar.jpg' )
-			) &&
-			(
-				! isset( $_GET['f'] ) &&
-				! isset( $_GET['forcedefault'] )
-			)
+			) && 'y' === $forcedefault
 		) {
 			$avatar_filename = get_gravatar_to_file( $user_email_hash, $current_query );
 		}
@@ -80,7 +99,7 @@ function handle_avatar() {
 
 		header( 'Content-Type:' . $mime );
 
-		$img_size = $_GET['s'] ?? 80;
+		$img_size = $size ?: 80;
 		$img_size = (int) ( $img_size > 2000 ? 2000 : $img_size );
 
 		$image_p = imagecreatetruecolor( $img_size, $img_size );
