@@ -260,7 +260,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
  */
 add_filter( 'um_user_avatar_url_filter', function ( $url ) {
 	// $url e.g:https://gravatar.com/avatar/245467ef31b6f0addc72b039b94122a4?s=400&r=G&d=mystery
-	return str_replace( 'gravatar.com', 'litepress.cn/cravatar', $url );
+	return str_replace( 'gravatar.com', 'cravatar.cn', $url );
 }, 99999 );
 
 /**
