@@ -220,10 +220,9 @@ $is_login = is_user_logged_in();
             <div class="container">
                 <div class="row justify-content-center justify-content-md-between">
                     <div class="d-flex flex-column col-12 col-md-6 col-lg-5 text-center text-md-left justify-content-center order-md-2">
-                        <p class="text-h-gray text-uppercase label opacity-6">对于网站所有者和开发商</p>
-                        <h2 class="text-h-meteorite-dark mt-15 mt-25-xxl mb-20 mb-30-xxl">加入建立开放网络的品牌网络</h2>
-                        <p class="text-h-gray paragraph">流行内容管理系统的资源和插件将帮助您立即使用 Cravatar。从简化的注册流程到图像处理和其他内置优势，Cravatar
-                            通过开放标准提供了许多可能性。</p></div>
+                        <p class="text-h-gray text-uppercase label opacity-6">致网站所有者和开发者：</p>
+                        <h2 class="text-h-meteorite-dark mt-15 mt-25-xxl mb-20 mb-30-xxl">我们邀请你加入开放的公共头像标准</h2>
+                        <p class="text-h-gray paragraph">正如 Gravatar 在国外做的那样，Cravatar 希望在中国建立一个开放的头像标准，你可以访问我的 <a href="/developers">开发者资源</a>，快速的在你的网站/应用中接入 Cravatar。</p></div>
                     <div class="d-flex justify-content-center align-items-center col-md-6 col-lg-6 mt-30 mt-50-sm mt-0-md order-md-1">
                         <div class="g-none g-block@M">
                             <!-- Editor mockup start -->
@@ -237,7 +236,7 @@ $is_login = is_user_logged_in();
                                 </div>
                                 <div class="g-editor-content">
                                     <div class="g-editor-content__tab g-editor-content__tab--has-layout">
-                                        <div class="g-editor-content__tab__line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14
+                                        <div class="g-editor-content__tab__line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13
                                         </div>
                                         <pre class="g-editor-content__tab__code  language-php"><code
                                                     class=" language-php"><span
@@ -257,7 +256,7 @@ $is_login = is_user_logged_in();
   <span class="token comment">// 获取邮箱的MD5哈希值</span>
   <span class="token variable">$hash</span> <span class="token operator">=</span> <span
                                                         class="token function">md5</span><span
-                                                        class="token punctuation">(</span> address <span
+                                                        class="token punctuation">(</span> $address <span
                                                         class="token punctuation">)</span><span
                                                         class="token punctuation">;</span>
 
