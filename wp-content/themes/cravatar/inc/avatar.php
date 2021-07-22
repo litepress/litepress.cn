@@ -106,8 +106,13 @@ function handle_avatar() {
 		imageAlphaBlending( $image_p, false );
 		imageSaveAlpha( $image_p, true );
 
-		$fun = "image{$current_request_img_ext}";
-		imagecopyresampled( $image_p, $img_info, 0, 0, 0, 0, $img_size, $img_size, $info[0], $info[0] );
+		$fun          = "image{$current_request_img_ext}";
+
+		/**
+		 * 为了防止裁剪后出现白边，所以取最短边
+		 */
+		$src_img_size = $info[0] < $info[1] ? $info[0] : $info[1];
+		imagecopyresampled( $image_p, $img_info, 0, 0, 0, 0, $img_size, $img_size, $src_img_size, $src_img_size );
 
 		// 图片输出时先输出到本地临时文件，再从临时文件读取并输出到浏览器，直接输出的话会卡的一批
 		$temp_file = tempnam( sys_get_temp_dir(), 'lavatar' );
