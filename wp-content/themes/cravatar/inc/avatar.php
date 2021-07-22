@@ -82,7 +82,23 @@ function handle_avatar() {
 		}
 
 		if ( is_status_for_avatar( $avatar_filename, Avatar_Status::BAN ) ) { // 如果当前图片处于黑名单则返回空字符串
-			$avatar_filename = get_ban_avatar_filename();
+			$avatar_filename = '';
+			$default         = 'ban';
+		}
+
+		/**
+		 * 如果经过上述一串操作后还是没有图像的话就按404处理
+		 */
+		if ( empty( $avatar_filename ) ) {
+			/**
+			 * 如果用户指定返回404的话就终止后续操作直接返回404状态码
+			 */
+			if ( '404' === $default ) {
+				status_header( 404 );
+				exit( 0 );
+			}
+
+			$avatar_filename = get_default_avatar_filename( $default );
 		}
 
 		$info          = getimagesize( $avatar_filename );
@@ -122,6 +138,13 @@ function handle_avatar() {
 		unlink( $temp_file );
 		imagedestroy( $image_p );
 		imagedestroy( $img_info );
+
+		/**
+		 * 如果头像文件名中包含404_avatar_的话意味着是临时文件，需要在最后删除
+		 */
+		if ( stristr( $avatar_filename, '404_avatar_' ) ) {
+			unlink( $avatar_filename );
+		}
 
 		exit( 0 );
 	}
