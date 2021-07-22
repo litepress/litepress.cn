@@ -14,7 +14,7 @@ get_header();
 
 						<div class="d-flex justify-content-center justify-content-lg-start"><a
 								class="btn btn-lg btn-light mt-4" data-offset="30"
-								id="hgr-homepage-header-cta-get_started" href="#pricing">现在开始</a>
+								id="hgr-homepage-header-cta-get_started" href="/login">现在开始</a>
 
 						</div>
 						<small class="mt-4 g-color-auxiliary">Cravatar对所有人永久免费</small>
@@ -347,7 +347,7 @@ get_header();
 
 					<div class="d-flex justify-content-center justify-content-lg-start"><a
 							class="btn btn-lg btn-primary m-4" data-offset="30"
-							id="hgr-homepage-header-cta-get_started" href=""
+							id="hgr-homepage-header-cta-get_started" href="/login"
 							>立即创建你的头像</a>
 					</div>
 					<p class="paragraph mt-15 mt-20-sm mt-30-xxl container-2020-sm container-2020-xl-new">
