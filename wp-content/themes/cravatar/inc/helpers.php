@@ -84,7 +84,10 @@ function get_gravatar_to_file( string $hash, string $query ): string {
 
 	$file_path = WP_CONTENT_DIR . '/cache/cravatar/' . $hash;
 
-	if ( ! file_exists( $file_path ) || fileatime( $file_path ) < ( time() - 2626560 ) ) { // 文件存在且是一月内创建的
+	/**
+	 * 不存在缓存或缓存是一月前创建的就从Gravatar获取数据
+	 */
+	if ( ! file_exists( $file_path ) || fileatime( $file_path ) < ( time() - 2626560 ) ) {
 		$url = "http://secure.gravatar.com/avatar/{$hash}" . ( ! empty( $query ) ? "?$query" : '' );
 
 		/**
