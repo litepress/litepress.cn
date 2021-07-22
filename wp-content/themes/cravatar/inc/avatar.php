@@ -60,8 +60,18 @@ function handle_avatar() {
 		$user    = get_user_by( 'ID', $user_id );
 
 		$avatar_filename = '';
+		/**
+		 * 首先检查该用户是否绑定QQ头像，QQ头像将最优先调用
+		 */
+		if ( ! empty( $user->user_email ) && empty( $avatar_filename ) && 'y' !== $forcedefault ) {
+			$qq = get_user_meta( $user_id, 'bind_qq_avatar', true );
+			if ( ! empty( $qq ) ) {
+				$avatar_filename = get_qqavatar_to_file( $user_email_hash, $qq );
+			}
+		}
+
 		if (
-			! empty( $user->user_email ) && 'y' !== $forcedefault
+			! empty( $user->user_email ) && empty( $avatar_filename ) && 'y' !== $forcedefault
 		) {
 			$avatar_filename = um_get_user_avatar_url( $user->ID ?? 0, 400 );
 			$avatar_filename = str_replace( WP_CONTENT_URL, WP_CONTENT_DIR, $avatar_filename );
