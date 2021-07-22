@@ -6,6 +6,7 @@
 namespace LitePress\Cravatar\Inc;
 
 use LitePress\Cravatar\Inc\DataObject\Avatar_Status;
+use LitePress\Logger\Logger;
 use WP_Error;
 
 function get_email_hash( string $email ): string {
@@ -250,5 +251,33 @@ function handle_email_delete( int $user_id, string $email ): WP_Error|bool {
 }
 
 /**
- * 用户添加或更换邮箱时主动刷新CDN缓存
+ * 主动刷新缓存
+ *
+ * 缓存包括CDN及本地磁盘中的缓存
  */
+function purge_avatar_cache( string $hash ) {
+	$cache_path = WP_CONTENT_DIR . '/cache/cravatar/' . $hash;
+	$cache_url  = 'https://cravatar.cn/avatar/' . $hash;
+
+	// 先刷新本地缓存
+	if ( file_exists( $cache_path ) ) {
+		unlink( $cache_path );
+	}
+
+	// 然后按URL规则刷新又拍云缓存
+	$upyun = new Upyun();
+	$r     = $upyun->post( 'buckets/purge/batch', array(
+		'noif'       => 1,
+		'source_url' => $cache_url . '*',
+	) );
+
+	$r_array = json_decode( $r, true )[0] ?? array();
+	if ( ! isset( $r_array['code'] ) ) {
+		Logger::error( CA_LOG_NAME, '刷新又拍云CDN缓存失败：接口返回空数据', $r_array );
+	}
+
+	if ( 1 !== (int) $r_array['code'] ) {
+		Logger::error( CA_LOG_NAME, "刷新又拍云CDN缓存失败：{$r_array['status']}", $r_array );
+	}
+}
+
