@@ -149,8 +149,50 @@ function is_status_for_avatar( string $filename, int $status ): bool {
 	return $status === (int) $status_for_db;
 }
 
-function get_ban_avatar_filename(): string {
-	return CA_ROOT_PATH . '/assets/img/default.png';
+/**
+ * 获取一张默认图
+ *
+ * @param string $default 默认图，可以是一个图片URL，也可以是一组内置的默认图类型，具体参见函数内的 $default_types
+ *
+ * @return string
+ */
+function get_default_avatar_filename( string $default ): string {
+	$default_types = array(
+		'mp'        => 1,
+		'ban'       => 1,
+		'blank'     => 1,
+		'identicon' => 1000,
+		'monsterid' => 1000,
+		'wavatar'   => 1000,
+		'retro'     => 1000,
+		'robohash'  => 1000,
+	);
+
+	$filename = CA_ROOT_PATH . '/assets/img/default-avatar/default.png';
+
+	if ( key_exists( $default, $default_types ) ) {
+		$filename = sprintf( '%s/assets/img/default-avatar/%s/%s.png', CA_ROOT_PATH, $default, rand( 1, $default_types[ $default ] ) );
+	} elseif ( ! empty( $default ) ) {
+		$r = wp_remote_get( $default );
+		if ( ! is_wp_error( $r ) && isset( $r['body'] ) && ! empty( $r['body'] ) ) {
+			$status_code = wp_remote_retrieve_response_code( $r );
+			if ( 200 === $status_code ) {
+				$avatar = $r['body'];
+
+				/**
+				 * 脚本结束时该临时文件会被自动删除
+				 */
+				$tmpfname = tempnam( sys_get_temp_dir(), '404_avatar_' );
+				if ( $tmpfname ) {
+					file_put_contents( $tmpfname, $avatar );
+
+					$filename = $tmpfname;
+				}
+			}
+		}
+	}
+
+	return $filename;
 }
 
 function get_user_emails( int $user_id ): object|array|null {
