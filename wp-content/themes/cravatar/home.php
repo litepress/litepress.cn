@@ -239,13 +239,11 @@ get_header();
                                         <pre class="g-editor-content__tab__code  language-php"><code
                                                     class=" language-php"><span
                                                         class="token keyword">function</span> <span
-                                                        class="token function">get_gravatar_url</span><span
+                                                        class="token function">get_cravatar_url</span><span
                                                         class="token punctuation">(</span> <span class="token variable">$email</span> <span
                                                         class="token punctuation">)</span> <span
                                                         class="token punctuation">{</span>
-  <span class="token comment">// Trim leading and trailing whitespace from</span>
-  <span class="token comment">// an email address and force all characters</span>
-  <span class="token comment">// to lower case</span>
+  <span class="token comment">// 邮箱转小写并去除首尾空格</span>
   <span class="token variable">$address</span> <span class="token operator">=</span> <span class="token function">strtolower</span><span
                                                         class="token punctuation">(</span> <span class="token function">trim</span><span
                                                         class="token punctuation">(</span> <span class="token variable">$email</span> <span
@@ -253,14 +251,14 @@ get_header();
                                                         class="token punctuation">)</span><span
                                                         class="token punctuation">;</span>
 
-  <span class="token comment">// Create an MD5 hash of the final string</span>
+  <span class="token comment">// 获取邮箱的MD5哈希值</span>
   <span class="token variable">$hash</span> <span class="token operator">=</span> <span
                                                         class="token function">md5</span><span
                                                         class="token punctuation">(</span> address <span
                                                         class="token punctuation">)</span><span
                                                         class="token punctuation">;</span>
 
-  <span class="token comment">// Grab the actual image URL</span>
+  <span class="token comment">// 拼接出最终的头像URL</span>
   <span class="token keyword">return</span> <span class="token string single-quoted-string">'https://www.gravatar.com/avatar/'</span> <span
                                                         class="token operator">.</span> <span class="token variable">$hash</span><span
                                                         class="token punctuation">;</span>
@@ -278,14 +276,12 @@ get_header();
                                                         class="token punctuation">)</span><span
                                                         class="token punctuation">;</span>
 
-<span class="token keyword">function</span> <span class="token function">getGravatarURL</span><span
+<span class="token keyword">function</span> <span class="token function">getCravatarURL</span><span
                                                         class="token punctuation">(</span> <span
                                                         class="token parameter">email</span> <span
                                                         class="token punctuation">)</span> <span
                                                         class="token punctuation">{</span>
-  <span class="token comment">// Trim leading and trailing whitespace from</span>
-  <span class="token comment">// an email address and force all characters</span>
-  <span class="token comment">// to lower case</span>
+  <span class="token comment">//  邮箱转小写并去除首尾空格</span>
   <span class="token keyword">const</span> address <span class="token operator">=</span> <span class="token function">String</span><span
                                                         class="token punctuation">(</span> email <span
                                                         class="token punctuation">)</span><span
@@ -297,14 +293,14 @@ get_header();
                                                         class="token punctuation">)</span><span
                                                         class="token punctuation">;</span>
 
-  <span class="token comment">// Create an MD5 hash of the final string</span>
+  <span class="token comment">// 获取邮箱的MD5哈希值</span>
   <span class="token keyword">const</span> hash <span class="token operator">=</span> <span
                                                         class="token function">md5</span><span
                                                         class="token punctuation">(</span> address <span
                                                         class="token punctuation">)</span><span
                                                         class="token punctuation">;</span>
 
-  <span class="token comment">// Grab the actual image URL</span>
+  <span class="token comment">// 拼接出最终的头像URL</span>
   <span class="token keyword">return</span> <span class="token template-string"><span
                                                             class="token template-punctuation string">`</span><span
                                                             class="token string">https://www.gravatar.com/avatar/</span><span
