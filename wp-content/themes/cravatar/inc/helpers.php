@@ -96,12 +96,19 @@ function get_gravatar_to_file( string $hash, string $query ): string {
 		$url = add_query_arg( array(
 			's' => 400,
 			'r' => 'g',
+			'd' => '404',
 		), $url );
 
 		$r = wp_remote_get( $url );
 		if ( is_wp_error( $r ) || ! isset( $r['body'] ) || empty( $r['body'] ) ) {
 			return '';
 		}
+
+		$status_code = wp_remote_retrieve_response_code( $r );
+		if ( 200 !== $status_code ) {
+			return '';
+		}
+
 		$avatar = $r['body'];
 
 		// 记录文件MD5信息方便信息审查
