@@ -94,9 +94,12 @@ function get_gravatar_to_file( string $hash, string $query ): string {
 		 * 默认从Gravatar加载尺寸为400的图片，太大的话没啥用还浪费带宽
 		 */
 		$url = add_query_arg( array(
-			's' => 400,
-			'r' => 'g',
-			'd' => '404',
+			's'       => 400,
+			'size'    => 400,
+			'r'       => 'g',
+			'rating'  => 'g',
+			'd'       => '404',
+			'default' => '404',
 		), $url );
 
 		$r = wp_remote_get( $url );
