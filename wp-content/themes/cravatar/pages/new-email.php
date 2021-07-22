@@ -4,9 +4,9 @@
  * Description: 添加新邮箱模板
  */
 
-use function LitePress\Cravatar\Inc\handle_email_bind;
-use function LitePress\Cravatar\Inc\has_email;
-use function LitePress\Cravatar\Inc\send_email_for_bind_email;
+use function LitePress\Lavatar\Inc\handle_email_bind;
+use function LitePress\Lavatar\Inc\has_email;
+use function LitePress\Lavatar\Inc\send_email_for_bind_email;
 
 $user = wp_get_current_user();
 if ( empty( $user->ID ) ) {
@@ -79,15 +79,16 @@ get_header();
 $nonce = wp_create_nonce( 'new_email' );
 echo apply_filters( 'new_email_body', <<<html
 <form method="post">
-    <label>新的邮箱地址：
+    <div class="form-floating mb-3">
     <input type="hidden" name="nonce" value="$nonce">
-        <input class="form-control" type="email" name="email">
-    </label>
+        <input class="form-control" type="email" name="email" style="max-width: 400px;"  placeholder="name@example.com">
+        <label for="floatingInput">输入新的邮箱地址</label>
+        <div id="emailHelp" class="form-text">我们将向你的新邮箱地址发送一份电子邮件，其中包含一个确认链接。只有点击此连接后新的邮箱才会生效。</div>
+    </div>
+    
     <button class="btn btn-primary" type="submit">添加</button>
     <a class="btn btn-outline-primary" href=".">取消</a>
-    <div>
-        我们将向你的新邮箱地址发送一份电子邮件，其中包含一个确认链接。只有点击此连接后新的邮箱才会生效。
-    </div>
+    
 </form>
 
 html

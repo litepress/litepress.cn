@@ -14,7 +14,7 @@
     --wp-theme-boxshadow: 0px 3px 8px 0px rgb(0 0 0 / 8%);
     --bs-font-sans-serif:'PingFang SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Arial, Helvetica, sans-serif;
     --bs-font-monospace:'PingFang SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Arial, Helvetica, sans-serif;
-    --g-color-auxiliary: #b1b1b1;
+    --g-color-auxiliary: #9eb6e9;
     --g-pad-1: 12px;
     --g-pad-2: 18px;
     --g-pad-3: 24px;
@@ -59,7 +59,7 @@ a {
     text-decoration: none;
     color: var(--wp-theme-color);
 }
-.current-menu-item a,.current-menu-item a:hover {
+.current-menu-item a,.current-menu-item a:hover,.nav-link:hover {
     background-image:var(--wp-theme-gradient);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
@@ -86,7 +86,7 @@ blockquote {
     flex-direction: column;
     justify-content: center;
 }
-.form-check-input:checked, .btn-check:focus + .btn-primary, .btn-primary:focus ,.um input[type=submit].um-button, .um input[type=submit].um-button:focus, .um a.um-button, .um a.um-button.um-disabled:hover, .um a.um-button.um-disabled:focus, .um a.um-button.um-disabled:active{
+.form-check-input:checked, .btn-check:focus + .btn-primary, .btn-primary:focus, .um input[type=submit].um-button, .um input[type=submit].um-button:focus, .um a.um-button.um-disabled:hover, .um a.um-button.um-disabled:focus, .um a.um-button.um-disabled:active{
     background: var(--wp-theme-gradient)!important;
     border-color: var(--wp-theme-color)!important;
 }
@@ -225,7 +225,7 @@ img.avatar.avatar-40.um-avatar {
     overflow: hidden;
 }
 
-.avatar-view img {
+.avatar-view img,.label {
     width: 100%;
     cursor: pointer;
 }
@@ -271,8 +271,8 @@ img.avatar.avatar-40.um-avatar {
 }
 
 .avatar-wrapper {
-    height: 364px;
-    width: 364px;
+    height: 100%;
+    max-width: 100%;
     box-shadow: inset 0 0 5px rgba(0,0,0,.25);
     background-color: #fcfcfc;
     overflow: hidden;
@@ -385,7 +385,7 @@ width: 100%;
 .home .transparent{
     background: transparent;
 }
-.home .transparent  .nav-link{
+.home .transparent .navbar-nav > li > .nav-link{
     color: #fff;
 }
 .home .transparent  .cls-1{
@@ -736,6 +736,19 @@ width: 100%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+
+.alert{
+    top: 98px;
+    left: auto !important;
+    right: 72px;
+    font-size: 100%;
+    padding: 10px 1.5em;
+    border-radius: 5px;
+    max-width: 218px;
+    position: fixed;
+}
+
+
 
 @media (min-width: 1670px){
     .index-banner {
