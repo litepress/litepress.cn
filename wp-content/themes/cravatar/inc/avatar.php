@@ -61,7 +61,7 @@ function handle_avatar() {
 
 		$avatar_filename = '';
 		if (
-			! empty( $user->user_email ) && 'y' === $forcedefault
+			! empty( $user->user_email ) && 'y' !== $forcedefault
 		) {
 			$avatar_filename = um_get_user_avatar_url( $user->ID ?? 0, 400 );
 			$avatar_filename = str_replace( WP_CONTENT_URL, WP_CONTENT_DIR, $avatar_filename );
@@ -76,7 +76,7 @@ function handle_avatar() {
 				empty( $user->user_email ) ||
 				empty( $avatar_filename ) ||
 				stristr( $avatar_filename, 'default_avatar.jpg' )
-			) && 'y' === $forcedefault
+			) && 'y' !== $forcedefault
 		) {
 			$avatar_filename = get_gravatar_to_file( $user_email_hash, $current_query );
 		}
