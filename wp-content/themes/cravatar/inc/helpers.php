@@ -1,9 +1,11 @@
 <?php
+/**
+ * 该文件定义了一组帮助寒湖是
+ */
 
 namespace LitePress\Cravatar\Inc;
 
 use LitePress\Cravatar\Inc\DataObject\Avatar_Status;
-use PHPUnit\Runner\Exception;
 use WP_Error;
 
 function get_email_hash( string $email ): string {
@@ -80,13 +82,16 @@ function get_user_id_by_hash( string $md5 ): int {
 function get_gravatar_to_file( string $hash, string $query ): string {
 	global $wpdb;
 
-	$file_path = WP_CONTENT_DIR . '/cache/lavatar/' . $hash;
+	$file_path = WP_CONTENT_DIR . '/cache/cravatar/' . $hash;
 
 	if ( ! file_exists( $file_path ) || fileatime( $file_path ) < ( time() - 2626560 ) ) { // 文件存在且是一月内创建的
 		$url = "http://secure.gravatar.com/avatar/{$hash}" . ( ! empty( $query ) ? "?$query" : '' );
 
+		/**
+		 * 默认从Gravatar加载尺寸为400的图片，太大的话没啥用还浪费带宽
+		 */
 		$url = add_query_arg( array(
-			's' => 2000,
+			's' => 400,
 			'r' => 'g',
 		), $url );
 
@@ -102,7 +107,7 @@ function get_gravatar_to_file( string $hash, string $query ): string {
 		if ( ! isset( $wpdb->get_row( $sql )->status ) ) {
 			$wpdb->insert( $wpdb->prefix . 'avatar_verify', array(
 				'md5'     => $avatar_hash,
-				'user_id' => $user->ID ?? 0,
+				'user_id' => get_user_id_by_hash( $avatar_hash ),
 				'url'     => explode( '?', $url )[0] ?? '',
 				'status'  => Avatar_Status::WAIT,
 			) );
