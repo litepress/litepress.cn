@@ -87,8 +87,11 @@ function get_gravatar_to_file( string $hash, string $query ): string {
 	if ( ! file_exists( $file_path ) || fileatime( $file_path ) < ( time() - 2626560 ) ) { // 文件存在且是一月内创建的
 		$url = "http://secure.gravatar.com/avatar/{$hash}" . ( ! empty( $query ) ? "?$query" : '' );
 
+		/**
+		 * 默认从Gravatar加载尺寸为400的图片，太大的话没啥用还浪费带宽
+		 */
 		$url = add_query_arg( array(
-			's' => 2000,
+			's' => 400,
 			'r' => 'g',
 		), $url );
 
