@@ -126,6 +126,10 @@ function get_gravatar_to_file( string $hash, string $query ): string {
 function is_status_for_avatar( string $filename, int $status ): bool {
 	global $wpdb;
 
+	if ( ! file_exists( $filename ) ) {
+		return false;
+	}
+
 	$avatar_file = file_get_contents( $filename );
 	$avatar_hash = md5( $avatar_file );
 
