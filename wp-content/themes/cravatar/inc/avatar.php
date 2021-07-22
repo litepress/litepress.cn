@@ -39,7 +39,16 @@ function handle_avatar() {
 			$avatar_filename = explode( '?', $avatar_filename )[0] ?? '';
 		}
 
-		if ( empty( $user->user_email ) || empty( $avatar_filename ) ) {
+		/**
+		 * 在从本地读取头像失败，或用户主动设置f及forcedefault参数时强制返回默认图的情况下返回默认图
+		 */
+		if (
+			empty( $user->user_email ) ||
+			empty( $avatar_filename ) ||
+			stristr( $avatar_filename, 'default_avatar.jpg' ) ||
+			isset( $_GET['f'] ) ||
+			isset( $_GET['forcedefault'] )
+		) {
 			$avatar_filename = get_gravatar_to_file( $user_email_hash, $current_query );
 		}
 
