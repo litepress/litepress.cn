@@ -132,7 +132,7 @@ function handle_avatar() {
 		imageAlphaBlending( $image_p, false );
 		imageSaveAlpha( $image_p, true );
 
-		$fun          = "image{$current_request_img_ext}";
+		$fun = "image{$current_request_img_ext}";
 
 		/**
 		 * 为了防止裁剪后出现白边，所以取最短边
