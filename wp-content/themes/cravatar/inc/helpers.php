@@ -69,39 +69,51 @@ function get_user_id_by_hash( string $md5 ): int {
 	return $wpdb->get_row( $sql )->user_id ?? 0;
 }
 
+function get_gravatar_to_file( string $hash, string $query ): string {
+	$url = "http://secure.gravatar.com/avatar/{$hash}" . ( ! empty( $query ) ? "?$query" : '' );
+
+	/**
+	 * 默认从Gravatar加载尺寸为400的图片，太大的话没啥用还浪费带宽
+	 */
+	$url = add_query_arg( array(
+		's'       => 400,
+		'size'    => 400,
+		'r'       => 'g',
+		'rating'  => 'g',
+		'd'       => '404',
+		'default' => '404',
+	), $url );
+
+	return get_avatar_to_file( $hash, $url );
+}
+
+function get_qqavatar_to_file( string $hash, string $qq ): string {
+	$url = "http://q1.qlogo.cn/g?b=qq&nk={$qq}&s=640";
+
+	return get_avatar_to_file( $hash, $url );
+}
+
 /**
- * 将Gravatar头像转化为本地临时文件并返回文件路径
+ * 将远程头像转化为本地临时文件并返回文件路径
  *
- * 如果存在缓存则直接返回缓存，否则就先从Gravatar拉取再返回缓存路径。缓存有效期为30天。
+ * 如果存在缓存则直接返回缓存，否则就先从给定的URL拉取再返回缓存路径。缓存有效期为15天。
  *
  * @param string $hash
- * @param string $query
+ * @param string $url
  *
  * @return string
  */
-function get_gravatar_to_file( string $hash, string $query ): string {
+function get_avatar_to_file( string $hash, string $url ): string {
 	global $wpdb;
 
 	$file_path = WP_CONTENT_DIR . '/cache/cravatar/' . $hash;
 
 	/**
-	 * 不存在缓存或缓存是一月前创建的就从Gravatar获取数据
+	 * 不存在缓存或缓存是15天前创建的就从Gravatar获取数据
+	 *
+	 * 这里缓存时间15天是因为CDN缓存时间为30天，避免CDN回源时命中本地缓存造成数据被缓存60天
 	 */
-	if ( ! file_exists( $file_path ) || fileatime( $file_path ) < ( time() - 2626560 ) ) {
-		$url = "http://secure.gravatar.com/avatar/{$hash}" . ( ! empty( $query ) ? "?$query" : '' );
-
-		/**
-		 * 默认从Gravatar加载尺寸为400的图片，太大的话没啥用还浪费带宽
-		 */
-		$url = add_query_arg( array(
-			's'       => 400,
-			'size'    => 400,
-			'r'       => 'g',
-			'rating'  => 'g',
-			'd'       => '404',
-			'default' => '404',
-		), $url );
-
+	if ( ! file_exists( $file_path ) || fileatime( $file_path ) < ( time() - 1313280 ) ) {
 		$r = wp_remote_get( $url );
 		if ( is_wp_error( $r ) || ! isset( $r['body'] ) || empty( $r['body'] ) ) {
 			return '';
@@ -111,7 +123,6 @@ function get_gravatar_to_file( string $hash, string $query ): string {
 		if ( 200 !== $status_code ) {
 			return '';
 		}
-
 		$avatar = $r['body'];
 
 		// 记录文件MD5信息方便信息审查
