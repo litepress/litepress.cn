@@ -63,7 +63,7 @@ function handle_avatar() {
 		}
 
 		if ( is_status_for_avatar( $avatar_filename, Avatar_Status::BAN ) ) { // 如果当前图片处于黑名单则返回空字符串
-			$avatar_filename = get_default_avatar_filename();
+			$avatar_filename = get_ban_avatar_filename();
 		}
 
 		$info          = getimagesize( $avatar_filename );

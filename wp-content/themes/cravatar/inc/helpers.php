@@ -139,7 +139,7 @@ function is_status_for_avatar( string $filename, int $status ): bool {
 	return $status === (int) $status_for_db;
 }
 
-function get_default_avatar_filename(): string {
+function get_ban_avatar_filename(): string {
 	return CA_ROOT_PATH . '/assets/img/default.png';
 }
 
