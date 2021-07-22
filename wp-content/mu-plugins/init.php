@@ -6,6 +6,11 @@
 require __DIR__ . '/cavalcade/plugin.php';
 
 /**
+ * 载入日志服务
+ */
+require __DIR__ . '/logger/logger.php';
+
+/**
  * 新用户注册时在用户meta信息中添加邮箱的hash值（通过md5），这样方便直接通过邮箱hash索引头像
  */
 add_action( 'user_register', function ( $user_id ) {
