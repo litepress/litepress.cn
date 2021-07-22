@@ -17,7 +17,7 @@ get_header();
 								id="hgr-homepage-header-cta-get_started" href="#pricing">现在开始</a>
 
 						</div>
-						<small class="mt-4 g-color-auxiliary">Craravar对所有人永久免费</small>
+						<small class="mt-4 g-color-auxiliary">Cravatar对所有人永久免费</small>
 
 
 					</div>
@@ -229,89 +229,90 @@ get_header();
 								       checked="">
 								<input class="hide" id="g-editor-2" type="radio" name="g-editor" tabindex="-1">
 								<div class="g-editor-bar">
-									<label class="g-editor-bar__tab" for="g-editor-1">example.js</label>
-									<label class="g-editor-bar__tab" for="g-editor-2">example.php</label>
+									<label class="g-editor-bar__tab" for="g-editor-1">example.php</label>
+									<label class="g-editor-bar__tab" for="g-editor-2">example.js</label>
 								</div>
 								<div class="g-editor-content">
 									<div class="g-editor-content__tab g-editor-content__tab--has-layout">
 										<div class="g-editor-content__tab__line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14
 										</div>
-										<pre class="g-editor-content__tab__code  language-js"><code
-												class=" language-js"><span
-													class="token keyword">const</span> md5 <span
-													class="token operator">=</span> <span class="token function">require</span><span
-													class="token punctuation">(</span> <span class="token string">'md5'</span> <span
-													class="token punctuation">)</span><span
-													class="token punctuation">;</span>
-
-<span class="token keyword">function</span> <span class="token function">getGravatarURL</span><span
-													class="token punctuation">(</span> <span
-													class="token parameter">email</span> <span
-													class="token punctuation">)</span> <span
-													class="token punctuation">{</span>
-  <span class="token comment">// Trim leading and trailing whitespace from</span>
-  <span class="token comment">// an email address and force all characters</span>
-  <span class="token comment">// to lower case</span>
-  <span class="token keyword">const</span> address <span class="token operator">=</span> <span class="token function">String</span><span
-													class="token punctuation">(</span> email <span
-													class="token punctuation">)</span><span
-													class="token punctuation">.</span><span class="token function">trim</span><span
-													class="token punctuation">(</span><span
-													class="token punctuation">)</span><span
-													class="token punctuation">.</span><span class="token function">toLowerCase</span><span
-													class="token punctuation">(</span><span
-													class="token punctuation">)</span><span
-													class="token punctuation">;</span>
-
-  <span class="token comment">// Create an MD5 hash of the final string</span>
-  <span class="token keyword">const</span> hash <span class="token operator">=</span> <span
-													class="token function">md5</span><span
-													class="token punctuation">(</span> address <span
-													class="token punctuation">)</span><span
-													class="token punctuation">;</span>
-
-  <span class="token comment">// Grab the actual image URL</span>
-  <span class="token keyword">return</span> <span class="token template-string"><span
-														class="token template-punctuation string">`</span><span
-														class="token string">https://www.gravatar.com/avatar/</span><span
-														class="token interpolation"><span
-															class="token interpolation-punctuation punctuation">${</span> hash <span
-															class="token interpolation-punctuation punctuation">}</span></span><span
-														class="token template-punctuation string">`</span></span><span
-													class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-									</div>
-									<div class="g-editor-content__tab">
-										<div class="g-editor-content__tab__line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12
-										</div>
-										<pre class="g-editor-content__tab__code  language-php"><code
-												class=" language-php"><span
-													class="token keyword">function</span> <span
-													class="token function">get_gravatar_url</span><span
-													class="token punctuation">(</span> <span class="token variable">$email</span> <span
-													class="token punctuation">)</span> <span
-													class="token punctuation">{</span>
+                                        <pre class="g-editor-content__tab__code  language-php"><code
+                                                    class=" language-php"><span
+                                                        class="token keyword">function</span> <span
+                                                        class="token function">get_gravatar_url</span><span
+                                                        class="token punctuation">(</span> <span class="token variable">$email</span> <span
+                                                        class="token punctuation">)</span> <span
+                                                        class="token punctuation">{</span>
   <span class="token comment">// Trim leading and trailing whitespace from</span>
   <span class="token comment">// an email address and force all characters</span>
   <span class="token comment">// to lower case</span>
   <span class="token variable">$address</span> <span class="token operator">=</span> <span class="token function">strtolower</span><span
-													class="token punctuation">(</span> <span class="token function">trim</span><span
-													class="token punctuation">(</span> <span class="token variable">$email</span> <span
-													class="token punctuation">)</span> <span
-													class="token punctuation">)</span><span
-													class="token punctuation">;</span>
+                                                        class="token punctuation">(</span> <span class="token function">trim</span><span
+                                                        class="token punctuation">(</span> <span class="token variable">$email</span> <span
+                                                        class="token punctuation">)</span> <span
+                                                        class="token punctuation">)</span><span
+                                                        class="token punctuation">;</span>
 
   <span class="token comment">// Create an MD5 hash of the final string</span>
   <span class="token variable">$hash</span> <span class="token operator">=</span> <span
-													class="token function">md5</span><span
-													class="token punctuation">(</span> address <span
-													class="token punctuation">)</span><span
-													class="token punctuation">;</span>
+                                                        class="token function">md5</span><span
+                                                        class="token punctuation">(</span> address <span
+                                                        class="token punctuation">)</span><span
+                                                        class="token punctuation">;</span>
 
   <span class="token comment">// Grab the actual image URL</span>
   <span class="token keyword">return</span> <span class="token string single-quoted-string">'https://www.gravatar.com/avatar/'</span> <span
-													class="token operator">.</span> <span class="token variable">$hash</span><span
-													class="token punctuation">;</span>
+                                                        class="token operator">.</span> <span class="token variable">$hash</span><span
+                                                        class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+									</div>
+									<div class="g-editor-content__tab">
+										<div class="g-editor-content__tab__line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14
+										</div>
+                                        <pre class="g-editor-content__tab__code  language-js"><code
+                                                    class=" language-js"><span
+                                                        class="token keyword">const</span> md5 <span
+                                                        class="token operator">=</span> <span class="token function">require</span><span
+                                                        class="token punctuation">(</span> <span class="token string">'md5'</span> <span
+                                                        class="token punctuation">)</span><span
+                                                        class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">getGravatarURL</span><span
+                                                        class="token punctuation">(</span> <span
+                                                        class="token parameter">email</span> <span
+                                                        class="token punctuation">)</span> <span
+                                                        class="token punctuation">{</span>
+  <span class="token comment">// Trim leading and trailing whitespace from</span>
+  <span class="token comment">// an email address and force all characters</span>
+  <span class="token comment">// to lower case</span>
+  <span class="token keyword">const</span> address <span class="token operator">=</span> <span class="token function">String</span><span
+                                                        class="token punctuation">(</span> email <span
+                                                        class="token punctuation">)</span><span
+                                                        class="token punctuation">.</span><span class="token function">trim</span><span
+                                                        class="token punctuation">(</span><span
+                                                        class="token punctuation">)</span><span
+                                                        class="token punctuation">.</span><span class="token function">toLowerCase</span><span
+                                                        class="token punctuation">(</span><span
+                                                        class="token punctuation">)</span><span
+                                                        class="token punctuation">;</span>
+
+  <span class="token comment">// Create an MD5 hash of the final string</span>
+  <span class="token keyword">const</span> hash <span class="token operator">=</span> <span
+                                                        class="token function">md5</span><span
+                                                        class="token punctuation">(</span> address <span
+                                                        class="token punctuation">)</span><span
+                                                        class="token punctuation">;</span>
+
+  <span class="token comment">// Grab the actual image URL</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span
+                                                            class="token template-punctuation string">`</span><span
+                                                            class="token string">https://www.gravatar.com/avatar/</span><span
+                                                            class="token interpolation"><span
+                                                                class="token interpolation-punctuation punctuation">${</span> hash <span
+                                                                class="token interpolation-punctuation punctuation">}</span></span><span
+                                                            class="token template-punctuation string">`</span></span><span
+                                                        class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 									</div>
 								</div>
@@ -345,9 +346,9 @@ get_header();
 						class="text-h-meteorite-dark mt-4">更快速的头像以及更好用的WordPress！</h2>
 
 					<div class="d-flex justify-content-center justify-content-lg-start"><a
-							class="btn btn-lg btn-gradient-primary fancy-button m-4" data-offset="30"
+							class="btn btn-lg btn-primary m-4" data-offset="30"
 							id="hgr-homepage-header-cta-get_started" href=""
-							one-link-mark="yes">立即创建你的头像</a>
+							>立即创建你的头像</a>
 					</div>
 					<p class="paragraph mt-15 mt-20-sm mt-30-xxl container-2020-sm container-2020-xl-new">
 						Cravatar 当前由 LitePress.cn 提供维护支持，LitePress.cn 诞生的目的是为<br> WordPress 在中国搭建起稳定运行所需的所有基础设施，并使其完全本土化。

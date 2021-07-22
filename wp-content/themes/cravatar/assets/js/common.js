@@ -178,22 +178,30 @@ $(function () {
             processData: false,
             contentType: false,
 
-            success: function (success) {
-
-                if (success.success === "false") {
-                    $model_alert.slideDown("slow").addClass('alert-success').html("<i class=\"fad fa-check-circle\"></i>" + success.data.error);
+            success: function (s) {
+                console.log(s);
+                console.log(s.data.error);
+                if (s.data.error) {
+                    $alert.show().attr("class",'alert alert-warning').html("<i class=\"fad fa-times-circle\"></i> " + s.data.error);
                 } else {
-                    $(".cropper-view").attr("src", success.data[0].url);
+                    $alert.hide();
+                    var src =  s.data[0].url;
+                    var Newsrc = src.replace("litepress.cn/cravatar", "cravatar.cn");
+                    $(".cropper-view").attr({
+                        "src" : Newsrc,
+                        "data-src" : src
+                    });
                 }
             },
             error: function (e) {
-                console.log(e);
+                console.log(e)
+                $alert.show().attr("class",'alert alert-warning').html("<i class=\"fad fa-times-circle\"></i> " + "限制2M以内文件，请重新选择");
             },
         });
     }
 
     function resize_image() {
-        var src = $('.cropper-view').attr('src');
+        var src = $('.cropper-view').attr('data-src');
         $modal.modal('hide');
         $.ajax({
             url: wp.ajax.settings.url,
@@ -212,15 +220,20 @@ $(function () {
             },
 
             success: function (s) {
-                var cas = $(".cropper-view").cropper('getCroppedCanvas');
-                $(".avatar-view div").html(cas);
-                $alert.show().addClass('alert-success').text('上传成功,两秒后刷新当前页面');
-                setTimeout(function(){
-                    window.location.reload();//刷新当前页面.
-                },2000)
+                console.log(s);
+                if (s.success === false) {
+                    /*$alert.show().attr("class",'alert alert-warning').text(s.data);*/
+                }else {
+                    $(".avatar-view img").attr("src",s.data.image.source_url);
+                    $alert.show().attr("class",'alert alert-success').text('上传成功,两秒后刷新当前页面');
+                    setTimeout(function(){
+                        window.location.reload();//刷新当前页面.
+                    },2000)
+                }
             },
             error: function (e) {
-                $alert.show().addClass('alert-error').text(e);
+                console.log(e)
+                $alert.show().attr("class",'alert alert-warning').text("限制2M以内文件，请重新选择");
             },
         });
     }
