@@ -16,15 +16,17 @@ get_header();
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xxl-5 ">
-    <section class="email-box wp-card p-3">
-<div class="text-center">
+    <section class="email-box wp-card p-3 text-center">
+<div class="">
         <svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="227.007" height="50.184">
             <defs>
                 <style>
                     .cls-1 {
                         filter: url(#filter);
                     }
-
+                    .um{
+                        margin-bottom: 0!important;
+                    }
                     .cls-2 {
                         font-size: 30px;
                         fill: #fff;
@@ -67,7 +69,6 @@ get_header();
                 </svg>
             </g>
         </svg>
-    <div id="emailHelp" class="form-text">你可以直接使用litepress.cn账号登录,注册将同步注册litepress.cn账号</div>
 </div>
             <?php the_content(); ?>
 
