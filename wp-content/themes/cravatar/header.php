@@ -16,7 +16,7 @@
 wp_body_open();
 ?>
 
-<header id="site-header" class="navbar navbar-expand-md transparent wp-nav" role="banner">
+<header id="site-header" class="navbar navbar-light navbar-expand-md transparent wp-nav" role="banner">
     <div class="container-fluid container-xxl">
         <a class="navbar-brand" href="/">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="227.007"
