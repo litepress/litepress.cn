@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-xl-10">
                     <a class="navbar-brand" href="/" one-link-mark="yes">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200.007" height="50.184" viewBox="0 0 275 69">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="227.007" height="50.184" >
                             <defs>
                                 <filter id="filter" filterUnits="userSpaceOnUse">
                                     <feImage preserveAspectRatio="none" x="0" y="0" width="275" height="69" result="image" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjc1IiBoZWlnaHQ9IjY5IiB2aWV3Qm94PSIwIDAgMjc1IDY5Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiB1cmwoI2xpbmVhci1ncmFkaWVudCk7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhci1ncmFkaWVudCIgeDE9IjU2LjIyMyIgeDI9IjIxOC43NzciIHkyPSI2OSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM0ZDFjYjgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDI3NGJlIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCBjbGFzcz0iY2xzLTEiIHdpZHRoPSIyNzUiIGhlaWdodD0iNjkiLz4KPC9zdmc+Cg=="/>
