@@ -3,11 +3,12 @@ get_header();
 
 $sidebar = get_post_meta( $post->ID, 'sidebar', true );
 ?>
-    <main class="main-body">
+    <main class="main-body d-flex align-items-center">
         <div class="container">
-            <div class="row">
-                <section class="email-box wp-card p-3">
-                <div class="col-xl-<?php echo ('on' === $sidebar || empty($sidebar)) && class_exists('bbPress') ? '9' : '12'; ?>">
+            <div class="row justify-content-center">
+
+                <div class="col-xl-4">
+                    <section class="email-box wp-card p-3">
                     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                         <div class="heti">
                         <?php the_content(); ?>
@@ -16,6 +17,7 @@ $sidebar = get_post_meta( $post->ID, 'sidebar', true );
                     <?php while (have_posts()) : the_post(); ?>
                         <!-- #post -->
                     <?php endwhile; // end of the loop. ?>
+                    </section>
                 </div>
                 <?php
                 if (('on' === $sidebar || empty($sidebar)) && class_exists('bbPress')) {
@@ -23,7 +25,7 @@ $sidebar = get_post_meta( $post->ID, 'sidebar', true );
                 }
                 ?>
                 <!-- #content -->
-                </section>
+
             </div>
         </div>
     </main>
