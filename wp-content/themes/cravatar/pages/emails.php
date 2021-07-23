@@ -45,7 +45,7 @@ get_header();
                 <section class="email-box wp-card p-3">
                     <h2>管理头像</h2>
 
-                    <h3>管理你的邮箱</h3>
+                    <h3>你可以将多个邮箱绑定到头像</h3>
                     <ul class="email_list">
                         <li class="email selected">
 							<?php echo $user->user_email; ?> <br/>
