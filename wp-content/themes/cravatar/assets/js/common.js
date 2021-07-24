@@ -243,6 +243,9 @@ $(function () {
     })
 
 
+
+
+
     $(window).on('scroll load',  function(){
         $navbar_sticky = $('.home #site-header');
         // console.log($(window).scrollTop())
