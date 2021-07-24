@@ -3,11 +3,10 @@ get_header();
 
 $sidebar = get_post_meta( $post->ID, 'sidebar', true );
 ?>
-    <main class="main-body d-flex align-items-center">
+    <main class="main-body ">
         <div class="container">
             <div class="row justify-content-center">
 
-                <div class="col-xl-4">
                     <section class="email-box wp-card p-3">
                     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                         <div class="heti">
@@ -26,7 +25,6 @@ $sidebar = get_post_meta( $post->ID, 'sidebar', true );
                 ?>
                 <!-- #content -->
 
-            </div>
         </div>
     </main>
 
