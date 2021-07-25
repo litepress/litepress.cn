@@ -39,3 +39,24 @@ $r = $upyun->post( 'buckets/purge/batch', array(
 var_dump($r);
 exit;
 */
+
+/**
+ * 替换终极会员插件的gravatar头像地址
+ *
+ * 需要排除用于生成头像的网址
+ */
+if ( ! stristr( $_SERVER['REQUEST_URI'], '/avatar/' ) ) {
+	add_filter( 'um_user_avatar_url_filter', function ( $url, $user_id, $data ) {
+		$user = get_user_by( 'ID', $user_id );
+
+		// 邮箱转小写并去除首尾空格
+		$address = strtolower( trim( $user->user_email ) );
+
+		// 获取邮箱的MD5哈希值
+		$hash = md5( $address );
+
+		// 拼接出最终的头像URL
+		return 'https://cravatar.cn/avatar/' . $hash . '?s=200&d=mp&r=' . time();
+	}, 99999, 3 );
+}
+
