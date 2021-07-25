@@ -141,7 +141,7 @@ function handle_avatar() {
 		imagecopyresampled( $image_p, $img_info, 0, 0, 0, 0, $img_size, $img_size, $src_img_size, $src_img_size );
 
 		// 图片输出时先输出到本地临时文件，再从临时文件读取并输出到浏览器，直接输出的话会卡的一批
-		$temp_file = tempnam( sys_get_temp_dir(), 'lavatar' );
+		$temp_file = tempnam( sys_get_temp_dir(), 'cravatar' );
 		$fun( $image_p, $temp_file );
 		readfile( $temp_file );
 
