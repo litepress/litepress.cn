@@ -1,6 +1,7 @@
 <?php
 
-use LitePress\Cravatar\Inc\Upyun;
+use function LitePress\Cravatar\Inc\get_user_emails;
+use function LitePress\Cravatar\Inc\purge_avatar_cache;
 
 define( 'CA_ROOT_PATH', get_stylesheet_directory() );
 define( 'CA_ROOT_URL', get_stylesheet_directory_uri() );
