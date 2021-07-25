@@ -60,3 +60,11 @@ if ( ! stristr( $_SERVER['REQUEST_URI'], '/avatar/' ) ) {
 	}, 99999, 3 );
 }
 
+/**
+ * 当用户更新头像后主动刷新CDN缓存
+ */
+add_action( 'um_after_upload_db_meta_profile_photo', function ( $user_id ) {
+	$emails = get_user_emails( $user_id );
+
+	purge_avatar_cache( $emails );
+} );
