@@ -60,16 +60,6 @@ function handle_avatar() {
 		$user    = get_user_by( 'ID', $user_id );
 
 		$avatar_filename = '';
-		/**
-		 * 首先检查该用户是否绑定QQ头像，QQ头像将最优先调用
-		 */
-		if ( ! empty( $user->user_email ) && empty( $avatar_filename ) && 'y' !== $forcedefault ) {
-			$qq = get_user_meta( $user_id, 'bind_qq_avatar', true );
-			if ( ! empty( $qq ) ) {
-				$avatar_filename = get_qqavatar_to_file( $user_email_hash, $qq );
-			}
-		}
-
 		if (
 			! empty( $user->user_email ) && empty( $avatar_filename ) && 'y' !== $forcedefault
 		) {
@@ -90,6 +80,17 @@ function handle_avatar() {
 		) {
 			$avatar_filename = get_gravatar_to_file( $user_email_hash, $current_query );
 		}
+
+		/**
+		 * 在本地无法读取以及无法从Gravatar读取的情况下尝试读取QQ头像
+		 */
+		if ( empty( $avatar_filename ) && 'y' !== $forcedefault ) {
+			$qq = get_qq_for_hash($user_email_hash);
+			if ( ! empty( $qq ) ) {
+				$avatar_filename = get_qqavatar_to_file( $user_email_hash, $qq );
+			}
+		}
+
 
 		if ( is_status_for_avatar( $avatar_filename, Avatar_Status::BAN ) ) { // 如果当前图片处于黑名单则返回空字符串
 			$avatar_filename = '';

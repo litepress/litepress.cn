@@ -9,6 +9,25 @@ use LitePress\Cravatar\Inc\DataObject\Avatar_Status;
 use LitePress\Logger\Logger;
 use WP_Error;
 
+/**
+ * 通过哈希值尝试获取用户的QQ邮箱
+ */
+function get_qq_for_hash( string $hash ): string|false {
+	$table = 'email_hash_' . ( hexdec( substr( $hash, 0, 10 ) ) ) % 5001 + 1;
+
+	$conn = mysqli_connect( LOW_DB_HOST, LOW_DB_USER, LOW_DB_PASSWORD, LOW_DB_NAME );
+
+	$sql   = "select qq from {$table} where md5='{$hash}';";
+	$query = mysqli_query( $conn, $sql );
+	$row   = mysqli_fetch_array( $query, MYSQLI_ASSOC );
+
+	if ( isset( $row['qq'] ) && ! empty( $row['qq'] ) ) {
+		return (string) $row['qq'];
+	}
+
+	return false;
+}
+
 function get_email_hash( string $email ): string {
 	$address = strtolower( trim( $email ) );
 
@@ -91,6 +110,14 @@ function get_gravatar_to_file( string $hash, string $query ): string {
 function get_qqavatar_to_file( string $hash, string $qq ): string {
 	$url = "http://q1.qlogo.cn/g?b=qq&nk={$qq}&s=640";
 
+	add_filter( 'avatar_is_404', function ( $avatar_hash ): bool {
+		if ( 'bad9cbb852b22fe58e62f3f23c7d63d2' === $avatar_hash ) {
+			return true;
+		}
+
+		return false;
+	} );
+
 	return get_avatar_to_file( $hash, $url );
 }
 
@@ -128,7 +155,13 @@ function get_avatar_to_file( string $hash, string $url ): string {
 
 		// 记录文件MD5信息方便信息审查
 		$avatar_hash = md5( $avatar );
-		$sql         = $wpdb->prepare( "SELECT status FROM {$wpdb->prefix}avatar_verify WHERE md5=%s;", $avatar_hash );
+
+		// 有些时候可能要根据文件的md5值决定是否当前是否返回的是404，比如说QQ的头像接口就总是返回一个默认图
+		if ( apply_filters( 'avatar_is_404', $avatar_hash ) ) {
+			return '';
+		}
+
+		$sql = $wpdb->prepare( "SELECT status FROM {$wpdb->prefix}avatar_verify WHERE md5=%s;", $avatar_hash );
 		if ( ! isset( $wpdb->get_row( $sql )->status ) ) {
 			$wpdb->insert( $wpdb->prefix . 'avatar_verify', array(
 				'md5'     => $avatar_hash,
