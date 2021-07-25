@@ -4,9 +4,9 @@
  * Description: 添加新邮箱模板
  */
 
-use function LitePress\Lavatar\Inc\handle_email_bind;
-use function LitePress\Lavatar\Inc\has_email;
-use function LitePress\Lavatar\Inc\send_email_for_bind_email;
+use function LitePress\Cravatar\Inc\handle_email_bind;
+use function LitePress\Cravatar\Inc\has_email;
+use function LitePress\Cravatar\Inc\send_email_for_bind_email;
 
 $user = wp_get_current_user();
 if ( empty( $user->ID ) ) {
