@@ -288,20 +288,30 @@ function handle_email_delete( int $user_id, string $email ): WP_Error|bool {
  *
  * 缓存包括CDN及本地磁盘中的缓存
  */
-function purge_avatar_cache( string $hash ) {
-	$cache_path = WP_CONTENT_DIR . '/cache/cravatar/' . $hash;
-	$cache_url  = 'https://cravatar.cn/avatar/' . $hash;
+function purge_avatar_cache( array $emails ) {
+	$urls        = array();
+	$local_paths = array();
+	foreach ( $emails as $email ) {
+		$address = strtolower( trim( $email ) );
+
+		$hash = md5( $address );
+
+		$local_paths[] = WP_CONTENT_DIR . '/cache/cravatar/' . $hash;
+		$urls[]        = 'https://cravatar.cn/avatar/' . $hash . '*';
+	}
 
 	// 先刷新本地缓存
-	if ( file_exists( $cache_path ) ) {
-		unlink( $cache_path );
+	foreach ( $local_paths as $local_path ) {
+		if ( file_exists( $local_path ) ) {
+			unlink( $local_path );
+		}
 	}
 
 	// 然后按URL规则刷新又拍云缓存
 	$upyun = new Upyun();
 	$r     = $upyun->post( 'buckets/purge/batch', array(
 		'noif'       => 1,
-		'source_url' => $cache_url . '*',
+		'source_url' => join( PHP_EOL, $urls ),
 	) );
 
 	$r_array = json_decode( $r, true )[0] ?? array();
