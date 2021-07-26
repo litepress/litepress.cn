@@ -1,5 +1,5 @@
 var $ = jQuery.noConflict();
-
+$("li.menu-item-has-children > a").attr("data-bs-toggle", "dropdown");
 $(function () {
     var $img = $(".cropper-view");
     var $avatarSave = $('.avatar-save');
@@ -182,7 +182,7 @@ $(function () {
                 console.log(s);
                 console.log(s.data.error);
                 if (s.data.error) {
-                    $alert.show().attr("class",'alert alert-warning').html("<i class=\"fad fa-times-circle\"></i> " + s.data.error);
+                    $alert.show().attr("class",'alert-fixed alert-warning').html("<i class=\"fad fa-times-circle\"></i> " + s.data.error);
                 } else {
                     $alert.hide();
                     var src =  s.data[0].url;
@@ -225,7 +225,7 @@ $(function () {
                     /*$alert.show().attr("class",'alert alert-warning').text(s.data);*/
                 }else {
                     $(".avatar-view img").attr("src",s.data.image.source_url);
-                    $alert.show().attr("class",'alert alert-success').text('上传成功,两秒后刷新当前页面');
+                    $alert.show().attr("class",'alert-fixed alert-success').text('上传成功,两秒后刷新当前页面');
                     setTimeout(function(){
                         window.location.reload();//刷新当前页面.
                     },2000)
@@ -233,7 +233,7 @@ $(function () {
             },
             error: function (e) {
                 console.log(e)
-                $alert.show().attr("class",'alert alert-warning').text("限制2M以内文件，请重新选择");
+                $alert.show().attr("class",'alert-fixed alert-warning').text("限制2M以内文件，请重新选择");
             },
         });
     }
@@ -243,9 +243,28 @@ $(function () {
     })
 
 
-
-
-
+    $(".remove_email").on('click', function () {
+        const remove_email = $(this).parent().prev().prev().text();
+        const nonce = $(this).parent().prev().val();
+        const user_id = $("input[name=user_id]").val();
+        $.ajax({
+            url: wp.ajax.settings.url,
+            type: "POST",
+            dataType: "json",
+            data: {
+                action: "delete_email",
+                email:remove_email,
+                _wpnonce:nonce,
+                user_id:user_id,
+            },
+            success: function (s) {
+                console.log(s);
+                $alert.show().attr("class",'alert-fixed alert-success').html("<i class=\"fad fa-check-circle\"></i> " + s.data.message);
+                $(".email.selected").remove();
+            },
+            error: function (e) {}
+        })
+    })
     $(window).on('scroll load',  function(){
         $navbar_sticky = $('.home #site-header');
         // console.log($(window).scrollTop())
