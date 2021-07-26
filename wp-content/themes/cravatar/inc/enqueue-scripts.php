@@ -19,6 +19,23 @@ add_action('wp_enqueue_scripts', function () {
 
 });
 
+/**
+ * 添加百度统计
+ */
+add_action( 'wp_footer', function () {
+	echo <<<html
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b09919b0ba91f0ea1f1f6d62c3c78a1f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+html;
+} );
+
 class Wp_Sub_Menu extends Walker_Nav_Menu {
 
     function start_lvl(&$output, $depth = 0, $args = null) {
