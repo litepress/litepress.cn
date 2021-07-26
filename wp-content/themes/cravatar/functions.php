@@ -16,12 +16,15 @@ require CA_ROOT_PATH . '/inc/enqueue-scripts.php';
 
 require CA_ROOT_PATH . '/inc/DataObject/class-avatar-status.php';
 
+require CA_ROOT_PATH . '/inc/ajax-functions.php';
+
 require CA_ROOT_PATH . '/inc/avatar-verify.php';
 
 require CA_ROOT_PATH . '/inc/avatar.php';
 
-$upyun = new Upyun();
+
 /*
+ * $upyun = new Upyun();
 $r = $upyun->get( 'flow/common_data', array(
 	'start_time'  => '2021-7-1 10:0:0',
 	'end_time'    => '2021-7-2 10:0:0',
