@@ -62,14 +62,14 @@
 
                     <ul>
                         <li>
-                            <a href="/site/implement/" one-link-mark="yes">开发者资源</a>
+                            <a href="/developers" one-link-mark="yes">开发者资源</a>
                         </li>
                         <li>
-                            <a class="g-footer__external-link" href="http://automattic.com/privacy/"
+                            <a class="g-footer__external-link" href="/"
                                one-link-mark="yes">隐私政策</a>
                         </li>
                         <li>
-                            <a href="/support/" one-link-mark="yes">技术支持</a>
+                            <a href="/help" one-link-mark="yes">技术支持</a>
                         </li>
                     </ul>
                 </div>
@@ -78,8 +78,7 @@
     </section>
 
     <div class="container">
-        <div class="footer-new__bottom "><p class=" footer-new-bottom__copyright footer-new-bottom__text">© 2020-2022 <a
-                        href="https://litepress.cn">LitePress</a> 版权所有 - 中国的互联网公共头像服务。</p>
+        <div class="footer-new__bottom "><p class=" footer-new-bottom__copyright footer-new-bottom__text">Cravatar 骄傲地作为 《<a href="https://litepress.cn/forums/topic/19998">WordPress中国本土化计划</a>》 的一部分</p>
             <p class=" footer-new-bottom__no-vat footer-new-bottom__text"><a href="http://beian.miit.gov.cn"
                                                                              class="imprint" title="工信部备案"
                                                                              rel="nofollow" target="_blank">
