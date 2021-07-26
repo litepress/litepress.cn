@@ -111,7 +111,8 @@ function get_qqavatar_to_file( string $hash, string $qq ): string {
 	$url = "http://q1.qlogo.cn/g?b=qq&nk={$qq}&s=100";
 
 	add_filter( 'avatar_is_404', function ( $avatar_hash ): bool {
-		if ( 'bad9cbb852b22fe58e62f3f23c7d63d2' === $avatar_hash ) {
+		if ( 'bad9cbb852b22fe58e62f3f23c7d63d2' === $avatar_hash ||
+		     'acef72340ac0e914090bd35799f5594e' === $avatar_hash ) {
 			return true;
 		}
 
