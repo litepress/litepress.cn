@@ -9,29 +9,9 @@ use function LitePress\Cravatar\Inc\handle_email_delete;
 
 $user = wp_get_current_user();
 if ( empty( $user->ID ) ) {
-    require 'need-login.php';
+	require 'need-login.php';
 
 	exit;
-}
-
-
-if ( 'POST' === $_SERVER['REQUEST_METHOD'] ) {
-	/**
-	 * TODO:缺Nonce
-	 */
-
-	$email = sanitize_email( $_POST['email'] );
-
-	$r = handle_email_delete( $user->ID, $email );
-	if ( is_wp_error( $r ) ) {
-		add_filter( 'email_manage_message', function () use ( $r ) {
-			return "<div class='message-error'>{$r->get_error_message()}</div>";
-		} );
-	} else {
-		add_filter( 'email_manage_message', function () use ( $email ) {
-			return "<div class='message-success'>你已成功删除 {$email}</div>";
-		} );
-	}
 }
 
 get_header();
@@ -55,8 +35,11 @@ get_header();
 						<?php foreach ( (array) get_user_emails( $user->ID ) as $email ): ?>
 							<?php if ( $user->user_email !== $email ): ?>
                                 <li class="email">
-									<?php echo $email; ?> <br/>
-                                    <a class="tip" href="#">删除该邮箱</a>
+                                    <p><?php echo $email; ?></p>
+                                    <input type="hidden" name="nonce"
+                                           value="<?php echo wp_create_nonce( 'delete-email-' . $email ) ?>">
+                                    <ul class="tip">
+                                        <a class="remove_email" href="javascript:">删除该邮箱</a></ul>
                                 </li>
 							<?php endif; ?>
 						<?php endforeach; ?>
@@ -83,7 +66,7 @@ get_header();
                              data-upload_text="在此处上传您的图像<small class=&quot;um-max-filesize&quot;>( 最大: <span>2MB</span> )</small>"
                              data-max_files_error="您只能上传一张图像" data-upload_help_text="" style="display: none;">上传
                         </div>
-                        <div class="alert hide"></div>
+                        <div class="alert-fixed hide"></div>
 
                         <div class="form-group mt-3">
                             <div class="fileinput fileinput-new">
