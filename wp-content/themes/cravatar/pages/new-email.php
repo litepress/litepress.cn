@@ -20,11 +20,11 @@ if ( 'POST' === $_SERVER['REQUEST_METHOD'] ) {
 
 	if ( ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'new_email' ) ) {
 		add_filter( 'new_email_error_message', function () {
-			return '无效的请求';
+			return '<div class="alert alert-warning"><i class="fad fa-times-circle"></i> 无效的请求</div>';
 		} );
 	} elseif ( has_email( $new_email ) ) {
 		add_filter( 'new_email_error_message', function () {
-			return '该邮箱已存在';
+			return '<div class="alert alert-warning"><i class="fad fa-times-circle"></i> 该邮箱已存在,请重新添加</div>';
 		} );
 	} else {
 		send_email_for_bind_email( $new_email );
@@ -40,7 +40,7 @@ html;
 
 	if ( ! isset( $data['user_id'] ) || ! isset( $data['address'] ) ) {
 		add_filter( 'new_email_error_message', function () {
-			return '无效的激活地址';
+			return '<div class="alert alert-warning"><i class="fad fa-times-circle"></i> 无效的激活地址</div>';
 		} );
 
 		add_filter( 'new_email_body', '__return_null' );
@@ -71,9 +71,10 @@ get_header();
     <div class="row">
     <section class="email-box wp-card p-3">
     <h2>添加新邮箱</h2>
-    <div class="error-message">
+    <div>
 		<?php echo apply_filters( 'new_email_error_message', null ); ?>
     </div>
+
 
 <?php
 $nonce = wp_create_nonce( 'new_email' );
