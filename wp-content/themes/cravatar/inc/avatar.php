@@ -56,6 +56,14 @@ function handle_avatar() {
 
 		$user_email_hash = $url_area[ $url_area_count - 1 ] ?? '';
 
+		/**
+		 * 如果URL未拼接邮箱哈希，则返回默认头像
+		 */
+		if ( count( $url_area ) < 3 || empty( $user_email_hash ) ) {
+			$forcedefault = 'y';
+			$size         = 80;
+		}
+
 		$user_id = get_user_id_by_hash( $user_email_hash ?? '' );
 		$user    = get_user_by( 'ID', $user_id );
 
@@ -85,7 +93,7 @@ function handle_avatar() {
 		 * 在本地无法读取以及无法从Gravatar读取的情况下尝试读取QQ头像
 		 */
 		if ( empty( $avatar_filename ) && 'y' !== $forcedefault ) {
-			$qq = get_qq_for_hash($user_email_hash);
+			$qq = get_qq_for_hash( $user_email_hash );
 			if ( ! empty( $qq ) ) {
 				$avatar_filename = get_qqavatar_to_file( $user_email_hash, $qq );
 			}
