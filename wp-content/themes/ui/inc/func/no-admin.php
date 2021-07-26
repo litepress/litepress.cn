@@ -635,3 +635,18 @@ function custom_woocommerce_auto_complete_order( $order_id ) {
 	$order = wc_get_order( $order_id );
 	$order->update_status( 'completed' );
 }
+
+/**
+ * 中级会员插件提示上传头像需前往Cravatar
+ */
+add_action( 'um_after_header_info', function () {
+	if ( ! isset( $_GET['um_action'] ) || 'edit' !== $_GET['um_action'] ) {
+		return;
+	}
+
+	echo <<<HTML
+<div class="um-photo-message">
+如需更换头像，请前往 <a href="https://cravatar.cn">Cravatar</a>
+</div>
+HTML;
+} );
