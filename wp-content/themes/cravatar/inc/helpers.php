@@ -149,7 +149,7 @@ function get_avatar_to_file( string $hash, string $url ): string {
 		}
 
 		$status_code = wp_remote_retrieve_response_code( $r );
-		if ( 200 !== $status_code ) {
+		if ( 200 !== (int) $status_code ) {
 			return '';
 		}
 		$avatar = $r['body'];
