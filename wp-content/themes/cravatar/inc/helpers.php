@@ -110,14 +110,14 @@ function get_gravatar_to_file( string $hash, string $query ): string {
 function get_qqavatar_to_file( string $hash, string $qq ): string {
 	$url = "http://q1.qlogo.cn/g?b=qq&nk={$qq}&s=100";
 
-	add_filter( 'avatar_is_404', function ( $avatar_hash ): bool {
+	add_filter( 'avatar_is_404', function ( $is_404, $avatar_hash ): bool {
 		if ( 'bad9cbb852b22fe58e62f3f23c7d63d2' === $avatar_hash ||
 		     'acef72340ac0e914090bd35799f5594e' === $avatar_hash ) {
 			return true;
 		}
 
 		return false;
-	} );
+	}, 10, 2 );
 
 	return get_avatar_to_file( $hash, $url );
 }
@@ -158,7 +158,7 @@ function get_avatar_to_file( string $hash, string $url ): string {
 		$avatar_hash = md5( $avatar );
 
 		// 有些时候可能要根据文件的md5值决定是否当前是否返回的是404，比如说QQ的头像接口就总是返回一个默认图
-		if ( apply_filters( 'avatar_is_404', $avatar_hash ) ) {
+		if ( apply_filters( 'avatar_is_404', false, $avatar_hash ) ) {
 			return '';
 		}
 
