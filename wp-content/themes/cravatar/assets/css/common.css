@@ -422,6 +422,10 @@ width: 100%;
     padding: .5rem 2.5rem;
     border-color: #0000;
 }
+.bg-bggradient{
+    background: var(--wp-theme-gradient);
+    color: #e9ecf5;
+}
 .bg-black{
     background: #101517;
     color: #fff;
@@ -566,6 +570,27 @@ width: 100%;
     color: #50575e
 }
 
+.g-icon {
+    --g-px: 0.05556em;
+    --g-icon-size: var(--g-pad-3);
+    --g-icon-adjustment: 0;
+    box-sizing: content-box;
+    position: relative;
+    display: block;
+    width: var(--g-icon-size);
+    height: var(--g-icon-size);
+    overflow: visible;
+}
+svg {
+    fill: currentColor;
+}
+.g-icon--size-90 {
+    --g-icon-size: 90px;
+    --g-icon-width: auto;
+}
+.g-color-primary.g-color-primary {
+    color: #fff;
+}
 @media (min-width: 1056px) {
     .g-editor-content__tab__line-numbers {
         display:block
@@ -737,7 +762,7 @@ width: 100%;
     -webkit-box-sizing: border-box;
 }
 
-.alert{
+.alert-fixed{
     top: 98px;
     left: auto !important;
     right: 72px;
@@ -747,12 +772,55 @@ width: 100%;
     max-width: 218px;
     position: fixed;
 }
+.g-logo-group .g-logo {
+    display: none;
+    margin: 0 calc(var(--g-pad-1) / 2);
+    height: 2em;
+}
 
+.g-logo-group {
+    display: flex;
+    justify-content: space-between;
+    margin: 3rem calc(var(--g-pad-1) / -2 - 1px);
+}
 
-
+.g-logo-group .g-logo--name-github, .g-logo-group .g-logo--name-slack, .g-logo-group .g-logo--name-wordpress-org-mark {
+    display: block;
+}
+.wp-img-ground .card {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    padding-top: 48%;
+    position: relative;
+    border: 0;
+}
+.wp-img-ground .card a {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+.wp-img-ground .card a img {
+    object-fit: cover;
+    margin: auto;
+    width: 90%;
+}
 @media (min-width: 1670px){
     .index-banner {
         min-height: 840px;
+    }
+}
+@media (min-width: 1056px) {
+    .g-logo-group .g-logo {
+        display:block
+    }
+
+    .g-logo-group .g-logo--name-wordpress-org-mark {
+        display: none
     }
 }
 @media (min-width: 992px){
@@ -774,7 +842,9 @@ width: 100%;
     .g-block\@M.g-block\@M{
         margin-top: 3rem;
     }
-
+    .g-pt-7 {
+        padding-top: var(--g-pad-7);
+    }
 
     .home  .navbar.navbar-light.transparent .navbar-toggler {
         color: rgba(255,255,255,.55);
@@ -785,5 +855,10 @@ width: 100%;
     }
     .home .transparent{
         background: linear-gradient(            140deg            , #1f52bb 10%, #0274be 90%);
+    }
+}
+@media (min-width: 480px) {
+    .g-logo-group .g-logo--name-p2 {
+        display:block
     }
 }

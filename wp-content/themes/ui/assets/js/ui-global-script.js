@@ -129,7 +129,12 @@ $("#site-header .menu-item").each(function () {
     })
 });
 
-
+/*$(".um-profile-photo a.um-profile-photo-img img").attr({
+    "data-bs-toggle" : "tooltip",
+    "data-bs-placement" : "bottom",
+    "data-bs-html" : "true",
+    "title" : "你可以在<a href=\"https://cravatar.cn/\" target=\"_blank\">Cravatar</a>上更改你的头像"
+}).addClass("tooltip-show");*/
 //下拉框查询组件点击查询栏时不关闭下拉框
 $("body").on('click', '[data-stopPropagation]', function (e) {
     e.stopPropagation();
