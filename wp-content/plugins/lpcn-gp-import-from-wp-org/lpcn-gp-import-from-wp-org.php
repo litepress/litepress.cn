@@ -12,6 +12,7 @@
 namespace LitePress\GlotPress\GP_Import_From_WP_Org;
 
 use GP;
+use function LitePress\WP_Http\wp_remote_get;
 use WP_Error;
 
 class GP_Import_From_WP_Org {
