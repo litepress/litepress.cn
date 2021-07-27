@@ -74,6 +74,13 @@ function handle_avatar() {
 			$avatar_filename = um_get_user_avatar_url( $user->ID ?? 0, 400 );
 			$avatar_filename = str_replace( WP_CONTENT_URL, WP_CONTENT_DIR, $avatar_filename );
 			$avatar_filename = explode( '?', $avatar_filename )[0] ?? '';
+
+			/**
+			 * 如果终极会员返回默认头像，则清空
+			 */
+			if ( stristr( $avatar_filename, 'default_avatar.jpg' ) ) {
+				$avatar_filename = '';
+			}
 		}
 
 		/**
@@ -82,8 +89,7 @@ function handle_avatar() {
 		if (
 			(
 				empty( $user->user_email ) ||
-				empty( $avatar_filename ) ||
-				stristr( $avatar_filename, 'default_avatar.jpg' )
+				empty( $avatar_filename )
 			) && 'y' !== $forcedefault
 		) {
 			$avatar_filename = get_gravatar_to_file( $user_email_hash, $current_query );
