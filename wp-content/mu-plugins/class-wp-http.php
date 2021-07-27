@@ -27,7 +27,7 @@ class WP_Http extends Original_WP_Http {
 
 		foreach ( $allowed as $item ) {
 			if ( stristr( $url, $item ) ) {
-				$url                     = str_replace( $item, $this->get_proxy_ip(), $url );
+				$url                     = str_replace( $item, self::get_proxy_ip(), $url );
 				$args['headers']['Host'] = $item;
 			}
 		}
@@ -40,7 +40,7 @@ class WP_Http extends Original_WP_Http {
 	 *
 	 * @return string|false
 	 */
-	private function get_proxy_ip(): string|false {
+	static public function get_proxy_ip(): string|false {
 		global $wpdb;
 
 		$ips = wp_cache_get( 'proxy_ips' );
