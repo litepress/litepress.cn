@@ -166,6 +166,46 @@ class Lava_Ajax_Search_Core {
 			foreach( $this->search_results[$current_tab]['items'] as $item_id=>$item ){
 				echo $item['html'];
 			}
+
+			if ( isset($_GET['subset']) ) {
+				$count      = $this->search_results[ $current_tab ]['total_match_count'];
+				$page_count = ceil( $count / 10 );
+				$paged      = $_GET['lp-paged'] ?? 1;
+				$paged      = $paged < 1 ? 1 : $paged;
+
+				$is_open_for_previous      = $paged > 1;
+				$is_open_for_previous_html = ! $is_open_for_previous ? 'disabled' : '';
+				$is_open_for_next          = $paged < $page_count;
+				$is_open_for_next_html     = ! $is_open_for_next ? 'disabled' : '';
+
+				$previous_link = '';
+				if ( $is_open_for_previous ) {
+					$page          = $paged - 1;
+					$previous_link = add_query_arg( array( 'lp-paged' => $page ) );
+				}
+
+				$next_link = '';
+				if ( $is_open_for_next ) {
+					$page      = $paged + 1;
+					$next_link = add_query_arg( array( 'lp-paged' => $page ) );
+				}
+				echo <<<HTML
+<nav aria-label="Page navigation">
+    <ul class="pagination results-navigation">
+        <li class="page-item $is_open_for_previous_html">
+            <a class="page-link" href="$previous_link" aria-label="Previous">
+                <span aria-hidden="true">&laquo; 上一页</span>
+            </a>
+        </li>
+        <li class="page-item $is_open_for_next_html">
+            <a class="page-link" href="$next_link" aria-label="Next">
+                <span aria-hidden="true">下一页 &raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+HTML;
+			}
 		} else {
 			lava_ajaxSearch()->template->load_template(
 				Array(
