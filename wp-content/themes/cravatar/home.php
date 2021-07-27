@@ -253,21 +253,18 @@ $is_login = is_user_logged_in();
                     <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="https://litepress.cn/cravatar/avatar/4c2a1e88031a2ea87817acfa2a11e058?s=400&amp;r=G&amp;d=mystery"
+                                <img src="https://cravatar.cn/avatar/4c2a1e88031a2ea87817acfa2a11e058?s=400&amp;r=G&amp;d=mystery"
                                      class="gravatar avatar avatar-14 um-avatar um-avatar-gravatar" alt="耗子"
-                                     data-default="https://litepress.cn/wp-content/plugins/ultimate-member/assets/img/default_avatar.jpg"
                                      onerror="if ( ! this.getAttribute('data-load-error') ){ this.setAttribute('data-load-error', '1');this.setAttribute('src', this.getAttribute('data-default'));}">
                             </div>
                             <div class="carousel-item">
-                                <img src="https://litepress.cn/cravatar/avatar/245467ef31b6f0addc72b039b94122a4?s=400&amp;r=G&amp;d=mystery"
+                                <img src="https://cravatar.cn/avatar/245467ef31b6f0addc72b039b94122a4?s=400&amp;r=G&amp;d=mystery"
                                      class="gravatar avatar avatar-14 um-avatar um-avatar-gravatar" alt="孙锡源"
-                                     data-default="https://litepress.cn/wp-content/plugins/ultimate-member/assets/img/default_avatar.jpg"
                                      onerror="if ( ! this.getAttribute('data-load-error') ){ this.setAttribute('data-load-error', '1');this.setAttribute('src', this.getAttribute('data-default'));}">
                             </div>
                             <div class="carousel-item">
-                                <img src="https://litepress.cn/cravatar/avatar/526d5c35b2092765ce9865d807612f33?s=400&amp;r=G&amp;d=mystery"
+                                <img src="https://cravatar.cn/avatar/526d5c35b2092765ce9865d807612f33?s=400&amp;r=G&amp;d=mystery"
                                      class="gravatar avatar avatar-14 um-avatar um-avatar-gravatar" alt="Yulinn"
-                                     data-default="https://litepress.cn/wp-content/plugins/ultimate-member/assets/img/default_avatar.jpg"
                                      onerror="if ( ! this.getAttribute('data-load-error') ){ this.setAttribute('data-load-error', '1');this.setAttribute('src', this.getAttribute('data-default'));}">
                             </div>
                         </div>
