@@ -744,6 +744,50 @@ display: none;
 .enlighter-default {
     display: grid!important;
 }
+@media (min-width: 992px) {
+    .js-toc {
+        top: 6rem;
+        right: 0;
+        z-index: 2;
+        overflow-y: auto;
+    }
+    .section-toc{
+        float: right;
+        margin:0 0 10px 10px;
+        min-width: 158px;
+        max-width: 230px;
+    }
+}
+.toc-list-item{
+    position: relative;
+    padding-left: 10px;
+    display: block;
+    font-size: 13px;
+}
+.toc-list  .toc-list  .toc-list-item{
+    padding: 5px 0 5px 10px;
+}
+.is-active-link{
+    color: var(--wp-theme-color)!important;
+    font-weight: inherit!important;
+}
+.js-toc{
+    padding: 15px;
+}
+.is-active-link::before{
+    background-color:var(--wp-theme-color)!important;
+}
+.toc-list{
+    padding-inline-start:0!important;
+    margin-block: 0!important;
+}
+
+a.toc-link:after{
+    display: none;
+}
+.section-toc header{
+    padding: 10px 10px 0px 10px;
+}
 @media screen and (max-width: 768px) {
     .bbp-body .bbp-topic-freshness, .bbp-topic-view-count, .bbp-topic-voice-count, .bbp-topic-reply-count, .bbp-topic-started-in a, .wp-reply .bbp-reply-author-description {
         display: none;
