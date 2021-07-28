@@ -1153,7 +1153,7 @@ ul.lava_ajax_search .type-label {
     position: relative;
 }
 
-.serach-menu li a {
+.serach-menu .results-header li a {
     display: flex;
     color: rgba(0, 0, 0, .87);
     padding: .92857143em 1.14285714em;
@@ -1637,7 +1637,9 @@ code {
 .lg-prev:after{
     content: '\f060'!important;
 }
-
+.results-navigation  .page-link{
+    display: flex;
+}
 
 
 @media screen and (min-width: 768px) {
