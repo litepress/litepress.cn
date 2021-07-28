@@ -1,6 +1,33 @@
 var $ = jQuery.noConflict();
 
-
+$(function () {
+    $(".dropdown-divider + .bbp-body .bbp-reply-content.heti").before("<section class=\"section-toc wp-card\"><header class=\"d-flex align-items-center\">\n" +
+        "        <div class=\"me-2 wp-icon\">\n" +
+        "            <i class=\"fas fa-clipboard-list-check fa-fw\" style=\"\"></i></div>\n" +
+        "        <span>文章目录</span></header><nav class=\"js-toc\"></nav></section>")
+$(".heti h2").each(function () {
+    text = $(this).text();
+    $(this).attr("id", text);
+});
+tocbot.init({
+    // Where to render the table of contents.
+    tocSelector: '.js-toc',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: '.bbp-reply-content.heti ',
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: 'h1, h2, h3',
+    // For headings inside relative or absolute positioned containers within content.
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollSmoothOffset: -90,
+    headingsOffset: 150
+});
+    $(".bbpress .js-toc").each(function () {
+    if ($(this).is(":empty")) {
+        $(this).parent().remove();
+    }
+    });
+});
 $(".operation-sticker .menu > a").click(function () {
     $(this).toggleClass("active");
 });
