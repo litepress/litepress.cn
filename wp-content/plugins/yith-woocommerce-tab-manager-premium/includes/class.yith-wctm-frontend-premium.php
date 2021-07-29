@@ -411,7 +411,7 @@ if ( ! class_exists( 'YITH_WCTM_Frontend_Premium' ) ) {
 					break;
 
 				default :
-
+					$args['key'] = $key;
 					if ( true == $type_content ) {
 						$args['content'] = get_post_meta( $key, '_ywtm_text_tab', true );
 					} else {
