@@ -47,7 +47,11 @@ function get_product_type_by_categories( array $categories ): string {
 	$category_ids = array();
 
 	foreach ( $categories as $category ) {
-		$category_ids[] = $category->term_id;
+		if ( is_array( $category ) ) {
+			$category_ids[] = $category['term_id'];
+		} else {
+			$category_ids[] = $category->term_id;
+		}
 	}
 
 	return get_product_type_by_category_ids( $category_ids );
