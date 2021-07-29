@@ -61,6 +61,7 @@ if( !class_exists('YITH_WCTM_Frontend')){
         public function put_content_tabs( $key, $tab )
         {
 
+        	$args['key'] = $key;
             $args['content'] = get_post_meta( $key, '_ywtm_text_tab', true );
 
             wc_get_template( 'default.php', $args, YWTM_TEMPLATE_PATH, YWTM_TEMPLATE_PATH );

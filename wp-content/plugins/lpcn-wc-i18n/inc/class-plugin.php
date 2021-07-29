@@ -38,7 +38,7 @@ class Plugin {
 	 * Initializes the plugin.
 	 */
 	public function plugins_loaded() {
-		add_filter( 'the_content', array( $this, 'the_content' ), 1, 2 );
+		add_filter( 'the_content', array( $this, 'the_content' ), 1, 3 );
 		add_filter( 'the_title', array( $this, 'title' ), 9999 );
 		add_filter( 'woocommerce_product_title', array( $this, 'title' ), 9999 );
 		add_filter( 'woocommerce_product_get_short_description', array( $this, 'short_description' ), 9999 );
@@ -98,7 +98,7 @@ class Plugin {
 	/**
 	 * 对应用详情进行翻译
 	 */
-	public function the_content( $content, $product_id = 0 ): string {
+	public function the_content( $content, $product_id = 0, $key = 'content' ): string {
 		if ( 0 === (int) $product_id ) {
 			return $content;
 		}
@@ -118,7 +118,14 @@ class Plugin {
 				return $content;
 		}
 
-		$cache_key = sprintf( '%s_%s', $type, $product->post_name );
+		$key = match ( (int) $key ) {
+			51 => 'content',
+			47 => 'log',
+			365 => 'install',
+			default => 'un',
+		};
+
+		$cache_key = sprintf( '%s_%s_' . $key, $type, $product->post_name );
 
 		return i18n::get_instance()->translate( $cache_key, $content, $gp_project_path );
 	}
