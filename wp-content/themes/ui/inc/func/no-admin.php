@@ -124,7 +124,7 @@ add_filter('bbp_get_single_topic_description', function ($retstr, $r, $args) {
     $forum_title = bbp_get_forum_title(bbp_get_topic_forum_id());
     $topic_id = bbp_get_topic_id();
     $reply_count = str_replace('个回复', '', bbp_get_topic_replies_link($topic_id));
-    $views = (array)(get_post_meta($topic_id, 'views'))[0] ?? 0;
+    $views = ((array)get_post_meta($topic_id, 'views'))[0] ?? 0;
 
     $create_time = human_time_diff(strtotime(get_the_time('Y-n-d H:i:s')), current_time('timestamp'));
     $last_time = human_time_diff(strtotime(get_post_meta($topic_id, '_bbp_last_active_time', true)), current_time('timestamp'));
