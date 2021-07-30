@@ -38,7 +38,7 @@ $(function () {
 
         $(projectsearch).keydown(function (event) {
             if (event.keyCode === 13) {
-                $(location).prop('href', url_noparm4 + "/?s=" + projectval + "&orderby=popularity");
+                $(location).prop('href', url_noparm4 + "/?s=" + projectval);
             }
         })
 
