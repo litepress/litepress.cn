@@ -11,7 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( $loop->have_posts() ) {
-	$t_args = compact( 'args', 'loop', 'modified_args' );
+    if ( ! isset( $modified_args ) ) {
+	    $t_args = compact( 'args', 'loop' );
+    } else {
+	    $t_args = compact( 'args', 'loop', 'modified_args' );
+    }
+
 	UM()->get_template( 'replies-single.php', um_bbpress_plugin, $t_args, true ); ?>
 
 	<div class="um-ajax-items">
