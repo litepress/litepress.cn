@@ -23,7 +23,7 @@ tocbot.init({
     headingsOffset: 150
 });
     $(".bbpress .js-toc").each(function () {
-    if ($(this).is(":empty")) {
+    if ($(this).is(":empty") || $(".toc-list-item").length < 3 ) {
         $(this).parent().remove();
     }
     });
