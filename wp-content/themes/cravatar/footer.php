@@ -78,7 +78,7 @@
     </section>
 
     <div class="container">
-        <div class="footer-new__bottom "><p class=" footer-new-bottom__copyright footer-new-bottom__text">Cravatar 骄傲地作为 《<a href="https://litepress.cn/forums/topic/19998">WordPress中国本土化计划</a>》 的一部分</p>
+        <div class="footer-new__bottom "><p class=" footer-new-bottom__copyright footer-new-bottom__text">Cravatar 骄傲地作为<a href="https://litepress.cn/forums/topic/19998">《WordPress中国本土化计划》</a>的一部分</p>
             <p class=" footer-new-bottom__no-vat footer-new-bottom__text"><a href="http://beian.miit.gov.cn"
                                                                              class="imprint" title="工信部备案"
                                                                              rel="nofollow" target="_blank">
