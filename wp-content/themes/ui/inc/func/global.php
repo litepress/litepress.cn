@@ -544,3 +544,12 @@ add_filter( 'wp_handle_upload_prefilter', function ( $file ) {
 
 	return $file;
 } );
+
+/**
+ * 取消EP最大索引10000数据的限制
+ */
+add_filter( 'ep_formatted_args', function ( $formatted_args ) {
+	$formatted_args['track_total_hits'] = true;
+
+	return $formatted_args;
+} );
