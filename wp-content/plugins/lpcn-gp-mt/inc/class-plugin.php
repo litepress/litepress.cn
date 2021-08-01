@@ -2,6 +2,8 @@
 
 namespace LitePress\GlotPress\MT;
 
+use Exception;
+use LitePress\WP_Http\WP_Http;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class Plugin {
@@ -37,14 +39,24 @@ class Plugin {
 	public function plugins_loaded() {
 		if ( isset( $_GET['debug'] ) ) {
 			//add_action('gp_translations_imported', 9999);
-			$args = array(
-				'verify' => false
+			/*
+			$args     = array(
+				'verify'  => false,
+				'headers' => array(
+					'Host' => 'translate.google.cn'
+				)
 			);
-			$tr   = new GoogleTranslate( 'zh-CN', null, $args );
-			$tr->setUrl( 'https://translate.google.cn/translate_a/single' );
+			$tr       = new GoogleTranslate( 'zh-CN', null, $args );
+			$proxy_ip = WP_Http::get_proxy_ip();
+			$tr->setUrl( "http://{$proxy_ip}/translate_a/single" );
 			$tr->setTarget( 'zh' );
-			//echo $tr->translate( 'If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary.' );
-			//exit;
+			try {
+				echo $tr->translate( 'If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary.' );
+			} catch ( Exception $e ) {
+				echo $e->getMessage();
+			}
+			exit;
+			*/
 		}
 	}
 
