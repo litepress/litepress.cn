@@ -258,10 +258,18 @@ if ( ! current_user_can( 'manage_options' ) ) {
 /**
  * 替换终极会员插件的gravatar头像地址
  */
-add_filter( 'um_user_avatar_url_filter', function ( $url ) {
-	// $url e.g:https://gravatar.com/avatar/245467ef31b6f0addc72b039b94122a4?s=400&r=G&d=mystery
-	return str_replace( 'gravatar.com', 'cravatar.cn', $url );
-}, 99999 );
+add_filter( 'um_user_avatar_url_filter', function ( $url, $user_id ) {
+	$user = get_user_by( 'ID', $user_id );
+
+	// 邮箱转小写并去除首尾空格
+	$address = strtolower( trim( $user->user_email ) );
+
+	// 获取邮箱的MD5哈希值
+	$hash = md5( $address );
+
+	// 拼接出最终的头像URL
+	return 'https://cravatar.cn/avatar/' . $hash . '?s=200&d=mp&r=' . time();
+}, 99999, 2 );
 
 /**
  * bbpress可视化编辑

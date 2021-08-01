@@ -7,10 +7,6 @@ use WCY\Inc\BBPress\Walker_Reply;
 
 global $blog_id;
 
-add_filter('um_user_avatar_url_filter', function ($url) {
-    return str_replace('//gravatar.com', '//cravatar.cn', $url);
-});
-
 /**
  * Woo删除多余菜单
  */
