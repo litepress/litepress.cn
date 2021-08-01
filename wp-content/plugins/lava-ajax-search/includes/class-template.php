@@ -96,7 +96,7 @@ class Lava_Ajax_Search_Template {
 
 	public function register_scripts() {
 		$arrScripts = Array(
-			'search-form.js' => array( 'ver' => '1.0.0' ),
+			//'search-form.js' => array( 'ver' => '1.0.0' ),
 			'selectize.min.js' => array( 'ver' => '1.0.0' ),
 		);
 
