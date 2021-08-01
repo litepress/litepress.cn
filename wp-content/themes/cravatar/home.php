@@ -35,12 +35,12 @@ $is_login = is_user_logged_in();
 
             <div class="container container-2020">
                 <div id="trust-signals">
-                    <h2 class="mb-20 text-center">你所认识的 WordPress 圈子牛人都在使用</h2>
-                    <div class="row row-cols-3 row-cols-xl-6 wp-img-ground justify-content-center mb-5">
+                    <h2 class="mb-5 text-center">你所认识的 WordPress 圈子牛人都在使用</h2>
+                    <div class="row row-cols-3 row-cols-xl-6 wp-img-ground justify-content-center mb-3">
                         <div class="col">
                             <div class="card">
                                 <a href="https://www.wpdaxue.com/cravatar.html" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
-                                    <img class="uabb-gallery-img card-img" src="/wp-content/themes/cravatar/assets/img/wpdaxue-logo-new.png" alt="WordPress 大学" itemprop="thumbnail" title="WordPress 大学">
+                                    <img class="uabb-gallery-img card-img" src="/wp-content/themes/cravatar/assets/img/wpdaxue-logo-new.png" alt="WordPress大学" itemprop="thumbnail" title="WordPress大学">
                                 </a>
                             </div>
                         </div>
@@ -51,7 +51,27 @@ $is_login = is_user_logged_in();
                                 </a>
                             </div>
                         </div>
-
+                        <div class="col">
+                            <div class="card">
+                                <a href="https://wpcom.cn/" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
+                                    <img class="uabb-gallery-img card-img" src="/wp-content/themes/cravatar/assets/img/wpcom.png" alt="WPCOM" itemprop="thumbnail" title="WPCOM">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <a href="https://www.nicetheme.cn/" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
+                                    <img class="uabb-gallery-img card-img" src="/wp-content/themes/cravatar/assets/img/nicetheme.png" alt="nicetheme" itemprop="thumbnail" title="nicetheme">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <a href="https://iro.tw/" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
+                                    <img class="uabb-gallery-img card-img" src="/wp-content/uploads/sites/9/2021/07/iro.png" alt="iro" itemprop="thumbnail" title="iro">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
