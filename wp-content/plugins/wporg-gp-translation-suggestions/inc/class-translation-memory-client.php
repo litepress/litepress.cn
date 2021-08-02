@@ -12,7 +12,7 @@ require_once ABSPATH . '/wp-includes/wp-diff.php';
 
 class Translation_Memory_Client {
 
-	const API_ENDPOINT = 'http://192.168.1.3:8000/translation-memory/';
+	const API_ENDPOINT = 'http://localhost:9200/translate_memory/_search';
 	const API_BULK_ENDPOINT = 'http://localhost:9200/translate_memory/_bulk';
 
 	/**
@@ -109,16 +109,23 @@ class Translation_Memory_Client {
 	 * @return array|\WP_Error      List of suggestions on success, WP_Error on failure.
 	 */
 	public static function query( string $text, string $target_locale ) {
-		$url = add_query_arg( urlencode_deep( [
-			'text'   => $text,
-			'locale' => 'zh-CN',
-		] ), self::API_ENDPOINT );
+		$body = array(
+			'query' => array(
+				'match' => array(
+					'source' => $text
+				),
+			),
+		);
+		$body = wp_json_encode( $body );
 
-
-		$request = wp_remote_get(
-			$url,
+		$request = wp_remote_post(
+			self::API_ENDPOINT,
 			[
-				'timeout' => 5,
+				'timeout' => 10,
+				'headers' => array(
+					'Content-Type' => 'application/json',
+				),
+				'body'    => $body,
 			]
 		);
 
@@ -141,13 +148,20 @@ class Translation_Memory_Client {
 			return [];
 		}
 
+		$result = $result['hits']['hits'] ?? array();
+
 		$suggestions = [];
 		foreach ( $result as $match ) {
+			$source = $match['_source']['source'] ?? '';
+			$translation = $match['_source']['target'] ?? '';
+
+			similar_text($source, $text, $similarity_score);
+
 			$suggestions[] = [
-				'similarity_score' => $match['quality'],
-				'source'           => $match['source'],
-				'translation'      => $match['target'],
-				'diff'             => ( 1 === $match['quality'] ) ? null : self::diff( $text, $match['source'] ),
+				'similarity_score' => $similarity_score,
+				'source'           => $source,
+				'translation'      => $translation,
+				'diff'             => ( 100 === $similarity_score ) ? null : self::diff( $text, $source ),
 			];
 		}
 
