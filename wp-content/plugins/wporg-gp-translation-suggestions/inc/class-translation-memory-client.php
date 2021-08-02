@@ -13,26 +13,19 @@ require_once ABSPATH . '/wp-includes/wp-diff.php';
 class Translation_Memory_Client {
 
 	const API_ENDPOINT = 'http://192.168.1.3:8000/translation-memory/';
-	const API_BULK_ENDPOINT = 'https://translate.wordpress.com/api/tm/-bulk';
+	const API_BULK_ENDPOINT = 'http://localhost:9200/translate_memory/_bulk';
 
 	/**
 	 * 更新翻译记忆库内容
 	 *
-	 * 这里将记忆库后端由WordPress.com更改为PostgreSQL中的数据表
+	 * 这里将记忆库后端由WordPress.com更改为本地服务器上的ES
 	 *
 	 * @param array $translations List of translation IDs, keyed by original ID.
 	 *
 	 * @return true|\WP_Error True on success, WP_Error on failure.
 	 */
 	public static function update( array $translations ) {
-		if ( ! $translations ) {
-			return new WP_Error( 'no_translations' );
-		}
-
-		$dbconn = pg_connect( sprintf( 'host=%s dbname=%s user=%s password=%s', PG_DB_HOST, PG_DB_NAME, PG_DB_USER, PG_DB_PASSWORD ) );
-		if ( false === $dbconn ) {
-			return new WP_Error( 'pg_not_connect', 'PostgreSQL数据库链接失败' );
-		}
+		$requests = [];
 
 		foreach ( $translations as $original_id => $translation_id ) {
 			$translation = GP::$translation->get( $translation_id );
@@ -42,41 +35,69 @@ class Translation_Memory_Client {
 				continue;
 			}
 
-			$original = GP::$original->get( $original_id );
+			$original        = GP::$original->get( $original_id );
+			$translation_set = GP::$translation_set->get( $translation->translation_set_id );
 
-			// 数据入库
-			$source = str_replace( "'", "''", $original->singular );
-			$target = str_replace( "'", "''", $translation->translation_0 );
-
-			$query = sprintf( "SELECT * FROM base_translationmemoryentry WHERE source='%s' AND target='%s';", $source, $target );
-
-			$result = pg_query( $dbconn, $query );
-			if ( false === $result ) {
-				return new WP_Error( 'memory_query_error', '翻译记忆库查询失败' );
+			$locale = $translation_set->locale;
+			if ( 'default' !== $translation_set->slug ) {
+				$locale .= '_' . $translation_set->slug;
 			}
 
-			$line = pg_fetch_array( $result, null, PGSQL_ASSOC );
-			if ( empty( $line ) ) {
-				$query  = sprintf( "INSERT INTO base_translationmemoryentry (source, target,entity_id,locale_id,project_id,translation_id) VALUES ('%s','%s',%d,%d,%d,%d);",
-					$source,
-					$target,
-					1,
-					19,// 简体中文的编号是19
-					1,
-					1
-				);
-				$result = pg_query( $dbconn, $query );
-				if ( false === $result ) {
-					return new WP_Error( 'pg_not_insert', '翻译记忆库插入失败' );
-				}
-			}
 
-			pg_free_result( $result );
+			$source = $original->fields()['singular'] ?? '';
+			$id     = md5(
+				strtolower( trim( $source ) )
+				. '|'
+				. $translation->translation_0
+			);
+
+			$requests[] = wp_json_encode( array(
+				'index' => array(
+					'_id' => $id,
+				),
+			) );
+			$requests[] = wp_json_encode( array(
+				'id'       => $id,
+				'source'   => $source,
+				'target'   => $translation->translation_0,
+				'priority' => 0,
+			) );
 		}
 
-		pg_close( $dbconn );
+		if ( ! $requests ) {
+			return new WP_Error( 'no_translations' );
+		}
 
-		return true;
+		$body = join( PHP_EOL, $requests );
+		$body .= PHP_EOL;
+
+		$request = wp_remote_post(
+			self::API_BULK_ENDPOINT,
+			[
+				'timeout' => 10,
+				'headers' => array(
+					'Content-Type' => 'application/x-ndjson',
+				),
+				'body'    => $body,
+			]
+		);
+
+		if ( is_wp_error( $request ) ) {
+			return $request;
+		}
+
+		if ( WP_Http::OK !== wp_remote_retrieve_response_code( $request ) ) {
+			return new WP_Error( 'response_code_not_ok' );
+		}
+
+		$body   = wp_remote_retrieve_body( $request );
+		$result = json_decode( $body, true );
+
+		if ( JSON_ERROR_NONE !== json_last_error() ) {
+			return new WP_Error( 'json_parse_error' );
+		}
+
+		return $result ?: new WP_Error( 'unknown_error' );
 	}
 
 	/**
