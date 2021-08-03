@@ -112,7 +112,10 @@ class Translation_Memory_Client {
 		$body = array(
 			'query' => array(
 				'match' => array(
-					'source' => $text
+					'source' => array(
+						'query' => $text,
+						'minimum_should_match' => '70%'
+					)
 				),
 			),
 			'size' => 10,
@@ -157,6 +160,10 @@ class Translation_Memory_Client {
 			$translation = $match['_source']['target'] ?? '';
 
 			similar_text($source, $text, $similarity_score);
+
+			if ( $similarity_score < 70 ) {
+				continue;
+			}
 
 			$suggestions[] = [
 				'similarity_score' => $similarity_score,
