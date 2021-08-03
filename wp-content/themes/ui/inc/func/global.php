@@ -268,7 +268,7 @@ add_filter( 'um_user_avatar_url_filter', function ( $url, $user_id ) {
 	$hash = md5( $address );
 
 	// 拼接出最终的头像URL
-	return 'https://cravatar.cn/avatar/' . $hash . '?s=200&d=mp&r=' . time();
+	return 'https://cravatar.cn/avatar/' . $hash . '?s=200&d=mp';
 }, 99999, 2 );
 
 /**
