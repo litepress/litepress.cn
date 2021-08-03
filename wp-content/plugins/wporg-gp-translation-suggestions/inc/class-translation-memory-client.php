@@ -115,6 +115,7 @@ class Translation_Memory_Client {
 					'source' => $text
 				),
 			),
+			'size' => 10,
 		);
 		$body = wp_json_encode( $body );
 
