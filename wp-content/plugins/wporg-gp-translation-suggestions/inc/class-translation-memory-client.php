@@ -45,6 +45,11 @@ class Translation_Memory_Client {
 
 
 			$source = $original->fields()['singular'] ?? '';
+
+			if ( empty( $source ) || empty( $translation->translation_0 ) ) {
+				continue;
+			}
+
 			$id     = md5(
 				strtolower( trim( $source ) )
 				. '|'
