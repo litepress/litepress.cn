@@ -178,6 +178,8 @@ class Translation_Memory_Client {
 			];
 		}
 
+		array_multisort( $suggestions, SORT_DESC );
+
 		return $suggestions;
 	}
 
