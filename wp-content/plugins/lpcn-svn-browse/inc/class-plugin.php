@@ -49,7 +49,12 @@ class Plugin {
 		$current_url = $tmp[0] ?? '';
 
 		$tmp                     = explode( '.', $current_url );
-		$current_file_ext = $tmp[1] ?? '';
+		$current_file_ext = $tmp[ count( $tmp ) - 1 ] ?? '';
+
+		// 后缀名应该排除掉类似tags/1.2/这种目录
+		if ( '/' === mb_substr( $current_url, strlen( $current_url ) - 1 ) ) {
+			$current_file_ext = '';
+		}
 
 		// 如果直接访问插件svn列表则重定向到应用市场的插件目录页面
 		if ( '/svn/' === $current_url || '/svn' === $current_url || '/svn/plugins' === $current_url ) {
@@ -66,12 +71,34 @@ class Plugin {
 
 		$r = wp_remote_get( $remote_url );
 
-		$body = $r['body'];
+		$error_msg = '';
+		if ( is_wp_error( $r ) ) {
+			$error_msg = $r->get_error_message();
+		} else {
+			$body = $r['body'];
+		}
+
+		$path = mb_substr( $current_url, strlen( '/svn' ) );
+
+		if ( ! empty( $error_msg ) ) {
+			$body = '';
+
+			add_action( 'svn-browse-error-message', function () use ( $error_msg ) {
+				echo '<div class="alert alert-danger">';
+				echo '出现错误：' . $error_msg;
+				echo '</div>';
+			} );
+		}
 
 		if ( ! empty( $current_file_ext ) ) { // 不为空代表是包含后缀名的文件
 			if ( ! in_array( $current_file_ext, array( 'php', 'html', 'js', 'css' ) ) ) {
-				echo '当前文件暂不支持浏览';
-				exit;
+				$body = '';
+
+				add_action( 'svn-browse-error-message', function () {
+					echo '<div class="alert alert-danger">';
+					echo '暂不支持浏览此类型的文件';
+					echo '</div>';
+				} );
 			}
 
 			require PLUGIN_DIR . '/templates/file.php';
