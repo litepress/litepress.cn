@@ -22,7 +22,13 @@ if( in_array( $lvBpSearchResult->type, Array( 'posts', 'pages', 'forum', 'topic'
 		}
 	} ?>
 	<div class="result-item type-<?php echo $lvBpSearchResult->type; ?>">
-		<a href="<?php echo esc_url(add_query_arg( array( 'no_frame' => '1' ), get_permalink() ));?>" data-object-id="<?php the_ID(); ?>">
+        <?php
+        $reply_id = get_the_ID();
+        $topic_id = get_post_meta( $reply_id, '_bbp_topic_id',  true );
+
+        $reply_url = "/forums/topic/{$topic_id}#post-{$reply_id}";
+        ?>
+		<a href="<?php echo esc_url(add_query_arg( array( 'no_frame' => '1' ), $reply_url ));?>" data-object-id="<?php the_ID(); ?>">
 			<div class="item media">
 				<?php echo get_avatar(  get_the_author_meta( 'user_email' ), '60' );?>
 				<div class="item-body media-body">
