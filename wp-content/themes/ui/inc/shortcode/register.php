@@ -2,4 +2,5 @@
 
 namespace WCY\Inc\ShortCode;
 
-require_once 'propagandist-list.php';
+require 'propagandist-list.php';
+require 'translators.php';
