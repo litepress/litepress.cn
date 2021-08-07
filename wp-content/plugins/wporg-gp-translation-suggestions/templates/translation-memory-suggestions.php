@@ -1,7 +1,7 @@
 <?php
 
 if ( empty( $suggestions ) ) {
-	echo '<p class="no-suggestions">No suggestions.</p>';
+	echo '<p class="no-suggestions">暂无建议</p>';
 } else {
 	echo '<ul class="suggestions-list">';
 	foreach ( $suggestions as $suggestion ) {

@@ -95,6 +95,7 @@ class Plugin {
 				break;
 			}
 
+			//do_action(self::TM_UPDATE_EVENT , $item);
 			wp_schedule_single_event( time() + 60, self::TM_UPDATE_EVENT, [ 'translations' => $item ] );
 		}
 	}
