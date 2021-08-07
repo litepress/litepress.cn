@@ -12,6 +12,7 @@
 namespace LitePress\GlotPress\GP_Import_From_WP_Org;
 
 use GP;
+use function LitePress\Helper\get_product_from_es;
 use function LitePress\WP_Http\wp_remote_get;
 use WP_Error;
 
@@ -228,27 +229,32 @@ class GP_Import_From_WP_Org {
 	}
 
 	private static function get_project_info_by_store( string $slug, string $type ): array {
-		global $wpdb;
+		if ( self::PLUGIN === $type ) {
+			$r = get_product_from_es( $slug, $type, array(
+				'post_title',
+				'meta._api_new_version.value',
+				'post_excerpt_en'
+			) );
 
-		$sql = $wpdb->prepare( "SELECT * FROM lp_api_projects WHERE slug=%s AND type=%s;", $slug, $type );
-		$r   = $wpdb->get_row( $sql );
-		if ( empty( $r ) ) {
+			$description = $r['hits']['hits'][0]['_source']['post_excerpt_en'] ?? '';
+		} else {
+			$r = get_product_from_es( $slug, $type, array(
+				'post_title',
+				'meta._api_new_version.value',
+				'post_content_en'
+			) );
+
+			$description = $r['hits']['hits'][0]['_source']['post_content_en'] ?? '';
+		}
+
+		if ( ! isset( $r['hits']['hits'][0] ) ) {
 			return array();
 		}
 
-		if ( self::PLUGIN === $type ) {
-			$sql     = $wpdb->prepare( "SELECT post_excerpt FROM wp_3_posts WHERE ID=%d;", $r->product_id );
-			$product = $wpdb->get_row( $sql );
-		} else {
-			$sql                   = $wpdb->prepare( "SELECT meta_value FROM wp_3_postmeta WHERE meta_key='51_default_editor' AND post_id=%d;", $r->product_id );
-			$product               = $wpdb->get_row( $sql );
-			$product->post_excerpt = $product->meta_value;
-		}
-
 		return array(
-			'name'        => $r->name,
-			'version'     => $r->version,
-			'description' => $product->post_excerpt,
+			'name'        => $r['hits']['hits'][0]['_source']['post_title'] ?? '',
+			'version'     => $r['hits']['hits'][0]['_source']['meta']['_api_new_version']['value'] ?? '',
+			'description' => $description,
 		);
 	}
 
@@ -388,7 +394,7 @@ class GP_Import_From_WP_Org {
 
 add_action( 'gp_import_from_wp_org', array( GP_Import_From_WP_Org::class, 'handle' ), 10, 2 );
 
-if ( isset( $_GET['debug'] ) ) {
+if ( isset( $_GET['debug-import'] ) ) {
 	/*
 	add_action( 'wp_loaded', function () {
 		//do_action( 'gp_import_from_wp_org', 'astra', 'theme' );
@@ -396,12 +402,32 @@ if ( isset( $_GET['debug'] ) ) {
 		exit;
 	} );
 	*/
-	/*
+
 	add_action( 'wp_loaded', function () {
 		//GP_Import_From_WP_Org::handle( 'woocommerce', GP_Import_From_WP_Org::PLUGIN );
-		GP_Import_From_WP_Org::handle( 'wp-super-cache', GP_Import_From_WP_Org::PLUGIN );
+		GP_Import_From_WP_Org::handle( 'username-changer', GP_Import_From_WP_Org::PLUGIN );
 		var_dump( 'ss' );
 		exit;
 	} );
-*/
+
+	/*
+		$body = array(
+			"query" => "select * from translate_memory where target='\n\n'",
+		);
+		$body = wp_json_encode( $body );
+
+		$request = wp_remote_post(
+			'http://localhost:9200/_sql?format=json',
+			[
+				'timeout' => 10,
+				'headers' => array(
+					'Content-Type' => 'application/json',
+				),
+				'body'    => $body,
+			]
+		);
+
+		var_dump($request['body']);
+		exit;
+	*/
 }
