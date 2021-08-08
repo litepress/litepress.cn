@@ -22,6 +22,7 @@ if ( ! class_exists( '\LitePress\Autoload\Autoloader', false ) ) {
 }
 
 include __DIR__ . '/inc/enqueue-scripts.php';
+include __DIR__ . '/inc/helper.php';
 
 Autoload\register_class_path( __NAMESPACE__, __DIR__ . '/inc' );
 
