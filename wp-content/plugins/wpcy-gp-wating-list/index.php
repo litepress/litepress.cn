@@ -47,6 +47,6 @@ function get_trans_waiting_list() {
      */
     $projects = $wpdb->get_results($sql);
     foreach ($projects as $v) {
-        printf('<a href="https://translate.wp-china.org/projects/%s/zh-cn/default/?filters[translated]=yes&filters[status]=waiting" target="_blank">%s</a><br/>', $v->path, $v->name);
+        printf('<a href="/translate/projects/%s/zh-cn/default/?filters[translated]=yes&filters[status]=waiting" target="_blank">%s</a><br/>', $v->path, $v->path);
     }
 }
