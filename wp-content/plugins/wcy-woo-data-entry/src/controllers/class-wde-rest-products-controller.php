@@ -146,7 +146,7 @@ class WDE_REST_Products_Controller extends WC_REST_Products_Controller {
 				$urls      = get_option( 'permalink-manager-uris' );
 				$urls_flip = array_flip( $urls );
 				$type      = 15 === (int) $request['categories'][0] ? 'plugins' : 'themes';
-				$url       = $type . '/' . $request['slug'];
+				$url       = "product/{$type}/{$request['slug']}";
 				/**
 				 * 如果当前URL不存在就是新建，否则更新
 				 */

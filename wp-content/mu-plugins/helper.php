@@ -11,6 +11,9 @@
 
 namespace LitePress\Helper;
 
+use WP_Error;
+use WP_Http;
+
 /**
  * 通过解析一组category_ids来分析当前产品的类别
  *
@@ -81,4 +84,64 @@ function exist_gp_project( string $slug, string $type ): bool {
 	$sql = $wpdb->prepare( 'SELECT id FROM wp_4_gp_projects WHERE slug = %s AND parent_project_id = %s;', $slug, $parent_project_id );
 
 	return ! empty( $wpdb->get_row( $sql ) );
+}
+
+/**
+ * 从ES中检索一个产品
+ *
+ * @param string $slug 产品Slug
+ * @param string $type 产品类型
+ * @param array $fields 要输出的字段
+ */
+
+function get_product_from_es( string $slug, string $type, array $fields = array() ) {
+	$body = array(
+		'query' => array(
+			'bool' => array(
+				'must' => array(
+					array(
+						'term' => array(
+							'terms.product_cat.slug' => "{$type}s"
+						),
+					),
+					array(
+						'term' => array(
+							'slug.keyword' => $slug
+						),
+					),
+				),
+			),
+		),
+		'size'  => 10,
+	);
+	$body = wp_json_encode( $body );
+
+	$request = wp_remote_post(
+		'http://localhost:9200/litepresscnstore-post-3/_search' . ( empty( $fields ) ? '' : ( '?_source_includes=' . join( ',', $fields ) ) ),
+		[
+			'timeout' => 10,
+			'headers' => array(
+				'Content-Type' => 'application/json',
+			),
+			'body'    => $body,
+		]
+	);
+
+	if ( is_wp_error( $request ) ) {
+		return $request;
+	}
+
+	if ( WP_Http::OK !== wp_remote_retrieve_response_code( $request ) ) {
+		return new WP_Error( 'response_code_not_ok' );
+	}
+
+	$body   = wp_remote_retrieve_body( $request );
+	$result = json_decode( $body, true );
+
+	return $result;
+}
+
+if ( isset( $_GET['ddddd'] ) ) {
+	echo json_encode(get_product_from_es('zippy', 'plugin', ));
+	exit;
 }
