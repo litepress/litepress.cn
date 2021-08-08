@@ -23,6 +23,13 @@ class GP_Import_From_WP_Org {
 	const THEME = 'theme';
 
 	/**
+	 * 只有崭新的项目才会从w.org导入翻译，否则就只导入原文
+	 *
+	 * @var bool
+	 */
+	private static bool $is_new = false;
+
+	/**
 	 * @param string $slug
 	 * @param string $type 是插件 Or 主题？
 	 *
@@ -98,20 +105,21 @@ class GP_Import_From_WP_Org {
 					}
 					GP::$original->import_for_project( $sub_project, $originals );
 
-					$translations = $format->read_translations_from_file( $temp_file, $sub_project );
-					if ( ! $translations ) {
-						unlink( $temp_file );
+					if ( self::$is_new ) {
+						$translations = $format->read_translations_from_file( $temp_file, $sub_project );
+						if ( ! $translations ) {
+							unlink( $temp_file );
 
-						self::error_log( $sub_project->id, '无法从文件加载翻译' );
+							self::error_log( $sub_project->id, '无法从文件加载翻译' );
 
-						continue;
+							continue;
+						}
+
+						// 将翻译创建者统一设置为 超级 AI (用户编号 517)
+						wp_set_current_user( 517 );
+
+						$translation_set->import( $translations );
 					}
-
-					// 将翻译创建者统一设置为 超级 AI (用户编号 517)
-					wp_set_current_user( 517 );
-
-					$translation_set->import( $translations );
-
 					unlink( $temp_file );
 				}
 			} else {
@@ -154,6 +162,8 @@ class GP_Import_From_WP_Org {
 		 * 如果项目不存在则创建之
 		 */
 		if ( empty( $project ) ) {
+			self::$is_new = true;
+
 			if ( empty( $project_info ) ) {
 				return new WP_Error( 'error', '从应用市场获取项目详情失败' );
 			}
@@ -196,6 +206,8 @@ class GP_Import_From_WP_Org {
 			if ( empty( $project ) ) {
 				return new WP_Error( 'error', '执行完项目创建流程后依然无法获取项目详情' );
 			}
+		} else {
+			self::$is_new = false;
 		}
 
 		/**
