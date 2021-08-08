@@ -95,9 +95,10 @@ class Plugin {
 		$post_args['post_excerpt']    = i18n::get_instance()->translate( $cache_key, $post_args['post_excerpt'] ?? '', $gp_project_path );
 
 		// 填充并翻译内容（产品内容默认是保存在Meta中的）
-		$post_args['post_content_en'] = $post_args['post_content'];
+		$content                      = $post_args['meta']['51_default_editor'][0]['value'] ?? '';
+		$post_args['post_content_en'] = $content;
 		$cache_key                    = sprintf( '%s_%s', $type, $post_args['post_name'] );
-		$post_args['post_content']    = i18n::get_instance()->translate( $cache_key, $post_args['meta']['51_default_editor'][0]['value'] ?? '', $gp_project_path );
+		$post_args['post_content']    = i18n::get_instance()->translate( $cache_key, $content, $gp_project_path );
 
 		return $post_args;
 	}
