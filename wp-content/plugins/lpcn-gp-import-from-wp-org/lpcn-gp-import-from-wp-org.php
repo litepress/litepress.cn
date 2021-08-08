@@ -265,7 +265,7 @@ class GP_Import_From_WP_Org {
 
 		return array(
 			'name'        => $r['hits']['hits'][0]['_source']['post_title'] ?? '',
-			'version'     => $r['hits']['hits'][0]['_source']['meta']['_api_new_version']['value'] ?? '',
+			'version'     => $r['hits']['hits'][0]['_source']['meta']['_api_new_version'][0]['value'] ?? '',
 			'description' => $description,
 		);
 	}
