@@ -449,6 +449,14 @@ img.gravatar.avatar.avatar-40.um-avatar {
     margin: 5px;
 }
 
+.translator-list li  img {
+    width: 40px;
+    height: 40px;
+    border: 3px double #ddd;
+    border-radius: 100% !important;
+    margin: 0px 5px 0 0;
+}
+
 .translator-list .rank-list__number {
     margin-left: auto;
 }
