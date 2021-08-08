@@ -226,6 +226,11 @@ class GP_Import_From_WP_Org {
 			return new WP_Error( 'error', '无法获取body项目详情' );
 		}
 
+		/**
+		 * 为程序主体更新代码模板URL
+		 */
+		self::update_source_url_template( (int) $body->id, (string) $body->path, $type, (string) $project_info['version'] );
+
 		$readme = GP::$project->find_one( array(
 			'slug'              => 'readme',
 			'parent_project_id' => $project->id,
@@ -313,6 +318,39 @@ class GP_Import_From_WP_Org {
 		return gp_update_meta( $project_id, 'version', $version, 'project' );
 	}
 
+	/**
+	 * 为项目更新上source_url_template字段
+	 *
+	 * 这个函数通常给只为承载程序主体翻译的项目调用
+	 *
+	 * @param int $project_id
+	 * @param string $path
+	 * @param string $type
+	 * @param string $version
+	 *
+	 * @return bool
+	 */
+	private static function update_source_url_template( int $project_id, string $path, string $type, string $version = '' ): bool {
+		if ( self::PLUGIN === $type ) {
+			$source_url_template = str_replace( '/body', '/trunk/%file%#L%line%', $path );
+		} elseif ( self::THEME === $type ) {
+			$items = explode( '/', $path );
+			$slug  = $items[ count( $items ) - 1 ];
+
+			$source_url_template = str_replace( "/$slug/$slug", "/$slug/$version/%file%#L%line%", $path );
+		} else {
+			$source_url_template = '';
+		}
+
+		GP::$project->update( array(
+			'source_url_template' => '/svn/' . $source_url_template,
+		), array(
+			'id' => $project_id,
+		) );
+
+		return true;
+	}
+
 	private static function get_theme_sub_project( $slug ): array|WP_Error {
 		$type         = self::THEME;
 		$type_for_int = 2;
@@ -376,6 +414,11 @@ class GP_Import_From_WP_Org {
 		if ( empty( $body ) ) {
 			return new WP_Error( 'error', '无法获取主题子项目详情' );
 		}
+
+		/**
+		 * 为程序主体更新代码模板URL
+		 */
+		self::update_source_url_template( (int) $body->id, (string) $body->path, $type, (string) $project_info['version'] );
 
 		return array(
 			$slug => $body
