@@ -50,10 +50,13 @@ class Translation_Memory_Client {
 				continue;
 			}
 
+			$source = strtolower( trim( $source ) );
+			$target = trim( $translation->translation_0 );
+
 			$id = md5(
-				strtolower( trim( $source ) )
+				$source
 				. '|'
-				. $translation->translation_0
+				. $target
 			);
 
 			$requests[] = wp_json_encode( array(
@@ -64,7 +67,7 @@ class Translation_Memory_Client {
 			$requests[] = wp_json_encode( array(
 				'id'       => $id,
 				'source'   => $source,
-				'target'   => $translation->translation_0,
+				'target'   => $target,
 				'priority' => 0,
 			) );
 		}
