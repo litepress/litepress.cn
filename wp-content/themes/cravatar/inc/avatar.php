@@ -74,6 +74,7 @@ function handle_avatar() {
 			$avatar_filename = um_get_user_avatar_url( $user->ID ?? 0, 400 );
 			$avatar_filename = str_replace( WP_CONTENT_URL, WP_CONTENT_DIR, $avatar_filename );
 			$avatar_filename = explode( '?', $avatar_filename )[0] ?? '';
+			$avatar_filename = str_replace( '-400x400.', '.', $avatar_filename );
 
 			/**
 			 * 如果终极会员返回默认头像，则清空
