@@ -547,6 +547,11 @@ add_action( 'wp_after_admin_bar_render', function () {
  * wordpress上传文件重命名
  */
 add_filter( 'wp_handle_upload_prefilter', function ( $file ) {
+    // 重命名不对zip压缩包生效，因为压缩包重命名后就不知道传的是啥了
+    if ( stristr( $file, '.zip' ) ) {
+	    return $file;
+    }
+
 	$time         = date( "YmdHis" );
 	$file['name'] = $time . "" . mt_rand( 1, 100 ) . "." . pathinfo( $file['name'], PATHINFO_EXTENSION );
 
