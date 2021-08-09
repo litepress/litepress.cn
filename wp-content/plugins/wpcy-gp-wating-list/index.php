@@ -46,6 +46,7 @@ function get_trans_waiting_list() {
      * 查询翻译集对应的项目路径，并输出超链接列表到页面
      */
     $projects = $wpdb->get_results($sql);
+    printf( '总计：' . count( $projects ) . ' 个项目<br/>' );
     foreach ($projects as $v) {
         printf('<a href="/translate/projects/%s/zh-cn/default/?filters[translated]=yes&filters[status]=waiting" target="_blank">%s</a><br/>', $v->path, $v->path);
     }
