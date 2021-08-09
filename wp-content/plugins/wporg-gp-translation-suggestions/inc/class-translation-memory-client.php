@@ -50,7 +50,7 @@ class Translation_Memory_Client {
 				continue;
 			}
 
-			$id     = md5(
+			$id = md5(
 				strtolower( trim( $source ) )
 				. '|'
 				. $translation->translation_0
@@ -118,12 +118,12 @@ class Translation_Memory_Client {
 			'query' => array(
 				'match' => array(
 					'source' => array(
-						'query' => $text,
+						'query'                => $text,
 						'minimum_should_match' => '70%'
 					)
 				),
 			),
-			'size' => 10,
+			'size'  => 10,
 		);
 		$body = wp_json_encode( $body );
 
@@ -161,10 +161,13 @@ class Translation_Memory_Client {
 
 		$suggestions = [];
 		foreach ( $result as $match ) {
-			$source = $match['_source']['source'] ?? '';
+			$source      = $match['_source']['source'] ?? '';
 			$translation = $match['_source']['target'] ?? '';
 
-			similar_text($source, $text, $similarity_score);
+			$text   = strtolower( trim( $text ) );
+			$source = strtolower( trim( $source ) );
+
+			similar_text( $source, $text, $similarity_score );
 
 			if ( $similarity_score < 70 ) {
 				continue;
