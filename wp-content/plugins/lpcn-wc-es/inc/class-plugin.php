@@ -74,7 +74,7 @@ class Plugin {
 		// 翻译标题
 		$post_args['post_title_en'] = $post_args['post_title'];
 		$cache_key                  = sprintf( '%s_%s_title', $type, $post_args['post_name'] );
-		$post_args['post_title']    = i18n::get_instance()->translate( $cache_key, $post_args['post_title'] ?? '', $gp_project_path );
+		$post_args['post_title']    = i18n::get_instance()->translate( $cache_key, $post_args['post_title'] ?? '', $gp_project_path, true );
 
 		// 记录slug（产品的post_name参数可能因重复而多了-1、-2这些后缀）
 		$urls = get_option( 'permalink-manager-uris' );
@@ -92,7 +92,7 @@ class Plugin {
 		// 翻译简介
 		$post_args['post_excerpt_en'] = $post_args['post_excerpt'];
 		$cache_key                    = sprintf( '%s_%s_short_description', $type, $post_args['post_name'] );
-		$post_args['post_excerpt']    = i18n::get_instance()->translate( $cache_key, $post_args['post_excerpt'] ?? '', $gp_project_path );
+		$post_args['post_excerpt']    = i18n::get_instance()->translate( $cache_key, $post_args['post_excerpt'] ?? '', $gp_project_path, true  );
 
 		// 填充并翻译内容（产品内容默认是保存在Meta中的）
 		$content                      = $post_args['meta']['51_default_editor'][0]['value'] ?? '';
