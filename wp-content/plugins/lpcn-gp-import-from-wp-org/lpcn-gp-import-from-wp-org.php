@@ -248,7 +248,7 @@ class GP_Import_From_WP_Org {
 	private static function get_project_info_by_store( string $slug, string $type ): array {
 		if ( self::PLUGIN === $type ) {
 			$r = get_product_from_es( $slug, $type, array(
-				'post_title',
+				'post_title_en',
 				'meta._api_new_version.value',
 				'post_excerpt_en'
 			) );
@@ -256,7 +256,7 @@ class GP_Import_From_WP_Org {
 			$description = $r['hits']['hits'][0]['_source']['post_excerpt_en'] ?? '';
 		} else {
 			$r = get_product_from_es( $slug, $type, array(
-				'post_title',
+				'post_title_en',
 				'meta._api_new_version.value',
 				'post_content_en'
 			) );
@@ -269,7 +269,7 @@ class GP_Import_From_WP_Org {
 		}
 
 		return array(
-			'name'        => $r['hits']['hits'][0]['_source']['post_title'] ?? '',
+			'name'        => $r['hits']['hits'][0]['_source']['post_title_en'] ?? '',
 			'version'     => $r['hits']['hits'][0]['_source']['meta']['_api_new_version'][0]['value'] ?? '',
 			'description' => $description,
 		);
