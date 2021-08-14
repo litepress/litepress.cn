@@ -104,7 +104,7 @@ function get_gravatar_to_file( string $hash, string $query ): string {
 		'default' => '404',
 	), $url );
 
-	return get_avatar_to_file( $hash, $url );
+	return get_avatar_to_file( $hash, $url, 'gravatar' );
 }
 
 function get_qqavatar_to_file( string $hash, string $qq ): string {
@@ -119,7 +119,7 @@ function get_qqavatar_to_file( string $hash, string $qq ): string {
 		return false;
 	}, 10, 2 );
 
-	return get_avatar_to_file( $hash, $url );
+	return get_avatar_to_file( $hash, $url, 'qq' );
 }
 
 /**
@@ -132,10 +132,10 @@ function get_qqavatar_to_file( string $hash, string $qq ): string {
  *
  * @return string
  */
-function get_avatar_to_file( string $hash, string $url ): string {
+function get_avatar_to_file( string $hash, string $url, string $type = 'gravatar' ): string {
 	global $wpdb;
 
-	$file_path = WP_CONTENT_DIR . '/cache/cravatar/' . $hash;
+	$file_path = WP_CONTENT_DIR . "/cache/cravatar/$type/$hash.png";
 
 	/**
 	 * 不存在缓存或缓存是15天前创建的就从Gravatar获取数据
