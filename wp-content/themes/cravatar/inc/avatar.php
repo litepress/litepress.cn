@@ -74,6 +74,10 @@ function handle_avatar() {
 		$user    = get_user_by( 'ID', $user_id );
 
 		$avatar_filename = '';
+
+		// 当前头像服务的提供者，目前有三个可能的值：cravatar、gravatar、qq，该值会在名为avatar-from的header字段中返回
+		$avatar_from = 'cravatar';
+
 		if (
 			! empty( $user->user_email ) && empty( $avatar_filename ) && 'y' !== $forcedefault
 		) {
@@ -100,6 +104,9 @@ function handle_avatar() {
 			) && 'y' !== $forcedefault
 		) {
 			$avatar_filename = get_gravatar_to_file( $user_email_hash, $current_query );
+			if ( ! empty( $avatar_filename ) ) {
+				$avatar_from = 'gravatar';
+			}
 		}
 
 		/**
@@ -109,6 +116,9 @@ function handle_avatar() {
 			$qq = get_qq_for_hash( $user_email_hash );
 			if ( ! empty( $qq ) ) {
 				$avatar_filename = get_qqavatar_to_file( $user_email_hash, $qq );
+				if ( ! empty( $avatar_filename ) ) {
+					$avatar_from = 'qq';
+				}
 			}
 		}
 
@@ -169,6 +179,7 @@ function handle_avatar() {
 		header( 'Content-Length:' . filesize( $temp_file ) );
 		header( 'Last-Modified:' . gmdate( 'D, d M Y H:i:s', filemtime( $avatar_filename ) ) . ' GMT' );
 		header( 'By:' . 'cravatar.cn' );
+		header( 'Avatar-From:' . $avatar_from );
 
 		readfile( $temp_file );
 
