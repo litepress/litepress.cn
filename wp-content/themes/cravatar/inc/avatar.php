@@ -21,6 +21,12 @@ function handle_avatar() {
 	if ( 'jpg' === $current_request_img_ext ) {
 		$current_request_img_ext = 'jpeg';
 	}
+
+	// 如果客户端明确表示支持webp则强制返回webp
+	if ( stristr( $_SERVER['HTTP_ACCEPT'], 'image/webp' ) ) {
+		$current_request_img_ext = 'webp';
+	}
+
 	$current_url = $tmp[0] ?? '';
 
 	$url_area       = explode( '/', $current_url );
@@ -132,15 +138,6 @@ function handle_avatar() {
 		$fun           = "imagecreatefrom{$cache_img_ext}";
 		$img_info      = $fun( $avatar_filename );
 
-		$img_type = match ( $current_request_img_ext ) {
-			'jpg', 'jpeg' => IMAGETYPE_JPEG,
-			'gif' => IMAGETYPE_GIF,
-			default => IMAGETYPE_PNG,
-		};
-		$mime     = image_type_to_mime_type( $img_type );
-
-		header( 'Content-Type:' . $mime );
-
 		$img_size = $size ?: 80;
 		$img_size = (int) ( $img_size > 2000 ? 2000 : $img_size );
 
@@ -159,6 +156,17 @@ function handle_avatar() {
 		// 图片输出时先输出到本地临时文件，再从临时文件读取并输出到浏览器，直接输出的话会卡的一批
 		$temp_file = tempnam( sys_get_temp_dir(), 'cravatar' );
 		$fun( $image_p, $temp_file );
+
+		$img_type = match ( $current_request_img_ext ) {
+			'jpg', 'jpeg' => IMAGETYPE_JPEG,
+			'gif' => IMAGETYPE_GIF,
+			'webp' => IMAGETYPE_WEBP,
+			default => IMAGETYPE_PNG,
+		};
+		$mime     = image_type_to_mime_type( $img_type );
+
+		header( 'Content-Type:' . $mime );
+
 		readfile( $temp_file );
 
 		unlink( $temp_file );
