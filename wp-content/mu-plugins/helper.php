@@ -141,6 +141,17 @@ function get_product_from_es( string $slug, string $type, array $fields = array(
 	return $result;
 }
 
+/**
+ * 判断字符串是否是或包含中文
+ */
+function is_chinese( string $str ): bool {
+	if ( preg_match( '/[\x{4e00}-\x{9fa5}]/u', $str ) > 0 ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 if ( isset( $_GET['ddddd'] ) ) {
 	echo json_encode(get_product_from_es('zippy', 'plugin', ));
 	exit;
