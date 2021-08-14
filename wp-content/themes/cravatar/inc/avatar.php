@@ -91,7 +91,7 @@ function handle_avatar() {
 		}
 
 		/**
-		 * 在从本地读取头像失败，或用户主动设置f及forcedefault参数时强制返回默认图的情况下返回默认图
+		 * 在从本地读取头像失败时尝试返回Gravatar头像
 		 */
 		if (
 			(
