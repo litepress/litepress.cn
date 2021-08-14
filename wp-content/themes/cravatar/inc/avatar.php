@@ -166,6 +166,9 @@ function handle_avatar() {
 		$mime     = image_type_to_mime_type( $img_type );
 
 		header( 'Content-Type:' . $mime );
+		header( 'Content-Length:' . filesize( $temp_file ) );
+		header( 'Last-Modified:' . gmdate( 'D, d M Y H:i:s', filemtime( $avatar_filename ) ) . ' GMT' );
+		header( 'By:' . 'cravatar.cn' );
 
 		readfile( $temp_file );
 
