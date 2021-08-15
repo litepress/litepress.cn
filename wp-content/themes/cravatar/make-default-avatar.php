@@ -26,7 +26,7 @@ foreach ( $default_types as $default_type ) {
 		/**
 		 * 生成头像URL
 		 */
-		$url = sprintf( '%s/avatar/%s.png?d=%s&f=y',
+		$url = sprintf( '%s/avatar/%s.png?d=%s&f=y&s=400',
 			GRAVATAR,
 			md5( $i ),
 			$default_type
