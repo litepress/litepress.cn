@@ -11,6 +11,11 @@ require __DIR__ . '/cavalcade/plugin.php';
 require __DIR__ . '/logger/logger.php';
 
 /**
+ * 载入中文格式化服务
+ */
+require __DIR__ . '/chinese-format/chinese-format.php';
+
+/**
  * 新用户注册时在用户meta信息中添加邮箱的hash值（通过md5），这样方便直接通过邮箱hash索引头像
  */
 add_action( 'user_register', function ( $user_id ) {

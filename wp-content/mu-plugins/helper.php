@@ -151,8 +151,3 @@ function is_chinese( string $str ): bool {
 		return false;
 	}
 }
-
-if ( isset( $_GET['ddddd'] ) ) {
-	echo json_encode(get_product_from_es('zippy', 'plugin', ));
-	exit;
-}
