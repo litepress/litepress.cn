@@ -45,7 +45,7 @@ foreach ( $default_types as $default_type ) {
 		/**
 		 * 以头像内容md5为名称保存头像到本地
 		 */
-		$filename = sprintf( '%s/%s/%s.png', STORE_PATH, $default_type, md5( $file ) );
+		$filename = sprintf( '%s/%s/%s.png', STORE_PATH, $default_type, ( $i + 1 ) );
 		if ( ! file_exists( $filename ) && false !== $file ) {
 			$resource = fopen( $filename, 'w' );
 			fwrite( $resource, $file );
