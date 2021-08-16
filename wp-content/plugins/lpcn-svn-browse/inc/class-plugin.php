@@ -33,7 +33,9 @@ class Plugin {
 	 * Initializes the plugin.
 	 */
 	public function plugins_loaded() {
-		add_filter( 'after_setup_theme', array( $this, 'browse' ) );
+		if ( ! is_admin() ) {
+			add_filter( 'after_setup_theme', array( $this, 'browse' ) );
+		}
 	}
 
 	public function browse() {
