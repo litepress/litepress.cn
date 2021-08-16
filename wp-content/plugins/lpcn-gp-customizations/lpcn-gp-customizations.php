@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: GlotPress的翻译格式化
- * Description: 为译文应用一组格式化规则
+ * Plugin Name: 自定义GlotPress
+ * Description: 为GlotPress添加细节权限控制、翻译格式化等有用的小功能
  * Version: 1.0
  * Author: LitePress社区团队
  * Author URI: http://litepress.cn
@@ -9,7 +9,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace LitePress\GlotPress\Format;
+namespace LitePress\GlotPress\Customizations;
 
 use LitePress\Autoload;
 
