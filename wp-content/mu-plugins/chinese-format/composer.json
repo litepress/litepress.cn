@@ -1,0 +1,5 @@
+{
+    "require": {
+        "naux/auto-correct": "^1.0"
+    }
+}
