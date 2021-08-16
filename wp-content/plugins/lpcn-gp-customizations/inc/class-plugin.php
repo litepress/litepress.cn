@@ -1,6 +1,6 @@
 <?php
 
-namespace LitePress\GlotPress\Format;
+namespace LitePress\GlotPress\Customizations;
 
 use GP;
 use GP_Translation;
@@ -39,6 +39,8 @@ class Plugin {
 	public function plugins_loaded() {
 		add_action( 'gp_translation_created', [ $this, 'translation_format' ], 1 );
 		add_action( 'gp_translation_saved', [ $this, 'translation_format' ], 1 );
+
+		add_filter( 'gp_pre_can_user', array( $this, 'can_user' ), 10, 2 );
 	}
 
 	public function translation_format( GP_Translation $translation ): GP_Translation {
@@ -54,6 +56,16 @@ class Plugin {
 		);
 
 		return $translation;
+	}
+
+	public function can_user( $none, $args ) {
+		// 任何用户均可导入状态为等待中的翻译
+		if ( isset( $args['user_id'] ) && ! empty( $args['user_id'] ) && 'import-waiting' === $args['action'] ) {
+			return true;
+		}
+
+		// 未命中前方规则的权限检查转交给GlotPress继续处理
+		return null;
 	}
 
 }
