@@ -65,7 +65,7 @@ class Plugin {
 		}
 
 		// 未命中前方规则的权限检查转交给GlotPress继续处理
-		return null;
+		return $none;
 	}
 
 }
