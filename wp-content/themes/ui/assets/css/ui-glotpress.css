@@ -788,7 +788,9 @@ a.project-actions {
 .project-actions ul {
     margin-top:0
 }
-
+.glossary button{
+    font-size: .85em;
+}
 .locale-sub-projects .percent, .translation-sets .percent {
     font-weight:700
 }
@@ -811,11 +813,11 @@ a.project-actions {
     background-color:#eff
 }
 #submit {
-    font-size:1.5em;
+    font-size:1em;
     margin:0 .1em 0 0
 }
 span.or-cancel {
-    font-size:.85em
+    font-size:.85em;    margin-left: 5px;
 }
 table.form-table th {
     text-align:left;

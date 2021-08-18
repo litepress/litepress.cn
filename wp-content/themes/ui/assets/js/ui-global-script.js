@@ -99,6 +99,13 @@ $(".wp-code").hover(function () {
 $(".wp-code code").each(function () {
     $(this).html("<ul><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ul>");
 });
+$(function () {
+var numLi = $(".wp-code .hljs ul li").length;
+console.log(numLi);
+for (var i = 0; i < numLi; i++) {
+    $(".wp-code .hljs ul li").eq(i).wrap('<div  id="L'+ (i + 1) +'" ></div>');
+}
+})
 const n = $(".btn-clipboard");
 n.click(function () {
     $(this).text("已复制");
