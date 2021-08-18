@@ -625,7 +625,13 @@ padding-top:0 ;
 .wp-code pre {
     margin: 0;
     white-space: pre-line;
-}
+    display: flex;
+
+}.wp-code pre > ul{
+    margin: 0;
+     line-height: 23px;
+    list-style: none;
+ }
 
 .operation-sticker {
     position: absolute;
