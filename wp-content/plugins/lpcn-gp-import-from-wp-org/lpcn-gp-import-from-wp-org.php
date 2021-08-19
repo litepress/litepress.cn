@@ -70,18 +70,18 @@ class GP_Import_From_WP_Org {
 					continue;
 				}
 
-				$wporg_url = sprintf( 'http://translate.wordpress.org/projects/wp-%ss/%s/%s/zh-cn/default/export-translations/', $type, $slug, $wporg_project_slug );
+				$wporg_url = sprintf( 'http://translate.wordpress.org/projects/wp-%ss/%s/%s/zh-cn/default/export-translations/?filters%5Bstatus%5D=current_or_waiting', $type, $slug, $wporg_project_slug );
 
 				$data = self::get_web_page_contents( $wporg_url );
 				if ( is_wp_error( $data ) ) {
 					// 插件第一次请求失败时尝试抓取trunk翻译
 					$wporg_project_slug = str_replace( 'stable', 'dev', $wporg_project_slug );
-					$wporg_url          = sprintf( 'http://translate.wordpress.org/projects/wp-%ss/%s/%s/zh-cn/default/export-translations/', $type, $slug, $wporg_project_slug );
+					$wporg_url          = sprintf( 'http://translate.wordpress.org/projects/wp-%ss/%s/%s/zh-cn/default/export-translations/?filters%5Bstatus%5D=current_or_waiting', $type, $slug, $wporg_project_slug );
 
 					$data = self::get_web_page_contents( $wporg_url );
 				}
 			} else {
-				$wporg_url = sprintf( 'http://translate.wordpress.org/projects/wp-%ss/%s/zh-cn/default/export-translations/', $type, $slug );
+				$wporg_url = sprintf( 'http://translate.wordpress.org/projects/wp-%ss/%s/zh-cn/default/export-translations/?filters%5Bstatus%5D=current_or_waiting', $type, $slug );
 
 				$data = self::get_web_page_contents( $wporg_url );
 			}
