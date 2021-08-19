@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="profile" href="https://gmpg.org/xfn/11">
-    <?php
-    $yoast_kw = get_post_meta(get_the_ID(),"_yoast_wpseo_focuskw",true);
-    if(!empty($yoast_kw)){
-        echo "<meta name='keywords' content='{$yoast_kw}' />\n";
-    }
-    ?>
-    <?php /** 标题不在翻译平台输出，因为翻译平台有自己的标题机制 */ ?><?php global $blog_id; ?><?php if (4 !== (int)$blog_id): ?><title><?php wp_title(); ?></title>
-    <?php endif; ?>
-    <?php wp_head(); ?>
-    <?php ?>
+	<?php
+	$yoast_kw = get_post_meta( get_the_ID(), "_yoast_wpseo_focuskw", true );
+	if ( ! empty( $yoast_kw ) ) {
+		echo "<meta name='keywords' content='{$yoast_kw}' />\n";
+	}
+	?>
+	<?php /** 标题不在翻译平台输出，因为翻译平台有自己的标题机制 */ ?>
+
+	<?php global $blog_id; ?>
+
+	<?php if ( 4 !== (int) $blog_id ): ?>
+        <title><?php wp_title(); ?></title>
+	<?php endif; ?>
+
+	<?php wp_head(); ?>
+	<?php ?>
 </head>
 
 <body <?php body_class(); ?>>
