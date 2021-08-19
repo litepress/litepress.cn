@@ -51,11 +51,11 @@ class Plugin {
 
 		// wp.org本来是禁止了该这仨钩子在命令行下执行，但因为lp.cn的corn是由命令行触发的，所以必须放开条件
 		//if ( 'cli' !== PHP_SAPI ) {
-			add_action( 'gp_translation_created', [ $this, 'translation_updated' ], 3 );
-			add_action( 'gp_translation_saved', [ $this, 'translation_updated' ], 3 );
+		add_action( 'gp_translation_created', [ $this, 'translation_updated' ], 3 );
+		add_action( 'gp_translation_saved', [ $this, 'translation_updated' ], 3 );
 
-			// DB Writes are delayed until shutdown to bulk-update the stats during imports.
-			add_action( 'shutdown', [ $this, 'schedule_tm_update' ], 3 );
+		// DB Writes are delayed until shutdown to bulk-update the stats during imports.
+		add_action( 'shutdown', [ $this, 'schedule_tm_update' ], 3 );
 		//}
 
 		add_action( self::TM_UPDATE_EVENT, [ Translation_Memory_Client::class, 'update' ] );
