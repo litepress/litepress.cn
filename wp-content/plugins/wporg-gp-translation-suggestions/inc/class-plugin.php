@@ -4,6 +4,8 @@ namespace WordPressdotorg\GlotPress\TranslationSuggestions;
 
 use GP;
 use GP_Locales;
+use LitePress\Chinese_Format\Chinese_Format;
+use function LitePress\Helper\is_chinese;
 
 class Plugin {
 
@@ -177,4 +179,85 @@ class Plugin {
         </details>
 		<?php
 	}
+}
+
+if ( isset( $_GET['sa'] ) ) {
+	global $wpdb;
+
+	$sql = <<<SQL
+select * from wp_4_gp_memory
+SQL;
+	$r   = $wpdb->get_results( $sql );
+
+	$a = Chinese_Format::get_instance();
+
+	foreach ( $r as $item ) {
+		$target = $a->convert( (string) $item->target );
+
+		$wpdb->update( 'wp_4_gp_memory',
+			array(
+				'id'     => md5( $item->source . '|' . $target ),
+				'target' => $target
+			),
+			array(
+				'id' => $item->id
+			)
+		);
+	}
+
+	exit;
+}
+
+if ( isset( $_GET['as'] ) ) {
+	global $wpdb;
+
+	$sql = <<<SQL
+select o.singular as source, t.translation_0 as target
+from wp_4_gp_translations as t
+         join wp_4_gp_originals as o on t.original_id = o.id
+SQL;
+
+	$r = $wpdb->get_results( $sql );
+
+	$memory = array();
+	foreach ( $r as $item ) {
+		$source = strtolower( trim( $item->source ) );
+		$target = trim( $item->target );
+		$id     = md5(
+			$source
+			. '|'
+			. $target
+		);
+
+		$s = $source;
+		$t = $target;
+
+		$is_empty = function ( $str ) {
+			return empty( str_replace( array( '\n', '\r', '\n\r', ' ', '&nbsp;', '&#160;' ), '', $str ) );
+		};
+
+		if ( $is_empty( $s ) || $is_empty( $t ) ) {
+			continue;
+		}
+
+		if ( ! is_chinese( $t ) ) {
+			continue;
+		}
+
+		$memory[ $id ] = $wpdb->prepare( "( '%s', '%s', '%s' )", $id, $source, $target );
+	}
+
+	$data = join( ',', $memory );
+
+	$sql = <<<SQL
+REPLACE INTO wp_4_gp_memory ( id, source, target )
+VALUES 
+$data;
+SQL;
+
+	$wpdb->query( $sql );
+	var_dump( $wpdb->last_error );
+
+	echo count( $memory );
+	exit;
 }
