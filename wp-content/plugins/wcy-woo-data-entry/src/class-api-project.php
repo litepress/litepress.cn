@@ -19,6 +19,7 @@ class Api_Project {
 	 * 将录入的产品数据更新到api.litepress.cn中
 	 */
 	public function update_api_data( int $product_id, $product ) {
+		/*
 		$medium_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'medium' );
 		if ( ! empty( $medium_image_url ) && isset( $medium_image_url[0] ) ) {
 			$icons = json_encode( array(
@@ -75,7 +76,10 @@ class Api_Project {
 				$product->get_meta( '_api_requires_php', true ),
 				'',
 			);
-		}
+		}*/
+
+		$slug = $_GET['slug'] ?? $product->get_slug();
+		$type = get_product_type_by_category_ids( $product->get_category_ids() );
 
 		if ( ! str_starts_with( $slug, 'lp-' ) ) {
 			/**
