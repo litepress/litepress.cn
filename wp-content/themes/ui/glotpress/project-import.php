@@ -1,17 +1,32 @@
 <?php
+
+use LitePress\I18n\i18n;
+
+$parent_project = GP::$project->find_one( array( 'id' => $project->parent_project_id ) );
+if ( 1 === (int) $parent_project->parent_project_id ) {
+	$parent_project->name = i18n::get_instance()->translate( 'plugin_' . (string) $parent_project->slug . '_title', (string) $parent_project->name, (string) $parent_project->path . '/readme', true );
+	$title                = '《' . $parent_project->name . '》的' . $project->name;
+} elseif ( 2 === (int) $parent_project->parent_project_id ) {
+	$parent_project->name = i18n::get_instance()->translate( 'theme_' . (string) $parent_project->slug . '_title', (string) $parent_project->name, (string) $parent_project->path . '/' . (string) $parent_project->slug, true );
+	$title                = $parent_project->name;
+} else {
+	$title = $project->name ?? '';
+}
+
+
 if ( 'originals' === $kind ) {
 	$gp_title = sprintf(
 		/* translators: %s: Project name. */
-		__( 'Import Originals &lt; %s - LitePress翻译平台', 'glotpress' ),
-		esc_html( $project->name )
+		__( '导入原文到%s - LitePress翻译平台', 'glotpress' ),
+		esc_html( $title )
 	);
 	$return_link = gp_url_project( $project );
 	gp_breadcrumb_project( $project );
 } else {
 	$gp_title = sprintf(
 		/* translators: %s: Project name. */
-		__( 'Import Translations &lt; %s - LitePress翻译平台', 'glotpress' ),
-		esc_html( $project->name )
+		__( '导入翻译到%s - LitePress翻译平台', 'glotpress' ),
+		esc_html( $title )
 	);
 	$return_link = gp_url_project_locale( $project, $locale->slug, $translation_set->slug );
 	gp_breadcrumb(
@@ -26,11 +41,12 @@ gp_title( $gp_title );
 gp_tmpl_header();
 ?>
 
-<h2><?php echo 'originals' == $kind ? __( 'Import Originals', 'glotpress' ) : __( 'Import Translations', 'glotpress' ); ?></h2>
-<form action="" method="post" enctype="multipart/form-data">
+<!--<h2><?php /*echo 'originals' == $kind ? __( 'Import Originals', 'glotpress' ) : __( 'Import Translations', 'glotpress' ); */?></h2>-->
+    <div class="container setting">
+<form action="" method="post" enctype="multipart/form-data" style="max-width: 400px">
 	<dl>
 	<dt><label for="import-file"><?php _e( 'Import File:', 'glotpress' ); ?></label></dt>
-	<dd><input type="file" name="import-file" id="import-file" /></dd>
+	<dd><input type="file" class="form-control" name="import-file" id="import-file" /></dd>
 <?php
 	$format_options         = array();
 	$format_options['auto'] = __( 'Auto Detect', 'glotpress' );
@@ -63,13 +79,13 @@ gp_tmpl_header();
 <?php endif; ?>
 	<dt>
 	<p>
-		<input type="submit" name="submit" value="<?php esc_attr_e( 'Import', 'glotpress' ); ?>" id="submit" />
+		<input type="submit" class="btn btn-primary" name="submit" value="<?php esc_attr_e( 'Import', 'glotpress' ); ?>"  />
 		<span class="or-cancel"><?php _e( 'or', 'glotpress' ); ?> <a href="<?php echo esc_url( $return_link ); ?>"><?php _e( 'Cancel', 'glotpress' ); ?></a></span>
 	</p>
 	</dt>
 	</dl>
 	<?php gp_route_nonce_field( ( 'originals' === $kind ? 'import-originals_' : 'import-translations_' ) . $project->id ); ?>
 </form>
-
+    </div>
 <?php
 gp_tmpl_footer();
