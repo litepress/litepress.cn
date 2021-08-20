@@ -41,7 +41,14 @@ defined( 'ABSPATH' ) || exit;
         <?php bbp_topic_subscription_link(); ?>
         <?php bbp_topic_favorite_link(); ?>
     </div>
+
 </div>
+
+
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/tocbot/4.12.2/tocbot.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/tocbot/4.12.2/tocbot.min.js"></script>
+
 	<?php do_action( 'bbp_template_before_single_topic' ); ?>
 
 	<?php if ( post_password_required() ) : ?>

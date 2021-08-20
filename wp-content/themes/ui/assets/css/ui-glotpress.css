@@ -151,8 +151,7 @@ img.plugin-icon {
     background: #ffffff;
     color: #555;
     font-size: 13px;
-    padding: 15px 0;
-    text-align: center;
+    padding: 15px;
     box-shadow: 0px 0px 6px 1px rgb(2 116 190 / 9%);
 }
 .toolbar  li {
