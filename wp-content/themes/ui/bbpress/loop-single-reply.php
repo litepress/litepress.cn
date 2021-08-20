@@ -11,11 +11,13 @@
 defined( 'ABSPATH' ) || exit;
 
 ?>
+
 <div class="bbp-reply-author-avatar">
 
     <?php bbp_reply_author_link( array( 'show_role' => true ) ); ?>
 
 </div>
+
 <div class="wp-reply-content">
 <div id="comment" <?php bbp_reply_class(); ?>>
 

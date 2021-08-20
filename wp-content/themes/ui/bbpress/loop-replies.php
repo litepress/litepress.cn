@@ -17,6 +17,7 @@ do_action( 'bbp_template_before_replies_loop' ); ?>
     <h1 class="bbp-title"><?php the_title(); ?></h1>
         <?php bbp_single_topic_description(); ?>
         <hr class="dropdown-divider">
+
     <li class="bbp-body">
 
         <?php if ( bbp_thread_replies() ) : ?>

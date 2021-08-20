@@ -26,6 +26,7 @@ if ( 0 === $project->id ) {
 ?>
 <main class="container">
     <section class="toolbar">
+        <div class="text-center">
 <h5>
 	<?php
 	printf(
@@ -41,23 +42,26 @@ if ( 0 === $project->id ) {
         <?php gp_link_glossary_edit( $glossary, $translation_set, _x( '(edit)', 'glossary', 'glotpress' ) ); ?>
         <?php gp_link_glossary_delete( $glossary, $translation_set, _x( '(delete)', 'glossary', 'glotpress' ) ); ?>
         </ul>
-    </section>
-<?php
-/**
- * Filter a glossary description.
- *
- * @since 3.0.0
- *
- * @param string      $description Glossary description.
- * @param GP_Glossary $project     The current glossary.
- */
-$glossary_description = apply_filters( 'gp_glossary_description', $glossary->description, $glossary );
+        </div>
+        <?php
+        /**
+         * Filter a glossary description.
+         *
+         * @since 3.0.0
+         *
+         * @param string      $description Glossary description.
+         * @param GP_Glossary $project     The current glossary.
+         */
+        $glossary_description = apply_filters( 'gp_glossary_description', $glossary->description, $glossary );
 
-if ( $glossary_description ) {
-	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Sanitized via filters.
-	echo '<div class="glossary-description">' . $glossary_description . '</div>';
-}
-?>
+        if ( $glossary_description ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Sanitized via filters.
+            echo '<div class="glossary-description">' . $glossary_description . '</div>';
+        }
+        ?>
+
+    </section>
+
     <style>
         body {
             display: block !important;
