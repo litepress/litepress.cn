@@ -101,7 +101,7 @@ $(".wp-code code").each(function () {
 });
 $(function () {
 var numLi = $(".wp-code .hljs ul li").length;
-console.log(numLi);
+
 for (var i = 0; i < numLi; i++) {
     $(".wp-code .hljs ul li").eq(i).wrap('<div  id="L'+ (i + 1) +'" ></div>');
 }

@@ -93,7 +93,7 @@ $(".wp-subscribe").click(function () {
             sc = success.content;
             const reg = /[\u4e00-\u9fa5]+/g;
             newData = sc.match(reg);
-            if ('取消订阅' === newData) {
+            if ('退订' === newData[0]) {
                 $('.wp-subscribe span').html("已关注");
             } else {
                 $('.wp-subscribe span').html("关注");
@@ -107,7 +107,7 @@ $(".wp-subscribe").click(function () {
     });
 });
 
-if ('取消订阅' === $('.subscription-toggle').html()) {
+if ('退订' === $('.subscription-toggle').html()) {
     $('.wp-subscribe').addClass("active");
     $('.wp-subscribe span').html("已关注");
 } else {
