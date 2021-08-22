@@ -6,6 +6,12 @@ use GP;
 
 class Plugin {
 
+	const ALLOWED_TYPE = array(
+		'plugin' => 1,
+		'theme'  => 2,
+		'other'  => 5,
+	);
+
 	/**
 	 * @var Plugin|null The singleton instance.
 	 */
@@ -35,13 +41,29 @@ class Plugin {
 	 * Initializes the plugin.
 	 */
 	public function plugins_loaded() {
-		if ( isset( $_GET['debug'] ) ) {
-			$a = new Generate_Pack();
-			$a->job(
-				'elementor-pro',
-				'other',
-				'1.7.4',
-			);
+		add_action( 'lpcn_generate_all_language_pack', array( $this, 'generate_all_language_pack' ) );
+
+		$timestamp = wp_next_scheduled( 'lpcn_generate_all_language_pack' );
+		if ( empty( $timestamp ) ) {
+			wp_schedule_event( strtotime( date( 'Y-m-d', strtotime( '+1 day' ) ) ) + 3600, 'daily', 'lpcn_generate_all_language_pack' );
+		}
+	}
+
+	public function generate_all_language_pack() {
+		$generate_pack = new Generate_Pack();
+
+		foreach ( self::ALLOWED_TYPE as $type => $id ) {
+			$products = GP::$project->find_many( array( 'parent_project_id' => $id ) );
+
+			foreach ( $products as $product ) {
+				$version = gp_get_meta( 'project', $product->id, 'version' ) ?: '';
+
+				$generate_pack->job(
+					$product->slug,
+					$type,
+					$version,
+				);
+			}
 		}
 	}
 
