@@ -2,11 +2,9 @@
 
 namespace LitePress\API;
 
-use AlibabaCloud\CDRS\V20201101\PaginateDevice;
 use JetBrains\PhpStorm\NoReturn;
 use LitePress\Logger\Logger;
 use LitePress\WP_Http\WP_Http;
-use WP_Error;
 
 class Plugin {
 
