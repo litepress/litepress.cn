@@ -67,7 +67,6 @@ function handle_avatar() {
 		 */
 		if ( count( $url_area ) < 3 || empty( $user_email_hash ) ) {
 			$forcedefault = 'y';
-			$size         = 80;
 		}
 
 		$user_id = get_user_id_by_hash( $user_email_hash ?? '' );
