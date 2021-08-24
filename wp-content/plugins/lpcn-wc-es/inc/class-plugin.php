@@ -49,6 +49,11 @@ class Plugin {
 		$allowed[] = '46_custom_list_faqs';
 		$allowed[] = '365_default_editor';
 		$allowed[] = '_api_new_version';
+		$allowed[] = '_banner';
+		$allowed[] = '_api_tested_up_to';
+		$allowed[] = '_api_requires_php';
+		$allowed[] = '_download_url';
+		$allowed[] = '_api_version_required';
 
 		return $allowed;
 	}
