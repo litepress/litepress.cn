@@ -93,7 +93,6 @@ function exist_gp_project( string $slug, string $type ): bool {
  * @param string $type 产品类型
  * @param array $fields 要输出的字段
  */
-
 function get_product_from_es( string $slug, string $type, array $fields = array() ) {
 	$body = array(
 		'query' => array(
@@ -113,6 +112,62 @@ function get_product_from_es( string $slug, string $type, array $fields = array(
 			),
 		),
 		'size'  => 10,
+	);
+	$body = wp_json_encode( $body );
+
+	$request = wp_remote_post(
+		'http://localhost:9200/litepresscnstore-post-3/_search' . ( empty( $fields ) ? '' : ( '?_source_includes=' . join( ',', $fields ) ) ),
+		[
+			'timeout' => 10,
+			'headers' => array(
+				'Content-Type' => 'application/json',
+			),
+			'body'    => $body,
+		]
+	);
+
+	if ( is_wp_error( $request ) ) {
+		return $request;
+	}
+
+	if ( WP_Http::OK !== wp_remote_retrieve_response_code( $request ) ) {
+		return new WP_Error( 'response_code_not_ok' );
+	}
+
+	$body   = wp_remote_retrieve_body( $request );
+	$result = json_decode( $body, true );
+
+	return $result;
+}
+
+/**
+ * 从ES中批量检索一组产品
+ *
+ * @param array $slugs 产品 Slug 数组
+ * @param string $type 产品类型
+ * @param array $fields 要输出的字段
+ */
+function get_products_from_es( array $slugs, string $type, array $fields = array() ) {
+	$body = array(
+		'query' => array(
+			'bool' => array(
+				'minimum_should_match' => 1,
+				'should'               => array(
+					array(
+						'terms' => array(
+							'slug.keyword' => $slugs
+						)
+					)
+				),
+				'must'                 => array(
+					array(
+						'term' => array(
+							'terms.product_cat.slug' => "{$type}s"
+						)
+					)
+				)
+			)
+		)
 	);
 	$body = wp_json_encode( $body );
 
