@@ -1,10 +1,10 @@
 <?php
 
-namespace LitePress\API;
+namespace LitePress\API\Inc;
 
 use JetBrains\PhpStorm\NoReturn;
-use LitePress\Logger\Logger;
-use LitePress\WP_Http\WP_Http;
+use LitePress\API\Inc\Api\Base;
+use LitePress\API\Inc\Api\Plugins\Update_Check;
 
 class Plugin {
 
@@ -37,11 +37,7 @@ class Plugin {
 	 * Initializes the plugin.
 	 */
 	#[NoReturn] public function plugins_loaded() {
-		$route = add_query_arg( array() );
-		$route = explode( '?', $route )[0];
-		$route = explode( '#', $route )[0];
-
-		$this->router( $route );
+		add_action( 'rest_api_init', array( Base::class, 'init' ) );
 	}
 
 	/**
@@ -49,14 +45,18 @@ class Plugin {
 	 *
 	 * @param string $route
 	 */
-	#[NoReturn] private function router( string $route ) {
+	#[NoReturn] private function loader() {
+		add_action( 'rest_api_init', array( __NAMESPACE__ . '\API\Base', 'init' ) );
+		new Update_Check();
+
+		/*
 		if ( '/' === $route ) {
 			wp_redirect( 'https://litepress.cn', 301 );
 			exit;
 		}
 
 		switch ( $route ) {
-			case '/plugins/info/1.2/':
+			case '/plugins/update-check/1.1/':
 			default:
 				$r = request_wporg();
 				if ( is_wp_error( $r ) ) {
@@ -88,6 +88,7 @@ class Plugin {
 		}
 
 		exit;
+		*/
 	}
 
 }
