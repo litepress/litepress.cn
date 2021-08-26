@@ -139,7 +139,7 @@ class WPSEO_Post_Type_Sitemap_Provider implements WPSEO_Sitemap_Provider {
 					}
 				}
 				else {
-					$date = $all_dates[ $page_counter ];
+					$date = $all_dates[ $page_counter ] ?? '';
 				}
 
 				$index[] = [
