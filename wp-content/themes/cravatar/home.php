@@ -8,7 +8,7 @@ $is_login = is_user_logged_in();
             <div class="container container-2020 ">
                 <div class="row justify-content-center justify-content-lg-between text-center text-lg-left   ">
                     <div class="col-12 col-md-10 col-lg-6 center index-banner-left"><h1
-                                class="mb-20 mb-22-md mb-30-xxl 1">中国的互联网公共头像服务</h1>
+                                class="mb-20 mb-22-md mb-30-xxl 1">Cravatar - 互联网公共头像服务</h1>
                         <p class="subtitle mb-26-xs-md mb-30-md mb-40-xxl w-100 w-75-xxl text-center text-lg-left mx-auto mx-lg-0">
 
                             Cravatar 是 Gravatar 在中国的完美替代方案,<br>从此你可以自由的上传和分享头像。
