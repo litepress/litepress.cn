@@ -1,6 +1,7 @@
 var $ = jQuery.noConflict();
 $("li.menu-item-has-children > a").attr("data-bs-toggle", "dropdown");
 $(function () {
+    $('#exampleModal').modal('show');
     var $img = $(".cropper-view");
     var $avatarSave = $('.avatar-save');
     var $modal = $("#avatar-modal");
@@ -244,9 +245,9 @@ $(function () {
 
 
     $(".remove_email").on('click', function () {
-        const remove_email = $(this).parent().prev().prev().text();
-        const nonce = $(this).parent().prev().val();
-        const user_id = $("input[name=user_id]").val();
+        const remove_email = $("#wpemail").text();
+        const nonce = $("input[name=nonce]").val();
+        const user_id = trigger.data('user_id');
         $.ajax({
             url: wp.ajax.settings.url,
             type: "POST",

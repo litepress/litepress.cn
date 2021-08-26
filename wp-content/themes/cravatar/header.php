@@ -137,4 +137,19 @@ wp_body_open();
     </div>
 </header>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">紧急公告</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">Cravatar 当前正在切换为企业备案，在此期间我们【暂时性】的为你返回 Gravatar 头像。预计一周左右恢复服务。</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">我已了解</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
