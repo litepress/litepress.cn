@@ -71,6 +71,7 @@ class Translate {
 
 				$args     = array(
 					'verify'  => false,
+					'timeout' => 20,
 					'headers' => array(
 						'Host' => 'translate.google.cn'
 					)
