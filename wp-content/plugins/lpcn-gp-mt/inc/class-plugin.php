@@ -105,9 +105,13 @@ SQL;
 		$original = GP::$original->find_one( array(
 			'project_id' => $project_id,
 			'comment'    => $allowed,
-		) )->fields();
+		) );
 
-		return $original['singular'] ?? '';
+		if ( $original ) {
+			return $original['singular'];
+		} else {
+			return '';
+		}
 	}
 
 }
