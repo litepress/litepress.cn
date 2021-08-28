@@ -34,3 +34,8 @@ require_once 'glotpress/helper-functions.php';
  * 引入支付网关
  */
 require_once 'inc/woo-pay/class-xunhu-wechat.php';
+
+/**
+ * 引入终极会员相关代码
+ */
+require_once __DIR__ . '/inc/ultimate-member/register.php';
