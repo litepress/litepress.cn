@@ -1,6 +1,7 @@
 <?php
 
 define( 'UI_ROOT_PATH', get_stylesheet_directory() );
+define( 'UI_ROOT_URI', get_stylesheet_directory_uri() );
 
 /**
  * TODO 调试
