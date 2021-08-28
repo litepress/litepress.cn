@@ -144,7 +144,7 @@ wp_body_open();
                 <h5 class="modal-title" id="exampleModalLabel">紧急公告</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">Cravatar 当前正在切换为企业备案，在此期间我们【暂时性】的为你返回 Gravatar 头像。预计一周左右恢复服务。</div>
+            <div class="modal-body">Cravatar 当前正在切换为企业备案，在此期间我们【暂时性】的为你返回 Gravatar 头像。预计一周左右恢复服务。<br/>详细公告：<a href="https://litepress.cn/forums/topic/21484" target="_blank">https://litepress.cn/forums/topic/21484</a></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">我已了解</button>
 
