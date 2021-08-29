@@ -1,6 +1,12 @@
 <?php
 
-class WPCY_Route_Project extends GP_Route_Project {
+namespace LitePress\GlotPress\Customizations\Inc\Routes;
+
+use GP;
+use GP_Locales;
+use GP_Route_Project;
+
+class Route_Project extends GP_Route_Project {
 
 	public function single( $project_path ) {
 		global $wpdb;
@@ -8,7 +14,7 @@ class WPCY_Route_Project extends GP_Route_Project {
 		$project = GP::$project->by_path( $project_path );
 
 		if ( ! $project ) {
-			return $this->die_with_404();
+			$this->die_with_404();
 		}
 
 		// $sub_projects     = $project->sub_projects();

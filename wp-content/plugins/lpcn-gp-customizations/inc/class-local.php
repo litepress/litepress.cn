@@ -1,10 +1,9 @@
 <?php
 
-namespace LitePress\GlotPress\Inc;
+namespace LitePress\GlotPress\Customizations\Inc;
 
 use GP;
 use GP_Project;
-use GP_Route;
 
 /**
  * Locale Route Class.
