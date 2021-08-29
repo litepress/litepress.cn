@@ -1,10 +1,12 @@
 <?php
 
-namespace LitePress\GlotPress\Customizations;
+namespace LitePress\GlotPress\Customizations\Inc;
 
 use GP;
 use GP_Translation;
 use LitePress\Chinese_Format\Chinese_Format;
+use LitePress\GlotPress\Customizations\Inc\Routes\Index;
+use LitePress\GlotPress\Customizations\Inc\Routes\Route_Project;
 
 class Plugin {
 
@@ -41,6 +43,16 @@ class Plugin {
 		add_action( 'gp_translation_saved', [ $this, 'translation_format' ], 1 );
 
 		add_filter( 'gp_pre_can_user', array( $this, 'can_user' ), 10, 2 );
+
+		add_action( 'template_redirect', array( $this, 'router' ), 5 );
+	}
+
+	/**
+	 * 自定义 GlotPress 的路由
+	 */
+	public function router() {
+		GP::$router->prepend( "/", array( Index::class, 'index' ) );
+		GP::$router->prepend( "/projects/(plugins|themes|docs|core|others)", array( Route_Project::class, 'single' ) );
 	}
 
 	public function translation_format( GP_Translation $translation ): GP_Translation {

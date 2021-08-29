@@ -12,6 +12,7 @@
 namespace LitePress\GlotPress\Customizations;
 
 use LitePress\Autoload;
+use LitePress\GlotPress\Customizations\Inc\Plugin;
 
 const PLUGIN_FILE = __FILE__;
 const PLUGIN_DIR  = __DIR__;
@@ -20,6 +21,12 @@ if ( ! class_exists( '\LitePress\Autoload\Autoloader', false ) ) {
 	include __DIR__ . '/vendor/litepress/autoload/class-autoloader.php';
 }
 
-Autoload\register_class_path( __NAMESPACE__, __DIR__ . '/inc' );
+Autoload\register_class_path( __NAMESPACE__ . '\Inc', __DIR__ . '/inc' );
+
+// 这自动装载有 BUG，懒得查了，先手工引入吧
+// 这个 BUG 似乎是因为 GlotPress 使用某种机制引用回调，导致未触发自动装载
+require __DIR__ . '/inc/routes/index.php';
+require __DIR__ . '/inc/routes/project.php';
+require __DIR__ . '/inc/class-local.php';
 
 Plugin::get_instance();
