@@ -694,6 +694,10 @@ function redirect_to_mapped_domain() {
 	if ( isset( $_GET['preview'] ) && $_GET['preview'] == 'true' )
 		return;
 
+	// 不为 EL 页面生成器的预览页面跳转
+	if ( isset( $_GET['elementor-preview'] ) )
+		return;
+
 	// don't redirect theme customizer (WP 3.4)
 	if ( isset( $_POST['customize'] ) && isset( $_POST['theme'] ) && $_POST['customize'] == 'on' )
 		return;
