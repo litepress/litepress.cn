@@ -1,9 +1,0 @@
-# Composer
-/composer.lock
-/vendor/
-
-# Node.js
-/node_modules/
-
-# PHPUnit
-/coverage.xml
