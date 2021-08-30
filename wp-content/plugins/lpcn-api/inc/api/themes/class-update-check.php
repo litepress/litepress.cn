@@ -58,7 +58,8 @@ class Update_Check extends Base {
 		);
 
 		$args = array(
-			'themes'       => $updated_themes,
+			'themes'       => $updated_themes['update'],
+			'no_update'    => $updated_themes['no_update'],
 			'translations' => $updated_translations,
 		);
 

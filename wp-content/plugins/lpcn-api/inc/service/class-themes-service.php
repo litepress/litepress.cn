@@ -35,21 +35,25 @@ class Themes_Service {
 		$db_themes = get_products_from_es( $slugs, 'theme', $fields );
 		$db_themes = $this->prepare_db_themes( $db_themes );
 
-		$update_exists = array_filter( $themes, function ( $theme ) use ( $db_themes ) {
-			$slug = $theme['Template'] ?? '';
+		$update_exists    = array();
+		$no_update_exists = array();
+		foreach ( $themes as $theme ) {
+			$slug            = $theme['Template'] ?? '';
+			$db_theme        = $db_themes[ $slug ] ?? array();
+			$request_version = $theme['Version'] ?? '';
+			$db_version      = $db_theme['new_version'] ?? '';
 
-			return version_compare( $theme['Version'] ?? '', $db_themes[ $slug ]['new_version'] ?? '', '<' );
-		} );
-
-		// 格式化存在更新的主题，以生成最终要返回给客户端的数据格式
-		foreach ( $update_exists as $key => &$item ) {
-			$slug          = $item['Template'] ?? '';
-			$item          = $db_themes[ $slug ];
-			$item['theme'] = $key;
+			if ( version_compare( $request_version, $db_version, '<' ) ) {
+				$update_exists[ $slug ] = $db_theme;
+			} elseif ( isset( $db_themes[ $slug ] ) ) {
+				$no_update_exists[ $slug ] = $db_theme;
+			}
 		}
-		unset( $item );
 
-		return $update_exists;
+		return array(
+			'update'    => $update_exists,
+			'no_update' => $no_update_exists
+		);
 	}
 
 	private function prepare_db_themes( array $db_themes ): array {
