@@ -39,12 +39,14 @@ class Plugin {
 	 * Initializes the plugin.
 	 */
 	public function plugins_loaded() {
-		add_action( 'gp_translation_created', [ $this, 'translation_format' ], 1 );
-		add_action( 'gp_translation_saved', [ $this, 'translation_format' ], 1 );
+		add_action( 'gp_translation_created', array( $this, 'translation_format' ), 1 );
+		add_action( 'gp_translation_saved', array( $this, 'translation_format' ), 1 );
 
 		add_filter( 'gp_pre_can_user', array( $this, 'can_user' ), 10, 2 );
 
 		add_action( 'template_redirect', array( $this, 'router' ), 5 );
+
+		add_filter( 'gp_url_profile', array( $this, 'gp_url_profile' ), 10, 2 );
 	}
 
 	/**
@@ -79,6 +81,10 @@ class Plugin {
 
 		// 未命中前方规则的权限检查转交给GlotPress继续处理
 		return $none;
+	}
+
+	public function gp_url_profile( $url, $user_nicename ) {
+		return "/user/$user_nicename?profiletab=translate";
 	}
 
 }
