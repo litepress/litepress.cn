@@ -35,21 +35,27 @@ class Plugins_Service {
 		$db_plugins = get_products_from_es( $slugs, 'plugin', $fields );
 		$db_plugins = $this->prepare_db_plugins( $db_plugins );
 
-		$update_exists = array_filter( $plugins, function ( $plugin ) use ( $db_plugins ) {
-			$slug = $plugin['TextDomain'] ?? '';
+		$update_exists    = array();
+		$no_update_exists = array();
+		foreach ( $plugins as $key => $plugin ) {
+			$slug            = $plugin['TextDomain'] ?? '';
+			$db_plugin       = $db_plugins[ $slug ] ?? array();
+			$request_version = $plugin['Version'] ?? '';
+			$db_version      = $db_plugin['new_version'] ?? '';
 
-			return version_compare( $plugin['Version'] ?? '', $db_plugins[ $slug ]['new_version'] ?? '', '<' );
-		} );
+			$db_plugin['plugin'] = $key;
 
-		// 格式化存在翻译的主题，以生成最终要返回给客户端的数据格式
-		foreach ( $update_exists as $key => &$item ) {
-			$slug           = $item['TextDomain'] ?? '';
-			$item           = $db_plugins[ $slug ];
-			$item['plugin'] = $key;
+			if ( version_compare( $request_version, $db_version, '<' ) ) {
+				$update_exists[ $slug ] = $db_plugin;
+			} elseif ( isset( $db_plugins[ $slug ] ) ) {
+				$no_update_exists[ $slug ] = $db_plugin;
+			}
 		}
-		unset( $item );
 
-		return $update_exists;
+		return array(
+			'update'    => $update_exists,
+			'no_update' => $no_update_exists
+		);
 	}
 
 	private function prepare_db_plugins( array $db_plugins ): array {
