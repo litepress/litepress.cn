@@ -4,9 +4,92 @@ namespace LitePress\GlotPress\Customizations\Inc\Routes;
 
 use GP;
 use GP_Locales;
+use GP_Project;
 use GP_Route_Project;
 
 class Route_Project extends GP_Route_Project {
+
+	public function new_post() {
+		if ( $this->invalid_nonce_and_redirect( 'add-project' ) ) {
+			return;
+		}
+
+		if ( ! isset( $_FILES['icon'] ) || empty( $_FILES['icon'] ) ) {
+			$project        = new GP_Project();
+			$this->errors[] = '封面图不能为空';
+			$this->tmpl( 'project-new', get_defined_vars() );
+
+			return;
+		}
+
+		$post              = gp_post( 'project' );
+		$parent_project_id = gp_array_get( $post, 'parent_project_id', null );
+
+		if ( $this->cannot_and_redirect( 'write', 'project', $parent_project_id ) ) {
+			return;
+		}
+
+		$new_project = new GP_Project( $post );
+
+		if ( $this->invalid_and_redirect( $new_project ) ) {
+			return;
+		}
+
+		$project = GP::$project->create_and_select( $new_project );
+
+		/**
+		 * 插入封面图
+		 */
+		if ( ! function_exists( 'wp_handle_upload' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		}
+
+		$uploadedfile     = $_FILES['icon'];
+		$upload_overrides = array(
+			'test_form' => false
+		);
+
+		$movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
+		if ( $movefile && ! isset( $movefile['error'] ) ) {
+			gp_update_meta( $project->id, 'icon', $movefile['url'], 'project' );
+		} else {
+			$this->errors[] = '封面图上传失败：' . $movefile['error'];
+		}
+
+		/**
+		 * 创建子项目
+		 */
+		$new_project2 = array(
+			'name'                => '程序主体',
+			'slug'                => 'body',
+			'description'         => '',
+			'source_url_template' => $project->source_url_template,
+			'parent_project_id'   => $project->id,
+			'active'              => 'on',
+		);
+
+		/**
+		 * @var GP_Project $project2
+		 */
+		$project2 = GP::$project->create_and_select( $new_project2 );
+
+		$args = array(
+			'name'       => '简体中文',
+			'slug'       => 'default',
+			'project_id' => $project2->id,
+			'locale'     => 'zh-cn'
+		);
+		GP::$translation_set->create( $args );
+
+		if ( ! $project ) {
+			$project        = new GP_Project();
+			$this->errors[] = __( 'Error in creating project!', 'glotpress' );
+			$this->tmpl( 'project-new', get_defined_vars() );
+		} else {
+			$this->notices[] = __( 'The project was created!', 'glotpress' );
+			$this->redirect( gp_url_project( $project ) );
+		}
+	}
 
 	public function single( $project_path ) {
 		global $wpdb;
