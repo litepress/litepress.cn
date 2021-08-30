@@ -171,7 +171,7 @@ SQL;
 			}
 			$sub_projects = GP::$project->many( $sql );
 
-			wp_cache_set( $cache_key, $sub_projects, '', 86400 );
+			wp_cache_set( $cache_key, $sub_projects, '', 7200 );
 		}
 
 		$translation_sets = GP::$translation_set->by_project_id( $project->id );
