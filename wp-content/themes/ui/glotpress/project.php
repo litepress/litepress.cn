@@ -305,7 +305,7 @@ gp_tmpl_header();
                                             </thead>
                                             <tbody>
 											<?php
-											$local               = new \LitePress\GlotPress\Inc\Locale();
+											$local               = new \LitePress\GlotPress\Customizations\Inc\Locale();
 											$locale_contributors = $local->get_locale_contributors( $parent_project, 'zh-cn', 'default' );
 											$contributors        = $locale_contributors['contributors'] ?? array();
 											foreach ( $contributors as $contributor ) :
