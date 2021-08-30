@@ -28,18 +28,12 @@ class Translations_Service {
 		$r       = $wpdb->get_results( $sql, ARRAY_A );
 
 		foreach ( $r as $item ) {
-			$request_version           = $projects[ $item['domain'] ];
-			$db_version                = $item['version'];
 			$request_item              = $translations[ $item['domain'] ]['zh_CN'] ?? array();
 			$request_item_last_updated = $request_item['PO-Revision-Date'] ?? '';
 
-			if (
-				( version_compare( $request_version, $db_version, '<' ) ) ||
-				strtotime( $request_item_last_updated ) < strtotime( $item['updated'] )
-			) {
+			if ( strtotime( $request_item_last_updated ) < strtotime( $item['updated'] ) ) {
 				$update_exists[] = $this->prepare_db_translation_info( $item, $display_type );
 			}
-
 		}
 
 		return $update_exists;
