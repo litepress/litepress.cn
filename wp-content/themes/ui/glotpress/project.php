@@ -443,94 +443,24 @@ gp_tmpl_header();
 							$translation_set_total->progress = round( ( $translation_set_total->current_count / ( $translation_set_total->all_count == 0 ? 1 : $translation_set_total->all_count ) ) * 100 );
 							?>
                             <li class="col-xl-4">
-                                <div class="card theme-boxshadow">
-                                    <div class="row g-0">
-                                        <div class="project-top row">
-                                            <div class="col-5 center">
-												<?php if ( 2 === (int) $sub_project->parent_project_id ): ?>
-                                                    <img class="plugin-icon"
-                                                         src="https://i0.wp.com/themes.svn.wordpress.org/<?php echo $sub_project->slug ?? '' ?>/<?php echo gp_get_meta( 'project', $sub_project->id, 'version' ) ?>/screenshot.png"
-                                                         onError="this.src='https://i0.wp.com/themes.svn.wordpress.org/<?php echo $sub_project->slug ?? '' ?>/<?php echo gp_get_meta( 'project', $sub_project->id, 'version' ) ?>/screenshot.jpg';">
-												<?php else: ?>
-                                                    <img class="plugin-icon"
-                                                         src="https://ps.w.org.ibadboy.net/<?php echo $sub_project->slug ?? '' ?>/assets/icon-128x128.png"
-                                                         onError="this.src='https://avatar.ibadboy.net/avatar/<?php echo md5( $sub_project->slug ) ?>?d=identicon&s=133';">
-												<?php endif; ?>
-                                            </div>
-                                            <div class="col-7">
-                                                <h5 class="card-title">
-													<?php if ( 1 === (int) $sub_project->parent_project_id ): ?>
-                                                        <a href="<?php echo gp_url_project( $sub_project ) ?>"
-                                                           one-link-mark="yes"><?php echo i18n::get_instance()->translate( 'plugin_' . (string) $sub_project->slug . '_title', (string) $sub_project->name, (string) $sub_project->path . '/readme', true ); ?></a>
-													<?php elseif ( 2 === (int) $sub_project->parent_project_id ): ?>
-                                                        <a href="<?php echo gp_url_project( $sub_project ) ?>"
-                                                           one-link-mark="yes"><?php echo i18n::get_instance()->translate( 'theme_' . (string) $sub_project->slug . '_title', (string) $sub_project->name, (string) $sub_project->path . '/' . (string) $sub_project->slug, true ); ?></a>
-													<?php else: ?>
-                                                        <a href="<?php echo gp_url_project( $sub_project ) ?>"
-                                                           one-link-mark="yes"><?php echo (string) $sub_project->name; ?></a>
-													<?php endif; ?>
-                                                </h5>
-                                                <p class="card-text project-description"><small><?php
-														/**
-														 * Filter a sub-project description.
-														 *
-														 * @param string $description Sub-project description.
-														 * @param GP_Project $project The sub-project.
-														 *
-														 * @since 1.0.0
-														 *
-														 */
-														if ( 1 === (int) $sub_project->parent_project_id ) {
-															echo esc_html( gp_html_excerpt( apply_filters( 'gp_sub_project_description', i18n::get_instance()->translate( 'plugin_' . (string) $sub_project->slug . '_short_description', (string) $sub_project->description, (string) $sub_project->path . '/readme', true ), $sub_project ), 222 ) );
-														} elseif ( 2 === (int) $sub_project->parent_project_id ) {
-															echo esc_html( gp_html_excerpt( apply_filters( 'gp_sub_project_description', i18n::get_instance()->translate( 'theme_' . (string) $sub_project->slug . '_short_description', (string) $sub_project->description, (string) $sub_project->path . '/' . (string) $sub_project->slug, true ), $sub_project ), 222 ) );
-														} else {
-															echo esc_html( gp_html_excerpt( apply_filters( 'gp_sub_project_description', $sub_project->description ?? '', $sub_project ), 111 ) );
-														}
-														?></small>
-                                                </p>
-                                            </div>
-                                        </div>
+								<?php
+								$sub_sub_projects_count = count( $sub_sub_projects );
 
-                                        <div class="project-status">
-                                            <div class="project-status-sub-projects col-3">
-                                                <span class="project-status-title">项目</span>
-                                                <span class="project-status-value"><?php echo count( $sub_sub_projects ) ?></span>
-                                            </div>
-                                            <div class="project-status-waiting col-3">
-                                                <span class="project-status-title">等待/模糊</span>
-                                                <span class="project-status-value"><?php echo (int) $translation_set_total->fuzzy_count + (int) $translation_set_total->waiting_count; ?></span>
-                                            </div>
-                                            <div class="project-status-remaining col-3">
-                                                <span class="project-status-title">总词条</span>
-                                                <span class="project-status-value"><?php echo (int) $translation_set_total->all_count; ?></span>
-                                            </div>
-                                            <div class="project-status-progress col-3">
-                                                <span class="project-status-title">进度</span>
-                                                <span class="project-status-value"><?php echo (int) $translation_set_total->progress; ?>%</span>
-                                            </div>
-                                            <div class="progress col-12">
-                                                <div class="progress-bar" role="progressbar"
-                                                     style="width: <?php echo (int) $translation_set_total->progress; ?>%;"
-                                                     aria-valuenow="<?php echo (int) $translation_set_total->progress; ?>"
-                                                     aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="card-body d-grid"><a
-                                                        href="<?php echo gp_url_project( $sub_project ) ?>"
-                                                        class="btn btn-primary" one-link-mark="yes"><i
-                                                            class=" fad fa-users-medical"></i>参与翻译</a>
-                                                <div class="col-12">
-													<?php gp_link_project_edit( $sub_project, null, array( 'class' => 'bubble' ) ); ?>
-													<?php gp_link_project_delete( $sub_project, null, array( 'class' => 'bubble' ) ); ?>
-                                                    <!--<?php
-													if ( $sub_project->active ) {
-														echo "<span class='active bubble'>" . __( 'Active', 'glotpress' ) . '</span>';
-													}
-													?>--></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+								/**
+								 * 此动作用作用于输出翻译项目的卡片
+								 *
+								 * @param \GP_Project $sub_project
+								 * @param \stdClass $translation_set_total
+                                 * @param int $sub_sub_projects_count
+								 *
+								 * @hooked \LitePress\GlotPress\Customizations\Inc\lpcn_gp_plugin_card - 10
+								 * @hooked \LitePress\GlotPress\Customizations\Inc\lpcn_gp_theme_card - 10
+								 * @hooked \LitePress\GlotPress\Customizations\Inc\lpcn_gp_core_card - 10
+								 * @hooked \LitePress\GlotPress\Customizations\Inc\lpcn_gp_doc_card - 10
+								 * @hooked \LitePress\GlotPress\Customizations\Inc\lpcn_gp_other_card - 10
+								 */
+								do_action( 'lpcn_gp_project_card', $sub_project, $translation_set_total, $sub_sub_projects_count );
+								?>
                             </li>
 						<?php endforeach; ?>
                         <nav aria-label="Page navigation example">

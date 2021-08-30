@@ -28,5 +28,6 @@ Autoload\register_class_path( __NAMESPACE__ . '\Inc', __DIR__ . '/inc' );
 require __DIR__ . '/inc/routes/index.php';
 require __DIR__ . '/inc/routes/project.php';
 require __DIR__ . '/inc/class-local.php';
+require __DIR__ . '/inc/project-card.php';
 
 Plugin::get_instance();
