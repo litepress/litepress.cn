@@ -173,35 +173,15 @@ function lpcn_gp_other_card( GP_Project $sub_project, stdClass $translation_set_
                 </div>
                 <div class="col-7">
                     <h5 class="card-title">
-						<?php if ( 1 === (int) $sub_project->parent_project_id ): ?>
-                            <a href="<?php echo gp_url_project( $sub_project ) ?>"
-                               one-link-mark="yes"><?php echo i18n::get_instance()->translate( 'plugin_' . (string) $sub_project->slug . '_title', (string) $sub_project->name, (string) $sub_project->path . '/readme', true ); ?></a>
-						<?php elseif ( 2 === (int) $sub_project->parent_project_id ): ?>
-                            <a href="<?php echo gp_url_project( $sub_project ) ?>"
-                               one-link-mark="yes"><?php echo i18n::get_instance()->translate( 'theme_' . (string) $sub_project->slug . '_title', (string) $sub_project->name, (string) $sub_project->path . '/' . (string) $sub_project->slug, true ); ?></a>
-						<?php else: ?>
-                            <a href="<?php echo gp_url_project( $sub_project ) ?>"
-                               one-link-mark="yes"><?php echo (string) $sub_project->name; ?></a>
-						<?php endif; ?>
+                        <a href="<?php echo gp_url_project( $sub_project ) ?>"
+                           one-link-mark="yes"><?php echo (string) $sub_project->name; ?></a>
                     </h5>
-                    <p class="card-text project-description"><small><?php
-							/**
-							 * Filter a sub-project description.
-							 *
-							 * @param string $description Sub-project description.
-							 * @param GP_Project $project The sub-project.
-							 *
-							 * @since 1.0.0
-							 *
-							 */
-							if ( 1 === (int) $sub_project->parent_project_id ) {
-								echo esc_html( gp_html_excerpt( apply_filters( 'gp_sub_project_description', i18n::get_instance()->translate( 'plugin_' . (string) $sub_project->slug . '_short_description', (string) $sub_project->description, (string) $sub_project->path . '/readme', true ), $sub_project ), 222 ) );
-							} elseif ( 2 === (int) $sub_project->parent_project_id ) {
-								echo esc_html( gp_html_excerpt( apply_filters( 'gp_sub_project_description', i18n::get_instance()->translate( 'theme_' . (string) $sub_project->slug . '_short_description', (string) $sub_project->description, (string) $sub_project->path . '/' . (string) $sub_project->slug, true ), $sub_project ), 222 ) );
-							} else {
-								echo esc_html( gp_html_excerpt( apply_filters( 'gp_sub_project_description', $sub_project->description ?? '', $sub_project ), 111 ) );
-							}
-							?></small>
+                    <p class="card-text project-description">
+                        <small>
+							<?php
+							echo esc_html( gp_html_excerpt( apply_filters( 'gp_sub_project_description', $sub_project->description ?? '', $sub_project ), 111 ) );
+							?>
+                        </small>
                     </p>
                 </div>
             </div>
