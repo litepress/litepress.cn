@@ -22,7 +22,7 @@ function wcy_get_translators() {
 			break;
 		}
 		$user_info = get_user_by( 'id', $v->user_id );
-		$html      .= sprintf( '<li><em>%d.</em> <div class="rank-list__name"><a href="/user/%s">%s%s</a></div><span class="rank-list__number">%d 条</span></li>', $k + 1, $user_info->data->user_login, get_avatar( $user_info->data->user_email, 32 ), $user_info->data->display_name, $v->count );
+		$html      .= sprintf( '<li><em>%d.</em> <div class="rank-list__name"><a href="/user/%s?profiletab=translate">%s%s</a></div><span class="rank-list__number">%d 条</span></li>', $k + 1, $user_info->data->user_login, get_avatar( $user_info->data->user_email, 32 ), $user_info->data->display_name, $v->count );
 
 		$i ++;
 	}
