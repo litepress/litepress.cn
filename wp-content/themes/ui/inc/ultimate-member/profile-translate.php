@@ -30,7 +30,7 @@ function get_gp_manage_projects( int $user_id, bool $is_count = false ): array|i
 	$paged  = $_GET['paged'] ?? 1;
 
 	$project_ids = join( ',', $project_ids );
-	$sql         = $wpdb->prepare( "select id, name, author, slug, path, description, parent_project_id from wp_4_gp_projects where 1=1 and id in ( {$project_ids} ) and active=1 and name like '%%%s%%' limit %d,%d;;", $search, $paged * 15, 15 );
+	$sql         = $wpdb->prepare( "select id, name, author, slug, path, description, parent_project_id from wp_4_gp_projects where 1=1 and id in ( {$project_ids} ) and active=1 and name like '%%%s%%' limit %d,%d;;", $search, ( $paged - 1 ) * 15, 15 );
 
 	return $wpdb->get_results( $sql, ARRAY_A );
 }
@@ -72,7 +72,7 @@ where 1 = 1
              where id in (select project_id from wp_4_gp_translation_sets where id in ({$translation_set_ids})))
  and name like '%%%s%%'
  limit %d,%d;
-SQL, $search, $paged * 15, 15 );
+SQL, $search, ( $paged - 1 ) * 15, 15 );
 
 	return $wpdb->get_results( $sql, ARRAY_A );
 }
