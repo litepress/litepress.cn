@@ -42,8 +42,75 @@ $args = $args ?? array();
 				<?php echo $icon; ?>
             </aside>
             <article class="ms-2"><a href="/translate/projects/<?php echo $item['path'] ?>"
-                                     target="_blank"><?php echo $item['name'] ?></a></article>
-            <article class="ms-2"><?php echo $item['description'] ?></article>
+                                     target="_blank"><?php echo $item['name'] ?></a>
+                <p><?php echo $item['description'] ?></p>
+            </article>
+
         </li>
 	<?php endforeach; ?>
 </ul>
+<div class="um-load-items">
+    <a href="javascript:void(0);" class="um-ajax-action1  um-button" data-hook="lpcn_translate_load"  data-args="" one-link-mark="yes">加载更多回复</a>
+</div>
+
+<script>
+
+    (function ($) {
+        $.extend({
+            Request: function (m) {
+                var sValue = location.search.match(new RegExp("[\?\&]" + m + "=([^\&]*)(\&?)", "i"));
+                return sValue ? sValue[1] : sValue;
+            },
+            UrlUpdateParams: function (url, name, value) {
+                var r = url;
+                if (r != null && r != 'undefined' && r != "") {
+                    value = encodeURIComponent(value);
+                    var reg = new RegExp("(^|)" + name + "=([^&]*)(|$)");
+                    var tmp = name + "=" + value;
+                    if (url.match(reg) != null) {
+                        r = url.replace(eval(reg), tmp);
+                    }
+                    else {
+                        if (url.match("[\?]")) {
+                            r = url + "&" + tmp;
+                        } else {
+                            r = url + "?" + tmp;
+                        }
+                    }
+                }
+                return r;
+            }
+
+        });
+    })(jQuery);
+
+
+    jQuery(document).on("click", ".um-ajax-action1", function(e) {
+        e.preventDefault();
+        var t = jQuery(this).data("hook")
+            , a = jQuery(this).data("user_id")
+            , arguments = jQuery(this).data("arguments")
+        , subnav = $.Request("subnav")
+        ;
+        return jQuery(this).data("js-remove") && jQuery(this).parents("." + jQuery(this).data("js-remove")).fadeOut("fast"),
+            jQuery.ajax({
+                url: wp.ajax.settings.url,
+                type: "post",
+                data: {
+                    action: "um_muted_action",
+                    hook: t,
+                    user_id: a,
+                    nonce: um_scripts.nonce,
+                    arguments: "",
+                    sub:subnav,
+
+                },
+                success: function(e) {
+                    console.log(e)
+
+                }
+            }),
+            !1
+    })
+</script>
+
