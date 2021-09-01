@@ -56,6 +56,7 @@ class Plugin {
 		GP::$router->prepend( "/", array( Index::class, 'index' ) );
 		GP::$router->prepend( "/projects/(plugins|themes|docs|core|others)", array( Route_Project::class, 'single' ) );
 		GP::$router->prepend( "/projects/-new", array( Route_Project::class, 'new_post' ), 'post' );
+		GP::$router->prepend( "/projects/(.+?)/import-originals", array( Route_Project::class, 'import_originals_post' ), 'post' );
 	}
 
 	public function translation_format( GP_Translation $translation ): GP_Translation {

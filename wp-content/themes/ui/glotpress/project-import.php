@@ -15,16 +15,16 @@ if ( 1 === (int) $parent_project->parent_project_id ) {
 
 
 if ( 'originals' === $kind ) {
-	$gp_title = sprintf(
-		/* translators: %s: Project name. */
+	$gp_title    = sprintf(
+	/* translators: %s: Project name. */
 		__( '导入原文到%s - LitePress翻译平台', 'glotpress' ),
 		esc_html( $title )
 	);
 	$return_link = gp_url_project( $project );
 	gp_breadcrumb_project( $project );
 } else {
-	$gp_title = sprintf(
-		/* translators: %s: Project name. */
+	$gp_title    = sprintf(
+	/* translators: %s: Project name. */
 		__( '导入翻译到%s - LitePress翻译平台', 'glotpress' ),
 		esc_html( $title )
 	);
@@ -41,51 +41,77 @@ gp_title( $gp_title );
 gp_tmpl_header();
 ?>
 
-<!--<h2><?php /*echo 'originals' == $kind ? __( 'Import Originals', 'glotpress' ) : __( 'Import Translations', 'glotpress' ); */?></h2>-->
+    <!--<h2><?php /*echo 'originals' == $kind ? __( 'Import Originals', 'glotpress' ) : __( 'Import Translations', 'glotpress' ); */ ?></h2>-->
     <div class="container setting">
-<form action="" method="post" enctype="multipart/form-data" style="max-width: 400px">
-	<dl>
-	<dt><label for="import-file"><?php _e( 'Import File:', 'glotpress' ); ?></label></dt>
-	<dd><input type="file" class="form-control" name="import-file" id="import-file" /></dd>
-<?php
-	$format_options         = array();
-	$format_options['auto'] = __( 'Auto Detect', 'glotpress' );
-	foreach ( GP::$formats as $slug => $format ) {
-		$format_options[ $slug ] = $format->name;
-	}
+        <form action="" method="post" enctype="multipart/form-data" style="max-width: 400px">
+            <dl>
+                <dt><label for="import-file"><?php _e( 'Import File:', 'glotpress' ); ?></label></dt>
+                <dd><input type="file" class="form-control" name="import-file" id="import-file"/></dd>
+				<?php
+				/**
+				 * 选择要导入到的子项目
+				 */
+				if ( 'originals' === $kind ) {
+					/**
+					 * @var \GP_Project $sub_projects
+					 */
+					$sub_projects = GP::$project->find_many( array(
+						'parent_project_id' => $project->id,
+						'active'            => 1
+					) );
 
-	$status_options = array();
-	if ( isset( $can_import_current ) && $can_import_current ) {
-		$status_options['current'] = __( 'Current', 'glotpress' );
-	}
-	if ( isset( $can_import_waiting ) && $can_import_waiting ) {
-		$status_options['waiting'] = __( 'Waiting', 'glotpress' );
-	}
-?>
-	<dt><label for="format"><?php _e( 'Format:', 'glotpress' ); ?></label></dt>
-	<dd>
-		<?php echo gp_select( 'format', $format_options, 'auto' ); ?>
-	</dd>
-<?php if ( ! empty( $status_options ) ) : ?>
-	<dt><label for="status"><?php _e( 'Status:', 'glotpress' ); ?></label></dt>
-	<dd>
-		<?php if ( count( $status_options ) === 1 ) : ?>
-			<input type="hidden" name="status" value="<?php echo esc_attr( key( $status_options ) ); ?>" />
-			<?php echo esc_html( reset( $status_options ) ); ?>
-		<?php elseif ( count( $status_options ) > 1 ) : ?>
-			<?php echo gp_select( 'status', $status_options, 'current' ); ?>
-		<?php endif; ?>
-	</dd>
-<?php endif; ?>
-	<dt>
-	<p>
-		<input type="submit" class="btn btn-primary" name="submit" value="<?php esc_attr_e( 'Import', 'glotpress' ); ?>"  />
-		<span class="or-cancel"><?php _e( 'or', 'glotpress' ); ?> <a href="<?php echo esc_url( $return_link ); ?>"><?php _e( 'Cancel', 'glotpress' ); ?></a></span>
-	</p>
-	</dt>
-	</dl>
-	<?php gp_route_nonce_field( ( 'originals' === $kind ? 'import-originals_' : 'import-translations_' ) . $project->id ); ?>
-</form>
+					$data = array();
+					foreach ( $sub_projects as $sub_project ) {
+						$data[ $sub_project->path ] = $sub_project->name;
+					}
+
+					echo '<dt><label for="format">子项目</label></dt>';
+					echo '<dd>';
+					echo gp_select( 'sub_project_path', $data, 'auto' );
+					echo '</dd>';
+				}
+
+				$format_options         = array();
+				$format_options['auto'] = __( 'Auto Detect', 'glotpress' );
+				foreach ( GP::$formats as $slug => $format ) {
+					$format_options[ $slug ] = $format->name;
+				}
+
+				$status_options = array();
+				if ( isset( $can_import_current ) && $can_import_current ) {
+					$status_options['current'] = __( 'Current', 'glotpress' );
+				}
+				if ( isset( $can_import_waiting ) && $can_import_waiting ) {
+					$status_options['waiting'] = __( 'Waiting', 'glotpress' );
+				}
+				?>
+                <dt><label for="format"><?php _e( 'Format:', 'glotpress' ); ?></label></dt>
+                <dd>
+					<?php echo gp_select( 'format', $format_options, 'auto' ); ?>
+                </dd>
+				<?php if ( ! empty( $status_options ) ) : ?>
+                    <dt><label for="status"><?php _e( 'Status:', 'glotpress' ); ?></label></dt>
+                    <dd>
+						<?php if ( count( $status_options ) === 1 ) : ?>
+                            <input type="hidden" name="status"
+                                   value="<?php echo esc_attr( key( $status_options ) ); ?>"/>
+							<?php echo esc_html( reset( $status_options ) ); ?>
+						<?php elseif ( count( $status_options ) > 1 ) : ?>
+							<?php echo gp_select( 'status', $status_options, 'current' ); ?>
+						<?php endif; ?>
+                    </dd>
+				<?php endif; ?>
+                <dt>
+                    <p>
+                        <input type="submit" class="btn btn-primary" name="submit"
+                               value="<?php esc_attr_e( 'Import', 'glotpress' ); ?>"/>
+                        <span class="or-cancel"><?php _e( 'or', 'glotpress' ); ?> <a
+                                    href="<?php echo esc_url( $return_link ); ?>"><?php _e( 'Cancel', 'glotpress' ); ?></a></span>
+                    </p>
+                </dt>
+            </dl>
+			<?php gp_route_nonce_field( ( 'originals' === $kind ? 'import-originals_' : 'import-translations_' ) . $project->id ); ?>
+        </form>
     </div>
 <?php
 gp_tmpl_footer();
