@@ -18,8 +18,6 @@ require CA_ROOT_PATH . '/inc/DataObject/class-avatar-status.php';
 
 require CA_ROOT_PATH . '/inc/ajax-functions.php';
 
-require CA_ROOT_PATH . '/inc/avatar-verify.php';
-
 require CA_ROOT_PATH . '/inc/avatar.php';
 
 
