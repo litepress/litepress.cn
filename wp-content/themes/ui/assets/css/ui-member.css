@@ -154,9 +154,14 @@
 a.um-button{
     box-shadow: none!important;
 }
-.um-profile-body > br{
-    display: none;
+.um-profile-body > br,.um-editing  .um-dropdown,.um-profile-photo-overlay{
+    display: none!important;
 }
+
+.um-profile-nav{
+    background:var(--wp-theme-color)
+}
+
 @media screen and (max-width: 768px){
 .um .um-profile-subnav a{
     padding: 10px 10px!important;
