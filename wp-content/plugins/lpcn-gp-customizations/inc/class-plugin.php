@@ -56,7 +56,10 @@ class Plugin {
 		GP::$router->prepend( "/", array( Index::class, 'index' ) );
 		GP::$router->prepend( "/projects/(plugins|themes|docs|core|others)", array( Route_Project::class, 'single' ) );
 		GP::$router->prepend( "/projects/-new", array( Route_Project::class, 'new_post' ), 'post' );
-		GP::$router->prepend( "/projects/(.+?)/import-originals", array( Route_Project::class, 'import_originals_post' ), 'post' );
+		GP::$router->prepend( "/projects/(.+?)/import-originals", array(
+			Route_Project::class,
+			'import_originals_post'
+		), 'post' );
 	}
 
 	public function translation_format( GP_Translation $translation ): GP_Translation {
@@ -80,11 +83,34 @@ class Plugin {
 			return true;
 		}
 
+		// 项目管理员对项目有写权限
+		if ( isset( $args['user_id'] ) && ! empty( $args['user_id'] ) && 'write' === $args['action'] && 'project' === $args['object_type'] ) {
+			$can = function ( int $project_id, int $user_id ) {
+				$r = GP::$permission->find( array(
+					'user_id'     => $user_id,
+					'action'      => 'manage',
+					'object_type' => 'project|locale|set-slug',
+					'object_id'   => "$project_id|zh-cn|default",
+				) );
+
+				return ! empty( $r );
+			};
+
+			$is_can = $can( (int) $args['object_id'], (int) $args['user_id'] );
+			if ( ! $is_can ) {
+				// 如果对父项目有权限，则也可以操作
+				$project = GP::$project->find_one( array( 'id' => $args['object_id'] ) );
+				$is_can  = $can( (int) $project->parent_project_id, (int) $args['user_id'] );
+			}
+
+			return $is_can;
+		}
+
 		// 未命中前方规则的权限检查转交给GlotPress继续处理
 		return $none;
 	}
 
-	public function gp_url_profile( $url, $user_nicename ) {
+	public function gp_url_profile( $url, $user_nicename ): string {
 		return "/user/$user_nicename?profiletab=translate";
 	}
 
