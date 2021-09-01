@@ -63,6 +63,10 @@ class Route_Project extends GP_Route_Project {
 			$originals_obsoleted
 		);
 
+		// 成功导入原文后将项目版本号更新上
+		$version = sanitize_text_field( $_POST['version'] );
+		gp_update_meta( $project->parent_project_id, 'version', $version, 'project' );
+
 		if ( $originals_error ) {
 			$notice .= ' ' . sprintf(
 				/* translators: %s: number of errors */

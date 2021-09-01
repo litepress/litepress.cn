@@ -69,6 +69,11 @@ gp_tmpl_header();
 					echo '<dd>';
 					echo gp_select( 'sub_project_path', $data, 'auto' );
 					echo '</dd>';
+
+					echo '<dt><label for="format">项目版本号（请务必正确填写）</label></dt>';
+					echo '<dd>';
+					echo '<input type="text" name="version" placeholder="1.0.0">';
+					echo '</dd>';
 				}
 
 				$format_options         = array();
