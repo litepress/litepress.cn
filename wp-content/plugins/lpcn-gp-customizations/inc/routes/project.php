@@ -9,6 +9,73 @@ use GP_Route_Project;
 
 class Route_Project extends GP_Route_Project {
 
+	public function import_originals_post( $project_path ) {
+		$project_path = sanitize_text_field( $_POST['sub_project_path'] );
+
+		$project = GP::$project->by_path( $project_path );
+
+		if ( ! $project ) {
+			return $this->die_with_404();
+		}
+
+		/**
+		 * 不验证 Nonce
+		 */
+		//if ( $this->invalid_nonce_and_redirect( 'import-originals_' . $project->id ) ) {
+		//	return;
+		//}
+
+		if ( $this->cannot_and_redirect( 'write', 'project', $project->id ) ) {
+			return;
+		}
+
+		if ( ! is_uploaded_file( $_FILES['import-file']['tmp_name'] ) ) {
+			// TODO: different errors for different upload conditions
+			$this->redirect_with_error( __( 'Error uploading the file.', 'glotpress' ) );
+
+			return;
+		}
+
+		$format = gp_get_import_file_format( gp_post( 'format', 'po' ), $_FILES['import-file']['name'] );
+
+		if ( ! $format ) {
+			$this->redirect_with_error( __( 'No such format.', 'glotpress' ) );
+
+			return;
+		}
+
+		$translations = $format->read_originals_from_file( $_FILES['import-file']['tmp_name'] );
+
+		if ( ! $translations ) {
+			$this->redirect_with_error( __( 'Couldn&#8217;t load translations from file!', 'glotpress' ) );
+
+			return;
+		}
+
+		list( $originals_added, $originals_existing, $originals_fuzzied, $originals_obsoleted, $originals_error ) = GP::$original->import_for_project( $project, $translations );
+
+		$notice = sprintf(
+		/* translators: 1: Added strings count. 2: Updated strings count. 3: Fuzzied strings count. 4: Obsoleted strings count. */
+			__( '%1$s new strings added, %2$s updated, %3$s fuzzied, and %4$s obsoleted.', 'glotpress' ),
+			$originals_added,
+			$originals_existing,
+			$originals_fuzzied,
+			$originals_obsoleted
+		);
+
+		if ( $originals_error ) {
+			$notice .= ' ' . sprintf(
+				/* translators: %s: number of errors */
+					_n( '%s new string was not imported due to an error.', '%s new strings were not imported due to an error.', $originals_error, 'glotpress' ),
+					$originals_error
+				);
+		}
+
+		$this->notices[] = $notice;
+
+		$this->redirect( gp_url_project( $project ) . 'zh-cn/default/' );
+	}
+
 	public function new_post() {
 		if ( $this->invalid_nonce_and_redirect( 'add-project' ) ) {
 			return;
