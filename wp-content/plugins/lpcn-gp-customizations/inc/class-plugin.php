@@ -47,6 +47,8 @@ class Plugin {
 		add_action( 'template_redirect', array( $this, 'router' ), 5 );
 
 		add_filter( 'gp_url_profile', array( $this, 'gp_url_profile' ), 10, 2 );
+
+		add_filter( 'gp_project_actions', array( $this, 'project_actions' ), 999, 2 );
 	}
 
 	/**
@@ -112,6 +114,12 @@ class Plugin {
 
 	public function gp_url_profile( $url, $user_nicename ): string {
 		return "/user/$user_nicename?profiletab=translate";
+	}
+
+	public function project_actions( $actions, $project ): array {
+		$data[] = $actions[0];
+
+		return $data;
 	}
 
 }
