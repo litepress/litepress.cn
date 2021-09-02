@@ -36,15 +36,55 @@ class Route_Project extends GP_Route_Project {
 			return;
 		}
 
-		$format = gp_get_import_file_format( gp_post( 'format', 'po' ), $_FILES['import-file']['name'] );
+		// 检查上传的是否是 zip 压缩包。
+		if ( str_ends_with( $_FILES['import-file']['name'], '.zip' ) ) {
+			// 如果是 zip 的话就尝试从中提取 po 文件，再把 po 文件交给 GlotPress 处理
+			$tmp_name = $_FILES['import-file']['tmp_name'];
+			exec( sprintf( 'mv %s %s', $tmp_name, escapeshellarg( $tmp_name . '.zip' ) ), $output, $return_var );
+			if ( $return_var ) {
+				$this->redirect_with_error( '系统命令执行失败，上传的临时文件无法被重命名，请联系管理员解决：' . $output );
 
+				return;
+			}
+			exec( sprintf( 'unzip -nq %s -d %s', escapeshellarg( $tmp_name . '.zip' ), $tmp_name ), $output, $return_var );
+			if ( $return_var ) {
+				$this->redirect_with_error( '该 Zip 压缩包无法被解压：' . $output );
+
+				return;
+			}
+
+			$files = scandir( $tmp_name );
+			if ( 3 === count( $files ) ) {
+				$root_path = "$tmp_name/{$files[2]}";
+			} else {
+				$root_path = $tmp_name;
+			}
+
+			exec( sprintf( 'wp i18n make-pot %s %s --ignore-domain', escapeshellarg( $root_path ), escapeshellarg( '/tmp/lpcn-lang.pot' ) ), $output, $return_var );
+			if ( $return_var || ! file_exists( '/tmp/lpcn-lang.pot' ) ) {
+				$this->redirect_with_error( '翻译提取失败：' . $output );
+
+				return;
+			}
+
+			unlink( $tmp_name );
+			unlink( $tmp_name . '.zip' );
+
+			$file_name = 'lpcn-lang.pot';
+			$file_path = '/tmp/lpcn-lang.pot';
+		} else {
+			$file_name = $_FILES['import-file']['name'];
+			$file_path = $_FILES['import-file']['tmp_name'];
+		}
+
+		$format = gp_get_import_file_format( gp_post( 'format', 'po' ), $file_name );
 		if ( ! $format ) {
 			$this->redirect_with_error( __( 'No such format.', 'glotpress' ) );
 
 			return;
 		}
 
-		$translations = $format->read_originals_from_file( $_FILES['import-file']['tmp_name'] );
+		$translations = $format->read_originals_from_file( $file_path );
 
 		if ( ! $translations ) {
 			$this->redirect_with_error( __( 'Couldn&#8217;t load translations from file!', 'glotpress' ) );
