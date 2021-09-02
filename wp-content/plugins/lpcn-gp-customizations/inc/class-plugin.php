@@ -105,7 +105,9 @@ class Plugin {
 				$is_can  = $can( (int) $project->parent_project_id, (int) $args['user_id'] );
 			}
 
-			return $is_can;
+			if ( $is_can ) {
+				return true;
+			}
 		}
 
 		// 未命中前方规则的权限检查转交给GlotPress继续处理
