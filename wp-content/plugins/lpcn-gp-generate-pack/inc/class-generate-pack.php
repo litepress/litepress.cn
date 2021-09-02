@@ -315,11 +315,11 @@ class Generate_Pack {
 						$parts = explode( ':', $reference );
 						$file  = $parts[0];
 
-						if ( substr( $file, - 7 ) === '.min.js' ) {
+						if ( str_ends_with( $file, '.min.js' ) ) {
 							return substr( $file, 0, - 7 ) . '.js';
 						}
 
-						if ( substr( $file, - 3 ) === '.js' ) {
+						if ( str_ends_with( $file, '.js' ) ) {
 							return $file;
 						}
 
