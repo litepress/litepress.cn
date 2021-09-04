@@ -38,10 +38,7 @@ gp_tmpl_header();
     <div class="container">
 		<?php echo gp_breadcrumb(); ?>
         <div class="notice" id="help-notice">
-            刚开始翻译WordPress？阅读我们的<a
-                    href="https://make.wordpress.org/polyglots/handbook/tools/glotpress-translate-wordpress-org/"
-                    target="_blank"> 翻译手册 </a>开始。
-            <a id="hide-help-notice" class="secondary" style="float: right;" href="/getting-started/hide-notice/">×</a>
+            你可以通过安装 <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip" target="_blank">WP-China-Yes</a> 插件，并切换应用市场为“LitePress 应用市场”来接收翻译推送。
         </div>
 
     </div>
