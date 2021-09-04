@@ -162,13 +162,14 @@ function get_avatar_to_file( string $hash, string $url, string $type = 'gravatar
 			return '';
 		}
 
-		$sql = $wpdb->prepare( "SELECT status FROM {$wpdb->prefix}avatar_verify WHERE md5=%s;", $avatar_hash );
+		$sql = $wpdb->prepare( "SELECT status FROM {$wpdb->prefix}avatar_verify WHERE image_md5=%s;", $avatar_hash );
 		if ( ! isset( $wpdb->get_row( $sql )->status ) ) {
 			$wpdb->insert( $wpdb->prefix . 'avatar_verify', array(
-				'md5'     => $avatar_hash,
-				'user_id' => get_user_id_by_hash( $avatar_hash ),
-				'url'     => explode( '?', $url )[0] ?? '',
-				'status'  => Avatar_Status::WAIT,
+				'image_md5' => $avatar_hash,
+				'user_id'   => get_user_id_by_hash( $avatar_hash ),
+				'url'       => $url,
+				'type'      => $type,
+				'status'    => Avatar_Status::WAIT,
 			) );
 		}
 
