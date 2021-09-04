@@ -193,7 +193,7 @@ function is_status_for_avatar( string $filename, int $status ): bool {
 	$avatar_file = file_get_contents( $filename );
 	$avatar_hash = md5( $avatar_file );
 
-	$sql           = $wpdb->prepare( "SELECT status FROM {$wpdb->prefix}avatar_verify WHERE md5=%s;", $avatar_hash );
+	$sql           = $wpdb->prepare( "SELECT status FROM {$wpdb->prefix}avatar_verify WHERE image_md5=%s;", $avatar_hash );
 	$status_for_db = $wpdb->get_row( $sql )->status ?? 0;
 
 	return $status === (int) $status_for_db;
