@@ -260,7 +260,7 @@ function map_glossary_entries_to_translation_originals( $translation, $glossary,
 function textareas( $entry, $permissions, $index = 0 ) {
 	list( $can_edit, $can_approve ) = $permissions;
 	?>
-	<div class="textareas active">
+	<div class="textareas">
 		<?php
 		if ( isset( $entry->warnings[ $index ] ) ) :
 			$referenceable = $entry->warnings[ $index ];
