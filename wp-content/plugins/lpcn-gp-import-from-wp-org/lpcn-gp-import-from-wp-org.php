@@ -91,7 +91,7 @@ class GP_Import_From_WP_Org {
 				continue;
 			}
 
-			if ( false !== $data && ! empty( $data ) ) {
+			if ( ! empty( $data ) ) {
 				$temp_file = tempnam( sys_get_temp_dir(), 'GPI' );
 
 				if ( false !== file_put_contents( $temp_file, $data ) ) {
@@ -105,21 +105,21 @@ class GP_Import_From_WP_Org {
 					}
 					GP::$original->import_for_project( $sub_project, $originals );
 
-					if ( self::$is_new ) {
-						$translations = $format->read_translations_from_file( $temp_file, $sub_project );
-						if ( ! $translations ) {
-							unlink( $temp_file );
+					//if ( self::$is_new ) {
+					$translations = $format->read_translations_from_file( $temp_file, $sub_project );
+					if ( ! $translations ) {
+						unlink( $temp_file );
 
-							self::error_log( $sub_project->id, '无法从文件加载翻译' );
+						self::error_log( $sub_project->id, '无法从文件加载翻译' );
 
-							continue;
-						}
-
-						// 将翻译创建者统一设置为 超级 AI (用户编号 517)
-						wp_set_current_user( 517 );
-
-						$translation_set->import( $translations );
+						continue;
 					}
+
+					// 将翻译创建者统一设置为 超级 AI (用户编号 517)
+					wp_set_current_user( 517 );
+
+					$translation_set->import( $translations );
+					//}
 					unlink( $temp_file );
 				}
 			} else {
