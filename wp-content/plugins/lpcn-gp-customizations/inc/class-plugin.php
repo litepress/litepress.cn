@@ -49,6 +49,11 @@ class Plugin {
 		add_filter( 'gp_url_profile', array( $this, 'gp_url_profile' ), 10, 2 );
 
 		add_filter( 'gp_project_actions', array( $this, 'project_actions' ), 999, 2 );
+
+		/**
+		 * 导入翻译时跳过已存在“当前翻译”的条目
+		 */
+		add_filter( 'gp_translation_set_import_over_existing', '__return_false' );
 	}
 
 	/**
