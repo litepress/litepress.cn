@@ -39,7 +39,7 @@ $plural = sprintf(
                             <p class="original"><?php echo prepare_original($translation_singular); ?></p>
                             <p class="original_raw"><?php echo esc_translation($translation->singular); ?></p>
                     </div>
-                        <div class="translation-wrapper">
+
                             <?php textareas($translation, array($can_edit, $can_approve_translation)); ?>
                         <?php else : ?>
                             <?php if (absint($locale->nplurals) === 2 && 'n != 1' === $locale->plural_expression) : ?>
@@ -95,7 +95,7 @@ $plural = sprintf(
                         <?php endif; ?>
 
                         <?php gp_tmpl_load('translation-row-editor-actions', get_defined_vars()); ?>
-                        </div>
+
                         <div class="suggestions-wrapper">
                             <?php do_action('wporg_translate_suggestions', $translation); ?>
                         </div>
@@ -117,3 +117,5 @@ $plural = sprintf(
     do_action('gp_translation_row_editor_columns', $translation, $translation_set);
     ?>
 </tr>
+
+
