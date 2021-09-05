@@ -10,6 +10,8 @@ const CA_LOG_NAME = 'Cravatar';
 
 require CA_ROOT_PATH . '/inc/class-upyun.php';
 
+require CA_ROOT_PATH . '/inc/class-q-cloud.php';
+
 require CA_ROOT_PATH . '/inc/helpers.php';
 
 require CA_ROOT_PATH . '/inc/enqueue-scripts.php';

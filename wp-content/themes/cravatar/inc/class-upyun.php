@@ -15,8 +15,6 @@ final class Upyun {
 	private function send_request( string $method, string $path, array $params ) {
 		$url = 'https://api.upyun.com/' . $path;
 
-
-
 		$http = new WP_Http();
 
 		$args = array(
