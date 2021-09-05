@@ -162,16 +162,6 @@ function get_avatar_to_file( string $hash, string $url, string $type = 'gravatar
 			return '';
 		}
 
-		$sql = $wpdb->prepare( "SELECT status FROM {$wpdb->prefix}avatar_verify WHERE md5=%s;", $avatar_hash );
-		if ( ! isset( $wpdb->get_row( $sql )->status ) ) {
-			$wpdb->insert( $wpdb->prefix . 'avatar_verify', array(
-				'md5'     => $avatar_hash,
-				'user_id' => get_user_id_by_hash( $avatar_hash ),
-				'url'     => explode( '?', $url )[0] ?? '',
-				'status'  => Avatar_Status::WAIT,
-			) );
-		}
-
 		// 最后将头像数据缓存到磁盘
 		file_put_contents( $file_path, $avatar );
 	}
@@ -182,7 +172,7 @@ function get_avatar_to_file( string $hash, string $url, string $type = 'gravatar
 /**
  * 检查给定的图片是否是给定的状态
  */
-function is_status_for_avatar( string $filename, int $status ): bool {
+function is_status_for_avatar( string $email_hash, string $filename, int $status, string $type ): bool {
 	global $wpdb;
 
 	if ( ! file_exists( $filename ) ) {
@@ -192,10 +182,73 @@ function is_status_for_avatar( string $filename, int $status ): bool {
 	$avatar_file = file_get_contents( $filename );
 	$avatar_hash = md5( $avatar_file );
 
-	$sql           = $wpdb->prepare( "SELECT status FROM {$wpdb->prefix}avatar_verify WHERE md5=%s;", $avatar_hash );
-	$status_for_db = $wpdb->get_row( $sql )->status ?? 0;
+	$sql = $wpdb->prepare( "SELECT status FROM {$wpdb->prefix}avatar_verify WHERE image_md5=%s;", $avatar_hash );
+	$r   = $wpdb->get_row( $sql );
+
+	/**
+	 * 如果数据库中未记录该张图的话就记录并异步进行违规图检测
+	 *
+	 * 如果图片被检测为违规图的话，会主动刷新CDN缓存，使下次回源时命中违规标志
+	 */
+	if ( empty( $r ) ) {
+		$avatar_url = "https://cravatar.cn/avatar/$email_hash?s=400";
+
+		$sql = $wpdb->prepare( "SELECT status FROM {$wpdb->prefix}avatar_verify WHERE image_md5=%s;", $avatar_hash );
+		if ( ! isset( $wpdb->get_row( $sql )->status ) ) {
+			$wpdb->insert( $wpdb->prefix . 'avatar_verify', array(
+				'image_md5' => $avatar_hash,
+				'user_id'   => get_user_id_by_hash( $avatar_hash ),
+				'url'       => $avatar_url,
+				'type'      => $type,
+				'status'    => Avatar_Status::WAIT,
+			) );
+		}
+
+		add_action( 'lpcn_sensitive_content_recognition', 'LitePress\Cravatar\Inc\sensitive_content_recognition' );
+
+		$timestamp = wp_next_scheduled( 'lpcn_sensitive_content_recognition' );
+		if ( empty( $timestamp ) ) {
+			wp_schedule_single_event( time() + 10, 'lpcn_sensitive_content_recognition', array(
+				'url'        => $avatar_url,
+				'image_md5'  => $avatar_hash,
+				'email_hash' => $email_hash,
+			) );
+		}
+
+		return false;
+	} else {
+		$status_for_db = $r->status;
+	}
 
 	return $status === (int) $status_for_db;
+}
+
+/**
+ * 检查违规图
+ *
+ * @param string $url
+ */
+function sensitive_content_recognition( string $url, string $image_md5, string $email_hash ) {
+	$q_cloud = new Q_Cloud();
+
+	$r = $q_cloud->sensitive_content_recognition( 'litepress-backup-1254444452.cos.ap-beijing.myqcloud.com', $url );
+
+	/**
+	 * 如果验证不通过
+	 */
+	if ( ! $r ) {
+		global $wpdb;
+
+		// 将拦截状态更新到数据库
+		$wpdb->update( $wpdb->prefix . 'avatar_verify', array(
+			'status' => Avatar_Status::BAN,
+		), array(
+			'image_md5' => $image_md5,
+		) );
+
+		// 刷新 CDN 缓存，以使下次请求回源，方便命中拦截。
+		purge_avatar_cache( array( $email_hash ), false );
+	}
 }
 
 /**
@@ -289,22 +342,28 @@ function handle_email_delete( int $user_id, string $email ): WP_Error|bool {
  *
  * 缓存包括CDN及本地磁盘中的缓存
  */
-function purge_avatar_cache( array $emails ) {
+function purge_avatar_cache( array $emails, bool $purge_local = true ) {
 	$urls        = array();
 	$local_paths = array();
 	foreach ( $emails as $email ) {
-		$address = strtolower( trim( $email ) );
-
-		$hash = md5( $address );
+		// 只有当传入的是邮箱时才进行 Hash，否则直接使用其值
+		if ( stristr( $email, '@' ) ) {
+			$address = strtolower( trim( $email ) );
+			$hash    = md5( $address );
+		} else {
+			$hash = $email;
+		}
 
 		$local_paths[] = '/www/cravatar-cache/' . $hash;
 		$urls[]        = 'https://cravatar.cn/avatar/' . $hash . '*';
 	}
 
 	// 先刷新本地缓存
-	foreach ( $local_paths as $local_path ) {
-		if ( file_exists( $local_path ) ) {
-			unlink( $local_path );
+	if ( $purge_local ) {
+		foreach ( $local_paths as $local_path ) {
+			if ( file_exists( $local_path ) ) {
+				unlink( $local_path );
+			}
 		}
 	}
 

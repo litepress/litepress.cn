@@ -29,8 +29,7 @@
             <div class="col-12">
                 <div class="text-center text-white">
               <span class="heading-xxs letter-spacing-xl">
-               平台开发中，欢迎参与测试。你可以在<a href="https://jq.qq.com/?_wv=1027&k=AizcubYC"> QQ群:1046115671 </a>中与我们交流，或是直接在社区发帖。(PS:翻译平台暂不可用，如需参与翻译请仍前往<a
-                          href="https://wp-china.org"> wp-china.org </a>)
+               平台开发中，欢迎参与测试。你可以在<a href="https://jq.qq.com/?_wv=1027&k=AizcubYC"> QQ群:1046115671 </a>中与我们交流，或是直接在社区发帖。
               </span>
                 </div>
             </div>

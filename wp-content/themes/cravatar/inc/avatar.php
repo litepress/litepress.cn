@@ -122,9 +122,14 @@ function handle_avatar() {
 		}
 
 
-		if ( is_status_for_avatar( $avatar_filename, Avatar_Status::BAN ) ) { // 如果当前图片处于黑名单则返回空字符串
-			$avatar_filename = '';
-			$default         = 'ban';
+		/**
+		 * 不对 QQ 头像检查违规图，成本顶不住，而且考虑到腾讯也有实名认证
+		 */
+		if ( 'qq' !== $avatar_from ) {
+			if ( is_status_for_avatar( $user_email_hash, $avatar_filename, Avatar_Status::BAN, $avatar_from ) ) { // 如果当前图片处于黑名单则返回空字符串
+				$avatar_filename = '';
+				$default         = 'ban';
+			}
 		}
 
 		/**
