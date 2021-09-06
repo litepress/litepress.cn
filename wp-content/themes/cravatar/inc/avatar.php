@@ -23,9 +23,9 @@ function handle_avatar() {
 	}
 
 	// 如果客户端明确表示支持webp则强制返回webp
-	if ( stristr( $_SERVER['HTTP_ACCEPT'], 'image/webp' ) ) {
-		$current_request_img_ext = 'webp';
-	}
+	//if ( stristr( $_SERVER['HTTP_ACCEPT'], 'image/webp' ) ) {
+	//	$current_request_img_ext = 'webp';
+	//}
 
 	$current_url = $tmp[0] ?? '';
 
