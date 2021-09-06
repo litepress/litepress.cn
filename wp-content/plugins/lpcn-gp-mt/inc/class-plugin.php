@@ -35,10 +35,8 @@ class Plugin {
 	 * Initializes the plugin.
 	 */
 	public function plugins_loaded() {
-		if ( isset( $_GET['debug'] ) ) {
-			add_action( 'gp_originals_imported', array( $this, 'schedule_gp_mt' ), 999 );
-			add_action( 'lpcn_schedule_gp_mt', array( Translate::class, 'job' ), 999, 3 );
-		}
+			//add_action( 'gp_originals_imported', array( $this, 'schedule_gp_mt' ), 999 );
+			//add_action( 'lpcn_schedule_gp_mt', array( Translate::class, 'job' ), 999, 3 );
 	}
 
 	/**
@@ -108,7 +106,7 @@ SQL;
 		) );
 
 		if ( $original ) {
-			return $original['singular'];
+			return $original->singular;
 		} else {
 			return '';
 		}
