@@ -450,16 +450,16 @@
         },
         {
             "name": "stichoza/google-translate-php",
-            "version": "v4.1.4",
+            "version": "v4.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stichoza/google-translate-php.git",
-                "reference": "9e4808cf6f3f1e89f06e2129c46f58eeca658428"
+                "reference": "85039e0af473e58cc9f42d58e36d9d534a6a6431"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stichoza/google-translate-php/zipball/9e4808cf6f3f1e89f06e2129c46f58eeca658428",
-                "reference": "9e4808cf6f3f1e89f06e2129c46f58eeca658428",
+                "url": "https://api.github.com/repos/Stichoza/google-translate-php/zipball/85039e0af473e58cc9f42d58e36d9d534a6a6431",
+                "reference": "85039e0af473e58cc9f42d58e36d9d534a6a6431",
                 "shasum": ""
             },
             "require": {
@@ -497,7 +497,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Stichoza/google-translate-php/issues",
-                "source": "https://github.com/Stichoza/google-translate-php/tree/v4.1.4"
+                "source": "https://github.com/Stichoza/google-translate-php/tree/v4.1.5"
             },
             "funding": [
                 {
@@ -509,7 +509,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-01-26T22:19:49+00:00"
+            "time": "2021-08-05T11:03:52+00:00"
         }
     ],
     "packages-dev": [],

@@ -39,6 +39,9 @@ class Translate {
 			$glossaries[ $item ] = $item;
 		}
 
+		/**
+		 * 开始翻译流程
+		 */
 		foreach ( $originals as $original ) {
 			$original = $original->fields();
 			$source   = $original['singular'] ?? '';
@@ -46,7 +49,11 @@ class Translate {
 				continue;
 			}
 
-			$translation = self::get_translate_from_memory( $source );
+			/**
+			 * 记忆库直接匹配的话十分不靠谱，所以应该只匹配一些经过人工审核确定通用的词汇
+			 */
+			$translation = '';
+			//$translation = self::get_translate_from_memory( $source );
 			if ( is_wp_error( $translation ) ) {
 				$translation = '';
 			}
@@ -61,6 +68,7 @@ class Translate {
 				foreach ( $glossaries as $key => $value ) {
 					$tmp    = $source;
 					$id     = rand( 0, 99999 );
+					$key    = preg_quote( $key, '/' );
 					$source = preg_replace( "/\b$key\b/m", "<code>#$id</code>", $source );
 
 					// 如果内容被替换过，就将当前的id写到map里
@@ -71,7 +79,7 @@ class Translate {
 
 				$args     = array(
 					'verify'  => false,
-					'timeout' => 20,
+					'timeout' => 30,
 					'headers' => array(
 						'Host' => 'translate.google.cn'
 					)
@@ -125,8 +133,11 @@ class Translate {
 			$glossary_entries = GP::$glossary_entry->all();
 
 			foreach ( $glossary_entries as $glossary ) {
-				$fields                        = $glossary->fields();
-				$glossaries[ $fields['term'] ] = $fields['translation'];
+				if ( empty( $glossary->term ) || empty( $glossary->translation ) ) {
+					continue;
+				}
+
+				$glossaries[ $glossary->term ] = $glossary->translation;
 			}
 
 			/**
