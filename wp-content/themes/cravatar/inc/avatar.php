@@ -5,6 +5,11 @@ namespace LitePress\Cravatar\Inc;
 use LitePress\Cravatar\Inc\DataObject\Avatar_Status;
 
 function handle_avatar() {
+	/**
+	 * 输出头像时关闭错误显示，否则可能造成图像格式错误
+	 */
+	ini_set( 'display_errors', 0 );
+
 	$current_url   = add_query_arg( array() );
 	$tmp           = explode( '?', $current_url );
 	$current_query = '';
