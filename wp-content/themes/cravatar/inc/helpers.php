@@ -204,8 +204,6 @@ function is_status_for_avatar( string $email_hash, string $filename, int $status
 			) );
 		}
 
-		add_action( 'lpcn_sensitive_content_recognition', 'LitePress\Cravatar\Inc\sensitive_content_recognition', 10, 3 );
-
 		//do_action( 'lpcn_sensitive_content_recognition', $avatar_url, $avatar_hash, $email_hash );
 		$timestamp = wp_next_scheduled( 'lpcn_sensitive_content_recognition' );
 		if ( empty( $timestamp ) ) {
