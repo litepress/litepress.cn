@@ -73,6 +73,22 @@ $is_login = is_user_logged_in();
                             </div>
                         </div>
                     </div>
+                    <div class="row row-cols-3 row-cols-xl-6 wp-img-ground justify-content-center mb-3">
+                        <div class="col">
+                            <div class="card">
+                                <a href="https://www.lovestu.com/" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
+                                    <img class="uabb-gallery-img card-img" src="/wp-content/themes/cravatar/assets/img/corepress.png" alt="iro" itemprop="thumbnail" title="CorePress">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <a href="javascript:;" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes" style="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <p class=""><i class="fad fa-arrow-alt-up"></i> 我 要 上 榜</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

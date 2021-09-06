@@ -82,7 +82,7 @@
             <p class=" footer-new-bottom__no-vat footer-new-bottom__text"><a href="http://beian.miit.gov.cn"
                                                                              class="imprint" title="工信部备案"
                                                                              rel="nofollow" target="_blank">
-                    蜀ICP备2021013809号
+                    鲁ICP备2021028118号-3
                 </a></p></div>
     </div>
 
