@@ -653,9 +653,7 @@ svg {
 .footer-new__top a{
     color: #fff;
 }
-.footer-new__bottom a{
-    color: #212529;
-}
+
 .carousel img {
     width: 80px;
     height: 80px;
@@ -737,7 +735,7 @@ svg {
     border-color: var(--wp-theme-color)!important;
 }
 
-.email.selected{
+.email.selected {
     background: var(--wp-theme-gradient);
     color: #fff;
 }
@@ -750,6 +748,9 @@ svg {
 .email.selected a{
     color: #fff;
     text-decoration: underline;
+}
+.modal{
+    color: initial;
 }
 .email_list .email {
     background-color: #eee;
@@ -772,28 +773,14 @@ svg {
     max-width: 218px;
     position: fixed;
 }
-.g-logo-group .g-logo {
-    display: none;
-    margin: 0 calc(var(--g-pad-1) / 2);
-    height: 2em;
-}
 
-.g-logo-group {
-    display: flex;
-    justify-content: space-between;
-    margin: 3rem calc(var(--g-pad-1) / -2 - 1px);
-}
-
-.g-logo-group .g-logo--name-github, .g-logo-group .g-logo--name-slack, .g-logo-group .g-logo--name-wordpress-org-mark {
-    display: block;
-}
 .wp-img-ground .card {
     display: flex;
     padding: 10px;
     justify-content: center;
-    padding-top: 48%;
+    padding-top: 33%;
     position: relative;
-    border: 0;
+    margin-bottom: 10px;
 }
 .wp-img-ground .card a {
     display: flex;
@@ -803,11 +790,37 @@ svg {
     right: 0;
     bottom: 0;
     overflow: hidden;
+    justify-content: center;
+    align-items: center;
 }
 .wp-img-ground .card a img {
     object-fit: cover;
-    margin: auto;
-    width: 90%;
+    margin:auto;
+    width:75%;
+    max-height: 100%;
+}
+
+.wpcf7 form .wpcf7-response-output{
+    top: 98px;
+    left: auto !important;
+    right: 72px;
+    font-size: 100%;
+    padding: 10px 1.5em;
+    border-radius: 5px;
+    max-width: 218px;
+    position: fixed;
+    border: 0;
+    z-index: 999999999;
+}
+.wpcf7 form.sent .wpcf7-response-output {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+.wpcf7 form.invalid .wpcf7-response-output, .wpcf7 form.unaccepted .wpcf7-response-output {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
 }
 @media (min-width: 1670px){
     .index-banner {
