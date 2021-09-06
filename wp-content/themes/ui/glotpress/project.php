@@ -38,7 +38,7 @@ gp_tmpl_header();
     <div class="container">
 		<?php echo gp_breadcrumb(); ?>
         <div class="notice" id="help-notice">
-            你可以通过安装 <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip" target="_blank">WP-China-Yes</a> 插件，并切换应用市场为“LitePress 应用市场”来接收翻译推送。
+            你可以通过安装 <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip" target="_blank">WP-China-Yes</a> 插件，并切换应用市场为“LitePress 应用市场”来接收翻译推送（只推送翻译率大于 80% 的包）。
         </div>
 
     </div>
