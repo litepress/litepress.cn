@@ -45,7 +45,9 @@ gp_tmpl_header();
     <div class="container setting">
         <form action="" method="post" enctype="multipart/form-data" style="max-width: 400px">
             <dl>
-                <dt><label for="import-file">从文件导入（你可以上传翻译文件或插件、主题安装包）</label></dt>
+                <dt>
+                    <label for="import-file">从文件导入<?php if ( 'originals' === $kind ): ?>（你可以上传翻译文件或插件、主题安装包）<?php endif; ?></label>
+                </dt>
                 <dd><input type="file" class="form-control" name="import-file" id="import-file"/></dd>
 				<?php
 				/**
@@ -78,7 +80,9 @@ gp_tmpl_header();
 
 				$format_options         = array();
 				$format_options['auto'] = __( 'Auto Detect', 'glotpress' );
-				$format_options['zip'] = '插件、主题安装包 (.zip)';
+				if ( 'originals' === $kind ) {
+					$format_options['zip'] = '插件、主题安装包 (.zip)';
+				}
 				foreach ( GP::$formats as $slug => $format ) {
 					$format_options[ $slug ] = $format->name;
 				}
