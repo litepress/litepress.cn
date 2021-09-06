@@ -1,7 +1,6 @@
 var $ = jQuery.noConflict();
 $("li.menu-item-has-children > a").attr("data-bs-toggle", "dropdown");
 $(function () {
-    $('#exampleModal').modal('show');
     var $img = $(".cropper-view");
     var $avatarSave = $('.avatar-save');
     var $modal = $("#avatar-modal");

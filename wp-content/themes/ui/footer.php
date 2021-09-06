@@ -45,7 +45,7 @@
         <p>
             © 2020-2022 <a href="https://litepress.cn">LitePress</a> 版权所有
             <a href="http://beian.miit.gov.cn" class="imprint" title="工信部备案" rel="nofollow" target="_blank">
-                蜀ICP备2021013809号
+                鲁ICP备2021028118号-2
             </a>
         </p>
     </div>
