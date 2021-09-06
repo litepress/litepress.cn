@@ -191,7 +191,7 @@ function is_status_for_avatar( string $email_hash, string $filename, int $status
 	 * 如果图片被检测为违规图的话，会主动刷新CDN缓存，使下次回源时命中违规标志
 	 */
 	if ( empty( $r ) ) {
-		$avatar_url = "https://cravatar.cn/avatar/$email_hash?s=400";
+		$avatar_url = "https://cravatar.cn/avatar/$email_hash.png?s=400";
 
 		$sql = $wpdb->prepare( "SELECT status FROM {$wpdb->prefix}avatar_verify WHERE image_md5=%s;", $avatar_hash );
 		if ( ! isset( $wpdb->get_row( $sql )->status ) ) {
@@ -204,8 +204,9 @@ function is_status_for_avatar( string $email_hash, string $filename, int $status
 			) );
 		}
 
-		add_action( 'lpcn_sensitive_content_recognition', 'LitePress\Cravatar\Inc\sensitive_content_recognition' );
+		add_action( 'lpcn_sensitive_content_recognition', 'LitePress\Cravatar\Inc\sensitive_content_recognition', 10, 3 );
 
+		//do_action( 'lpcn_sensitive_content_recognition', $avatar_url, $avatar_hash, $email_hash );
 		$timestamp = wp_next_scheduled( 'lpcn_sensitive_content_recognition' );
 		if ( empty( $timestamp ) ) {
 			wp_schedule_single_event( time() + 10, 'lpcn_sensitive_content_recognition', array(
@@ -228,10 +229,10 @@ function is_status_for_avatar( string $email_hash, string $filename, int $status
  *
  * @param string $url
  */
-function sensitive_content_recognition( string $url, string $image_md5, string $email_hash ) {
+function sensitive_content_recognition( string $url, string $image_md5, string $email_hash ): void {
 	$q_cloud = new Q_Cloud();
 
-	$r = $q_cloud->sensitive_content_recognition( 'litepress-backup-1254444452.cos.ap-beijing.myqcloud.com', $url );
+	$r = $q_cloud->sensitive_content_recognition( 'litepress-backup-1254444452.cos.ap-beijing.myqcloud.com', urlencode( $url ) );
 
 	/**
 	 * 如果验证不通过

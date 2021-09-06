@@ -24,11 +24,12 @@ final class Q_Cloud {
 			'headers' => array(
 				'Authorization' => $this->createAuthorization( 'GET', '/' ),
 			),
+			'timeout' => 10,
 		);
 
 		$url = add_query_arg( array(
 			'ci-process'  => 'sensitive-content-recognition',
-			'detect-type' => 'porn,terrorist,politics',
+			'detect-type' => 'porn,politics',
 			'detect-url'  => $detect_url,
 		), $url );
 
@@ -46,6 +47,12 @@ final class Q_Cloud {
 			return true;
 		}
 
+		$body = wp_remote_retrieve_body( $r );
+
+		$xml_obj = simplexml_load_string( $body );
+
+		$verified = json_decode( json_encode( $xml_obj ), true );
+
 		$status_code = wp_remote_retrieve_response_code( $r );
 		if ( WP_Http::OK !== $status_code ) {
 			Logger::error(
@@ -53,22 +60,16 @@ final class Q_Cloud {
 				'敏感内容识别接口请求失败，接口返回状态码为：' . $status_code,
 				array(
 					'url'  => $url,
-					'data' => $args
+					'data' => $args,
+					'r'    => $body,
 				)
 			);
 
 			return true;
 		}
 
-		$body = wp_remote_retrieve_body( $r );
-
-		$xml_obj = simplexml_load_string( $body );
-
-		$verified = json_decode( json_encode( $xml_obj ), true );
-
 		if (
 			! key_exists( 'PornInfo', $verified ) ||
-			! key_exists( 'TerroristInfo', $verified ) ||
 			! key_exists( 'PoliticsInfo', $verified )
 		) {
 			Logger::error(
@@ -89,7 +90,6 @@ final class Q_Cloud {
 		 */
 		if (
 			0 !== (int) $verified['PornInfo']['HitFlag'] ||
-			0 !== (int) $verified['TerroristInfo']['HitFlag'] ||
 			0 !== (int) $verified['PoliticsInfo']['HitFlag']
 		) {
 			return false;
