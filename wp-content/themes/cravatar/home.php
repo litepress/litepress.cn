@@ -40,14 +40,14 @@ $is_login = is_user_logged_in();
                         <div class="col">
                             <div class="card">
                                 <a href="https://www.wpdaxue.com/cravatar.html" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
-                                    <img class="uabb-gallery-img card-img" src="/wp-content/themes/cravatar/assets/img/wpdaxue-logo-new.png" alt="WordPress大学" itemprop="thumbnail" title="WordPress大学">
+                                    <img class="uabb-gallery-img card-img" src="/wp-content/themes/cravatar/assets/img/wpdaxue.png" alt="WordPress大学" itemprop="thumbnail" title="WordPress大学">
                                 </a>
                             </div>
                         </div>
                         <div class="col">
                             <div class="card">
                                 <a href="https://zmingcx.com/" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
-                                    <img class="uabb-gallery-img card-img" src="/wp-content/themes/cravatar/assets/img/知更鸟.png" alt="知更鸟" itemprop="thumbnail" title="知更鸟">
+                                    <img class="uabb-gallery-img card-img" src="/wp-content/themes/cravatar/assets/img/zmingcx.png" alt="知更鸟" itemprop="thumbnail" title="知更鸟">
                                 </a>
                             </div>
                         </div>
@@ -68,7 +68,7 @@ $is_login = is_user_logged_in();
                         <div class="col">
                             <div class="card">
                                 <a href="https://iro.tw/" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
-                                    <img class="uabb-gallery-img card-img" src="/wp-content/uploads/sites/9/2021/07/iro.png" alt="iro" itemprop="thumbnail" title="iro">
+                                    <img class="uabb-gallery-img card-img" src="/wp-content/themes/cravatar/assets/img/iro.png" alt="iro" itemprop="thumbnail" title="iro">
                                 </a>
                             </div>
                         </div>
@@ -77,7 +77,7 @@ $is_login = is_user_logged_in();
                         <div class="col">
                             <div class="card">
                                 <a href="https://www.lovestu.com/" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
-                                    <img class="uabb-gallery-img card-img" src="/wp-content/themes/cravatar/assets/img/corepress.png" alt="iro" itemprop="thumbnail" title="CorePress">
+                                    <img class="uabb-gallery-img card-img" src="/wp-content/themes/cravatar/assets/img/lovestu.png" alt="lovestu" itemprop="thumbnail" title="lovestu">
                                 </a>
                             </div>
                         </div>
