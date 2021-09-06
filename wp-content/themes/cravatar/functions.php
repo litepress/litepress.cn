@@ -8,21 +8,6 @@ define( 'CA_ROOT_URL', get_stylesheet_directory_uri() );
 
 const CA_LOG_NAME = 'Cravatar';
 
-require CA_ROOT_PATH . '/inc/class-upyun.php';
-
-require CA_ROOT_PATH . '/inc/class-q-cloud.php';
-
-require CA_ROOT_PATH . '/inc/helpers.php';
-
-require CA_ROOT_PATH . '/inc/enqueue-scripts.php';
-
-require CA_ROOT_PATH . '/inc/DataObject/class-avatar-status.php';
-
-require CA_ROOT_PATH . '/inc/ajax-functions.php';
-
-require CA_ROOT_PATH . '/inc/avatar.php';
-
-
 /*
  * $upyun = new Upyun();
 $r = $upyun->get( 'flow/common_data', array(
@@ -72,3 +57,23 @@ add_action( 'um_after_upload_db_meta_profile_photo', function ( $user_id ) {
 
 	purge_avatar_cache( $emails );
 } );
+
+/**
+ * 头像内容审查
+ */
+add_action( 'lpcn_sensitive_content_recognition', 'LitePress\Cravatar\Inc\sensitive_content_recognition', 10, 3 );
+
+
+require CA_ROOT_PATH . '/inc/class-upyun.php';
+
+require CA_ROOT_PATH . '/inc/class-q-cloud.php';
+
+require CA_ROOT_PATH . '/inc/helpers.php';
+
+require CA_ROOT_PATH . '/inc/enqueue-scripts.php';
+
+require CA_ROOT_PATH . '/inc/DataObject/class-avatar-status.php';
+
+require CA_ROOT_PATH . '/inc/ajax-functions.php';
+
+require CA_ROOT_PATH . '/inc/avatar.php';
