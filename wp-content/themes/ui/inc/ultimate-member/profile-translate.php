@@ -78,6 +78,64 @@ SQL, $search, ( $paged - 1 ) * 15, 15 );
 }
 
 /**
+ * 通过 Ajax 返回翻译项目数据
+ */
+function translate_load(): void {
+	$user_id = um_user( 'ID' );
+	if ( ! $user_id ) {
+		wp_send_json_error( array( 'message' => '该用户信息读取失败' ) );
+	}
+
+	$type = $_POST['sub'] ?? '';
+
+	$data = array();
+	if ( 'contribution' === $type ) {
+		$data = get_gp_contribution_projects( $user_id );
+	} else {
+		$data = get_gp_manage_projects( $user_id );
+	}
+
+	foreach ( $data as &$item ) {
+		if ( ! function_exists( 'gp_get_meta' ) ) {
+			require WP_CONTENT_DIR . '/plugins/glotpress/gp-includes/meta.php';
+		}
+
+		$current_blog_id = get_current_blog_id();
+
+		switch_to_blog( 4 );
+
+		global $wpdb;
+		$wpdb->gp_meta = 'wp_4_gp_meta';
+		$version       = gp_get_meta( 'project', $item['id'], 'version' );
+		$slug          = $item['slug'];
+
+		if ( 1 === (int) $item['parent_project_id'] ) {
+			$item['icon'] = sprintf( '<img width="64" height="64" loading="lazy" class="plugin-icon"
+                             src="https://ps.w.org.ibadboy.net/%s/assets/icon-128x128.png"
+                             onError="this.src=\'https://cravatar.cn/avatar/%s?d=identicon&s=133\';">', $slug, md5( $slug ) );
+		} elseif ( 2 === (int) $item['parent_project_id'] ) {
+			$item['icon'] = sprintf( '<img width="64" height="64" loading="lazy" class="plugin-icon"
+                             src="https://i0.wp.com/themes.svn.wordpress.org/%s/%s/screenshot.png"
+                             onError="this.src=\'https://i0.wp.com/themes.svn.wordpress.org/%s/%s/screenshot.jpg\';">', $slug, $version, $slug, $version );
+		} else {
+			$icon_url = gp_get_meta( 'project', $item['id'], 'icon' );
+			if ( empty( $icon_url ) ) {
+				$icon_url = sprintf( 'https://cravatar.cn/avatar/%s?d=identicon&s=133', md5( $slug ) );
+			}
+
+			$item['icon'] = sprintf( '<img width="64" height="64" loading="lazy" class="plugin-icon" src="%s">', $icon_url );
+		}
+
+		switch_to_blog( $current_blog_id );
+	}
+	unset( $item );
+
+	wp_send_json_success( $data );
+}
+
+add_action( 'um_ajax_load_posts__lpcn_translate_load', 'WCY\Inc\Ultimate_Member\translate_load' );
+
+/**
  * 添加翻译项目 Tabs
  */
 add_filter( 'um_user_profile_tabs', function ( array $tabs ) {
