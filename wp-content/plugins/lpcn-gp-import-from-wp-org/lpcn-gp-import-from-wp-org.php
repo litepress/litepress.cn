@@ -12,6 +12,7 @@
 namespace LitePress\GlotPress\GP_Import_From_WP_Org;
 
 use GP;
+use GP_Route;
 use function LitePress\Helper\get_product_from_es;
 use function LitePress\WP_Http\wp_remote_get;
 use WP_Error;
@@ -29,13 +30,22 @@ class GP_Import_From_WP_Org {
 	 */
 	private static bool $is_new = false;
 
+	public function __construct() {
+		add_action( 'gp_import_from_wp_org', array( GP_Import_From_WP_Org::class, 'gp_wp_import' ), 10, 2 );
+
+		add_filter( 'gp_translations_footer_links', array( $this, 'gp_translations_footer_links' ), 10, 4 );
+
+		GP::$router->add( "/gp-wp-import/(.+?)/(.+?)", array( $this, 'gp_wp_import' ), 'get' );
+		GP::$router->add( "/gp-wp-import/(.+?)/(.+?)", array( $this, 'gp_wp_import' ), 'post' );
+	}
+
 	/**
 	 * @param string $slug
 	 * @param string $type 是插件 Or 主题？
 	 *
 	 * @return false
 	 */
-	public static function handle( string $slug, string $type = self::PLUGIN ): bool {
+	public static function gp_wp_import( string $slug, string $type = self::PLUGIN ): bool {
 		// 如果项目不存在于translate.wordpress.org中则跳过执行
 		$wporg_url = sprintf( 'http://translate.wordpress.org/locale/zh-cn/default/wp-%ss/%s/', $type, $slug );
 		$data      = self::get_web_page_contents( $wporg_url );
@@ -49,8 +59,14 @@ class GP_Import_From_WP_Org {
 			$sub_projects = self::get_theme_sub_project( $slug );
 		}
 
+		$route = new GP_Route;
+
 		if ( is_wp_error( $sub_projects ) ) {
 			self::error_log( $slug, '获取子项目详情失败：' . $sub_projects->get_error_message() );
+
+			if ( 'cli' !== PHP_SAPI ) {
+				$route->redirect_with_error( '获取子项目详情失败' );
+			}
 
 			return false;
 		}
@@ -124,7 +140,19 @@ class GP_Import_From_WP_Org {
 				}
 			} else {
 				self::error_log( $sub_project->id, '翻译下载出错' );
+
+				return false;
 			}
+		}
+
+		if ( 'cli' !== PHP_SAPI ) {
+			$referer = gp_url_project( "{$type}s/$slug" );
+			if ( isset( $_SERVER['HTTP_REFERER'] ) ) {
+				$referer = $_SERVER['HTTP_REFERER'];
+			}
+
+			$route->notices[] = '已成功导入';
+			$route->redirect( $referer );
 		}
 
 		return true;
@@ -445,9 +473,27 @@ class GP_Import_From_WP_Org {
 		}
 	}
 
+	public function after_request() {
+	}
+
+	public function before_request() {
+	}
+
+	public function gp_translations_footer_links( $footer_links, $project, $locale, $translation_set ) {
+		$type = str_starts_with( $project->path, 'plugins/' ) ? 'plugin' : false;
+		$type = str_starts_with( $project->path, 'themes/' ) && false === $type ? 'theme' : $type;
+		preg_match( "/{$type}s\/(.+)\//", $project->path, $match );
+
+		if ( is_user_logged_in() && $type && isset( $match[1] ) && ! empty( $match[1] ) ) {
+			$footer_links[] = gp_link_get( gp_url( "/gp-wp-import/{$match[1]}/$type" ), '从 wordpress.org 导入原文和翻译' );
+		}
+
+		return $footer_links;
+	}
+
 }
 
-add_action( 'gp_import_from_wp_org', array( GP_Import_From_WP_Org::class, 'handle' ), 10, 2 );
+new GP_Import_From_WP_Org();
 
 if ( isset( $_GET['debug-import'] ) ) {
 	/*
@@ -460,7 +506,7 @@ if ( isset( $_GET['debug-import'] ) ) {
 
 	add_action( 'wp_loaded', function () {
 		//GP_Import_From_WP_Org::handle( 'woocommerce', GP_Import_From_WP_Org::PLUGIN );
-		GP_Import_From_WP_Org::handle( 'username-changer', GP_Import_From_WP_Org::PLUGIN );
+		GP_Import_From_WP_Org::handle( 'slim-seo', GP_Import_From_WP_Org::PLUGIN );
 		var_dump( 'ss' );
 		exit;
 	} );
