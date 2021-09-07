@@ -169,6 +169,11 @@ $(window).resize(function () {
         $("#site-header .menu-item-has-children > .nav-link").removeAttr("data-bs-toggle");
     }
 });
- 
 
+$(".action.edit").click(function(){
+    $(this).parent().parent().next().find(".textareas").addClass("active");
+    $(this).parent().parent().next().siblings().find(".textareas").removeClass("active")
+
+
+})
 
