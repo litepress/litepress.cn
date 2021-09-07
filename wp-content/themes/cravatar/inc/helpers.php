@@ -353,6 +353,11 @@ function purge_avatar_cache( array $emails, bool $purge_local = true ) {
 			$hash = $email;
 		}
 
+		// 如果 Hash 为空则跳过，否则会导致所有缓存被清空，从而压垮源站。
+		if ( empty( $hash ) ) {
+			continue;
+		}
+
 		$local_paths[] = '/www/cravatar-cache/' . $hash;
 		$urls[]        = 'https://cravatar.cn/avatar/' . $hash . '*';
 	}
