@@ -63,6 +63,11 @@ $(function () {
     $(".api-manager-domains td").attr('colspan', '5');
     $('[data-bs-toggle="tooltip"]').tooltip();
     $('.tooltip-show').tooltip('show');
+    $("tr.editor").each(function (){
+        if($(this).is(':visible')){
+            $(this).find(".textareas").addClass("active");
+        }
+    })
     /* $(window).scroll(function(){
          if($(window).scrollTop()>0){
              $(".wp-nav").css({"position":"fixed","top":0,"z-index":"1001","width":"100%"});
@@ -173,7 +178,5 @@ $(window).resize(function () {
 $(".action.edit").click(function(){
     $(this).parent().parent().next().find(".textareas").addClass("active");
     $(this).parent().parent().next().siblings().find(".textareas").removeClass("active")
-
-
 })
 
