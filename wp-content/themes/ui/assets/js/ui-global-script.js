@@ -180,3 +180,7 @@ $(".action.edit").click(function(){
     $(this).parent().parent().next().siblings().find(".textareas").removeClass("active")
 })
 
+$("tr.preview").dblclick(function(){
+    $(this).next().find(".textareas").addClass("active");
+    $(this).next().siblings().find(".textareas").removeClass("active")
+})
