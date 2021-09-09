@@ -67,6 +67,8 @@ $(function () {
         if($(this).is(':visible')){
             $(this).find(".textareas").addClass("active");
         }
+    }) ;   $(".textareas").each(function (){
+        $(this).addClass("active");
     })
     /* $(window).scroll(function(){
          if($(window).scrollTop()>0){
@@ -175,7 +177,7 @@ $(window).resize(function () {
     }
 });
 
-$(".action.edit").click(function(){
+/*$(".action.edit").click(function(){
     $(this).parent().parent().next().find(".textareas").addClass("active");
     $(this).parent().parent().next().siblings().find(".textareas").removeClass("active")
 })
@@ -183,4 +185,32 @@ $(".action.edit").click(function(){
 $("tr.preview").dblclick(function(){
     $(this).next().find(".textareas").addClass("active");
     $(this).next().siblings().find(".textareas").removeClass("active")
+})*/
+
+$("#translations").tooltip({
+    items: ".glossary-word",
+    content: function() {
+        var i = $("<ul>");
+        return $.each($(this).data("translations"), function (t, e) {
+            e.locale_entry = undefined;
+            var r = $("<li>");
+            e.locale_entry && r.append($("<span>", {
+                text: e.locale_entry
+            }).addClass("locale-entry bubble")),
+                r.append($("<span>", {
+                    text: e.pos
+                }).addClass("pos")),
+                r.append($("<span>", {
+                    text: e.translation
+                }).addClass("translation")),
+                r.append($("<span>", {
+                    text: e.comment
+                }).addClass("comment")),
+                i.append(r)
+        })
+            ,
+            i
+    },
+    hide: !1,
+    show: !1
 })

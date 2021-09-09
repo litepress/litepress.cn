@@ -232,8 +232,8 @@ $(function () {
                 }
             },
             error: function (e) {
-                console.log(e)
-                $alert.show().attr("class",'alert-fixed alert-warning').text("限制2M以内文件，请重新选择");
+                console.log()
+                $alert.show().attr("class",'alert-fixed alert-warning').text(e);
             },
         });
     }
