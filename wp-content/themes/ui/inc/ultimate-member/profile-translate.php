@@ -30,7 +30,7 @@ function get_gp_manage_projects( int $user_id, bool $is_count = false ): array|i
 	$paged  = $_GET['paged'] ?? 1;
 
 	$project_ids = join( ',', $project_ids );
-	$sql         = $wpdb->prepare( "select id, name, author, slug, path, description, parent_project_id from wp_4_gp_projects where 1=1 and id in ( {$project_ids} ) and active=1 and name like '%%%s%%' limit %d,%d;;", $search, ( $paged - 1 ) * 15, 15 );
+	$sql         = $wpdb->prepare( "select id, name, author, slug, path, description, parent_project_id from wp_4_gp_projects where 1=1 and id in ( {$project_ids} ) and active=1 and name like '%%%s%%' limit %d,%d;", $search, ( $paged - 1 ) * 15, 15 );
 
 	return $wpdb->get_results( $sql, ARRAY_A );
 }
@@ -46,7 +46,7 @@ function get_gp_manage_projects( int $user_id, bool $is_count = false ): array|i
 function get_gp_contribution_projects( int $user_id, bool $is_count = false ): array|int {
 	global $wpdb;
 
-	$sql          = $wpdb->prepare( "select translation_set_id from wp_4_gp_translations where 1=1 and user_id=%d group by translation_set_id;", $user_id );
+	$sql          = $wpdb->prepare( "select translation_set_id from wp_4_gp_translations where 1=1 and user_id=%d and status='current' group by translation_set_id;", $user_id );
 	$translations = $wpdb->get_results( $sql, ARRAY_A );
 
 	// 如果只需要统计数量的话此时就返回，因为一行权限就代表对一个项目拥有权限
