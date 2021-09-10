@@ -103,11 +103,16 @@ class Plugin {
 				return ! empty( $r );
 			};
 
+			$project = GP::$project->find_one( array( 'id' => $args['object_id'] ) );
+			// 如果项目不存在父项目则不允许编辑
+			if ( empty( $project->parent_project_id ) ) {
+				return false;
+			}
+
 			$is_can = $can( (int) $args['object_id'], (int) $args['user_id'] );
 			if ( ! $is_can ) {
 				// 如果对父项目有权限，则也可以操作
-				$project = GP::$project->find_one( array( 'id' => $args['object_id'] ) );
-				$is_can  = $can( (int) $project->parent_project_id, (int) $args['user_id'] );
+				$is_can = $can( (int) $project->parent_project_id, (int) $args['user_id'] );
 			}
 
 			if ( $is_can ) {
