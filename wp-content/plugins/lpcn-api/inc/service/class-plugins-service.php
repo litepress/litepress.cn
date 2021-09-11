@@ -46,9 +46,9 @@ class Plugins_Service {
 			$db_plugin['plugin'] = $key;
 
 			if ( version_compare( $request_version, $db_version, '<' ) ) {
-				$update_exists[ $slug ] = $db_plugin;
+				$update_exists[ $key ] = $db_plugin;
 			} elseif ( isset( $db_plugins[ $slug ] ) ) {
-				$no_update_exists[ $slug ] = $db_plugin;
+				$no_update_exists[ $key ] = $db_plugin;
 			}
 		}
 
