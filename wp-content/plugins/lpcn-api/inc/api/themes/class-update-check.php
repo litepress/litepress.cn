@@ -81,11 +81,11 @@ class Update_Check extends Base {
 		$data = array();
 
 		foreach ( $themes as $theme ) {
-			if ( ! isset( $theme['Template'] ) || empty( $theme['Template'] ) ) {
+			if ( ! isset( $theme['Stylesheet'] ) || empty( $theme['Stylesheet'] ) ) {
 				continue;
 			}
 
-			$data[ $theme['Template'] ] = $theme['Version'] ?? '';
+			$data[ $theme['Stylesheet'] ] = $theme['Version'] ?? '';
 		}
 
 		return $data;

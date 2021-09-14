@@ -108,3 +108,21 @@ add_action( 'save_post_product', function ( $post_id, WP_Post $post, $update ) {
  * 恢复链接管理功能
  */
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
+
+
+/**
+ * 添加百度统计代码
+ */
+add_action( 'admin_footer', function () {
+	echo <<<html
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b09919b0ba91f0ea1f1f6d62c3c78a1f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+html;
+} );
