@@ -17,7 +17,7 @@ class Themes_Service {
 		$slugs = array();
 
 		foreach ( $themes as $theme => $meta ) {
-			$slugs[] = $meta['Template'] ?? '';
+			$slugs[] = $meta['Stylesheet'] ?? '';
 		}
 
 		$fields    = array(
@@ -38,7 +38,7 @@ class Themes_Service {
 		$update_exists    = array();
 		$no_update_exists = array();
 		foreach ( $themes as $theme ) {
-			$slug            = $theme['Template'] ?? '';
+			$slug            = $theme['Stylesheet'] ?? '';
 			$db_theme        = $db_themes[ $slug ] ?? array();
 			$request_version = $theme['Version'] ?? '';
 			$db_version      = $db_theme['new_version'] ?? '';
