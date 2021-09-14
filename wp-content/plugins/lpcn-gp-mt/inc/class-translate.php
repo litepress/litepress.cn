@@ -255,22 +255,44 @@ class Translate {
 
 			$glossary_entries = GP::$glossary_entry->all();
 
-			foreach ( $glossary_entries as $glossary ) {
-				if ( empty( $glossary->term ) || empty( $glossary->translation ) ) {
+			// 为术语衍生不同时态的版本
+			foreach ( $glossary_entries as $key => $value ) {
+				if ( empty( $value->term ) || empty( $value->translation ) ) {
 					continue;
 				}
 
-				$glossaries[ $glossary->term ] = $glossary->translation;
+				$terms = array();
+
+				$quoted_term = preg_quote( $value->term, '/' );
+
+				$terms[] = $quoted_term;
+				$terms[] = $quoted_term . 's';
+
+				if ( 'y' === substr( $value->term, - 1 ) ) {
+					$terms[] = preg_quote( substr( $value->term, 0, - 1 ), '/' ) . 'ies';
+				} elseif ( 'f' === substr( $value->term, - 1 ) ) {
+					$terms[] = preg_quote( substr( $value->term, 0, - 1 ), '/' ) . 'ves';
+				} elseif ( 'fe' === substr( $value->term, - 2 ) ) {
+					$terms[] = preg_quote( substr( $value->term, 0, - 2 ), '/' ) . 'ves';
+				} else {
+					if ( 'an' === substr( $value->term, - 2 ) ) {
+						$terms[] = preg_quote( substr( $value->term, 0, - 2 ), '/' ) . 'en';
+					}
+					$terms[] = $quoted_term . 'es';
+					$terms[] = $quoted_term . 'ed';
+					$terms[] = $quoted_term . 'ing';
+				}
+
+				foreach ( $terms as $term ) {
+					$glossaries[$term] = $value->translation;
+				}
 			}
 
 			/**
 			 * 对术语库按键的长度降序排序，这样防止先匹配短的术语导致长术语无法匹配
 			 */
 			uksort( $glossaries, function ( $a, $b ) {
-				$a_len = strlen( $a );
-				$b_len = strlen( $b );
-
-				return $a_len == $b_len ? 0 : ( $a_len > $b_len ? - 1 : 1 );
+				return mb_strlen( $a ) < mb_strlen( $b );
 			} );
 
 			wp_cache_set( 'glossaries', $glossaries, 'litepress-cn', 86400 );
