@@ -1654,7 +1654,9 @@ code {
 .results-navigation  .page-link{
     display: flex;
 }
-
+.btn-small {
+    font-size: 13px!important;
+}
 
 @media screen and (min-width: 768px) {
     li.menu-item-has-children:hover .dropdown-menu {

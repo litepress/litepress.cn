@@ -177,15 +177,13 @@ $(window).resize(function () {
     }
 });
 
-/*$(".action.edit").click(function(){
+$(".action.edit").click(function(){
     $(this).parent().parent().next().find(".textareas").addClass("active");
-    $(this).parent().parent().next().siblings().find(".textareas").removeClass("active")
 })
 
 $("tr.preview").dblclick(function(){
     $(this).next().find(".textareas").addClass("active");
-    $(this).next().siblings().find(".textareas").removeClass("active")
-})*/
+   })
 
 $("#translations").tooltip({
     items: ".glossary-word",
