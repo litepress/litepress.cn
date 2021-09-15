@@ -76,9 +76,9 @@ class WP_Http extends Original_WP_Http {
 		);
 
 		foreach ( $allowed as $item ) {
-			preg_match( "/^https?://$item", $url, $matches );
+			preg_match( "/^https?:\/\/$item/", $url, $matches );
 			if ( ! empty( $matches ) ) {
-				$url                     = preg_replace( "/^(https?)://$item", '$1://' . self::get_proxy_ip(), $url );
+				$url                     = preg_replace( "/^(https?):\/\/$item/", '$1://' . self::get_proxy_ip(), $url );
 				$args['headers']['Host'] = $item;
 			}
 		}
