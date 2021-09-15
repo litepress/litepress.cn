@@ -23,8 +23,10 @@ get_header();
     <?php endif; ?>
 
     <?php if ( gp_notice() ) : ?>
-        <div class="notice">
+    <div class="container">
+        <div class="notice mt-4">
             <?php echo gp_notice(); ?>
+        </div>
         </div>
     <?php endif; ?>
 

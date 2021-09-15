@@ -896,6 +896,10 @@ form.wcpv-shortcode-registration-form .form-row-wide .form-check-input {
     flex-wrap: wrap;
     align-items: center;
 }
+
+.woocommerce .product-type-simple img, .woocommerce-page .product-type-simple img{
+    min-width: 78px;
+}
 @media screen and (min-width: 640px) {
     .woocommerce ul.products.columns-4 li.product, .woocommerce-page ul.products.columns-4 li.product {
         margin: 0 1% 2.992em 0 !important;
