@@ -11,7 +11,7 @@ gp_tmpl_header();
 ?>
     <div class="container setting">
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 	<?php gp_tmpl_load( 'project-form', get_defined_vars() ); ?>
 	<p>
 		<input class="btn btn-primary" type="submit" name="submit" value="<?php esc_attr_e( 'Save', 'glotpress' ); ?>" id="submit" />
