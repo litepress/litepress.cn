@@ -67,8 +67,13 @@ class Route_Project extends GP_Route_Project {
 				return;
 			}
 
-			unlink( $tmp_name );
-			unlink( $tmp_name . '.zip' );
+			if ( file_exists( $tmp_name ) ) {
+				unlink( $tmp_name );
+			}
+
+			if ( file_exists( $tmp_name . '.zip' ) ) {
+				unlink( $tmp_name . '.zip' );
+			}
 
 			$file_name = 'lpcn-lang.pot';
 			$file_path = '/tmp/lpcn-lang.pot';
