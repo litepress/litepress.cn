@@ -125,6 +125,61 @@ class Route_Project extends GP_Route_Project {
 		$this->redirect( gp_url_project( $project ) . 'zh-cn/default/' );
 	}
 
+	public function edit_post( $project_path ) {
+		$project = GP::$project->by_path( $project_path );
+
+		if ( ! $project ) {
+			$this->die_with_404();
+		}
+
+		if ( $this->invalid_nonce_and_redirect( 'edit-project_' . $project->id ) ) {
+			return;
+		}
+
+		if ( $this->cannot_and_redirect( 'write', 'project', $project->id ) ) {
+			return;
+		}
+
+		$updated_project = new GP_Project( gp_post( 'project' ) );
+		if ( $this->invalid_and_redirect( $updated_project, gp_url_project( $project, '-edit' ) ) ) {
+			return;
+		}
+
+		// TODO: add id check as a validation rule
+		if ( $project->id == $updated_project->parent_project_id ) {
+			$this->errors[] = __( 'The project cannot be parent of itself!', 'glotpress' );
+		} elseif ( $project->save( $updated_project ) ) {
+			$this->notices[] = __( 'The project was saved.', 'glotpress' );
+		} else {
+			$this->errors[] = __( 'Error in saving project!', 'glotpress' );
+		}
+
+		/**
+		 * 插入封面图
+		 */
+		if ( ! function_exists( 'wp_handle_upload' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		}
+
+		if ( isset( $_FILES['icon'] ) && ! empty( $_FILES['icon'] ) ) {
+			$uploadedfile     = $_FILES['icon'];
+			$upload_overrides = array(
+				'test_form' => false
+			);
+
+			$movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
+			if ( $movefile && ! isset( $movefile['error'] ) ) {
+				gp_update_meta( $project->id, 'icon', $movefile['url'], 'project' );
+			} else {
+				$this->errors[] = '封面图上传失败：' . $movefile['error'];
+			}
+		}
+
+		$project->reload();
+
+		$this->redirect( gp_url_project( $project ) );
+	}
+
 	public function new_post() {
 		if ( $this->invalid_nonce_and_redirect( 'add-project' ) ) {
 			return;
