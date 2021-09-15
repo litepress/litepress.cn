@@ -63,7 +63,7 @@ class Translate {
 
 		foreach ( $originals as $original_key => $original ) {
 			$translation = $glossaries[ strtolower( $original->singular ) ] ?? '';
-			$translation ?: apply_filters( 'gp_mt_pre_translate', '', $original->singular );
+			$translation = $translation ?: apply_filters( 'gp_mt_pre_translate', '', $original->singular );
 
 			if ( ! empty( $translation ) ) {
 				$entry = new Translation_Entry( array(
