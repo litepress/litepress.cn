@@ -124,7 +124,7 @@ class Translate {
 			foreach ( $matches[0] ?? array() as $match ) {
 				$id            = rand( 0, 99999 );
 				$id_map[ $id ] = $match;
-				$source_esc    = str_replace( $match, "<code>#$id</code>", $source_esc );
+				$source_esc    = str_replace( $match, "#$id", $source_esc );
 			}
 
 			/**
@@ -133,7 +133,7 @@ class Translate {
 			foreach ( $glossaries as $key => $value ) {
 				$id         = rand( 0, 99999 );
 				$key        = preg_quote( $key, '/' );
-				$source_esc = preg_replace( "/\b$key\b/m", "<code>#$id</code>", $source_esc, - 1, $is_replace );
+				$source_esc = preg_replace( "/\b$key\b/m", "#$id", $source_esc, - 1, $is_replace );
 
 				// 如果内容被替换过，就将当前的id写到map里
 				if ( $is_replace ) {
@@ -198,7 +198,7 @@ class Translate {
 					$task['target'] = $data[ $task['source_esc'] ];
 
 					foreach ( $task['glossaries'] as $k => $v ) {
-						$task['target'] = preg_replace( "/(\s*)<(\s*)(code|代码)(\s*)>#(\s*)$k(\s*)<(\s*)\/(code|代码)>(\s*)/m", $v, $task['target'] );
+						$task['target'] = preg_replace( "/(\s*)#(\s*)$k(\s*)/m", $v, $task['target'] );
 					}
 
 					if ( ! empty( $task['target'] ) ) {
