@@ -8,6 +8,8 @@ define( 'CA_ROOT_URL', get_stylesheet_directory_uri() );
 
 const CA_LOG_NAME = 'Cravatar';
 
+ini_set( 'display_errors', 1 );
+
 /*
  * $upyun = new Upyun();
 $r = $upyun->get( 'flow/common_data', array(
