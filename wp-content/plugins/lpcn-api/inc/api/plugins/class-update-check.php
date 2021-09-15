@@ -58,7 +58,7 @@ class Update_Check extends Base {
 		);
 
 		$args = array(
-			'plugins'       => $updated_plugins['update'],
+			'plugins'      => $updated_plugins['update'],
 			'no_update'    => $updated_plugins['no_update'],
 			'translations' => $updated_translations,
 		);
