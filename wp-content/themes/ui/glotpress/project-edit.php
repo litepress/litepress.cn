@@ -9,22 +9,16 @@ gp_title(
 gp_breadcrumb_project( $project );
 gp_tmpl_header();
 ?>
-<h2>
-	<?php
-	printf(
-		/* translators: %s: project name */
-		__( 'Edit project "%s"', 'glotpress' ),
-		esc_html( $project->name )
-	);
-	?>
-</h2>
+    <div class="container setting">
+
 <form action="" method="post">
 	<?php gp_tmpl_load( 'project-form', get_defined_vars() ); ?>
 	<p>
-		<input type="submit" name="submit" value="<?php esc_attr_e( 'Save', 'glotpress' ); ?>" id="submit" />
-		<span class="or-cancel"><?php _e( 'or', 'glotpress' ); ?> <a href="<?php echo esc_url( gp_url_project( $project ) ); ?>"><?php _e( 'Cancel', 'glotpress' ); ?></a></span>
+		<input class="btn btn-primary" type="submit" name="submit" value="<?php esc_attr_e( 'Save', 'glotpress' ); ?>" id="submit" />
+		<span class="or-cancel"><?php _e( 'or', 'glotpress' ); ?>　<a class="btn btn-outline-primary" href="<?php echo esc_url( gp_url_project( $project ) ); ?>"><?php _e( 'Cancel', 'glotpress' ); ?></a></span>
 	</p>
 	<?php gp_route_nonce_field( 'edit-project_' . $project->id ); ?>
 </form>
+    </div>
 <?php
 gp_tmpl_footer();
