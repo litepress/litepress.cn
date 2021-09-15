@@ -23,8 +23,8 @@ function wcy_gp_translations_bulk_actions_toolbar( $bulk_action, $can_write, $tr
 
     <form id="bulk-actions-toolbar-<?php echo esc_attr( $location ); ?>" class="filters-toolbar bulk-actions"
           action="<?php echo esc_attr( $bulk_action ); ?>" method="post">
-        <div>
-            <select name="bulk[action]" id="bulk-action-<?php echo esc_attr( $location ); ?>" class="bulk-action">
+        <div class="d-flex">
+            <select name="bulk[action]" id="bulk-action-<?php echo esc_attr( $location ); ?>" class="bulk-action form-select me-1">
                 <option value="" selected="selected"><?php _e( 'Bulk Actions', 'glotpress' ); ?></option>
                 <option value="approve"><?php _ex( 'Approve', 'Action', 'glotpress' ); ?></option>
                 <option value="reject"><?php _ex( 'Reject', 'Action', 'glotpress' ); ?></option>

@@ -35,11 +35,33 @@ get_header();
 						<?php foreach ( (array) get_user_emails( $user->ID ) as $email ): ?>
 							<?php if ( $user->user_email !== $email ): ?>
                                 <li class="email">
-                                    <p><?php echo $email; ?></p>
+                                    <p id="wpemail"><?php echo $email; ?></p>
                                     <input type="hidden" name="nonce"
                                            value="<?php echo wp_create_nonce( 'delete-email-' . $email ) ?>">
                                     <ul class="tip">
-                                        <a class="remove_email" href="javascript:">删除该邮箱</a></ul>
+                                        <!-- Button trigger modal -->
+                                        <a class="" href="javascript:" data-bs-toggle="modal" data-bs-target="#Delete_mailbox">删除该邮箱</a>
+
+                                        <!-- Modal -->
+                                        <div class="modal  fade" id="Delete_mailbox" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">确认删除</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        您是否确认删除这个邮箱吗？
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                                                        <button type="button" class="btn btn-primary remove_email" data-bs-dismiss="modal">确认删除</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        </ul>
                                 </li>
 							<?php endif; ?>
 						<?php endforeach; ?>
@@ -66,7 +88,7 @@ get_header();
                              data-upload_text="在此处上传您的图像<small class=&quot;um-max-filesize&quot;>( 最大: <span>2MB</span> )</small>"
                              data-max_files_error="您只能上传一张图像" data-upload_help_text="" style="display: none;">上传
                         </div>
-                        <div class="alert-fixed hide"></div>
+                        <div class="alert hide"></div>
 
                         <div class="form-group mt-3">
                             <div class="fileinput fileinput-new">

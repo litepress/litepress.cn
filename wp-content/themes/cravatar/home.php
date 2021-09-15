@@ -83,7 +83,7 @@ $is_login = is_user_logged_in();
                         </div>
                         <div class="col">
                             <div class="card">
-                                <a href="javascript:;" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes" style="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <a href="javascript:;" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes" style="" data-bs-toggle="modal" data-bs-target="#Cooperation">
                                     <p class=""><i class="fad fa-arrow-alt-up"></i> 我 要 上 榜</p>
                                 </a>
                             </div>
