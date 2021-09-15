@@ -16,8 +16,6 @@ use LitePress\Autoload;
 const PLUGIN_FILE = __FILE__;
 const PLUGIN_DIR  = __DIR__;
 
-include __DIR__ . '/vendor/autoload.php';
-
 if ( ! class_exists( '\LitePress\Autoload\Autoloader', false ) ) {
 	include __DIR__ . '/vendor/litepress/autoload/class-autoloader.php';
 }
