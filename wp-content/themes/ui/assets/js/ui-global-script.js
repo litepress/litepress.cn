@@ -212,3 +212,11 @@ $("#translations").tooltip({
     hide: !1,
     show: !1
 })
+
+$(".btn.replace").click(function(){
+    $(this).parent().siblings(".replace").toggle();
+    $(this).parent().siblings(".filters-expanded:not(.replace)").hide();
+})
+$(".btn.filter,.btn.sort").click(function(){
+    $(this).parent().siblings(".replace").hide();
+})
