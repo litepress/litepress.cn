@@ -6,6 +6,7 @@ use GP;
 use GP_Route;
 use LitePress\Logger\Logger;
 use LitePress\WP_Http\WP_Http;
+use StanfordNLP\POSTagger;
 use Translation_Entry;
 use Translations;
 use WP_Error;
@@ -52,7 +53,10 @@ class Translate {
 			if ( empty( $item ) ) {
 				continue;
 			}
-			$glossaries[ $item ] = $item;
+			$glossaries[ $item ] = array(
+				'translation'    => $item,
+				'part_of_speech' => 'noun',
+			);
 		}
 
 		/**
@@ -62,7 +66,7 @@ class Translate {
 		add_filter( 'gp_mt_pre_translate', array( __CLASS__, 'get_translate_from_memory' ), 10, 2 );
 
 		foreach ( $originals as $original_key => $original ) {
-			$translation = $glossaries[ strtolower( $original->singular ) ] ?? '';
+			$translation = $glossaries[ strtolower( $original->singular ) ]['translation'] ?? '';
 			$translation = $translation ?: apply_filters( 'gp_mt_pre_translate', '', $original->singular );
 
 			if ( ! empty( $translation ) ) {
@@ -111,7 +115,8 @@ class Translate {
 			foreach ( $matches[0] ?? array() as $match ) {
 				$h_id            = rand( 0, 99999 );
 				$h_map["H$h_id"] = $match;
-				$source_esc      = str_replace( $match, "H$h_id", $source_esc );
+				// 替换 HTML 后对两端增加空格，以使标识符与周围单词划开界限
+				$source_esc = str_replace( $match, " H$h_id ", $source_esc );
 			}
 
 
@@ -127,25 +132,36 @@ class Translate {
 				$source_esc    = str_replace( $match, "#$id", $source_esc );
 			}
 
+			$pos_map = self::get_pos_tags( $source_esc );
+
 			/**
 			 * 替换术语库
 			 */
 			foreach ( $glossaries as $key => $value ) {
+				// 开始替换前先检查词性是否匹配，如果不匹配则跳过
+				if ( ! key_exists( $key, $pos_map ) ) {
+					continue;
+				}
+
+				if ( $pos_map[ $key ] !== $value['part_of_speech'] ) {
+					continue;
+				}
+
 				$id         = rand( 0, 99999 );
 				$key        = preg_quote( $key, '/' );
 				$source_esc = preg_replace( "/\b$key\b/m", "#$id", $source_esc, - 1, $is_replace );
 
 				// 如果内容被替换过，就将当前的id写到map里
 				if ( $is_replace ) {
-					$id_map[ $id ] = $value;
+					$id_map[ $id ] = $value['translation'];
 				}
 			}
-/*
-			if ( stristr( $source, ' Recommended:' ) ) {
-				var_dump($glossaries);
-				var_dump( $source_esc );
-				exit;
-			}*/
+			/*
+						if ( stristr( $source, ' Recommended:' ) ) {
+							var_dump($glossaries);
+							var_dump( $source_esc );
+							exit;
+						}*/
 
 			/**
 			 * 术语库替换完得在翻译触发前把前面预处理去掉的HTML标签恢复一下
@@ -284,7 +300,10 @@ class Translate {
 				}
 
 				foreach ( $terms as $term ) {
-					$glossaries[$term] = $value->translation;
+					$glossaries[ $term ] = array(
+						'translation'    => $value->translation,
+						'part_of_speech' => $value->part_of_speech,
+					);
 				}
 			}
 
@@ -299,6 +318,53 @@ class Translate {
 		}
 
 		return $glossaries;
+	}
+
+	/**
+	 * 获取给定语句的所有单词的词性
+	 */
+	private static function get_pos_tags( string $text ): array {
+		$pos = new POSTagger(
+			PLUGIN_DIR . '/stanford-postagger-full/models/english-bidirectional-distsim.tagger',
+			PLUGIN_DIR . '/stanford-postagger-full/stanford-postagger-4.2.0.jar',
+		);
+
+		$result = $pos->tag( explode( ' ', $text ) );
+
+		$tag_map = array(
+			'NN'  => 'noun',
+			'NNS' => 'noun',
+			'VB'  => 'verb',
+			'VBD' => 'verb',
+			'VBG' => 'verb',
+			'VBN' => 'verb',
+			'VBP' => 'verb',
+			'VBZ' => 'verb',
+			'JJ'  => 'adjective',
+			'JJR' => 'adjective',
+			'JJS' => 'adjective',
+			'RB'  => 'adverb',
+			'RBR' => 'adverb',
+			'RBS' => 'adverb',
+			'UH'  => 'interjection',
+			'CC'  => 'conjunction',
+			'IN'  => 'preposition',
+			'PRP' => 'pronoun',
+		);
+
+		$pos_map = array();
+		foreach ( $result[0] ?? array() as $item ) {
+			$tag  = $item[1] ?? '';
+			$word = $item[0] ?? '';
+
+			if ( ! key_exists( $tag, $tag_map ) ) {
+				continue;
+			}
+
+			$pos_map[ $word ] = $tag_map[ $tag ];
+		}
+
+		return $pos_map;
 	}
 
 	private
