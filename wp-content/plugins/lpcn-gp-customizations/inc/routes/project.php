@@ -62,7 +62,7 @@ class Route_Project extends GP_Route_Project {
 
 			exec( sprintf( 'wp i18n make-pot %s %s --ignore-domain', escapeshellarg( $root_path ), escapeshellarg( '/tmp/lpcn-lang.pot' ) ), $output, $return_var );
 			if ( $return_var || ! file_exists( '/tmp/lpcn-lang.pot' ) ) {
-				$this->redirect_with_error( '翻译提取失败：' . $output );
+				$this->redirect_with_error( '翻译提取失败：' . $output[0] ?? '' );
 
 				return;
 			}
