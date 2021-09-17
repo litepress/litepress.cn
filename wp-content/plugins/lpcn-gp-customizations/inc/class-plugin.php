@@ -3,6 +3,8 @@
 namespace LitePress\GlotPress\Customizations\Inc;
 
 use GP;
+use GP_Route;
+use GP_Route_Translation;
 use GP_Translation;
 use LitePress\Chinese_Format\Chinese_Format;
 use LitePress\GlotPress\Customizations\Inc\Routes\Index;
@@ -54,6 +56,11 @@ class Plugin {
 		 * 导入翻译时跳过已存在“当前翻译”的条目
 		 */
 		add_filter( 'gp_translation_set_import_over_existing', '__return_false' );
+
+		/**
+		 * 自定义翻译条目列表的查询
+		 */
+		add_filter( 'gp_for_translation_where', array( $this, 'gp_for_translation_where' ), 10, 2 );
 	}
 
 	/**
@@ -106,14 +113,14 @@ class Plugin {
 
 			$project = GP::$project->find_one( array( 'id' => $args['object_id'] ) );
 			// 如果项目不存在父项目则不允许编辑
-			if ( empty( $project->parent_project_id ) ) {
+			if ( empty( $project->parent_project_id ) && '/translate/projects/' !== $_SERVER['REQUEST_URI'] && '/translate/projects/-new/' !== $_SERVER['REQUEST_URI'] ) {
 				return false;
 			}
 
 			$is_can = $can( (int) $args['object_id'], (int) $args['user_id'] );
 			if ( ! $is_can ) {
 				// 如果对父项目有权限，则也可以操作
-				$is_can = $can( (int) $project->parent_project_id, (int) $args['user_id'] );
+				$is_can = $can( (int) ( $project->parent_project_id ?? 0 ), (int) $args['user_id'] );
 			}
 
 			if ( $is_can ) {
@@ -133,6 +140,41 @@ class Plugin {
 		$data[] = $actions[0];
 
 		return $data;
+	}
+
+	public function gp_for_translation_where( $where, $translation_set ): array {
+		// 处理翻译替换，该功能只允许对项目拥有编辑和审核权限的用户使用
+		$route = new GP_Route_Translation();
+		if ( ! $route->can( 'approve', 'translation-set', $translation_set->id ) ) {
+			return $where;
+		}
+
+		if ( ! isset( $_GET['filter'] ) || '应用替换' !== $_GET['filter'] ) {
+			if ( isset( $_GET['filters']['term_by_replace'] ) && ! empty( $_GET['filters']['term_by_replace'] ) && '应用搜索' === $_GET['filter'] ) {
+				$where[0] = "((t.translation_0 LIKE '%{$_GET['filters']['term_by_replace']}%') OR (t.translation_1 LIKE '%{$_GET['filters']['term_by_replace']}%'))";
+			}
+
+			return $where;
+		}
+
+		if ( ! isset( $_GET['filters']['term_by_replace'] ) || ! isset( $_GET['filters']['replace'] ) ) {
+			return $where;
+		}
+
+		$term         = sanitize_text_field( $_GET['filters']['term_by_replace'] );
+		$term_replace = sanitize_text_field( $_GET['filters']['replace'] );
+
+		// 允许替换的术语为空，但是不允许搜索的术语为空
+		if ( empty( $term ) ) {
+			return $where;
+		}
+
+		global $wpdb;
+
+		$sql = $wpdb->prepare( "update {$wpdb->prefix}gp_translations SET translation_0 = REPLACE( translation_0, %s, %s ) where translation_set_id=%d;", $term, $term_replace, $translation_set->id );
+		$wpdb->query( $sql );
+
+		return $where;
 	}
 
 }

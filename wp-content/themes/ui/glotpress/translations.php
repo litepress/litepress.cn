@@ -69,7 +69,8 @@ $i = 0;
     <div class="container">
 		<?php echo gp_breadcrumb(); ?>
         <div class="notice" id="help-notice">
-            你可以通过安装 <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip" target="_blank">WP-China-Yes</a> 插件，并切换应用市场为“LitePress 应用市场”来接收翻译推送（只推送翻译率大于 80% 的包）。
+            你可以通过安装 <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip" target="_blank">WP-China-Yes</a>
+            插件，并切换应用市场为“LitePress 应用市场”来接收翻译推送（只推送翻译率大于 80% 的包）。
         </div>
     </div>
 
@@ -228,9 +229,13 @@ $i = 0;
                     </div>
                     <div class="groupedfields">
                         <a href="#"
-                           class="revealing filter far fa-filter"><?php _e( 'Filter &darr;', 'glotpress' ); ?></a>
+                           class="btn btn-outline-primary filter far fa-filter"><?php _e( '过滤', 'glotpress' ); ?></a>
+						<?php if ( $can_approve ): ?>
+                            <a href="#"
+                               class="btn btn-outline-primary replace far fa-bomb"><?php _e( '替换', 'glotpress' ); ?></a>
+						<?php endif; ?>
                         <a href="#"
-                           class="revealing sort far fa-sort-alpha-down"><?php _e( 'Sort &darr;', 'glotpress' ); ?></a>
+                           class="btn btn-outline-primary sort far fa-sort-alpha-down"><?php _e( '排序', 'glotpress' ); ?></a>
                     </div>
 
                     <div class="filters-expanded filters hidden">
@@ -323,6 +328,37 @@ $i = 0;
                         <div class="filters-expanded-actions">
                             <input type="submit" class="button btn btn-primary"
                                    value="<?php esc_attr_e( 'Apply Filters', 'glotpress' ); ?>" name="filter"/>
+                        </div>
+                    </div>
+                    <div class="filters-expanded replace hidden">
+                        <div class="filters-expanded-section">
+                            <label for="filters[term_by_replace]" class="filter-title">搜索关键字：</label><br/>
+                            <input class="form-control" type="text"
+                                   value="<?php echo gp_esc_attr_with_entities( gp_array_get( $filters, 'term_by_replace' ) ); ?>"
+                                   name="filters[term_by_replace]" id="filters[term_by_replace]"/>
+                            <fieldset>
+                                <legend class="filter-title">搜索范围：</legend>
+								<?php
+								echo gp_radio_buttons(
+									'filters[term_by_replace_scope]',
+									array(
+										'scope_translations' => __( 'Translations only', 'glotpress' ),
+									),
+									gp_array_get( $filters, 'term_by_replace_scope', 'scope_translations' )
+								);
+								?>
+                            </fieldset>
+                            <label for="filters[term]" class="filter-title">替换关键字：</label><br/>
+                            <input class="form-control" type="text"
+                                   value="<?php echo gp_esc_attr_with_entities( gp_array_get( $filters, 'replace' ) ); ?>"
+                                   name="filters[replace]" id="filters[replace]"/><br/>
+                        </div>
+
+                        <div class="filters-expanded-actions">
+                            <input type="submit" class="button btn btn-primary"
+                                   value="应用搜索" name="filter"/>
+                            <input type="submit" class="button btn btn-primary"
+                                   value="应用替换" name="filter"/>
                         </div>
                     </div>
                     <div class="filters-expanded sort hidden">
