@@ -80,7 +80,8 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                 </div>
                 <div class="col-7">
                     <h5 class="card-title"><a
-                                href="<?php echo $product->get_permalink(); ?>"><?php echo $product->get_title(); ?></a>
+                                href="<?php echo $product->get_permalink(); ?>"
+                                data-bs-original-title="<?php echo $product->get_name(); ?>"><?php echo $product->get_title(); ?></a>
                     </h5>
                     <div class="woocommerce row"><span class="price col-4">
                             <span class="woocommerce-Price-amount amount">
@@ -115,8 +116,9 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                     <a href="<?php echo $product->get_permalink(); ?>"><span class="more-details">查看详情</span></a>
                 </div>
                 <div class="card-body row align-items-center">
-                    <p class="card-text"><a
-                                href="<?php echo $product->get_permalink(); ?>"><?php echo $product->get_title(); ?></a>
+                    <p class="card-text">
+                        <a href="<?php echo $product->get_permalink(); ?>"
+                           data-bs-original-title="<?php echo $product->get_name(); ?>"><?php echo $product->get_title(); ?></a>
                     </p>
 
                     <div class="woocommerce row"><span class="price col-4">
