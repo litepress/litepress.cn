@@ -547,10 +547,10 @@ add_action( 'wp_after_admin_bar_render', function () {
  * wordpress上传文件重命名
  */
 add_filter( 'wp_handle_upload_prefilter', function ( $file ) {
-    // 重命名不对zip压缩包生效，因为压缩包重命名后就不知道传的是啥了
-    if ( stristr( $file['name'], '.zip' ) ) {
-	    return $file;
-    }
+	// 重命名不对zip压缩包生效，因为压缩包重命名后就不知道传的是啥了
+	if ( stristr( $file['name'], '.zip' ) ) {
+		return $file;
+	}
 
 	$time         = date( "YmdHis" );
 	$file['name'] = $time . "" . mt_rand( 1, 100 ) . "." . pathinfo( $file['name'], PATHINFO_EXTENSION );
@@ -566,3 +566,17 @@ add_filter( 'ep_formatted_args', function ( $formatted_args ) {
 
 	return $formatted_args;
 } );
+
+/**
+ * 应用市场 ES 搜索时除了搜翻译后的中文外也允许搜英文原文
+ */
+add_filter( 'ep_weighting_configuration_for_search', function ( $weight_config, $args ): array {
+	if ( key_exists( 'product', $weight_config ) ) {
+		$weight_config['product']['post_title_en'] = array(
+			'weight'  => 100,
+			'enabled' => true,
+		);
+	}
+
+	return $weight_config;
+}, 10, 2 );
