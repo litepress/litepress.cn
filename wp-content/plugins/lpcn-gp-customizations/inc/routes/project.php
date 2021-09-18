@@ -296,12 +296,14 @@ class Route_Project extends GP_Route_Project {
 			$sort = array();
 		}
 
-		$cache_key = sanitize_title( $_SERVER['REQUEST_URI'] );
+		$cache_key       = sanitize_title( $_SERVER['REQUEST_URI'] );
+		$is_not_finished = $_GET['not_finished'] ?? '';
 
 		$sub_projects = wp_cache_get( $cache_key );
 		if ( empty( $sub_projects ) ) {
 			if ( 1 === (int) $project->id || 2 === (int) $project->id ) {
-				$sql = <<<SQL
+				if ( empty( $is_not_finished ) ) {
+					$sql = <<<SQL
 select id,
        name,
        author,
@@ -326,6 +328,71 @@ where 1 = 1
   and gp.parent_project_id = %d
 order by mid.total_sales desc
 SQL;
+				} else {
+					$not_finished_project_slugs = wp_cache_get( 'translation_not_finished_project_slugs', 'litepress-cn' );
+
+					if ( empty( $not_finished_project_slugs ) ) {
+						$sql                      = <<<SQL
+ select parent_project_id
+    from wp_4_gp_projects
+    where id in (
+        select project_id
+        from wp_4_gp_originals
+        where id not in (
+            select original_id from wp_4_gp_translations where status = 'current'
+        )
+        and status='+active'
+        group by project_id
+    )
+    group by parent_project_id
+SQL;
+						$r                        = $wpdb->get_results( $sql );
+						$not_finished_project_ids = array_map( function ( $item ) {
+							return $item->parent_project_id;
+						}, $r );
+
+						$sql                        = <<<SQL
+ select slug
+from wp_4_gp_projects
+where id in (%s)
+SQL;
+						$r                          = $wpdb->get_results( sprintf( $sql, join( ',', $not_finished_project_ids ) ) );
+						$not_finished_project_slugs = array_map( function ( $item ) {
+							return "'$item->slug'";
+						}, $r );
+
+						$not_finished_project_slugs = join( ',', $not_finished_project_slugs );
+
+						wp_cache_set( 'translation_not_finished_project_slugs', $not_finished_project_slugs, 'litepress-cn', 7200 );
+					}
+
+					$sql = <<<SQL
+select id,
+       name,
+       author,
+       gp.slug,
+       path,
+       description,
+       parent_project_id,
+       source_url_template,
+       active
+from wp_4_gp_projects gp
+         INNER JOIN (select mid.slug, wc.total_sales
+                     from wp_3_wc_product_meta_lookup wc
+                              INNER JOIN lp_api_projects mid ON mid.product_id = wc.product_id
+                     where 1 = 1
+                       and mid.type = %s
+                       and mid.slug in ($not_finished_project_slugs)
+         			   and mid.name like %s
+                     order by wc.total_sales desc, mid.product_id desc
+                     limit %d, 15) as mid
+where 1 = 1
+  and gp.slug = mid.slug
+  and gp.parent_project_id = %d
+order by mid.total_sales desc
+SQL;
+				}
+
 				$sql = $wpdb->prepare( $sql,
 					1 === $project->id ? 'plugin' : 'theme',
 					'%' . $s . '%',
