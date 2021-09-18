@@ -514,19 +514,18 @@ SQL;
 		$excluded = array(
 			$project_name
 		);
-		for ( $i = 0; true; $i += 500 ) {
+		for ( $i = 0; true; $i += 300 ) {
 			$item = array_slice( $originals, $i, 500, true );
 			if ( empty( $item ) ) {
 				break;
 			}
 
-			do_action( 'lpcn_schedule_gp_mt', $project_id, $item, $excluded );
-			/*
-			wp_schedule_single_event( time() + 60, 'lpcn_schedule_gp_mt', [
+			//do_action( 'lpcn_schedule_gp_mt', $project_id, $item, $excluded );
+			wp_schedule_single_event( time() + 1, 'lpcn_schedule_gp_mt', [
 				'project_id' => $project_id,
 				'originals'  => $item,
 				'excluded'   => $excluded
-			] );*/
+			] );
 		}
 
 		$referer = gp_url_project( $project['path'] );
