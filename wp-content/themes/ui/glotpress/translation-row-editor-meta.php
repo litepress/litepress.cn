@@ -88,7 +88,7 @@ $more_links = apply_filters( 'gp_translation_row_template_more_links', $more_lin
 	<?php if ( $translation->context ) : ?>
 		<dl>
 			<dt><?php _e( 'Context:', 'glotpress' ); ?></dt>
-			<dd><span class="context bubble"><?php echo esc_translation( $translation->context ); ?></span></dd>
+			<dd><span class="btn btn-secondary"><?php echo esc_translation( $translation->context ); ?></span></dd>
 		</dl>
 	<?php endif; ?>
 	<?php if ( $translation->extracted_comments ) : ?>
@@ -142,37 +142,7 @@ $more_links = apply_filters( 'gp_translation_row_template_more_links', $more_lin
 	<?php endif; ?>
 	<?php references( $project, $translation ); ?>
 
-	<dl>
-		<dt><?php _e( 'Priority:', 'glotpress' ); ?></dt>
-		<?php if ( $can_write ) : ?>
-			<dd>
-				<?php
-				echo gp_select(
-					'priority-' . $translation->original_id,
-					GP::$original->get_static( 'priorities' ),
-					$translation->priority,
-					array(
-						'class'      => 'priority',
-						'tabindex'   => '-1',
-						'data-nonce' => wp_create_nonce( 'set-priority_' . $translation->original_id ),
-					)
-				);
-				?>
-			</dd>
-		<?php else : ?>
-			<dd>
-				<?php
-				echo esc_html(
-					gp_array_get(
-						GP::$original->get_static( 'priorities' ),
-						$translation->priority,
-						_x( 'Unknown', 'priority', 'glotpress' )
-					)
-				);
-				?>
-			</dd>
-		<?php endif; ?>
-	</dl>
+
 
 	<dl>
 		<dt><?php _e( 'More links:', 'glotpress' ); ?>
