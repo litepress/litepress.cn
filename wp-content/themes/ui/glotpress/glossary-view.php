@@ -27,17 +27,6 @@ if ( 0 === $project->id ) {
 <main class="container">
     <section class="toolbar">
         <div class="text-center">
-<h5>
-	<?php
-	printf(
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		$glossary_title,
-		'简体中文',
-		esc_html( $project->name )
-	);
-	?>
-
-</h5>
         <ul>
         <?php gp_link_glossary_edit( $glossary, $translation_set, _x( '(edit)', 'glossary', 'glotpress' ) ); ?>
         <?php gp_link_glossary_delete( $glossary, $translation_set, _x( '(delete)', 'glossary', 'glotpress' ) ); ?>
