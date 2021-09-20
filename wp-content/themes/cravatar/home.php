@@ -125,6 +125,13 @@ $is_login = is_user_logged_in();
         <div class="row row-cols-3 row-cols-xl-6 wp-img-ground justify-content-center mb-5">
             <div class="col">
                 <div class="card">
+                    <a href="https://console.upyun.com/register/?invite=SyMTvwEi_" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
+                        <img class="uabb-gallery-img card-img" src="/wp-content/uploads/2020/08/又拍云_logo5-300x153.png" alt="又拍云" itemprop="thumbnail" title="又拍云">
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
                     <a href="https://www.weixiaoduo.com/?ref=sunxiyuan" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
                         <img class="uabb-gallery-img card-img" src="/wp-content/uploads/2020/08/weixiaoduo-logo-2020-300x134.png" alt="薇晓朵" itemprop="thumbnail" title="薇晓朵">
                     </a>
@@ -148,13 +155,6 @@ $is_login = is_user_logged_in();
                 <div class="card">
                     <a href="https://www.appnode.com/?jzgkdu" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
                         <img class="uabb-gallery-img card-img" src="/wp-content/uploads/2020/08/logo-s.gif" alt="AppNode" itemprop="thumbnail" title="AppNode">
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <a href="https://console.upyun.com/register/?invite=SyMTvwEi_" target="_blank" rel="noopener" data-caption="" itemprop="contentUrl" one-link-mark="yes">
-                        <img class="uabb-gallery-img card-img" src="/wp-content/uploads/2020/08/又拍云_logo5-300x153.png" alt="又拍云" itemprop="thumbnail" title="又拍云">
                     </a>
                 </div>
             </div>
