@@ -231,3 +231,42 @@ function compress_html( $string ): string {
 
 	return preg_replace( $pattern, $replace, $string );
 }
+
+/**
+ * 为 HTML 文本切片
+ *
+ * 切片的依据是 标题、li标签、p标签，他们中包含的元素都会成为一个单独的片
+ *
+ * @param string $html
+ *
+ * @return array
+ */
+function html_split( string $html ): array {
+	$section_strings = array();
+
+	if ( preg_match_all( '~<(h[3-4]|dt)[^>]*>([^<].+)</\1>~', $html, $matches ) ) {
+		if ( ! empty( $matches[2] ) ) {
+			foreach ( $matches[2] as $text ) {
+				$section_strings[] = $text;
+			}
+		}
+	}
+
+	if ( preg_match_all( '|<li>(?!<p>)([\s\S]*?)</li>|', $html, $matches ) ) {
+		if ( ! empty( $matches[1] ) ) {
+			foreach ( $matches[1] as $text ) {
+				$section_strings[] = $text;
+			}
+		}
+	}
+
+	if ( preg_match_all( '|<p>([\s\S]*?)</p>|', $html, $matches ) ) {
+		if ( ! empty( $matches[1] ) ) {
+			foreach ( $matches[1] as $text ) {
+				$section_strings[] = $text;
+			}
+		}
+	}
+
+	return $section_strings;
+}
