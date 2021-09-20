@@ -206,3 +206,28 @@ function is_chinese( string $str ): bool {
 		return false;
 	}
 }
+
+/**
+ * 压缩 HTML
+ *
+ * @param $string
+ *
+ * @return string
+ */
+function compress_html( $string ): string {
+	$string  = str_replace( "\r\n", '', $string ); //清除换行符
+	$string  = str_replace( "\n", '', $string ); //清除换行符
+	$string  = str_replace( "\t", '', $string ); //清除制表符
+	$pattern = array(
+		"/> *([^ ]*) *</", //去掉注释标记
+		"/[\s]+/", //多个空白字符 -- 置为1个空格
+		"/<!--[\\w\\W\r\\n]*?-->/", //<!-- -->注释之间的空白字符 -- 置空
+	);
+	$replace = array(
+		">\\1<",
+		" ",
+		"",
+	);
+
+	return preg_replace( $pattern, $replace, $string );
+}
