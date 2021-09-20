@@ -24,6 +24,9 @@ add_action('wp_enqueue_scripts', function () {
     //wp_add_inline_script('heti-addon', 'const heti = new Heti(".heti");heti.autoSpacing();');
 	//wp_enqueue_script('instantclick', get_stylesheet_directory_uri() . '/assets/js/instantclick.min.js', [], false, true);
 	//wp_add_inline_script('instantclick', 'InstantClick.init();');
+
+	//wp_deregister_script('gp-common');
+	wp_enqueue_script('ui-glotpress', get_stylesheet_directory_uri() . '/assets/js/ui-glotpress.js', [], false, true);
 });
 
 /**
