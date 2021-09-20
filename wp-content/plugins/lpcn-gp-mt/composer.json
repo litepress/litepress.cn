@@ -1,0 +1,17 @@
+{
+    "name": "sxy/lpcn-gp-mt",
+    "autoload": {
+        "psr-4": {
+            "Sxy\\LpcnGpMt\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sunxiyuan",
+            "email": "sxy@ibadboy.net"
+        }
+    ],
+    "require": {
+        "agentile/php-stanford-nlp": "^0.1.1"
+    }
+}
