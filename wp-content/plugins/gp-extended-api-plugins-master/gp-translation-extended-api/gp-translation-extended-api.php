@@ -21,7 +21,7 @@ class GP_Route_Translation_Extended extends GP_Route_Main {
 		$project_path          = gp_post( 'project' );
 		$locale_slug           = gp_post( 'locale_slug' );
 		$translation_set_slug  = gp_post( 'translation_set_slug', 'default' );
-		$original_strings      = json_decode( gp_post( 'original_strings', array() ) );
+		$original_strings      = json_decode( gp_post( 'original_strings', true ) );
 
 		if ( ! $project_path || ! $locale_slug || ! $translation_set_slug || ! $original_strings ) {
 			$this->die_with_404();
@@ -176,7 +176,7 @@ class GP_Route_Translation_Extended extends GP_Route_Main {
 add_action( 'gp_init', 'gp_translation_exended_api_init' );
 
 function gp_translation_exended_api_init() {
-	
+
 	GP::$router->add( '/translations/-new', array( 'GP_Route_Translation_Extended', 'save_translation' ), 'post' );
 	GP::$router->add( '/translations/(\d+)/-set-status', array( 'GP_Route_Translation_Extended', 'set_status' ), 'post' );
 	GP::$router->add( '/translations/-query-by-originals', array( 'GP_Route_Translation_Extended', 'translations_get_by_originals' ), 'post' );
