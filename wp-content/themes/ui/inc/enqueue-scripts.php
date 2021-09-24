@@ -178,8 +178,8 @@ if ( 4 === (int) $blog_id ) {
 // 开发文档依赖的静态资源
 if ( 6 === (int) $blog_id ) {
 	add_action( 'wp_enqueue_scripts', function () {
-		wp_enqueue_style( 'ui-docs', get_stylesheet_directory_uri() . '/assets/css/ui-docs.css', array( 'wedocs-styles' ) );
-		wp_enqueue_script( 'ui-docs', get_stylesheet_directory_uri() . '/assets/js/ui-docs.js', array( 'jquery' ) );
+		wp_enqueue_style( 'ui-developer', get_stylesheet_directory_uri() . '/assets/css/ui-developer.css', array( 'wedocs-styles' ) );
+		wp_enqueue_script( 'ui-developer', get_stylesheet_directory_uri() . '/assets/js/ui-developer.js', array( 'jquery' ) );
 	} );
 }
 
