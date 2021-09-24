@@ -6,6 +6,7 @@ use LitePress\Logger\Logger;
 use LitePress\WP_Http\WP_Http;
 use WP_Error;
 use function LitePress\WP_Http\wp_remote_get;
+use function LitePress\Helper\compress_html;
 
 class Import {
 
@@ -109,6 +110,8 @@ class Import {
 			$this->insert_empty_post( $id );
 		}
 
+		$content = compress_html( $content );
+
 		$args = array(
 			'ID'            => $id,
 			'post_author'   => 517,
@@ -122,6 +125,18 @@ class Import {
 			'menu_order'    => $order,
 			'post_category' => $cat_ids,
 		);
+
+		// 文档导入后为翻译平台安排一个计划任务来将文档同步过去
+		global $blog_id;
+
+		$current_id = $blog_id;
+		switch_to_blog( 4 );
+		wp_schedule_single_event( time() + 60, 'lpcn_gp_doc_import', array(
+			'name'    => $title,
+			'slug'    => "$this->gp_project_prefix-$post_name",
+			'content' => $content,
+		) );
+		switch_to_blog( $current_id );
 
 		return wp_insert_post( $args );
 	}
