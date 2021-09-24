@@ -57,7 +57,7 @@ switch_to_blog( 1 );
                                                              data-search-input=""
                                                              class="ui-autocomplete-input">
                             <button type="submit">
-                                <div class="actions"><i class="fas fa-search"></i>
+                                <div class="actions"><i class="fad fa-search"></i>
                                     <div class="loading">
                                         <i class="fa fa-spin fa-spinner"></i>
                                     </div>
