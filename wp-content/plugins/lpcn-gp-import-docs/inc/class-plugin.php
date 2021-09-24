@@ -44,6 +44,16 @@ class Plugin {
 	}
 
 	public function job( string $name, string $slug, string $content ) {
+		if ( empty( $name ) || empty( $slug ) || empty( $content ) ) {
+			Logger::error( 'DOC_POT', '传入了空的参数', array(
+				'name'    => $name,
+				'slug'    => $slug,
+				'content' => $content,
+			) );
+
+			return;
+		}
+
 		$section_strings = html_split( $content );
 
 		$pot = new PO();
