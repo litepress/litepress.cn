@@ -21,7 +21,7 @@ get_header();
                                 <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip">
                                     <button type="button" class="btn btn-primary align-items-center uabb-btn-one "><i
                                                 class="fa fa-plug" aria-hidden="true"></i>
-                                        WP-China-Yes 插件下载<span class="version">V3.3.4</span>
+                                        WP-China-Yes 插件下载<span class="version">V3.5.0</span>
                                     </button>
                                     <span class="middle-text">					or				</span>
                                 </a>
