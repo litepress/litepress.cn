@@ -95,6 +95,10 @@ class i18n {
 				} else {
 					$original = preg_quote( $original, '/' );
 
+					if ( empty( $original ) || ' ' === $original ) {
+						continue;
+					}
+
 					if ( ! str_contains( $content, '<' ) ) {
 						$content = preg_replace( "/\b{$original}\b/", $translations[ $original_id ], $content );
 					} else {
