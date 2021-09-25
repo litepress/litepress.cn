@@ -39,8 +39,14 @@ class i18n {
 	 * 翻译给定的原文
 	 *
 	 * 如果其中包含HTML标签，则只会将标签内容与数据库中的翻译条目对比。比如说<a>hello<b/>word</a>，这条句子会分别匹配hello和world
+	 * 特别地，对于包含 HTML 标签的原文，会在 HTML 标签中插入该原文在 GlotPress 项目中的ID
 	 *
-	 * @param string $content 待翻译的原文
+	 * @param string $cache_key 该原文的缓存键，如果为空则不缓存
+	 * @param string $content 要翻译的原文内容
+	 * @param string $gp_project_path GlotPress 中管理的项目路径
+	 * @param bool $no_wpautop 是否格式化
+	 *
+	 * @return string|\WP_Error
 	 */
 	public function translate( string $cache_key, string $content, string $gp_project_path, bool $no_wpautop = false ): string|WP_Error {
 		if ( empty( $content ) ) {
