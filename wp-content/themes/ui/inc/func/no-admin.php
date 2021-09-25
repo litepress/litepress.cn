@@ -122,8 +122,8 @@ add_filter( 'bbp_get_single_topic_description', function ( $retstr, $r, $args ) 
 	$reply_count = str_replace( '个回复', '', bbp_get_topic_replies_link( $topic_id ) );
 	$views       = ( (array) get_post_meta( $topic_id, 'views' ) )[0] ?? 0;
 
-	$create_time = human_time_diff( strtotime( get_the_time( 'Y-n-d H:i:s' ) ), current_time( 'timestamp' ) );
-	$last_time   = human_time_diff( strtotime( get_post_meta( $topic_id, '_bbp_last_active_time', true ) ), current_time( 'timestamp' ) );
+	$create_time = get_the_time( 'Y-n-d H:i:s' );
+	$last_time   = get_post_meta( $topic_id, '_bbp_last_active_time', true );
 
 	$forum_link = bbp_get_forum_permalink( bbp_get_topic_forum_id() );
 	echo <<<html
@@ -136,10 +136,11 @@ add_filter( 'bbp_get_single_topic_description', function ( $retstr, $r, $args ) 
             <span class="text-mute"><i class="fas fa-comments"></i> {$reply_count}</span>
             <span class="divider">/</span>
             <a class="" >
-                发布于{$create_time}前
+                发布于 {$create_time}
             </a>
             <span class="divider">/</span>
-            <a class="" >活跃于{$last_time}前
+            <a class="" >
+				活跃于 {$last_time}
             </a>
         </p>
 html;
@@ -208,10 +209,10 @@ add_filter( 'bbp_get_reply_class', function ( $post_classes, $reply_id, $classes
 }, 10, 3 );
 
 /**
- * 重设bbpress的回复时间格式为x年前 or x月前……
+ * 重设bbpress的回复时间格式为2021-9-25 11:11:11
  */
 add_filter( 'bbp_get_reply_post_date', function ( $result, $reply_id, $humanize, $gmt, $date, $time ) {
-	return '回复于' . human_time_diff( strtotime( get_post_time( 'Y-m-d H:i:s', false, $reply_id ) ), current_time( 'timestamp' ) ) . '前';
+	return '回复于 ' . get_post_time( 'Y-m-d H:i:s', false, $reply_id );
 }, 10, 6 );
 
 /**
@@ -405,7 +406,7 @@ add_filter( 'bbp_get_topic_freshness_link', function ( $anchor, $topic_id, $time
 	$time_since = get_post_meta( $topic_id, '_bbp_last_active_time', true );
 
 	if ( ! empty( $time_since ) ) {
-		return '<a href="' . esc_url( $link_url ) . '" title="' . esc_attr( $title ) . '">活跃于' . human_time_diff( strtotime( $time_since ), current_time( 'timestamp' ) ) . '前</a>';
+		return '<a href="' . esc_url( $link_url ) . '" title="' . esc_attr( $title ) . '">' . $time_since . '</a>';
 	} else {
 		return esc_html__( 'No Replies', 'bbpress' );
 	}
