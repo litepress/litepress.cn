@@ -53,7 +53,7 @@ class i18n {
 			return $content;
 		}
 
-		$cache_data = wp_cache_get( $cache_key, self::CACHE_GROUP );
+		$cache_data = empty( $cache_key ) ? '' : wp_cache_get( $cache_key, self::CACHE_GROUP );
 		if ( ! empty( $cache_data ) ) {
 			return $cache_data;
 		}
