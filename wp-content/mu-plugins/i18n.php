@@ -102,7 +102,7 @@ class i18n {
 					if ( ! str_contains( $content, '<' ) ) {
 						$content = preg_replace( "/\b{$original}\b/", $translations[ $original_id ], $content );
 					} else {
-						$content = preg_replace( "/(<([a-z0-9]*)\b[^>]*>){$original}(<\/\\2>)/m", "\${1}{$translations[$original_id]}\${3}", $content );
+						$content = preg_replace( "/(<([a-z0-9]*)\b([^>]*)>){$original}(<\/\\2>)/m", "<\$2 \$3 original_id='$original_id'>{$translations[$original_id]}\${4}", $content );
 					}
 				}
 			}
