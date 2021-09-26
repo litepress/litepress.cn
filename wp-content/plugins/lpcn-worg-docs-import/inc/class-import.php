@@ -67,7 +67,7 @@ class Import {
 				require ABSPATH . '/wp-admin/includes/taxonomy.php';
 			}
 
-			if ( ! has_category( $item->name ) ) {
+			if ( ! has_category( $item->slug ) ) {
 				$args = array(
 					'taxonomy' => 'category',
 					'cat_name' => $item->name,
