@@ -244,7 +244,7 @@ function compress_html( $string ): string {
 function html_split( string $html ): array {
 	$section_strings = array();
 
-	if ( preg_match_all( '~<(h[1-9]|dt)[^>]*>([^<].+)</\1>~', $html, $matches ) ) {
+	if ( preg_match_all( '~<(h[1-9]|dt)[^>]*>(.+)</\1>~', $html, $matches ) ) {
 		if ( ! empty( $matches[2] ) ) {
 			foreach ( $matches[2] as $text ) {
 				$section_strings[] = $text;
