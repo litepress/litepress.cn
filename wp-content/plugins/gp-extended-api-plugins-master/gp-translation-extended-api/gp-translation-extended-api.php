@@ -54,7 +54,12 @@ class GP_Route_Translation_Extended extends GP_Route_Main {
 
 			$translations[] = $query_result;
 		}
-		$this->tmpl( 'translations-extended', get_defined_vars(), true );
+
+		// 因为莫名其妙的原因，GlotPress 的模板加载功能无法正常使用，导致接口输出空字符串，所以这里强制输出 JSON
+		$this->header( 'Content-Type: application/json' );
+		echo json_encode( $translations );
+
+		// $this->tmpl( 'translations-extended', get_defined_vars(), true );
 	}
 
 	function save_translation() {
