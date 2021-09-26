@@ -73,11 +73,6 @@ class i18n {
 			return $content;
 		}
 
-		$translations = $this->get_gp_translations( $originals, $translation_set_id );
-		if ( empty( $translations ) ) {
-			return $content;
-		}
-
 		uasort( $originals, function ( $a, $b ) {
 			$a_len = strlen( $a );
 			$b_len = strlen( $b );
@@ -86,6 +81,14 @@ class i18n {
 		} );
 
 		$content = $this->prepare_text( $content );
+
+		$content = $this->insert_original_id_for_html( $content, $originals );
+
+		$translations = $this->get_gp_translations( $originals, $translation_set_id );
+		if ( empty( $translations ) ) {
+			return $content;
+		}
+
 		foreach ( $originals as $original_id => $original ) {
 			$original = $this->prepare_text( $original );
 
@@ -102,7 +105,7 @@ class i18n {
 					if ( ! str_contains( $content, '<' ) ) {
 						$content = preg_replace( "/\b{$original}\b/", $translations[ $original_id ], $content );
 					} else {
-						$content = preg_replace( "/(<([a-z0-9]*)\b([^>]*)>){$original}(<\/\\2>)/m", "<\$2 \$3 original_id='$original_id'>{$translations[$original_id]}\${4}", $content );
+						$content = preg_replace( "/(<([a-z0-9]*)\b([^>]*)>){$original}(<\/\\2>)/m", "\${1}{$translations[$original_id]}\${4}", $content );
 					}
 				}
 			}
@@ -152,23 +155,6 @@ class i18n {
 		return $wpdb->get_row( $sql )->id ?? 0;
 	}
 
-	private function get_gp_translations( $originals, $translation_set_id ): array {
-		global $wpdb;
-
-		$translations = [];
-
-		$raw_translations = $wpdb->get_results( $wpdb->prepare(
-			'SELECT original_id, translation_0 FROM wp_4_gp_translations WHERE original_id IN (' . implode( ', ', array_keys( $originals ) ) . ') AND translation_set_id = %d AND status = %s',
-			$translation_set_id, 'current'
-		) );
-
-		foreach ( $raw_translations as $translation ) {
-			$translations[ $translation->original_id ] = $translation->translation_0;
-		}
-
-		return $translations;
-	}
-
 	/**
 	 * 从wordpress.org上抓取的文本经过了一层转移，这个函数旨在将所有转移或未转义的字符都格式化为统一的格式
 	 */
@@ -188,6 +174,40 @@ class i18n {
 		$string_p = str_replace( '&amp;', '&', $string_p );
 
 		return $string_p;
+	}
+
+	/**
+	 * 为 HTML 标签插入原文 ID
+	 */
+	private function insert_original_id_for_html( string $content, array $originals ): string {
+		foreach ( $originals as $original_id => $original ) {
+			$original = $this->prepare_text( $original );
+
+			$original_quoted = preg_quote( $original, '/' );
+
+			if ( str_contains( $content, '<' ) ) {
+				$content = preg_replace( "/(<([a-z0-9]*)\b([^>]*)>){$original_quoted}(<\/\\2>)/m", "<\$2 \$3 original_id='$original_id'>{$original}\${4}", $content );
+			}
+		}
+
+		return $content;
+	}
+
+	private function get_gp_translations( $originals, $translation_set_id ): array {
+		global $wpdb;
+
+		$translations = [];
+
+		$raw_translations = $wpdb->get_results( $wpdb->prepare(
+			'SELECT original_id, translation_0 FROM wp_4_gp_translations WHERE original_id IN (' . implode( ', ', array_keys( $originals ) ) . ') AND translation_set_id = %d AND status = %s',
+			$translation_set_id, 'current'
+		) );
+
+		foreach ( $raw_translations as $translation ) {
+			$translations[ $translation->original_id ] = $translation->translation_0;
+		}
+
+		return $translations;
 	}
 
 }
