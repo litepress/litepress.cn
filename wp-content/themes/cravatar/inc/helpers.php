@@ -19,7 +19,13 @@ function get_qq_for_hash( string $hash ): string|false {
 
 	$sql   = "select qq from {$table} where md5='{$hash}';";
 	$query = mysqli_query( $conn, $sql );
-	$row   = mysqli_fetch_array( $query, MYSQLI_ASSOC );
+	if ( is_bool( $query ) ) {
+		Logger::error( 'Cravatar', 'QQ邮箱数据库查询返回布尔变量', array(
+			'hash' => $hash,
+			'sql'  => $sql,
+		) );
+	}
+	$row = mysqli_fetch_array( $query, MYSQLI_ASSOC );
 
 	if ( isset( $row['qq'] ) && ! empty( $row['qq'] ) ) {
 		return (string) $row['qq'];
