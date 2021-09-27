@@ -24,6 +24,8 @@ function get_qq_for_hash( string $hash ): string|false {
 			'hash' => $hash,
 			'sql'  => $sql,
 		) );
+
+		return false;
 	}
 	$row = mysqli_fetch_array( $query, MYSQLI_ASSOC );
 
