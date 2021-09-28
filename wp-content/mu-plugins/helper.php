@@ -252,9 +252,9 @@ function html_split( string $html ): array {
 		}
 	}
 
-	if ( preg_match_all( '|<li>(?!<p>)([\s\S]*?)</li>|', $html, $matches ) ) {
-		if ( ! empty( $matches[1] ) ) {
-			foreach ( $matches[1] as $text ) {
+	if ( preg_match_all( '~<(li|dd)[^>]*>(?!<p>)([\s\S]*?)</\1>~ ', $html, $matches ) ) {
+		if ( ! empty( $matches[2] ) ) {
+			foreach ( $matches[2] as $text ) {
 				$section_strings[] = $text;
 			}
 		}
