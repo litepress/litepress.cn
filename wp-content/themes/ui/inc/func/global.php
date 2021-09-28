@@ -311,11 +311,18 @@ add_filter( 'wedocs_post_type', function ( $args ) {
 /**
  * 重定义GlotPress的模板路径
  */
-add_filter( 'gp_tmpl_load_locations', function () {
+add_filter( 'gp_tmpl_load_locations', function ( $locations, $template, $args, $template_path ) {
+	/**
+	 * 如果请求的模板路径中第一个数组元素不是 GlotPress 插件自身的，则不替换模板路径
+	 */
+	if ( ! str_contains( $locations[0] ?? '', 'plugins/glotpress' ) ) {
+		return $locations;
+	}
+
 	return [
 		WP_CONTENT_DIR . '/themes/ui/glotpress/'
 	];
-} );
+}, 10, 4 );
 
 /**
  * 为Woo的API返回增加字段
