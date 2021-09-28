@@ -87,8 +87,9 @@ class GP_Route_Translation_Extended extends GP_Route_Main {
 			$this->die_with_404();
 		}
 
-		$output = array();
-		foreach ( gp_post( 'translation', array() ) as $original_id => $translations ) {
+		$output      = array();
+		$translation = json_decode( gp_post( 'translation', array() ) );
+		foreach ( $translation as $original_id => $translations ) {
 			$data                       = compact( 'original_id' );
 			$data['user_id']            = get_current_user_id();
 			$data['translation_set_id'] = $translation_set->id;
