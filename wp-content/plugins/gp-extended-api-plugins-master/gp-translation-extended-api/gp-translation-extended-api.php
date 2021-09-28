@@ -21,9 +21,10 @@ class GP_Route_Translation_Extended extends GP_Route_Main {
 		$project_path         = gp_post( 'project' );
 		$locale_slug          = gp_post( 'locale_slug' );
 		$translation_set_slug = gp_post( 'translation_set_slug', 'default' );
-		$original_strings     = json_decode( gp_post( 'original_strings', true ) );
+		//$original_strings     = json_decode( gp_post( 'original_strings', true ) );
+		$original_ids = json_decode( gp_post( 'original_ids', true ) );
 
-		if ( ! $project_path || ! $locale_slug || ! $translation_set_slug || ! $original_strings ) {
+		if ( ! $project_path || ! $locale_slug || ! $translation_set_slug || ! $original_ids ) {
 			$this->die_with_404();
 		}
 
@@ -34,15 +35,16 @@ class GP_Route_Translation_Extended extends GP_Route_Main {
 			$this->die_with_404();
 		}
 
-		foreach ( $original_strings as $original ) {
-			$original_record = GP::$original->by_project_id_and_entry( $project->id, $original );
+		foreach ( $original_ids as $original_id ) {
+			//$original_record = GP::$original->by_project_id_and_entry( $project->id, $original );
+			$original_record = GP::$original->find_one( array( 'id' => $original_id ) );
 			if ( ! $original_record ) {
-				$translations['originals_not_found'][] = $original;
+				$translations['originals_not_found'][] = $original_id;
 				continue;
 			}
 			$query_result                   = new stdClass();
 			$query_result->original_id      = $original_record->id;
-			$query_result->original         = $original;
+			$query_result->original         = $original_record->singular;
 			$query_result->original_comment = $original_record->comment;
 
 			$query_result->translations = GP::$translation->find_many( "original_id = '{$query_result->original_id}' AND translation_set_id = '{$translation_set->id}' AND ( status = 'waiting' OR status = 'fuzzy' OR status = 'current' )" );
