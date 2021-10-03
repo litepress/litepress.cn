@@ -285,3 +285,29 @@ function html_split( string $html ): array {
 
 	return $section_strings;
 }
+
+/**
+ * 对所有来自 w.org 的字符串数据进行预处理（主要是替换各种关键字）
+ *
+ * @param string $str
+ *
+ * @return string
+ */
+function prepare_w_org_string( string $str ): string {
+	$items = array(
+		'translate.wordpress.org' => 'litepress.cn/translate',
+		'developer.wordpress.org' => 'litepress.cn/developer',
+		'wordpress.org'           => 'litepress.cn',
+		'WordPress'               => 'LitePress',
+	);
+
+	$search  = array();
+	$replace = array();
+
+	foreach ( $items as $k => $v ) {
+		$search[]  = $k;
+		$replace[] = $v;
+	}
+
+	return str_replace( $search, $replace, $str );
+}
