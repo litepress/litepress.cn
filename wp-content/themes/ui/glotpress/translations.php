@@ -21,7 +21,13 @@ if ( 1 === (int) $parent_project->parent_project_id ) {
 	$title                = '《' . $parent_project->name . '》的' . $project->name;
 } elseif ( 2 === (int) $parent_project->parent_project_id ) {
 	$parent_project->name = i18n::get_instance()->translate( 'theme_' . (string) $parent_project->slug . '_title', (string) $parent_project->name, (string) $parent_project->path . '/' . (string) $parent_project->slug, true );
-	$title                = $parent_project->name;
+	$title                = "《{$parent_project->name}》";
+} elseif ( 3 === (int) $parent_project->parent_project_id ) {
+	$parent_project->name = i18n::get_instance()->translate( 'other_' . (string) $parent_project->slug . '_title', (string) $parent_project->name, (string) $parent_project->path . '/' . (string) $parent_project->slug, true );
+	$title                = "《{$parent_project->name}》";
+} elseif ( 4 === (int) $parent_project->parent_project_id ) {
+	$parent_project->name = i18n::get_instance()->translate( 'doc_' . (string) $parent_project->slug . '_title', (string) $parent_project->name, (string) $parent_project->path . '/' . (string) $parent_project->slug, true );
+	$title                = "《{$parent_project->name}》";
 } else {
 	$title = $project->name ?? '';
 }
