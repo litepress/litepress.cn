@@ -299,6 +299,7 @@ function prepare_w_org_string( string $str ): string {
 		'developer.wordpress.org' => 'litepress.cn/developer',
 		'wordpress.org'           => 'litepress.cn',
 		'WordPress'               => 'LitePress',
+		'wordpress'               => 'litepress',
 	);
 
 	$search  = array();
