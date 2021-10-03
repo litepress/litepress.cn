@@ -238,6 +238,11 @@ html;
 		$pot->set_header( 'Content-Transfer-Encoding', '8bit' );
 
 		foreach ( $section_strings as $text ) {
+			// 如果字符串是空的就跳过
+			if ( empty( $text ) || ' ' === $text ) {
+				continue;
+			}
+
 			$pot->add_entry( new Translation_Entry( [
 				'singular' => $text,
 			] ) );
