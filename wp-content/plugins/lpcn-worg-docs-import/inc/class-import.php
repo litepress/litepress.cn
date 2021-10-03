@@ -8,6 +8,7 @@ use LitePress\WP_Http\WP_Http;
 use WP_Error;
 use function LitePress\WP_Http\wp_remote_get;
 use function LitePress\Helper\compress_html;
+use function LitePress\Helper\prepare_w_org_string;
 
 class Import {
 
@@ -126,6 +127,10 @@ class Import {
 		}
 
 		$content = compress_html( $content );
+		$content = prepare_w_org_string( $content );
+
+		$title     = prepare_w_org_string( $title );
+		$post_name = prepare_w_org_string( $post_name );
 
 		$args = array(
 			'ID'            => $id,
