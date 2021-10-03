@@ -54,6 +54,9 @@ html;
 		}
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	public function job( string $name, string $slug, string $content ) {
 		if ( empty( $name ) || empty( $slug ) || empty( $content ) ) {
 			Logger::error( 'DOC_POT', '传入了空的参数', array(
@@ -66,6 +69,8 @@ html;
 		}
 
 		$section_strings = html_split( $content );
+
+		$section_strings[] = $name;
 
 		$pot = new PO();
 		$pot->set_header( 'MIME-Version', '1.0' );
