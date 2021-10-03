@@ -120,6 +120,7 @@ switch ( $blog_id ) {
 
 		get_template_part( 'template-parts/header/sub/translate-header' );
 		break;
+	case 11:
 	case 6:
 		// 文档平台
 		get_template_part( 'template-parts/header/sub/docs-header' );
