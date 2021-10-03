@@ -11,6 +11,7 @@
 
 namespace LitePress\Helper;
 
+use DiDom\Document;
 use WP_Error;
 use WP_Http;
 
@@ -240,33 +241,47 @@ function compress_html( $string ): string {
  * @param string $html
  *
  * @return array
+ * @throws \Exception
  */
 function html_split( string $html ): array {
 	$section_strings = array();
 
-	if ( preg_match_all( '~<(h[1-9]|dt)[^>]*>(.+?)</\1>~', $html, $matches ) ) {
-		if ( ! empty( $matches[2] ) ) {
-			foreach ( $matches[2] as $text ) {
-				$section_strings[] = $text;
+	$dom = new Document( $html );
+
+	$body = $dom->find( 'body' );
+
+	foreach ( $body[0]->children() as $node ) {
+		// 有一些用作列表的 HTML 标签，对于它们，需要取子元素
+		$list_tag = array(
+			'ol',
+			'ul',
+		);
+		if ( in_array( $node->getNode()->tagName, $list_tag ) ) {
+			foreach ( $node->children() as $child_node ) {
+				if ( stristr( $child_node->html(), 'If a database relating to WordPress does not already' ) ) {
+					var_dump( $child_node->html() );
+					exit;
+				}
+				$section_strings[] = $child_node->html();
 			}
+		} else {
+			$section_strings[] = $node->html();
 		}
 	}
 
-	if ( preg_match_all( '~<(li|dd)[^>]*>(?!<p>)([\s\S]*?)</\1>~ ', $html, $matches ) ) {
-		if ( ! empty( $matches[2] ) ) {
-			foreach ( $matches[2] as $text ) {
-				$section_strings[] = $text;
+	// 进行一次预处理，去掉所有字符串最外侧的 HTML 标签
+	foreach ( $section_strings as &$section_string ) {
+		if ( preg_match( '|^<\w+[^>]*>([\s\S]*?)</\w+>$|', $section_string, $matches ) ) {
+			if ( ! empty( $matches[1] ) ) {
+				if ( stristr( $section_string, 'If a database relating to WordPress does not already' ) ) {
+					var_dump( $section_string );
+					exit;
+				}
+				$section_string = compress_html( $matches[1] );
 			}
 		}
 	}
-
-	if ( preg_match_all( '|<p>([\s\S]*?)</p>|', $html, $matches ) ) {
-		if ( ! empty( $matches[1] ) ) {
-			foreach ( $matches[1] as $text ) {
-				$section_strings[] = $text;
-			}
-		}
-	}
+	unset( $section_string );
 
 	return $section_strings;
 }
