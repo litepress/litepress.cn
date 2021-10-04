@@ -39,7 +39,14 @@ class Plugin {
 	 */
 	public function plugins_loaded() {
 		add_filter( 'the_title', array( $this, 'translate' ), 1 );
+		add_filter( 'pre_get_document_title', array( $this, 'translate' ), 999 );
 		add_filter( 'the_content', array( $this, 'translate' ), 1 );
+
+		add_filter( 'wpseo_breadcrumb_single_link_info', function ( $link_info ) {
+			$link_info['text'] = $this->translate( $link_info['text'] );
+
+			return $link_info;
+		} );
 	}
 
 	public function translate( string $content ): string {
