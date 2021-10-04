@@ -69,7 +69,11 @@ class Import {
 				require ABSPATH . '/wp-admin/includes/taxonomy.php';
 			}
 
-			if ( ! has_category( $item->slug ) ) {
+			// 替换关键字
+			$item->slug = prepare_w_org_string( $item->slug );
+			$item->name = prepare_w_org_string( $item->name );
+
+			if ( ! get_category_by_slug( $item->slug ) ) {
 				$args = array(
 					'taxonomy' => 'category',
 					'cat_name' => $item->name,
