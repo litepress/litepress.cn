@@ -289,20 +289,27 @@ function get_default_avatar_filename( string $default ): string {
 	if ( key_exists( $default, $default_types ) ) {
 		$filename = sprintf( '%s/assets/img/default-avatar/%s/%s.png', CA_ROOT_PATH, $default, rand( 1, $default_types[ $default ] ) );
 	} elseif ( ! empty( $default ) ) {
-		$r = wp_remote_get( $default );
-		if ( ! is_wp_error( $r ) && isset( $r['body'] ) && ! empty( $r['body'] ) ) {
-			$status_code = wp_remote_retrieve_response_code( $r );
-			if ( 200 === $status_code ) {
-				$avatar = $r['body'];
+		// 只有当用户给定的默认图中包含 .jpg、.jpeg、.gif、.png 时才尝试获取此默认图
+		if ( str_contains( $default, '.jpg' ) ||
+		     str_contains( $default, '.jpeg' ) ||
+		     str_contains( $default, '.gif' ) ||
+		     str_contains( $default, '.png' )
+		) {
+			$r = wp_remote_get( $default );
+			if ( ! is_wp_error( $r ) && isset( $r['body'] ) && ! empty( $r['body'] ) ) {
+				$status_code = wp_remote_retrieve_response_code( $r );
+				if ( 200 === $status_code ) {
+					$avatar = $r['body'];
 
-				/**
-				 * 脚本结束时该临时文件会被自动删除
-				 */
-				$tmpfname = tempnam( sys_get_temp_dir(), '404_avatar_' );
-				if ( $tmpfname ) {
-					file_put_contents( $tmpfname, $avatar );
+					/**
+					 * 脚本结束时该临时文件会被自动删除
+					 */
+					$tmpfname = tempnam( sys_get_temp_dir(), '404_avatar_' );
+					if ( $tmpfname ) {
+						file_put_contents( $tmpfname, $avatar );
 
-					$filename = $tmpfname;
+						$filename = $tmpfname;
+					}
 				}
 			}
 		}
