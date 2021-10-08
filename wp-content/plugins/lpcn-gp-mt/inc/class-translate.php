@@ -3,32 +3,60 @@
 namespace LitePress\GlotPress\MT;
 
 use GP;
-use GP_Route;
 use LitePress\Logger\Logger;
 use LitePress\WP_Http\WP_Http;
-use StanfordNLP\POSTagger;
 use Translation_Entry;
 use Translations;
 use WP_Error;
-
 use function LitePress\WP_Http\wp_remote_post;
 
 /**
- * 机器翻译类文件
+ * 机器翻译引擎
+ *
+ * 该引擎只对 litepress.cn/translate 上托管的项目生效。引擎同时提供了 WEB 端和 API 端的外部接口。
+ * 对于 WEB 端的请求，会直接保存进对应的项目，而 API 端则将结果返回。
  */
 class Translate {
 
-	const TRANSLATE_SCRIPT = 'python3 ' . PLUGIN_DIR . '/py-translate-lib/translate.py';
+	/**
+	 * 面向 WEB 场景的外部接口函数
+	 */
+	public function web( int $project_id, array $originals ): bool {
 
-	public static function job( int $project_id, array $originals, array $excluded ): void {
 		/**
-		 * 翻译填充的流程：
-		 *
-		 * 1. 尝试匹配记忆库，匹配时会按优先级处理匹配关系
-		 * 2. 对原文进行术语库替换，同时将作品的作者及名称一并替换
-		 * 3. 调用谷歌翻译对处理后的原文进行翻译
-		 * 4. 恢复被替换的术语
+		 * 获取翻译集
 		 */
+		$translation_set = GP::$translation_set->find_one( array( 'project_id' => $project_id ) );
+		if ( empty( $translation_set ) ) {
+			Logger::error( 'Translate', '从 WEB 端为机器翻译引擎传入的项目 ID 无法获取到对应的翻译集', array(
+				'project_id' => $project_id,
+			) );
+
+			return false;
+		}
+
+		$translations = $this->job( $project_id, $originals );
+
+		/**
+		 * 翻译入库
+		 */
+		$translation_set->import( $translations );
+
+		return true;
+	}
+
+	/**
+	 * 核心函数
+	 *
+	 * 翻译填充的流程：
+	 * 1. 尝试匹配记忆库，匹配时会按优先级处理匹配关系
+	 * 2. 对原文进行术语库替换，同时将作品的作者及名称一并替换
+	 * 3. 调用谷歌翻译对处理后的原文进行翻译
+	 * 4. 恢复被替换的术语
+	 *
+	 * 该函数批量处理机器翻译工作并返回最终结果
+	 */
+	private function job( int $project_id, array $originals ): Translations {
 
 		/**
 		 * 初始化翻译实体
@@ -36,19 +64,17 @@ class Translate {
 		$translations = new Translations();
 
 		/**
-		 * 获取翻译集
-		 */
-		$translation_set = GP::$translation_set->find_one( array( 'project_id' => $project_id ) );
-
-		/**
-		 * 切换登录用户到机翻引擎
-		 */
-		wp_set_current_user( 517 );
-
-		/**
 		 * 初始化术语表
 		 */
-		$glossaries = self::get_glossaries();
+		$glossaries = $this->get_glossaries();
+
+		$excluded = array();
+
+		$project_name = $this->get_project_name( $project_id );
+		if ( ! empty( $project_name ) ) {
+			$excluded[] = $project_name;
+		}
+
 		foreach ( $excluded as $item ) {
 			if ( empty( $item ) ) {
 				continue;
@@ -62,12 +88,10 @@ class Translate {
 		/**
 		 * 开始翻译流程
 		 */
-		// 开始机器翻译前先执行一些前置翻译，比如说尝试匹配记忆库，匹配上了就不需要再机器翻译了
-		add_filter( 'gp_mt_pre_translate', array( __CLASS__, 'get_translate_from_memory' ), 10, 2 );
-
 		foreach ( $originals as $original_key => $original ) {
+			// 开始机器翻译前先执行一些前置翻译，比如说尝试匹配记忆库，匹配上了就不需要再机器翻译了
 			$translation = $glossaries[ strtolower( $original->singular ) ]['translation'] ?? '';
-			$translation = $translation ?: apply_filters( 'gp_mt_pre_translate', '', $original->singular );
+			$translation = $translation ?: $this->query_memory( $original->singular );
 
 			if ( ! empty( $translation ) ) {
 				$entry = new Translation_Entry( array(
@@ -87,11 +111,6 @@ class Translate {
 			}
 		}
 
-		/**
-		 * 导入这一批翻译到数据库
-		 */
-		$translation_set->import( $translations );
-
 		// 调用机器翻译
 		$tasks = array();
 		end( $originals );
@@ -110,17 +129,52 @@ class Translate {
 			 * 文本替换前进行预处理（主要去除HTML标签，这样防止在后续处理的时候把HTML标签也处理了）
 			 */
 			preg_match_all( '/<.+?>/', $source_esc, $matches );
+			$matches = $matches[0] ?? array();
 
-			$h_map = array();
-			foreach ( $matches[0] ?? array() as $match ) {
-				$h_id            = rand( 0, 99999 );
-				$h_map["H$h_id"] = $match;
+			// 结果集去重
+			$matches = array_unique( $matches );
+
+			// 原文中被替换的关键字以及代号 id
+			$id_map = array();
+
+			foreach ( $matches as $match ) {
+				// 排除掉结束标签（替换开始标签时会顺带替换对应的结束标签）
+				if ( str_contains( $match, '</' ) ) {
+					continue;
+				}
+
+				$rand_id = rand( 0, 99999 );
+
+				/**
+				 * 替换 HTML 开始标签
+				 */
+				$h_id            = "<$rand_id>";
+				$id_map[ $h_id ] = $match;
 				// 替换 HTML 后对两端增加空格，以使标识符与周围单词划开界限
-				$source_esc = str_replace( $match, " H$h_id ", $source_esc );
+				$source_esc = str_replace( $match, " $h_id ", $source_esc );
+
+				/**
+				 * 替换 HTML 开始标签
+				 */
+				$h_id = "</$rand_id>";
+
+				// 先提取一下这个标签究竟是何方牛马
+				preg_match_all( '/<(\w+)[^>]*>/', $match, $tag_matches );
+				$tag_name = $tag_matches[1][0] ?? '';
+
+				if ( ! empty( $tag_name ) ) {
+					$id_map[ $h_id ] = "</$tag_name>";
+					// 替换 HTML 后对两端增加空格，以使标识符与周围单词划开界限
+					$source_esc = str_replace( "</$tag_name>", " $h_id ", $source_esc );
+
+					// 为了防止有的人不讲武德，写不规范的结束标签，所以多匹配一种情况
+					$h_id            = "</ $rand_id>";
+					$id_map[ $h_id ] = "</$tag_name>";
+					// 替换 HTML 后对两端增加空格，以使标识符与周围单词划开界限
+					$source_esc = str_replace( "</ $rand_id>", " $h_id ", $source_esc );
+				}
 			}
 
-
-			$id_map = array();
 			/**
 			 * 替换简码
 			 */
@@ -132,20 +186,23 @@ class Translate {
 				$source_esc    = str_replace( $match, "#$id", $source_esc );
 			}
 
-			$pos_map = self::get_pos_tags( $source_esc );
+			/**
+			 * 斯坦福开源的 postag 库很准确但是相当占服务器资源，其他库很弱智，加和不加一样，所以暂时将该特性屏蔽
+			 */
+			//$pos_map = self::get_pos_tags( $source_esc );
 
 			/**
 			 * 替换术语库
 			 */
 			foreach ( $glossaries as $key => $value ) {
 				// 开始替换前先检查词性是否匹配，如果不匹配则跳过
-				if ( ! key_exists( $key, $pos_map ) ) {
-					continue;
-				}
+				//if ( ! key_exists( $key, $pos_map ) ) {
+				//	continue;
+				//}
 
-				if ( $pos_map[ $key ] !== $value['part_of_speech'] ) {
-					continue;
-				}
+				//if ( $pos_map[ $key ] !== $value['part_of_speech'] ) {
+				//	continue;
+				//}
 
 				$id         = rand( 0, 99999 );
 				$key        = preg_quote( $key, '/' );
@@ -155,19 +212,6 @@ class Translate {
 				if ( $is_replace ) {
 					$id_map[ $id ] = $value['translation'];
 				}
-			}
-			/*
-						if ( stristr( $source, ' Recommended:' ) ) {
-							var_dump($glossaries);
-							var_dump( $source_esc );
-							exit;
-						}*/
-
-			/**
-			 * 术语库替换完得在翻译触发前把前面预处理去掉的HTML标签恢复一下
-			 */
-			foreach ( $h_map as $k => $v ) {
-				$source_esc = str_replace( $k, $v, $source_esc );
 			}
 
 			$tasks[ $source ] = array(
@@ -200,7 +244,7 @@ class Translate {
 					$sources_esc[] = $task['source_esc'];
 				}
 
-				$data = self::mt( $sources_esc );
+				$data = self::google_translate( $sources_esc );
 				if ( is_wp_error( $data ) ) {
 					Logger::error( 'mt_error', '机器翻译失败：' . $data->get_error_message(), array(
 						'project_id' => $project_id,
@@ -214,7 +258,10 @@ class Translate {
 					$task['target'] = $data[ $task['source_esc'] ];
 
 					foreach ( $task['glossaries'] as $k => $v ) {
-						$task['target'] = preg_replace( "/(\s*)#(\s*)$k(\s*)/m", $v, $task['target'] );
+						// 替换关键字
+						$task['target'] = preg_replace( "~(\s*)#(\s*)$k(\s*)~m", $v, $task['target'] );
+						// 替换 HTML 标签等无需正则的内容
+						$task['target'] = str_replace( $k, $v, $task['target'] );
 					}
 
 					if ( ! empty( $task['target'] ) ) {
@@ -234,11 +281,6 @@ class Translate {
 				}
 				unset( $task );
 
-				/**
-				 * 导入这一批翻译到数据库
-				 */
-				$translation_set->import( $translations );
-
 				over:
 				unset( $tasks );
 				$tasks = array();
@@ -256,121 +298,78 @@ class Translate {
 			}
 		}
 
+
+		return $translations;
 	}
 
 	/**
-	 * 获取术语库
+	 * 获取术语表
+	 */
+	private function get_glossaries(): array {
+		return array();
+	}
+
+	/**
+	 * 获取项目名
 	 *
-	 * @return array
+	 * 这不是简单的读取项目属性，因为项目属性中的项目名通常包含了长尾副词，所以这个函数尝试用项目原文中分析项目名称
 	 */
-	private
-	static function get_glossaries(): array {
-		$glossaries = wp_cache_get( 'glossaries', 'litepress-cn' );
-		if ( empty( $glossaries ) ) {
-			$glossaries = array();
+	private function get_project_name( int $project_id ): string {
+		$allowed = array(
+			'Theme Name of the theme',
+			'Plugin Name of the plugin',
+			'Name of the plugin',
+			'Name of the theme',
+		);
 
-			$glossary_entries = GP::$glossary_entry->all();
+		$original = GP::$original->find_one( array(
+			'project_id' => $project_id,
+			'comment'    => $allowed,
+		) );
 
-			// 为术语衍生不同时态的版本
-			foreach ( $glossary_entries as $key => $value ) {
-				if ( empty( $value->term ) || empty( $value->translation ) ) {
-					continue;
-				}
+		if ( $original ) {
+			return $original->singular;
+		} else {
+			return '';
+		}
+	}
 
-				$terms = array();
+	public
+	static function query_memory(
+		string $source,
+	): string|WP_Error {
+		global $wpdb;
 
-				$quoted_term = preg_quote( $value->term, '/' );
+		$source = strtolower( $source );
 
-				$terms[] = $quoted_term;
-				$terms[] = $quoted_term . 's';
+		$memory = wp_cache_get( 'gp_memory', 'litepress-cn' );
 
-				if ( 'y' === substr( $value->term, - 1 ) ) {
-					$terms[] = preg_quote( substr( $value->term, 0, - 1 ), '/' ) . 'ies';
-				} elseif ( 'f' === substr( $value->term, - 1 ) ) {
-					$terms[] = preg_quote( substr( $value->term, 0, - 1 ), '/' ) . 'ves';
-				} elseif ( 'fe' === substr( $value->term, - 2 ) ) {
-					$terms[] = preg_quote( substr( $value->term, 0, - 2 ), '/' ) . 'ves';
-				} else {
-					if ( 'an' === substr( $value->term, - 2 ) ) {
-						$terms[] = preg_quote( substr( $value->term, 0, - 2 ), '/' ) . 'en';
-					}
-					$terms[] = $quoted_term . 'es';
-					$terms[] = $quoted_term . 'ed';
-					$terms[] = $quoted_term . 'ing';
-				}
+		if ( empty( $memory ) ) {
+			/**
+			 * 这里因为还是会查询原文相同的语言对，所以按升序排，这样从第一条开始压入数组，后面的高使用比例的就会覆盖前面的低使用比例
+			 */
+			$r = $wpdb->get_results( 'select o.singular as source, t.translation_0 as target, COUNT(t.translation_0) as o2
+from wp_4_gp_translations as t
+         join wp_4_gp_originals as o on t.original_id = o.id
+GROUP BY  target
+HAVING o2 > 4
+order by o2 asc' );
 
-				foreach ( $terms as $term ) {
-					$glossaries[ $term ] = array(
-						'translation'    => $value->translation,
-						'part_of_speech' => $value->part_of_speech,
-					);
-				}
+			foreach ( $r as $item ) {
+				$memory[ strtolower( $item->source ) ] = $item->target;
 			}
 
-			/**
-			 * 对术语库按键的长度降序排序，这样防止先匹配短的术语导致长术语无法匹配
-			 */
-			uksort( $glossaries, function ( $a, $b ) {
-				return mb_strlen( $a ) < mb_strlen( $b );
-			} );
-
-			wp_cache_set( 'glossaries', $glossaries, 'litepress-cn', 86400 );
+			// 缓存七天
+			wp_cache_set( 'gp_memory', $memory, 'litepress-cn', 604800 );
 		}
 
-		return $glossaries;
+		return $memory[ $source ] ?? '';
 	}
 
 	/**
-	 * 获取给定语句的所有单词的词性
+	 * 谷歌翻译接口封装函数
 	 */
-	private static function get_pos_tags( string $text ): array {
-		$pos = new POSTagger(
-			PLUGIN_DIR . '/stanford-postagger-full/models/english-bidirectional-distsim.tagger',
-			PLUGIN_DIR . '/stanford-postagger-full/stanford-postagger-4.2.0.jar',
-		);
-
-		$result = $pos->tag( explode( ' ', $text ) );
-
-		$tag_map = array(
-			'NN'  => 'noun',
-			'NNS' => 'noun',
-			'VB'  => 'verb',
-			'VBD' => 'verb',
-			'VBG' => 'verb',
-			'VBN' => 'verb',
-			'VBP' => 'verb',
-			'VBZ' => 'verb',
-			'JJ'  => 'adjective',
-			'JJR' => 'adjective',
-			'JJS' => 'adjective',
-			'RB'  => 'adverb',
-			'RBR' => 'adverb',
-			'RBS' => 'adverb',
-			'UH'  => 'interjection',
-			'CC'  => 'conjunction',
-			'IN'  => 'preposition',
-			'PRP' => 'pronoun',
-		);
-
-		$pos_map = array();
-		foreach ( $result[0] ?? array() as $item ) {
-			$tag  = $item[1] ?? '';
-			$word = $item[0] ?? '';
-
-			if ( ! key_exists( $tag, $tag_map ) ) {
-				continue;
-			}
-
-			$pos_map[ $word ] = $tag_map[ $tag ];
-		}
-
-		return $pos_map;
-	}
-
-	private
-	static function mt(
-		array $sources
-	): string|array|WP_Error {
+	private function google_translate( array $sources ): string|array|WP_Error {
 		// 不允许原文中出现换行符，因为计划用换行符来分割多条原文。
 		$sources_urlencoded = array_map( function ( $source ) {
 			return urlencode( str_replace( array( "\n", "\n\r", "\r\n" ), '', $source ) );
@@ -441,132 +440,9 @@ class Translate {
 	}
 
 	/**
-	 * 从记忆库匹配使用次数大于10的翻译，暂时认为被多次引用的翻译是准确的翻译
-	 *
-	 * 这里的记忆库和 ES 中的不是一个。这里的是从翻译数据实时生成并缓存到 Redis 中的
-	 *
-	 * @param string $source
-	 *
-	 * @return string|\WP_Error
+	 * 面向 API 场景的外部接口函数
 	 */
-	public
-	static function get_translate_from_memory(
-		string $translate,
-		string $source,
-	): string|WP_Error {
-		global $wpdb;
-
-		$source = strtolower( $source );
-
-		$memory = wp_cache_get( 'gp_memory', 'litepress-cn' );
-
-		if ( empty( $memory ) ) {
-			/**
-			 * 这里因为还是会查询原文相同的语言对，所以按升序排，这样从第一条开始压入数组，后面的高使用比例的就会覆盖前面的低使用比例
-			 */
-			$r = $wpdb->get_results( 'select o.singular as source, t.translation_0 as target, COUNT(t.translation_0) as o2
-from wp_4_gp_translations as t
-         join wp_4_gp_originals as o on t.original_id = o.id
-GROUP BY  target
-HAVING o2 > 4
-order by o2 asc' );
-
-			foreach ( $r as $item ) {
-				$memory[ strtolower( $item->source ) ] = $item->target;
-			}
-
-			// 缓存七天
-			wp_cache_set( 'gp_memory', $memory, 'litepress-cn', 604800 );
-		}
-
-		return $memory[ $source ] ?? '';
-	}
-
-	/**
-	 * 创建机器翻译填充任务
-	 */
-	public function schedule_gp_mt( $project_id ) {
-		$project_id = (int) $project_id;
-
-		$project = GP::$project->find_one( array( 'id' => $project_id ) )->fields();
-
-		$project_name = $this->get_name_by_project_id( $project['id'] );
-
-		// 获取待翻译原文
-		$sql = <<<SQL
-select *
-from wp_4_gp_originals
-where project_id = {$project_id}
-  and id not in (
-    select original_id
-    from wp_4_gp_translations
-    where translation_set_id = (
-        select id
-        from wp_4_gp_translation_sets
-        where project_id = {$project_id}
-    )
-)
-  and status = '+active';
-SQL;
-
-		$originals = GP::$original->many( $sql );
-
-		$excluded = array(
-			$project_name
-		);
-		for ( $i = 0; true; $i += 300 ) {
-			$item = array_slice( $originals, $i, 500, true );
-			if ( empty( $item ) ) {
-				break;
-			}
-
-			//do_action( 'lpcn_schedule_gp_mt', $project_id, $item, $excluded );
-			wp_schedule_single_event( time() + 1, 'lpcn_schedule_gp_mt', [
-				'project_id' => $project_id,
-				'originals'  => $item,
-				'excluded'   => $excluded
-			] );
-		}
-
-		$referer = gp_url_project( $project['path'] );
-		if ( isset( $_SERVER['HTTP_REFERER'] ) ) {
-			$referer = $_SERVER['HTTP_REFERER'];
-		}
-
-		$route            = new GP_Route();
-		$route->notices[] = '该请求已加入队列，请稍后刷新页面';
-		$route->redirect( $referer );
-	}
-
-	/**
-	 * 通过项目ID获取项目名
-	 *
-	 * 这不是简单的读取项目属性，因为项目属性中的项目名通常包含了长尾副词，所以这个函数尝试用项目原文中分析项目名称
-	 */
-	private function get_name_by_project_id( int $project_id ): string {
-		$allowed = array(
-			'Theme Name of the theme',
-			'Plugin Name of the plugin',
-			'Name of the plugin',
-			'Name of the theme',
-		);
-
-		$original = GP::$original->find_one( array(
-			'project_id' => $project_id,
-			'comment'    => $allowed,
-		) );
-
-		if ( $original ) {
-			return $original->singular;
-		} else {
-			return '';
-		}
-	}
-
-	public function before_request() {
-	}
-
-	public function after_request() {
+	public function api() {
 	}
 
 }
