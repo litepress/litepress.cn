@@ -32,7 +32,8 @@ class WP_Http extends Original_WP_Http {
 
 			$args = array(
 				'headers' => array(
-					'Host' => 'wordpress.org'
+					'Host'            => 'wordpress.org',
+					'Accept-Encoding' => 'gzip',
 				),
 				'method'  => 'GET',
 				'timeout' => 20,
