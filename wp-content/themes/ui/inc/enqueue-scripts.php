@@ -190,3 +190,11 @@ if ( 8 === (int) $blog_id ) {
 		wp_enqueue_style( 'needs', get_stylesheet_directory_uri() . '/assets/css/needs.css' );
 	} );
 }
+
+// 使用文档依赖的静态资源
+if ( 11 === (int) $blog_id ) {
+	add_action( 'wp_enqueue_scripts', function () {
+		wp_enqueue_style( 'ui-support', get_stylesheet_directory_uri() . '/assets/css/ui-support.css' );
+		wp_enqueue_script( 'ui-support', get_stylesheet_directory_uri() . '/assets/js/ui-support.js', array( 'jquery' ) );
+	} );
+}
