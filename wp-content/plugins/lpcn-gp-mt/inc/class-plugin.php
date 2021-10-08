@@ -20,18 +20,6 @@ class Plugin {
 	}
 
 	/**
-	 * Initializes the plugin.
-	 */
-	public function plugins_loaded() {
-		GP::$router->add( "/gp-mt/(.+?)", array( Translate::class, 'schedule_gp_mt' ), 'get' );
-		GP::$router->add( "/gp-mt/(.+?)", array( Translate::class, 'schedule_gp_mt' ), 'post' );
-		//if ( isset( $_GET['testo'] ) ) {
-		//add_action( 'gp_originals_imported', array( $this, 'schedule_gp_mt' ), 999 );
-		add_action( 'lpcn_schedule_gp_mt', array( Translate::class, 'job' ), 999, 3 );
-		//}
-	}
-
-	/**
 	 * Returns always the same instance of this plugin.
 	 *
 	 * @return Plugin
@@ -44,6 +32,23 @@ class Plugin {
 		return self::$instance;
 	}
 
+	/**
+	 * Initializes the plugin.
+	 */
+	public function plugins_loaded() {
+		/**
+		 * 机器翻译引擎对外 API 接口
+		 *
+		 * 该接口在网关处被改写为：https://api.litepress.cn/mt/translate
+		 */
+		GP::$router->add( '/api/mt/translate', array( Translate::class, 'api' ), 'post' );
+
+		GP::$router->add( "/gp-mt/(.+?)", array( Web::class, 'add_web_translate_job' ), 'get' );
+		GP::$router->add( "/gp-mt/(.+?)", array( Web::class, 'add_web_translate_job' ), 'post' );
+
+
+		add_action( 'lpcn_schedule_gp_mt', array( new Translate(), 'web' ), 999, 2 );
+	}
 
 
 }
