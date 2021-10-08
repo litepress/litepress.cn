@@ -3,6 +3,7 @@
 namespace LitePress\GlotPress\MT;
 
 use GP;
+use GP_Route;
 use LitePress\Logger\Logger;
 use LitePress\WP_Http\WP_Http;
 use Translation_Entry;
@@ -16,7 +17,7 @@ use function LitePress\WP_Http\wp_remote_post;
  * 该引擎只对 litepress.cn/translate 上托管的项目生效。引擎同时提供了 WEB 端和 API 端的外部接口。
  * 对于 WEB 端的请求，会直接保存进对应的项目，而 API 端则将结果返回。
  */
-class Translate {
+class Translate extends GP_Route {
 
 	/**
 	 * 面向 WEB 场景的外部接口函数
@@ -260,8 +261,8 @@ class Translate {
 					foreach ( $task['glossaries'] as $k => $v ) {
 						// 替换关键字
 						$task['target'] = preg_replace( "~(\s*)#(\s*)$k(\s*)~m", $v, $task['target'] );
-						// 替换 HTML 标签等无需正则的内容
-						$task['target'] = str_replace( $k, $v, $task['target'] );
+						// 替换 HTML 标签等不太会被谷歌翻译导致插入空格的内容
+						$task['target'] = preg_replace( "~(\s*)$k(\s*)~m", $v, $task['target'] );
 					}
 
 					if ( ! empty( $task['target'] ) ) {
@@ -443,6 +444,47 @@ order by o2 asc' );
 	 * 面向 API 场景的外部接口函数
 	 */
 	public function api() {
+		header( 'Content-Type: application/json' );
+
+		$project_id = gp_post( 'project_id', 0 );
+		if ( empty( $project_id ) ) {
+			echo json_encode( array( 'error' => '参数错误，project_id 为空' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$request_originals_text = gp_post( 'originals', '[]' );
+		$request_originals      = json_decode( $request_originals_text, true );
+		if ( JSON_ERROR_NONE !== json_last_error() ) {
+			echo json_encode( array( 'error' => '参数错误，不是标准的 Json 字符串' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$gp_originals = GP::$original->find_many( array( 'project_id' => $project_id, 'status' => '+active' ) );
+		if ( empty( $gp_originals ) ) {
+			echo json_encode( array( 'error' => '你请求的项目未托管在 LitePress 翻译平台上，或不存在可翻译字符串' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		// 取用户请求翻译的字符串与 GlotPress 数据库中积累的项目字符串的交集，也就是说，只允许翻译项目中存在的字符串
+		$originals = array();
+		foreach ( $gp_originals as $gp_original ) {
+			if ( in_array( $gp_original->singular, $request_originals ) ) {
+				$originals[] = $gp_original;
+			}
+		}
+
+		$translations = $this->job( $project_id, $originals );
+
+
+		$data = array();
+		foreach ( $translations->entries as $translation ) {
+			$data[] = array(
+				'original'     => $translation->singular,
+				'translations' => $translation->translations[0] ?? '',
+			);
+		}
+
+		echo json_encode( $data, JSON_UNESCAPED_SLASHES );
 	}
 
 }
