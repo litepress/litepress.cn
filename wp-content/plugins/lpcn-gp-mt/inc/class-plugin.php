@@ -36,18 +36,20 @@ class Plugin {
 	 * Initializes the plugin.
 	 */
 	public function plugins_loaded() {
+		$t = new Translate();
+
 		/**
 		 * 机器翻译引擎对外 API 接口
 		 *
 		 * 该接口在网关处被改写为：https://api.litepress.cn/mt/translate
 		 */
-		GP::$router->add( '/api/mt/translate', array( Translate::class, 'api' ), 'post' );
+		GP::$router->add( '/api/mt/translate', array( $t, 'api' ), 'post' );
 
 		GP::$router->add( "/gp-mt/(.+?)", array( Web::class, 'add_web_translate_job' ), 'get' );
 		GP::$router->add( "/gp-mt/(.+?)", array( Web::class, 'add_web_translate_job' ), 'post' );
 
 
-		add_action( 'lpcn_schedule_gp_mt', array( new Translate(), 'web' ), 999, 2 );
+		add_action( 'lpcn_schedule_gp_mt', array( $t, 'web' ), 999, 2 );
 	}
 
 
