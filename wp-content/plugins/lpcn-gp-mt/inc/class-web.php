@@ -5,7 +5,7 @@ namespace LitePress\GlotPress\MT;
 use GP;
 use GP_Route;
 
-class Web {
+class Web extends GP_Route{
 
 	/**
 	 * 创建网页端翻译任务
@@ -54,12 +54,6 @@ SQL;
 		$route            = new GP_Route();
 		$route->notices[] = '该请求已加入队列，请稍后刷新页面';
 		$route->redirect( $referer );
-	}
-
-	public function before_request() {
-	}
-
-	public function after_request() {
 	}
 
 }
