@@ -446,12 +446,6 @@ order by o2 asc' );
 	public function api() {
 		header( 'Content-Type: application/json' );
 
-		$project_id = gp_post( 'project_id', 0 );
-		if ( empty( $project_id ) ) {
-			echo json_encode( array( 'error' => '参数错误，project_id 为空' ), JSON_UNESCAPED_SLASHES );
-			exit;
-		}
-
 		$request_originals_text = gp_post( 'originals', '[]' );
 		$request_originals      = json_decode( $request_originals_text, true );
 		if ( JSON_ERROR_NONE !== json_last_error() ) {
@@ -459,9 +453,9 @@ order by o2 asc' );
 			exit;
 		}
 
-		$gp_originals = GP::$original->find_many( array( 'project_id' => $project_id, 'status' => '+active' ) );
+		$gp_originals = GP::$original->find_many( array( 'singular' => $request_originals, 'status' => '+active' ) );
 		if ( empty( $gp_originals ) ) {
-			echo json_encode( array( 'error' => '你请求的项目未托管在 LitePress 翻译平台上，或不存在可翻译字符串' ), JSON_UNESCAPED_SLASHES );
+			echo json_encode( array( 'error' => '你请求的字符串未托管在 LitePress 翻译平台上。碍于系统资源有限，我们暂时无法将接口完全对外开放。' ), JSON_UNESCAPED_SLASHES );
 			exit;
 		}
 
@@ -473,7 +467,7 @@ order by o2 asc' );
 			}
 		}
 
-		$translations = $this->job( $project_id, $originals );
+		$translations = $this->job( 0, $originals );
 
 
 		$data = array();
