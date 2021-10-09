@@ -478,10 +478,7 @@ order by o2 asc' );
 
 		$data = array();
 		foreach ( $translations->entries as $translation ) {
-			$data[] = array(
-				'original'     => $translation->singular,
-				'translations' => $translation->translations[0] ?? '',
-			);
+			$data[ $translation->singular ] = $translation->translations[0] ?? '';
 		}
 
 		echo json_encode( $data, JSON_UNESCAPED_SLASHES );
