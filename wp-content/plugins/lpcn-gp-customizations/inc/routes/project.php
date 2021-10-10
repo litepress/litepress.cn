@@ -463,4 +463,61 @@ SQL;
 		$this->tmpl( 'project', get_defined_vars() );
 	}
 
+	public function import_translations_post_by_api() {
+		header( 'Content-Type: application/json' );
+
+		$project_path = sanitize_text_field( gp_post( 'project_path' ) );
+
+		$project = GP::$project->by_path( $project_path );
+		if ( ! $project ) {
+			// 如果获取不到就看看“第三方托管”中是否包含此项目
+			$project_path = str_replace( array( 'plugins', 'themes' ), 'others', $project_path );
+			$project      = GP::$project->by_path( $project_path );
+		}
+
+		if ( ! $project ) {
+			echo json_encode( array( 'error' => '请求的翻译项目不存在' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		if ( ! isset( $_FILES['po_file'] ) || ! is_uploaded_file( $_FILES['po_file']['tmp_name'] ) ) {
+			echo json_encode( array( 'error' => '未选择要上传的 po 文件' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$locale_slug = 'zh-cn';
+
+		$translation_set = GP::$translation_set->by_project_id_slug_and_locale( $project->id, 'default', $locale_slug );
+		if ( ! $translation_set ) {
+			echo json_encode( array( 'error' => '该项目的简体中文翻译集获取失败' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$can_import_current = $this->can( 'approve', 'translation-set', $translation_set->id );
+		$can_import_waiting = $can_import_current || $this->can( 'import-waiting', 'translation-set', $translation_set->id );
+
+		if ( ! $can_import_current && ! $can_import_waiting ) {
+			echo json_encode( array( 'error' => '你没有翻译导入的权限' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$import_status = 'waiting';
+
+		$format = gp_get_import_file_format( gp_post( 'format', 'po' ), $_FILES['po_file']['name'] );
+		if ( ! $format ) {
+			echo json_encode( array( 'error' => '接口只允许上传 po 文件' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$translations = $format->read_translations_from_file( $_FILES['po_file']['tmp_name'], $project );
+		if ( ! $translations ) {
+			echo json_encode( array( 'error' => '无法从上传的 po 文件中读取到有效的翻译数据' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$translations_added = $translation_set->import( $translations, $import_status );
+
+		echo json_encode( array( 'message' => sprintf( '成功导入了 %d 条翻译。', $translations_added ) ), JSON_UNESCAPED_SLASHES );
+	}
+
 }

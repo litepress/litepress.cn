@@ -61,6 +61,18 @@ class Plugin {
 		 * 自定义翻译条目列表的查询
 		 */
 		add_filter( 'gp_for_translation_where', array( $this, 'gp_for_translation_where' ), 10, 2 );
+
+		/**
+		 * 通过外部 API 来导入翻译文件的接口
+		 *
+		 * 这里之所以使用 Rest API 接口，而不是 GP 的端点，是因为只有这样才能使用统一的 JWT 认证
+		 */
+		add_action( 'rest_api_init', function () {
+			register_rest_route( 'gp/v1', 'import-translations', array(
+				'methods'  => 'POST',
+				'callback' => array( new Route_Project(), 'import_translations_post_by_api' ),
+			) );
+		} );
 	}
 
 	/**
