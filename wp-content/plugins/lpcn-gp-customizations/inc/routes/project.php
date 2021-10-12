@@ -501,7 +501,7 @@ SQL;
 			exit;
 		}
 
-		$import_status = 'waiting';
+		$import_status = $can_import_current ? 'current' : 'waiting';
 
 		$format = gp_get_import_file_format( gp_post( 'format', 'po' ), $_FILES['po_file']['name'] );
 		if ( ! $format ) {
