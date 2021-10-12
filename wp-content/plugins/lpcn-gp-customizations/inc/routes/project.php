@@ -515,6 +515,12 @@ SQL;
 			exit;
 		}
 
+		/**
+		 * 从 API 导入翻译时不跳过已存在“当前翻译”的条目
+		 */
+		add_filter( 'gp_translation_set_import_over_existing', function ( $translated_is_different ) {
+			return $translated_is_different;
+		}, 1 );
 		$translations_added = $translation_set->import( $translations, $import_status );
 
 		echo json_encode( array( 'message' => sprintf( '成功导入了 %d 条翻译。', $translations_added ) ), JSON_UNESCAPED_SLASHES );
