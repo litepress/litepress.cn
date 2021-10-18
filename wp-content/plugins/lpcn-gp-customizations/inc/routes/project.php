@@ -9,6 +9,10 @@ use GP_Route_Project;
 
 class Route_Project extends GP_Route_Project {
 
+	public function new_other() {
+		$this->tmpl( 'project-other-new' );
+	}
+
 	public function import_originals_post( $project_path ) {
 		$project_path = sanitize_text_field( $_POST['sub_project_path'] );
 
