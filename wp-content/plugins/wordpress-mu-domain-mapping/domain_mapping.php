@@ -629,7 +629,7 @@ function dm_redirect_admin() {
 }
 
 function redirect_login_to_orig() {
-	if ( !get_site_option( 'dm_remote_login' ) || $_GET[ 'action' ] == 'logout' || isset( $_GET[ 'loggedout' ] ) ) {
+	if ( !get_site_option( 'dm_remote_login' ) || ( isset( $_GET[ 'action' ] ) && $_GET[ 'action' ] == 'logout' ) || isset( $_GET[ 'loggedout' ] ) ) {
 		return false;
 	}
 	$url = get_original_url( 'siteurl' );
