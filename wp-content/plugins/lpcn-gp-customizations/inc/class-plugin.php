@@ -87,6 +87,7 @@ class Plugin {
 			Route_Project::class,
 			'import_originals_post'
 		), 'post' );
+		GP::$router->prepend( "/projects/others/-new", array( Route_Project::class, 'new_other' ), 'get' );
 	}
 
 	public function translation_format( GP_Translation $translation ): GP_Translation {
