@@ -513,6 +513,17 @@ SQL;
 			exit;
 		}
 
+		// 如果当前用户对该项目拥有管理员权限则连原文一起录入
+		$is_project_admin = $this->can( 'manage', 'translation-set', $translation_set->id );
+		if ( $is_project_admin ) {
+			$originals = $format->read_originals_from_file(  $_FILES['po_file']['tmp_name'], $project );
+			if ( ! $originals ) {
+				echo json_encode( array( 'error' => '你是该项目的管理员，但我们无法从你上传的 po 文件中读取到有效的原文数据' ), JSON_UNESCAPED_SLASHES );
+				exit;
+			}
+			GP::$original->import_for_project( $project, $originals );
+		}
+
 		$translations = $format->read_translations_from_file( $_FILES['po_file']['tmp_name'], $project );
 		if ( ! $translations ) {
 			echo json_encode( array( 'error' => '无法从上传的 po 文件中读取到有效的翻译数据' ), JSON_UNESCAPED_SLASHES );
