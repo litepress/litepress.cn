@@ -356,7 +356,7 @@ function handle_email_delete( int $user_id, string $email ): WP_Error|bool {
  *
  * 缓存包括CDN及本地磁盘中的缓存
  */
-function purge_avatar_cache( array $emails, bool $purge_local = true ) {
+function purge_avatar_cache( array $emails, bool $purge_local = true, bool $only_local = false ) {
 	$urls        = array();
 	$local_paths = array();
 	foreach ( $emails as $email ) {
@@ -387,19 +387,21 @@ function purge_avatar_cache( array $emails, bool $purge_local = true ) {
 	}
 
 	// 然后按URL规则刷新又拍云缓存
-	$upyun = new Upyun();
-	$r     = $upyun->post( 'buckets/purge/batch', array(
-		'noif'       => 1,
-		'source_url' => join( PHP_EOL, $urls ),
-	) );
+	if ( ! $only_local ) {
+		$upyun = new Upyun();
+		$r     = $upyun->post( 'buckets/purge/batch', array(
+			'noif'       => 1,
+			'source_url' => join( PHP_EOL, $urls ),
+		) );
 
-	$r_array = json_decode( $r, true )[0] ?? array();
-	if ( ! isset( $r_array['code'] ) ) {
-		Logger::error( CA_LOG_NAME, '刷新又拍云CDN缓存失败：接口返回空数据', $r_array );
-	}
+		$r_array = json_decode( $r, true )[0] ?? array();
+		if ( ! isset( $r_array['code'] ) ) {
+			Logger::error( CA_LOG_NAME, '刷新又拍云CDN缓存失败：接口返回空数据', $r_array );
+		}
 
-	if ( 1 !== (int) $r_array['code'] ) {
-		Logger::error( CA_LOG_NAME, "刷新又拍云CDN缓存失败：{$r_array['status']}", $r_array );
+		if ( 1 !== (int) $r_array['code'] ) {
+			Logger::error( CA_LOG_NAME, "刷新又拍云CDN缓存失败：{$r_array['status']}", $r_array );
+		}
 	}
 }
 
