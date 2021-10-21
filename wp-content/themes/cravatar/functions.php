@@ -47,7 +47,7 @@ if ( ! stristr( $_SERVER['REQUEST_URI'], '/avatar/' ) ) {
 		$hash = md5( $address );
 
 		// 拼接出最终的头像URL
-		return 'https://cravatar.cn/avatar/' . $hash . '?s=200&d=mp&r=' . time();
+		return 'https://cravatar.cn/avatar/' . $hash . '?s=200&test=1&d=mp&r=' . time();
 	}, 99999, 3 );
 }
 
