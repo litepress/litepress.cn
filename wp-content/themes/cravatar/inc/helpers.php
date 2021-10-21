@@ -150,7 +150,7 @@ function get_avatar_to_file( string $hash, string $url, string $type = 'gravatar
 	 *
 	 * 这里缓存时间15天是因为CDN缓存时间为30天，避免CDN回源时命中本地缓存造成数据被缓存60天
 	 */
-	if ( ! file_exists( $file_path ) || fileatime( $file_path ) < ( time() - 1313280 ) ) {
+	if ( ! file_exists( $file_path ) || filemtime( $file_path ) < ( time() - 1313280 ) ) {
 		$r = wp_remote_get( $url );
 		if ( is_wp_error( $r ) || ! isset( $r['body'] ) || empty( $r['body'] ) ) {
 			return '';
