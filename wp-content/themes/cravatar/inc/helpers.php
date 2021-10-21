@@ -356,7 +356,7 @@ function handle_email_delete( int $user_id, string $email ): WP_Error|bool {
  *
  * 缓存包括CDN及本地磁盘中的缓存
  */
-function purge_avatar_cache( array $emails, bool $purge_local = true, bool $only_local = false ) {
+function purge_avatar_cache( array $emails, bool $purge_local = true, bool $only_local = false, $type = 'gravatar' ) {
 	$urls        = array();
 	$local_paths = array();
 	foreach ( $emails as $email ) {
@@ -373,8 +373,8 @@ function purge_avatar_cache( array $emails, bool $purge_local = true, bool $only
 			continue;
 		}
 
-		$local_paths[] = '/www/cravatar-cache/' . $hash;
-		$urls[]        = 'https://cravatar.cn/avatar/' . $hash . '*';
+		$local_paths[] = "/www/cravatar-cache/$type/$hash.png";
+		$urls[]        = "https://cravatar.cn/avatar/{$hash}*";
 	}
 
 	// 先刷新本地缓存
