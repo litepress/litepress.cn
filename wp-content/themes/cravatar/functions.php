@@ -57,7 +57,7 @@ if ( ! stristr( $_SERVER['REQUEST_URI'], '/avatar/' ) ) {
 add_action( 'um_after_upload_db_meta_profile_photo', function ( $user_id ) {
 	$emails = get_user_emails( $user_id );
 
-	purge_avatar_cache( $emails );
+	purge_avatar_cache( $emails, false );
 } );
 
 /**
