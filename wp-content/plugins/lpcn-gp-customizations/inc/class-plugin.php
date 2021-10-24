@@ -73,6 +73,16 @@ class Plugin {
 				'callback' => array( new Route_Project(), 'import_translations_post_by_api' ),
 			) );
 		} );
+
+		/**
+		 * 获取用户所管理的项目
+		 */
+		add_action( 'rest_api_init', function () {
+			register_rest_route( 'gp/v1', 'projects/manages', array(
+				'methods'  => 'GET',
+				'callback' => array( new Route_Project(), 'get_manage_projects' ),
+			) );
+		} );
 	}
 
 	/**
