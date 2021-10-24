@@ -9,6 +9,34 @@ use GP_Route_Project;
 
 class Route_Project extends GP_Route_Project {
 
+	public function get_manage_projects() {
+		$current_user_id = get_current_user_id();
+
+		if ( empty( $current_user_id ) ) {
+			echo json_encode( array( 'error' => '你还未登录' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$projects = array();
+
+		$permissions = GP::$permission->find_many( array( 'user_id' => $current_user_id, 'action' => 'manage' ) );
+		foreach ( $permissions as $permission ) {
+			if ( empty( $permission->object_id ) ) {
+				continue;
+			}
+
+			list( $project_id ) = explode( '|', $permission->object_id );
+
+			$project = GP::$project->find_one( array( 'id' => $project_id ) );
+
+			if ( ! empty( $project ) ) {
+				$projects[] = $project->fields();
+			}
+		}
+
+		echo json_encode( array( 'projects' => $projects ), JSON_UNESCAPED_SLASHES );
+	}
+
 	public function new_other() {
 		$this->tmpl( 'project-other-new' );
 	}
@@ -516,7 +544,7 @@ SQL;
 		// 如果当前用户对该项目拥有管理员权限则连原文一起录入
 		$is_project_admin = $this->can( 'manage', 'translation-set', $translation_set->id );
 		if ( $is_project_admin ) {
-			$originals = $format->read_originals_from_file(  $_FILES['po_file']['tmp_name'], $project );
+			$originals = $format->read_originals_from_file( $_FILES['po_file']['tmp_name'], $project );
 			if ( ! $originals ) {
 				echo json_encode( array( 'error' => '你是该项目的管理员，但我们无法从你上传的 po 文件中读取到有效的原文数据' ), JSON_UNESCAPED_SLASHES );
 				exit;
