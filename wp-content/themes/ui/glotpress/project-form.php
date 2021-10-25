@@ -3,11 +3,17 @@
 	<dd><input type="text" class="form-control" name="project[name]" value="<?php echo esc_html( $project->name ); ?>" id="project[name]"></dd>
 
 	<!-- TODO: make slug edit WordPress style -->
-	<dt><label for="project[slug]"><?php _e( 'Slug', 'glotpress' ); ?></label></dt>
+	<dt><label for="project[slug]"><?php _e( '文本域', 'glotpress' ); ?></label></dt>
 	<dd>
 		<input class="form-control" type="text" name="project[slug]" value="<?php echo esc_attr( urldecode( $project->slug ) ); ?>" id="project[slug]">
 		<small><?php _e( 'If you leave the slug empty, it will be derived from the name.', 'glotpress' ); ?></small>
 	</dd>
+
+    <dt><label for="project[admin_name]">管理员</label></dt>
+    <dd>
+        <input class="form-control" type="text" name="project[admin_name]" value="<?php echo esc_attr( urldecode( $project->slug ) ); ?>" id="project[slug]">
+        <small>填用户名而非昵称</small>
+    </dd>
 
 	<dt><label for="project[description]"><?php _e( 'Description', 'glotpress' ); ?></label> <span class="ternary"><?php _e( 'can include HTML', 'glotpress' ); ?></span></dt>
 	<dd><textarea class="form-control" name="project[description]" rows="4" cols="40" id="project[description]"><?php echo esc_html( $project->description ); ?></textarea></dd>

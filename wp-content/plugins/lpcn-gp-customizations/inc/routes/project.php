@@ -232,6 +232,18 @@ class Route_Project extends GP_Route_Project {
 			return;
 		}
 
+		// 获取用户指定绑定的管理员的用户对象
+		$admin_name = sanitize_key( $post['admin_name'] );
+		if ( ! empty( $admin_name ) ) {
+			$user = get_user_by( 'login', $admin_name );
+			if ( empty( $user ) ) {
+				$this->errors[] = '指定的管理员用户无效——无法获取该用户的用户对象';
+				$this->tmpl( 'project-new', get_defined_vars() );
+
+				return;
+			}
+		}
+
 		$new_project = new GP_Project( $post );
 
 		if ( $this->invalid_and_redirect( $new_project ) ) {
@@ -283,6 +295,23 @@ class Route_Project extends GP_Route_Project {
 			'locale'     => 'zh-cn'
 		);
 		GP::$translation_set->create( $args );
+
+		// 如果存在管理员用户对象，则将其添加为项目管理员
+		if ( isset( $user ) ) {
+			GP::$permission->create( array(
+				'user_id'     => $user->ID,
+				'action'      => 'approve',
+				'object_type' => 'project|locale|set-slug',
+				'object_id'   => "{$project->id}|zh-cn|default",
+			) );
+
+			GP::$permission->create( array(
+				'user_id'     => $user->ID,
+				'action'      => 'manage',
+				'object_type' => 'project|locale|set-slug',
+				'object_id'   => "{$project->id}|zh-cn|default",
+			) );
+		}
 
 		if ( ! $project ) {
 			$project        = new GP_Project();
