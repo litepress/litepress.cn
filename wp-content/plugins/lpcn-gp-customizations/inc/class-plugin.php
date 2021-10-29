@@ -83,6 +83,16 @@ class Plugin {
 				'callback' => array( new Route_Project(), 'get_manage_projects' ),
 			) );
 		} );
+
+		/**
+		 * 根据给定条件查询翻译项目列表
+		 */
+		add_action( 'rest_api_init', function () {
+			register_rest_route( 'gp/v1', 'projects', array(
+				'methods'  => 'GET',
+				'callback' => array( new Route_Project(), 'get_projects_by_api' ),
+			) );
+		} );
 	}
 
 	/**
