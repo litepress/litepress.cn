@@ -37,6 +37,53 @@ class Route_Project extends GP_Route_Project {
 		echo json_encode( array( 'projects' => $projects ), JSON_UNESCAPED_SLASHES );
 	}
 
+	public function get_projects_by_api() {
+		$current_user_id = get_current_user_id();
+
+		if ( empty( $current_user_id ) ) {
+			echo json_encode( array( 'error' => '你还未登录' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$request_paths = gp_get( 'paths', '[]' );
+
+		$request_paths = json_decode( $request_paths, true );
+		if ( JSON_ERROR_NONE !== json_last_error() ) {
+			echo json_encode( array( 'error' => 'paths 参数不是标准的 JSON 字符串' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$projects = array();
+
+		foreach ( $request_paths as $request_path ) {
+			$project = GP::$project->by_path( $request_path );
+			if ( ! $project ) {
+				continue;
+			}
+			$project = $project->fields();
+
+			// 查询并为项目录入当前用户的权限
+			list( $translation_set ) = GP::$translation_set->by_project_id( $project['id'] );
+			if ( empty( $translation_set ) ) {
+				continue;
+			}
+
+			$project['permission'] = '';
+			$can_approve           = $this->can( 'approve', 'translation-set', $translation_set->id );
+			if ( $can_approve ) {
+				$project['permission'] = 'approve';
+			}
+			$can_manage = $this->can( 'write', 'project', $project['id'] );
+			if ( $can_manage ) {
+				$project['permission'] = 'manage';
+			}
+
+			$projects[] = $project;
+		}
+
+		echo json_encode( array( 'projects' => $projects ), JSON_UNESCAPED_SLASHES );
+	}
+
 	public function new_other() {
 		$this->tmpl( 'project-other-new' );
 	}
