@@ -58,7 +58,12 @@ class Route_Project extends GP_Route_Project {
 		foreach ( $request_paths as $request_path ) {
 			$project = GP::$project->by_path( $request_path );
 			if ( ! $project ) {
-				continue;
+				// 如果请求不到的话就去第三方托管中找一下，都找不到再跳过该项目
+				$request_path = str_replace( array( 'plugins/', 'themes/' ), 'others/', $request_path );
+				$project      = GP::$project->by_path( $request_path );
+				if ( ! $project ) {
+					continue;
+				}
 			}
 			$project = $project->fields();
 
@@ -78,7 +83,7 @@ class Route_Project extends GP_Route_Project {
 				$project['permission'] = 'manage';
 			}
 
-			$project['version'] = gp_get_meta('project', $project['parent_project_id'], 'version') ?: '';
+			$project['version'] = gp_get_meta( 'project', $project['parent_project_id'], 'version' ) ?: '';
 
 			$projects[] = $project;
 		}
