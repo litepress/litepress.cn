@@ -24,7 +24,7 @@ class Translations_Service {
 		}
 
 		$domains = join( ',', $domains );
-		$sql     = $wpdb->prepare( "select domain, version, updated from language_packs where type=%s and domain in ({$domains})", $query_type, );
+		$sql     = $wpdb->prepare( "select domain, max(version) as version, max(updated) as updated from language_packs where type=%s and domain in ({$domains}) and active=1 group by domain", $query_type, );
 		$r       = $wpdb->get_results( $sql, ARRAY_A );
 
 		foreach ( $r as $item ) {
