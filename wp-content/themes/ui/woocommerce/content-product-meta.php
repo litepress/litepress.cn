@@ -3,6 +3,8 @@
  * 产品的Meta区域
  */
 
+use function LitePress\Helper\get_woo_download_url;
+
 global $product;
 
 $product_price = $product->get_price();
@@ -30,7 +32,7 @@ $product_price = $product->get_price();
 	<a href="<?php echo $product->get_permalink(); ?>" class="btn btn-primary" one-link-mark="yes"><i
 			class="fas fa-search"></i>查看详情</a>
 	<?php if ( 0 === (int) $product_price ): ?>
-		<a href="<?php echo $product->get_meta( '_download_url' ) ?: lp_get_woo_download_url( $product->get_id() ); ?>" class="btn btn-primary"
+		<a href="<?php echo $product->get_meta( '_download_url' ) ?: get_woo_download_url( $product->get_id() ); ?>" class="btn btn-primary"
 		   one-link-mark="yes" target="_blank"><i class="fas fa-download"></i>立即下载</a>
 	<?php else: ?>
 		<a href="<?php echo $product->add_to_cart_url(); ?>" class="btn btn-primary" one-link-mark="yes">
