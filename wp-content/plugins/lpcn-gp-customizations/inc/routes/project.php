@@ -78,6 +78,8 @@ class Route_Project extends GP_Route_Project {
 				$project['permission'] = 'manage';
 			}
 
+			$project['version'] = gp_get_meta('project', $project['parent_project_id'], 'version') ?: '';
+
 			$projects[] = $project;
 		}
 
