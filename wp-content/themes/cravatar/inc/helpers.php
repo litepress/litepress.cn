@@ -127,32 +127,28 @@ function get_qqavatar_to_file( string $hash, string $qq ): string {
 		return false;
 	}, 10, 2 );
 
-	if ( isset( $_GET['test'] ) ) {
-		/**
-		 * 有一部分 QQ 头像可能是因为腾讯服务器 BUG 的原因，导致在 100 清晰度下是最佳显示效果，但是在 640 清晰度下则显示出了几十分辨率的屎。
-		 *
-		 * 比如：
-		 * http://q1.qlogo.cn/g?b=qq&nk=1327444568&s=100
-		 * http://q1.qlogo.cn/g?b=qq&nk=1327444568&s=640
-		 *
-		 * 所以这里判断一下，如果通过 640 尺寸获取到的图的实际大小小于 100 则转而获取尺寸未 100 的图
-		 */
-		$file_path = get_avatar_to_file( $hash, $url, 'qq' );
-		list( $width, $height, $type, $attr ) = getimagesize( $file_path );
+	/**
+	 * 有一部分 QQ 头像可能是因为腾讯服务器 BUG 的原因，导致在 100 清晰度下是最佳显示效果，但是在 640 清晰度下则显示出了几十分辨率的屎。
+	 *
+	 * 比如：
+	 * http://q1.qlogo.cn/g?b=qq&nk=1327444568&s=100
+	 * http://q1.qlogo.cn/g?b=qq&nk=1327444568&s=640
+	 *
+	 * 所以这里判断一下，如果通过 640 尺寸获取到的图的实际大小小于 100 则转而获取尺寸未 100 的图
+	 */
+	$file_path = get_avatar_to_file( $hash, $url, 'qq' );
+	list( $width, $height, $type, $attr ) = getimagesize( $file_path );
 
-		if ( ! empty( $width ) && 100 > (int) $width ) {
-			$url = "http://q1.qlogo.cn/g?b=qq&nk={$qq}&s=100";
+	if ( ! empty( $width ) && 100 > (int) $width ) {
+		$url = "http://q1.qlogo.cn/g?b=qq&nk={$qq}&s=100";
 
-			// 重新获取图片之前需要先清除本地缓存
-			purge_avatar_cache( array( $hash ), true, true, 'qq' );
+		// 重新获取图片之前需要先清除本地缓存
+		purge_avatar_cache( array( $hash ), true, true, 'qq' );
 
-			return get_avatar_to_file( $hash, $url, 'qq' );
-		} else {
-			return $file_path;
-		}
+		return get_avatar_to_file( $hash, $url, 'qq' );
+	} else {
+		return $file_path;
 	}
-
-	return get_avatar_to_file( $hash, $url, 'qq' );
 }
 
 /**
