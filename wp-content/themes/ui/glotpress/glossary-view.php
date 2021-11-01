@@ -2,9 +2,8 @@
 gp_title( __( '术语表 - LitePress翻译平台', 'glotpress' ) );
 gp_breadcrumb(
 	array(
-		gp_project_links_from_root( $project ),
-		gp_link_get( gp_url_project_locale( $project->path, $locale->slug, $translation_set->slug ), $translation_set->name ),
-		__( '术语表', 'glotpress' ),
+		'<a href="/translate/">翻译平台</a>',
+		'术语表',
 	)
 );
 
@@ -25,6 +24,8 @@ if ( 0 === $project->id ) {
 }
 ?>
 <main class="container">
+    <?php echo gp_breadcrumb(); ?>
+
     <section class="toolbar">
         <div class="text-center">
         <ul>
