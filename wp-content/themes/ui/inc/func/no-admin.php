@@ -267,10 +267,10 @@ add_filter( 'loop_shop_columns', function () {
 
 	/**
 	 * 如果当前使用手机访问，就返回一列
-	 */
-	if ( wp_is_mobile() ) {
-		$columns = 1;
-	}
+	 **/
+	//if ( wp_is_mobile() ) {
+	//	$columns = 1;
+	//}
 
 	return $columns;
 }, 999 );
