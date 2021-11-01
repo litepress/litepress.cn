@@ -588,11 +588,11 @@ add_filter( 'wpseo_breadcrumb_links', function ( $links ) {
  * 搜索结果页面短码支持
  */
 add_shortcode( 'wcorg-search-results-tab', function () {
-	return lava_ajaxSearch()->core->print_tabs();
+	lava_ajaxSearch()->core->print_tabs();
 } );
 
 add_shortcode( 'wcorg-search-results-results', function () {
-	return lava_ajaxSearch()->core->print_results();
+	lava_ajaxSearch()->core->print_results();
 } );
 
 /**
