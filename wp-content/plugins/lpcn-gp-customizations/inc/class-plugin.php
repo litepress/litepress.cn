@@ -171,6 +171,7 @@ class Plugin {
 
 	public function project_actions( $actions, $project ): array {
 		$data[] = $actions[0];
+		$data[] = $actions[1];
 
 		return $data;
 	}
