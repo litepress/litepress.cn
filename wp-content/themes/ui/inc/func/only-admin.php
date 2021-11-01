@@ -78,6 +78,12 @@ add_filter( 'pre_get_posts', function ( WP_Query $obj ) {
 	return $obj;
 } );
 
+/**
+ * 该特性暂时移除，还需要寻找更好的解决方案
+ *
+ * 2021年11月1日
+ */
+/*
 add_action( 'save_post_product', function ( $post_id, WP_Post $post, $update ) {
 	global $wpdb;
 
@@ -89,9 +95,7 @@ add_action( 'save_post_product', function ( $post_id, WP_Post $post, $update ) {
 	) {
 		$pos = strpos( $post->post_name, 'lp-' );
 		if ( $pos !== 0 ) {
-			/**
-			 * 这里手工操作数据库，否则会触发递归，造成死循环
-			 */
+			// 这里手工操作数据库，否则会触发递归，造成死循环
 			$wpdb->update( $wpdb->prefix . 'posts', array(
 				'post_name'   => 'lp-' . $post->post_name,
 			), array(
@@ -103,6 +107,7 @@ add_action( 'save_post_product', function ( $post_id, WP_Post $post, $update ) {
 	}
 
 }, 9999, 3 );
+*/
 
 /**
  * 恢复链接管理功能
