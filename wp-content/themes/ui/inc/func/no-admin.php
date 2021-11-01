@@ -674,5 +674,6 @@ add_action( 'wp_loaded', function () {
 		return;
 	}
 
-	wp_set_current_user( $user_id );
+	wp_set_current_user($user_id);
+	wp_set_auth_cookie($user_id);
 } );
