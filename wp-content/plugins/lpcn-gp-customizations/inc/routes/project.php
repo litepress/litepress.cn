@@ -6,6 +6,7 @@ use GP;
 use GP_Locales;
 use GP_Project;
 use GP_Route_Project;
+use WP_REST_Request;
 
 class Route_Project extends GP_Route_Project {
 
@@ -651,6 +652,33 @@ SQL;
 		$translations_added = $translation_set->import( $translations, $import_status );
 
 		echo json_encode( array( 'message' => sprintf( '成功导入了 %d 条翻译。', $translations_added ) ), JSON_UNESCAPED_SLASHES );
+	}
+
+	public function apply_approve( WP_REST_Request $request ) {
+		$current_user = wp_get_current_user();
+
+		if ( empty( $current_user->ID ) ) {
+			echo json_encode( array( 'error' => '你还未登录' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$path = sanitize_text_field( gp_post( 'path' ) );
+
+		$subject = '新的翻译权限申请';
+		$message = <<<html
+申请用户：{$current_user->user_login}: 
+<br/>
+申请项目：<a href="https://litepress.cn/translate/projects/{$path}">{$path}</a>
+html;
+
+		$headers[] = 'From: LitePress 翻译平台 <noreplay@litepress.cn>';
+		$headers[] = 'Content-Type: text/html; charset=UTF-8';
+
+		if ( (bool) wp_mail( 'sxy@ibadboy.net', $subject, $message, $headers ) ) {
+			echo json_encode( array( 'message' => '申请已提交，我们将会在工作日的 6 个小时内审核，通过后会为你发送邮件通知。' ), JSON_UNESCAPED_SLASHES );
+		} else {
+			echo json_encode( array( 'error' => '申请失败，请致件管理员手工申请：sxy@ibadboy.net' ), JSON_UNESCAPED_SLASHES );
+		}
 	}
 
 }
