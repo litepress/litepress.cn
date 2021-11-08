@@ -61,6 +61,7 @@ function send_email_for_bind_email( string $address ): bool {
 html;
 
 	$headers[] = 'From: Cravatar <noreplay@litepress.cn>';
+	$headers[] = 'Content-Type: text/html; charset=UTF-8';
 
 	return (bool) wp_mail( $address, $subject, $message, $headers );
 }
