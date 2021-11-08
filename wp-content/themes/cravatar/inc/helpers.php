@@ -55,9 +55,9 @@ function send_email_for_bind_email( string $address ): bool {
 	$message = <<<html
 你好 {$user->display_name}:
 
-这是你的邮箱激活地址:{$active_url}
+这是你的邮箱激活地址:<a href="{$active_url}">{$active_url}</a>
 
-此激活地址有效期10分钟哦
+此激活地址有效期 10 分钟哦
 html;
 
 	$headers[] = 'From: Cravatar <noreplay@litepress.cn>';
