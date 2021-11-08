@@ -54,9 +54,9 @@ function send_email_for_bind_email( string $address ): bool {
 	$subject = '添加新邮箱到你的 Cravatar 账号';
 	$message = <<<html
 你好 {$user->display_name}:
-
+<br/>
 这是你的邮箱激活地址:<a href="{$active_url}">{$active_url}</a>
-
+<br/>
 此激活地址有效期 10 分钟哦
 html;
 
