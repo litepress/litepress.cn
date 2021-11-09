@@ -188,6 +188,7 @@ section.supplier {
     display: flex;
     margin: 5px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .filter-cost-ul {
@@ -897,7 +898,7 @@ form.wcpv-shortcode-registration-form .form-row-wide .form-check-input {
     align-items: center;
 }
 
-.woocommerce .product-type-simple img, .woocommerce-page .product-type-simple img{
+.woocommerce .product-type-simple .img-box img, .woocommerce-page .product-type-simple .img-box img{
     min-width: 78px;
 }
 @media screen and (min-width: 640px) {
@@ -927,6 +928,8 @@ form.wcpv-shortcode-registration-form .form-row-wide .form-check-input {
     .woocommerce nav.woocommerce-pagination ul {
         padding-bottom: 0 !important;
     }
-
+    .wp-filter > .row > ul > li i{
+        width: 100%;
+    }
 
 }

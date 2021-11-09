@@ -19,6 +19,45 @@ $(searchinput).keyup(function () {
     search()
 });
 
+
+
+
+(function ($) {
+    $.extend({
+        Request: function (m) {
+            var sValue = location.search.match(new RegExp("[\?\&]" + m + "=([^\&]*)(\&?)", "i"));
+            return sValue ? sValue[1] : sValue;
+        },
+        UrlUpdateParams: function (url, name, value) {
+            var r = url;
+            if (r != null && r != 'undefined' && r != "") {
+                value = encodeURIComponent(value);
+                var reg = new RegExp("(^|)" + name + "=([^&]*)(|$)");
+                var tmp = name + "=" + value;
+                if (url.match(reg) != null) {
+                    r = url.replace(eval(reg), tmp);
+                }
+                else {
+                    if (url.match("[\?]")) {
+                        r = url + "&" + tmp;
+                    } else {
+                        r = url + "?" + tmp;
+                    }
+                }
+            }
+            return r;
+        }
+
+    });
+})(jQuery);
+
+
+
+
+
+
+
+
 function search() {
     var content = "";
     const formData = new FormData();
@@ -58,6 +97,8 @@ function search() {
     });
 }
 
+
+
 $(function () {
     $(".order").before("<tr class='sep-row'></tr>");
     $(".api-manager-domains td").attr('colspan', '5');
@@ -70,6 +111,10 @@ $(function () {
     }) ;   $(".textareas").each(function (){
         $(this).addClass("active");
     })
+
+
+
+
     /* $(window).scroll(function(){
          if($(window).scrollTop()>0){
              $(".wp-nav").css({"position":"fixed","top":0,"z-index":"1001","width":"100%"});
@@ -177,3 +222,12 @@ $(window).resize(function () {
     }
 });
 
+
+
+
+$(function () {
+    const textdomain = $.Request("textdomain");
+    const project_name = $.Request("project_name");
+    $("input[name=textdomain]").val(textdomain);
+    $("input[name=project_name]").val(project_name);
+})

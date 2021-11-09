@@ -91,6 +91,8 @@ if ( post_password_required() ) {
 </section>
 
 
+
+
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
     <section class="plug-in-details card">
         <div class="woocommerce-tabs wc-tabs-wrapper container theme-boxshadow">

@@ -33,9 +33,7 @@ get_header();
                     align-items: center;
                 }
 
-                .breadcrumb {
-                    display: none;
-                }
+
             </style>
             <section class="text-center w-100">
                 <div class="container">

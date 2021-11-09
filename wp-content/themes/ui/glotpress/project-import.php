@@ -42,7 +42,8 @@ gp_tmpl_header();
 ?>
 
     <!--<h2><?php /*echo 'originals' == $kind ? __( 'Import Originals', 'glotpress' ) : __( 'Import Translations', 'glotpress' ); */ ?></h2>-->
-    <div class="container setting">
+    <div class="container ">
+        <div class="setting">
         <form action="" method="post" enctype="multipart/form-data" style="max-width: 400px">
             <dl>
                 <dt>
@@ -122,6 +123,7 @@ gp_tmpl_header();
             </dl>
 			<?php gp_route_nonce_field( ( 'originals' === $kind ? 'import-originals_' : 'import-translations_' ) . $project->id ); ?>
         </form>
+        </div>
     </div>
 <?php
 gp_tmpl_footer();

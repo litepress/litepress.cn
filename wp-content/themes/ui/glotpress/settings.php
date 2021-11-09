@@ -34,7 +34,8 @@ if ( ! is_array( $default_sort ) ) {
       <div class="row">
     <div class="notice" id="help-notice">第一次翻译吗？你可以阅读<a href="https://make.wordpress.org/polyglots/handbook/tools/glotpress-translate-wordpress-org/" target="_blank" one-link-mark="yes">《翻译员手册》</a> 获得帮助^_^<a id="hide-help-notice" class="secondary" style="float: right;" href="" one-link-mark="yes">×</a> </div></div>
 </div>
-<div class="container setting">
+<div class="container">
+    <div class="setting">
 
 
 <form action="" method="post">
@@ -43,7 +44,7 @@ if ( ! is_array( $default_sort ) ) {
 	<?php gp_route_nonce_field( 'update-settings_' . get_current_user_id() ); ?>
 
 	<input class="btn btn-primary" type="submit" name="submit" value="<?php esc_attr_e( 'Save Settings', 'glotpress' ); ?>">
-</form>
+</form></div>
 </div>
 <style>
     .fl-builder-content.fl-builder-content-1386{

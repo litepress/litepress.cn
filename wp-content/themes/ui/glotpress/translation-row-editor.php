@@ -34,7 +34,7 @@ $plural = sprintf(
         <div class="editor-panel">
             <div class="editor-panel__left">
                 <div class="panel-content">
-                    <div class="strings">
+                    <div class="source-string strings">
                         <?php if (!$translation->plural) : ?>
                             <p class="original"><?php echo prepare_original($translation_singular); ?></p>
                             <p class="original_raw"><?php echo esc_translation($translation->singular); ?></p>
