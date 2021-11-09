@@ -244,8 +244,8 @@ $(function () {
 
 
     $(".remove_email").on('click', function () {
-        const remove_email = $("#wpemail").text();
-        const nonce = $("input[name=nonce]").val();
+        const remove_email = $(this).parent().parent().parent().parent().parent().siblings("#wpemail").text();
+        const nonce = $(this).parent().parent().parent().parent().parent().siblings("input[name=nonce]").val();
         const user_id = trigger.data('user_id');
         $.ajax({
             url: wp.ajax.settings.url,

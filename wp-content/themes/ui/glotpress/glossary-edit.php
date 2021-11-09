@@ -13,6 +13,7 @@ gp_tmpl_header();
 
 <h2><?php _e( 'Edit Glossary', 'glotpress' ); ?></h2>
 
+
 <form action="" method="post">
 	<p>
 		<label for="glossary-edit-description"><?php _e( 'Description', 'glotpress' ); ?></label> <span class="ternary"><?php _e( 'can include HTML', 'glotpress' ); ?></span> <br/>

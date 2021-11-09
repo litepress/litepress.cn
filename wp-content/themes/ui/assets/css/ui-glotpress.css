@@ -141,12 +141,12 @@ small{
 img.plugin-icon {
     height: auto;
     max-width: 100%;
+    max-height: 143px;
 }
 .toolbar {
     position: relative;
     box-sizing: border-box;
-    margin: 30px 0;
-    padding: 0 20px;
+    margin-bottom: 1rem;
     border: 1px solid #dfdfdf;
     background: #ffffff;
     color: #555;
@@ -367,7 +367,6 @@ table.translations td, table.translations th, table.translation-sets td, table.t
 }
 
 .setting {
-    margin: 1em 1em 20px;
     padding: 1em;
     box-shadow: 0px 0px 7px 0px rgb(2 116 190 / 9%);
     background: #fff;
@@ -724,9 +723,7 @@ table.locale-sub-projects .stats a, table.translation-sets .stats a {
 .ternary {
     font-size:.8em
 }
-.actionlist {
-    margin-left:1em
-}
+
 
 
 .permissions .user {

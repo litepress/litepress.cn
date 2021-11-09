@@ -17,7 +17,7 @@
                         <div class="project-top row">
                             <div class="col-5 center">
                                 <a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>">
-                                    <div class="placeholder">
+                                    <div class="docs-placeholder">
                                         <?php echo $main_doc['doc']->post_title; ?>
                                     </div>
                                 </a>

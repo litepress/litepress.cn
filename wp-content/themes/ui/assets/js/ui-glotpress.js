@@ -41,6 +41,8 @@ $(".btn.replace").click(function(){
 $(".btn.filter,.btn.sort").click(function(){
   $(this).parent().siblings(".replace").hide();
 })
+
+
 $(function () {
   $(".btn.filter").click(function () {
     $(this).text("过滤");
@@ -50,4 +52,5 @@ $(function () {
     $(this).text("排序");
     $(this).siblings(".filter").text("过滤");
   })
+
 })

@@ -8,7 +8,8 @@ gp_breadcrumb(
 gp_tmpl_header();
 ?>
 
-    <div class="container setting">
+    <div class="container ">
+        <div class="setting">
         <h2><?php _e( 'Create New Project', 'glotpress' ); ?></h2>
         <form action="" method="post" enctype="multipart/form-data">
 			<?php gp_tmpl_load( 'project-form', get_defined_vars() ); ?>
@@ -20,6 +21,7 @@ gp_tmpl_header();
             </p>
 			<?php gp_route_nonce_field( 'add-project' ); ?>
         </form>
+        </div>
     </div>
 <?php
 gp_tmpl_footer();

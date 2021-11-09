@@ -40,10 +40,10 @@ get_header();
                                            value="<?php echo wp_create_nonce( 'delete-email-' . $email ) ?>">
                                     <ul class="tip">
                                         <!-- Button trigger modal -->
-                                        <a class="" href="javascript:" data-bs-toggle="modal" data-bs-target="#Delete_mailbox">删除该邮箱</a>
+                                        <a class="" href="javascript:" data-bs-toggle="modal" data-bs-target="#a<?php echo wp_create_nonce( 'delete-email-' . $email ) ?>">删除该邮箱</a>
 
                                         <!-- Modal -->
-                                        <div class="modal  fade" id="Delete_mailbox" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal  fade" id="a<?php echo wp_create_nonce( 'delete-email-' . $email ) ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

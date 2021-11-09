@@ -367,7 +367,7 @@ padding-left: 10px;
     color: var(--wp-theme-color)!important;
     font-weight: inherit!important;
 }
-.project-top .col-5 .placeholder{
+.project-top .col-5 .docs-placeholder{
     height: 180px;
     background: var(--wp-theme-color);
     color: #fff;
@@ -389,6 +389,20 @@ padding-left: 10px;
 }
 #breadcrumbs{
     color: rgba(0, 0, 0, .65); 
+}
+.wp-block-code code{
+    width: 100%;
+}
+.wedocs-shortcode-wrap ul.wedocs-docs-list ul.wedocs-doc-sections{
+    overflow: hidden;
+
+    display: -webkit-box;
+
+    text-overflow:ellipsis;
+
+    -webkit-line-clamp:4;
+
+    -webkit-box-orient: vertical
 }
 @media (min-width: 992px) {
     .js-toc {
