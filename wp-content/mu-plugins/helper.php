@@ -168,7 +168,8 @@ function get_products_from_es( array $slugs, string $type, array $fields = array
 					)
 				)
 			)
-		)
+		),
+		'size' => 500,
 	);
 	$body = wp_json_encode( $body );
 
@@ -311,4 +312,15 @@ function prepare_w_org_string( string $str ): string {
 	}
 
 	return str_replace( $search, $replace, $str );
+}
+
+/**
+ * 获取 Woo 商品的下载地址
+ *
+ * @param int $product_id
+ *
+ * @return string
+ */
+function get_woo_download_url( int $product_id ): string {
+	return home_url( '?woo-free-download=' . $product_id );
 }

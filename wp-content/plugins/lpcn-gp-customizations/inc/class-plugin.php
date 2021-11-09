@@ -93,6 +93,16 @@ class Plugin {
 				'callback' => array( new Route_Project(), 'get_projects_by_api' ),
 			) );
 		} );
+
+		/**
+		 * 申请成为某个项目的翻译审批者
+		 */
+		add_action( 'rest_api_init', function () {
+			register_rest_route( 'gp/v1', 'projects/approve', array(
+				'methods'  => 'POST',
+				'callback' => array( new Route_Project(), 'apply_approve' ),
+			) );
+		} );
 	}
 
 	/**
@@ -171,6 +181,7 @@ class Plugin {
 
 	public function project_actions( $actions, $project ): array {
 		$data[] = $actions[0];
+		$data[] = $actions[1];
 
 		return $data;
 	}
