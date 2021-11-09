@@ -17,6 +17,7 @@
 
 use function LitePress\Helper\exist_gp_project;
 use function LitePress\Helper\get_product_type_by_category_ids;
+use function LitePress\Helper\get_woo_download_url;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -67,7 +68,7 @@ if ( post_password_required() ) {
                             </span>
                         </span>
                 <a class="plugin-download btn download-button button-large btn-primary"
-                   href="<?php echo $product->get_meta( '_download_url' ) ?: lp_get_woo_download_url( $product->get_id() ); ?>"><i
+                   href="<?php echo $product->get_meta( '_download_url' ) ?: get_woo_download_url( $product->get_id() ); ?>"><i
                             class="fas fa-download"></i> 立即下载</a>
 			<?php else: ?>
                 <span class="price">

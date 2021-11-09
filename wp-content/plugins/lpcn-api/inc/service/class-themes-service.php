@@ -3,6 +3,7 @@
 namespace LitePress\API\Inc\Service;
 
 use function LitePress\Helper\get_products_from_es;
+use function LitePress\Helper\get_woo_download_url;
 
 /**
  * Class Themes_Service
@@ -79,7 +80,7 @@ class Themes_Service {
 
 			$package = $item['_source']['meta']['_download_url'][0]['value'] ?? '';
 			if ( empty( $package ) ) {
-				$package = lp_get_woo_download_url( $item['_source']['ID'] ?? '' );
+				$package = get_woo_download_url( $item['_source']['ID'] ?? '' );
 			}
 
 			$args                                   = array(

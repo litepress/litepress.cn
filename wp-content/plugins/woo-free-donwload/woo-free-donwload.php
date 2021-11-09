@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: 让Woo无需登录即可下载免费产品
- * Description: 有很多同类插件都可实现此功能，但该插件优势在于轻量以及会记录下载量（通过记录消费量来实现）
+ * Description: 有很多同类插件都可实现此功能，但该插件优势在于轻量以及会记录下载量（通过记录消费量来实现），触发方式为在应用市场 URL 上附件参数：?woo-free-download=' . $product_id
  * Version: 1.0.0
  * Author: LitePress社区
  * Author URI: https://litepress.cn/
@@ -10,10 +10,6 @@
  * License: GPLv3 or later
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
-
-function lp_get_woo_download_url( int $product_id ): string {
-	return home_url( '?woo-free-download=' . $product_id );
-}
 
 add_action( 'wp_loaded', function () {
 	if ( isset( $_GET['woo-free-download'] ) && ! empty( $_GET['woo-free-download'] ) ) {

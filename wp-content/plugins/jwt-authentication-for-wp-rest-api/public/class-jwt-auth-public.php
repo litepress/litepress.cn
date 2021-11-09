@@ -220,43 +220,45 @@ class Jwt_Auth_Public
      *
      * @return WP_Error | Object | Array
      */
-    public function validate_token($output = true)
+    public function validate_token($output = true, $token = '')
     {
-        /*
-         * Looking for the HTTP_AUTHORIZATION header, if not present just
-         * return the user.
-         */
-        $auth = isset($_SERVER['HTTP_AUTHORIZATION']) ? $_SERVER['HTTP_AUTHORIZATION'] : false;
+		if ( empty( $token ) ) {
+			/*
+			 * Looking for the HTTP_AUTHORIZATION header, if not present just
+			 * return the user.
+			 */
+			$auth = isset( $_SERVER['HTTP_AUTHORIZATION'] ) ? $_SERVER['HTTP_AUTHORIZATION'] : false;
 
-        /* Double check for different auth header string (server dependent) */
-        if (!$auth) {
-            $auth = isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION']) ? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] : false;
-        }
+			/* Double check for different auth header string (server dependent) */
+			if ( ! $auth ) {
+				$auth = isset( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) ? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] : false;
+			}
 
-        if (!$auth) {
-            return new WP_Error(
-                'jwt_auth_no_auth_header',
-                'Authorization header not found.',
-                array(
-                    'status' => 403,
-                )
-            );
-        }
+			if ( ! $auth ) {
+				return new WP_Error(
+					'jwt_auth_no_auth_header',
+					'Authorization header not found.',
+					array(
+						'status' => 403,
+					)
+				);
+			}
 
-        /*
-         * The HTTP_AUTHORIZATION is present verify the format
-         * if the format is wrong return the user.
-         */
-        list($token) = sscanf($auth, 'Bearer %s');
-        if (!$token) {
-            return new WP_Error(
-                'jwt_auth_bad_auth_header',
-                'Authorization header malformed.',
-                array(
-                    'status' => 403,
-                )
-            );
-        }
+			/*
+			 * The HTTP_AUTHORIZATION is present verify the format
+			 * if the format is wrong return the user.
+			 */
+			list( $token ) = sscanf( $auth, 'Bearer %s' );
+			if ( ! $token ) {
+				return new WP_Error(
+					'jwt_auth_bad_auth_header',
+					'Authorization header malformed.',
+					array(
+						'status' => 403,
+					)
+				);
+			}
+		}
 
         /** Get the Secret Key */
         $secret_key = defined('JWT_AUTH_SECRET_KEY') ? JWT_AUTH_SECRET_KEY : false;
