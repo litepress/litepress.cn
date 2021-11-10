@@ -9,8 +9,8 @@ gp_title(
 gp_breadcrumb_project( $project );
 gp_tmpl_header();
 ?>
-    <div class="container setting">
-
+    <div class="container ">
+<div class="setting">
 <form action="" method="post" enctype="multipart/form-data">
 	<?php gp_tmpl_load( 'project-form', get_defined_vars() ); ?>
 	<p>
@@ -19,6 +19,7 @@ gp_tmpl_header();
 	</p>
 	<?php gp_route_nonce_field( 'edit-project_' . $project->id ); ?>
 </form>
+</div>
     </div>
 <?php
 gp_tmpl_footer();

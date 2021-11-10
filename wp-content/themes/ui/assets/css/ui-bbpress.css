@@ -33,7 +33,7 @@
     height: auto;
 }
 
-.bbp-reply-author-avatar .bbp-author-role, .bbp-reply-author-avatar .bbp-author-name {
+.bbp-reply-author-avatar .bbp-author-role, .bbp-reply-author-avatar .bbp-author-name ,.bbp-reply-author-avatar .fa-language{
     display: none !important;
 }
 
@@ -150,7 +150,7 @@
 }
 
 li.bbp-forum-info, li.bbp-topic-title {
-    width: 67%;
+    width: 65%;
 }
 
 li.bbp-forum-freshness, li.bbp-topic-freshness {
@@ -158,7 +158,7 @@ li.bbp-forum-freshness, li.bbp-topic-freshness {
 }
 
 li.bbp-forum-reply-count, li.bbp-forum-topic-count, li.bbp-topic-reply-count, li.bbp-topic-voice-count, li.bbp-topic-view-count {
-    width: 4% !important;
+    width: 6% !important;
     margin-top: auto !important;
     margin-bottom: auto !important;
     color: #bab9bb;
@@ -731,6 +731,21 @@ display: none;
     display: flex;
     margin-left: 8px;
 }
+
+.translate-contribution-nameplate .fa-language{
+    margin-left: 5px;
+    color: var(--wp-theme-color);
+    font-size: 25px;
+    display: block;
+}
+
+.translate-edit-nameplate .fa-language{
+    margin-left: 5px;
+    color: var(--wp-theme-color);
+    font-size: 25px;
+    display: block;
+}
+
 .index-forum .bbp-topic-freshness-author{
     display: flex;
     width: 80px;
