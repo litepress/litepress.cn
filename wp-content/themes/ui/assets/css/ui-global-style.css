@@ -139,6 +139,7 @@ section.breadcrumb {
     padding: 15px 0;
     background: var(--wp-theme-bgcolor);
     color: rgba(0, 0, 0, .65);
+    position: relative;
 }
 
 .navbar-expand-md .navbar-collapse section {

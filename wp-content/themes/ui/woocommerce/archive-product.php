@@ -61,15 +61,16 @@ do_action('woocommerce_before_main_content');
                         <ul class="filter-cost-ul">
                             <li class="all"><a href="?" class="active">全部</a></li>
                             <li><a href="javascript:;" rel="max_price=0.1"
-                                   onclick="Url.updateSearchParam({min_price: 0, max_price: 0.1});window.location.href=Url.getLocation();">免费</a></li>
-                            <li><a href="javascript:;" rel="min_price=0.1&max_price=10000" onclick="myFunction()">付费</a></li>
+                                   onclick="Url.updateSearchParam('min_price');Url.updateSearchParam({ max_price: 0.1});window.location.href=Url.getLocation();">免费</a></li>
+                            <li><a href="javascript:;" rel="min_price=0.1" onclick="myFunction()">付费</a></li>
                             <!--                            <li><a href="javascript:;" rel="min_price=0.1&max_price=10000" onclick="Url.updateSearchParam({min_price: 0.1, max_price: 10000});window.location.href=Url.getLocation();">付费</a></li>-->
                        <script>
 function myFunction() {
-    url_noparm = location.protocol + '//' + location.host + location.pathname;
+    Url.updateSearchParam("max_price");Url.updateSearchParam({ min_price: 0.1});window.location.href=Url.getLocation();
+/*    url_noparm = location.protocol + '//' + location.host + location.pathname;
     url_noparm5 = url_noparm.split("/").splice(0, 5).join("/");
-urlprice = url_noparm5+"?min_price=0.1&max_price=10000"
-    window.location.href = urlprice;
+urlprice = url_noparm5+"?min_price=0.1"
+    window.location.href = urlprice;*/
 }
                        </script>
                         </ul>
