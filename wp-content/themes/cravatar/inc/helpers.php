@@ -138,6 +138,10 @@ function get_qqavatar_to_file( string $hash, string $qq ): string {
 	 * 所以这里判断一下，如果通过 640 尺寸获取到的图的实际大小小于 100 则转而获取尺寸未 100 的图
 	 */
 	$file_path = get_avatar_to_file( $hash, $url, 'qq' );
+	if ( empty( $file_path ) ) {
+		return $file_path;
+	}
+
 	list( $width, $height, $type, $attr ) = getimagesize( $file_path );
 
 	if ( ! empty( $width ) && 100 > (int) $width ) {
