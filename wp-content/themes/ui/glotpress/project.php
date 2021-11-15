@@ -38,7 +38,7 @@ gp_tmpl_header();
     <div class="container">
 		<?php echo gp_breadcrumb(); ?>
         <div class="notice" id="help-notice">
-            你可以通过安装 <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip" target="_blank">WP-China-Yes</a> 插件，并切换应用市场为“LitePress 应用市场”来接收翻译推送（只推送翻译率大于 80% 的包）。
+            你可以通过安装 <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip" target="_blank">WP-China-Yes</a>插件，并切换应用市场为“LitePress 应用市场”来接收翻译推送（只推送翻译率大于 80% 的包）。
         </div>
 
     </div>
@@ -371,21 +371,26 @@ gp_tmpl_header();
                                     <header class="d-flex aside-header align-items-center">
                                         <div class="me-2 wp-icon">
                                             <i class="fas fa-clipboard-list-check fa-fw"></i></div>
-                                        <span>项目翻译编辑者</span></header>
+                                        <span>项目翻译审批者</span><a class="btn btn-primary">申请</a></header>
 
                                     <ul class="p-2">
 										<?php $project_permissions = GP::$permission->find( array(
 											'action'    => 'approve',
 											'object_id' => $parent_project->id . '|zh-cn|default'
 										) ) ?>
-										<?php foreach ( $project_permissions as $project_permission ): ?>
-											<?php $user = get_user_by( 'ID', $project_permission->user_id ); ?>
-											<?php if ( ! empty( $user ) ): ?>
-                                                <li>
-                                                    <a href="/user/<?php echo $user->user_login ?>"><?php echo get_avatar( $user->id, 32 ) . $user->display_name ?></a>
-                                                </li>
-											<?php endif; ?>
-										<?php endforeach; ?>
+										<?php if ( empty( $project_permissions ) ): ?>
+                                            还没有人负担此项目的管理哦
+										<?php else: ?>
+											<?php foreach ( $project_permissions as $project_permission ): ?>
+												<?php $user = get_user_by( 'ID', $project_permission->user_id ); ?>
+												<?php if ( ! empty( $user ) ): ?>
+                                                    <li>
+                                                        <a href="/user/<?php echo $user->user_login ?>"><?php echo get_avatar( $user->id, 32 ) . $user->display_name ?></a>
+                                                    </li>
+												<?php endif; ?>
+											<?php endforeach; ?>
+
+										<?php endif; ?>
                                     </ul>
                                 </section>
 
@@ -393,7 +398,7 @@ gp_tmpl_header();
                                     <header class="d-flex aside-header align-items-center">
                                         <div class="me-2 wp-icon">
                                             <i class="fas fa-clipboard-list-check fa-fw"></i></div>
-                                        <span>全局翻译编辑者</span></header>
+                                        <span>全局翻译审批者</span></header>
 									<?php $global_permissions = GP::$permission->find( array( 'action' => 'admin' ) ) ?>
                                     <ul class="compressed p-2">
 										<?php foreach ( $global_permissions as $global_permission ): ?>
@@ -448,7 +453,7 @@ gp_tmpl_header();
 								 *
 								 * @param \GP_Project $sub_project
 								 * @param \stdClass $translation_set_total
-                                 * @param int $sub_sub_projects_count
+								 * @param int $sub_sub_projects_count
 								 *
 								 * @hooked \LitePress\GlotPress\Customizations\Inc\lpcn_gp_plugin_card - 10
 								 * @hooked \LitePress\GlotPress\Customizations\Inc\lpcn_gp_theme_card - 10
