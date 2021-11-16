@@ -43,6 +43,7 @@ gp_tmpl_header();
 
     <!--<h2><?php /*echo 'originals' == $kind ? __( 'Import Originals', 'glotpress' ) : __( 'Import Translations', 'glotpress' ); */ ?></h2>-->
     <div class="container ">
+	    <?php echo gp_breadcrumb(); ?>
         <div class="setting">
         <form action="" method="post" enctype="multipart/form-data" style="max-width: 400px">
             <dl>
