@@ -136,15 +136,18 @@ function get_qqavatar_to_file( string $hash, string $qq ): string {
 	 * http://q1.qlogo.cn/g?b=qq&nk=1327444568&s=640
 	 *
 	 * 所以这里判断一下，如果通过 640 尺寸获取到的图的实际大小小于 100 则转而获取尺寸未 100 的图
+	 *
+	 * 2021年11月16日更
+	 * 部分 QQ 头没 640 尺寸的图片，这时候尝试获取 100 尺寸的。
 	 */
 	$file_path = get_avatar_to_file( $hash, $url, 'qq' );
-	if ( empty( $file_path ) ) {
-		return $file_path;
+
+	$width = 0;
+	if ( ! empty( $file_path ) ) {
+		list( $width, $height, $type, $attr ) = getimagesize( $file_path );
 	}
 
-	list( $width, $height, $type, $attr ) = getimagesize( $file_path );
-
-	if ( ! empty( $width ) && 100 > (int) $width ) {
+	if ( 100 > (int) $width || empty( $file_path ) ) {
 		$url = "http://q1.qlogo.cn/g?b=qq&nk={$qq}&s=100";
 
 		// 重新获取图片之前需要先清除本地缓存
@@ -163,6 +166,7 @@ function get_qqavatar_to_file( string $hash, string $qq ): string {
  *
  * @param string $hash
  * @param string $url
+ * @param string $type qq or gravatar
  *
  * @return string
  */
