@@ -51,7 +51,7 @@ class Translations_Service {
 		foreach ( $translate_packs_tmp as $domain => $item ) {
 			$prior_sub_item = array();
 			foreach ( $item as $sub ) {
-				if ( strtotime( $prior_sub_item['updated'] ) < strtotime( $sub['updated'] ) ) {
+				if ( strtotime( $prior_sub_item['updated'] ?? 0 ) < strtotime( $sub['updated'] ?? 0 ) ) {
 					$prior_sub_item = $sub;
 				}
 			}
