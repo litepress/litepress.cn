@@ -34,10 +34,10 @@ add_action( 'wp_loaded', function () {
 		);
 
 		/**
-		 * 301到真实的下载地址
+		 * 302到真实的下载地址
 		 */
 		foreach ( $product->get_downloads() as $download ) {
-			wp_redirect( $download['file'], 301 );
+			wp_redirect( $download['file'], 302 );
 			exit;
 		}
 	}
