@@ -60,7 +60,8 @@ class Route_Project extends GP_Route_Project {
 			$project = GP::$project->by_path( $request_path );
 			if ( ! $project ) {
 				// 如果请求不到的话就去第三方托管中找一下，都找不到再跳过该项目
-				$request_path = str_replace( array( 'plugins/', 'themes/' ), 'others/', $request_path );
+				list( $type, $domain, $branch ) = explode( '/', $request_path );
+				$request_path = "others/$domain/body";
 				$project      = GP::$project->by_path( $request_path );
 				if ( ! $project ) {
 					continue;
@@ -587,7 +588,8 @@ SQL;
 		$project = GP::$project->by_path( $project_path );
 		if ( ! $project ) {
 			// 如果获取不到就看看“第三方托管”中是否包含此项目
-			$project_path = str_replace( array( 'plugins', 'themes' ), 'others', $project_path );
+			list( $type, $domain, $branch ) = explode( '/', $project_path );
+			$project_path = "others/$domain/body";
 			$project      = GP::$project->by_path( $project_path );
 		}
 
