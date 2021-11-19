@@ -195,7 +195,7 @@ class Plugin {
 
 		if ( ! isset( $_GET['filter'] ) || '应用替换' !== $_GET['filter'] ) {
 			if ( isset( $_GET['filters']['term_by_replace'] ) && ! empty( $_GET['filters']['term_by_replace'] ) && '应用搜索' === $_GET['filter'] ) {
-				$where[0] = "((t.translation_0 LIKE '%{$_GET['filters']['term_by_replace']}%') OR (t.translation_1 LIKE '%{$_GET['filters']['term_by_replace']}%'))";
+				$where[0] = "((t.translation_0 LIKE binary '%{$_GET['filters']['term_by_replace']}%') OR (t.translation_1 LIKE binary '%{$_GET['filters']['term_by_replace']}%'))";
 			}
 
 			return $where;
