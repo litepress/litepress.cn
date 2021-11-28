@@ -326,8 +326,12 @@ class WC_Product_Vendors_Commission {
 	 * @param string $commission_status
 	 * @return bool
 	 */
-	public function update_status( $commission_id = 0, $order_item_id, $commission_status ) {
+	public function update_status( $commission_id, $order_item_id, $commission_status ) {
 		global $wpdb;
+
+		if ( empty( $commission_id ) ) {
+			$commission_id = 0;
+		}
 
 		$sql = "UPDATE {$this->table_name}";
 		$sql .= " SET `commission_status` = %s,";

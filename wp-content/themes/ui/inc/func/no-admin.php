@@ -485,6 +485,10 @@ add_shortcode( 'nameplate', function ( $attr, $content = '' ) {
 	$excludes       = array( '管理员', '超级管理员', 'admin', 'administrators', '站长', '所有者', '管理' );
 	$excluded_blank = array( ' ', '　', '&nbsp;', '\n', '\r', '\t' );
 
+	if ( ! isset( $attr['title'] ) || empty( $attr['title'] ) || ! isset( $attr['link'] ) || empty( $attr['link'] ) ) {
+		return '';
+	}
+
 	// 防止被通过GBK等编码插入标题
 	$attr['title'] = sanitize_file_name( $attr['title'] );
 

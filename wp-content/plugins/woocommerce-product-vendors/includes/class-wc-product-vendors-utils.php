@@ -646,8 +646,12 @@ class WC_Product_Vendors_Utils {
 	 * @param string $format The format string for the returned date (default is Y-m-d H:i:s)
 	 * @return string Formatted date relative to the timezone / GMT offset.
 	 */
-	public static function get_date_from_gmt( $string, $format = 'Y-m-d H:i:s', $timezone_string ) {
+	public static function get_date_from_gmt( $string, $format, $timezone_string ) {
 		$tz = $timezone_string;
+
+		if ( empty( $format ) ) {
+			$format = 'Y-m-d H:i:s';
+		}
 
 		if ( empty( $timezone_string ) ) {
 			$tz = get_option( 'timezone_string' );
