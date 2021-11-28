@@ -371,7 +371,7 @@ gp_tmpl_header();
                                     <header class="d-flex aside-header align-items-center">
                                         <div class="me-2 wp-icon">
                                             <i class="fas fa-clipboard-list-check fa-fw"></i></div>
-                                        <span>项目翻译审批者</span><a class="btn btn-primary">申请</a></header>
+                                        <span>项目翻译审批者</span></header>
 
                                     <ul class="p-2">
 										<?php $project_permissions = GP::$permission->find( array(
@@ -379,7 +379,11 @@ gp_tmpl_header();
 											'object_id' => $parent_project->id . '|zh-cn|default'
 										) ) ?>
 										<?php if ( empty( $project_permissions ) ): ?>
-                                            还没有人负担此项目的管理哦
+                                            <div class="pb-2">还没有人负担此项目的管理哦</div>
+                                            <a href="/translate" target="_blank" class="btn btn-outline-primary d-block" role="button">
+                                                <i class=" fad fa-users-medical"></i>
+                                                <span class="uabb-button-text uabb-creative-button-text">申请</span>
+                                            </a>
 										<?php else: ?>
 											<?php foreach ( $project_permissions as $project_permission ): ?>
 												<?php $user = get_user_by( 'ID', $project_permission->user_id ); ?>
