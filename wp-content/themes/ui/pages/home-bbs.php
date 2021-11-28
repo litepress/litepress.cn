@@ -21,17 +21,18 @@ get_header();
                                 <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip">
                                     <button type="button" class="btn btn-primary align-items-center uabb-btn-one "><i
                                                 class="fa fa-plug" aria-hidden="true"></i>
-                                        WP-China-Yes 插件下载<span class="version">V3.5.0</span>
+                                        WP-China-Yes 插件下载<span class="version">V3.5.3</span>
                                     </button>
                                     <span class="middle-text">					or				</span>
                                 </a>
 
-                                <a href="https://a1.wp-china-yes.net/apps/wordpress.zip">
+                                <a href="https://rat.dev/litepress/LitePress/archive/refs/heads/5.8.2.zip">
                                     <button type="button"
                                             class="btn btn-primary align-items-center uabb-btn-two tooltip-show"
                                             data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            title="LitePress将于未来数月内上线，在此期间我们为你准备了最新的WordPress安装包，其中内置WP-China-Yes插件"><i
-                                                class="fab fa-wordpress"></i>WordPress 最新版下载<span class="version">V5.8.0</span>
+                                            title="LitePress 5.8.2已经发布，您可以浏览置顶帖了解相关信息并更新到LitePress！"><i
+                                                class="fas fa-code"></i>
+                                        LitePress 发行版下载<span class="version">V5.8.2</span>
                                     </button>
                                 </a>
                             </div>
