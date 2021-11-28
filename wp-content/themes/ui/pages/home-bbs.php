@@ -30,7 +30,8 @@ get_header();
                                             class="btn btn-primary align-items-center uabb-btn-two tooltip-show"
                                             data-bs-toggle="tooltip" data-bs-placement="bottom"
                                             title="LitePress 5.8.2已经发布，您可以浏览置顶帖了解相关信息并更新到LitePress！"><i
-                                                class="fab fa-wordpress"></i>LitePress 发行版下载<span class="version">V5.8.2</span>
+                                                class="fas fa-code"></i>
+                                        LitePress 发行版下载<span class="version">V5.8.2</span>
                                     </button>
                                 </a>
                             </div>
