@@ -50,6 +50,10 @@ class Plugin {
 	public function title( $value ): string {
 		global $product;
 
+		if ( ! is_object( $product ) || ! method_exists( $product, 'get_name' ) ) {
+			return $value;
+		}
+
 		if ( empty( $product ) || $value !== $product->get_name() ) {
 			return $value;
 		}
@@ -73,6 +77,10 @@ class Plugin {
 
 	public function short_description( $value ): string {
 		global $product;
+
+		if ( ! is_object( $product ) || ! method_exists( $product, 'get_slug' ) ) {
+			return $value;
+		}
 
 		if ( empty( $product ) ) {
 			return $value;
