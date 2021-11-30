@@ -61,13 +61,17 @@ $(".btn.lp-approve").click(function () {
     url:"https://litepress.cn/translate/wp-json/gp/v1/projects/approve",
     type: "post",
     data: {"path":last_part2},
-    beforeSend: function (xhr) {
-      xhr.withCredentials = true
+    headers: {
+      'X-WP-Nonce': wpApiSettings.nonce
     },
     success: function (s) {
       console.log(s);
-      if (s.error.length > 0){
-      $(" .toast-body").html("<i class=\"fad fa-exclamation-circle\"></i> "+s.error).addClass("text-primary");
+      if (s.message.length > 0){
+        $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> "+s.message);
+
+      }
+      else if (s.error.length > 0){
+        $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i> "+s.error);
       }
       $('#liveToast').toast('show')
     },
