@@ -38,7 +38,8 @@ gp_tmpl_header();
     <div class="container">
 		<?php echo gp_breadcrumb(); ?>
         <div class="notice" id="help-notice">
-            你可以通过安装 <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip" target="_blank">WP-China-Yes</a> 插件并切换应用市场为“LitePress 应用市场”或者安装LitePress发行版来接收翻译推送（只推送翻译率大于 80% 的包）。
+            你可以通过安装 <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip" target="_blank">WP-China-Yes</a>
+            插件并切换应用市场为“LitePress 应用市场”或者安装LitePress发行版来接收翻译推送（只推送翻译率大于 80% 的包）。
         </div>
 
     </div>
@@ -380,10 +381,6 @@ gp_tmpl_header();
 										) ) ?>
 										<?php if ( empty( $project_permissions ) ): ?>
                                             <div class="pb-2">还没有人负担此项目的管理哦</div>
-                                            <a href="/translate" target="_blank" class="btn btn-outline-primary d-block" role="button">
-                                                <i class=" fad fa-users-medical"></i>
-                                                <span class="uabb-button-text uabb-creative-button-text">申请</span>
-                                            </a>
 										<?php else: ?>
 											<?php foreach ( $project_permissions as $project_permission ): ?>
 												<?php $user = get_user_by( 'ID', $project_permission->user_id ); ?>
@@ -395,6 +392,11 @@ gp_tmpl_header();
 											<?php endforeach; ?>
 
 										<?php endif; ?>
+                                        <a href="/translate" target="_blank" class="btn btn-outline-primary d-block"
+                                           role="button">
+                                            <i class=" fad fa-users-medical"></i>
+                                            <span class="uabb-button-text uabb-creative-button-text">申请</span>
+                                        </a>
                                     </ul>
                                 </section>
 
