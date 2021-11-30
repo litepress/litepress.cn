@@ -54,3 +54,23 @@ $(function () {
   })
 
 })
+$(".btn.lp-approve").click(function () {
+  var url = location.pathname,
+      last_part2 = url.split("/").splice(3,2).join("/");
+  $.ajax({
+    url:"https://litepress.cn/translate/wp-json/gp/v1/projects/approve",
+    type: "post",
+    data: {"path":last_part2},
+    beforeSend: function (xhr) {
+      xhr.withCredentials = true
+    },
+    success: function (s) {
+      console.log(s);
+      if (s.error.length > 0){
+      $(" .toast-body").html("<i class=\"fad fa-exclamation-circle\"></i> "+s.error).addClass("text-primary");
+      }
+      $('#liveToast').toast('show')
+    },
+  })
+  return false;
+})
