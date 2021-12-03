@@ -23,7 +23,7 @@ get_header();
 		// 获取当前分类下的头五篇文章
 		$args  = array(
 			'numberposts' => 5,
-			'category'    => $category->ID,
+			'category'    => $category->term_id,
 		);
 		$posts = get_posts( $args );
 
