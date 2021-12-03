@@ -1,5 +1,6 @@
 :root {
     --wp-theme-color: #0274be;
+    --bs-primary-rgb:2,116,190;
     --wp-theme-hover-color: #2472a5;
     --wp-theme-gray-color: #848b8e;
     --wp-theme-bgcolor: #f0f2f5;
@@ -22,6 +23,9 @@ ul, p, li {
 
 hr {
     background: var(--wp-theme-gray-color)
+}
+.bottom-05 {
+    bottom: 5%!important
 }
 .tooltip{
     z-index: 1039;
