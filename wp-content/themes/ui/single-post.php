@@ -12,11 +12,12 @@ $cats = get_categories();
 
 
             <ul class="doc-nav-list">
-                <?php foreach ($cats as $item): ?>
+				<?php foreach ( $cats as $item ): ?>
                     <li class="page_item page-item-687">
-                        <a href="/"><?php echo $item->cat_name ?><span class="wedocs-caret"></span></a>
+                        <a href="<?php echo get_category_link( $item ) ?>"><?php echo $item->cat_name ?><span
+                                    class="wedocs-caret"></span></a>
                     </li>
-                <?php endforeach; ?>
+				<?php endforeach; ?>
             </ul>
         </div>
         <div class="ltp-single-content col-xl-7">
@@ -83,8 +84,6 @@ $cats = get_categories();
     </div>
 
 
-
-
     <style>
 
         @font-face {
@@ -94,6 +93,7 @@ $cats = get_categories();
             font-style: normal;
             font-display: block;
         }
+
         .sub-banner.banner + .breadcrumb {
             display: none;
         }
@@ -720,14 +720,11 @@ $cats = get_categories();
                         if (s[0].translations.length != 0) {
                             if (s[0].translations[0].status === "waitting") {
                                 $(".modal-header small").addClass("bg-primary").text("状态：正在审核");
-                            }
-                            else if(s[0].translations[0].status === "fuzzy"){
+                            } else if (s[0].translations[0].status === "fuzzy") {
                                 $(".modal-header small").addClass("bg-warning text-dark").text("状态：模糊");
-                            }
-                            else if(s[0].translations[0].status === "current"){
+                            } else if (s[0].translations[0].status === "current") {
                                 $(".modal-header small").addClass("bg-success").text("状态：当前");
-                            }
-                            else if(s[0].translations[0].status === "old"){
+                            } else if (s[0].translations[0].status === "old") {
                                 $(".modal-header small").addClass("bg-secondary").text("状态：旧");
                             }
 
@@ -777,14 +774,13 @@ $cats = get_categories();
                     },
                     success: function (s) {
                         console.log(s);
-                        if(s[wp_original_id].translation_status === "current"){
+                        if (s[wp_original_id].translation_status === "current") {
 
                             $(" .toast-body").html("提交翻译成功,2秒后刷新页面");
-                            setTimeout(function(){
+                            setTimeout(function () {
                                 window.location.reload();//刷新当前页面.
-                            },2000)
-                        }
-                        else if(s[wp_original_id].translation_status === "waitting"){
+                            }, 2000)
+                        } else if (s[wp_original_id].translation_status === "waitting") {
                             $(" .toast-body").html("提交成功，请等待管理员审核");
                         }
 
