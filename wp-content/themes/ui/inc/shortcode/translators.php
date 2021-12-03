@@ -12,7 +12,7 @@ function wcy_get_translators() {
 
 	$translators = wp_cache_get( 'translators', 'litepress-cn' );
 	if ( empty( $translators ) ) {
-		$translators = $wpdb->get_results( 'select user_id, count(*) as count from wp_4_gp_translations where user_id!=517 group by user_id order by count desc;' );
+		$translators = $wpdb->get_results( 'select user_id, count(*) as count from wp_4_gp_translations where user_id!=517 and user_id!=0 group by user_id order by count desc;' );
 		wp_cache_set( 'translators', $translators, 'litepress-cn', 86400 );
 	}
 
