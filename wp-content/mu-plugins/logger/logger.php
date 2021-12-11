@@ -32,6 +32,13 @@ class Logger {
 
 	const LEVEL = Logger_Lib::DEBUG;
 
+	// 定义全局的日志名称常量
+	const TRANSLATE = 'Translate';
+	const STORE = 'Store';
+	const CRAVATAR = 'Cravatar';
+	const API = 'Api';
+	const GLOBAL = 'Global';
+
 	/**
 	 * @var array
 	 */
