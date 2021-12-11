@@ -3,7 +3,7 @@
 Plugin Name: Payment gateway for WooCommerce - Woo Alipay
 Plugin URI: https://github.com/froger-me/woo-alipay
 Description: Integrate Woocommerce with Alipay (Mainland China).
-Version: 1.1.3
+Version: 100
 Author: Alexandre Froger
 Author URI: https://froger.me
 Text Domain: woo-alipay
