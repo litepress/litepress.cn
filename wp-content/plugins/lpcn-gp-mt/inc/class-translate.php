@@ -349,12 +349,13 @@ class Translate extends GP_Route {
 			/**
 			 * 这里因为还是会查询原文相同的语言对，所以按升序排，这样从第一条开始压入数组，后面的高使用比例的就会覆盖前面的低使用比例
 			 */
-			$r = $wpdb->get_results( 'select o.singular as source, t.translation_0 as target, COUNT(t.translation_0) as o2
+			$r = $wpdb->get_results( "select o.singular as source, t.translation_0 as target, COUNT(t.translation_0) as o2
 from wp_4_gp_translations as t
          join wp_4_gp_originals as o on t.original_id = o.id
+where t.status='current'
 GROUP BY  target
-HAVING o2 > 4
-order by o2 asc' );
+HAVING o2 > 5
+order by o2 asc" );
 
 			foreach ( $r as $item ) {
 				$memory[ strtolower( $item->source ) ] = $item->target;
