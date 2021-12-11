@@ -169,7 +169,7 @@ function get_products_from_es( array $slugs, string $type, array $fields = array
 				)
 			)
 		),
-		'size' => 500,
+		'size'  => 500,
 	);
 	$body = wp_json_encode( $body );
 
@@ -323,4 +323,34 @@ function prepare_w_org_string( string $str ): string {
  */
 function get_woo_download_url( int $product_id ): string {
 	return home_url( '?woo-free-download=' . $product_id );
+}
+
+/**
+ * 按照目录结构递归创建目录
+ *
+ * @param $directory
+ */
+function create_directory( string $directory ) {
+	execute_command( sprintf(
+		'mkdir --parents %s 2>/dev/null',
+		escapeshellarg( $directory )
+	) );
+}
+
+/**
+ * 执行一个 Shell 命令
+ *
+ * @param $command
+ * @param bool $get_return
+ *
+ * @return \WP_Error|string|bool
+ */
+function execute_command( string $command, bool $get_return = false ): WP_Error|string|bool {
+	exec( $command, $output, $return_var );
+
+	if ( $return_var ) {
+		return new WP_Error( $return_var, '执行命令时出错。', $output );
+	}
+
+	return $get_return ? join( "\n", $output ) : true;
 }
