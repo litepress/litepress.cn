@@ -70,8 +70,8 @@ class Import {
 			}
 
 			// 替换关键字
-			$item->slug = prepare_w_org_string( $item->slug );
 			$item->name = prepare_w_org_string( $item->name );
+			$item->slug = str_replace( 'wordpress', 'litepress', $item->slug );
 
 			if ( ! get_category_by_slug( $item->slug ) ) {
 				$args = array(
