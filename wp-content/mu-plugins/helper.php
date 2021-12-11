@@ -296,11 +296,11 @@ function html_split( string $html ): array {
  */
 function prepare_w_org_string( string $str ): string {
 	$items = array(
-		'translate.wordpress.org' => 'litepress.cn/translate',
-		'developer.wordpress.org' => 'litepress.cn/developer',
-		'wordpress.org'           => 'litepress.cn',
-		'WordPress'               => 'LitePress',
-		'wordpress'               => 'litepress',
+		'translate.wordpress.org'         => 'litepress.cn/translate',
+		'developer.wordpress.org'         => 'litepress.cn/developer',
+		'wordpress.org/support/article/'  => 'litepress.cn/support/article/',
+		'wordpress.org/support/category/' => 'litepress.cn/support/category/',
+		'WordPress'                       => 'LitePress',
 	);
 
 	$search  = array();
