@@ -1,0 +1,240 @@
+# Copyright (C) 2021 Ultimate Member
+# This file is distributed under the same license as the Ultimate Member - Real-time Notifications plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Ultimate Member - Real-time Notifications 2.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/um-notifications\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-07-20T22:50:27+03:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: um-notifications\n"
+
+#. Plugin Name of the plugin
+msgid "Ultimate Member - Real-time Notifications"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://ultimatemember.com/extensions/real-time-notifications/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Adds real-time activity notifications to community users."
+msgstr ""
+
+#. Author of the plugin
+msgid "Ultimate Member"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://ultimatemember.com/"
+msgstr ""
+
+#: includes/core/actions/um-notifications-log-mycred.php:47
+#: includes/core/actions/um-notifications-log-mycred.php:49
+msgid "%s %%_singular%%"
+msgstr ""
+
+#: includes/core/actions/um-notifications-log-mycred.php:47
+#: includes/core/actions/um-notifications-log-mycred.php:49
+msgid "%s %%_plural%%"
+msgstr ""
+
+#: includes/core/actions/um-notifications-log-mycred.php:85
+msgid "%s points"
+msgstr ""
+
+#: includes/core/actions/um-notifications-log-mycred.php:106
+msgid "Notification template"
+msgstr ""
+
+#: includes/core/actions/um-notifications-log-mycred.php:152
+#: includes/core/actions/um-notifications-log-mycred.php:157
+msgid "You've gained <strong>%%cred_f%% %%_plural%%</strong> for <strong>%s</strong>."
+msgstr ""
+
+#: includes/core/actions/um-notifications-log-mycred.php:161
+msgid "You've taken away <strong>%%cred_f%% %%_plural%%</strong> for <strong>%s</strong>."
+msgstr ""
+
+#: includes/core/actions/um-notifications-log-mycred.php:181
+msgid "You've gained <strong>%%cred_f%% %%_plural%%</strong> for connecting %s account</strong>."
+msgstr ""
+
+#: includes/core/actions/um-notifications-log-mycred.php:182
+msgid "You've taken away <strong>%%cred_f%% %%_plural%%</strong> for disconnecting %s account</strong>."
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:50
+msgid "Role upgrade"
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:51
+msgid "When my membership level is changed"
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:54
+msgid "New comment reply"
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:55
+msgid "When a member replies to one of my comments"
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:58
+msgid "New user comment"
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:59
+msgid "When a member comments on my posts"
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:62
+msgid "New guest comment"
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:63
+msgid "When a guest comments on my posts"
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:66
+msgid "User view profile"
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:67
+msgid "When a member views my profile"
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:70
+msgid "Guest view profile"
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:71
+msgid "When a guest views my profile"
+msgstr ""
+
+#: includes/core/class-notifications-main-api.php:193
+msgid "%s ago"
+msgstr ""
+
+#: includes/core/class-notifications-setup.php:125
+#: includes/core/filters/um-notifications-settings.php:22
+#: includes/core/um-notifications-init.php:104
+#: templates/no-notifications.php:14
+#: templates/notifications.php:14
+msgid "Notifications"
+msgstr ""
+
+#: includes/core/class-notifications-setup.php:160
+msgid "Your membership level has been changed from <strong>{role_pre}</strong> to <strong>{role_post}</strong>"
+msgstr ""
+
+#: includes/core/class-notifications-setup.php:161
+msgid "<strong>{member}</strong> has replied to one of your comments."
+msgstr ""
+
+#: includes/core/class-notifications-setup.php:162
+msgid "<strong>{member}</strong> has commented on your <strong>post</strong>. <span class=\"b1\">\"{comment_excerpt}\"</span>"
+msgstr ""
+
+#: includes/core/class-notifications-setup.php:163
+msgid "A guest has commented on your <strong>post</strong>. <span class=\"b1\">\"{comment_excerpt}\"</span>"
+msgstr ""
+
+#: includes/core/class-notifications-setup.php:164
+msgid "<strong>{member}</strong> has viewed your profile."
+msgstr ""
+
+#: includes/core/class-notifications-setup.php:165
+msgid "A guest has viewed your profile."
+msgstr ""
+
+#: includes/core/filters/um-notifications-account.php:14
+msgid "Web notifications"
+msgstr ""
+
+#: includes/core/filters/um-notifications-account.php:15
+msgid "Update Settings"
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:14
+msgid "Real-time Notifications License Key"
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:27
+msgid "Enable real-time instant notification"
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:28
+msgid "Turn off please If your server is getting some load."
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:33
+msgid "How often do you want the ajax notifier to check for new notifications? (in seconds)"
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:41
+msgid "Where should the notification icon appear?"
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:43
+msgid "Right bottom"
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:44
+msgid "Left bottom"
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:46
+msgid "Select..."
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:52
+msgid "Always display the notification icon"
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:53
+msgid "If turned off, the icon will only show when there's a new notification."
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:58
+msgid "Notification sound"
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:59
+msgid "Play sound when new notification appear. It may not work in Chrome due to Autoplay Policy."
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:65
+msgid "Account Tab"
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:66
+msgid "Show or hide an account tab that shows the web notifications."
+msgstr ""
+
+#: includes/core/filters/um-notifications-settings.php:92
+msgid "Template"
+msgstr ""
+
+#: templates/account_webnotifications.php:14
+msgid "Receiving Notifications"
+msgstr ""
+
+#: templates/no-notifications.php:28
+#: templates/notifications.php:30
+msgid "No new notifications"
+msgstr ""
+
+#: templates/notifications.php:34
+msgid "See all notifications"
+msgstr ""
+
+#: um-notifications.php:43
+#: um-notifications.php:59
+msgid "The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href=\"https://wordpress.org/plugins/ultimate-member\">here</a>"
+msgstr ""
