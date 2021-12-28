@@ -1,0 +1,306 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ultimate Member\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-04-12 18:38+0200\n"
+"PO-Revision-Date: 2015-05-05 16:23+0100\n"
+"Last-Translator: Calum Allison <umplugin@gmail.com>\n"
+"Language-Team: Blizzheart <kearsan@blizzheart.com>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: EDD_SL_Plugin_Updater.php:177
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" class="
+"\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+msgstr ""
+"Une nouvelle version de %1$s est disponible. <a target=\"_blank\" class="
+"\"thickbox\" href=\"%2$s\">Voir les détails de la version %3$s</a>."
+
+#: EDD_SL_Plugin_Updater.php:184
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" class="
+"\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s"
+"\">update now</a>."
+msgstr ""
+"Une nouvelle version de %1$s est disponible. <a target=\"_blank\" class="
+"\"thickbox\" href=\"%2$s\">Voir les détails de la version %3$s</a> ou <a "
+"href=\"%4$s\">mettre à jour</a>."
+
+#: EDD_SL_Plugin_Updater.php:324
+msgid "You do not have permission to install plugin updates"
+msgstr "Vous n'avez pas la permission de mettre à jour des plugins"
+
+#: EDD_SL_Plugin_Updater.php:324
+msgid "Error"
+msgstr "Erreur"
+
+#: core/actions/um-notifications-log-mycred.php:10
+#: core/actions/um-notifications-log-mycred.php:26
+#, php-format
+msgid "%s points"
+msgstr "%s blizzy"
+
+#: core/actions/um-notifications-log-mycred.php:29
+msgid "logging into site"
+msgstr "s'être connecté au site"
+
+#: core/actions/um-notifications-log-mycred.php:30
+msgid "completing your registration"
+msgstr "s'être inscrit"
+
+#: core/actions/um-notifications-log-mycred.php:31
+msgid "updating your profile"
+msgstr "avoir mis à jour votre profil"
+
+#: core/actions/um-notifications-log-mycred.php:32
+msgid "adding a profile photo"
+msgstr "avoir ajouté une photo de profil"
+
+#: core/actions/um-notifications-log-mycred.php:33
+msgid "adding a cover photo"
+msgstr "avoir ajouté une image de couverture"
+
+#: core/filters/um-notifications-account.php:10
+msgid "Web notifications"
+msgstr "Notifications web"
+
+#: core/filters/um-notifications-account.php:34
+msgid "Update Settings"
+msgstr "Mettre à jour"
+
+#: core/filters/um-notifications-account.php:60
+msgid "Receiving Notifications"
+msgstr "Recevoir des notifications"
+
+#: core/filters/um-notifications-settings.php:13
+msgid "Enable real-time instant notification"
+msgstr "Activer les notifications en temps réel"
+
+#: core/filters/um-notifications-settings.php:14
+msgid "Turn off please If your server is getting some load."
+msgstr "Veuillez désactiver si votre serveur subit une charge trop importante"
+
+#: core/filters/um-notifications-settings.php:22
+#: core/filters/um-notifications-settings.php:54
+msgid "Where should the notification icon appear?"
+msgstr "Où l'icône des notifications doit apparaître ?"
+
+#: core/filters/um-notifications-settings.php:25
+#: core/filters/um-notifications-settings.php:57
+msgid "Right bottom"
+msgstr "En bas à droite"
+
+#: core/filters/um-notifications-settings.php:26
+#: core/filters/um-notifications-settings.php:58
+msgid "Left bottom"
+msgstr "En bas à gauche"
+
+#: core/filters/um-notifications-settings.php:28
+#: core/filters/um-notifications-settings.php:60
+msgid "Select..."
+msgstr "Choisissez..."
+
+#: core/filters/um-notifications-settings.php:35
+msgid ""
+"How often do you want the ajax notifier to check for new notifications? (in "
+"seconds)"
+msgstr ""
+"À quelle fréquence souhaitez-vous que l'avertisseur ajax détecte de "
+"nouvelles notifications ? (en secondes)"
+
+#: core/filters/um-notifications-settings.php:44
+msgid "Enable real-time notification popup"
+msgstr "Activer le popup de notifications en temps réel"
+
+#: core/filters/um-notifications-settings.php:45
+msgid ""
+"This will show a popup to the user in the bottom left describing the action."
+msgstr ""
+"Cela fera apparaître un popup à l'utilisateur en bas à gauche décrivant "
+"l'action."
+
+#: core/filters/um-notifications-settings.php:67
+msgid "Account Tab"
+msgstr "Onglet de compte"
+
+#: core/filters/um-notifications-settings.php:69
+msgid "Show or hide an account tab that shows the web notifications."
+msgstr "Afficher ou masquer l'onglet des notifications web dans le compte"
+
+#: core/filters/um-notifications-settings.php:70
+msgid "On"
+msgstr "Oui"
+
+#: core/filters/um-notifications-settings.php:71
+msgid "Off"
+msgstr "Non"
+
+#: core/filters/um-notifications-settings.php:86
+msgid "Template"
+msgstr "Modèle"
+
+#: core/filters/um-notifications-settings.php:97
+#: core/um-notifications-setup.php:66 templates/no-notifications.php:2
+#: templates/notifications.php:2
+msgid "Notifications"
+msgstr "Notifications"
+
+#: core/um-notifications-api.php:23
+msgid "Role upgrade"
+msgstr "Évolution de rôle"
+
+#: core/um-notifications-api.php:25
+msgid "When my membership level is changed"
+msgstr "Lorsque mon niveau d'adhésion est modifié"
+
+#: core/um-notifications-api.php:29
+msgid "New user comment"
+msgstr "Nouveau commentaire de membre"
+
+#: core/um-notifications-api.php:31
+msgid "When a member comments on my posts"
+msgstr "Lorsqu'un membre commente l'un de mes articles"
+
+#: core/um-notifications-api.php:35
+msgid "New guest comment"
+msgstr "Nouveau commentaire de visiteur"
+
+#: core/um-notifications-api.php:37
+msgid "When a guest comments on my posts"
+msgstr "Lorsqu'un visiteur commente l'un de mes articles"
+
+#: core/um-notifications-api.php:41
+msgid "User view profile"
+msgstr "Passage d'un membre sur le profil"
+
+#: core/um-notifications-api.php:43
+msgid "When a member views my profile"
+msgstr "Lorsqu'un membre consulte mon profil"
+
+#: core/um-notifications-api.php:47
+msgid "Guest view profile"
+msgstr "Passage d'un visiteur sur le profil"
+
+#: core/um-notifications-api.php:49
+msgid "When a guest views my profile"
+msgstr "Lorsqu'un visiteur consulte mon profil"
+
+#: core/um-notifications-api.php:53
+msgid "User leaves a reply to bbpress topic"
+msgstr "Réponse d'un membre sur un sujet"
+
+#: core/um-notifications-api.php:55
+msgid "When a member replies to one of my topics"
+msgstr "Quand un membre répond à l'un de mes sujets sur les forums"
+
+#: core/um-notifications-api.php:59
+msgid "Guest leaves a reply to bbpress topic"
+msgstr "Un visiteur laisse une réponse à un sujet de forum"
+
+#: core/um-notifications-api.php:61
+msgid "When a guest replies to one of my topics"
+msgstr "Lorsqu'un visiteur répond à l'un de mes sujets"
+
+#: core/um-notifications-api.php:66
+msgid "New user review"
+msgstr "Nouvelle note de membre"
+
+#: core/um-notifications-api.php:68
+msgid "When someone leaves me a review"
+msgstr "Lorsque quelqu'un m'attribue une note"
+
+#: core/um-notifications-api.php:74
+msgid "User awarded points for action"
+msgstr "L'utilisateur gagne des points"
+
+#: core/um-notifications-api.php:76
+msgid "When I receive points by completing an action"
+msgstr "Lorsque je reçois des blizzy"
+
+#: core/um-notifications-api.php:80
+msgid "User receives points from another person"
+msgstr "L'utilisateur reçoit des points d'une autre personne"
+
+#: core/um-notifications-api.php:82
+msgid "When I receive points balance from another member"
+msgstr "Lorsque je reçois des blizzy d'un autre membre"
+
+#: core/um-notifications-api.php:137
+#, php-format
+msgid "%s ago"
+msgstr "Il y a %s"
+
+#: core/um-notifications-init.php:22
+#, php-format
+msgid ""
+"The <strong>%s</strong> extension requires the Ultimate Member plugin to be "
+"activated to work properly. You can download it <a href=\"https://wordpress."
+"org/plugins/ultimate-member\">here</a>"
+msgstr ""
+"L'extension <strong>%s</strong> nécessite l'activation du plugin Ultimate "
+"Member pour fonctionner correctement. Vous pouvez le télécharger <a href="
+"\"https://wordpress.org/plugins/ultimate-member\">ici</a>"
+
+#: core/um-notifications-init.php:27
+#, php-format
+msgid ""
+"The <strong>%s</strong> extension requires a <a href=\"https://wordpress.org/"
+"plugins/ultimate-member\">newer version</a> of Ultimate Member to work "
+"properly."
+msgstr ""
+"L'extension <strong>%s</strong> nécessite une <a href=\"https://wordpress."
+"org/plugins/ultimate-member\">nouvelle version</a> de Ultimate Member pour "
+"fonctionner correctement."
+
+#: templates/no-notifications.php:9
+msgid "You do not have any notifications yet."
+msgstr "Vous n'avez pas encore de notification."
+
+#: templates/notifications.php:31
+msgid "See All Notifications"
+msgstr "Voir toutes les notifications"
+
+#~ msgid "outdatedBrowser_page_message"
+#~ msgstr ""
+#~ "The site you are visiting can only be viewed using a modern browser. "
+#~ "Please upgrade your browser to increase safety and your browsing "
+#~ "experience. Choose one of the browsers above. If you don't care <a href="
+#~ "\"?forwardOutdatedBrowser=1\">click here</a>"
+
+#~ msgid "404_page_message"
+#~ msgstr ""
+#~ "The Page you are looking for doesn't exist or an other error occurred. <a "
+#~ "href=\"javascript:history.go(-1)\">Go back</a>, or head over to <a href="
+#~ "\"%s\">%s</a> to choose a new direction."
+
+#~ msgid "When a member reply to one of my topics"
+#~ msgstr "Lorsqu'un membre répond à l'un de mes sujets sur les forums"
+
+#~ msgid "When a guest reply to one of my topics"
+#~ msgstr "Lorsqu'un visiteur répond à l'un de mes sujets sur les forums"
+
+#~ msgid "When I receive points / balance from a user"
+#~ msgstr "Lorsque je reçois des blizzy de la part d'un membre"
+
+#~ msgid "User leaves a reply to bbpress reply"
+#~ msgstr "Un membre répond à un message de forum"
+
+#~ msgid "When a member reply to me on the forums"
+#~ msgstr "Lorsqu'un membre me répond sur les forums"
+
+#~ msgid "Guest leaves a reply to bbpress reply"
+#~ msgstr "Un visiteur répond à un message de forum"
+
+#~ msgid "When a guest reply to me on the forums"
+#~ msgstr "Lorsqu'un visiteur me répond sur les forums"

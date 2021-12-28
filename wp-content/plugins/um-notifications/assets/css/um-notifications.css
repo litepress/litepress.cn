@@ -1,0 +1,238 @@
+.um-notification-header {
+	padding: 0;
+	border-bottom: 1px solid #ddd;
+}
+
+.um-notification-header a {
+	outline: none !important;
+}
+
+.um-notification-left {
+	float: left;
+	font-size: 15px !important;
+	font-weight: 600;
+	padding: 15px 20px;
+	border-bottom: 3px solid #444;
+	position: relative;
+	top: 2px;
+	cursor: default;
+}
+
+.um-notification-right {
+	float: right;
+	padding-right: 22px;
+	padding-top: 13px;
+}
+
+.um-notification-i-settings,
+.um-notification-i-close {
+	font-size: 18px;
+	color: #888 !important;
+	text-decoration: none !important;
+	display: block;
+	float: left;
+	padding-left: 20px;
+	border-bottom: none !important;
+}
+
+.um-notification-shortcode .um-notification-i-close {
+	display: none !important;
+}
+
+/* The Icon */
+.um-notification-b {
+	position: fixed;
+	right: 25px;
+	bottom: 25px;
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	border-radius: 999px;
+	font-size: 26px;
+	background: #444;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
+	box-sizing: border-box;
+
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,0.4); 
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-moz-osx-font-smoothing: grayscale;
+	
+	z-index: 50;
+}
+
+.um-notification-b.left {
+	right: auto;
+	left: 25px;
+}
+
+.um-notification {
+	padding: 10px 30px 10px 10px;
+	border-bottom: 1px solid #f5f5f5;
+	font-size: 12px;
+	position: relative;
+	padding-left: 66px;
+	cursor: pointer;
+	line-height: 1.5em;
+	color: #666;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale; 
+}
+
+.um-notification:hover,
+.um-notification.read:hover {background: #f9f9f9}
+
+/* no notifications */
+.um-notifications-root {
+	position: relative;
+	height: 100%;
+}
+
+.um-notifications-none {
+	cursor: default;
+	border: 0;
+	font-size: 14px;
+	position: absolute;
+	top: 45%;
+	left: 0;
+	height: 100px;
+	width: 100%;
+	text-align: center;
+	color: #bbb;
+}
+
+.um-notifications-none i {
+	display: block;
+	margin: 0 auto 10px auto;
+}
+
+.um-notifications-none i:before {
+	height: 54px;
+	font-size: 54px;
+	color: #ddd;
+}
+
+.um-notification-shortcode .um-notifications-none {
+	position: relative;
+	padding: 50px 0;
+	min-height: 200px;
+}
+
+/* notifications */
+.um-notification.unread {background: #f9f9f9}
+.um-notification.read {background: transparent}
+
+.um-notification-photo {
+	position: absolute;
+	left: 12px;
+	top: 9px;
+	width: 40px;
+	height: 40px;
+	border-radius: 999px;
+}
+
+.um-notification span.b1 {color: #999;}
+.um-notification span.b2 {color: #aaa;display:block;line-height: 1.6em;}
+
+.um-notification span.b2 i {
+	margin-right: 5px;
+	font-size: 15px;
+	position: relative;
+	top: 1px;
+}
+
+.um-notification-more {
+	display: none;
+}
+
+.um-notification-hide {
+	position: absolute;
+	right: 10px;
+	top: 8px;
+	font-size: 18px;
+	text-align: center;
+}
+
+.um-notification-hide a,
+.um-notification-hide i {
+	text-decoration: none !important;
+	border-bottom: none !important;
+	display: inline-block;
+	min-width: 18px;
+	min-height: 18px;
+	text-align: center;
+	line-height: 18px;
+}
+
+.um-notification-hide a {color: #888 !important}
+
+/* Real-time notifier */
+.um-notification-live {
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	display: inline-block;
+}
+
+.um-notification-live i {
+	font-size: 24px;
+	display: inline-block;
+	width: 24px;
+	transition: none;
+}
+
+.um-notification-live-count {
+	position: absolute;
+	right: 11px;
+	top: 9px;
+	background: #ff0000;
+	color: #fff;
+	display: block;
+	font-size: 11px;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 999px;
+	text-align: center;
+	display: none;
+}
+
+/* Feed window */
+.um-notification-live-feed {
+	display: none;
+	position: fixed;
+	z-index: 556665;
+	background: #fff;
+	width: 400px;
+	box-shadow: 0 1px 3px #888;
+	overflow: auto;
+	top: 0;
+	height: 100%;
+    transition: 100ms right ease-in;
+    -o-transition: 100ms right ease-in;
+    -ms-transition: 100ms right ease-in;
+    -moz-transition: 100ms right ease-in;
+    -webkit-transition: 100ms right ease-in;
+}
+
+.um-notification-live-feed-inner {
+	position: relative;
+	height: 100%;
+}
+
+.um-notification-live-feed-inner .um-notification {
+	font-size: 12px;
+}
+
+.um-notification-live-feed .um-notification-more {
+	display: block;
+	text-align: center;
+	padding: 15px;
+	font-size: 13px;
+}
