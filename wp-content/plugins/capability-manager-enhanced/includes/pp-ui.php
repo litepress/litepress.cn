@@ -1,4 +1,12 @@
 <?php
+/*
+ * PublishPress Capabilities [Free]
+ * 
+ * Capabilities UI: PublishPress Permissions integration
+ * 
+ * This module also contains the Settings UI for Type-Specific Types / Taxonomies, which were previously a front end to PublishPress Permissions 
+ * 
+ */
 
 class Capsman_PP_UI {
 	function get_metagroup_caps( $default ) {

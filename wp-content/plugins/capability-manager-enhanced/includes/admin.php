@@ -1,13 +1,15 @@
 <?php
 /**
- * General Admin for Role Capabilities.
+ * PublishPress Capabilities [Free]
+ * 
+ * UI output for Capabilities screen.
+ * 
  * Provides admin pages to create and manage roles and capabilities.
  *
  * @author		Jordi Canals, Kevin Behrens
  * @copyright   Copyright (C) 2009, 2010 Jordi Canals, (C) 2020 PublishPress
  * @license		GNU General Public License version 2
  * @link		https://publishpress.com
- *
  *
  *	Copyright 2009, 2010 Jordi Canals <devel@jcanals.cat>
  *	Modifications Copyright 2020, PublishPress <help@publishpress.com>

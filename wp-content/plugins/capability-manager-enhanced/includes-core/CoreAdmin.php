@@ -30,6 +30,10 @@ class CoreAdmin {
         }
 
         add_action('pp-capabilities-admin-submenus', [$this, 'actCapabilitiesSubmenus']);
+
+        //Editor feature metaboxes promo
+        add_action('pp_capabilities_features_gutenberg_after_table_tr', [$this, 'metaboxesPromo']);
+        add_action('pp_capabilities_features_classic_after_table_tr', [$this, 'metaboxesPromo']);
     }
 
     function setUpgradeMenuLink() {
@@ -62,5 +66,10 @@ class CoreAdmin {
     function NavMenusPromo() {
         wp_enqueue_style('pp-capabilities-admin-core', plugin_dir_url(CME_FILE) . 'includes-core/admin-core.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
         include (dirname(__FILE__) . '/nav-menus-promo.php');
+    }
+
+    function metaboxesPromo(){
+        wp_enqueue_style('pp-capabilities-admin-core', plugin_dir_url(CME_FILE) . 'includes-core/admin-core.css', [], PUBLISHPRESS_CAPS_VERSION, 'all');
+        include (dirname(__FILE__) . '/editor-features-promo.php');
     }
 }

@@ -1,4 +1,10 @@
 <?php
+/*
+ * PublishPress Capabilities [Free]
+ * 
+ * Filters which are loaded for certain admin URLs
+ * 
+ */
 class CME_AdminMenuNoPrivWorkaround {
 	var $create_posts_cap = '';
 

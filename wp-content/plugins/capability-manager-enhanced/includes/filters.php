@@ -1,6 +1,13 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/*
+ * PublishPress Capabilities [Free]
+ * 
+ * Load general purpose filters which need to execute for any URL, even front end
+ * 
+ */
+
 /**
  * class CME_Extensions
  * 
@@ -46,9 +53,6 @@ if ( is_admin() ) {
 
 add_filter('plugin_action_links_' . plugin_basename(CME_FILE), '_cme_fltPluginActionLinks', 10, 2);
 
-
-add_filter('pp_custom_status_list', 'cme_filter_custom_status_list', 10, 2);
-
 add_action('plugins_loaded', '_cme_migrate_pp_options');
 
 add_filter('cme_filterable_post_types', '_cme_filterable_post_types');
@@ -85,59 +89,6 @@ function _cme_migrate_pp_options() {
 
 		update_option('cme_pp_options_migrated', true);
 	}
-}
-
-/**
- * Filters the list of custom statuses
- *
- * @param array   $custom_statuses
- * @param WP_Post $post
- *
- * @return  array
- */
-function cme_filter_custom_status_list($custom_statuses, $post)
-{
-	if (!get_option('cme_custom_status_control')) {
-		return $custom_statuses;
-	}
-
-	if (class_exists('publishpress') && method_exists('publishpress', 'instance')) {
-		$publishpress = publishpress::instance();
-	} else {
-		global $publishpress;
-	}
-
-	if (empty($publishpress)) {
-		return $custom_statuses;
-	}
-
-	$filtered       = [];
-	$option_group   = 'global';
-	
-	$default_status = !empty($publishpress->custom_status->module->options->default_status) ? $publishpress->custom_status->module->options->default_status : 'draft';
-
-	if ( ! is_null($post)) {
-		// Adding a new post? Set the correct default status
-		if ('auto-draft' === $post->post_status) {
-			$post->post_status = $default_status;
-		}
-	}
-
-	foreach ($custom_statuses as &$status) {
-		$slug = str_replace('-', '_', $status->slug);
-
-		// Check if the user, or any of his user groups are capable to use the status. If not, but it is the
-		// current status, we still display it.
-		if (('draft' == $slug)
-			|| current_user_can('status_change_' . $slug)
-			|| (is_null($post) ? false : $status->slug === $post->post_status)
-			|| $status->slug === $default_status
-		) {
-			$filtered[] = $status;
-		}
-	}
-
-	return $filtered;
 }
 
 

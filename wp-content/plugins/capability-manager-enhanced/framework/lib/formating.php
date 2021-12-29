@@ -53,7 +53,7 @@ function ak_admin_error( $message )
 {
     if ( is_admin() ) {
         echo '<div id="error" class="error"><p><strong>' . $message . '</strong></p></div>';
-	}
-	
-	do_action('pp_capabilities_error');
+    }
+
+    do_action('pp_capabilities_error');
 }

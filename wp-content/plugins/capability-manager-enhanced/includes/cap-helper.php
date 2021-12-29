@@ -1,6 +1,13 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+/*
+ * PublishPress Capabilities [Free]
+ * 
+ * For post types and taxonomies with "Type-Specific Capabilities" enabled, modify defined capabilities to be unique
+ * 
+ */
+
 // @todo: port improvements back to PP Core
 
 class CME_Cap_Helper {

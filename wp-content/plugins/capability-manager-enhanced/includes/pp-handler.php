@@ -1,4 +1,10 @@
 <?php
+/*
+ * PublishPress Capabilities [Free]
+ * 
+ * Process updates to Type-Specific Types / Taxonomies, Detailed Taxonomies
+ * 
+ */
 
 function _cme_update_pp_usage() {
 	static $updated;
@@ -53,7 +59,7 @@ function _cme_update_pp_usage() {
 				// ensure smooth transition if Press Permit Core is deactivated
 				update_option( 'cme_enabled_post_types', $value );
 			}
-			
+
 			if (defined('PRESSPERMIT_ACTIVE') && in_array($option_basename, ['enabled_post_types', 'enabled_taxonomies'])) {
 				pp_capabilities_update_permissions_option($option_basename, $value);
 			}
@@ -89,4 +95,3 @@ function _cme_update_pp_usage() {
 	
 	return $updated;
 }
-

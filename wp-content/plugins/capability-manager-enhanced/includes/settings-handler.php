@@ -1,4 +1,10 @@
 <?php
+/*
+ * PublishPress Capabilities [Free]
+ * 
+ * Process updates to plugin settings
+ * 
+ */
 
 add_action('init', function() {
 

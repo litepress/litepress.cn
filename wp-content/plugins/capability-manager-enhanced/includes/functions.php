@@ -1,4 +1,13 @@
 <?php
+/*
+ * PublishPress Capabilities [Free]
+ * 
+ * Functions available for any URL, which are not contained within a class
+ * 
+ * For performance and code separation, do not include functions that are only needed for wp-admin requests
+ * 
+ */
+
 function pp_capabilities_is_editable_role($role_name, $args = []) {
     static $editable_roles;
 
