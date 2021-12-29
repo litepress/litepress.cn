@@ -73,7 +73,7 @@ class GDATTFront {
     }
 
     public function register_scripts_and_styles() {
-        $debug = defined('SCRIPT_DEBUG') ? SCRIPT_DEBUG : false;
+        $debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
         $files = 'front'.($debug ? '' : '.min');
 
         wp_register_style('gdatt-attachments', GDBBPRESSATTACHMENTS_URL.'css/'.$files.'.css', array(), GDBBPRESSATTACHMENTS_VERSION);
