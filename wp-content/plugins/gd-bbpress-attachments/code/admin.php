@@ -61,7 +61,7 @@ class GDATTAdmin {
         return $links;
     }
 
-    function plugin_links($links, $file) {
+    public function plugin_links($links, $file) {
         if ($file == 'gd-bbpress-attachments/gd-bbpress-attachments.php') {
             $links[] = '<a target="_blank" style="color: #cc0000; font-weight: bold;" href="https://plugins.dev4press.com/gd-bbpress-toolbox/">'.__("Upgrade to GD bbPress Toolbox Pro", "gd-bbpress-attachments").'</a>';
         }

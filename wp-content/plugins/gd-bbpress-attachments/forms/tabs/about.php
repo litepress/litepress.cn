@@ -25,7 +25,7 @@
         _e("PHP: ", "gd-bbpress-attachments");
         echo '<strong>7.0 or newer</strong><br/>';
         _e("WordPress: ", "gd-bbpress-attachments");
-        echo '<strong>5.0 or newer</strong><br/>';
+        echo '<strong>5.1 or newer</strong><br/>';
         _e("bbPress: ", "gd-bbpress-attachments");
         echo '<strong>2.6.2 or newer</strong>';
 

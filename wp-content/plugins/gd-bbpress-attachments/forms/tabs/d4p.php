@@ -23,8 +23,6 @@
         <a target="_blank" href="https://plugins.dev4press.com/gd-knowledge-base/">GD Knowledge Base Pro</a><br/>
         <a target="_blank" href="https://plugins.dev4press.com/gd-rating-system/">GD Rating System Pro</a><br/>
         <a target="_blank" href="https://plugins.dev4press.com/gd-mail-queue/">GD Mail Queue Pro</a><br/>
-        <a target="_blank" href="https://plugins.dev4press.com/gd-crumbs-navigator/">GD Crumbs Navigator Pro</a><br/>
-        <a target="_blank" href="https://plugins.dev4press.com/gd-webfonts-toolbox/">GD WebFonts Toolbox Pro</a><br/>
         <a target="_blank" href="https://plugins.dev4press.com/gd-clever-widgets/">GD Clever Widgets Pro</a><br/>
         <a target="_blank" href="https://plugins.dev4press.com/gd-security-toolbox/">GD Security Toolbox Pro</a><br/>
         <a target="_blank" href="https://plugins.dev4press.com/gd-seo-toolbox/">GD SEO Toolbox Pro</a><br/>
