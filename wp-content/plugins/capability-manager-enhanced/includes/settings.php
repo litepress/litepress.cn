@@ -1,7 +1,9 @@
 <?php
-/**
- * Capability Manager Settings
- *
+/*
+ * PublishPress Capabilities [Free]
+ * 
+ * Settings UI
+ * 
  */
 
 global $wpdb;

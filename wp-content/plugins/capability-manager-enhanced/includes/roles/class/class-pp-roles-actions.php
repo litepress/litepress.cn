@@ -185,7 +185,7 @@ class Pp_Roles_Actions
          * Validate input data
          */
         require_once(dirname(CME_FILE).'/includes/handler.php');
-		$capsman_handler = new CapsmanHandler();
+        $capsman_handler = new CapsmanHandler();
         $role = $capsman_handler->createNewName($_REQUEST['name']);
         
         /**

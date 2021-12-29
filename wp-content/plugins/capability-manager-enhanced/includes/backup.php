@@ -222,7 +222,7 @@ $auto_backups = $wpdb->get_results("SELECT option_name, option_value FROM $wpdb-
                                                             ?>
 
                                                             <h4<?php echo $role_class;?>><?php printf(__('%s (level %s)', 'capsman-enhanced'), translate_user_role($role_caption), $level); ?></h4>
-                                                            
+
                                                             <?php
                                                             $items = [];
                                                             $any_changes = false;
