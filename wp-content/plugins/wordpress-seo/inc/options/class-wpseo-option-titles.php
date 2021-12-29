@@ -61,7 +61,6 @@ class WPSEO_Option_Titles extends WPSEO_Option {
 		'disable-date'                     => false,
 		'disable-post_format'              => false,
 		'disable-attachment'               => true,
-		'is-media-purge-relevant'          => false,
 
 		'breadcrumbs-404crumb'             => '', // Text field.
 		'breadcrumbs-display-blog-page'    => true,
@@ -622,7 +621,14 @@ class WPSEO_Option_Titles extends WPSEO_Option {
 					break;
 				case 'schema-article-type-':
 					if ( isset( $dirty[ $key ] ) && is_string( $dirty[ $key ] ) ) {
-						if ( array_key_exists( $dirty[ $key ], Schema_Types::ARTICLE_TYPES ) ) {
+						/**
+						 * Filter: 'wpseo_schema_article_types' - Allow developers to filter the available article types.
+						 *
+						 * Make sure when you filter this to also filter `wpseo_schema_article_types_labels`.
+						 *
+						 * @api array $schema_article_types The available schema article types.
+						 */
+						if ( array_key_exists( $dirty[ $key ], apply_filters( 'wpseo_schema_article_types', Schema_Types::ARTICLE_TYPES ) ) ) {
 							$clean[ $key ] = $dirty[ $key ];
 						}
 						else {
@@ -658,7 +664,6 @@ class WPSEO_Option_Titles extends WPSEO_Option {
 				 *  'breadcrumbs-boldlast'
 				 *  'breadcrumbs-enable'
 				 *  'stripcategorybase'
-				 *  'is-media-purge-relevant'
 				 */
 				default:
 					$clean[ $key ] = ( isset( $dirty[ $key ] ) ? WPSEO_Utils::validate_bool( $dirty[ $key ] ) : false );
@@ -974,14 +979,6 @@ class WPSEO_Option_Titles extends WPSEO_Option {
 			'sc-smstar' => [
 				'option' => '&#8902;',
 				'label'  => __( 'Low asterisk', 'wordpress-seo' ),
-			],
-			'sc-pipe'   => [
-				'option' => '|',
-				'label'  => __( 'Vertical bar', 'wordpress-seo' ),
-			],
-			'sc-tilde'  => [
-				'option' => '~',
-				'label'  => __( 'Small tilde', 'wordpress-seo' ),
 			],
 			'sc-laquo'  => [
 				'option' => '&laquo;',
