@@ -5,9 +5,10 @@
       display: flex;
       flex-wrap: wrap;
     }
+
     .plugin-card {
       margin: 8px !important;
-      width: calc(50% - 4px - 16px)!important;
+      width: calc(50% - 4px - 16px) !important;
     }
   }
 </style>
