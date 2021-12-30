@@ -462,8 +462,27 @@ function um_user_edit_profile( $args ) {
 	 */
 	$to_update = apply_filters( 'um_user_pre_updating_profile_array', $to_update, $user_id );
 
-
 	if ( is_array( $to_update ) ) {
+
+		if ( isset( $to_update['first_name'] ) || isset( $to_update['last_name'] ) || isset( $to_update['nickname'] ) ) {
+			$user = get_userdata( $user_id );
+			if ( ! empty( $user ) && ! is_wp_error( $user ) ) {
+				UM()->user()->previous_data['display_name'] = $user->display_name;
+
+				if ( isset( $to_update['first_name'] ) ) {
+					UM()->user()->previous_data['first_name'] = $user->first_name;
+				}
+
+				if ( isset( $to_update['last_name'] ) ) {
+					UM()->user()->previous_data['last_name'] = $user->last_name;
+				}
+
+				if ( isset( $to_update['nickname'] ) ) {
+					UM()->user()->previous_data['nickname'] = $user->nickname;
+				}
+			}
+		}
+
 		UM()->user()->update_profile( $to_update );
 		/**
 		 * UM hook
@@ -629,7 +648,7 @@ function um_editing_user_id_input( $args ) {
 	if ( UM()->fields()->editing == 1 && UM()->fields()->set_mode == 'profile' && UM()->user()->target_id ) { ?>
 
 		<input type="hidden" name="user_id" id="user_id" value="<?php echo esc_attr( UM()->user()->target_id ); ?>" />
-		<input type="hidden" name="profile_nonce" id="profile_nonce" value="<?php echo esc_attr( wp_create_nonce( 'um-profile-nonce' . UM()->user()->target_id ) ); ?>" />
+		<input type="hidden" name="profile_nonce" id="profile_nonce" value="<?php echo esc_attr( UM()->form()->nonce ); ?>" />
 
 	<?php }
 }

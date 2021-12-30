@@ -503,10 +503,17 @@ if ( ! class_exists( 'um\admin\core\Admin_Settings' ) ) {
 					'conditional' => array( 'accessible', '=', 2 ),
 				),
 				array(
-					'id'      => 'restricted_access_post_title',
-					'type'    => 'text',
-					'label'   => __( 'Restricted Access Post Title', 'ultimate-member' ),
-					'tooltip' => __( 'This is the post title shown to users that do not have permission to view the content', 'ultimate-member' ),
+					'id'      => 'restricted_post_title_replace',
+					'type'    => 'checkbox',
+					'label'   => __( 'Replace the restricted Post Title', 'ultimate-member' ),
+					'tooltip' => __( 'Allow to replace the restricted post title to users that do not have permission to view the content', 'ultimate-member' ),
+				),
+				array(
+					'id'          => 'restricted_access_post_title',
+					'type'        => 'text',
+					'label'       => __( 'Restricted Access Post Title', 'ultimate-member' ),
+					'tooltip'     => __( 'This is the post title shown to users that do not have permission to view the content', 'ultimate-member' ),
+					'conditional' => array( 'restricted_post_title_replace', '=', 1 ),
 				),
 				array(
 					'id'      => 'restricted_access_message',
@@ -519,25 +526,28 @@ if ( ! class_exists( 'um\admin\core\Admin_Settings' ) ) {
 			$settings_map = array_merge(
 				$settings_map,
 				array(
-					'accessible'                   => array(
+					'accessible'                    => array(
 						'sanitize' => 'int',
 					),
-					'access_redirect'              => array(
+					'access_redirect'               => array(
 						'sanitize' => 'url',
 					),
-					'access_exclude_uris'          => array(
+					'access_exclude_uris'           => array(
 						'sanitize' => 'url',
 					),
-					'home_page_accessible'         => array(
+					'home_page_accessible'          => array(
 						'sanitize' => 'bool',
 					),
-					'category_page_accessible'     => array(
+					'category_page_accessible'      => array(
 						'sanitize' => 'bool',
 					),
-					'restricted_access_post_title' => array(
+					'restricted_post_title_replace' => array(
+						'sanitize' => 'bool',
+					),
+					'restricted_access_post_title'  => array(
 						'sanitize' => 'text',
 					),
-					'restricted_access_message'    => array(
+					'restricted_access_message'     => array(
 						'sanitize' => 'wp_kses',
 					),
 				)
@@ -665,6 +675,12 @@ if ( ! class_exists( 'um\admin\core\Admin_Settings' ) ) {
 					),
 					'reset_require_strongpass'              => array(
 						'sanitize' => 'bool',
+					),
+					'password_min_chars'                    => array(
+						'sanitize' => 'absint',
+					),
+					'password_max_chars'                    => array(
+						'sanitize' => 'absint',
 					),
 					'profile_noindex'                       => array(
 						'sanitize' => 'bool',
@@ -1037,6 +1053,20 @@ if ( ! class_exists( 'um\admin\core\Admin_Settings' ) ) {
 										'type'    => 'checkbox',
 										'label'   => __( 'Require a strong password? (when user resets password only)', 'ultimate-member' ),
 										'tooltip' => __( 'Enable or disable a strong password rules on password reset and change procedure', 'ultimate-member' ),
+									),
+									array(
+										'id'      => 'password_min_chars',
+										'type'    => 'number',
+										'label'   => __( 'Password minimum length', 'ultimate-member' ),
+										'tooltip' => __( 'If you want to enable a minimum number of characters to be in password. User password field in the UM forms has own settings for that. Leave empty to use default value 8', 'ultimate-member' ),
+										'size'    => 'small',
+									),
+									array(
+										'id'      => 'password_max_chars',
+										'type'    => 'number',
+										'label'   => __( 'Password maximum length', 'ultimate-member' ),
+										'tooltip' => __( 'If you want to enable a maximum number of characters to be in password. User password field in the UM forms has own settings for that. Leave empty to use default value 30', 'ultimate-member' ),
+										'size'    => 'small',
 									),
 									array(
 										'id'      => 'profile_noindex',
@@ -1750,6 +1780,14 @@ if ( ! class_exists( 'um\admin\core\Admin_Settings' ) ) {
 									'1.0' => __( '1.0 version', 'ultimate-member' ),
 									'2.0' => __( '2.0 version', 'ultimate-member' ),
 								),
+							),
+							// backward compatibility option leave it disabled for better security and ability to exclude posts/terms pre-query
+							// otherwise we filtering only results and restricted posts/terms can be visible
+							array(
+								'id'      => 'disable_restriction_pre_queries',
+								'type'    => 'checkbox',
+								'label'   => __( 'Disable pre-queries for restriction content logic (advanced)', 'ultimate-member' ),
+								'tooltip' => __( 'Please enable this option only in the cases when you have big or unnecessary queries on your site with active restriction logic. If you want to exclude posts only from the results queries instead of pre_get_posts and fully-hidden post logic also please enable this option. It activates the restriction content logic until 2.2.x version without latest security enhancements', 'ultimate-member' ),
 							),
 							$same_page_update,
 							array(

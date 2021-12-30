@@ -7,7 +7,7 @@ Tags: community, member, membership, user-profile, user-registration
 Requires PHP: 5.6
 Requires at least: 5.0
 Tested up to: 5.8
-Stable tag: 2.2.2
+Stable tag: 2.2.5
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -154,6 +154,57 @@ The plugin works with popular caching plugins by automatically excluding Ultimat
 
 * To learn more about version 2.1 please see this [docs](https://docs.ultimatemember.com/article/1512-upgrade-2-1-0)
 * UM2.1+ is a significant update to the Member Directories' code base from 2.0.x. Please make sure you take a full-site backup with restore point before updating the plugin
+
+= 2.2.5: September 22, 2021 =
+
+* Enhancements:
+
+  - Added: Ability to insert SoundCloud track URL instead of Track ID
+  - Added: Settings for the password min/max length (Ultimate Member > Settings > Users)
+
+* Bugfixes:
+
+  - Fixed: Invalid role keys on the role list-table + role edit screen (case when latin symbols used with not UTF-8 symbols)
+  - Fixed: Restriction logic and archive lists (+ nav menu bar) with active "Disable pre-queries for restriction content logic" option
+  - Fixed: Restriction settings fields conditions on wp-admin screens
+  - Fixed: Account `user_login` field validation removed as redundant. The field is disabled and not used in code flow
+  - Fixed: `display_name` data update after First + Last name fields edition on the Account page
+  - Fixed: Password length validation on the Account page and Password Reset page
+  - Fixed: Using custom fields from multi-select dropdowns for user's `Display Name`. Unserialized custom field's values
+
+= 2.2.4: August 27, 2021 =
+
+* Bugfixes:
+
+  - Fixed: Hiding comments feed for pages with active comments
+  - Fixed: Changing the post title to the restricted value while displaying in the loop that uses direct `post_title` variable
+  - Fixed: PHP errors related to not passed function attributes from 3rd-party plugins or themes when using WP native hooks
+  - Fixed: Handling the login form errors via \WP_Error
+
+= 2.2.3: August 25, 2021 =
+
+* Enhancements:
+
+  - Added: 'um_ignore_restricted_title' hook for workaround show post title of the restricted post
+  - Added: Disable pre-queries for restriction content logic ('disable_restriction_pre_queries') option for backward compatibility with business logic where 404 error for restricted content isn't a good way
+  - Added: Replace the restricted Post Title ('restricted_post_title_replace') option for ability to disable restricted post's title replace
+
+* Bugfixes:
+
+  - Fixed: `pre_get_terms` callback to avoid the conflicts with other terms queries
+  - Fixed: Terms query and global access settings on PHP8 installations
+  - Fixed: Member directory dropdown filters where options contain `&` symbol
+  - Fixed: Displaying 404 error for the restricted Media
+  - Fixed: Displaying 'Login as this user' action on the user profile
+  - Fixed: Sanitizing of the social links fields (e.g. Twitter, Facebook, etc.)
+  - Fixed: Visibility of a restricted taxonomy page in the nav menu
+  - Fixed: Sanitizing key for the drag&drop action
+  - Fixed: Sanitizing the description field with allowed HTML inside
+  - Fixed: The "Assignment to constant variable" JS error on some sites
+  - Fixed: Keep description formatting in a view mode
+  - Fixed: Profile form nonce handling, security enhancement
+  - Fixed: `um_edit_profile_url()`` function and added $user_id attribute
+  - Optimized: Restriction content handlers, avoid queries duplicates or unnecessary queries
 
 = 2.2.2: August 3, 2021 =
 
