@@ -4,7 +4,7 @@
  * Plugin Name: Direct Checkout for WooCommerce
  * Plugin URI:  https://quadlayers.com/documentation/woocommerce-direct-checkout/
  * Description: Simplifies the checkout process to improve your sales rate.
- * Version:     2.4.7
+ * Version:     2.5.5
  * Author:      QuadLayers
  * Author URI:  https://quadlayers.com
  * License: GPLv3
@@ -19,7 +19,7 @@ if (!defined('QLWCDC_PLUGIN_NAME')) {
   define('QLWCDC_PLUGIN_NAME', 'Direct Checkout for WooCommerce');
 }
 if (!defined('QLWCDC_PLUGIN_VERSION')) {
-  define('QLWCDC_PLUGIN_VERSION', '2.4.7');
+  define('QLWCDC_PLUGIN_VERSION', '2.5.5');
 }
 if (!defined('QLWCDC_PLUGIN_FILE')) {
   define('QLWCDC_PLUGIN_FILE', __FILE__);
@@ -60,3 +60,6 @@ if (!class_exists('QLWCDC')) {
 }
 
 
+if (!class_exists('QL_Widget')) {
+  include_once(QLWCDC_PLUGIN_DIR . 'includes/quadlayers/widget.php');
+}

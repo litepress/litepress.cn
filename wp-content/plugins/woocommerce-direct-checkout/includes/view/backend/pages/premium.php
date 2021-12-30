@@ -1,4 +1,4 @@
-<?php include_once('parts/header.php' ); ?>
+<?php include_once('parts/header.php'); ?>
 <div class="wrap about-wrap full-width-layout">
   <div class="has-2-columns is-wider-left" style="max-width: 100%">
     <div class="column">
@@ -7,11 +7,11 @@
         <div class="about-description">
           <?php printf(esc_html__('%s allows you to simplifies the checkout process by skipping the shopping cart page. This plugin allows you to redirect your customers directly to the checkout page and includes the cart inside the checkout page.', 'woocommerce-direct-checkout'), QLWCDC_PLUGIN_NAME); ?>
         </div>
-        <br/>
+        <br />
         <a class="button button-primary" target="_blank" href="<?php echo esc_url(QLWCDC_PURCHASE_URL); ?>"><?php esc_html_e('Purchase Now', 'woocommerce-direct-checkout'); ?></a>
         <a class="button button-secondary" target="_blank" href="<?php echo esc_url(QLWCDC_SUPPORT_URL); ?>"><?php esc_html_e('Get Support', 'woocommerce-direct-checkout'); ?></a>
       </div>
-      <hr/>
+      <hr />
       <div class="feature-section" style="padding: 10px 0;">
         <h3><?php esc_html_e('One page checkout', 'woocommerce-direct-checkout'); ?></h3>
         <p>
@@ -35,7 +35,7 @@
       <img src="<?php echo plugins_url('/assets/backend/img/checkout.png', QLWCDC_PLUGIN_FILE); ?>">
     </div>
   </div>
-  <hr/>
+  <hr />
   <div class="has-2-columns is-wider-left" style="max-width: 100%">
     <div class="column">
       <div class="feature-section" style="padding: 10px 0;">
@@ -60,7 +60,7 @@
         </p>
       </div>
       <div class="feature-section" style="padding: 10px 0;">
-        <hr/>
+        <hr />
         <h3><?php esc_html_e('Quick purchase', 'woocommerce-direct-checkout'); ?></h3>
         <p>
           <?php esc_html_e('The Quick purchase button allows you to include a direct button in the single products, variable, grouped and virtual products wich redirects user to the checkout page.', 'woocommerce-direct-checkout'); ?>
@@ -68,7 +68,7 @@
       </div>
     </div>
     <div class="column">
-      <br/>
+      <br />
       <img src="<?php echo plugins_url('/assets/backend/img/modal.png', QLWCDC_PLUGIN_FILE); ?>">
     </div>
   </div>

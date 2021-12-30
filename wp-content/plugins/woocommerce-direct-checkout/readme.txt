@@ -3,8 +3,8 @@ Contributors: quadlayers
 Donate link: https://quadlayers.com/portfolio/woocommerce-direct-checkout/
 Tags: woocommerce, woocommerce ajax, woocommerce ajax cart, add to cart, woocommerce direct checkout, woocommerce quick buy, woocommerce remove checkout fields, woocommerce ajax single products, woocommerce one page checkout
 Requires at least: 4.6
-Tested up to: 5.7
-Stable tag: 2.4.7
+Tested up to: 5.8
+Stable tag: 2.5.5
 WC requires at least: 3.1.0
 WC tested up to: 5.5
 License: GPLv3
@@ -63,6 +63,30 @@ The premium version of WooCommerce Direct Checkot allows to include a quick purc
 4. Increase your sales!
 
 == Changelog ==
+
+= 2.5.5 =
+* Fix: WordPress compatibility
+
+= 2.5.4 =
+* Fix. QuadLayers widget cache
+
+= 2.5.3 =
+* Fix: WordPress compatibility
+
+= 2.5.2 =
+* Fix: WordPress compatibility
+
+= 2.5.1 =
+* Add. Telegram add to suggestions tab
+
+= 2.5.0 =
+* Fix: php error
+
+= 2.4.9 =
+* Add: QuadLayers dashboard widget
+
+= 2.4.8 =
+* Fix: WordPress compatibility
 
 = 2.4.7 =
 * Fix: WooCommerce compatibility
