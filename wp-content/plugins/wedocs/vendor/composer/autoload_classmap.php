@@ -21,6 +21,7 @@ return array(
     'WeDevs\\WeDocs\\Installer' => $baseDir . '/includes/Installer.php',
     'WeDevs\\WeDocs\\Post_Types' => $baseDir . '/includes/Post_Types.php',
     'WeDevs\\WeDocs\\Shortcode' => $baseDir . '/includes/Shortcode.php',
+    'WeDevs\\WeDocs\\Theme\\Astra' => $baseDir . '/includes/Theme/Astra.php',
     'WeDevs\\WeDocs\\Theme\\Twenty_Fifteen' => $baseDir . '/includes/Theme/Twenty_Fifteen.php',
     'WeDevs\\WeDocs\\Theme\\Twenty_Seventeen' => $baseDir . '/includes/Theme/Twenty_Seventeen.php',
     'WeDevs\\WeDocs\\Theme_Support' => $baseDir . '/includes/Theme_Support.php',
