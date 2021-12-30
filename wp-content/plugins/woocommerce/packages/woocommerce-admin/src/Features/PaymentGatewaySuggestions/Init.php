@@ -29,20 +29,20 @@ class Init {
 	/**
 	 * Go through the specs and run them.
 	 */
-	public static function get_methods() {
-		$methods = array();
-		$specs   = self::get_specs();
+	public static function get_suggestions() {
+		$suggestions = array();
+		$specs       = self::get_specs();
 
 		foreach ( $specs as $spec ) {
-			$method    = EvaluateMethod::evaluate( $spec );
-			$methods[] = $method;
+			$suggestion    = EvaluateSuggestion::evaluate( $spec );
+			$suggestions[] = $suggestion;
 		}
 
 		return array_values(
 			array_filter(
-				$methods,
-				function( $method ) {
-					return ! property_exists( $method, 'is_visible' ) || $method->is_visible;
+				$suggestions,
+				function( $suggestion ) {
+					return ! property_exists( $suggestion, 'is_visible' ) || $suggestion->is_visible;
 				}
 			)
 		);
@@ -75,40 +75,9 @@ class Init {
 				return DefaultPaymentGateways::get_all();
 			}
 
-			$specs = self::localize( $specs );
 			set_transient( self::SPECS_TRANSIENT_NAME, $specs, 7 * DAY_IN_SECONDS );
 		}
 
 		return $specs;
-	}
-
-	/**
-	 * Localize the provided method.
-	 *
-	 * @param array $specs The specs to localize.
-	 * @return array Localized specs.
-	 */
-	public static function localize( $specs ) {
-		$localized_specs = array();
-
-		foreach ( $specs as $spec ) {
-			if ( ! isset( $spec->locales ) ) {
-				continue;
-			}
-
-			$locale = SpecRunner::get_locale( $spec->locales );
-
-			// Skip specs where no matching locale is found.
-			if ( ! $locale ) {
-				continue;
-			}
-
-			$data = (object) array_merge( (array) $locale, (array) $spec );
-			unset( $data->locales );
-
-			$localized_specs[] = $data;
-		}
-
-		return $localized_specs;
 	}
 }

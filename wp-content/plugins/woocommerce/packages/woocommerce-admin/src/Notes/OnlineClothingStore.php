@@ -48,7 +48,7 @@ class OnlineClothingStore {
 	 */
 	public static function get_note() {
 		// We want to show the note after two days.
-		if ( ! self::wc_admin_active_for( 2 * DAY_IN_SECONDS ) ) {
+		if ( ! self::is_wc_admin_active_in_date_range( 'week-1', 2 * DAY_IN_SECONDS ) ) {
 			return;
 		}
 
@@ -87,7 +87,7 @@ class OnlineClothingStore {
 		$note->add_action(
 			'online-clothing-store',
 			__( 'Learn more', 'woocommerce' ),
-			'https://woocommerce.com/posts/starting-an-online-clothing-store/?utm_source=inbox',
+			'https://woocommerce.com/posts/starting-an-online-clothing-store/?utm_source=inbox&utm_medium=product',
 			Note::E_WC_ADMIN_NOTE_ACTIONED,
 			true
 		);

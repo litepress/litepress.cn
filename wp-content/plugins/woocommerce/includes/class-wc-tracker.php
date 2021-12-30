@@ -160,9 +160,6 @@ class WC_Tracker {
 		// Template overrides.
 		$data['template_overrides'] = self::get_all_template_overrides();
 
-		// Template overrides.
-		$data['admin_user_agents'] = self::get_admin_user_agents();
-
 		// Cart & checkout tech (blocks or shortcodes).
 		$data['cart_checkout'] = self::get_cart_checkout_info();
 
@@ -619,6 +616,8 @@ class WC_Tracker {
 			'version'                               => WC()->version,
 			'currency'                              => get_woocommerce_currency(),
 			'base_location'                         => WC()->countries->get_base_country(),
+			'base_state'                            => WC()->countries->get_base_state(),
+			'base_postcode'                         => WC()->countries->get_base_postcode(),
 			'selling_locations'                     => WC()->countries->get_allowed_countries(),
 			'api_enabled'                           => get_option( 'woocommerce_api_enabled' ),
 			'weight_unit'                           => get_option( 'woocommerce_weight_unit' ),
@@ -628,6 +627,7 @@ class WC_Tracker {
 			'calc_taxes'                            => get_option( 'woocommerce_calc_taxes' ),
 			'coupons_enabled'                       => get_option( 'woocommerce_enable_coupons' ),
 			'guest_checkout'                        => get_option( 'woocommerce_enable_guest_checkout' ),
+			'checkout_login_reminder'               => get_option( 'woocommerce_enable_checkout_login_reminder' ),
 			'secure_checkout'                       => get_option( 'woocommerce_force_ssl_checkout' ),
 			'enable_signup_and_login_from_checkout' => get_option( 'woocommerce_enable_signup_and_login_from_checkout' ),
 			'enable_myaccount_registration'         => get_option( 'woocommerce_enable_myaccount_registration' ),
@@ -672,15 +672,6 @@ class WC_Tracker {
 			}
 		}
 		return $override_data;
-	}
-
-	/**
-	 * When an admin user logs in, there user agent is tracked in user meta and collected here.
-	 *
-	 * @return array
-	 */
-	private static function get_admin_user_agents() {
-		return array_filter( (array) get_option( 'woocommerce_tracker_ua', array() ) );
 	}
 
 	/**

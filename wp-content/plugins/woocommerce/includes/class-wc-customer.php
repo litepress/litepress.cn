@@ -52,6 +52,7 @@ class WC_Customer extends WC_Legacy_Customer {
 			'postcode'   => '',
 			'country'    => '',
 			'state'      => '',
+			'phone'      => '',
 		),
 		'is_paying_customer' => false,
 	);
@@ -76,6 +77,14 @@ class WC_Customer extends WC_Legacy_Customer {
 	 * @var string
 	 */
 	protected $calculated_shipping = false;
+
+	/**
+	 * This is the name of this object type.
+	 *
+	 * @since 5.6.0
+	 * @var string
+	 */
+	protected $object_type = 'customer';
 
 	/**
 	 * Load customer data based on how WC_Customer is called.
@@ -115,16 +124,6 @@ class WC_Customer extends WC_Legacy_Customer {
 			$this->data_store = WC_Data_Store::load( 'customer-session' );
 			$this->data_store->read( $this );
 		}
-	}
-
-	/**
-	 * Prefix for action and filter hooks on data.
-	 *
-	 * @since  3.0.0
-	 * @return string
-	 */
-	protected function get_hook_prefix() {
-		return 'woocommerce_customer_get_';
 	}
 
 	/**
@@ -729,6 +728,17 @@ class WC_Customer extends WC_Legacy_Customer {
 	}
 
 	/**
+	 * Get shipping phone.
+	 *
+	 * @since 5.6.0
+	 * @param  string $context What the value is for. Valid values are 'view' and 'edit'.
+	 * @return string
+	 */
+	public function get_shipping_phone( $context = 'view' ) {
+		return $this->get_address_prop( 'phone', 'shipping', $context );
+	}
+
+	/**
 	 * Is the user a paying customer?
 	 *
 	 * @since  3.0.0
@@ -1115,6 +1125,16 @@ class WC_Customer extends WC_Legacy_Customer {
 	 */
 	public function set_shipping_country( $value ) {
 		$this->set_address_prop( 'country', 'shipping', $value );
+	}
+
+	/**
+	 * Set shipping phone.
+	 *
+	 * @since 5.6.0
+	 * @param string $value Shipping phone.
+	 */
+	public function set_shipping_phone( $value ) {
+		$this->set_address_prop( 'phone', 'shipping', $value );
 	}
 
 	/**

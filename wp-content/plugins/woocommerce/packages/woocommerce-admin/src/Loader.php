@@ -69,6 +69,7 @@ class Loader {
 	 */
 	public function __construct() {
 		Features::get_instance();
+		WCAdminSharedSettings::get_instance();
 		add_action( 'init', array( __CLASS__, 'define_tables' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'register_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'inject_wc_settings_dependencies' ), 14 );
@@ -76,7 +77,7 @@ class Loader {
 		// Old settings injection.
 		add_filter( 'woocommerce_components_settings', array( __CLASS__, 'add_component_settings' ) );
 		// New settings injection.
-		add_filter( 'woocommerce_shared_settings', array( __CLASS__, 'add_component_settings' ) );
+		add_filter( 'woocommerce_admin_shared_settings', array( __CLASS__, 'add_component_settings' ) );
 		add_filter( 'admin_body_class', array( __CLASS__, 'add_admin_body_classes' ) );
 		add_action( 'admin_menu', array( __CLASS__, 'register_page_handler' ) );
 		add_action( 'admin_menu', array( __CLASS__, 'register_store_details_page' ) );
@@ -390,6 +391,7 @@ class Loader {
 			'wc-currency',
 			'wc-date',
 			'wc-components',
+			'wc-customer-effort-score',
 			WC_ADMIN_APP,
 		);
 
@@ -425,8 +427,6 @@ class Loader {
 		);
 		wp_style_add_data( 'wc-components', 'rtl', 'replace' );
 
-		wp_style_add_data( 'wc-components-ie', 'rtl', 'replace' );
-
 		wp_register_style(
 			'wc-customer-effort-score',
 			self::get_url( 'customer-effort-score/style', 'css' ),
@@ -452,15 +452,13 @@ class Loader {
 			)
 		);
 
-		// The "app" RTL files are in a different format than the components.
-		$rtl = is_rtl() ? '.rtl' : '';
-
 		wp_register_style(
 			WC_ADMIN_APP,
-			self::get_url( "app/style{$rtl}", 'css' ),
+			self::get_url( 'app/style', 'css' ),
 			array( 'wc-components', 'wc-customer-effort-score', 'wp-components', 'wc-experimental' ),
 			$css_file_version
 		);
+		wp_style_add_data( WC_ADMIN_APP, 'rtl', 'replace' );
 
 		wp_register_style(
 			'wc-onboarding',
@@ -468,6 +466,7 @@ class Loader {
 			array(),
 			$css_file_version
 		);
+		wp_style_add_data( 'wc-onboarding', 'rtl', 'replace' );
 	}
 
 	/**
@@ -693,17 +692,6 @@ class Loader {
 		wp_enqueue_style( 'wc-material-icons' );
 		wp_enqueue_style( 'wc-onboarding' );
 
-		// Use server-side detection to prevent unneccessary stylesheet loading in other browsers.
-		$user_agent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : ''; // phpcs:ignore sanitization ok.
-		preg_match( '/MSIE (.*?);/', $user_agent, $matches );
-		if ( count( $matches ) < 2 ) {
-			preg_match( '/Trident\/\d{1,2}.\d{1,2}; rv:([0-9]*)/', $user_agent, $matches );
-		}
-		if ( count( $matches ) > 1 ) {
-			wp_enqueue_style( 'wc-components-ie' );
-			wp_enqueue_style( 'wc-admin-ie' );
-		}
-
 		// Preload our assets.
 		$this->output_header_preload_tags();
 	}
@@ -788,8 +776,6 @@ class Loader {
 		$wc_admin_styles = array(
 			WC_ADMIN_APP,
 			'wc-components',
-			'wc-components-ie',
-			'wc-admin-ie',
 			'wc-material-icons',
 		);
 
@@ -1257,6 +1243,16 @@ class Loader {
 	 * Registers WooCommerce specific user data to the WordPress user API.
 	 */
 	public static function register_user_data() {
+		register_rest_field(
+			'user',
+			'is_super_admin',
+			array(
+				'get_callback' => function() {
+					return is_super_admin();
+				},
+				'schema'       => null,
+			)
+		);
 		register_rest_field(
 			'user',
 			'woocommerce_meta',

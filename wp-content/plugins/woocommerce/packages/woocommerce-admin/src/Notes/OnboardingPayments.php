@@ -30,7 +30,7 @@ class OnboardingPayments {
 	 */
 	public static function get_note() {
 		// We want to show the note after five days.
-		if ( ! self::wc_admin_active_for( 5 * DAY_IN_SECONDS ) ) {
+		if ( ! self::is_wc_admin_active_in_date_range( 'week-1-4', 5 * DAY_IN_SECONDS ) ) {
 			return;
 		}
 
@@ -56,7 +56,7 @@ class OnboardingPayments {
 		$note->add_action(
 			'view-payment-gateways',
 			__( 'Learn more', 'woocommerce' ),
-			'https://woocommerce.com/product-category/woocommerce-extensions/payment-gateways/',
+			'https://woocommerce.com/product-category/woocommerce-extensions/payment-gateways/?utm_medium=product',
 			Note::E_WC_ADMIN_NOTE_ACTIONED,
 			true
 		);
