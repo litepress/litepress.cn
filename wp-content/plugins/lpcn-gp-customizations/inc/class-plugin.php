@@ -41,8 +41,7 @@ class Plugin {
 	 * Initializes the plugin.
 	 */
 	public function plugins_loaded() {
-		add_action( 'gp_translation_created', array( $this, 'translation_format' ), 1 );
-		add_action( 'gp_translation_saved', array( $this, 'translation_format' ), 1 );
+		add_action( 'gp_translation_prepare_for_save', array( $this, 'translation_format' ), 1, 2 );
 
 		add_filter( 'gp_pre_can_user', array( $this, 'can_user' ), 10, 2 );
 
@@ -120,19 +119,16 @@ class Plugin {
 		GP::$router->prepend( "/projects/others/-new", array( Route_Project::class, 'new_other' ), 'get' );
 	}
 
-	public function translation_format( GP_Translation $translation ): GP_Translation {
-		global $wpdb;
+	public function translation_format( array $args, GP_Translation $translation ): array {
+		if ( isset( $args['translation_0'] ) ) {
+			$args['translation_0'] = Chinese_Format::get_instance()->convert( $args['translation_0'] );
+		}
 
-		$wpdb->update( 'wp_4_gp_translations',
-			array(
-				'translation_0' => Chinese_Format::get_instance()->convert( (string) $translation->translation_0 )
-			),
-			array(
-				'id' => $translation->id
-			)
-		);
+		if ( isset( $args['translation_1'] ) ) {
+			$args['translation_1'] = Chinese_Format::get_instance()->convert( $args['translation_1'] );
+		}
 
-		return $translation;
+		return $args;
 	}
 
 	public function can_user( $none, $args ) {
