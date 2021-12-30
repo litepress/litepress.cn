@@ -40,7 +40,7 @@ class DrawAttention {
 	 */
 	public static function get_note() {
 		// We want to show the note after 3 days.
-		if ( ! self::wc_admin_active_for( 3 * DAY_IN_SECONDS ) ) {
+		if ( ! self::is_wc_admin_active_in_date_range( 'week-1', 3 * DAY_IN_SECONDS ) ) {
 			return;
 		}
 
@@ -66,7 +66,7 @@ class DrawAttention {
 		$note->add_action(
 			'learn-more',
 			__( 'Learn more', 'woocommerce' ),
-			'https://woocommerce.com/posts/how-to-make-your-online-store-stand-out/?utm_source=inbox',
+			'https://woocommerce.com/posts/how-to-make-your-online-store-stand-out/?utm_source=inbox&utm_medium=product',
 			Note::E_WC_ADMIN_NOTE_ACTIONED,
 			true
 		);

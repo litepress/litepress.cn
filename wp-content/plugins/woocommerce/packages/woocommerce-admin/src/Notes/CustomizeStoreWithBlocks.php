@@ -48,7 +48,7 @@ class CustomizeStoreWithBlocks {
 		}
 
 		// We want to show the note after fourteen days.
-		if ( ! self::wc_admin_active_for( 14 * DAY_IN_SECONDS ) ) {
+		if ( ! self::is_wc_admin_active_in_date_range( 'week-1-4', 14 * DAY_IN_SECONDS ) ) {
 			return;
 		}
 
@@ -75,7 +75,7 @@ class CustomizeStoreWithBlocks {
 		$note->add_action(
 			'customize-store-with-blocks',
 			__( 'Learn more', 'woocommerce' ),
-			'https://woocommerce.com/posts/how-to-customize-your-online-store-with-woocommerce-blocks/?utm_source=inbox',
+			'https://woocommerce.com/posts/how-to-customize-your-online-store-with-woocommerce-blocks/?utm_source=inbox&utm_medium=product',
 			Note::E_WC_ADMIN_NOTE_ACTIONED,
 			true
 		);

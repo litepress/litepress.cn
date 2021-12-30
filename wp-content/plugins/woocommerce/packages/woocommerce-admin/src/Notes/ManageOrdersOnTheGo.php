@@ -30,8 +30,7 @@ class ManageOrdersOnTheGo {
 	 */
 	public static function get_note() {
 		// Only add this note if this store is at least 6 months old.
-		$six_months_in_seconds = MONTH_IN_SECONDS * 6;
-		if ( ! self::wc_admin_active_for( $six_months_in_seconds ) ) {
+		if ( ! self::is_wc_admin_active_in_date_range( 'month-6+' ) ) {
 			return;
 		}
 
@@ -54,7 +53,7 @@ class ManageOrdersOnTheGo {
 		$note->add_action(
 			'learn-more',
 			__( 'Learn more', 'woocommerce' ),
-			'https://woocommerce.com/mobile/?utm_source=inbox'
+			'https://woocommerce.com/mobile/?utm_source=inbox&utm_medium=product'
 		);
 
 		return $note;

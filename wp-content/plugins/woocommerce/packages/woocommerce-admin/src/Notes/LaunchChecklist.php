@@ -36,7 +36,7 @@ class LaunchChecklist {
 			! get_option( 'woocommerce_task_list_complete' ) &&
 			(
 				count( $completed_tasks ) < 3 ||
-				self::wc_admin_active_for( $ten_days_in_seconds )
+				self::is_wc_admin_active_in_date_range( 'week-1-4', $ten_days_in_seconds )
 			)
 		) {
 			return;
@@ -51,7 +51,7 @@ class LaunchChecklist {
 		$note->set_type( Note::E_WC_ADMIN_NOTE_INFORMATIONAL );
 		$note->set_name( self::NOTE_NAME );
 		$note->set_source( 'woocommerce-admin' );
-		$note->add_action( 'learn-more', __( 'Learn more', 'woocommerce' ), 'https://woocommerce.com/posts/pre-launch-checklist-the-essentials/?utm_source=inbox' );
+		$note->add_action( 'learn-more', __( 'Learn more', 'woocommerce' ), 'https://woocommerce.com/posts/pre-launch-checklist-the-essentials/?utm_source=inbox&utm_medium=product' );
 		return $note;
 	}
 }

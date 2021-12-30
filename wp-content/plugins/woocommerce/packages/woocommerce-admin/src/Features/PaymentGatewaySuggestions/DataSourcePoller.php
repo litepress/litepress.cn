@@ -12,8 +12,16 @@ defined( 'ABSPATH' ) || exit;
  * This handles polling specs from JSON endpoints.
  */
 class DataSourcePoller {
+	/**
+	 * Name of data sources filter.
+	 */
+	const FILTER_NAME = 'woocommerce_admin_payment_gateway_suggestions_data_sources';
+
+	/**
+	 * Default data sources array.
+	 */
 	const DATA_SOURCES = array(
-		'https://woocommerce.com/wp-json/wccom/payment-methods/1.0/methods.json',
+		'https://woocommerce.com/wp-json/wccom/payment-gateway-suggestions/1.0/suggestions.json',
 	);
 
 	/**
@@ -43,10 +51,10 @@ class DataSourcePoller {
 	 */
 	public static function read_specs_from_data_sources() {
 		$specs        = array();
-		$data_sources = apply_filters( 'woocommerce_admin_payment_gateway_suggestions_data_sources', self::DATA_SOURCES );
+		$data_sources = apply_filters( self::FILTER_NAME, self::DATA_SOURCES );
 
 		// Note that this merges the specs from the data sources based on the
-		// key - last one wins.
+		// id - last one wins.
 		foreach ( $data_sources as $url ) {
 			$specs_from_data_source = self::read_data_source( $url );
 			self::merge_specs( $specs_from_data_source, $specs, $url );
@@ -65,7 +73,13 @@ class DataSourcePoller {
 	private static function read_data_source( $url ) {
 		$logger_context = array( 'source' => $url );
 		$logger         = self::get_logger();
-		$response       = wp_remote_get( $url );
+		$response       = wp_remote_get(
+			add_query_arg(
+				'_locale',
+				get_user_locale(),
+				$url
+			)
+		);
 
 		if ( is_wp_error( $response ) || ! isset( $response['body'] ) ) {
 			$logger->error(
@@ -115,8 +129,8 @@ class DataSourcePoller {
 				continue;
 			}
 
-			$key           = $spec->key;
-			$specs[ $key ] = $spec;
+			$id           = $spec->id;
+			$specs[ $id ] = $spec;
 		}
 	}
 
@@ -132,9 +146,9 @@ class DataSourcePoller {
 		$logger         = self::get_logger();
 		$logger_context = array( 'source' => $url );
 
-		if ( ! isset( $spec->key ) ) {
+		if ( ! isset( $spec->id ) ) {
 			$logger->error(
-				'Spec is invalid because the key is missing in feed',
+				'Spec is invalid because the id is missing in feed',
 				$logger_context
 			);
 			// phpcs:ignore

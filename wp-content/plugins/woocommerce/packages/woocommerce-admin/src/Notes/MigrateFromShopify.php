@@ -32,7 +32,7 @@ class MigrateFromShopify {
 
 		// We want to show the note after two days.
 		$two_days = 2 * DAY_IN_SECONDS;
-		if ( ! self::wc_admin_active_for( $two_days ) ) {
+		if ( ! self::is_wc_admin_active_in_date_range( 'week-1', $two_days ) ) {
 			return;
 		}
 
@@ -68,7 +68,7 @@ class MigrateFromShopify {
 		$note->add_action(
 			'migrate-from-shopify',
 			__( 'Learn more', 'woocommerce' ),
-			'https://woocommerce.com/posts/migrate-from-shopify-to-woocommerce/?utm_source=inbox',
+			'https://woocommerce.com/posts/migrate-from-shopify-to-woocommerce/?utm_source=inbox&utm_medium=product',
 			Note::E_WC_ADMIN_NOTE_ACTIONED,
 			true
 		);

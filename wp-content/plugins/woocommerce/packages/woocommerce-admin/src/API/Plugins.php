@@ -305,7 +305,7 @@ class Plugins extends \WC_REST_Data_Controller {
 					$plugin,
 					sprintf(
 						/* translators: %s: plugin slug (example: woocommerce-services) */
-						__( 'The requested plugin `%s` could not be installed.  Upgrader install failed.', 'woocommerce' ),
+						__( 'The requested plugin `%s` could not be installed. Upgrader install failed.', 'woocommerce' ),
 						$slug
 					)
 				);

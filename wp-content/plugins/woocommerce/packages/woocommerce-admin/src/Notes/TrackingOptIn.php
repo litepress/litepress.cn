@@ -42,7 +42,7 @@ class TrackingOptIn {
 		}
 
 		// We want to show the note after one week.
-		if ( ! self::wc_admin_active_for( WEEK_IN_SECONDS ) ) {
+		if ( ! self::is_wc_admin_active_in_date_range( 'week-1-4' ) ) {
 			return;
 		}
 
@@ -55,7 +55,7 @@ class TrackingOptIn {
 		$note_content = sprintf(
 			$content_format,
 			'<a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=advanced&section=woocommerce_com' ) ) . '" target="_blank">',
-			'<a href="https://woocommerce.com/usage-tracking" target="_blank">',
+			'<a href="https://woocommerce.com/usage-tracking?utm_medium=product" target="_blank">',
 			'</a>'
 		);
 

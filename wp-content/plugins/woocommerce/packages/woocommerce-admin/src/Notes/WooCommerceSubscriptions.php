@@ -37,7 +37,7 @@ class WooCommerceSubscriptions {
 			return;
 		}
 
-		if ( ! self::wc_admin_active_for( DAY_IN_SECONDS ) ) {
+		if ( ! self::is_wc_admin_active_in_date_range( 'week-1', DAY_IN_SECONDS ) ) {
 			return;
 		}
 
@@ -51,7 +51,7 @@ class WooCommerceSubscriptions {
 		$note->add_action(
 			'learn-more',
 			__( 'Learn More', 'woocommerce' ),
-			'https://woocommerce.com/products/woocommerce-subscriptions/?utm_source=inbox',
+			'https://woocommerce.com/products/woocommerce-subscriptions/?utm_source=inbox&utm_medium=product',
 			Note::E_WC_ADMIN_NOTE_UNACTIONED,
 			true
 		);

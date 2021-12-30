@@ -156,7 +156,7 @@ class Controller extends \WC_REST_Reports_Controller {
 	public function get_item_schema() {
 		$data_values = array(
 			'items_sold'   => array(
-				'title'       => __( 'Products Sold', 'woocommerce' ),
+				'title'       => __( 'Products sold', 'woocommerce' ),
 				'description' => __( 'Number of product items sold.', 'woocommerce' ),
 				'type'        => 'integer',
 				'context'     => array( 'view', 'edit' ),
@@ -164,7 +164,7 @@ class Controller extends \WC_REST_Reports_Controller {
 				'indicator'   => true,
 			),
 			'net_revenue'  => array(
-				'description' => __( 'Net Sales.', 'woocommerce' ),
+				'description' => __( 'Net sales.', 'woocommerce' ),
 				'type'        => 'number',
 				'context'     => array( 'view', 'edit' ),
 				'readonly'    => true,
