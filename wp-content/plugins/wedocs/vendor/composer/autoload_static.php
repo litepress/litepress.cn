@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitaf1af2f965fa2b89d1ca92189f296a0f
+class ComposerStaticInite808cd7cede4f6f4465d34646c7659a6
 {
     public static $files = array (
         'bc33bdda64b68124ebec25fc6f289c9e' => __DIR__ . '/../..' . '/includes/functions.php',
@@ -48,6 +48,7 @@ class ComposerStaticInitaf1af2f965fa2b89d1ca92189f296a0f
         'WeDevs\\WeDocs\\Installer' => __DIR__ . '/../..' . '/includes/Installer.php',
         'WeDevs\\WeDocs\\Post_Types' => __DIR__ . '/../..' . '/includes/Post_Types.php',
         'WeDevs\\WeDocs\\Shortcode' => __DIR__ . '/../..' . '/includes/Shortcode.php',
+        'WeDevs\\WeDocs\\Theme\\Astra' => __DIR__ . '/../..' . '/includes/Theme/Astra.php',
         'WeDevs\\WeDocs\\Theme\\Twenty_Fifteen' => __DIR__ . '/../..' . '/includes/Theme/Twenty_Fifteen.php',
         'WeDevs\\WeDocs\\Theme\\Twenty_Seventeen' => __DIR__ . '/../..' . '/includes/Theme/Twenty_Seventeen.php',
         'WeDevs\\WeDocs\\Theme_Support' => __DIR__ . '/../..' . '/includes/Theme_Support.php',
@@ -59,9 +60,9 @@ class ComposerStaticInitaf1af2f965fa2b89d1ca92189f296a0f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitaf1af2f965fa2b89d1ca92189f296a0f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitaf1af2f965fa2b89d1ca92189f296a0f::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitaf1af2f965fa2b89d1ca92189f296a0f::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite808cd7cede4f6f4465d34646c7659a6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite808cd7cede4f6f4465d34646c7659a6::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite808cd7cede4f6f4465d34646c7659a6::$classMap;
 
         }, null, ClassLoader::class);
     }
