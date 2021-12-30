@@ -41,7 +41,7 @@ class WC_Product_Vendors_Order_Fulfill_Status_To_Admin extends WC_Email {
 	 * @param int $order_item_id
 	 * @return null
 	 */
-	public function trigger( $vendor_data, $status = '', $order_item_id ) {
+	public function trigger( $vendor_data, $status = '', $order_item_id = '' ) {
 		if ( ! $this->is_enabled() || ! $this->get_recipient() ) {
 			return;
 		}
