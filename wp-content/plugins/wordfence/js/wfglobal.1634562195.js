@@ -54,6 +54,18 @@
 					function(){ jQuery('.wf-admin-notice[data-notice-id="' + nid + '"]').fadeOut(); }
 				);
 			},
+			hideNoticeForUser: function(id) {
+				this.ajax('wordfence_hideNoticeForUser',
+					{
+						id: id
+					},
+					function(res) {
+						$("#" + id).fadeOut();
+					},
+					function() {
+					}
+				);
+			},
 			setOption: function(key, value, successCallback) {
 				var changes = {};
 				changes[key] = value;

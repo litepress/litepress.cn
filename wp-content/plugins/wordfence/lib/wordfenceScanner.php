@@ -91,7 +91,7 @@ class wordfenceScanner {
 			$wafPatterns = array();
 			$wafCommonStringIndexes = array();
 			foreach ($sigData['rules'] as $key => $signatureRow) {
-				list(, , $pattern) = $signatureRow;
+				list($id, , $pattern) = $signatureRow;
 				if (empty($pattern)) {
 					throw new Exception(__('Wordfence received malformed attack signature patterns from the scanning server.', 'wordfence'));
 				}
@@ -99,7 +99,7 @@ class wordfenceScanner {
 				$logOnly = (isset($signatureRow[5]) && !empty($signatureRow[5])) ? $signatureRow[5] : false;
 				$commonStringIndexes = (isset($signatureRow[8]) && is_array($signatureRow[8])) ? $signatureRow[8] : array(); 
 				if (@preg_match('/' . $pattern . '/iS', null) === false) {
-					wordfence::status(1, 'error', __('A regex Wordfence received from its servers is invalid. The pattern is: ', 'wordfence') . esc_html($pattern));
+					wordfence::status(1, 'error', sprintf(__('Regex compilation failed for signature %d', 'wordfence'), (int) $id));
 					unset($sigData['rules'][$key]);
 				}
 				else if (!$logOnly) {
@@ -521,13 +521,13 @@ class wordfenceScanner {
 							'ignoreP' => $this->path . $file,
 							'ignoreC' => md5_file($this->path . $file),
 							'shortMsg' => __('File contains suspected malware URL: ', 'wordfence') . esc_html($file),
-							'longMsg' => sprintf(
+							'longMsg' => wp_kses(sprintf(
 								/* translators: 1. Malware signature matched text. 2. Malicious URL. 3. Malicious URL. */
-								__('This file contains a suspected malware URL listed on Google\'s list of malware sites. Wordfence decodes %1$s when scanning files so the URL may not be visible if you view this file. The URL is: %2$s - More info available at <a href="http://safebrowsing.clients.google.com/safebrowsing/diagnostic?site=%3$s&client=googlechrome&hl=en-US" target="_blank" rel="noopener noreferrer">Google Safe Browsing diagnostic page</a>.', 'wordfence'),
+								__('This file contains a suspected malware URL listed on Google\'s list of malware sites. Wordfence decodes %1$s when scanning files so the URL may not be visible if you view this file. The URL is: %2$s - More info available at <a href="http://safebrowsing.clients.google.com/safebrowsing/diagnostic?site=%3$s&client=googlechrome&hl=en-US" target="_blank" rel="noopener noreferrer">Google Safe Browsing diagnostic page<span class="screen-reader-text"> (opens in new tab)</span></a>.', 'wordfence'),
 								esc_html($this->patterns['word3']),
 								esc_html($result['URL']),
 								urlencode($result['URL'])
-							),
+							), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()), 'span'=>array('class'))),
 							'data' => array_merge(array(
 								'file' => $file,
 								'shac' => $record->SHAC,

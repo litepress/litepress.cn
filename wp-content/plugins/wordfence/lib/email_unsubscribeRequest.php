@@ -11,4 +11,4 @@
 <br><br>
 <?php echo wp_kses(sprintf(
 	/* translators: URL to WordPress admin panel. */
-		__('<a href="%s" target="_blank">Click here</a> to stop receiving security alerts.', 'wordfence'), wfUtils::getSiteBaseURL() . '?_wfsf=removeAlertEmail&jwt=' . $jwt), array('a'=>array('href'=>array(), 'target'=>array()))); ?>
+		__('<a href="%s" target="_blank">Click here<span class="screen-reader-text"> (' . esc_html__('opens in new tab', 'wordfence') . ')</span></a> to stop receiving security alerts.', 'wordfence'), wfUtils::getSiteBaseURL() . '?_wfsf=removeAlertEmail&jwt=' . $jwt), array('a'=>array('href'=>array(), 'target'=>array()))); ?>

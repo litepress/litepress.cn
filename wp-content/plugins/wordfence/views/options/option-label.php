@@ -25,7 +25,7 @@ if (!isset($titleHTML)) {
 				<ul class="wf-flex-vertical wf-flex-align-left">
 					<li>
 						<?php endif; ?>
-						<?php echo $titleHTML; ?><?php if (isset($helpLink)) { echo ' <a href="' . esc_attr($helpLink) . '"  target="_blank" rel="noopener noreferrer" class="wf-inline-help"><i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i></a>'; } ?>
+						<?php echo $titleHTML; ?><?php if (isset($helpLink)) { echo ' <a href="' . esc_attr($helpLink) . '"  target="_blank" rel="noopener noreferrer" class="wf-inline-help"><i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i><span class="screen-reader-text"> (' . esc_html__('opens in new tab', 'wordfence') . ')</span></a>'; } ?>
 						<?php if (isset($subtitle)): ?>
 					</li>
 					<li class="wf-option-subtitle"><?php echo esc_html($subtitle); ?></li>

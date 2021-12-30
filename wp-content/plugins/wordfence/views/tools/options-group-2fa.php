@@ -37,7 +37,7 @@ $helpLink = wfSupportController::supportURL(wfSupportController::ITEM_TOOLS_TWO_
 				</p>
 
 				<p class="wf-center wf-padding-add-bottom">
-					<a class="wf-btn wf-btn-primary wf-btn-callout" href="https://www.wordfence.com/gnl1twoFac1/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Premium', 'wordfence') ?></a>
+					<a class="wf-btn wf-btn-primary wf-btn-callout" href="https://www.wordfence.com/gnl1twoFac1/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Premium', 'wordfence') ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 				</p>
 				<?php else: ?>
 				<ul class="wf-block-list">
@@ -48,7 +48,7 @@ $helpLink = wfSupportController::supportURL(wfSupportController::ITEM_TOOLS_TWO_
 							'enabledValue'  => 1,
 							'disabledValue' => 0,
 							'value'         => wfConfig::get('loginSec_requireAdminTwoFactor') ? 1 : 0,
-							'htmlTitle'     => wp_kses(sprintf(/* translators: Support URL. */ __('<strong>Require Cellphone Sign-in for all Administrators<a href="%s" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"></a></strong><br><em>Note:</em> This setting requires at least one administrator to have Cellphone Sign-in enabled. On multisite, this option applies only to super admins.', 'wordfence'), esc_url($helpLink)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array()), 'strong'=>array(), 'br'=>array(), 'em'=>array())),
+							'htmlTitle'     => wp_kses(sprintf(/* translators: Support URL. */ __('<strong>Require Cellphone Sign-in for all Administrators<a href="%s" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"><span class="screen-reader-text"> (opens in new tab)</span></a></strong><br><em>Note:</em> This setting requires at least one administrator to have Cellphone Sign-in enabled. On multisite, this option applies only to super admins.', 'wordfence'), esc_url($helpLink)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array()), 'strong'=>array(), 'br'=>array(), 'em'=>array(), 'span'=>array('class'=>array()))),
 						))->render();
 						?>
 					</li>
@@ -60,7 +60,7 @@ $helpLink = wfSupportController::supportURL(wfSupportController::ITEM_TOOLS_TWO_
 							'enabledValue'  => 1,
 							'disabledValue' => 0,
 							'value'         => wfConfig::get('loginSec_enableSeparateTwoFactor') ? 1 : 0,
-							'htmlTitle'     => wp_kses(sprintf(/* translators: Support URL. */ __('<strong>Enable Separate Prompt for Two-Factor Code<a href="%s" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"></a></strong><br><em>Note:</em> This setting changes the behavior for obtaining the two-factor authentication code from using the password field to showing a separate prompt. If your theme overrides the default login page, you may not be able to use this option.', 'wordfence'), $helpLink), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array()), 'strong'=>array(), 'br'=>array(), 'em'=>array())) .
+							'htmlTitle'     => wp_kses(sprintf(/* translators: Support URL. */ __('<strong>Enable Separate Prompt for Two-Factor Code<a href="%s" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"><span class="screen-reader-text"> (opens in new tab)</span></a></strong><br><em>Note:</em> This setting changes the behavior for obtaining the two-factor authentication code from using the password field to showing a separate prompt. If your theme overrides the default login page, you may not be able to use this option.', 'wordfence'), $helpLink), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array()), 'strong'=>array(), 'br'=>array(), 'em'=>array(), 'span'=>array('class'=>array()))) .
 								($allowSeparatePrompt ? '' : wp_kses(__('<br><strong>This setting will be ignored because the PHP configuration option <code>output_buffering</code> is off.</strong>', 'wordfence'), array('strong'=>array(), 'br'=>array()))),
 						))->render();
 						?>

@@ -10,8 +10,8 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 ?>
 <div id="wf-scan-starter" class="wf-block-navigation-option">
 	<div class="wf-block-navigation-option-content">
-		<a href="#" class="wf-btn wf-btn-primary wf-btn-callout-subtle wf-scan-starter-idle" style="<?php if ($running) { echo 'display: none;'; } ?>"><?php esc_html_e('Start New Scan', 'wordfence'); ?></a>
-		<a href="#" class="wf-btn wf-btn-primary wf-btn-callout-subtle wf-scan-starter-running" style="<?php if (!$running) { echo 'display: none;'; } ?>;"><?php esc_html_e('Stop Scan', 'wordfence'); ?></a> 
+		<a href="#" class="wf-btn wf-btn-primary wf-btn-callout-subtle wf-scan-starter-idle" style="<?php if ($running) { echo 'display: none;'; } ?>" role="button"><?php esc_html_e('Start New Scan', 'wordfence'); ?></a>
+		<a href="#" class="wf-btn wf-btn-primary wf-btn-callout-subtle wf-scan-starter-running" style="<?php if (!$running) { echo 'display: none;'; } ?>;" role="button"><?php esc_html_e('Stop Scan', 'wordfence'); ?></a> 
 	</div>
 </div>
 <script type="application/javascript">

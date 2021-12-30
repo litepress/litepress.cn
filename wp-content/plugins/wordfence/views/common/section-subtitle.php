@@ -24,6 +24,6 @@ if (isset($helpLabel) && !isset($helpLabelHTML)) {
 	<?php endif; ?>
 	<h3 class="wf-center-xs"<?php echo (isset($headerID) ? ' id="' . $headerID . '"' : ''); ?>><?php echo $titleHTML; ?></h3>
 	<?php if (isset($helpLink) && isset($helpLabelHTML)): ?>
-		<span class="wf-hidden-xs"><a href="<?php echo esc_attr($helpLink); ?>" target="_blank" rel="noopener noreferrer" class="wf-help-link"><?php echo $helpLabelHTML; ?></a> <i class="wf-fa wf-fa-external-link" aria-hidden="true"></i></span>
+		<span class="wf-hidden-xs"><a href="<?php echo esc_attr($helpLink); ?>" target="_blank" rel="noopener noreferrer" class="wf-help-link"><?php echo $helpLabelHTML; ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a> <i class="wf-fa wf-fa-external-link" aria-hidden="true"></i></span>
 	<?php endif; ?>
 </div>

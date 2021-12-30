@@ -5,7 +5,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 	<li class="wf-option-spacer"></li>
 	<li class="wf-option-content">
 		<ul>
-			<li class="wf-option-title"><?php esc_html_e('Bypass Cookie', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_FIREWALL_BLOCKING_BYPASS_COOKIE); ?>" target="_blank" rel="noopener noreferrer" class="wf-inline-help"><i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i></a></li>
+			<li class="wf-option-title"><?php esc_html_e('Bypass Cookie', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_FIREWALL_BLOCKING_BYPASS_COOKIE); ?>" target="_blank" rel="noopener noreferrer" class="wf-inline-help"><i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></li>
 			<li class="wf-option-fields">
 				<table class="wf-full-width">
 					<tr>

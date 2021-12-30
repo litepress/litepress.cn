@@ -19,9 +19,8 @@
 							<div class="wf-dashboard-graph-wrapper">
 								<div class="wf-dashboard-toggle-btns">
 									<ul class="wf-pagination wf-pagination-sm">
-										<li class="wf-active"><a href="#" class="wf-dashboard-graph-attacks" data-grouping="24h"><?php esc_html_e('24 Hours', 'wordfence'); ?></a></li>
-										<!-- <li><a href="#" class="wf-dashboard-graph-attacks" data-grouping="7d">7 Days</a></li> -->
-										<li><a href="#" class="wf-dashboard-graph-attacks" data-grouping="30d"><?php esc_html_e('30 Days', 'wordfence'); ?></a></li>
+										<li class="wf-active"><a href="#" class="wf-dashboard-graph-attacks" data-grouping="24h" role="button"><?php esc_html_e('24 Hours', 'wordfence'); ?></a></li>
+										<li><a href="#" class="wf-dashboard-graph-attacks" data-grouping="30d" role="button"><?php esc_html_e('30 Days', 'wordfence'); ?></a></li>
 									</ul>
 								</div>
 								<div class="wf-dashboard-network-blocks"><canvas id="wf-dashboard-network-blocks-24h"></canvas></div>

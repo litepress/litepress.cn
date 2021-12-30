@@ -67,7 +67,7 @@
 									</tr>
 								</tfoot>
 							</table>
-							<p class="wf-right wf-no-top"><a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_WIDGET_LOCAL_ATTACKS); ?>" target="_blank" rel="noopener noreferrer"><i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i> <?php esc_html_e('How are these categorized?', 'wordfence'); ?></a></p>
+							<p class="wf-right wf-no-top"><a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_WIDGET_LOCAL_ATTACKS); ?>" target="_blank" rel="noopener noreferrer"><i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i> <?php esc_html_e('How are these categorized?', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 						<?php endif; ?>
 					</li>
 				</ul>

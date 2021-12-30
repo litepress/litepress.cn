@@ -21,7 +21,7 @@ if (!wfUtils::isAdmin()) {
 		<tr>
 			<th><?php esc_html_e('URL:', 'wordfence') ?></th>
 			<td>
-				<a href="<?php echo esc_url($v['URL']) ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($v['URL']); ?></a>
+				<a href="<?php echo esc_url($v['URL']) ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($v['URL']); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 			</td>
 		</tr>
 		<tr>
@@ -38,7 +38,7 @@ if (!wfUtils::isAdmin()) {
 			<tr>
 			<th><?php esc_html_e('Referrer:', 'wordfence') ?></th>
 			<td>
-				<a href="<?php echo esc_url($v['referer']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($v['referer']); ?></a>
+				<a href="<?php echo esc_url($v['referer']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($v['referer']); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 			</td></tr><?php } ?>
 		<tr>
 			<th><?php esc_html_e('Full Browser ID:', 'wordfence') ?></th>
@@ -48,7 +48,7 @@ if (!wfUtils::isAdmin()) {
 			<tr>
 				<th><?php esc_html_e('User:', 'wordfence') ?></th>
 				<td>
-					<a href="<?php echo esc_url($v['user']['editLink']); ?>" target="_blank" rel="noopener noreferrer"><span data-userid="<?php echo esc_attr($v['user']['ID']); ?>" class="wfAvatar"></span><?php echo esc_html($v['user']['display_name']); ?></a>
+					<a href="<?php echo esc_url($v['user']['editLink']); ?>" target="_blank" rel="noopener noreferrer"><span data-userid="<?php echo esc_attr($v['user']['ID']); ?>" class="wfAvatar"></span><?php echo esc_html($v['user']['display_name']); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 				</td>
 			</tr>
 		<?php } ?>

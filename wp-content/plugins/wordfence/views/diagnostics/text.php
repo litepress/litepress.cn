@@ -299,19 +299,19 @@ echo wfHelperString::plainTextTable($table) . "\n\n";
 
 //Taken from plugin.php and modified to always show multisite drop-ins
 $dropins = array(
-	'advanced-cache.php'      => array(__('Advanced caching plugin'), 'WP_CACHE'), // WP_CACHE
-	'db.php'                  => array(__('Custom database class'), true), // auto on load
-	'db-error.php'            => array(__('Custom database error message'), true), // auto on error
-	'install.php'             => array(__('Custom installation script'), true), // auto on installation
-	'maintenance.php'         => array(__('Custom maintenance message'), true), // auto on maintenance
-	'object-cache.php'        => array(__('External object cache'), true), // auto on load
-	'php-error.php'           => array(__('Custom PHP error message'), true), // auto on error
-	'fatal-error-handler.php' => array(__('Custom PHP fatal error handler'), true), // auto on error
+	'advanced-cache.php'      => array(__('Advanced caching plugin', 'wordfence'), 'WP_CACHE'), // WP_CACHE
+	'db.php'                  => array(__('Custom database class', 'wordfence'), true), // auto on load
+	'db-error.php'            => array(__('Custom database error message', 'wordfence'), true), // auto on error
+	'install.php'             => array(__('Custom installation script', 'wordfence'), true), // auto on installation
+	'maintenance.php'         => array(__('Custom maintenance message', 'wordfence'), true), // auto on maintenance
+	'object-cache.php'        => array(__('External object cache', 'wordfence'), true), // auto on load
+	'php-error.php'           => array(__('Custom PHP error message', 'wordfence'), true), // auto on error
+	'fatal-error-handler.php' => array(__('Custom PHP fatal error handler', 'wordfence'), true), // auto on error
 );
-$dropins['sunrise.php'] = array(__('Executed before Multisite is loaded'), is_multisite() && 'SUNRISE'); // SUNRISE
-$dropins['blog-deleted.php'] = array(__('Custom site deleted message'), is_multisite()); // auto on deleted blog
-$dropins['blog-inactive.php'] = array(__('Custom site inactive message'), is_multisite()); // auto on inactive blog
-$dropins['blog-suspended.php'] = array(__('Custom site suspended message'), is_multisite()); // auto on archived or spammed blog
+$dropins['sunrise.php'] = array(__('Executed before Multisite is loaded', 'wordfence'), is_multisite() && 'SUNRISE'); // SUNRISE
+$dropins['blog-deleted.php'] = array(__('Custom site deleted message', 'wordfence'), is_multisite()); // auto on deleted blog
+$dropins['blog-inactive.php'] = array(__('Custom site inactive message', 'wordfence'), is_multisite()); // auto on inactive blog
+$dropins['blog-suspended.php'] = array(__('Custom site suspended message', 'wordfence'), is_multisite()); // auto on archived or spammed blog
 
 $table = array(
 	array(__('Name', 'wordfence'), __('Status', 'wordfence')),
@@ -621,4 +621,3 @@ if (preg_match_all('#(?:<h2>(.*?)</h2>\s*)?<table[^>]*>(.*?)</table>#is', $phpin
 
 
 ?>
-

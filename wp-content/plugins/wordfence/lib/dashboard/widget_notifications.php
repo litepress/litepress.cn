@@ -16,9 +16,9 @@
 						<li class="wf-notification<?php if ($n->priority % 10 == 1) { echo ' wf-notification-critical'; } else if ($n->priority % 10 == 2) { echo ' wf-notification-warning'; } ?>" data-notification="<?php echo esc_html($n->id); ?>">
 							<div class="wf-dashboard-item-list-title"><?php echo $n->html; ?></div>
 							<?php foreach ($n->links as $l): ?>
-								<div class="wf-dashboard-item-list-action"><a href="<?php echo esc_html($l['link']); ?>"<?php if (preg_match('/^https?:\/\//i', $l['link'])) { echo ' target="_blank" rel="noopener noreferrer"'; } ?>><?php echo esc_html($l['label']); ?></a></div>
+								<div class="wf-dashboard-item-list-action"><a href="<?php echo esc_html($l['link']); ?>"<?php if (preg_match('/^https?:\/\//i', $l['link'])) { echo ' target="_blank" rel="noopener noreferrer"'; } ?>><?php echo esc_html($l['label']); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></div>
 							<?php endforeach; ?>
-							<div class="wf-dashboard-item-list-dismiss"><a href="#" class="wf-dismiss-notification"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+							<div class="wf-dashboard-item-list-dismiss"><a href="#" class="wf-dismiss-notification" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 						</li>
 					<?php endforeach; ?>
 					<?php if (count($d->notifications) == 0): ?>
@@ -56,17 +56,17 @@
 									<a href="<?php echo WORDFENCE_CENTRAL_URL_SEC ?>/sites/connection-issues?complete-setup=<?php echo esc_attr(wfConfig::get('wordfenceCentralSiteID')) ?>"
 											class="wf-central-resume wf-btn wf-btn-sm wf-btn-primary"
 									><?php esc_html_e('Resume Installation', 'wordfence') ?></a>
-									<a href="#" class="wf-central-disconnect wf-btn wf-btn-sm wf-btn-default"><strong><?php esc_html_e('Disconnect This Site', 'wordfence') ?></strong></a>
+									<a href="#" class="wf-central-disconnect wf-btn wf-btn-sm wf-btn-default" role="button"><strong><?php esc_html_e('Disconnect This Site', 'wordfence') ?></strong></a>
 								</p>
 							<?php else: ?>
 								<p class="wf-flex-row-1">
 									<?php if ($d->wordfenceCentralConnected): ?>
-										<a href="#" class="wf-central-disconnect"><strong><?php esc_html_e('Disconnect This Site', 'wordfence') ?></strong></a>
+										<a href="#" class="wf-central-disconnect" role="button"><strong><?php esc_html_e('Disconnect This Site', 'wordfence') ?></strong></a>
 									<?php else: ?>
 										<a href="<?php echo WORDFENCE_CENTRAL_URL_SEC ?>?newsite=<?php echo esc_attr(home_url()) ?>"><strong><?php $d->wordfenceCentralDisconnected ? esc_html_e('Reconnect This Site', 'wordfence') : esc_html_e('Connect This Site', 'wordfence') ?></strong></a>
 									<?php endif; ?>
 								</p>
-								<p class="wf-flex-row-1 wf-right wf-nowrap"><a href="<?php echo esc_url(WORDFENCE_CENTRAL_URL_SEC) ?>" target="_blank" rel="noopener noreferrer"><strong><?php esc_html_e('Visit Wordfence Central', 'wordfence') ?></strong></a></p>
+								<p class="wf-flex-row-1 wf-right wf-nowrap"><a href="<?php echo esc_url(WORDFENCE_CENTRAL_URL_SEC) ?>" target="_blank" rel="noopener noreferrer"><strong><?php esc_html_e('Visit Wordfence Central', 'wordfence') ?></strong><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 							<?php endif ?>
 
 						</div>

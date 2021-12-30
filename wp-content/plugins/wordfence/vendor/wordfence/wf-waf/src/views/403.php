@@ -353,7 +353,7 @@ if (!defined('WFWAF_VIEW_RENDERING')) { exit; }
 		</div>
 		<div class="about-text">
 			<h3 class="h4"><?php wfWAFI18n::esc_html_e('About Wordfence') ?></h3>
-			<p><?php wfWAFI18n::esc_html_e('Wordfence is a security plugin installed on over 3 million WordPress sites. The owner of this site is using Wordfence to manage access to their site.') ?></p>
+			<p><?php wfWAFI18n::esc_html_e('Wordfence is a security plugin installed on over 4 million WordPress sites. The owner of this site is using Wordfence to manage access to their site.') ?></p>
 			<p><?php wfWAFI18n::esc_html_e('You can also read the documentation to learn about Wordfence\'s blocking tools, or visit wordfence.com to learn more about Wordfence.') ?></p>
 		</div>
 	</div>

@@ -16,7 +16,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 		<h2><?php esc_html_e('Whois Lookup', 'wordfence') ?></h2>
 		<span><?php echo wp_kses(sprintf(
 				/* translators: URL to support page. */
-				__('<a href="%s" target="_blank" rel="noopener noreferrer" class="wf-help-link">Learn more<span class="wf-hidden-xs"> about Whois Lookup</span></a>', 'wordfence'), wfSupportController::esc_supportURL(wfSupportController::ITEM_TOOLS_WHOIS_LOOKUP)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array()), 'span'=>array('class'=>array()))); ?>
+				__('<a href="%s" target="_blank" rel="noopener noreferrer" class="wf-help-link">Learn more<span class="wf-hidden-xs"> about Whois Lookup</span><span class="screen-reader-text"> (opens in new tab)</span></a>', 'wordfence'), wfSupportController::esc_supportURL(wfSupportController::ITEM_TOOLS_WHOIS_LOOKUP)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array()), 'span'=>array('class'=>array()))); ?>
 			<i class="wf-fa wf-fa-external-link" aria-hidden="true"></i></span>
 	</div>
 
@@ -37,7 +37,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 			<p style="width: 600px;">
 				<?php echo wp_kses(sprintf(
 				/* translators: Hostname or IP address. */
-						__("You've chosen to block the network that <span style=\"color: #F00;\">%s</span> is part of. We've marked the networks we found that this IP address belongs to in red below. Make sure you read all the WHOIS information so that you see all networks this IP belongs to. We recommend blocking the network with the lowest number of addresses. You may find this is listed at the end as part of the 'rWHOIS' query which contacts the local WHOIS server that is run by the network administrator."), esc_html($_GET['whoisval'])), array('span'=>array('style'=>array()))); ?>
+						__("You've chosen to block the network that <span style=\"color: #F00;\">%s</span> is part of. We've marked the networks we found that this IP address belongs to in red below. Make sure you read all the WHOIS information so that you see all networks this IP belongs to. We recommend blocking the network with the lowest number of addresses. You may find this is listed at the end as part of the 'rWHOIS' query which contacts the local WHOIS server that is run by the network administrator.", 'wordfence'), esc_html($_GET['whoisval'])), array('span'=>array('style'=>array()))); ?>
 			</p>
 		<?php } ?>
 		<div id="wfrawhtml" class="wf-padding-add-top"></div>

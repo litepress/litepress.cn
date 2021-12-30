@@ -23,7 +23,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 			<?php if (!wfConfig::get('firewallEnabled')): ?>
 			<ul class="wf-block-banner">
 				<li><?php echo wp_kses(__('<strong>Note:</strong> Blocking is disabled when the option "Enable Rate Limiting and Advanced Blocking" is off.', 'wordfence'), array('strong'=>array())); ?></li>
-				<li><a href="#" class="wf-btn wf-btn-default" id="wf-blocking-enable"><?php esc_html_e('Turn On', 'wordfence'); ?></a></li>
+				<li><a href="#" class="wf-btn wf-btn-default" id="wf-blocking-enable" role="button"><?php esc_html_e('Turn On', 'wordfence'); ?></a></li>
 			</ul>
 			<?php endif; ?>
 			<?php if (version_compare(phpversion(), '5.4') < 0 && wfConfig::get('isPaid') && wfBlock::hasCountryBlock()): ?>
@@ -31,7 +31,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 					<li><?php echo esc_html(sprintf(
 							/* translators: PHP version. */
 							__('<strong>Note:</strong> The GeoIP database that is required for country blocking has been updated to a new format. This new format requires sites to run PHP 5.4 or newer, and this site is on PHP %s. To ensure country blocking continues functioning, please update PHP.', 'wordfence'), wfUtils::cleanPHPVersion())); ?></li>
-					<li><a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_SCAN_RESULT_GEOIP_UPDATE); ?>" class="wf-btn wf-btn-default" target="_blank" rel="noopener noreferrer"><?php esc_html_e('More Information', 'wordfence'); ?></a></li>
+					<li><a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_SCAN_RESULT_GEOIP_UPDATE); ?>" class="wf-btn wf-btn-default" target="_blank" rel="noopener noreferrer"><?php esc_html_e('More Information', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></li>
 				</ul>
 			<?php endif; ?>
 			<div class="wf-block-header">
@@ -124,9 +124,9 @@ echo wfView::create('blocking/block-list', array(
 					<li>&bullet;</li>
 					<li>&bullet;</li>
 				</ul>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 	<script type="text/x-jquery-template" id="wfBlockingNewTour2">
@@ -139,10 +139,10 @@ echo wfView::create('blocking/block-list', array(
 					<li class="wf-active">&bullet;</li>
 					<li>&bullet;</li>
 				</ul>
-				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 	<script type="text/x-jquery-template" id="wfBlockingNewTour3">
@@ -155,10 +155,10 @@ echo wfView::create('blocking/block-list', array(
 					<li>&bullet;</li>
 					<li class="wf-active">&bullet;</li>
 				</ul>
-				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
+				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 <?php endif; ?>
@@ -208,9 +208,9 @@ echo wfView::create('blocking/block-list', array(
 					<li class="wf-active">&bullet;</li>
 					<li>&bullet;</li>
 				</ul>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 	<script type="text/x-jquery-template" id="wfBlockingUpgradeTour2">
@@ -222,10 +222,10 @@ echo wfView::create('blocking/block-list', array(
 					<li>&bullet;</li>
 					<li class="wf-active">&bullet;</li>
 				</ul>
-				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
+				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 <?php endif; ?>

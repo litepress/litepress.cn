@@ -18,7 +18,7 @@ $selectOptions = array(
 			<li class="wf-option-spacer"></li>
 			<li class="wf-option-content">
 				<ul class="wf-flex-vertical wf-flex-align-left">
-					<li class="wf-option-title"><?php esc_html_e('How does Wordfence get IPs', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_DASHBOARD_OPTION_HOW_GET_IPS); ?>"  target="_blank" rel="noopener noreferrer" class="wf-inline-help"><i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i></a></li>
+					<li class="wf-option-title"><?php esc_html_e('How does Wordfence get IPs', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_DASHBOARD_OPTION_HOW_GET_IPS); ?>"  target="_blank" rel="noopener noreferrer" class="wf-inline-help"><i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></li>
 					<li>
 						<ul class="wf-flex-vertical wf-flex-align-left">
 							<li class="wf-padding-add-left">
@@ -30,8 +30,8 @@ $selectOptions = array(
 							</li>
 							<li class="wf-option-howgetips-details wf-padding-add-top-small">
 								<div class="wf-left"><?php esc_html_e('Detected IP(s):', 'wordfence') ?> <span id="howGetIPs-preview-all"><?php echo wfUtils::getIPPreview(); ?></span></div>
-								<div class="wf-left"><?php esc_html_e('Your IP with this setting:') ?> <span id="howGetIPs-preview-single"><?php echo wfUtils::getIP(); ?></span></div>
-								<div class="wf-left"><a href="#" id="howGetIPs-trusted-proxies-show">+ <?php esc_html_e('Edit trusted proxies', 'wordfence') ?></a></div>
+								<div class="wf-left"><?php esc_html_e('Your IP with this setting:', 'wordfence') ?> <span id="howGetIPs-preview-single"><?php echo wfUtils::getIP(); ?></span></div>
+								<div class="wf-left"><a href="#" id="howGetIPs-trusted-proxies-show" role="button">+ <?php esc_html_e('Edit trusted proxies', 'wordfence') ?></a></div>
 							</li>
 						</ul>
 					</li>

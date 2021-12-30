@@ -23,7 +23,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 			<p><h3><?php esc_html_e('Wordfence Firewall Deactivated', 'wordfence'); ?></h3></p>
 			<p><?php esc_html_e('The Wordfence Web Application Firewall is a PHP-based, application-level firewall that filters out malicious requests to your site. It is designed to run at the beginning of WordPress\' initialization to filter any attacks before plugins or themes can run any potentially vulnerable code.', 'wordfence'); ?></p>
 			<p>
-				<a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="#" target="_blank" rel="noopener noreferrer" id="waf-top-enable-firewall"><?php esc_html_e('Enable Firewall', 'wordfence'); ?></a>
+				<a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="#" target="_blank" rel="noopener noreferrer" id="waf-top-enable-firewall" role="button"><?php esc_html_e('Enable Firewall', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 				<script type="application/javascript">
 					(function($) {
 						$(function() {
@@ -55,7 +55,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 				?>
 				<p><h3><?php echo ($learningMode === true ? esc_html__('Learning Mode Enabled', 'wordfence') : esc_html(sprintf(/* translators: Localized date. */ __('Learning Mode Until %s', 'wordfence'), wfUtils::formatLocalTime(get_option('date_format'), $learningMode)))); ?></h3></p>
 				<p><?php echo wp_kses(__('<i class="wf-fa wf-fa-lightbulb-o wf-tip" aria-hidden="true"></i> When you first install the Wordfence Web Application Firewall, it will be in learning mode. This allows Wordfence to learn about your site so that we can understand how to protect it and how to allow normal visitors through the firewall. We recommend you let Wordfence learn for a week before you enable the firewall.', 'wordfence'), array('i'=>array('class'=>array()))); ?></p>
-				<p><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="<?php echo esc_url($optionsURL); ?>"><?php esc_html_e('Manage Firewall', 'wordfence'); ?></a>&nbsp;&nbsp;<a class="wf-btn wf-btn-callout-subtle wf-btn-default" href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_FIREWALL_WAF); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Learn More', 'wordfence'); ?></a></p>
+				<p><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="<?php echo esc_url($optionsURL); ?>"><?php esc_html_e('Manage Firewall', 'wordfence'); ?></a>&nbsp;&nbsp;<a class="wf-btn wf-btn-callout-subtle wf-btn-default" href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_FIREWALL_WAF); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Learn More', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>
@@ -65,7 +65,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 		<div>
 			<p><h3><?php esc_html_e('Premium Protection Disabled', 'wordfence'); ?></h3></p>
 			<p><?php esc_html_e('As a free Wordfence user, you are currently using the Community version of the Threat Defense Feed. Premium users are protected by additional firewall rules and malware signatures. Upgrade to Premium today to improve your protection.', 'wordfence'); ?></p>
-			<p><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="https://www.wordfence.com/gnl1wafUpgrade/wordfence-signup/#premium-order-form" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Premium', 'wordfence'); ?></a>&nbsp;&nbsp;<a class="wf-btn wf-btn-callout-subtle wf-btn-default" href="https://www.wordfence.com/gnl1wafLearn/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Learn More', 'wordfence'); ?></a></p>
+			<p><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="https://www.wordfence.com/gnl1wafUpgrade/wordfence-signup/#premium-order-form" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Premium', 'wordfence'); ?></a>&nbsp;&nbsp;<a class="wf-btn wf-btn-callout-subtle wf-btn-default" href="https://www.wordfence.com/gnl1wafLearn/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Learn More', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 		</div>
 	<?php else: ?>
 		<div class="wf-block-labeled-value wf-protection-status wf-protection-status-<?php echo esc_attr($firewall->ruleMode()); ?>">

@@ -35,7 +35,7 @@ $secondaryButtons = array_reverse($secondaryButtons);
 			</div>
 		</div>
 		<div class="wf-modal-header-action">
-			<div class="wf-padding-add-left-small wf-modal-header-action-close"><a href="#" onclick="WFAD.colorboxClose(); return false"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div class="wf-padding-add-left-small wf-modal-header-action-close"><a href="#" onclick="WFAD.colorboxClose(); return false" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</div>
 	<div class="wf-modal-content">

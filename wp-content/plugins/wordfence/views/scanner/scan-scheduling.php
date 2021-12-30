@@ -35,7 +35,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 				<input class="wf-option-radio" type="radio" name="wf-scheduling-mode" id="wf-scheduling-mode-manual" value="<?php echo esc_attr(wfScanner::SCAN_SCHEDULING_MODE_MANUAL); ?>" <?php echo ($scanner->schedulingMode() == wfScanner::SCAN_SCHEDULING_MODE_MANUAL ? ' checked' : ''); ?><?php if (!wfConfig::p() || !$scanner->isEnabled()) { echo ' disabled'; } ?> aria-labelledby="wf-scheduling-mode-manual-label">
 				<label for="wf-scheduling-mode-manual"></label>
 			</li>
-			<li id="wf-scheduling-mode-manual-label" class="wf-option-title"><?php esc_html_e('Manually schedule scans', 'wordfence'); ?><?php if (!wfConfig::p()) { ?>&nbsp;&nbsp;<a href="https://www.wordfence.com/gnl1optionUpgrade/wordfence-signup/" target="_blank" rel="noopener noreferrer" class="wf-premium-link"><?php esc_html_e('Premium Feature', 'wordfence'); ?></a><?php } ?></li>
+			<li id="wf-scheduling-mode-manual-label" class="wf-option-title"><?php esc_html_e('Manually schedule scans', 'wordfence'); ?><?php if (!wfConfig::p()) { ?>&nbsp;&nbsp;<a href="https://www.wordfence.com/gnl1optionUpgrade/wordfence-signup/" target="_blank" rel="noopener noreferrer" class="wf-premium-link"><?php esc_html_e('Premium Feature', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a><?php } ?></li>
 		</ul>
 		<ul class="wf-scan-scheduling-manual<?php echo ($scanner->schedulingMode() == wfScanner::SCAN_SCHEDULING_MODE_MANUAL ? ' wf-active' : ''); ?>">
 			<li>

@@ -1,7 +1,14 @@
 (function($) {
 	window['GWFLS'] = {
 		init: function() {
-			
+			this.register_create_user_events();
+
+			$('.wfls-persistent-notice').on('click', 'button', function() {
+				GWFLS.ajax(
+					'wordfence_ls_dismiss_persistent_notice',
+					{notice_id: $(this).parent('.notice').attr('id')},
+				);
+			});
 		},
 
 		/**
@@ -58,6 +65,22 @@
 				function() { $('.wfls-notice[data-notice-id="' + nid + '"]').fadeOut(); }
 			);
 		},
+
+		register_create_user_events: function() {
+			var container = $('#wfls-grace-period-toggle-container');
+			if (container.length) {
+				var gracePeriodToggle = container.detach().find('tr');
+				$('#createuser #role').on('change', function() {
+					var select = $(this);
+					gracePeriodToggle.detach();
+					var role = select.val();
+					var row = select.closest('tr');
+					if (role === 'administrator') {
+						gracePeriodToggle.insertAfter(row);
+					}
+				}).trigger('change');
+			}
+		}
 	};
 
 	$(function() {

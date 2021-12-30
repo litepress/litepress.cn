@@ -13,7 +13,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 					<p><strong><?php esc_html_e('Need help with a hacked website?', 'wordfence'); ?></strong></p>
 					<p><?php esc_html_e('Our team of security experts will clean the infection and remove malicious content. Once your site is restored we will provide a detailed report of our findings.', 'wordfence'); ?> <strong><?php esc_html_e('Includes a 1-year Wordfence Premium license.', 'wordfence'); ?></strong></p>
 				</li>
-				<li class="wf-issue-controls"><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="https://www.wordfence.com/gnl1scanGetHelp/wordfence-site-cleanings/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Get Help', 'wordfence'); ?></a></li>
+				<li class="wf-issue-controls"><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="https://www.wordfence.com/gnl1scanGetHelp/wordfence-site-cleanings/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Get Help', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></li>
 			</ul>
 		</li>
 	</ul>

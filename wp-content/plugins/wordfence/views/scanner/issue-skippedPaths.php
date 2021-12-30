@@ -17,7 +17,7 @@ echo wfView::create('scanner/issue-base', array(
 	),
 	'detailControls' => array(
 		'<a href="' . $optionsURL . '" class="wf-btn wf-btn-default wf-btn-callout-subtle">' . __('Go To Option', 'wordfence') . '</a>',
-		'<a href="#" class="wf-btn wf-btn-default wf-btn-callout-subtle wf-issue-control-mark-fixed">' . __('Mark as Fixed', 'wordfence') . '</a>',
+		'<a href="#" class="wf-btn wf-btn-default wf-btn-callout-subtle wf-issue-control-mark-fixed" role="button">' . __('Mark as Fixed', 'wordfence') . '</a>',
 	),
 	'textOutput' => (isset($textOutput) ? $textOutput : null),
 	'textOutputDetailPairs' => array(

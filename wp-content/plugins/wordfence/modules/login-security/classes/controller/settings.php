@@ -14,6 +14,7 @@ class Controller_Settings {
 	const OPTION_REQUIRE_2FA_ADMIN = 'require-2fa.administrator';
 	const OPTION_REQUIRE_2FA_GRACE_PERIOD_ENABLED = 'require-2fa-grace-period-enabled';
 	const OPTION_REQUIRE_2FA_GRACE_PERIOD = 'require-2fa-grace-period';
+	const OPTION_REQUIRE_2FA_USER_GRACE_PERIOD = '2fa-user-grace-period';
 	const OPTION_REMEMBER_DEVICE_ENABLED = 'remember-device';
 	const OPTION_REMEMBER_DEVICE_DURATION = 'remember-device-duration';
 	const OPTION_ALLOW_XML_RPC = 'allow-xml-rpc';
@@ -23,16 +24,27 @@ class Controller_Settings {
 	const OPTION_RECAPTCHA_SECRET = 'recaptcha-secret';
 	const OPTION_RECAPTCHA_THRESHOLD = 'recaptcha-threshold';
 	const OPTION_DELETE_ON_DEACTIVATION = 'delete-deactivation';
+	const OPTION_PREFIX_REQUIRED_2FA_ROLE = 'required-2fa-role';
+	const OPTION_ENABLE_WOOCOMMERCE_INTEGRATION = 'enable-woocommerce-integration';
 	
 	//Internal
 	const OPTION_GLOBAL_NOTICES = 'global-notices';
 	const OPTION_LAST_SECRET_REFRESH = 'last-secret-refresh';
 	const OPTION_USE_NTP = 'use-ntp';
+	const OPTION_ALLOW_DISABLING_NTP = 'allow-disabling-ntp';
+	const OPTION_NTP_FAILURE_COUNT = 'ntp-failure-count';
 	const OPTION_NTP_OFFSET = 'ntp-offset';
 	const OPTION_SHARED_HASH_SECRET_KEY = 'shared-hash-secret';
 	const OPTION_SHARED_SYMMETRIC_SECRET_KEY = 'shared-symmetric-secret';
 	const OPTION_DISMISSED_FRESH_INSTALL_MODAL = 'dismissed-fresh-install-modal';
 	const OPTION_CAPTCHA_STATS = 'captcha-stats';
+
+	const DEFAULT_REQUIRE_2FA_USER_GRACE_PERIOD = 10;
+	const MAX_REQUIRE_2FA_USER_GRACE_PERIOD = 99;
+
+	const STATE_2FA_DISABLED = 'disabled';
+	const STATE_2FA_OPTIONAL = 'optional';
+	const STATE_2FA_REQUIRED = 'required';
 	
 	protected $_settingsStorage;
 	
@@ -54,6 +66,7 @@ class Controller_Settings {
 			$settingsStorage = new Model_DB();
 		}
 		$this->_settingsStorage = $settingsStorage;
+		$this->_migrate_admin_2fa_requirements_to_roles();
 	}
 	
 	public function set_defaults() {
@@ -64,6 +77,7 @@ class Controller_Settings {
 			self::OPTION_IP_TRUSTED_PROXIES => array('value' => '', 'autoload' => Model_Settings::AUTOLOAD_YES, 'allowOverwrite' => false),
 			self::OPTION_REQUIRE_2FA_ADMIN => array('value' => false, 'autoload' => Model_Settings::AUTOLOAD_YES, 'allowOverwrite' => false),
 			self::OPTION_REQUIRE_2FA_GRACE_PERIOD_ENABLED => array('value' => false, 'autoload' => Model_Settings::AUTOLOAD_YES, 'allowOverwrite' => false),
+			self::OPTION_REQUIRE_2FA_USER_GRACE_PERIOD => array('value' => self::DEFAULT_REQUIRE_2FA_USER_GRACE_PERIOD, 'autoload' => Model_Settings::AUTOLOAD_YES, 'allowOverwrite' => false),
 			self::OPTION_GLOBAL_NOTICES => array('value' => '[]', 'autoload' => Model_Settings::AUTOLOAD_YES, 'allowOverwrite' => false),
 			self::OPTION_REMEMBER_DEVICE_ENABLED => array('value' => false, 'autoload' => Model_Settings::AUTOLOAD_YES, 'allowOverwrite' => false),
 			self::OPTION_REMEMBER_DEVICE_DURATION => array('value' => (30 * 86400), 'autoload' => Model_Settings::AUTOLOAD_YES, 'allowOverwrite' => false),
@@ -73,6 +87,7 @@ class Controller_Settings {
 			self::OPTION_RECAPTCHA_THRESHOLD => array('value' => 0.5, 'autoload' => Model_Settings::AUTOLOAD_YES, 'allowOverwrite' => false),
 			self::OPTION_LAST_SECRET_REFRESH => array('value' => 0, 'autoload' => Model_Settings::AUTOLOAD_YES, 'allowOverwrite' => false),
 			self::OPTION_DELETE_ON_DEACTIVATION => array('value' => false, 'autoload' => Model_Settings::AUTOLOAD_YES, 'allowOverwrite' => false),
+			self::OPTION_ENABLE_WOOCOMMERCE_INTEGRATION => array('value' => false, 'autoload' => Model_Settings::AUTOLOAD_YES, 'allowOverwrite' => false)
 		));
 	}
 	
@@ -193,6 +208,8 @@ class Controller_Settings {
 					return true;
 				}
 				return sprintf(__('An error was encountered while validating the reCAPTCHA site key: %s', 'wordfence-2fa'), $response->get_error_message());
+			case self::OPTION_REQUIRE_2FA_USER_GRACE_PERIOD:
+				return is_numeric($value) && $value >= 0 && $value <= self::MAX_REQUIRE_2FA_USER_GRACE_PERIOD;
 		}
 		return true;
 	}
@@ -237,6 +254,7 @@ class Controller_Settings {
 			//Int
 			case self::OPTION_REMEMBER_DEVICE_DURATION:
 			case self::OPTION_LAST_SECRET_REFRESH:
+			case self::OPTION_REQUIRE_2FA_USER_GRACE_PERIOD:
 				return (int) $value;
 				
 			//Float
@@ -269,24 +287,45 @@ class Controller_Settings {
 		}
 		return $cleaned;
 	}
-	
+
+	private function get_required_2fa_role_key($role) {
+		return implode('.', array(self::OPTION_PREFIX_REQUIRED_2FA_ROLE, $role));
+	}
+
+	public function get_required_2fa_role_activation_time($role) {
+		$time = $this->get_int($this->get_required_2fa_role_key($role), -1);
+		if ($time < 0)
+			return false;
+		return $time;
+	}
+
+	public function get_user_2fa_grace_period() {
+		return $this->get_int(self::OPTION_REQUIRE_2FA_USER_GRACE_PERIOD, self::DEFAULT_REQUIRE_2FA_USER_GRACE_PERIOD);
+	}
+
 	/**
 	 * Preprocesses the value, returning true if it was saved here (e.g., saved 2fa enabled by assigning a role 
 	 * capability) or false if it is to be saved by the backing storage.
 	 * 
 	 * @param string $key
 	 * @param mixed $value
+	 * @param array &$settings the array of settings to process, this function may append additional values from preprocessing
 	 * @return bool
 	 */
-	public function preprocess($key, $value) {
+	public function preprocess($key, $value, &$settings) {
 		if (preg_match('/^enabled-roles\.(.+)$/', $key, $matches)) { //Enabled roles are stored as capabilities rather than in the settings storage
 			$role = $matches[1];
-			if ($this->_truthy_to_bool($value)) {
-				Controller_Permissions::shared()->allow_2fa_self($role);
+			if ($role === 'super-admin') {
+				$roleValid = true;
+			}
+			elseif (in_array($value, array(self::STATE_2FA_OPTIONAL, self::STATE_2FA_REQUIRED))) {
+				$roleValid = Controller_Permissions::shared()->allow_2fa_self($role);
 			}
 			else {
-				Controller_Permissions::shared()->disallow_2fa_self($role);
+				$roleValid = Controller_Permissions::shared()->disallow_2fa_self($role);
 			}
+			if ($roleValid)
+				$settings[$this->get_required_2fa_role_key($role)] = ($value === self::STATE_2FA_REQUIRED ? time() : -1);
 			return true;
 		}
 		return false;
@@ -295,7 +334,7 @@ class Controller_Settings {
 	public function preprocess_multiple($changes) {
 		$remaining = array();
 		foreach ($changes as $key => $value) {
-			if (!$this->preprocess($key, $value)) {
+			if (!$this->preprocess($key, $value, $remaining)) {
 				$remaining[$key] = $value;
 			}
 		}
@@ -322,6 +361,60 @@ class Controller_Settings {
 	 */
 	public function trusted_proxies() {
 		return array_filter(array_map(function($s) { return trim($s); }, preg_split('/[\r\n]/', $this->get(self::OPTION_IP_TRUSTED_PROXIES, ''))));
+	}
+
+	public function get_ntp_failure_count() {
+		return $this->get_int(self::OPTION_NTP_FAILURE_COUNT, 0);
+	}
+
+	public function reset_ntp_failure_count() {
+		$this->set(self::OPTION_NTP_FAILURE_COUNT, 0);
+	}
+
+	public function increment_ntp_failure_count() {
+		$count = $this->get_ntp_failure_count();
+		if ($count < 0)
+			return false;
+		$count++;
+		$this->set(self::OPTION_NTP_FAILURE_COUNT, $count);
+		return $count;
+	}
+
+	public function is_ntp_disabled_via_constant() {
+		return defined('WORDFENCE_LS_DISABLE_NTP') && WORDFENCE_LS_DISABLE_NTP;
+	}
+
+	public function is_ntp_enabled($requireOffset = true) {
+		if ($this->is_ntp_cron_disabled())
+			return false;
+		if ($this->get_bool(self::OPTION_USE_NTP, true)) {
+			if ($requireOffset) {
+				$offset = $this->get(self::OPTION_NTP_OFFSET, null);
+				return $offset !== null && abs((int)$offset) <= Controller_TOTP::TIME_WINDOW_LENGTH;
+			}
+			else {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public function is_ntp_cron_disabled(&$failureCount = null) {
+		if ($this->is_ntp_disabled_via_constant())
+			return true;
+		$failureCount = $this->get_ntp_failure_count();
+		if ($failureCount >= Controller_Time::FAILURE_LIMIT) {
+			return true;
+		}
+		else if ($failureCount < 0) {
+			$failureCount = 0;
+			return true;
+		}
+		return false;
+	}
+
+	public function disable_ntp_cron() {
+		$this->set(self::OPTION_NTP_FAILURE_COUNT, -1);
 	}
 	
 	/**
@@ -406,5 +499,32 @@ class Controller_Settings {
 		}
 		
 		return $range;
+	}
+
+	private function _migrate_admin_2fa_requirements_to_roles() {
+		if (!$this->get_bool(self::OPTION_REQUIRE_2FA_ADMIN))
+			return;
+		$time = time();
+		if (is_multisite()) {
+			$this->set($this->get_required_2fa_role_key('super-admin'), $time, true);
+		}
+		else {
+			$roles = new \WP_Roles();
+			foreach ($roles->roles as $key => $data) {
+				$role = $roles->get_role($key);
+				if (Controller_Permissions::shared()->can_role_manage_settings($role) && Controller_Permissions::shared()->allow_2fa_self($role->name)) {
+					$this->set($this->get_required_2fa_role_key($role->name), $time, true);
+				}
+			}
+		}
+		$this->remove(self::OPTION_REQUIRE_2FA_ADMIN);
+		$this->remove(self::OPTION_REQUIRE_2FA_GRACE_PERIOD);
+		$this->remove(self::OPTION_REQUIRE_2FA_GRACE_PERIOD_ENABLED);
+	}
+
+	public function reset_ntp_disabled_flag() {
+		$this->remove(self::OPTION_USE_NTP);
+		$this->remove(self::OPTION_NTP_OFFSET);
+		$this->remove(self::OPTION_NTP_FAILURE_COUNT);
 	}
 }

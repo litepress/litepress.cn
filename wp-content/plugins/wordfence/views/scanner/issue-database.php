@@ -15,9 +15,9 @@ echo wfView::create('scanner/issue-base', array(
 		__('Details', 'wordfence') => '{{html longMsg}}',
 	),
 	'detailControls' => array(
-		'{{if data.optionExists}}<a href="${WFAD.makeViewOptionLink(data.option_name, data.site_id)}" class="wf-btn wf-btn-default wf-btn-callout-subtle" target="_blank">' . __('View Option', 'wordfence') . '</a>{{/if}}',
-		'{{if data.canDelete}}<a href="#" class="wf-btn wf-btn-default wf-btn-callout-subtle" onclick="WFAD.deleteDatabaseOption(\'${id}\'); return false;">' . __('Delete Option', 'wordfence') . '</a>{{/if}}',
-		'<a href="#" class="wf-btn wf-btn-default wf-btn-callout-subtle wf-issue-control-mark-fixed">' . __('Mark as Fixed', 'wordfence') . '</a>',
+		'{{if data.optionExists}}<a href="${WFAD.makeViewOptionLink(data.option_name, data.site_id)}" class="wf-btn wf-btn-default wf-btn-callout-subtle" target="_blank">' . __('View Option', 'wordfence') . '<span class="screen-reader-text"> (' . esc_html__('opens in new tab', 'wordfence') . ')</span></a>{{/if}}',
+		'{{if data.canDelete}}<a href="#" class="wf-btn wf-btn-default wf-btn-callout-subtle" onclick="WFAD.deleteDatabaseOption(\'${id}\'); return false;" role="button">' . __('Delete Option', 'wordfence') . '</a>{{/if}}',
+		'<a href="#" class="wf-btn wf-btn-default wf-btn-callout-subtle wf-issue-control-mark-fixed" role="button">' . __('Mark as Fixed', 'wordfence') . '</a>',
 	),
 	'textOutput' => (isset($textOutput) ? $textOutput : null),
 	'textOutputDetailPairs' => array(

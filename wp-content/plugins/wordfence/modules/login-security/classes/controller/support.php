@@ -18,6 +18,7 @@ class Controller_Support {
 	const ITEM_MODULE_LOGIN_SECURITY_2FA = 'module-login-security-2fa';
 	const ITEM_MODULE_LOGIN_SECURITY_2FA_APPS = 'module-login-security-2fa-apps';
 	const ITEM_MODULE_LOGIN_SECURITY_CAPTCHA = 'module-login-security-captcha';
+	const ITEM_MODULE_LOGIN_SECURITY_ROLES = 'module-login-security-roles';
 	
 	public static function esc_supportURL($item = self::ITEM_INDEX) {
 		return esc_url(self::supportURL($item));
@@ -41,6 +42,7 @@ class Controller_Support {
 			case self::ITEM_MODULE_LOGIN_SECURITY:
 			case self::ITEM_MODULE_LOGIN_SECURITY_2FA:
 			case self::ITEM_MODULE_LOGIN_SECURITY_CAPTCHA:
+			case self::ITEM_MODULE_LOGIN_SECURITY_ROLES:
 				return $base . '?query=' . $item;
 		}
 		

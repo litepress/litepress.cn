@@ -5,6 +5,7 @@ namespace WordfenceLS;
 class Controller_Time {
 	const NTP_VERSION = 3; // https://www.ietf.org/rfc/rfc1305.txt
 	const NTP_EPOCH_CONVERT = 2208988800; //RFC 5905, page 13
+	const FAILURE_LIMIT = 3;
 	
 	/**
 	 * Returns the singleton Controller_Time.
@@ -24,10 +25,12 @@ class Controller_Time {
 		if (is_main_site()) {
 			wp_schedule_event(time() + 10, 'hourly', 'wordfence_ls_ntp_cron');
 		}
+		Controller_Settings::shared()->reset_ntp_disabled_flag();
 	}
 	
 	public function uninstall() {
 		wp_clear_scheduled_hook('wordfence_ls_ntp_cron');
+		Controller_Settings::shared()->reset_ntp_disabled_flag();
 	}
 	
 	public function init() {
@@ -39,18 +42,24 @@ class Controller_Time {
 	}
 	
 	public function _wordfence_ls_ntp_cron() {
+		if (Controller_Settings::shared()->get_bool(Controller_Settings::OPTION_ALLOW_DISABLING_NTP) && Controller_Settings::shared()->is_ntp_cron_disabled())
+			return;
 		$ntp = self::ntp_time();
 		$time = time();
 		
 		if ($ntp === false) {
-			Controller_Settings::shared()->set(Controller_Settings::OPTION_USE_NTP, false);
-			Controller_Settings::shared()->set(Controller_Settings::OPTION_NTP_OFFSET, 0);
+			$failureCount = Controller_Settings::shared()->increment_ntp_failure_count();
+			if ($failureCount >= self::FAILURE_LIMIT) {
+				Controller_Settings::shared()->set(Controller_Settings::OPTION_USE_NTP, false);
+				Controller_Settings::shared()->set(Controller_Settings::OPTION_NTP_OFFSET, 0);
+			}
 		}
 		else {
-			$useNTP = (abs($ntp - $time) > Controller_TOTP::TIME_WINDOW_LENGTH);
-			Controller_Settings::shared()->set(Controller_Settings::OPTION_USE_NTP, $useNTP);
+			Controller_Settings::shared()->reset_ntp_failure_count();
+			Controller_Settings::shared()->set(Controller_Settings::OPTION_USE_NTP, true);
 			Controller_Settings::shared()->set(Controller_Settings::OPTION_NTP_OFFSET, $ntp - $time);
 		}
+		Controller_Settings::shared()->set(Controller_Settings::OPTION_ALLOW_DISABLING_NTP, true);
 	}
 	
 	/**
@@ -66,7 +75,7 @@ class Controller_Time {
 		}
 		
 		$offset = 0;
-		if (Controller_Settings::shared()->get_bool(Controller_Settings::OPTION_USE_NTP)) {
+		if (Controller_Settings::shared()->is_ntp_enabled()) {
 			$offset = Controller_Settings::shared()->get_int(Controller_Settings::OPTION_NTP_OFFSET);
 		}
 		else if (WORDFENCE_LS_FROM_CORE) {

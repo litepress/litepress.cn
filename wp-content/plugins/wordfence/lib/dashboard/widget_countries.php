@@ -21,8 +21,8 @@
 							<?php if (isset($d->countriesNetwork) && count($d->countriesNetwork) > 0): ?>
 							<div class="wf-dashboard-toggle-btns">
 								<ul class="wf-pagination wf-pagination-sm">
-									<li class="wf-active"><a href="#" class="wf-dashboard-countries" data-grouping="local">Local Site</a></li>
-									<li><a href="#" class="wf-dashboard-countries" data-grouping="network"><?php esc_html_e('Wordfence Network', 'wordfence') ?></a></li>
+									<li class="wf-active"><a href="#" class="wf-dashboard-countries" data-grouping="local" role="button">Local Site</a></li>
+									<li><a href="#" class="wf-dashboard-countries" data-grouping="network" role="button"><?php esc_html_e('Wordfence Network', 'wordfence') ?></a></li>
 								</ul>
 							</div>
 							<?php endif; ?>

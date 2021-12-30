@@ -23,7 +23,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 					<p><h3><?php esc_html_e('Wordfence Scan Deactivated', 'wordfence'); ?></h3></p>
 					<p><?php esc_html_e('A Wordfence scan examines all files, posts, pages, and comments on your WordPress website looking for malware, known malicious URLs, and known patterns of infections. It also does several other reputation and server checks.', 'wordfence'); ?></p>
 					<p>
-						<a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="#" target="_blank" rel="noopener noreferrer" id="wf-scan-top-enable-scans"><?php esc_html_e('Enable Automatic Scans', 'wordfence'); ?></a>
+						<a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="#" target="_blank" rel="noopener noreferrer" id="wf-scan-top-enable-scans" role="button"><?php esc_html_e('Enable Automatic Scans', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 						<script type="application/javascript">
 							(function($) {
 								$(function() {
@@ -52,7 +52,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 				<div>
 					<p><h3><?php esc_html_e('Premium Protection Disabled', 'wordfence'); ?></h3></p>
 					<p><?php esc_html_e('As a free Wordfence user, you are currently using the Community version of the Threat Defense Feed. Premium users are protected by additional firewall rules and malware signatures as well as the Wordfence real-time IP blocklist. Upgrade to Premium today to improve your protection.', 'wordfence'); ?></p>
-					<p><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="https://www.wordfence.com/gnl1scanUpgrade/wordfence-signup/#premium-order-form" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Premium', 'wordfence'); ?></a>&nbsp;&nbsp;<a class="wf-btn wf-btn-callout-subtle wf-btn-default" href="https://www.wordfence.com/gnl1scanLearn/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Learn More', 'wordfence'); ?></a></p>
+					<p><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="https://www.wordfence.com/gnl1scanUpgrade/wordfence-signup/#premium-order-form" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Premium', 'wordfence'); ?></a>&nbsp;&nbsp;<a class="wf-btn wf-btn-callout-subtle wf-btn-default" href="https://www.wordfence.com/gnl1scanLearn/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Learn More', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 				</div>
 			<?php else: ?>
 				<div class="wf-block-labeled-value wf-protection-status wf-protection-status-<?php echo esc_attr($scanner->signatureMode()); ?>">

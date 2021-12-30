@@ -17,8 +17,8 @@
 						<div>
 							<div class="wf-dashboard-toggle-btns">
 								<ul class="wf-pagination wf-pagination-sm">
-									<li class="wf-active"><a href="#" class="wf-dashboard-login-attempts" data-grouping="success"><?php esc_html_e('Successful', 'wordfence') ?></a></li>
-									<li><a href="#" class="wf-dashboard-login-attempts" data-grouping="fail"><?php esc_html_e('Failed', 'wordfence') ?></a></li>
+									<li class="wf-active"><a href="#" class="wf-dashboard-login-attempts" data-grouping="success" role="button"><?php esc_html_e('Successful', 'wordfence') ?></a></li>
+									<li><a href="#" class="wf-dashboard-login-attempts" data-grouping="fail" role="button"><?php esc_html_e('Failed', 'wordfence') ?></a></li>
 								</ul>
 							</div>
 							<div class="wf-recent-logins wf-recent-logins-success">
@@ -27,7 +27,7 @@
 								<?php else: ?>
 									<?php $data = array_slice($d->loginsSuccess, 0, min(10, count($d->loginsSuccess)), true); include(dirname(__FILE__) . '/widget_content_logins.php'); ?>
 									<?php if (count($d->loginsSuccess) > 10): ?>
-										<div class="wf-dashboard-item-list-text"><div class="wf-dashboard-show-more" data-grouping="logins" data-period="success"><a href="#"><?php esc_html_e('Show more', 'wordfence') ?></a></div></div>
+										<div class="wf-dashboard-item-list-text"><div class="wf-dashboard-show-more" data-grouping="logins" data-period="success"><a href="#" role="button"><?php esc_html_e('Show more', 'wordfence') ?></a></div></div>
 									<?php endif; ?>
 								<?php endif; ?>
 							</div>
@@ -37,7 +37,7 @@
 								<?php else: ?>
 									<?php $data = array_slice($d->loginsFail, 0, min(10, count($d->loginsFail)), true); include(dirname(__FILE__) . '/widget_content_logins.php'); ?>
 									<?php if (count($d->loginsFail) > 10): ?>
-										<div class="wf-dashboard-item-list-text"><div class="wf-dashboard-show-more" data-grouping="logins" data-period="fail"><a href="#"><?php esc_html_e('Show more', 'wordfence') ?></a></div></div>
+										<div class="wf-dashboard-item-list-text"><div class="wf-dashboard-show-more" data-grouping="logins" data-period="fail"><a href="#" role="button"><?php esc_html_e('Show more', 'wordfence') ?></a></div></div>
 									<?php endif; ?>
 								<?php endif; ?>
 							</div>

@@ -1077,7 +1077,7 @@ class wfWAFUtils {
 	 * @param $file
 	 * @return array|bool
 	 */
-	public static function extractCredentialsWPConfig($file) {
+	public static function extractCredentialsWPConfig($file, &$return = array()) {
 		$configContents = file_get_contents($file);
 		$tokens = token_get_all($configContents);
 		$tokens = array_values(array_filter($tokens, 'wfWAFUtils::_removeUnneededTokens'));
@@ -1097,10 +1097,16 @@ class wfWAFUtils {
 						!is_array($startParenToken) && $startParenToken === '(' &&
 						is_array($constantNameToken) && token_name($constantNameToken[0]) === 'T_CONSTANT_ENCAPSED_STRING' &&
 						!is_array($commaToken) && $commaToken === ',' &&
-						is_array($constantValueToken) && token_name($constantValueToken[0]) === 'T_CONSTANT_ENCAPSED_STRING' &&
+						is_array($constantValueToken) && in_array(token_name($constantValueToken[0]), array('T_CONSTANT_ENCAPSED_STRING', 'T_STRING')) &&
 						!is_array($endParenToken) && $endParenToken === ')'
 					) {
-						$parsedConstants[self::substr($constantNameToken[1], 1, -1)] = self::substr($constantValueToken[1], 1, -1);
+						if (token_name($constantValueToken[0]) === 'T_STRING') {
+							$value = constant($constantValueToken[1]);
+						}
+						else {
+							$value = self::substr($constantValueToken[1], 1, -1);
+						}
+						$parsedConstants[self::substr($constantNameToken[1], 1, -1)] = $value;
 					}
 				}
 				if (token_name($token[0]) === 'T_VARIABLE') {
@@ -1116,20 +1122,25 @@ class wfWAFUtils {
 			}
 		}
 
+		$optionalConstants = array(
+			'flags' => 'MYSQL_CLIENT_FLAGS'
+		);
 		$constants = array(
 			'user'      => 'DB_USER',
 			'pass'      => 'DB_PASSWORD',
 			'database'  => 'DB_NAME',
 			'host'      => 'DB_HOST',
 			'charset'   => 'DB_CHARSET',
-			'collation' => 'DB_COLLATE',
+			'collation' => 'DB_COLLATE'
 		);
-		$return = array();
+		$constants += $optionalConstants;
 		foreach ($constants as $key => $constant) {
-			if (array_key_exists($constant, $parsedConstants)) {
+			if (array_key_exists($key, $return)) {
+				continue;
+			} else if (array_key_exists($constant, $parsedConstants)) {
 				$return[$key] = $parsedConstants[$constant];
-			} else {
-				return false;
+			} else if (!array_key_exists($key, $optionalConstants)){
+				return ($return = false);
 			}
 		}
 
@@ -1153,7 +1164,7 @@ class wfWAFUtils {
 		$result = preg_match($pattern, $return['host'], $matches);
 
 		if (1 !== $result) {
-			return false;
+			return ($return = false);
 		}
 
 		foreach (array('host', 'port') as $component) {
@@ -1162,10 +1173,12 @@ class wfWAFUtils {
 			}
 		}
 
-		if (array_key_exists('$table_prefix', $parsedVariables)) {
-			$return['tablePrefix'] = $parsedVariables['$table_prefix'];
-		} else {
-			return false;
+		if (!array_key_exists('tablePrefix', $return)) {
+			if (array_key_exists('$table_prefix', $parsedVariables)) {
+				$return['tablePrefix'] = $parsedVariables['$table_prefix'];
+			} else {
+				return ($return = false);
+			}
 		}
 		return $return;
 	}

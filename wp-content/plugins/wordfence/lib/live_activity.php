@@ -6,7 +6,7 @@
 			<div class="wf-live-activity-message"></div>
 		</div>
 		<?php if (wfConfig::get('liveActivityPauseEnabled')): ?>
-		<div class="wf-live-activity-state"><p><?php esc_html_e('Live Updates Paused &mdash; Click inside window to resume') ?></p></div>
+		<div class="wf-live-activity-state"><p><?php esc_html_e('Live Updates Paused &mdash; Click inside window to resume', 'wordfence') ?></p></div>
 		<?php endif; ?>
 	</div>
 </div>

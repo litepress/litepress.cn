@@ -2584,21 +2584,39 @@ class wfWAFSQLiParser extends wfWAFBaseParser {
 	 */
 	private function parseTableSpec() {
 		$savePoint = $this->index;
-		if ($this->isTokenOfType($this->nextToken(), array(
-				wfWAFSQLiLexer::UNQUOTED_IDENTIFIER,
-				wfWAFSQLiLexer::QUOTED_IDENTIFIER,
-			)) &&
-			$this->isTokenOfType($this->nextToken(), wfWAFSQLiLexer::DOT) &&
-			$this->isTokenOfType($this->nextToken(), array(
-				wfWAFSQLiLexer::UNQUOTED_IDENTIFIER,
-				wfWAFSQLiLexer::QUOTED_IDENTIFIER,
-			))
-		) {
-			return true;
-		}
-		$this->index = $savePoint;
-		if ($this->isValidNonReservedWordIdentifier($this->nextToken())) {
-			return true;
+		$lastComponent = $savePoint;
+		$components = 0;
+		while (($token = $this->nextToken()) !== false) {
+			if ($this->isValidIdentifier($token)) {
+				$lastComponent = $this->index;
+				$next = $this->nextToken();
+				if ($this->isTokenOfType($next, wfWAFSQLiLexer::DOT)) {
+					$components++;
+				}
+				elseif ($this->isTokenOfType($next, wfWAFSQLiLexer::REAL_NUMBER_LITERAL)) {
+					$next = $this->nextToken();
+					if ($this->isTokenOfType($next, wfWAFSQLiLexer::UNQUOTED_IDENTIFIER) && in_array($next->getValue(), array('e', 'E')) && $this->isTokenOfType($this->nextToken(), wfWAFSQLiLexer::DOT)) {
+						$components++;
+					}
+					else {
+						break;
+					}
+				}
+				elseif ($components > 0 || $this->isValidNonReservedWordIdentifier($token)) {
+					$this->index = $lastComponent;
+					return true;
+				}
+				else {
+					break;
+				}
+			}
+			else if ($this->isTokenOfType($token, wfWAFSQLiLexer::ASTERISK)) {
+				$this->index = $lastComponent;
+				return true;
+			}
+			else {
+				break;
+			}
 		}
 		$this->index = $savePoint;
 		return false;
@@ -3349,6 +3367,17 @@ class wfWAFSQLiParser extends wfWAFBaseParser {
 			$token->getType() === wfWAFSQLiLexer::QUOTED_IDENTIFIER ||
 			($token->getType() === wfWAFSQLiLexer::UNQUOTED_IDENTIFIER && !$this->isReservedWordToken($token))
 		);
+	}
+
+	/**
+	 * @param wfWAFLexerToken $token
+	 * @return bool
+	 */
+	private function isValidIdentifier($token) {
+		return $this->isTokenOfType($token, array(
+			wfWAFSQLiLexer::QUOTED_IDENTIFIER,
+			wfWAFSQLiLexer::UNQUOTED_IDENTIFIER
+		));
 	}
 
 	/**

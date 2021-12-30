@@ -106,7 +106,7 @@ else if (wfConfig::get('touppPromptNeeded')) {
 											echo wfView::create('common/status-critical', array(
 												'id' => 'wf-premium-alert',
 												'title' => __('Premium Protection Disabled', 'wordfence'),
-												'subtitleHtml' => wp_kses(__('The license you were using has been removed from your account. Please reach out to <a href="mailto:billing@wordfence.com">billing@wordfence.com</a> or create a Premium support case at <a href="https://support.wordfence.com/support/tickets" target="_blank">https://support.wordfence.com/support/tickets</a> for more information. Our staff is happy to help.', 'wordfence'), array('a'=>array('href'=>array(), 'target'=>array()))),
+												'subtitleHtml' => wp_kses(__('The license you were using has been removed from your account. Please reach out to <a href="mailto:billing@wordfence.com">billing@wordfence.com</a> or create a Premium support case at <a href="https://support.wordfence.com/support/tickets" target="_blank">https://support.wordfence.com/support/tickets<span class="screen-reader-text"> (opens in new tab)</span></a> for more information. Our staff is happy to help.', 'wordfence'), array('a'=>array('href'=>array(), 'target'=>array()), 'span'=>array('class'=>array()))),
 												'link' => null,
 												'linkLabel' => null
 											))->render();
@@ -115,7 +115,7 @@ else if (wfConfig::get('touppPromptNeeded')) {
 											<div>
 												<p><h3><?php esc_html_e('Premium Protection Disabled', 'wordfence'); ?></h3></p>
 												<p><?php esc_html_e('As a free Wordfence user, you are currently using the Community version of the Threat Defense Feed. Premium users are protected by additional firewall rules and malware signatures. Upgrade to Premium today to improve your protection.', 'wordfence'); ?></p>
-												<p><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="https://www.wordfence.com/gnl1dashboardUpgrade/wordfence-signup/#premium-order-form" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Premium', 'wordfence'); ?></a>&nbsp;&nbsp;<a class="wf-btn wf-btn-callout-subtle wf-btn-default" href="https://www.wordfence.com/gnl1dashboardLearn/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Learn More', 'wordfence'); ?></a></p>
+												<p><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="https://www.wordfence.com/gnl1dashboardUpgrade/wordfence-signup/#premium-order-form" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Premium', 'wordfence'); ?></a>&nbsp;&nbsp;<a class="wf-btn wf-btn-callout-subtle wf-btn-default" href="https://www.wordfence.com/gnl1dashboardLearn/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Learn More', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 											</div>
 										<?php elseif (wfConfig::get('keyExpDays') < 30 && (wfConfig::get('premiumAutoRenew', null) === '0' || wfConfig::get('premiumAutoRenew', null) === 0)): ?>
 											<?php
@@ -299,9 +299,9 @@ else if (wfConfig::get('touppPromptNeeded')) {
 				<li>&bullet;</li>
 				<li>&bullet;</li>
 			</ul>
-			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 		</div>
-		<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+		<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 	</div>
 </script>
 <script type="text/x-jquery-template" id="wfNewTour2">
@@ -314,10 +314,10 @@ else if (wfConfig::get('touppPromptNeeded')) {
 				<li class="wf-active">&bullet;</li>
 				<li>&bullet;</li>
 			</ul>
-			<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+			<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 		</div>
-		<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+		<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 	</div>
 </script>
 <script type="text/x-jquery-template" id="wfNewTour3">
@@ -331,10 +331,10 @@ else if (wfConfig::get('touppPromptNeeded')) {
 				<li>&bullet;</li>
 				<li class="wf-active">&bullet;</li>
 			</ul>
-			<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
+			<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
 		</div>
-		<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+		<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 	</div>
 </script>
 <?php endif; ?>
@@ -370,7 +370,7 @@ else if (wfConfig::get('touppPromptNeeded')) {
 				/* translators: Wordfence version. */
 				esc_html__('You have successfully updated to Wordfence %s', 'wordfence'), WORDFENCE_VERSION); ?></h3>
 		<p><?php esc_html_e('This update includes a number of significant interface changes. We\'d like to walk you through  some of them, but you can bypass the tour for a section at any time by closing the dialogs.', 'wordfence'); ?></p>
-		<p><?php echo wp_kses(__('We welcome your feedback and comments at <a href="mailto:feedback@wordfence.com">feedback@wordfence.com</a>. For a deeper dive on all of the changes, <a href="https://www.wordfence.com/blog/2018/01/introducing-wordfence-7/" target="_blank" rel="noopener noreferrer">click here</a>.', 'wordfence'), array('a'=>array('href'=>array(), 'target'=>array()))); ?></p>
+		<p><?php echo wp_kses(__('We welcome your feedback and comments at <a href="mailto:feedback@wordfence.com">feedback@wordfence.com</a>. For a deeper dive on all of the changes, <a href="https://www.wordfence.com/blog/2018/01/introducing-wordfence-7/" target="_blank" rel="noopener noreferrer">click here<span class="screen-reader-text"> (opens in new tab)</span></a>.', 'wordfence'), array('a'=>array('href'=>array(), 'target'=>array()), 'span'=>array('class'=>array()))); ?></p>
 		<div class="wf-pointer-footer">
 			<ul class="wf-tour-pagination">
 				<li class="wf-active">&bullet;</li>
@@ -378,9 +378,9 @@ else if (wfConfig::get('touppPromptNeeded')) {
 				<li>&bullet;</li>
 				<li>&bullet;</li>
 			</ul>
-			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 		</div>
-		<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+		<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 	</div>
 </script>
 <script type="text/x-jquery-template" id="wfUpgradeTour2">
@@ -394,10 +394,10 @@ else if (wfConfig::get('touppPromptNeeded')) {
 				<li>&bullet;</li>
 				<li>&bullet;</li>
 			</ul>
-			<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+			<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 		</div>
-		<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+		<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 	</div>
 </script>
 <script type="text/x-jquery-template" id="wfUpgradeTour3">
@@ -412,10 +412,10 @@ else if (wfConfig::get('touppPromptNeeded')) {
 				<li class="wf-active">&bullet;</li>
 				<li>&bullet;</li>
 			</ul>
-			<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+			<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 		</div>
-		<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+		<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 	</div>
 </script>
 <script type="text/x-jquery-template" id="wfUpgradeTour4">
@@ -429,10 +429,10 @@ else if (wfConfig::get('touppPromptNeeded')) {
 				<li>&bullet;</li>
 				<li class="wf-active">&bullet;</li>
 			</ul>
-			<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
+			<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+			<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
 		</div>
-		<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+		<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 	</div>
 </script>
 <?php endif; ?>
