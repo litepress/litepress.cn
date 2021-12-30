@@ -451,87 +451,30 @@ if ( !class_exists( 'YITH_Licence' ) ) {
                 return true;
             }
 
-            $args = array(
-                'email'       => urlencode( $licence[ $product_id ][ 'email' ] ),
-                'licence_key' => $licence[ $product_id ][ 'licence_key' ],
-                'product_id'  => $product_id,
-                'secret_key'  => $product[ 'secret_key' ],
-                'instance'    => $this->get_home_url()
-            );
+                
+            /**
+             * 这里直接去掉了远程验证授权，防止后台卡顿
+             * 
+             * @author 耗子
+             * @created_at 2021/12/24
+             * @updated_at 2021/12/24
+             */
+            $licence[ $product_id ][ 'status_code' ]          = '200';
+            $licence[ $product_id ][ 'activated' ]            = $body[ 'activated' ];
+            $licence[ $product_id ][ 'licence_expires' ]      = $body[ 'licence_expires' ];
+            $licence[ $product_id ][ 'licence_next_check' ]   = time() + 999999999999;
+            $licence[ $product_id ][ 'activation_remaining' ] = $body[ 'activation_remaining' ];
+            $licence[ $product_id ][ 'activation_limit' ]     = $body[ 'activation_limit' ];
+            $licence[ $product_id ][ 'is_membership' ]        = isset( $body[ 'is_membership' ] ) ? $body[ 'is_membership' ] : false;
+            $status                                           = (bool) $body[ 'activated' ];
+            /* === Update Plugin Licence Information === */
+            update_option( $this->_licence_option, $licence );
 
-            $api_uri  = esc_url_raw( add_query_arg( $args, $this->get_api_uri( 'check' ) ) );
-            $timeout  = apply_filters( 'yith_plugin_fw_licence_timeout', 30, __FUNCTION__ );
-            $response = wp_remote_get( $api_uri, array( 'timeout' => $timeout ) );
-
-            if ( ! is_wp_error( $response ) ) {
-                $body = json_decode( $response[ 'body' ] );
-                $body = is_object( $body ) ? get_object_vars( $body ) : false;
+            /* === Update Plugin Licence Information === */
+            if ( $regenerate_transient ) {
+                yith_plugin_fw_force_regenerate_plugin_update_transient();
             }
-
-            if ( $body && is_array( $body ) ) {
-                if ( isset( $body[ 'success' ] ) && $body[ 'success' ] == true ) {
-
-                    /**
-                     * Code 200 -> Licence key is valid
-                     */
-                    $licence[ $product_id ][ 'status_code' ]          = '200';
-                    $licence[ $product_id ][ 'activated' ]            = $body[ 'activated' ];
-                    $licence[ $product_id ][ 'licence_expires' ]      = $body[ 'licence_expires' ];
-                    $licence[ $product_id ][ 'licence_next_check' ]   = time() + ( 12 * HOUR_IN_SECONDS );
-                    $licence[ $product_id ][ 'activation_remaining' ] = $body[ 'activation_remaining' ];
-                    $licence[ $product_id ][ 'activation_limit' ]     = $body[ 'activation_limit' ];
-                    $licence[ $product_id ][ 'is_membership' ]        = isset( $body[ 'is_membership' ] ) ? $body[ 'is_membership' ] : false;
-                    $status                                           = (bool) $body[ 'activated' ];
-                } elseif ( isset( $body[ 'code' ] ) ) {
-
-                    switch ( $body[ 'code' ] ) {
-
-                        /**
-                         * Error Code List:
-                         *
-                         * 100 -> Invalid Request
-                         * 101 -> Invalid licence key
-                         * 102 -> Software has been deactivate
-                         * 103 -> Exceeded maximum number of activations
-                         * 104 -> Invalid instance ID
-                         * 105 -> Invalid security key
-                         * 106 -> Licence key has expired
-                         * 107 -> Licence key has be banned
-                         *
-                         * Only code 101, 106 and 107 have effect on DB during activation
-                         * All error code have effect on DB during deactivation
-                         *
-                         */
-
-                        case '101':
-                        case '102':
-	                    case '104':
-                            unset( $licence[ $product_id ] );
-                            break;
-
-                        case '106':
-                            $licence[ $product_id ][ 'activated' ]       = false;
-                            $licence[ $product_id ][ 'message' ]         = $body[ 'error' ];
-                            $licence[ $product_id ][ 'status_code' ]     = $body[ 'code' ];
-                            $licence[ $product_id ][ 'licence_expires' ] = $body[ 'licence_expires' ];
-                            break;
-
-                        case '107':
-                            $licence[ $product_id ][ 'activated' ]   = false;
-                            $licence[ $product_id ][ 'message' ]     = $body[ 'error' ];
-                            $licence[ $product_id ][ 'status_code' ] = $body[ 'code' ];
-                            break;
-                    }
-                }
-
-                /* === Update Plugin Licence Information === */
-                update_option( $this->_licence_option, $licence );
-
-                /* === Update Plugin Licence Information === */
-                if ( $regenerate_transient ) {
-                    yith_plugin_fw_force_regenerate_plugin_update_transient();
-                }
-            }
+            
 
             return $status;
         }
