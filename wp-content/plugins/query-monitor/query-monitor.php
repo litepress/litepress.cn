@@ -29,9 +29,7 @@
  * GNU General Public License for more details.
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 $qm_dir = dirname( __FILE__ );
 

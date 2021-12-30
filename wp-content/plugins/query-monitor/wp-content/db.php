@@ -12,9 +12,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 if ( defined( 'QM_DISABLED' ) && QM_DISABLED ) {
 	return;
@@ -107,7 +105,9 @@ class QM_DB extends wpdb {
 			return $result;
 		}
 
-		$this->queries[ $i ]['trace'] = new QM_Backtrace();
+		$this->queries[ $i ]['trace'] = new QM_Backtrace( array(
+			'ignore_frames' => 1,
+		) );
 
 		if ( ! isset( $this->queries[ $i ][3] ) ) {
 			$this->queries[ $i ][3] = $this->time_start;

@@ -5,9 +5,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 class QM_Output_Html_Logger extends QM_Output_Html {
 
@@ -47,34 +45,14 @@ class QM_Output_Html_Logger extends QM_Output_Html {
 			return;
 		}
 
-		$levels = array();
-
-		foreach ( $this->collector->get_levels() as $level ) {
-			if ( $data['counts'][ $level ] ) {
-				$levels[ $level ] = sprintf(
-					'%s (%d)',
-					ucfirst( $level ),
-					$data['counts'][ $level ]
-				);
-			} else {
-				$levels[ $level ] = ucfirst( $level );
-			}
-		}
+		$levels = array_map( 'ucfirst', $this->collector->get_levels() );
 
 		$this->before_tabular_output();
-
-		$level_args = array(
-			'all' => sprintf(
-				/* translators: %s: Total number of items in a list */
-				__( 'All (%d)', 'query-monitor' ),
-				count( $data['logs'] )
-			),
-		);
 
 		echo '<thead>';
 		echo '<tr>';
 		echo '<th scope="col" class="qm-filterable-column">';
-		echo $this->build_filter( 'type', $levels, __( 'Level', 'query-monitor' ), $level_args ); // WPCS: XSS ok.
+		echo $this->build_filter( 'type', $levels, __( 'Level', 'query-monitor' ) ); // WPCS: XSS ok.
 		echo '</th>';
 		echo '<th scope="col" class="qm-col-message">' . esc_html__( 'Message', 'query-monitor' ) . '</th>';
 		echo '<th scope="col">' . esc_html__( 'Caller', 'query-monitor' ) . '</th>';
@@ -87,11 +65,11 @@ class QM_Output_Html_Logger extends QM_Output_Html {
 		echo '<tbody>';
 
 		foreach ( $data['logs'] as $row ) {
-			$component = $row['component'];
+			$component = $row['trace']->get_component();
 
 			$row_attr                      = array();
 			$row_attr['data-qm-component'] = $component->name;
-			$row_attr['data-qm-type']      = $row['level'];
+			$row_attr['data-qm-type']      = ucfirst( $row['level'] );
 
 			$attr = '';
 
@@ -126,10 +104,10 @@ class QM_Output_Html_Logger extends QM_Output_Html {
 			);
 
 			$stack          = array();
-			$filtered_trace = $row['filtered_trace'];
+			$filtered_trace = $row['trace']->get_display_trace();
 
-			foreach ( $filtered_trace as $frame ) {
-				$stack[] = self::output_filename( $frame['display'], $frame['calling_file'], $frame['calling_line'] );
+			foreach ( $filtered_trace as $item ) {
+				$stack[] = self::output_filename( $item['display'], $item['calling_file'], $item['calling_line'] );
 			}
 
 			$caller = array_shift( $stack );

@@ -5,9 +5,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 class QM_Collector_Transients extends QM_Collector {
 
@@ -35,13 +33,7 @@ class QM_Collector_Transients extends QM_Collector {
 
 	public function setted_transient( $transient, $type, $value, $expiration ) {
 		$trace = new QM_Backtrace( array(
-			'ignore_hook' => array(
-				current_filter() => true,
-			),
-			'ignore_func' => array(
-				'set_transient' => true,
-				'set_site_transient' => true,
-			),
+			'ignore_frames' => 1, # Ignore the action_setted_(site|blog)_transient method
 		) );
 
 		$name = str_replace( array(
@@ -72,6 +64,9 @@ class QM_Collector_Transients extends QM_Collector {
 
 		foreach ( $this->data['trans'] as $i => $transient ) {
 			$filtered_trace = $transient['trace']->get_display_trace();
+
+			array_shift( $filtered_trace ); // remove do_action('setted_(site_)?transient')
+			array_shift( $filtered_trace ); // remove set_(site_)?transient()
 
 			$component = $transient['trace']->get_component();
 

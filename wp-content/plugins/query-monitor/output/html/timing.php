@@ -5,9 +5,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 class QM_Output_Html_Timing extends QM_Output_Html {
 
@@ -52,8 +50,8 @@ class QM_Output_Html_Timing extends QM_Output_Html {
 		if ( ! empty( $data['timing'] ) ) {
 			foreach ( $data['timing'] as $row ) {
 
-				$component = $row['component'];
-				$trace     = $row['filtered_trace'];
+				$component = $row['trace']->get_component();
+				$trace     = $row['trace']->get_filtered_trace();
 				$file      = self::output_filename( $row['function'], $trace[0]['file'], $trace[0]['line'] );
 
 				echo '<tr>';
@@ -137,8 +135,8 @@ class QM_Output_Html_Timing extends QM_Output_Html {
 		}
 		if ( ! empty( $data['warning'] ) ) {
 			foreach ( $data['warning'] as $row ) {
-				$component = $row['component'];
-				$trace     = $row['filtered_trace'];
+				$component = $row['trace']->get_component();
+				$trace     = $row['trace']->get_filtered_trace();
 				$file      = self::output_filename( $row['function'], $trace[0]['file'], $trace[0]['line'] );
 
 				echo '<tr class="qm-warn">';

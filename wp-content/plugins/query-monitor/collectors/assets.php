@@ -5,9 +5,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 abstract class QM_Collector_Assets extends QM_Collector {
 
@@ -185,7 +183,7 @@ abstract class QM_Collector_Assets extends QM_Collector {
 
 		foreach ( $item->deps as $handle ) {
 			$dep = $dependencies->query( $handle );
-			if ( $dep instanceof _WP_Dependency ) {
+			if ( $dep ) {
 				$broken = array_merge( $broken, self::get_broken_dependencies( $dep, $dependencies ) );
 			} else {
 				$broken[] = $item->handle;
@@ -201,7 +199,7 @@ abstract class QM_Collector_Assets extends QM_Collector {
 
 		foreach ( $handles as $handle ) {
 			$item = $dependencies->query( $handle );
-			if ( $item instanceof _WP_Dependency ) {
+			if ( $item ) {
 				if ( in_array( $dependency->handle, $item->deps, true ) ) {
 					$dependents[] = $handle;
 				}

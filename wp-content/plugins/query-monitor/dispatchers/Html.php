@@ -5,9 +5,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 class QM_Dispatcher_Html extends QM_Dispatcher {
 
@@ -235,7 +233,7 @@ class QM_Dispatcher_Html extends QM_Dispatcher {
 			return;
 		}
 
-		$switched_locale = self::switch_to_locale( get_user_locale() );
+		$switched_locale = function_exists( 'switch_to_locale' ) && switch_to_locale( get_user_locale() );
 
 		$this->before_output();
 
@@ -259,7 +257,7 @@ class QM_Dispatcher_Html extends QM_Dispatcher {
 		$this->after_output();
 
 		if ( $switched_locale ) {
-			self::restore_previous_locale();
+			restore_previous_locale();
 		}
 
 	}
@@ -522,7 +520,10 @@ class QM_Dispatcher_Html extends QM_Dispatcher {
 		foreach ( $constants as $name => $constant ) {
 			echo '<dt><code>' . esc_html( $name ) . '</code></dt>';
 			echo '<dd>';
-			echo esc_html( $constant['label'] );
+			printf(
+				esc_html( $constant['label'] ),
+				'<code>' . esc_html( $constant['default'] ) . '</code>'
+			);
 
 			$default_value = $constant['default'];
 			if ( is_bool( $default_value ) ) {
@@ -533,16 +534,18 @@ class QM_Dispatcher_Html extends QM_Dispatcher {
 			printf(
 				/* translators: %s: Default value for a PHP constant */
 				esc_html__( 'Default value: %s', 'query-monitor' ),
-				'<code>' . esc_html( (string) $default_value ) . '</code>'
+				'<code>' . esc_html( $default_value ) . '</code>'
 			);
 			echo '</span>';
 
-			if ( defined( $name ) && ( constant( $name ) !== $constant['default'] ) ) {
+			if ( defined( $name ) ) {
 				$current_value = constant( $name );
 				if ( is_bool( $current_value ) ) {
 					$current_value = QM_Collector::format_bool_constant( $name );
 				}
+			}
 
+			if ( defined( $name ) && ( constant( $name ) !== $constant['default'] ) ) {
 				echo '<br><span class="qm-info">';
 				printf(
 					/* translators: %s: Current value for a PHP constant */
