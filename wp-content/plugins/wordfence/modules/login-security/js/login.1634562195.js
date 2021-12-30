@@ -1,7 +1,101 @@
 (function($) {
 	!function(Z){"use strict";Z.Zebra_Tooltips=function(t,l){var u,T,b,v,n={animation_speed:250,animation_offset:20,close_on_click:!0,content:!(this.version="2.1.0"),hide_delay:100,keep_visible:!0,max_width:250,opacity:".95",position:"center",prerender:!1,show_delay:100,vertical_alignment:"above",vertical_offset:0,onBeforeHide:null,onHide:null,onBeforeShow:null,onShow:null},r=this,_=function(e){var t,o,i,a,l,n,r,_,s,p,d,h,c,f,w=e.data("Zebra_Tooltip"),m=Z(window);return w.tooltip||(t=Z("<div>",{"class":"Zebra_Tooltip",css:{opacity:0,display:"block"}}),o=Z("<div>",{"class":"Zebra_Tooltip_Message",css:{maxWidth:w.max_width}}).html(w.content).appendTo(t),i=Z("<div>",{"class":"Zebra_Tooltip_Arrow"}).appendTo(t),a=Z("<div>").addClass("Zebra_Tooltip_Arrow_Border").appendTo(i),Z("<div>").appendTo(i),w.keep_visible&&(t.on("mouseleave"+(w.close_on_click?" click":""),function(){y(e)}),t.on("mouseenter",function(){g(e)})),t.appendTo("body"),w.sticky&&o.addClass("Zebra_Tooltip_Has_Close"),l=t.outerWidth(),n=t.outerHeight(),r=a.outerWidth(),_=a.outerHeight(),s=o.outerWidth(),p=o.outerHeight(),w={tooltip:t,tooltip_width:l,tooltip_height:n+_/2,message:o,arrow_container:i,arrow_width:r,arrow_height:_,arrow:a},t.css({width:w.tooltip_width,height:w.tooltip_height}),w.tooltip_width=w.tooltip_width+(o.outerWidth()-s),w.tooltip_height=w.tooltip_height+(o.outerHeight()-p),t.css({width:w.tooltip_width,height:w.tooltip_height,display:"none"}),w=Z.extend(e.data("Zebra_Tooltip"),w),e.data("Zebra_Tooltip",w)),w.sticky&&!w.close&&(Z("<a>",{"class":"Zebra_Tooltip_Close",href:"javascript:void(0)"}).html("&times;").on("click",function(t){t.preventDefault();var o=e.data("Zebra_Tooltip");o.sticky=!1,e.data("Zebra_Tooltip",o),y(e)}).appendTo(w.message),w.close=!0,w=Z.extend(e.data("Zebra_Tooltip"),w),e.data("Zebra_Tooltip",w)),u=m.width(),T=m.height(),d=e.offset(),Z.extend(w,{element_left:d.left,element_top:d.top,element_width:e.outerWidth(),element_height:e.outerHeight()}),v=m.scrollTop(),b=m.scrollLeft(),h="left"===w.position?w.element_left-w.tooltip_width+w.arrow_width:"right"===w.position?w.element_left+w.element_width-w.arrow_width:w.element_left+(w.element_width-w.tooltip_width)/2,c=w.element_top-w.tooltip_height,f="left"===w.position?w.tooltip_width-w.arrow_width-w.arrow_width/2:"right"===w.position?w.arrow_width/2:(w.tooltip_width-w.arrow_width)/2,h+w.tooltip_width>u+b&&(f-=u+b-(h+w.tooltip_width)-6,h=u+b-w.tooltip_width-6,f+w.arrow_width>w.tooltip_width-6&&(f=w.tooltip_width-6-w.arrow_width),h+f+w.arrow_width/2<w.element_left&&(f=-1e4)),h<b&&(f-=b-h,h=b+2,f<0&&(f=w.arrow_width/2),h+f+w.arrow_width/2>w.element_left+w.element_width&&(f=-1e4)),w.message.css("margin-top",""),w.arrow_container.removeClass("Zebra_Tooltip_Arrow_Top").addClass("Zebra_Tooltip_Arrow_Bottom"),c<v||"below"===w.vertical_alignment&&w.element_top+w.element_height+w.vertical_offset+w.tooltip_height+w.animation_offset<T+v?(c=w.element_top+w.element_height-w.vertical_offset,w.animation_offset=Math.abs(w.animation_offset),w.message.css("margin-top",w.arrow_height/2),w.arrow_container.removeClass("Zebra_Tooltip_Arrow_Bottom").addClass("Zebra_Tooltip_Arrow_Top")):(w.animation_offset=-Math.abs(w.animation_offset),c+=w.vertical_offset),w.arrow_container.css("left",f),w.tooltip.css({left:h,top:c}),Z.extend(w,{tooltip_left:h,tooltip_top:c,arrow_left:f}),w=Z.extend(e.data("Zebra_Tooltip"),w),e.data("Zebra_Tooltip",w),w},g=function(t){var o=t.data("Zebra_Tooltip");clearTimeout(o.show_timeout),o.muted||(clearTimeout(o.hide_timeout),o.show_timeout=setTimeout(function(){(o=_(t)).onBeforeShow&&"function"==typeof o.onBeforeShow&&!1===o.onBeforeShow(t,o.tooltip)||("block"!==o.tooltip.css("display")&&o.tooltip.css({top:o.tooltip_top+o.animation_offset}),o.tooltip.css("display","block"),o.tooltip.stop(),o.tooltip.animate({top:o.tooltip_top,opacity:o.opacity},o.animation_speed,function(){o.onShow&&"function"==typeof o.onShow&&o.onShow(t,o.tooltip)}))},o.show_delay))},y=function(t){var o=t.data("Zebra_Tooltip");clearTimeout(o.hide_timeout),o.sticky||(clearTimeout(o.show_timeout),o.hide_timeout=setTimeout(function(){if(o.tooltip){if(o.onBeforeHide&&"function"==typeof o.onBeforeHide&&!1===o.onBeforeHide(t,o.tooltip))return;o.close=!1,o.destroy&&(o.muted=!0),t.data("Zebra_Tooltip",o),Z("a.Zebra_Tooltip_Close",o.tooltip).remove(),o.tooltip.stop(),o.tooltip.animate({opacity:0,top:o.tooltip_top+o.animation_offset},o.animation_speed,function(){Z(this).css("display","none"),o.onHide&&"function"==typeof o.onHide&&o.onHide(t,o.tooltip)})}},o.hide_delay))};r.hide=function(t,e){t.each(function(){var t=Z(this),o=t.data("Zebra_Tooltip");o&&(o.sticky=!1,e&&(o.destroy=!0),t.data("Zebra_Tooltip",o),y(t))})},r.show=function(t,e){t.each(function(){var t=Z(this),o=t.data("Zebra_Tooltip");o&&(o.sticky=!0,o.muted=!1,e&&(o.destroy=!0),t.data("Zebra_Tooltip",o),g(t))})},t.each(function(){var t,o=Z(this),e=o.attr("title"),i=o.data(),a={};for(t in i)0===t.indexOf("ztt_")&&(t=t.replace(/^ztt\_/,""),void 0!==n[t]&&(a[t]=i["ztt_"+t]));a=Z.extend(n,r.settings,l,a),e&&(a.content=o.attr("title")),void 0!==a.content&&""!==a.content.trim()&&(o.on({mouseenter:function(){e&&Z(this).attr("title",""),g(o)},mouseleave:function(){y(o),e&&Z(this).attr("title",e)}}),o.data("Zebra_Tooltip",Z.extend({tooltip:null,show_timeout:null,hide_timeout:null,sticky:!1,destroy:!1,muted:!1},a)),a.prerender&&_(o))})}}($);
+
+	function selectorSearch(selectors) {
+		var input = null;
+		return function() {
+			if (input !== null)
+				return input;
+			for (var i = 0; i < selectors.length; i++) {
+				input = $(selectors[i]);
+				if (input.length === 1)
+					return input;
+			}
+			input = null;
+			return input;
+		}
+	};
+	function FormElementLocator(inputSelectors, extraSelectors) {
+		var self = this;
+
+		if (typeof extraSelectors == 'undefined')
+			extraSelectors = {};
+
+		var found = false;
+		var input = null, form = null, extra = {};
+
+		var findInput = selectorSearch(inputSelectors);
+		var search = function() {
+			input = findInput();
+			if (input === null)
+				return false;
+			form = input.closest('form');
+			if (form.length !== 1) {
+				form = null;
+				return false;
+			}
+			for (var key in extraSelectors) {
+				var match = form.find(extraSelectors[key]);
+				if (match.length === 1) {
+					extra[key] = match;
+				}
+				else {
+					return false;
+				}
+			}
+			return true;
+		};
+		this.locate = function() {
+			if (!found)
+				found = search();
+			return found;
+		};
+		this.getInput = function() {
+			return found ? input : null;
+		};
+		this.getForm = function() {
+			return found ? form : null;
+		};
+		this.getExtra = function(key) {
+			if (key in extra)
+				return extra[key];
+			return null;
+		}
+	}
+	var loginLocator = new FormElementLocator(
+		[
+			'input[name=log]',
+			'input[name=username]',
+			'input#username[name=username]',
+			'.woocommerce-form-login input[name=username]',
+			'.login input[name=username]'
+		],
+		{
+			password: 'input[name="pwd"],input[name=password]'
+		}
+	);
+	var registrationLocator = new FormElementLocator([
+		'input[name=user_login]',
+		'#reg_email',
+		'.woocommerce-form-register input[name=email]',
+		'.register input[name=email]'
+	]);
+	var locators = [
+		loginLocator,
+		registrationLocator
+	];
+	function getRelevantInputs() {
+		var inputs = $();
+		for (var i = 0; i < locators.length; i++) {
+			if (locators[i].locate())
+				inputs = inputs.add(locators[i].getInput());
+		}
+		return inputs;
+	}
 	
-	var wfls_init_captcha = function(actionCallback) {
+	var wfls_init_captcha = function(actionCallback, log) {
+		if (typeof log === 'undefined')
+			log = getRelevantInputs();
 		if (typeof grecaptcha === 'object') {
 			grecaptcha.ready(function() {
 				grecaptcha.execute(WFLSVars.recaptchasitekey, {action: 'login'}).then(function(token) {
@@ -10,7 +104,6 @@
 						tokenField.val(token);
 					}
 					else {
-						var log = $('input[name="log"], input[name="user_login"]');
 						if (log.length) {
 							tokenField = $('<input type="hidden" name="wfls-captcha-token" id="wfls-captcha-token" />');
 							tokenField.val(token);
@@ -28,7 +121,6 @@
 				tokenField.val('grecaptcha-missing');
 			}
 			else {
-				var log = $('input[name="log"], input[name="user_login"]');
 				if (log.length) {
 					tokenField = $('<input type="hidden" name="wfls-captcha-token" id="wfls-captcha-token" />');
 					tokenField.val('grecaptcha-missing');
@@ -39,14 +131,83 @@
 			typeof actionCallback === 'function' && actionCallback(true);
 		}
 	};
+
+	function showLoginMessage(messageHtml, type) {
+		var heading = $('#login > h1');
+		if (heading.length > 0) {
+			var dom = (type === 'error' ? $('<div id="login_error">') : $('<p class="message">'));
+			dom.addClass('wfls-login-message');
+			dom.html(messageHtml);
+			heading.after(dom);
+			dom.get(0).scrollIntoView();
+			return;
+		}
+		else if ($('.woocommerce').length > 0){
+			var content = $('<div class="woocommerce wfls-login-message">');
+			var errorList = $('<ul role="alert">')
+				.addClass(type === 'error' ? 'woocommerce-error' : 'woocommerce-info');
+			content.append(errorList);
+			errorList.append($('<li>').html(messageHtml));
+			var containerSearch = selectorSearch([
+				'#primary',
+				'.content-area',
+				'#main',
+				'.site-main',
+				'main'
+			]);
+			var container = containerSearch();
+			if (container === null) {
+				container = loginLocator.getForm();
+			}
+			if (container !== null) {
+				container.before(content);
+				content.get(0).scrollIntoView();
+				return;
+			}
+		}
+		var messageModal = $('<div>')
+			.attr('id', 'wfls-login-modal')
+			.css({
+				position: 'fixed',
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0,
+				'background-color': 'rgba(0,0,0,0.5)',
+				'z-index': 9999,
+				display: 'flex',
+				'align-items': 'center',
+				'justify-content': 'center',
+				padding: '16px'
+			})
+			.appendTo($('body'));
+		messageModal.append(
+			$('<div>')
+				.css({
+					'background-color': '#FFF',
+					'border-radius': '4px',
+					padding: '16px',
+					'text-align': 'center'
+				})
+				.append(
+					$('<p>').html(messageHtml)
+				)
+				.append(
+					$('<button>').text('Dismiss')
+						.on('click', function() {
+							messageModal.remove();
+						})
+				)
+		);
+	}
+		
 	
 	var wfls_init_captcha_contact = function() {
 		$('.wfls-registration-captcha-contact').on('click', function(e) {
 			e.preventDefault();
 			e.stopPropagation();
 
-			var log = $('input[name="user_login"]');
-			if (log.length) {
+			if (registrationLocator.locate()) {
 				$('#wfls-prompt-overlay').remove();
 				var overlay = $('<div id="wfls-prompt-overlay"></div>');
 				var wrapper = $('<div id="wfls-prompt-wrapper"></div>');
@@ -55,7 +216,7 @@
 				var button = $('<p class="submit"><input type="submit" name="wfls-support-submit" id="wfls-support-submit" class="button button-primary button-large" value="Send"/></p>');
 				wrapper.append(field).append(nonce).append(button);
 				overlay.append(wrapper);
-				log.closest('form').css('position', 'relative').append(overlay);
+				registrationLocator.getForm().css('position', 'relative').append(overlay);
 				
 				$('#wfls-message-nonce').val($(this).data('token'));
 	
@@ -65,7 +226,7 @@
 
 					$('#login_error, p.message').remove();
 	
-					var data = log.closest('form').serialize();
+					var data = registrationLocator.getForm().serialize();
 					data += '&action=wordfence_ls_register_support';
 
 					$.ajax({
@@ -75,43 +236,44 @@
 						data: data,
 						success: function(json) {
 							if (json.hasOwnProperty('error')) {
+								showLoginMessage(json.error, 'error');
 								var dom = $('<div id="login_error">' + json.error + '</div>');
 								$('#login > h1').after(dom);
 							}
 							else if (json.hasOwnProperty('message')) { //Success
+								showLoginMessage(json.message, 'message');
 								var dom = $('<p class="message">' + json.message + '</p>');
 								$('#login > h1').after(dom);
 								$('#wfls-support-submit, #wfls-message').attr('disabled', true);
 							}
 						},
 						error: function(err) {
+							showLoginMessage('An error was encountered while trying to send the message. Please try again.', 'error');
 							var dom = $('<div id="login_error"><strong>ERROR</strong>: An error was encountered while trying to send the message. Please try again.</div>');
 							$('#login > h1').after(dom);
 						}
 					});
 				});
+
+				field.find("#wfls-message").focus();
 			}
 		});
 	};
 	
 	var wfls_query_ajax = function() {
-		$('#login_error, p.message').remove();
-		
-		var log = $('input[name="log"]');
-		var pwd = $('input[name="pwd"]');
-		var form = null;
-		if (log.length && pwd.length) {
-			form = log.closest('form');
-		}
-		
-		if (form === null) {
-			console.log('Expected fields not found, try reloading page.');
+		$('.wfls-login-message').remove();
+
+		if (!loginLocator.locate()) {
+			console.error('Required login elements not found');
 			return;
 		}
+		var form = loginLocator.getForm();
+		var log = loginLocator.getInput();
+		var pwd = loginLocator.getExtra('password');
 		
 		var data = $(form).serialize();
 		data += '&action=wordfence_ls_authenticate';
-		
+
 		$.ajax({
 			type: 'POST',
 			url: WFLSVars.ajaxurl,
@@ -124,8 +286,7 @@
 				}
 				
 				if (json.hasOwnProperty('error')) {
-					var dom = $('<div id="login_error">' + json.error + '</div>');
-					$('#login > h1').after(dom);
+					showLoginMessage(json.error, 'error');
 					$('#wfls-token').val('');
 
 					if (parseInt(WFLSVars.useCAPTCHA)) {
@@ -133,8 +294,7 @@
 					}
 				}
 				else if (json.hasOwnProperty('message')) {
-					var dom = $('<p class="message">' + json.message + '</p>');
-					$('#login > h1').after(dom);
+					showLoginMessage(json.message, 'message');
 					$('#wfls-token').val('');
 
 					if (parseInt(WFLSVars.useCAPTCHA)) {
@@ -172,7 +332,7 @@
 						
 						if (json.hasOwnProperty('combined')) {
 							form.data('wflsLoggingIn', 1);
-							$('#wp-submit').trigger('click');
+							$('#wp-submit,[type=submit][name=login]').trigger('click');
 							return;
 						}
 
@@ -206,7 +366,7 @@
 					}
 					else { //Unexpected response, skip AJAX and process via the regular login flow
 						form.data('wflsLoggingIn', 1);
-						$('#wp-submit').trigger('click');
+						$('#wp-submit,[type=submit][name=login]').trigger('click');
 					}
 				}
 			},
@@ -215,18 +375,15 @@
 					window.location.reload(true);
 					return;
 				}
-				var dom = $('<div id="login_error"><strong>ERROR</strong>: An error was encountered while trying to authenticate. Please try again.</div>');
-				$('#login > h1').after(dom);
+				showLoginMessage('<strong>ERROR</strong>: An error was encountered while trying to authenticate. Please try again.', 'error');
 			}
 		});
 	};
 	
 	$(function() {
 		//Login
-		var log = $('input[name="log"]');
-		var pwd = $('input[name="pwd"]');
-		if (log.length && pwd.length) {
-			log.closest('form').on('submit', function(e) {
+		if (loginLocator.locate()) {
+			loginLocator.getForm().on('submit', function(e) {
 				var loggingIn = !!parseInt($(this).data('wflsLoggingIn'));
 				$(this).data('wflsLoggingIn', 0);
 				if (loggingIn) { return; }
@@ -244,17 +401,17 @@
 		}
 
 		//Registration
-		log = $('input[name="user_login"]');
-		if (log.length) {
-			log.closest('form').on('submit', function(e) {
-				var registering = !!parseInt($(this).data('wflsRegistering'));
-				$(this).data('wflsRegistering', 0);
+		if (registrationLocator.locate()) {
+			registrationLocator.getForm().on('submit', function(e) {
+				var form = $(this);
+				var registering = !!parseInt(form.data('wflsRegistering'));
+				form.data('wflsRegistering', 0);
 				if (!registering && parseInt(WFLSVars.useCAPTCHA)) {
 					e.preventDefault();
 					e.stopPropagation();
 
-					$(this).data('wflsRegistering', 1);
-					wfls_init_captcha(function() { $('input[name="user_login"]').closest('form').trigger('submit'); });
+					form.data('wflsRegistering', 1);
+					wfls_init_captcha(function() { form.find('[type=submit]').first().trigger('click'); }, registrationLocator.getInput());
 				}
 			});
 		}
@@ -264,7 +421,7 @@
 			verificationField.val(WFLSVars.verification);
 		}
 		else {
-			var log = $('input[name="log"], input[name="user_login"]');
+			var log = getRelevantInputs();
 			if (log.length) {
 				verificationField = $('<input type="hidden" name="wfls-email-verification" id="wfls-email-verification" />');
 				verificationField.val(WFLSVars.verification);

@@ -135,11 +135,12 @@
 				var tabs = jQuery('.wf-page-tabs').find('.wf-tab a');
 				if (tabs.length > 0) {
 					tabs.click(function() {
-						jQuery('.wf-page-tabs').find('.wf-tab').removeClass('wf-active');
+						jQuery('.wf-page-tabs').find('.wf-tab').removeClass('wf-active').find('a').attr('aria-selected', 'false');
 						jQuery('.wf-tab-content').removeClass('wf-active');
 						
 						var tab = jQuery(this).closest('.wf-tab');
 						tab.addClass('wf-active');
+						tab.find('a').attr('aria-selected', 'true');
 						var content = jQuery('#' + tab.data('target'));
 						content.addClass('wf-active');
 						document.title = tab.data('pageTitle') + " \u2039 " + self.basePageName;
@@ -1164,7 +1165,7 @@
 					summaryUpdated = true;
 				} else if (item.msg.indexOf('SUM_PAIDONLY:') != -1) {
 					msg = item.msg.replace('SUM_PAIDONLY:', '');
-					jQuery('#consoleSummary').append('<div class="wfSummaryLine"><div class="wfSummaryDate">[' + item.date + ']</div><div class="wfSummaryMsg">' + msg + '</div><div class="wfSummaryResult"><a href="https://www.wordfence.com/wordfence-signup/" target="_blank"  rel="noopener noreferrer">' + __('Paid Members Only') + '</a></div><div class="wfClear"></div>');
+					jQuery('#consoleSummary').append('<div class="wfSummaryLine"><div class="wfSummaryDate">[' + item.date + ']</div><div class="wfSummaryMsg">' + msg + '</div><div class="wfSummaryResult"><a href="https://www.wordfence.com/wordfence-signup/" target="_blank"  rel="noopener noreferrer">' + __('Paid Members Only') + ' (' + __('opens in new tab') + ')</a></div><div class="wfClear"></div>');
 					summaryUpdated = true;
 				} else if (item.msg.indexOf('SUM_FINAL:') != -1) {
 					msg = item.msg.replace('SUM_FINAL:', '');
@@ -2031,7 +2032,7 @@
 					'<input type="button" class="wf-btn wf-btn-primary" name="but1" id="wfRepairFileNextBtn" value="Repair File" disabled="disabled" onclick="WFAD.promptToRepairFileDone(' + parseInt(issueID, 10) + ', jQuery(\'#forceRepairFileCheckbox\').prop(\'checked\'));this.disabled=true;" />' +
 					'<label class="wf-padding-add-left"><input type="checkbox" id="forceRepairFileCheckbox" onclick="jQuery(\'#wfRepairFileNextBtn\').prop(\'disabled\', !this.checked); return true;"> ' + __('Don\'t ask again') + '</label>' +
 					'</p>' +
-					'<div class="wordfenceHelpLink"><a href="' + WordfenceAdminVars.supportURLs['scan-result-repair-modified-files'] + '" target="_blank" rel="noopener noreferrer" class="wfhelp"></a><a href="' + WordfenceAdminVars.supportURLs['scan-result-repair-modified-files'] + '" target="_blank" rel="noopener noreferrer">' + __('Learn more about repairing modified files.') + '</a></div>'
+					'<div class="wordfenceHelpLink"><a href="' + WordfenceAdminVars.supportURLs['scan-result-repair-modified-files'] + '" target="_blank" rel="noopener noreferrer" class="wfhelp"></a><a href="' + WordfenceAdminVars.supportURLs['scan-result-repair-modified-files'] + '" target="_blank" rel="noopener noreferrer">' + __('Learn more about repairing modified files.') + ' (' + __('opens in new tab') + ')</a></div>'
 				);
 			},
 			promptToRepairFileDone: function(issueID, dontPromptAgain) {
@@ -2192,7 +2193,7 @@
 							'<br /><br />' +
 							'<button class="wf-btn wf-btn-default" type="button" id="wf-htaccess-confirm" disabled="disabled" onclick="WFAD.confirmDisableDirectoryListing(' + issueID + ');">' + __('Add code to .htaccess') + '</button>');
 					} else if (res.nginx) {
-						self.colorboxModalHTML((self.isSmallScreen ? '300px' : '400px'), __("You are using Nginx as your web server. You'll need to disable autoindexing in your nginx.conf. See the <a target='_blank'  rel='noopener noreferrer' href='http://nginx.org/en/docs/http/ngx_http_autoindex_module.html'>Nginx docs for more info</a> on how to do this."));
+						self.colorboxModalHTML((self.isSmallScreen ? '300px' : '400px'), __("You are using Nginx as your web server. You'll need to disable autoindexing in your nginx.conf. See the <a target='_blank'  rel='noopener noreferrer' href='https://nginx.org/en/docs/http/ngx_http_autoindex_module.html'>Nginx docs for more info</a> on how to do this."));
 					} else if (res.err) {
 						self.colorboxModal((self.isSmallScreen ? '300px' : '400px'), __("We encountered a problem"), sprintf(__("We can't modify your .htaccess file for you because: %s"), res.err));
 					}
@@ -2251,7 +2252,7 @@
 			},
 			completeLiveTabSwitch: function() {
 				this.ajax('wordfence_loadActivityLog', {}, function(res) {
-					var html = '<a href="#" class="wfALogMailLink" onclick="WFAD.emailActivityLog(); return false;"></a><a href="#" class="wfALogReloadLink" onclick="WFAD.reloadActivityData(); return false;"></a>';
+					var html = '<a href="#" class="wfALogMailLink" onclick="WFAD.emailActivityLog(); return false;" role="button"></a><a href="#" class="wfALogReloadLink" onclick="WFAD.reloadActivityData(); return false;" role="button"></a>';
 					if (res.events && res.events.length > 0) {
 						jQuery('#wfActivity').empty();
 						for (var i = 0; i < res.events.length; i++) {
@@ -3915,7 +3916,7 @@ jQuery.fn.wfCircularProgress = function(options) {
 		var menu = $('<div class="wf-mobile-menu"><ul class="wf-mobile-menu-items"></ul></div>').css('width', opts.width).css('bottom', '-9999px');
 		var itemsWrapper = menu.find('.wf-mobile-menu-items');
 		for (var i = 0; i < opts.menuItems.length; i++) {
-			var button = $('<li><a href="#" class="wf-btn wf-btn-callout-subtle"></a></li>');
+			var button = $('<li><a href="#" class="wf-btn wf-btn-callout-subtle" role="button"></a></li>');
 			button.find('a').text(opts.menuItems[i].title).css('width', opts.width).on('click', null, {action: opts.menuItems[i].action}, function(e) {
 				e.preventDefault();
 				e.stopPropagation();
@@ -3939,7 +3940,7 @@ jQuery.fn.wfCircularProgress = function(options) {
 			itemsWrapper.append(button);
 		}
 
-		var button = $('<li class="wf-padding-add-top-small"><a href="#" class="wf-btn wf-btn-callout-subtle wf-btn-default">' + __('Close') + '</a></li>');
+		var button = $('<li class="wf-padding-add-top-small"><a href="#" class="wf-btn wf-btn-callout-subtle wf-btn-default" role="button">' + __('Close') + '</a></li>');
 		button.find('a').css('width', opts.width).on('click', function(e) {
 			e.preventDefault();
 			e.stopPropagation();

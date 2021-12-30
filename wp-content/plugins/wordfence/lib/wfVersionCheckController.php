@@ -11,7 +11,7 @@ class wfVersionCheckController {
 	const OPENSSL_DEPRECATING = '1.0.1'; 
 	const OPENSSL_MINIMUM = '1.0.1';
 	
-	const WORDPRESS_DEPRECATING = '3.9.0';
+	const WORDPRESS_DEPRECATING = '4.4.0';
 	const WORDPRESS_MINIMUM = '3.9.0';
 	
 	const OPENSSL_DEV = 0;
@@ -65,7 +65,7 @@ class wfVersionCheckController {
 					__('<strong>WARNING: </strong> Your site is using a PHP version (%1$s) that will no longer be supported by Wordfence in an upcoming release and needs to be updated. We recommend using the newest version of PHP available but will currently support PHP versions as old as %2$s. Version checks are run regularly, so if you have successfully updated, you can dismiss this notice or check that the update has taken effect later.', 'wordfence'),
 					phpversion(),
 					self::PHP_DEPRECATING
-				), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()))) . ' <a href="' . wfSupportController::esc_supportURL(wfSupportController::ITEM_VERSION_PHP) . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Learn More', 'wordfence') . '</a>'
+				), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()))) . ' <a href="' . wfSupportController::esc_supportURL(wfSupportController::ITEM_VERSION_PHP) . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Learn More', 'wordfence') . '<span class="screen-reader-text"> (' . esc_html__('opens in new tab', 'wordfence') . ')</span></a>'
 			);
 		}
 		else if ($php == self::VERSION_UNSUPPORTED) {
@@ -88,7 +88,7 @@ class wfVersionCheckController {
 					__('<strong>WARNING: </strong> Your site is using a PHP version (%1$s) that is no longer supported by Wordfence and needs to be updated. We recommend using the newest version of PHP available but will currently support PHP versions as old as %2$s. Version checks are run regularly, so if you have successfully updated, you can dismiss this notice or check that the update has taken effect later.', 'wordfence'),
 					phpversion(),
 					self::PHP_DEPRECATING
-				), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()))) . ' <a href="' . wfSupportController::esc_supportURL(wfSupportController::ITEM_VERSION_PHP) . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Learn More', 'wordfence') . '</a>'
+				), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()))) . ' <a href="' . wfSupportController::esc_supportURL(wfSupportController::ITEM_VERSION_PHP) . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Learn More', 'wordfence') . '<span class="screen-reader-text"> (' . esc_html__('opens in new tab', 'wordfence') . ')</span></a>'
 			);
 		}
 		else {
@@ -112,7 +112,7 @@ class wfVersionCheckController {
 			$this->_adminNotice(
 				'opensslVersionCheckDeprecationNotice_' . self::OPENSSL_DEPRECATING,
 				'opensslVersionCheck',
-				sprintf(__('<strong>WARNING: </strong> Your site is using an OpenSSL version (%s) that will no longer be supported by Wordfence in an upcoming release and needs to be updated. We recommend using the newest version of OpenSSL but will currently support OpenSSL versions as old as %s. Version checks are run regularly, so if you have successfully updated, you can dismiss this notice or check that the update has taken effect later.', 'wordfence'), self::openssl_make_text_version(), self::OPENSSL_DEPRECATING) . ' <a href="' . wfSupportController::esc_supportURL(wfSupportController::ITEM_VERSION_OPENSSL) . '" target="_blank" rel="noopener noreferrer">' . __('Learn More', 'wordfence') . '</a>'
+				sprintf(__('<strong>WARNING: </strong> Your site is using an OpenSSL version (%s) that will no longer be supported by Wordfence in an upcoming release and needs to be updated. We recommend using the newest version of OpenSSL but will currently support OpenSSL versions as old as %s. Version checks are run regularly, so if you have successfully updated, you can dismiss this notice or check that the update has taken effect later.', 'wordfence'), self::openssl_make_text_version(), self::OPENSSL_DEPRECATING) . ' <a href="' . wfSupportController::esc_supportURL(wfSupportController::ITEM_VERSION_OPENSSL) . '" target="_blank" rel="noopener noreferrer">' . __('Learn More', 'wordfence') . '<span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>'
 			);
 			
 			return false;
@@ -127,7 +127,7 @@ class wfVersionCheckController {
 			$this->_adminNotice(
 				'opensslVersionCheckUnsupportedNotice_' . self::OPENSSL_MINIMUM,
 				'opensslVersionCheck',
-				sprintf(__('<strong>WARNING: </strong> Your site is using an OpenSSL version (%s) that is no longer supported by Wordfence and needs to be updated. We recommend using the newest version of OpenSSL but will currently support OpenSSL versions as old as %s. Version checks are run regularly, so if you have successfully updated, you can dismiss this notice or check that the update has taken effect later.', 'wordfence'), self::openssl_make_text_version(), self::OPENSSL_DEPRECATING) . ' <a href="' . wfSupportController::esc_supportURL(wfSupportController::ITEM_VERSION_OPENSSL) . '" target="_blank" rel="noopener noreferrer">' . __('Learn More', 'wordfence') . '</a>'
+				sprintf(__('<strong>WARNING: </strong> Your site is using an OpenSSL version (%s) that is no longer supported by Wordfence and needs to be updated. We recommend using the newest version of OpenSSL but will currently support OpenSSL versions as old as %s. Version checks are run regularly, so if you have successfully updated, you can dismiss this notice or check that the update has taken effect later.', 'wordfence'), self::openssl_make_text_version(), self::OPENSSL_DEPRECATING) . ' <a href="' . wfSupportController::esc_supportURL(wfSupportController::ITEM_VERSION_OPENSSL) . '" target="_blank" rel="noopener noreferrer">' . __('Learn More', 'wordfence') . '<span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>'
 			);
 			
 			return false;
@@ -164,7 +164,7 @@ class wfVersionCheckController {
 					__('<strong>WARNING: </strong> Your site is using a WordPress version (%1$s) that will no longer be supported by Wordfence in an upcoming release and needs to be updated. We recommend using the newest version of WordPress but will currently support WordPress versions as old as %2$s. Version checks are run regularly, so if you have successfully updated, you can dismiss this notice or check that the update has taken effect later.', 'wordfence'),
 					$wp_version,
 					self::WORDPRESS_DEPRECATING
-				), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()))) . ' <a href="' . wfSupportController::esc_supportURL(wfSupportController::ITEM_VERSION_WORDPRESS) . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Learn More', 'wordfence') . '</a>'
+				), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()))) . ' <a href="' . wfSupportController::esc_supportURL(wfSupportController::ITEM_VERSION_WORDPRESS) . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Learn More', 'wordfence') . '<span class="screen-reader-text"> (' . esc_html__('opens in new tab', 'wordfence') . ')</span></a>'
 			);
 		}
 		else if ($wordpress == self::VERSION_UNSUPPORTED) {
@@ -183,7 +183,7 @@ class wfVersionCheckController {
 				'wordpressVersionCheck',
 				wp_kses(sprintf(
 					/* translators: 1. WordPress version. 2. WordPress version. */
-					__('<strong>WARNING: </strong> Your site is using a WordPress version (%1$s) that is no longer supported by Wordfence and needs to be updated. We recommend using the newest version of WordPress but will currently support WordPress versions as old as %2$s. Version checks are run regularly, so if you have successfully updated, you can dismiss this notice or check that the update has taken effect later.', 'wordfence'), $wp_version, self::WORDPRESS_DEPRECATING), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()))) . ' <a href="' . wfSupportController::esc_supportURL(wfSupportController::ITEM_VERSION_WORDPRESS) . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Learn More', 'wordfence') . '</a>'
+					__('<strong>WARNING: </strong> Your site is using a WordPress version (%1$s) that is no longer supported by Wordfence and needs to be updated. We recommend using the newest version of WordPress but will currently support WordPress versions as old as %2$s. Version checks are run regularly, so if you have successfully updated, you can dismiss this notice or check that the update has taken effect later.', 'wordfence'), $wp_version, self::WORDPRESS_DEPRECATING), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()))) . ' <a href="' . wfSupportController::esc_supportURL(wfSupportController::ITEM_VERSION_WORDPRESS) . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Learn More', 'wordfence') . '<span class="screen-reader-text"> (' . esc_html__('opens in new tab', 'wordfence') . ')</span></a>'
 			);
 		}
 		else {

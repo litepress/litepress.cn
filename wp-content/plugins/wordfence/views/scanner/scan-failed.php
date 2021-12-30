@@ -23,6 +23,6 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 		<?php endif; ?>
 	</li>
 	<li class="wf-right wf-padding-add-left">
-		<a href="#" class="wf-btn wf-btn-default wf-btn-callout-subtle" onclick="WFAD.killScan(); return false;"><?php echo $buttonTitle; ?></a>
+		<a href="#" class="wf-btn wf-btn-default wf-btn-callout-subtle" onclick="WFAD.killScan(); return false;" role="button"><?php echo $buttonTitle; ?></a>
 	</li>
 </ul>

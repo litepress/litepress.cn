@@ -252,9 +252,9 @@ $wafRemoveURL = network_admin_url('admin.php?page=WordfenceWAF&subpage=waf_optio
 					<li>&bullet;</li>
 					<li>&bullet;</li>
 				</ul>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 	<script type="text/x-jquery-template" id="wfWAFNewTour2">
@@ -268,10 +268,10 @@ $wafRemoveURL = network_admin_url('admin.php?page=WordfenceWAF&subpage=waf_optio
 					<li>&bullet;</li>
 					<li>&bullet;</li>
 				</ul>
-				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 	<script type="text/x-jquery-template" id="wfWAFNewTour3">
@@ -285,10 +285,10 @@ $wafRemoveURL = network_admin_url('admin.php?page=WordfenceWAF&subpage=waf_optio
 					<li class="wf-active">&bullet;</li>
 					<li>&bullet;</li>
 				</ul>
-				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 	<script type="text/x-jquery-template" id="wfWAFNewTour4">
@@ -303,10 +303,10 @@ $wafRemoveURL = network_admin_url('admin.php?page=WordfenceWAF&subpage=waf_optio
 					<li>&bullet;</li>
 					<li class="wf-active">&bullet;</li>
 				</ul>
-				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
+				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 <?php endif; ?>
@@ -351,9 +351,9 @@ $wafRemoveURL = network_admin_url('admin.php?page=WordfenceWAF&subpage=waf_optio
 				<ul class="wf-tour-pagination">
 					<li class="wf-active">&bullet;</li>
 				</ul>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 <?php endif; ?>

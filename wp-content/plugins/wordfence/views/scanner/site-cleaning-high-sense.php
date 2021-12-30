@@ -13,7 +13,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 					<p><strong><?php esc_html_e('The results of your scan may indicate that you could benefit from Wordfence Site Cleaning', 'wordfence'); ?></strong></p>
 					<p><?php esc_html_e('Since you have High Sensitivity scanning enabled, there is a very high likelihood that your results will include false positives. If you think you have indeed been hacked, our team of security experts can help.', 'wordfence'); ?></p>
 				</li>
-				<li class="wf-issue-controls"><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="https://www.wordfence.com/gnl1scanGetHelpHS/wordfence-site-cleanings/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Get Help', 'wordfence'); ?></a></li>
+				<li class="wf-issue-controls"><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="https://www.wordfence.com/gnl1scanGetHelpHS/wordfence-site-cleanings/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Get Help', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></li>
 			</ul>
 		</li>
 	</ul>

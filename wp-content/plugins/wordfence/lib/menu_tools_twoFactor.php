@@ -33,7 +33,7 @@ echo wfView::create('common/section-title', array(
 		<div class="wf-col-xs-12">
 			<div id="wordfenceTwoFactorLegacy">
 				<p><strong><?php esc_html_e('2FA Mode: Legacy', 'wordfence') ?>.</strong> <?php esc_html_e('Two-factor authentication is using legacy support, which enables SMS-based codes but is less compatible. An improved interface and use by non-administrators is available by activating the new login security module.', 'wordfence'); ?></p>
-				<p><a id="wf-migrate2fanew-start" class="wf-btn wf-btn-default wf-btn-sm wf-dismiss-link" href="#"><?php esc_html_e('Switch to New 2FA', 'wordfence'); ?></a></p>
+				<p><a id="wf-migrate2fanew-start" class="wf-btn wf-btn-default wf-btn-sm wf-dismiss-link" href="#" role="button"><?php esc_html_e('Switch to New 2FA', 'wordfence'); ?></a></p>
 			</div>
 		</div>
 	</div>
@@ -48,7 +48,7 @@ echo wfView::create('common/section-title', array(
 			</p>
 
 			<p class="center">
-				<a class="wf-btn wf-btn-primary wf-btn-callout" href="https://www.wordfence.com/gnl1twoFac1/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Premium', 'wordfence') ?></a>
+				<a class="wf-btn wf-btn-primary wf-btn-callout" href="https://www.wordfence.com/gnl1twoFac1/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Premium', 'wordfence') ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 			</p>
 		</div>
 
@@ -76,7 +76,7 @@ echo wfView::create('common/section-title', array(
 					<?php if (!wfConfig::get('loginSecurityEnabled')): ?>
 						<ul class="wf-block-banner">
 							<li><?php echo wp_kses(__('<strong>Note:</strong> Two-Factor Authentication is disabled when the option "Enable Brute Force Protection" is off.', 'wordfence'), array('strong'=>array())); ?></li>
-							<li><a href="#" class="wf-btn wf-btn-default" id="wf-2fa-enable"><?php esc_html_e('Turn On', 'wordfence'); ?></a></li>
+							<li><a href="#" class="wf-btn wf-btn-default" id="wf-2fa-enable" role="button"><?php esc_html_e('Turn On', 'wordfence'); ?></a></li>
 						</ul>
 					<?php endif; ?>
 					<div class="wf-block-header">
@@ -201,7 +201,7 @@ echo wfView::create('common/section-title', array(
 						{{/if}}
 					</td>
 					<td style="white-space: nowrap; text-align: center;" class="wf-twofactor-delete">
-						<a href="#" onclick="WFAD.delTwoFac('${user.userID}'); return false;"><i class="wf-ion-ios-trash-outline"></i></a>
+						<a href="#" onclick="WFAD.delTwoFac('${user.userID}'); return false;" role="button"><i class="wf-ion-ios-trash-outline"></i></a>
 					</td>
 				</tr>
 				{{/each}}
@@ -220,7 +220,7 @@ echo wfView::create('common/section-title', array(
 			<div id="wordfenceTwoFactorModern">
 				<p><strong><?php esc_html_e('2FA Mode: Normal', 'wordfence') ?>.</strong> <?php esc_html_e('Legacy support for SMS-based two-factor authentication is being phased out, as it is less secure than using a modern authenticator app.', 'wordfence') ?></p>
 				<p><?php esc_html_e('If you have a conflict with the new 2FA method, you can temporarily switch back to the Legacy version.', 'wordfence'); ?></p>
-				<p><a id="wf-migrate2faold-start" class="wf-btn wf-btn-default wf-btn-sm wf-dismiss-link" href="#"><?php esc_html_e('Revert to Legacy 2FA', 'wordfence'); ?></a></p>
+				<p><a id="wf-migrate2faold-start" class="wf-btn wf-btn-default wf-btn-sm wf-dismiss-link" href="#" role="button"><?php esc_html_e('Revert to Legacy 2FA', 'wordfence'); ?></a></p>
 			</div>
 		</div>
 	</div>

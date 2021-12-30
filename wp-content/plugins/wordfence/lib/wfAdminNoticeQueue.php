@@ -2,7 +2,20 @@
 
 class wfAdminNoticeQueue {
 	protected static function _notices() {
-		return wfConfig::get_ser('adminNoticeQueue', array());
+		return self::_purgeObsoleteNotices(wfConfig::get_ser('adminNoticeQueue', array()));
+	}
+
+	private static function _purgeObsoleteNotices($notices) {
+		$altered = false;
+		foreach ($notices as $id => $notice) {
+			if ($notice['category'] === 'php8') {
+				unset($notices[$id]);
+				$altered = true;
+			}
+		}
+		if ($altered)
+			self::_setNotices($notices);
+		return $notices;
 	}
 	
 	protected static function _setNotices($notices) {
@@ -74,7 +87,7 @@ class wfAdminNoticeQueue {
 			$category = false;
 			$users = false;
 		}
-		
+
 		$notices = self::_notices();
 		$found = false;
 		foreach ($notices as $nid => $n) {
@@ -177,6 +190,6 @@ class wfAdminNotice {
 			$severityClass = 'notice-warning';
 		}
 		
-		echo '<div class="wf-admin-notice notice ' . $severityClass . '" data-notice-id="' . esc_attr($this->_id) . '"><p>' . $this->_messageHTML . '</p><p><a class="wf-btn wf-btn-default wf-btn-sm wf-dismiss-link" href="#" onclick="wordfenceExt.dismissAdminNotice(\'' . esc_attr($this->_id) . '\'); return false;">' . esc_html__('Dismiss', 'wordfence') . '</a></p></div>';
+		echo '<div class="wf-admin-notice notice ' . $severityClass . '" data-notice-id="' . esc_attr($this->_id) . '"><p>' . $this->_messageHTML . '</p><p><a class="wf-btn wf-btn-default wf-btn-sm wf-dismiss-link" href="#" onclick="wordfenceExt.dismissAdminNotice(\'' . esc_attr($this->_id) . '\'); return false;" role="button">' . esc_html__('Dismiss', 'wordfence') . '</a></p></div>';
 	}
 }

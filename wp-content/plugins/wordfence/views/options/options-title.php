@@ -29,7 +29,7 @@ foreach ($stateKeys as $k) {
 		<div class="wordfence-lock-icon wordfence-icon32 wf-hidden-xs"></div>
 	<?php endif; ?>
 	<h2<?php echo (isset($headerID) ? ' id="' . $headerID . '"' : ''); ?>><?php echo $titleHTML; ?></h2>
-	<div><a href="#" class="wf-toggle-all-sections wf-btn wf-btn-callout-subtle wf-btn-default" data-collapsed-title="<?php esc_attr_e('Expand All', 'wordfence'); ?>" data-expanded-title="<?php esc_attr_e('Collapse All', 'wordfence'); ?>" data-expanded="<?php echo wfUtils::truthyToInt($expanded); ?>"></a></div>
+	<div><a href="#" class="wf-toggle-all-sections wf-btn wf-btn-callout-subtle wf-btn-default" data-collapsed-title="<?php esc_attr_e('Expand All', 'wordfence'); ?>" data-expanded-title="<?php esc_attr_e('Collapse All', 'wordfence'); ?>" data-expanded="<?php echo wfUtils::truthyToInt($expanded); ?>" role="button"></a></div>
 </div>
 <script type="application/javascript">
 	(function($) {

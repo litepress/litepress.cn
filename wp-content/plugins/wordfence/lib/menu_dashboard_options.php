@@ -150,7 +150,7 @@ else if (wfConfig::get('touppPromptNeeded')) {
 														echo wfView::create('common/status-critical', array(
 															'id' => 'wf-premium-alert',
 															'title' => __('Premium Protection Disabled', 'wordfence'),
-															'subtitleHtml' => __('The license you were using has been removed from your account. Please reach out to <a href="mailto:billing@wordfence.com">billing@wordfence.com</a> or create a Premium support case at <a href="https://support.wordfence.com/support/tickets" target="_blank">https://support.wordfence.com/support/tickets</a> for more information. Our staff is happy to help.', 'wordfence'),
+															'subtitleHtml' => wp_kses(__('The license you were using has been removed from your account. Please reach out to <a href="mailto:billing@wordfence.com">billing@wordfence.com</a> or create a Premium support case at <a href="https://support.wordfence.com/support/tickets" target="_blank">https://support.wordfence.com/support/tickets<span class="screen-reader-text"> (opens in new tab)</span></a> for more information. Our staff is happy to help.', 'wordfence'), array('a'=>array('href'=>array(), 'target'=>array()), 'span'=>array('class'=>array()))),
 															'link' => null,
 															'linkLabel' => null
 														))->render();
@@ -159,7 +159,7 @@ else if (wfConfig::get('touppPromptNeeded')) {
 														<div>
 															<p><h3><?php esc_html_e('Premium Protection Disabled', 'wordfence'); ?></h3></p>
 															<p><?php esc_html_e('As a free Wordfence user, you are currently using the Community version of the Threat Defense Feed. Premium users are protected by additional firewall rules and malware signatures. Upgrade to Premium today to improve your protection.', 'wordfence'); ?></p>
-															<p><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="https://www.wordfence.com/gnl1dashboardUpgrade/wordfence-signup/#premium-order-form" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Premium', 'wordfence'); ?></a>&nbsp;&nbsp;<a class="wf-btn wf-btn-callout-subtle wf-btn-default" href="https://www.wordfence.com/gnl1dashboardLearn/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Learn More', 'wordfence'); ?></a></p>
+															<p><a class="wf-btn wf-btn-primary wf-btn-callout-subtle" href="https://www.wordfence.com/gnl1dashboardUpgrade/wordfence-signup/#premium-order-form" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Premium', 'wordfence'); ?></a>&nbsp;&nbsp;<a class="wf-btn wf-btn-callout-subtle wf-btn-default" href="https://www.wordfence.com/gnl1dashboardLearn/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Learn More', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 														</div>
 													<?php elseif (wfConfig::get('keyExpDays') < 30 && (wfConfig::get('premiumAutoRenew', null) === '0' || wfConfig::get('premiumAutoRenew', null) === 0)): ?>
 														<?php

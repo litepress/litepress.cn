@@ -566,6 +566,9 @@ class wfWAFStorageMySQL implements wfWAFStorageInterface {
 				'serverIPs',
 				'disableWAFIPBlocking',
 				'advancedBlockingEnabled',
+				'blockCustomText',
+				'betaThreatDefenseFeed',
+				'whitelistedServiceIPs'
 			),
 		);
 	}
@@ -626,7 +629,7 @@ class wfWAFStorageMySQL implements wfWAFStorageInterface {
 
 interface wfWAFStorageEngineDatabase {
 
-	public function connect($user, $password, $database, $host, $port = null, $socket = null);
+	public function connect($user, $password, $database, $host, $port = null, $socket = null, $flags = 0);
 
 	public function setCharset($charset, $collation);
 
@@ -698,9 +701,19 @@ class wfWAFStorageEngineMySQLi implements wfWAFStorageEngineDatabase {
 	 * @return mysqli
 	 * @throws wfWAFStorageEngineMySQLiException
 	 */
-	public function connect($user, $password, $database, $host, $port = null, $socket = null) {
-		$this->dbh = @mysqli_connect($host, $user, $password, $database, $port, $socket);
-		if (!$this->dbh) {
+	public function connect($user, $password, $database, $host, $port = null, $socket = null, $flags = 0, $sslOptions = null) {
+		$this->dbh = mysqli_init();
+		if (!empty($sslOptions) && ($flags & (MYSQLI_CLIENT_SSL | MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT))) {
+			mysqli_ssl_set(
+				$this->dbh,
+				array_key_exists('key', $sslOptions) ? $sslOptions['key'] : null,
+				array_key_exists('certificate', $sslOptions) ? $sslOptions['certificate'] : null,
+				array_key_exists('ca_certificate', $sslOptions) ? $sslOptions['ca_certificate'] : null,
+				array_key_exists('ca_path', $sslOptions) ? $sslOptions['ca_path'] : null,
+				array_key_exists('cipher_algos', $sslOptions) ? $sslOptions['cipher_algos'] : null
+			);
+		}
+		if (!@mysqli_real_connect($this->dbh, $host, $user, $password, $database, $port, $socket, $flags)) {
 			$error = error_get_last();
 			throw new wfWAFStorageEngineMySQLiException('Unable to connect to database: ' . $error['message'], $error['type']);
 		}

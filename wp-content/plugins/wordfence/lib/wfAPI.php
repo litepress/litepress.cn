@@ -160,7 +160,7 @@ class wfAPI {
 		}
 
 		if (200 != $this->lastHTTPStatus) {
-			throw new wfAPICallFailedException(sprintf(/* translators: HTTP status code. */__("The Wordfence scanning servers are currently unavailable. This may be for maintenance or a temporary outage. If this still occurs in an hour, please contact support. [%s]"), $this->lastHTTPStatus));
+			throw new wfAPICallFailedException(sprintf(/* translators: HTTP status code. */__("The Wordfence scanning servers are currently unavailable. This may be for maintenance or a temporary outage. If this still occurs in an hour, please contact support. [%s]", 'wordfence'), $this->lastHTTPStatus));
 		}
 
 		$content = wp_remote_retrieve_body($response);

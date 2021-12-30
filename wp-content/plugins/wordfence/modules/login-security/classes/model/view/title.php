@@ -16,7 +16,7 @@ class Model_Title {
 	private $_helpURL;
 	private $_helpLink;
 	
-	public function __construct($id, $title, $helpURL, $helpLink) {
+	public function __construct($id, $title, $helpURL = null, $helpLink = null) {
 		$this->_id = $id;
 		$this->_title = $title;
 		$this->_helpURL = $helpURL;

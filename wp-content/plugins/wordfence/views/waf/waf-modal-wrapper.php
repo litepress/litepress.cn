@@ -28,7 +28,7 @@ $showX = !isset($noX) || !$noX;
 		</div>
 		<div class="wf-modal-header-action">
 			<div><?php if (isset($helpHTML)) { echo $helpHTML; } ?></div>
-			<?php if ($showX) { ?><div class="wf-padding-add-left-small wf-modal-header-action-close"><a href="#" onclick="WFAD.colorboxClose(); return false"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div><?php } ?>
+			<?php if ($showX) { ?><div class="wf-padding-add-left-small wf-modal-header-action-close"><a href="#" onclick="WFAD.colorboxClose(); return false" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div><?php } ?>
 		</div>
 	</div>
 	<div class="wf-modal-content">
@@ -37,7 +37,7 @@ $showX = !isset($noX) || !$noX;
 	<div class="wf-modal-footer">
 		<ul class="wf-flex-horizontal wf-flex-full-width">
 			<li><?php if (isset($footerHTML)) { echo $footerHTML; } ?></li>
-			<li class="wf-right"><a href="#" class="wf-btn wf-btn-primary wf-btn-callout-subtle" id="wf-waf-modal-continue"><?php echo esc_html($footerButtonTitle); ?></a></li>
+			<li class="wf-right"><a href="#" class="wf-btn wf-btn-primary wf-btn-callout-subtle" id="wf-waf-modal-continue" role="button"><?php echo esc_html($footerButtonTitle); ?></a></li>
 		</ul>
 	</div>
 </div>

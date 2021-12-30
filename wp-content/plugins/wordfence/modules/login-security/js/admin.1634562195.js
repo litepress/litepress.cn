@@ -380,6 +380,23 @@
 				});
 			});
 
+			//Dropdown/Text Options
+			$('select.wfls-option-select, input.wfls-option-input').each(function() {
+				$(this).data('original', $(this).val());
+			}).on('change input', function(e) {
+				var input = $(this);
+				var name = input.attr('name');
+				var value = input.val();
+				var original = input.data('original');
+				if (value === original || (input.hasClass('wfls-option-input-required') && value === '')) {
+					delete WFLS.pendingChanges[name];
+				}
+				else {
+					WFLS.pendingChanges[name] = value;
+				}
+				WFLS.updatePendingChanges();
+			});
+
 			$('#wfls-save-changes').on('click', function(e) {
 				e.preventDefault();
 				e.stopPropagation();
@@ -686,6 +703,18 @@
 			}
 
 			var prompt = $.tmpl(WFLSVars.modalTemplate, {title: heading, message: body});
+
+			if (typeof settings.additional_buttons !== 'undefined') {
+				var buttonSection = prompt.find('.wfls-modal-footer > ul');
+				for(index in settings.additional_buttons) {
+					var buttonSettings = settings.additional_buttons[index];
+					var button = $('<button>').text(buttonSettings.label)
+						.addClass('wfls-btn wfls-btn-default wfls-btn-callout-subtle wfls-additional-button')
+						.attr('id', buttonSettings.id);
+					buttonSection.prepend($("<li>").addClass('wfls-padding-add-left-small').append(button));
+				}
+			}
+
 			var promptHTML = $("<div />").append(prompt).html();
 			var callback = settings.onComplete;
 			settings.overlayClose = false;

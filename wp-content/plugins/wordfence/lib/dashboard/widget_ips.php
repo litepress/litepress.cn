@@ -25,9 +25,9 @@ if (!isset($limit)) { $limit = 10; $initial = true; }
 						<div>
 							<div class="wf-dashboard-toggle-btns">
 								<ul class="wf-pagination wf-pagination-sm">
-									<li class="wf-active"><a href="#" class="wf-dashboard-ips" data-grouping="24h"><?php  esc_html_e('24 Hours', 'wordfence') ?></a></li>
-									<li><a href="#" class="wf-dashboard-ips" data-grouping="7d"><?php esc_html_e('7 Days', 'wordfence') ?></a></li>
-									<li><a href="#" class="wf-dashboard-ips" data-grouping="30d"><?php esc_html_e('30 Days', 'wordfence') ?></a></li>
+									<li class="wf-active"><a href="#" class="wf-dashboard-ips" data-grouping="24h" role="button"><?php  esc_html_e('24 Hours', 'wordfence') ?></a></li>
+									<li><a href="#" class="wf-dashboard-ips" data-grouping="7d" role="button"><?php esc_html_e('7 Days', 'wordfence') ?></a></li>
+									<li><a href="#" class="wf-dashboard-ips" data-grouping="30d" role="button"><?php esc_html_e('30 Days', 'wordfence') ?></a></li>
 								</ul>
 							</div>
 							<div class="wf-ips wf-ips-24h">
@@ -36,7 +36,7 @@ if (!isset($limit)) { $limit = 10; $initial = true; }
 								<?php else: ?>
 									<?php $data = array_slice($d->ips24h, 0, min($limit, count($d->ips24h)), true); include(dirname(__FILE__) . '/widget_content_ips.php'); ?>
 									<?php if (count($d->ips24h) > $limit && $initial): ?>
-										<div class="wf-dashboard-item-list-text"><div class="wf-dashboard-show-more" data-grouping="ips" data-period="24h"><a href="#"><?php esc_html_e('Show more', 'wordfence') ?></a></div></div>
+										<div class="wf-dashboard-item-list-text"><div class="wf-dashboard-show-more" data-grouping="ips" data-period="24h"><a href="#" role="button"><?php esc_html_e('Show more', 'wordfence') ?></a></div></div>
 									<?php endif; ?>
 								<?php endif; ?>
 							</div>
@@ -46,7 +46,7 @@ if (!isset($limit)) { $limit = 10; $initial = true; }
 								<?php else: ?>
 									<?php $data = array_slice($d->ips7d, 0, min($limit, count($d->ips7d)), true); include(dirname(__FILE__) . '/widget_content_ips.php'); ?>
 									<?php if (count($d->ips7d) > $limit && $initial): ?>
-										<div class="wf-dashboard-item-list-text"><div class="wf-dashboard-show-more" data-grouping="ips" data-period="7d"><a href="#"><?php esc_html_e('Show more', 'wordfence') ?></a></div></div>
+										<div class="wf-dashboard-item-list-text"><div class="wf-dashboard-show-more" data-grouping="ips" data-period="7d"><a href="#" role="button"><?php esc_html_e('Show more', 'wordfence') ?></a></div></div>
 									<?php endif; ?>
 								<?php endif; ?>
 							</div>
@@ -56,7 +56,7 @@ if (!isset($limit)) { $limit = 10; $initial = true; }
 								<?php else: ?>
 									<?php $data = array_slice($d->ips30d, 0, min($limit, count($d->ips30d)), true); include(dirname(__FILE__) . '/widget_content_ips.php'); ?>
 									<?php if (count($d->ips30d) > $limit && $initial): ?>
-										<div class="wf-dashboard-item-list-text"><div class="wf-dashboard-show-more" data-grouping="ips" data-period="30d"><a href="#"><?php esc_html_e('Show more', 'wordfence') ?></a></div></div>
+										<div class="wf-dashboard-item-list-text"><div class="wf-dashboard-show-more" data-grouping="ips" data-period="30d"><a href="#" role="button"><?php esc_html_e('Show more', 'wordfence') ?></a></div></div>
 									<?php endif; ?>
 								<?php endif; ?>
 							</div>

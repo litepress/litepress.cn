@@ -17,7 +17,7 @@ $tabs = array(
   new wfTab('ignored', 'ignored', __('Ignored<span class="wf-hidden-xs"> Results</span>', 'wordfence'), ''),
 )
 ?>
-<ul class="wf-scan-tabs">
+<ul class="wf-scan-tabs" role="tablist">
   <?php foreach ($tabs as $index => $t): ?> 
 	<?php
 	$a = $t->a;
@@ -25,9 +25,9 @@ $tabs = array(
 	  $a = '#' . urlencode($a);
 	}
 	?>
-	<li class="wf-tab<?php if ($index == 0) { echo ' wf-active'; } ?>" id="wf-scan-tab-<?php echo esc_attr($t->id); ?>" data-target="<?php echo esc_attr($t->id); ?>" data-tab-title="<?php echo esc_attr($t->tabTitle); ?>"><a href="<?php echo esc_attr($a); ?>"><?php echo $t->tabTitle; ?></a></li>
+	<li class="wf-tab<?php if ($index == 0) { echo ' wf-active'; } ?>" id="wf-scan-tab-<?php echo esc_attr($t->id); ?>" data-target="<?php echo esc_attr($t->id); ?>" data-tab-title="<?php echo esc_attr($t->tabTitle); ?>"><a href="<?php echo esc_attr($a); ?>" aria-selected="<?php echo json_encode($index == 0) ?>" role="tab"><?php echo $t->tabTitle; ?></a></li>
   <?php endforeach; ?>
-	<li id="wf-scan-bulk-buttons"><span class="wf-hidden-xs"><a href="#" id="wf-scan-bulk-buttons-delete" class="wf-btn wf-btn-default wf-btn-callout-subtle<?php echo ($hasDeleteableIssue ? '' : ' wf-disabled'); ?>"><?php esc_html_e('Delete All Deletable Files', 'wordfence'); ?></a>&nbsp;&nbsp;&nbsp;<a href="#" id="wf-scan-bulk-buttons-repair" class="wf-btn wf-btn-default wf-btn-callout-subtle<?php echo ($hasRepairableIssue ? '' : ' wf-disabled'); ?>"><?php esc_html_e('Repair All Repairable Files', 'wordfence'); ?></a></span></li>
+	<li id="wf-scan-bulk-buttons"><span class="wf-hidden-xs"><a href="#" id="wf-scan-bulk-buttons-delete" class="wf-btn wf-btn-default wf-btn-callout-subtle<?php echo ($hasDeleteableIssue ? '' : ' wf-disabled'); ?>" role="button"><?php esc_html_e('Delete All Deletable Files', 'wordfence'); ?></a>&nbsp;&nbsp;&nbsp;<a href="#" id="wf-scan-bulk-buttons-repair" class="wf-btn wf-btn-default wf-btn-callout-subtle<?php echo ($hasRepairableIssue ? '' : ' wf-disabled'); ?>" role="button"><?php esc_html_e('Repair All Repairable Files', 'wordfence'); ?></a></span></li>
 </ul>
 <ul class="wf-scan-results">
 	<li class="wf-scan-results-stats">
@@ -133,11 +133,12 @@ $tabs = array(
 				e.preventDefault();
 				e.stopPropagation();
 
-				$('.wf-scan-tabs').find('.wf-tab').removeClass('wf-active');
+				$('.wf-scan-tabs').find('.wf-tab').removeClass('wf-active').find('a').attr('aria-selected', false);
 				$('.wf-scan-results-issues').removeClass('wf-active');
 
 				var tab = $(this).closest('.wf-tab');
 				tab.addClass('wf-active');
+				tab.find('a').attr('aria-selected', 'true');
 				var content = $('#wf-scan-results-' + tab.data('target'));
 				content.addClass('wf-active');
 			});

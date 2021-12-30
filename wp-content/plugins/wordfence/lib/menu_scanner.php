@@ -117,7 +117,7 @@ else if (wfConfig::get('touppPromptNeeded')) {
 					<?php if (wfConfig::get('betaThreatDefenseFeed')): ?>
 						<ul class="wf-block-banner">
 							<li><?php esc_html_e('Beta scan signatures are currently enabled. These signatures have not been fully tested yet and may cause false positives or scan stability issues on some sites.', 'wordfence'); ?></li>
-							<li><a href="#" class="wf-btn wf-btn-default" id="wf-beta-disable"><?php esc_html_e('Turn Off Beta Signatures', 'wordfence'); ?></a></li>
+							<li><a href="#" class="wf-btn wf-btn-default" id="wf-beta-disable" role="button"><?php esc_html_e('Turn Off Beta Signatures', 'wordfence'); ?></a></li>
 						</ul>
 					<?php endif; ?>
 					<div class="wf-block-content">
@@ -213,7 +213,7 @@ else if (wfConfig::get('touppPromptNeeded')) {
 		'messageHTML' => '<p class="wf-callout-warning"><i class="wf-fa wf-fa-exclamation-triangle" aria-hidden="true"></i> ' . wp_kses(__('<strong>WARNING:</strong> If you delete the wrong file, it could cause your WordPress website to stop functioning, and you will probably have to restore from a backup.', 'wordfence'), array('strong'=>array())) . '</p>' . 
 			'<p>' . wp_kses(sprintf(
 			/* translators: Support URL. */
-					__('Do not delete files on your system unless you\'re ABSOLUTELY sure you know what you\'re doing. If you delete the wrong file it could cause your WordPress website to stop functioning and you will probably have to restore from backups. If you\'re unsure, Cancel and work with your hosting provider to clean your system of infected files. If you\'d like to learn more, <a href="%s" target="_blank" rel="noopener noreferrer">click here for our help article</a>.', 'wordfence'), wfSupportController::esc_supportURL(wfSupportController::ITEM_SCAN_BULK_DELETE_WARNING)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()))) . '</p>',
+					__('Do not delete files on your system unless you\'re ABSOLUTELY sure you know what you\'re doing. If you delete the wrong file it could cause your WordPress website to stop functioning and you will probably have to restore from backups. If you\'re unsure, Cancel and work with your hosting provider to clean your system of infected files. If you\'d like to learn more, <a href="%s" target="_blank" rel="noopener noreferrer">click here for our help article<span class="screen-reader-text"> (opens in new tab)</span></a>.', 'wordfence'), wfSupportController::esc_supportURL(wfSupportController::ITEM_SCAN_BULK_DELETE_WARNING)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()), 'span'=>array('class'=>array()))) . '</p>',
 		'primaryButton' => array('id' => 'wf-scanner-prompt-cancel', 'label' => __('Cancel', 'wordfence'), 'link' => '#', 'type' => 'wf-btn-default'),
 		'secondaryButtons' => array(array('id' => 'wf-scanner-prompt-confirm', 'label' => __('Delete Files', 'wordfence'), 'link' => '#', 'type' => 'wf-btn-danger')),
 	))->render();
@@ -310,9 +310,9 @@ if (wfOnboardingController::willShowNewTour(wfOnboardingController::TOUR_SCAN)):
 					<li>&bullet;</li>
 					<li>&bullet;</li>
 				</ul>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 	<script type="text/x-jquery-template" id="wfNewTour2">
@@ -326,10 +326,10 @@ if (wfOnboardingController::willShowNewTour(wfOnboardingController::TOUR_SCAN)):
 					<li class="wf-active">&bullet;</li>
 					<li>&bullet;</li>
 				</ul>
-				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 	<script type="text/x-jquery-template" id="wfNewTour3">
@@ -342,10 +342,10 @@ if (wfOnboardingController::willShowNewTour(wfOnboardingController::TOUR_SCAN)):
 					<li>&bullet;</li>
 					<li class="wf-active">&bullet;</li>
 				</ul>
-				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
+				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 <?php endif; ?>
@@ -379,9 +379,9 @@ if (wfOnboardingController::willShowNewTour(wfOnboardingController::TOUR_SCAN)):
 					<li class="wf-active">&bullet;</li>
 					<li>&bullet;</li>
 				</ul>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Next', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 	<script type="text/x-jquery-template" id="wfUpgradeTour2">
@@ -393,10 +393,10 @@ if (wfOnboardingController::willShowNewTour(wfOnboardingController::TOUR_SCAN)):
 					<li>&bullet;</li>
 					<li class="wf-active">&bullet;</li>
 				</ul>
-				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
+				<div id="wf-tour-previous"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-default" role="button"><?php esc_html_e('Previous', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 <?php endif; ?>

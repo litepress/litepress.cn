@@ -41,7 +41,7 @@ $w = new wfConfig();
 	<h2><?php esc_html_e('Live Traffic', 'wordfence') ?></h2>
 	<span><?php echo wp_kses(sprintf(
 		/* translators: URL to support page. */
-			__('<a href="%s" target="_blank" rel="noopener noreferrer" class="wf-help-link">Learn more<span class="wf-hidden-xs"> about Live Traffic</span></a>', 'wordfence'), wfSupportController::esc_supportURL(wfSupportController::ITEM_TOOLS_LIVE_TRAFFIC)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array()))); ?>
+			__('<a href="%s" target="_blank" rel="noopener noreferrer" class="wf-help-link">Learn more<span class="wf-hidden-xs"> about Live Traffic</span><span class="screen-reader-text"> (opens in new tab)</span></a>', 'wordfence'), wfSupportController::esc_supportURL(wfSupportController::ITEM_TOOLS_LIVE_TRAFFIC)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array()), 'span'=>array('class'=>array()))); ?>
 		<i class="wf-fa wf-fa-external-link" aria-hidden="true"></i></span>
 </div>
 
@@ -74,7 +74,7 @@ if (!wfConfig::liveTrafficEnabled($overridden)):
 				if ($overridden) {
 					echo wp_kses(sprintf(
 					/* translators: URL to support page. */
-							__(' (host setting <a href="%s" class="wfhelp" target="_blank" rel="noopener noreferrer"></a>)', 'wordfence'), wfSupportController::supportURL(wfSupportController::ITEM_TOOLS_LIVE_TRAFFIC_OPTION_ENABLE)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array())));
+							__(' (host setting <a href="%s" class="wfhelp" target="_blank" rel="noopener noreferrer"><span class="screen-reader-text"> (opens in new tab)</span></a>)', 'wordfence'), wfSupportController::supportURL(wfSupportController::ITEM_TOOLS_LIVE_TRAFFIC_OPTION_ENABLE)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array()), 'span'=>array('class'=>array())));
 				} ?>.</strong> <?php esc_html_e('Login and firewall activity will appear below.', 'wordfence') ?></p>
 	</div>
 <?php else: ?>
@@ -83,7 +83,7 @@ if (!wfConfig::liveTrafficEnabled($overridden)):
 				if ($overridden) {
 					echo wp_kses(sprintf(
 					/* translators: URL to support page. */
-							__(' (host setting <a href="%s" class="wfhelp" target="_blank" rel="noopener noreferrer"></a>)', 'wordfence'), wfSupportController::supportURL(wfSupportController::ITEM_TOOLS_LIVE_TRAFFIC_OPTION_ENABLE)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array())));
+							__(' (host setting <a href="%s" class="wfhelp" target="_blank" rel="noopener noreferrer"><span class="screen-reader-text"> (opens in new tab)</span></a>)', 'wordfence'), wfSupportController::supportURL(wfSupportController::ITEM_TOOLS_LIVE_TRAFFIC_OPTION_ENABLE)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array()), 'span'=>array('class'=>array())));
 				} ?>.</strong> <?php esc_html_e('Regular traffic and security-related traffic will appear below.', 'wordfence') ?></p>
 	</div>
 <?php endif; ?>
@@ -156,7 +156,7 @@ if (!wfConfig::liveTrafficEnabled($overridden)):
 															</div>
 															<div>
 																<!--<button data-bind="click: $root.removeFilter" type="button" class="wf-btn wf-btn-default">Remove</button> -->
-																<a href="#" data-bind="click: $root.removeFilter" class="wf-live-traffic-filter-remove"><i class="wf-ion-trash-a"></i></a>
+																<a href="#" data-bind="click: $root.removeFilter" class="wf-live-traffic-filter-remove" role="button"><i class="wf-ion-trash-a"></i></a>
 															</div>
 														</div>
 													</div>
@@ -206,7 +206,7 @@ if (!wfConfig::liveTrafficEnabled($overridden)):
 														<span data-bind="attr: { class: 'wf-flag wf-flag-' + loc().countryCode.toLowerCase(), title: loc().countryName }"></span>
 														<a data-bind="text: (loc().city ? loc().city + ', ' : '') + (loc().region ? loc().region + ', ' : '') + loc().countryName,
 																	attr: { href: 'http://maps.google.com/maps?q=' + loc().lat + ',' + loc().lon + '&z=6' }"
-																target="_blank" rel="noopener noreferrer"></a>
+																target="_blank" rel="noopener noreferrer"><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 													</div>
 													<div data-bind="if: !loc()">
 														<?php esc_html_e('An unknown location at IP', 'wordfence') ?>
@@ -343,37 +343,37 @@ if (!wfConfig::liveTrafficEnabled($overridden)):
 																<span data-bind="if: action() != 'loginOK' && action() != 'loginFailValidUsername' && action() != 'loginFailInvalidUsername' && user()">
 																	<span data-bind="attr: {'data-userid': user().ID}" class="wfAvatar"></span>
 																	<a data-bind="attr: { href: user().editLink }, text: user().display_name"
-																			target="_blank" rel="noopener noreferrer"></a>
+																			target="_blank" rel="noopener noreferrer"><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 																</span>
 																<span data-bind="if: loc()">
 																	<span data-bind="if: action() != 'loginOK' && action() != 'loginFailValidUsername' && action() != 'loginFailInvalidUsername' && user()"> in</span>
 																	<span data-bind="attr: { class: 'wf-flag wf-flag-' + loc().countryCode.toLowerCase(), title: loc().countryName }"></span>
 																	<a data-bind="text: (loc().city ? loc().city + ', ' : '') + (loc().region ? loc().region + ', ' : '') + loc().countryName,
 																		attr: { href: 'http://maps.google.com/maps?q=' + loc().lat + ',' + loc().lon + '&z=6' }"
-																			target="_blank" rel="noopener noreferrer"></a>
+																			target="_blank" rel="noopener noreferrer"><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 																</span>
 																<span data-bind="if: !loc()">
 																	<span data-bind="if: action() != 'loginOK' && action() != 'loginFailValidUsername' && action() != 'loginFailInvalidUsername' && user()">
 																		<?php echo wp_kses(sprintf(
 																		/* translators: 1. User agent. 2. IP address  */
-																				__('%1$s at an unknown location at IP %2$s', 'wordfence'), '', '<a data-bind="text: IP, attr: { href: WFAD.makeIPTrafLink(IP()) }" target="_blank" rel="noopener noreferrer"></a>'), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'data-bind'=>array()))) ?>
+																				__('%1$s at an unknown location at IP %2$s', 'wordfence'), '', '<a data-bind="text: IP, attr: { href: WFAD.makeIPTrafLink(IP()) }" target="_blank" rel="noopener noreferrer"><span class="screen-reader-text"> (opens in new tab)</span></a>'), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'data-bind'=>array()), 'span'=>array('class'=>array()))) ?>
 																	</span>
 																	<span data-bind="if: !(action() != 'loginOK' && action() != 'loginFailValidUsername' && action() != 'loginFailInvalidUsername' && user())">
 																		<?php echo wp_kses(sprintf(
 																		/* translators: IP address  */
-																				__('An unknown location at IP %s', 'wordfence'), '<a data-bind="text: IP, attr: { href: WFAD.makeIPTrafLink(IP()) }" target="_blank" rel="noopener noreferrer"></a>'), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'data-bind'=>array()))) ?>
+																				__('An unknown location at IP %s', 'wordfence'), '<a data-bind="text: IP, attr: { href: WFAD.makeIPTrafLink(IP()) }" target="_blank" rel="noopener noreferrer"><span class="screen-reader-text"> (opens in new tab)</span></a>'), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'data-bind'=>array()), 'span'=>array('class'=>array()))) ?>
 																	</span>
 																</span>
 																<span data-bind="if: referer()">
 																	<span data-bind="if: extReferer()">
 																		<?php echo wp_kses(sprintf(
 																		/* translators: 1. User agent. 2. HTTP referer. 3. Server response. */
-																				__('%1$s arrived from %2$s and %3$s', 'wordfence'), '', '<a data-bind="text: LiveTrafficViewModel.truncateText(referer(), 100), attr: { title: referer, href: referer }" target="_blank" rel="noopener noreferrer" class="wf-split-word-xs"></a>', ''), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array(), 'data-bind'=>array()))) ?>
+																				__('%1$s arrived from %2$s and %3$s', 'wordfence'), '', '<a data-bind="text: LiveTrafficViewModel.truncateText(referer(), 100), attr: { title: referer, href: referer }" target="_blank" rel="noopener noreferrer" class="wf-split-word-xs"><span class="screen-reader-text"> (opens in new tab)</span></a>', ''), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array(), 'data-bind'=>array()), 'span'=>array('class'=>array()))) ?>
 																	</span>
 																	<span data-bind="if: !extReferer()">
 																		<?php echo wp_kses(sprintf(
 																		/* translators: 1. User agent. 2. HTTP referer. 3. Server response. */
-																				__('%1$s left %2$s and %3$s', 'wordfence'), '', '<a data-bind="text: LiveTrafficViewModel.truncateText(referer(), 100), attr: { title: referer, href: referer }" target="_blank" rel="noopener noreferrer" class="wf-split-word-xs"></a>', ''), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array(), 'data-bind'=>array()))) ?>
+																				__('%1$s left %2$s and %3$s', 'wordfence'), '', '<a data-bind="text: LiveTrafficViewModel.truncateText(referer(), 100), attr: { title: referer, href: referer }" target="_blank" rel="noopener noreferrer" class="wf-split-word-xs"><span class="screen-reader-text"> (opens in new tab)</span></a>', ''), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array(), 'class'=>array(), 'data-bind'=>array()), 'span'=>array('class'=>array()))) ?>
 																	</span>
 																</span>
 																<span data-bind="if: statusCode() == 404">
@@ -425,7 +425,7 @@ if (!wfConfig::liveTrafficEnabled($overridden)):
 																</span>
 																<a class="wf-lt-url wf-split-word-xs"
 																		data-bind="text: displayURL, attr: { href: URL, title: URL }"
-																		target="_blank" rel="noopener noreferrer"></a>
+																		target="_blank" rel="noopener noreferrer"><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 															</div>
 															<div>
 																<span data-bind="text: timeAgo, attr: { 'data-timestamp': ctime }"
@@ -478,7 +478,7 @@ if (!wfConfig::liveTrafficEnabled($overridden)):
 																	</a>
 																</span>
 																<a class="wf-btn wf-btn-default wf-btn-sm" data-bind="click: showWhoisOverlay"
-																		target="_blank" rel="noopener noreferrer"><?php esc_html_e('Run Whois', 'wordfence') ?></a>
+																		target="_blank" rel="noopener noreferrer"><?php esc_html_e('Run Whois', 'wordfence') ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 																<a class="wf-btn wf-btn-default wf-btn-sm"
 																		data-bind="click: showRecentTraffic" target="_blank" rel="noopener noreferrer">
 																	<span class="wf-hidden-xs"><?php esc_html_e('See recent traffic', 'wordfence'); ?></span><span class="wf-visible-xs"><?php esc_html_e('Recent', 'wordfence'); ?></span>
@@ -574,9 +574,9 @@ if (!wfConfig::liveTrafficEnabled($overridden)):
 				<ul class="wf-tour-pagination">
 					<li class="wf-active">&bullet;</li>
 				</ul>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary" role="button"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 <?php endif; ?>
@@ -605,9 +605,9 @@ if (!wfConfig::liveTrafficEnabled($overridden)):
 				<ul class="wf-tour-pagination">
 					<li class="wf-active">&bullet;</li>
 				</ul>
-				<div id="wf-tour-continue"><a href="#" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
+				<div id="wf-tour-continue"><a href="#" role="button" class="wf-onboarding-btn wf-onboarding-btn-primary"><?php esc_html_e('Got it', 'wordfence'); ?></a></div>
 			</div>
-			<div id="wf-tour-close"><a href="#"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
+			<div id="wf-tour-close"><a href="#" role="button"><i class="wf-fa wf-fa-times-circle" aria-hidden="true"></i></a></div>
 		</div>
 	</script>
 <?php endif; ?>

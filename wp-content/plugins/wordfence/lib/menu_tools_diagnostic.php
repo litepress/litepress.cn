@@ -109,6 +109,7 @@ if (!isset($sendingDiagnosticEmail)) {
 									'strong' => array(),
 									'em'     => array(),
 									'a'      => array('href' => true),
+									'span'	 => array('class' => true)
 								))) ?></td>
 							<td>
 								<?php if ($infoOnly): ?>
@@ -162,7 +163,7 @@ if (!isset($sendingDiagnosticEmail)) {
 										<div class="wf-result-error"><?php echo nl2br(esc_html($result['message'])); ?></div>
 									<?php endif ?>
 									<?php if (isset($result['detail']) && !empty($result['detail'])): ?>
-											<p><a href="#" onclick="jQuery('#wf-diagnostics-detail-<?php echo esc_attr($key); ?>').show(); jQuery(this).hide(); return false;"><?php esc_html_e('View Additional Detail', 'wordfence'); ?></a></p>
+											<p><a href="#" onclick="jQuery('#wf-diagnostics-detail-<?php echo esc_attr($key); ?>').show(); jQuery(this).hide(); return false;" role="button"><?php esc_html_e('View Additional Detail', 'wordfence'); ?></a></p>
 											<pre class="wf-pre wf-split-word" id="wf-diagnostics-detail-<?php echo esc_attr($key); ?>" style="max-width: 600px; display: none;"><?php echo esc_html($result['detail']); ?></pre>
 									<?php endif; ?>
 										</div>
@@ -461,19 +462,19 @@ if (!isset($sendingDiagnosticEmail)) {
 					<?php
 					//Taken from plugin.php and modified to always show multisite drop-ins
 					$dropins = array(
-						'advanced-cache.php'	 => array( __( 'Advanced caching plugin'       ), 'WP_CACHE' ), // WP_CACHE
-						'db.php'            	 => array( __( 'Custom database class'         ), true ), // auto on load
-						'db-error.php'      	 => array( __( 'Custom database error message' ), true ), // auto on error
-						'install.php'       	 => array( __( 'Custom installation script'    ), true ), // auto on installation
-						'maintenance.php'   	 => array( __( 'Custom maintenance message'    ), true ), // auto on maintenance
-						'object-cache.php'  	 => array( __( 'External object cache'         ), true ), // auto on load
-						'php-error.php'          => array( __( 'Custom PHP error message'	   ), true ), // auto on error
-						'fatal-error-handler.php'=> array( __( 'Custom PHP fatal error handler' ), true ), // auto on error
+						'advanced-cache.php'	 => array( __( 'Advanced caching plugin', 'wordfence' ), 'WP_CACHE' ), // WP_CACHE
+						'db.php'            	 => array( __( 'Custom database class', 'wordfence' ), true ), // auto on load
+						'db-error.php'      	 => array( __( 'Custom database error message', 'wordfence' ), true ), // auto on error
+						'install.php'       	 => array( __( 'Custom installation script', 'wordfence' ), true ), // auto on installation
+						'maintenance.php'   	 => array( __( 'Custom maintenance message', 'wordfence' ), true ), // auto on maintenance
+						'object-cache.php'  	 => array( __( 'External object cache', 'wordfence' ), true ), // auto on load
+						'php-error.php'          => array( __( 'Custom PHP error message', 'wordfence' ), true ), // auto on error
+						'fatal-error-handler.php'=> array( __( 'Custom PHP fatal error handler', 'wordfence' ), true ), // auto on error
 					);
-					$dropins['sunrise.php'       ] = array( __( 'Executed before Multisite is loaded' ), is_multisite() && 'SUNRISE' ); // SUNRISE
-					$dropins['blog-deleted.php'  ] = array( __( 'Custom site deleted message'   ), is_multisite() ); // auto on deleted blog
-					$dropins['blog-inactive.php' ] = array( __( 'Custom site inactive message'  ), is_multisite() ); // auto on inactive blog
-					$dropins['blog-suspended.php'] = array( __( 'Custom site suspended message' ), is_multisite() ); // auto on archived or spammed blog
+					$dropins['sunrise.php'       ] = array( __( 'Executed before Multisite is loaded', 'wordfence' ), is_multisite() && 'SUNRISE' ); // SUNRISE
+					$dropins['blog-deleted.php'  ] = array( __( 'Custom site deleted message', 'wordfence' ), is_multisite() ); // auto on deleted blog
+					$dropins['blog-inactive.php' ] = array( __( 'Custom site inactive message', 'wordfence' ), is_multisite() ); // auto on inactive blog
+					$dropins['blog-suspended.php'] = array( __( 'Custom site suspended message', 'wordfence' ), is_multisite() ); // auto on archived or spammed blog
 					?>
 					<?php foreach ($dropins as $file => $data): ?>
 						<?php
@@ -767,7 +768,7 @@ if (!isset($sendingDiagnosticEmail)) {
 								?>
 								<tr>
 									<td style="width: 100%"><?php echo esc_html($shortLog); if (!empty($metadata)) { echo ' (' . esc_html(implode(', ', $metadata)) . ')'; } ?></td>
-									<td style="white-space: nowrap; text-align: right;"><?php echo($readable ? '<a href="#" data-logfile="' . esc_attr($log) . '" class="downloadLogFile" target="_blank" rel="noopener noreferrer">' . esc_html__('Download', 'wordfence') . '</a>' : '<em>' . esc_html__('Requires downloading from the server directly', 'wordfence') . '</em>'); ?></td>
+									<td style="white-space: nowrap; text-align: right;"><?php echo($readable ? '<a href="#" data-logfile="' . esc_attr($log) . '" class="downloadLogFile" target="_blank" rel="noopener noreferrer" role="button">' . esc_html__('Download', 'wordfence') . '<span class="screen-reader-text"> (' . esc_html__('opens in new tab', 'wordfence') . ')</span></a>' : '<em>' . esc_html__('Requires downloading from the server directly', 'wordfence') . '</em>'); ?></td>
 								</tr>
 							<?php endforeach;
 						endif; ?>
@@ -834,33 +835,33 @@ if (!isset($sendingDiagnosticEmail)) {
 					<ul class="wf-block-list">
 						<li>
 							<span>
-								<a href="<?php echo wfUtils::siteURLRelative(); ?>?_wfsf=sysinfo&nonce=<?php echo wp_create_nonce('wp-ajax'); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Click to view your system\'s configuration in a new window', 'wordfence'); ?></a>
-								<a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_DIAGNOSTICS_SYSTEM_CONFIGURATION); ?>" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"></a>
+								<a href="<?php echo wfUtils::siteURLRelative(); ?>?_wfsf=sysinfo&nonce=<?php echo wp_create_nonce('wp-ajax'); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Click to view your system\'s configuration in a new window', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
+								<a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_DIAGNOSTICS_SYSTEM_CONFIGURATION); ?>" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 							</span>
 						</li>
 						<li>
 							<span>
-								<a href="<?php echo wfUtils::siteURLRelative(); ?>?_wfsf=testmem&nonce=<?php echo wp_create_nonce('wp-ajax'); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Test your WordPress host\'s available memory', 'wordfence'); ?></a>
-							<a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_DIAGNOSTICS_TEST_MEMORY); ?>" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"></a>
+								<a href="<?php echo wfUtils::siteURLRelative(); ?>?_wfsf=testmem&nonce=<?php echo wp_create_nonce('wp-ajax'); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Test your WordPress host\'s available memory', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
+							<a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_DIAGNOSTICS_TEST_MEMORY); ?>" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 							</span>
 						</li>
 						<li>
 							<span>
-								<?php esc_html_e('Send a test email from this WordPress server to an email address:', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_DIAGNOSTICS_TEST_EMAIL); ?>" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"></a>
+								<?php esc_html_e('Send a test email from this WordPress server to an email address:', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_DIAGNOSTICS_TEST_EMAIL); ?>" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 								<input type="text" id="testEmailDest" value="" size="20" maxlength="255" class="wfConfigElem"/>
 								<input class="wf-btn wf-btn-default wf-btn-sm" type="button" value="<?php esc_attr_e('Send Test Email', 'wordfence'); ?>" onclick="WFAD.sendTestEmail(jQuery('#testEmailDest').val());"/>
 							</span>
 						</li>
 						<li>
 							<span>
-								<?php esc_html_e('Send a test activity report email:', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_DIAGNOSTICS_TEST_ACTIVITY_REPORT); ?>" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"></a>
+								<?php esc_html_e('Send a test activity report email:', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_DIAGNOSTICS_TEST_ACTIVITY_REPORT); ?>" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 								<input type="email" id="email_summary_email_address_debug" value="" size="20" maxlength="255" class="wfConfigElem"/>
 								<input class="wf-btn wf-btn-default wf-btn-sm" type="button" value="<?php esc_attr_e('Send Test Activity Report', 'wordfence'); ?>" onclick="WFAD.sendTestActivityReport(jQuery('#email_summary_email_address_debug').val());"/>
 							</span>
 						</li>
 						<li>
 							<span>
-								<?php esc_html_e('Clear all Wordfence Central connection data', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_DIAGNOSTICS_REMOVE_CENTRAL_DATA); ?>" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"></a>
+								<?php esc_html_e('Clear all Wordfence Central connection data', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_DIAGNOSTICS_REMOVE_CENTRAL_DATA); ?>" target="_blank" rel="noopener noreferrer" class="wfhelp wf-inline-help"><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a>
 								<input class="wf-btn wf-btn-default wf-btn-sm" type="button" value="<?php esc_attr_e('Clear Connection Data', 'wordfence'); ?>" onclick="WFAD.ajax('wordfence_wfcentral_disconnect', {}, function() { WFAD.colorboxModal((self.isSmallScreen ? '300px' : '400px'), 'Successfully removed data', 'All associated Wordfence Central data has been removed from the database.'); });"/>
 							</span>
 						</li>
@@ -957,9 +958,9 @@ if (!isset($sendingDiagnosticEmail)) {
 							</li>
 							<li>
 								<p>
-									<a id="wf-restore-defaults" class="wf-btn wf-btn-default wf-btn-callout-subtle" href="#" data-restore-defaults-section="<?php echo esc_attr(wfConfig::OPTIONS_TYPE_DIAGNOSTICS); ?>"><?php esc_html_e('Restore Defaults', 'wordfence'); ?></a>
-									<a id="wf-cancel-changes" class="wf-btn wf-btn-default wf-btn-callout-subtle wf-disabled" href="#"><?php esc_html_e('Cancel Changes', 'wordfence'); ?></a>
-									<a id="wf-save-changes" class="wf-btn wf-btn-primary wf-btn-callout-subtle wf-disabled" href="#"><?php esc_html_e('Save Changes', 'wordfence'); ?></a>
+									<a id="wf-restore-defaults" class="wf-btn wf-btn-default wf-btn-callout-subtle" href="#" data-restore-defaults-section="<?php echo esc_attr(wfConfig::OPTIONS_TYPE_DIAGNOSTICS); ?>" role="button"><?php esc_html_e('Restore Defaults', 'wordfence'); ?></a>
+									<a id="wf-cancel-changes" class="wf-btn wf-btn-default wf-btn-callout-subtle wf-disabled" href="#" role="button"><?php esc_html_e('Cancel Changes', 'wordfence'); ?></a>
+									<a id="wf-save-changes" class="wf-btn wf-btn-primary wf-btn-callout-subtle wf-disabled" href="#" role="button"><?php esc_html_e('Save Changes', 'wordfence'); ?></a>
 								</p>
 							</li>
 						</ul>

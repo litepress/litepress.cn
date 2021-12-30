@@ -6,6 +6,8 @@ use WordfenceLS\Text\Model_HTML;
 
 class Controller_Notices {
 	const USER_META_KEY = 'wfls_notices';
+	const PERSISTENT_NOTICE_DISMISS_PREFIX = 'wfls-dismiss-';
+	const PERSISTENT_NOTICE_WOOCOMMERCE_INTEGRATION = 'wfls-woocommerce-integration-notice';
 	
 	/**
 	 * Returns the singleton Controller_Notices.
@@ -19,6 +21,8 @@ class Controller_Notices {
 		}
 		return $_shared;
 	}
+
+	private $persistentNotices = array();
 	
 	/**
 	 * Adds an admin notice to the display queue. If $user is provided, it will show only for that user, otherwise it
@@ -93,7 +97,7 @@ class Controller_Notices {
 	 */
 	public function has_notice($user) {
 		$notices = $this->_notices($user);
-		return !!count($notices);
+		return !!count($notices) || $this->has_persistent_notices();
 	}
 	
 	/**
@@ -162,5 +166,34 @@ class Controller_Notices {
 			return;
 		}
 		Controller_Settings::shared()->set_array(Controller_Settings::OPTION_GLOBAL_NOTICES, $notices, true);
+	}
+
+	public function get_persistent_notice_ids() {
+		return array(
+			self::PERSISTENT_NOTICE_WOOCOMMERCE_INTEGRATION
+		);
+	}
+
+	private static function get_persistent_notice_dismiss_key($noticeId) {
+		return self::PERSISTENT_NOTICE_DISMISS_PREFIX . $noticeId;
+	}
+
+	public function register_persistent_notice($noticeId) {
+		$this->persistentNotices[] = $noticeId;
+	}
+
+	public function has_persistent_notices() {
+		return count($this->persistentNotices) > 0;
+	}
+
+	public function dismiss_persistent_notice($userId, $noticeId) {
+		if (!in_array($noticeId, $this->get_persistent_notice_ids(), true))
+			return false;
+		update_user_option($userId, self::get_persistent_notice_dismiss_key($noticeId), true, true);
+		return true;
+	}
+
+	public function is_persistent_notice_dismissed($userId, $noticeId) {
+		return (bool) get_user_option(self::get_persistent_notice_dismiss_key($noticeId), $userId);
 	}
 }

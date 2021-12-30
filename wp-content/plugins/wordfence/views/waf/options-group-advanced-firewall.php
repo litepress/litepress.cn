@@ -51,7 +51,7 @@ if (!isset($collapseable)) {
 							'textValue' => wfUtils::cleanupOneEntryPerLine(wfConfig::get('whitelisted')),
 							'title' => __('Allowlisted IP addresses that bypass all rules', 'wordfence'),
 							'alignTitle' => 'top',
-							'subtitleHTML' => wp_kses(__('Allowlisted IPs must be separated by commas or placed on separate lines. You can specify ranges using the following formats: 127.0.0.1/24, 127.0.0.[1-100], or 127.0.0.1-127.0.1.100<br/>Wordfence automatically allowlists <a href="http://en.wikipedia.org/wiki/Private_network" target="_blank" rel="noopener noreferrer">private networks</a> because these are not routable on the public Internet.', 'wordfence'), array('br'=>array(), 'a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()))),
+							'subtitleHTML' => wp_kses(__('Allowlisted IPs must be separated by commas or placed on separate lines. You can specify ranges using the following formats: 127.0.0.1/24, 127.0.0.[1-100], or 127.0.0.1-127.0.1.100<br/>Wordfence automatically allowlists <a href="http://en.wikipedia.org/wiki/Private_network" target="_blank" rel="noopener noreferrer">private networks<span class="screen-reader-text"> (opens in new tab)</span></a> because these are not routable on the public Internet.', 'wordfence'), array('br'=>array(), 'a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()), 'span'=>array('class'=>array()))),
 							'subtitlePosition' => 'value',
 							'helpLink' => wfSupportController::supportURL(wfSupportController::ITEM_FIREWALL_WAF_OPTION_WHITELISTED_IPS),
 						))->render();
@@ -150,7 +150,7 @@ if (!isset($collapseable)) {
 		{{/each}}
 		{{if (rules.length == 0)}}
 		<tr>
-			<td colspan="4"><?php esc_html_e('No rules currently set.', 'wordfence'); ?> <?php if (!($firewall->protectionMode() == wfFirewall::PROTECTION_MODE_EXTENDED && $firewall->isSubDirectoryInstallation())) { echo wp_kses(__('<a href="#" onclick="WFAD.wafUpdateRules();return false;">Click here</a> to pull down the latest from the Wordfence servers.', 'wordfence'), array('a'=>array('href'=>array(), 'onclick'=>array()))); } ?>
+			<td colspan="4"><?php esc_html_e('No rules currently set.', 'wordfence'); ?> <?php if (!($firewall->protectionMode() == wfFirewall::PROTECTION_MODE_EXTENDED && $firewall->isSubDirectoryInstallation())) { echo wp_kses(__('<a href="#" onclick="WFAD.wafUpdateRules();return false;" role="button">Click here</a> to pull down the latest from the Wordfence servers.', 'wordfence'), array('a'=>array('href'=>array(), 'onclick'=>array(), 'role'=>array()))); } ?>
 			</td>
 		</tr>
 		{{/if}}
@@ -158,7 +158,7 @@ if (!isset($collapseable)) {
 		<tfoot>
 		{{if (ruleCount >= 10)}}
 		<tr id="waf-show-all-rules">
-			<td class="wf-center" colspan="4"><a href="#" id="waf-show-all-rules-button"><?php esc_html_e('SHOW ALL RULES', 'wordfence'); ?></a></td>
+			<td class="wf-center" colspan="4"><a href="#" id="waf-show-all-rules-button" role="button"><?php esc_html_e('SHOW ALL RULES', 'wordfence'); ?></a></td>
 		</tr>
 		{{/if}}
 		</tfoot>

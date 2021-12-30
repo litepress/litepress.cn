@@ -56,7 +56,7 @@ else {
 								<div class="wf-central-dashboard-copy">
 									<p><strong><?php esc_html_e('Wordfence Central', 'wordfence') ?></strong></p>
 									<p><?php esc_html_e('Wordfence Central allows you to manage Wordfence on multiple sites from one location. It makes security monitoring and configuring Wordfence easier.', 'wordfence') ?></p>
-									<p class="wf-right-lg"><a href="https://www.wordfence.com/central" target="_blank" rel="noopener noreferrer"><strong><?php esc_html_e('Visit Wordfence Central', 'wordfence') ?></strong></a></p>
+									<p class="wf-right-lg"><a href="https://www.wordfence.com/central" target="_blank" rel="noopener noreferrer"><strong><?php esc_html_e('Visit Wordfence Central', 'wordfence') ?></strong><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 								</div>
 							</div>
 						</div>
@@ -64,7 +64,7 @@ else {
 							<p><strong><?php esc_html_e('Wordfence Central Status', 'wordfence') ?></strong></p>
 							<p><?php echo esc_html(sprintf(
 									/* translators: 1. Email address. 2. Localized date. */
-									__('Activated - connected by %1$s on %2$s', 'wordfence'), wfConfig::get('wordfenceCentralConnectEmail')), date_i18n('F j, Y', (int) wfConfig::get('wordfenceCentralConnectTime'))) ?></p>
+									__('Activated - connected by %1$s on %2$s', 'wordfence'), wfConfig::get('wordfenceCentralConnectEmail'), date_i18n('F j, Y', (int) wfConfig::get('wordfenceCentralConnectTime')))) ?></p>
 							<p class="wf-right-lg"><a href="<?php echo esc_url($wordfenceURL); ?>"><strong><?php esc_html_e('Disconnect This Site', 'wordfence') ?></strong></a></p>
 						</div>
 					</div>

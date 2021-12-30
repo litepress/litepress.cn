@@ -30,17 +30,17 @@ $support = @json_decode(wfConfig::get('supportContent'), true);
 										<li class="wf-flex-vertical">
 											<h3><?php esc_html_e('Free Support', 'wordfence'); ?></h3>
 											<p class="wf-center"><?php echo wp_kses(__('Support for free customers is available via our forums page on wordpress.org. The majority of requests <strong>receive an answer within a few days.</strong>', 'wordfence'), array('strong'=>array())); ?></p>
-											<p><a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_FREE); ?>" target="_blank" rel="noopener noreferrer" class="wf-btn wf-btn-default wf-btn-callout-subtle"><?php esc_html_e('Go to Support Forums', 'wordfence'); ?></a></p>
+											<p><a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_FREE); ?>" target="_blank" rel="noopener noreferrer" class="wf-btn wf-btn-default wf-btn-callout-subtle"><?php esc_html_e('Go to Support Forums', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 										</li>
 										<li class="wf-flex-vertical">
 										<?php if (wfConfig::get('isPaid')): ?>
 											<h3><?php esc_html_e('Premium Support', 'wordfence'); ?></h3>
 											<p class="wf-center"><?php echo wp_kses(__('Our senior support engineers <strong>respond to Premium tickets within a few hours</strong> on average and have a direct line to our QA and development teams.', 'wordfence'), array('strong'=>array())); ?></p>
-											<p><a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_PREMIUM); ?>" target="_blank" rel="noopener noreferrer" class="wf-btn wf-btn-primary wf-btn-callout-subtle"><?php esc_html_e('Go to Premium Support', 'wordfence'); ?></a></p>
+											<p><a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_PREMIUM); ?>" target="_blank" rel="noopener noreferrer" class="wf-btn wf-btn-primary wf-btn-callout-subtle"><?php esc_html_e('Go to Premium Support', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 										<?php else: ?>
 											<h3><?php esc_html_e('Upgrade Now to Access Premium Support', 'wordfence'); ?></h3>
 											<p class="wf-center"><?php echo wp_kses(__('Our senior support engineers <strong>respond to Premium tickets within a few hours</strong> on average and have a direct line to our QA and development teams.', 'wordfence'), array('strong'=>array())); ?></p>
-											<p><a href="https://www.wordfence.com/gnl1supportUpgrade/wordfence-signup/" target="_blank" rel="noopener noreferrer" class="wf-btn wf-btn-primary wf-btn-callout-subtle"><?php esc_html_e('Upgrade to Premium', 'wordfence'); ?></a></p>
+											<p><a href="https://www.wordfence.com/gnl1supportUpgrade/wordfence-signup/" target="_blank" rel="noopener noreferrer" class="wf-btn wf-btn-primary wf-btn-callout-subtle"><?php esc_html_e('Upgrade to Premium', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 										<?php endif; ?>
 										</li>
 									</ul>
@@ -67,7 +67,7 @@ $support = @json_decode(wfConfig::get('supportContent'), true);
 									<ul class="wf-option wf-option-static">
 										<li class="wf-option-title">
 											<ul class="wf-flex-vertical wf-flex-align-left">
-												<li><?php esc_html_e('General Data Protection Regulation', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_GDPR); ?>" target="_blank" rel="noopener noreferrer" class="wf-inline-help"><i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i></a></li>
+												<li><?php esc_html_e('General Data Protection Regulation', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_GDPR); ?>" target="_blank" rel="noopener noreferrer" class="wf-inline-help"><i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></li>
 												<li class="wf-option-subtitle"><?php esc_html_e('The GDPR is a set of rules that provides more control over EU personal data. Defiant has updated its terms of use, privacy policies, and software, as well as made available a data processing agreement to meet GDPR compliance.', 'wordfence'); ?></li>
 											</ul>
 										</li>
@@ -77,10 +77,10 @@ $support = @json_decode(wfConfig::get('supportContent'), true);
 									<ul class="wf-option wf-option-static">
 										<li class="wf-option-title">
 											<ul class="wf-flex-vertical wf-flex-align-left">
-												<li><?php esc_html_e('Data Processing Agreement', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_GDPR_DPA); ?>" target="_blank" rel="noopener noreferrer" class="wf-inline-help"><i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i></a></li>
+												<li><?php esc_html_e('Data Processing Agreement', 'wordfence'); ?> <a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_GDPR_DPA); ?>" target="_blank" rel="noopener noreferrer" class="wf-inline-help"><i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></li>
 												<li class="wf-option-subtitle"><?php echo wp_kses(sprintf(
 													/* translators: URL to support page. */
-														__('If you qualify as a data controller under the GDPR and need a data processing agreement, it can be <a href="%s" target="_blank" rel="noopener noreferrer">found here</a>.', 'wordfence'), wfSupportController::esc_supportURL(wfSupportController::ITEM_GDPR_DPA)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()))); ?></li>
+														__('If you qualify as a data controller under the GDPR and need a data processing agreement, it can be <a href="%s" target="_blank" rel="noopener noreferrer">found here<span class="screen-reader-text"> (opens in new tab)</span></a>.', 'wordfence'), wfSupportController::esc_supportURL(wfSupportController::ITEM_GDPR_DPA)), array('a'=>array('href'=>array(), 'target'=>array(), 'rel'=>array()), 'span'=>array('class'=>array()))); ?></li>
 											</ul>
 										</li>
 									</ul>
@@ -117,7 +117,7 @@ $support = @json_decode(wfConfig::get('supportContent'), true);
 								if (isset($support['top'])):
 									foreach ($support['top'] as $entry):
 								?>
-									<li><a href="<?php echo esc_url($entry['permalink']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($entry['title']); ?></a></li>
+									<li><a href="<?php echo esc_url($entry['permalink']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($entry['title']); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></li>
 								<?php
 									endforeach;
 								endif;
@@ -135,12 +135,12 @@ $support = @json_decode(wfConfig::get('supportContent'), true);
 					<div class="wf-block wf-active wf-add-bottom">
 						<div class="wf-block-content">
 							<div class="wf-support-block">
-								<h4><a href="<?php echo esc_url($entry['permalink']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($entry['title']); ?></a></h4>
+								<h4><a href="<?php echo esc_url($entry['permalink']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($entry['title']); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></h4>
 								<p><?php echo esc_html($entry['excerpt']); ?></p>
 								<?php if (isset($entry['children'])): ?>
 								<ul>
 								<?php foreach ($entry['children'] as $child): ?>
-									<li><a href="<?php echo esc_url($child['permalink']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($child['title']); ?></a></li>
+									<li><a href="<?php echo esc_url($child['permalink']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($child['title']); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></li>
 								<?php endforeach; ?>
 								</ul>
 								<?php endif; ?>
@@ -161,7 +161,7 @@ $support = @json_decode(wfConfig::get('supportContent'), true);
 							<div class="wf-support-missing-block">
 								<h4><?php esc_html_e('Documentation', 'wordfence'); ?></h4>
 								<p><?php echo wp_kses(__('Documentation about Wordfence may be found on our website by clicking the button below or by clicking the <i class="wf-fa wf-fa-question-circle-o" aria-hidden="true"></i> links on any of the plugin\'s pages.', 'wordfence'), array('i'=>array('class'=>array(), 'aria-hidden'=>array()))); ?></p>
-								<p class="wf-no-bottom"><a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_INDEX); ?>" target="_blank" rel="noopener noreferrer" class="wf-btn wf-btn-default wf-btn-callout-subtle"><?php esc_html_e('View Documentation', 'wordfence'); ?></a></p>
+								<p class="wf-no-bottom"><a href="<?php echo wfSupportController::esc_supportURL(wfSupportController::ITEM_INDEX); ?>" target="_blank" rel="noopener noreferrer" class="wf-btn wf-btn-default wf-btn-callout-subtle"><?php esc_html_e('View Documentation', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 							</div>
 						</div>
 					</div>
@@ -275,7 +275,7 @@ $support = @json_decode(wfConfig::get('supportContent'), true);
 										className: 'wf-modal'
 									});
 									<?php
-									//Congratulations! Wordfence Premium is now active on your website. Please note that some Premium features are not enabled by default. Read this brief article to learn more about <a href="#todo" target="_blank" rel="noopener noreferrer">getting the most out of Wordfence Premium</a>.	
+									//Congratulations! Wordfence Premium is now active on your website. Please note that some Premium features are not enabled by default. Read this brief article to learn more about <a href="#todo" target="_blank" rel="noopener noreferrer">getting the most out of Wordfence Premium</a>.
 									?>
 								}
 								else { //Unlikely to happen but possible

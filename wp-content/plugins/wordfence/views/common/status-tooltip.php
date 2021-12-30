@@ -15,8 +15,8 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 				</div>
 				<div class="wf-flex-row-1">
 					<?php if (empty($statusList)): ?>
-						<p><?php echo wp_kses(__('<strong>Congratulations!</strong> You\'ve optimized configurations for this feature! If you want to learn more about how this score is determined, click the link below.'), array('strong'=>array())); ?></p>
-						<p><a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($helpLink) ?>"><?php esc_html_e('How does Wordfence determine this?', 'wordfence') ?></a></p>
+						<p><?php echo wp_kses(__('<strong>Congratulations!</strong> You\'ve optimized configurations for this feature! If you want to learn more about how this score is determined, click the link below.', 'wordfence'), array('strong'=>array())); ?></p>
+						<p><a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($helpLink) ?>"><?php esc_html_e('How does Wordfence determine this?', 'wordfence') ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 					<?php else: ?>
 						<h4><?php esc_html_e('How do I get to 100%?', 'wordfence') ?></h4>
 						<ul>
@@ -27,7 +27,7 @@ if (!defined('WORDFENCE_VERSION')) { exit; }
 								</li>
 							<?php endforeach ?>
 						</ul>
-						<p><a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($helpLink) ?>"><?php esc_html_e('How does Wordfence determine this?', 'wordfence') ?></a></p>
+						<p><a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($helpLink) ?>"><?php esc_html_e('How does Wordfence determine this?', 'wordfence') ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></p>
 					<?php endif ?>
 				</div>
 			</div>

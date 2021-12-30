@@ -20,38 +20,27 @@ if (!defined('WORDFENCE_LS_VERSION')) { exit; }
 				$options = array();
 				if (is_multisite()) {
 					$options[] = array(
+						'role' => 'super-admin',
 						'name' => 'enabled-roles.super-admin',
-						'enabledValue' => '1',
-						'disabledValue' => '0',
-						'value' => '1',
 						'title' => __('Super Administrator', 'wordfence-2fa'),
-						'editable' => false,
+						'editable' => true,
+						'allow_disabling' => false,
+						'state' => \WordfenceLS\Controller_Settings::shared()->get_required_2fa_role_activation_time('super-admin') !== false ? 'required' : 'optional'
 					);
 				}
 				
 				foreach ($roles->role_objects as $name => $r) {
 					/** @var \WP_Role $r */
 					$options[] = array(
+						'role' => $name,
 						'name' => 'enabled-roles.' . $name,
-						'enabledValue' => '1',
-						'disabledValue' => '0',
-						'value' => $r->has_cap(\WordfenceLS\Controller_Permissions::CAP_ACTIVATE_2FA_SELF) ? '1' : '0',
 						'title' => $roles->role_names[$name],
-						'editable' => (!is_multisite() && $name == 'administrator' ? false : true),
+						'editable' => true,
+						'allow_disabling' => (!is_multisite() && $name == 'administrator' ? false : true),
+						'state' => \WordfenceLS\Controller_Settings::shared()->get_required_2fa_role_activation_time($name) !== false ? 'required' : ($r->has_cap(\WordfenceLS\Controller_Permissions::CAP_ACTIVATE_2FA_SELF) ? 'optional' : 'disabled')
 					);
 				}
-				
-				echo \WordfenceLS\Model_View::create('options/option-toggled-multiple', array(
-					'title' => new \WordfenceLS\Text\Model_HTML('<strong>' . esc_html__('Enable 2FA for these roles', 'wordfence-2fa') . '</strong>'),
-					'options' => $options,
-					'wrap' => true,
-				))->render();
-				?>
-			</li>
-			<li>
-				<?php
-				echo \WordfenceLS\Model_View::create('options/option-require-2fa', array(
-				))->render();
+				echo \WordfenceLS\Model_View::create('options/option-roles', array('options' => $options, 'hasWoocommerce' => $hasWoocommerce))->render();
 				?>
 			</li>
 			<li>
@@ -138,6 +127,24 @@ if (!defined('WORDFENCE_LS_VERSION')) { exit; }
 				?>
 			</li>
 			<?php endif; ?>
+			<li>
+				<?php
+					echo \WordfenceLS\Model_View::create('options/option-ntp', array(
+					))->render();
+				?>
+			</li>
+			<li>
+				<?php
+				echo \WordfenceLS\Model_View::create('options/option-toggled', array(
+					'optionName' => \WordfenceLS\Controller_Settings::OPTION_ENABLE_WOOCOMMERCE_INTEGRATION,
+					'enabledValue' => '1',
+					'disabledValue' => '0',
+					'value' => \WordfenceLS\Controller_Settings::shared()->get_bool(\WordfenceLS\Controller_Settings::OPTION_ENABLE_WOOCOMMERCE_INTEGRATION) ? '1': '0',
+					'title' => new \WordfenceLS\Text\Model_HTML('<strong>' . esc_html__('Enable WooCommerce integration', 'wordfence-2fa') . '</strong>'),
+					'subtitle' => __('When enabled, reCAPTCHA and 2FA prompt support will be added to WooCommerce login and registration forms in addition to the default WordPress forms. Testing WooCommerce forms after enabling this feature is recommended to ensure plugin compatibility.', 'wordfence-2fa'),
+				))->render();
+				?>
+			</li>
 			<li>
 				<?php
 				echo \WordfenceLS\Model_View::create('options/option-toggled', array(

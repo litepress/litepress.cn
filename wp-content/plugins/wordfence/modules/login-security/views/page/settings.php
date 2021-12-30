@@ -15,7 +15,7 @@ if (!defined('WORDFENCE_LS_VERSION')) { exit; }
 	<div id="wfls-options" class="wfls-flex-row wfls-flex-row-equal-heights wfls-flex-item-xs-100">
 		<?php
 		echo \WordfenceLS\Model_View::create('settings/options', array(
-			
+			'hasWoocommerce' => $hasWoocommerce
 		))->render();
 		?>
 	</div>

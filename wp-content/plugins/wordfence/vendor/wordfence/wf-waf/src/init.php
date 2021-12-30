@@ -5,7 +5,7 @@ define('WFWAF_VERSION', '1.0.4');
 define('WFWAF_PATH', dirname(__FILE__) . '/');
 define('WFWAF_LIB_PATH', WFWAF_PATH . 'lib/');
 define('WFWAF_VIEW_PATH', WFWAF_PATH . 'views/');
-define('WFWAF_API_URL_SEC', 'https://noc4.wordfence.com/v1.10/');
+define('WFWAF_API_URL_SEC', 'https://noc4.wordfence.com/v1.11/');
 if (!defined('WFWAF_DEBUG')) {
 	define('WFWAF_DEBUG', false);
 }

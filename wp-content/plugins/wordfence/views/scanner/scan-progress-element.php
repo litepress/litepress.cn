@@ -56,6 +56,6 @@ switch ($status) {
 	</div>
 	<div class="wf-scan-step-title"><?php echo esc_html($title); ?></div>
 	<?php if ($status == wfScanner::STATUS_PREMIUM): ?>
-		<div class="wf-scan-step-subtitle"><a href="https://www.wordfence.com/gnl1scanUpgrade/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade', 'wordfence'); ?></a></div>
+		<div class="wf-scan-step-subtitle"><a href="https://www.wordfence.com/gnl1scanUpgrade/wordfence-signup/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade', 'wordfence'); ?><span class="screen-reader-text"> (<?php esc_html_e('opens in new tab', 'wordfence') ?>)</span></a></div>
 	<?php endif; ?>
 </li>
