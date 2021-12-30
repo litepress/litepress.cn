@@ -5,9 +5,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 define( 'QM_ERROR_FATALS', E_ERROR | E_PARSE | E_COMPILE_ERROR | E_USER_ERROR | E_RECOVERABLE_ERROR );
 
@@ -165,7 +163,9 @@ class QM_Collector_PHP_Errors extends QM_Collector {
 			return false;
 		}
 
-		$trace  = new QM_Backtrace();
+		$trace  = new QM_Backtrace( array(
+			'ignore_current_filter' => false,
+		) );
 		$caller = $trace->get_caller();
 		$key    = md5( $message . $file . $line . $caller['id'] );
 
@@ -180,7 +180,6 @@ class QM_Collector_PHP_Errors extends QM_Collector {
 				'filename' => QM_Util::standard_dir( $file, '' ),
 				'line'     => $line,
 				'trace'    => ( $do_trace ? $trace : null ),
-				'component' => $trace->get_component(),
 				'calls'    => 1,
 			);
 		}
@@ -395,7 +394,7 @@ class QM_Collector_PHP_Errors extends QM_Collector {
 					if ( isset( $this->data[ $error_group ][ $type ] ) ) {
 						foreach ( $this->data[ $error_group ][ $type ] as $error ) {
 							if ( $error['trace'] ) {
-								$component                      = $error['component'];
+								$component                      = $error['trace']->get_component();
 								$components[ $component->name ] = $component->name;
 							}
 						}
@@ -428,7 +427,7 @@ class QM_Collector_PHP_Errors extends QM_Collector {
 						continue;
 					}
 
-					if ( ! $this->is_affected_component( $error['component'], $component_type, $component_context ) ) {
+					if ( ! $this->is_affected_component( $error['trace']->get_component(), $component_type, $component_context ) ) {
 						continue;
 					}
 

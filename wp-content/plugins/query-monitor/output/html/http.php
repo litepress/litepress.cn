@@ -5,9 +5,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 class QM_Output_Html_HTTP extends QM_Output_Html {
 
@@ -154,8 +152,8 @@ class QM_Output_Html_HTTP extends QM_Output_Html {
 					return true;
 				} );
 
-				foreach ( $filtered_trace as $frame ) {
-					$stack[] = self::output_filename( $frame['display'], $frame['calling_file'], $frame['calling_line'] );
+				foreach ( $filtered_trace as $item ) {
+					$stack[] = self::output_filename( $item['display'], $item['calling_file'], $item['calling_line'] );
 				}
 
 				$row_attr['data-qm-component'] = $component->name;

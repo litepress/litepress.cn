@@ -5,9 +5,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 class QM_Output_Html_PHP_Errors extends QM_Output_Html {
 
@@ -79,7 +77,7 @@ class QM_Output_Html_PHP_Errors extends QM_Output_Html {
 					$row_attr['data-qm-key']       = $error_key;
 
 					if ( $error['trace'] ) {
-						$component                     = $error['component'];
+						$component                     = $error['trace']->get_component();
 						$row_attr['data-qm-component'] = $component->name;
 
 						if ( 'core' !== $component->context ) {

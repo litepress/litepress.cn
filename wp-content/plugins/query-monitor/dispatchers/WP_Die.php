@@ -5,9 +5,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 class QM_Dispatcher_WP_Die extends QM_Dispatcher {
 
@@ -26,9 +24,7 @@ class QM_Dispatcher_WP_Die extends QM_Dispatcher {
 
 	public function filter_wp_die_handler( $handler ) {
 		$this->trace = new QM_Backtrace( array(
-			'ignore_hook' => array(
-				current_filter() => true,
-			),
+			'ignore_frames' => 1,
 		) );
 
 		return $handler;
@@ -41,14 +37,24 @@ class QM_Dispatcher_WP_Die extends QM_Dispatcher {
 
 		require_once $this->qm->plugin_path( 'output/Html.php' );
 
-		$switched_locale = self::switch_to_locale( get_user_locale() );
+		$switched_locale = function_exists( 'switch_to_locale' ) && switch_to_locale( get_user_locale() );
 		$stack           = array();
 		$filtered_trace  = $this->trace->get_display_trace();
-		$component       = $this->trace->get_component();
+
+		// Ignore the `apply_filters('wp_die_handler')` stack frame:
+		array_shift( $filtered_trace );
 
 		foreach ( $filtered_trace as $i => $item ) {
 			$stack[] = QM_Output_Html::output_filename( $item['display'], $item['file'], $item['line'] );
 		}
+
+		if ( isset( $filtered_trace[ $i - 1 ] ) ) {
+			$culprit = $filtered_trace[ $i - 1 ];
+		} else {
+			$culprit = $filtered_trace[ $i ];
+		}
+
+		$component = QM_Backtrace::get_frame_component( $culprit );
 
 		printf(
 			// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
@@ -132,7 +138,7 @@ class QM_Dispatcher_WP_Die extends QM_Dispatcher {
 		echo '</div>';
 
 		if ( $switched_locale ) {
-			self::restore_previous_locale();
+			restore_previous_locale();
 		}
 	}
 

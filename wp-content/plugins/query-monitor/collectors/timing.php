@@ -5,9 +5,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 class QM_Collector_Timing extends QM_Collector {
 
@@ -34,8 +32,7 @@ class QM_Collector_Timing extends QM_Collector {
 			$this->data['warning'][] = array(
 				'function' => $function,
 				'message'  => __( 'Timer not started', 'query-monitor' ),
-				'filtered_trace' => $trace->get_filtered_trace(),
-				'component' => $trace->get_component(),
+				'trace'    => $trace,
 			);
 			return;
 		}
@@ -49,8 +46,7 @@ class QM_Collector_Timing extends QM_Collector {
 			$this->data['warning'][] = array(
 				'function' => $function,
 				'message'  => __( 'Timer not started', 'query-monitor' ),
-				'filtered_trace' => $trace->get_filtered_trace(),
-				'component' => $trace->get_component(),
+				'trace'    => $trace,
 			);
 			return;
 		}
@@ -70,8 +66,7 @@ class QM_Collector_Timing extends QM_Collector {
 			'function_time'   => $function_time,
 			'function_memory' => $function_memory,
 			'laps'            => $function_laps,
-			'filtered_trace'  => $trace->get_filtered_trace(),
-			'component'       => $trace->get_component(),
+			'trace'           => $trace,
 			'start_time'      => ( $start_time - $GLOBALS['timestart'] ),
 			'end_time'        => ( $end_time - $GLOBALS['timestart'] ),
 		);
@@ -84,8 +79,7 @@ class QM_Collector_Timing extends QM_Collector {
 				$this->data['warning'][] = array(
 					'function' => $function,
 					'message'  => __( 'Timer not stopped', 'query-monitor' ),
-					'filtered_trace' => $trace->get_filtered_trace(),
-					'component' => $trace->get_component(),
+					'trace'    => $trace,
 				);
 			}
 		}

@@ -5,9 +5,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 if ( ! defined( 'SAVEQUERIES' ) ) {
 	define( 'SAVEQUERIES', true );

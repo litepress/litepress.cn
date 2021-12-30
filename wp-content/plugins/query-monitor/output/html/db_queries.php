@@ -5,9 +5,7 @@
  * @package query-monitor
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 class QM_Output_Html_DB_Queries extends QM_Output_Html {
 
@@ -323,9 +321,10 @@ class QM_Output_Html_DB_Queries extends QM_Output_Html {
 			$caller_name    = self::output_filename( $row['caller'], $caller['calling_file'], $caller['calling_line'] );
 			$stack          = array();
 			$filtered_trace = $row['trace']->get_display_trace();
+			array_shift( $filtered_trace );
 
-			foreach ( $filtered_trace as $frame ) {
-				$stack[] = self::output_filename( $frame['display'], $frame['calling_file'], $frame['calling_line'] );
+			foreach ( $filtered_trace as $item ) {
+				$stack[] = self::output_filename( $item['display'], $item['calling_file'], $item['calling_line'] );
 			}
 		} else {
 
@@ -337,8 +336,9 @@ class QM_Output_Html_DB_Queries extends QM_Output_Html {
 
 			$stack       = explode( ', ', $row['stack'] );
 			$stack       = array_reverse( $stack );
-			$stack       = array_map( function( $frame ) {
-				return '<code>' . esc_html( $frame ) . '</code>';
+			array_shift( $stack );
+			$stack       = array_map( function( $item ) {
+				return '<code>' . esc_html( $item ) . '</code>';
 			}, $stack );
 
 		}
@@ -463,7 +463,7 @@ class QM_Output_Html_DB_Queries extends QM_Output_Html {
 	}
 
 	public function admin_title( array $existing ) {
-		$title = array();
+
 		$data = $this->collector->get_data();
 
 		if ( isset( $data['dbs'] ) ) {
