@@ -155,6 +155,9 @@ class Jwt_Auth_Public
 
         /** The token is signed, now create the object with no sensible user data to the client*/
         $data = array(
+            'data' => array(
+                'status' => 200,
+            ),
             'token' => $token,
             'user_email' => $user->data->user_email,
             'user_nicename' => $user->data->user_nicename,
