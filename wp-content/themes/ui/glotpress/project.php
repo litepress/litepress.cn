@@ -380,10 +380,35 @@ gp_tmpl_header();
                                         ) ) ?>
                                         <?php if ( empty( $project_permissions ) ): ?>
                                             <div class="pb-2">还没有人负担此项目的管理哦</div>
-                                            <a href="/translate" target="_blank" class="btn btn-outline-primary lp-approve d-block" role="button">
+                                            <a href="/translate" target="_blank" class="btn btn-outline-primary lp-approve d-block" role="button" data-bs-toggle="modal" data-bs-target="#lp-approveModal">
                                                 <i class=" fad fa-users-medical"></i>
                                                 <span>申请</span>
                                             </a>
+                                            <!-- 模态 -->
+                                            <div class="modal" id="lp-approveModal">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+
+                                                        <!-- 模态标题 -->
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">提示</h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+
+                                                        <!-- 模态主体 -->
+                                                        <div class="modal-body">
+                                                            请确保你已经为该项目贡献过 50 条左右的翻译，否则申请不会被批准。
+                                                        </div>
+
+                                                        <!-- 模态页脚 -->
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">申请</button>
+                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">取消</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         <?php else: ?>
                                             <?php foreach ( $project_permissions as $project_permission ): ?>
                                                 <?php $user = get_user_by( 'ID', $project_permission->user_id ); ?>
