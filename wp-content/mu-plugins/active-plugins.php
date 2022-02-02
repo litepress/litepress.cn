@@ -1,42 +1,20 @@
 <?php
 /**
- * 细化控制每个页面加载的插件
+ * 细化控制每个站点加载的网络插件
  *
  * @author 孙锡源 <sxy@ibadboy.net>
  * @version 1.0.0
  */
 
-if ( isset( $_GET['is-wc-api'] ) ) {
-	add_filter( 'allow_active_plugins', function ( $allows, $plugins ) {
 
-		return array(
-			'woocommerce',
-			'wcy-woo-data-entry',
-			'external-media-without-import',
-			'woocommerce-product-vendors',
-		);
-	}, 10, 2 );
+// 因为 EP 需要在网络状态下启用 Woo 插件才能正常执行索引，但启用后所有站点都将加载 Woo 代码，无疑会增加系统负担，所以这里只为应用市场启用
+add_filter( 'site_option_active_sitewide_plugins', function ( $value ) {
+	global $blog_id;
 
-	add_filter('woocommerce_rest_check_permissions', function ($permission, $context, $object_id, $post_type) {
-		return true;
-	}, 10, 4);
-}
+	/*if ( 3 !== (int) $blog_id && 1 !== (int) $blog_id ) {
+		unset( $value['woocommerce/woocommerce.php'] );
+	}*/
 
-add_filter( 'option_active_plugins', function ( $plugins ) {
-	$new_plugins = array();
-	$allows = apply_filters( 'allow_active_plugins', array(), $plugins );
 
-	if ( empty( $allows ) ) {
-		$new_plugins = $plugins;
-	} else {
-		foreach ( $plugins as $plugin ) {
-			$plugin_dir = explode( '/', $plugin )[0];
-			if ( in_array( $plugin_dir, $allows ) ) {
-				$new_plugins[] = $plugin;
-			}
-		}
-	}
-
-	return $new_plugins;
+	return $value;
 } );
-

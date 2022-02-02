@@ -21,6 +21,6 @@
 </header>
 <section class="breadcrumb">
     <div class="container">
-        <?php yoast_breadcrumb('<p id="breadcrumbs">','</p>'); ?>
+        <?php //yoast_breadcrumb('<p id="breadcrumbs">','</p>'); ?>
     </div>
 </section>

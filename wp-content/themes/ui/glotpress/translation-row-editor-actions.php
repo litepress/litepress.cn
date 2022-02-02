@@ -7,7 +7,7 @@
  */
 
 ?>
-<div class="actions">
+<div class="actions text-end mt-0 mt-lg-n3 me-lg-3">
 	<?php if ( $can_edit ) : ?>
 		<button class="ok btn btn-primary" data-nonce="<?php echo esc_attr( wp_create_nonce( 'add-translation_' . $translation->original_id ) ); ?>">
 			<?php echo $can_approve_translation ? __( 'Add translation &rarr;', 'glotpress' ) : __( 'Suggest new translation &rarr;', 'glotpress' ); ?>

@@ -72,6 +72,12 @@ class Notifications_Shortcode {
 	 */
 	function wp_title( $title, $sep=null ) {
 		global $post;
+
+		// 修复 Core 属性为 Null 时抛出警告的问题
+		if ( empty( UM()->permalinks()->core ) ) {
+			UM()->permalinks()->core = array( 'notifications' => 0 );
+		}
+
 		if ( isset( $post->ID ) && $post->ID == UM()->permalinks()->core['notifications'] ) {
 			$unread = UM()->Notifications_API()->api()->get_notifications( 0, 'unread', true );
 			if ( $unread ){

@@ -272,7 +272,10 @@ class ProductsByTagBlock extends Component {
 						controls={ [
 							{
 								icon: 'edit',
-								title: __( 'Edit' ),
+								title: __(
+									'Edit selected tags',
+									'woocommerce'
+								),
 								onClick: () =>
 									isEditing
 										? this.stopEditing()

@@ -76,19 +76,19 @@ final class BlockTypesController {
 	 */
 	public function add_data_attributes( $content, $block ) {
 		$block_name      = $block['blockName'];
-		$block_namespace = strtok( $block_name, '/' );
+		$block_namespace = strtok( $block_name ?? '', '/' );
 
 		/**
-		 * WooCommerce Blocks Namespaces
+		 * Filters the list of allowed block namespaces.
 		 *
-		 * This hook defines which block namespaces should have block name and attribute data- attributes appended on render.
+		 * This hook defines which block namespaces should have block name and attribute `data-` attributes appended on render.
 		 *
 		 * @param array $allowed_namespaces List of namespaces.
 		 */
 		$allowed_namespaces = array_merge( [ 'woocommerce', 'woocommerce-checkout' ], (array) apply_filters( '__experimental_woocommerce_blocks_add_data_attributes_to_namespace', [] ) );
 
 		/**
-		 * WooCommerce Blocks Block Names
+		 * Filters the list of allowed Block Names
 		 *
 		 * This hook defines which block names should have block name and attribute data- attributes appended on render.
 		 *
@@ -101,11 +101,15 @@ final class BlockTypesController {
 		}
 
 		$attributes              = (array) $block['attrs'];
+		$exclude_attributes      = [ 'className', 'align' ];
 		$escaped_data_attributes = [
 			'data-block-name="' . esc_attr( $block['blockName'] ) . '"',
 		];
 
 		foreach ( $attributes as $key => $value ) {
+			if ( in_array( $key, $exclude_attributes, true ) ) {
+				continue;
+			}
 			if ( is_bool( $value ) ) {
 				$value = $value ? 'true' : 'false';
 			}
@@ -170,6 +174,7 @@ final class BlockTypesController {
 			'AttributeFilter',
 			'StockFilter',
 			'ActiveFilters',
+			'LegacyTemplate',
 		];
 
 		if ( Package::feature()->is_feature_plugin_build() ) {
@@ -179,8 +184,8 @@ final class BlockTypesController {
 
 		if ( Package::feature()->is_experimental_build() ) {
 			$block_types[] = 'SingleProduct';
-			$block_types[] = 'CheckoutI2';
 			$block_types[] = 'MiniCart';
+			$block_types[] = 'MiniCartContents';
 		}
 
 		/**

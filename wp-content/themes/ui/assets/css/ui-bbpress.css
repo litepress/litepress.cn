@@ -4,10 +4,7 @@
     margin-bottom: 20px;
     color: #262626;
 }
-.heti{
-    color: #262626;
-    font-size: 14px;
-}
+
 .bbp-topic-author .bbp-author-role {
     font-style: normal !important;
     color: #0274be !important;
@@ -120,7 +117,7 @@
     right: 0;
     margin: auto;
 }
-.forum_menu li a:hover:after,.forum_menu li.current-menu-item a:after {
+.forum_menu li a:hover:after,.forum_menu li.current-menu-item a:after{
     width: 60%;
     opacity: 1;
 }
@@ -277,7 +274,7 @@ li.bbp-topic-title .bbp-author-avatar img {
     color: var(--wp-theme-color);
 }
 
-#bbpress-forums .bbp-pagination-links a, #bbpress-forums .bbp-pagination-links span.current {
+#bbpress-forums .bbp-pagination-links a, #bbpress-forums .bbp-pagination-links span.current ,.page-numbers.dots{
     display: block;
     float: left;
     font-size: 12px;

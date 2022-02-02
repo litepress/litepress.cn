@@ -1,0 +1,1036 @@
+# Translation of YITH Framework in Greek
+# This file is distributed under the same license as the YITH Framework package.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH Framework\n"
+"Report-Msgid-Bugs-To: YITH <plugins@yithemes.com>\n"
+"POT-Creation-Date: 2021-12-13 14:46:02+00:00\n"
+"PO-Revision-Date: 2021-02-11 18:07:46+0000\n"
+"Language: el_GR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+
+#: includes/class-yit-assets.php:146 yit-functions.php:1979
+msgid "Confirm trash"
+msgstr ""
+
+#: includes/class-yit-assets.php:147
+msgid "Are you sure you want to trash the selected items?"
+msgstr ""
+
+#: includes/class-yit-assets.php:149 includes/class-yit-assets.php:153
+#: templates/sysinfo/tabs/main.php:42 templates/sysinfo/tabs/main.php:50
+#: yit-functions.php:1981 yit-functions.php:1999
+msgid "No"
+msgstr "Όχι"
+
+#: includes/class-yit-assets.php:150 yit-functions.php:1997
+#: yit-functions.php:2125
+msgid "Confirm delete"
+msgstr ""
+
+#: includes/class-yit-assets.php:151
+msgid "Are you sure you want to delete the selected items?"
+msgstr ""
+
+#: includes/class-yit-assets.php:151 yit-functions.php:1913
+#: yit-functions.php:2073
+msgid ""
+"This action cannot be undone and you will not be able to recover this data."
+msgstr ""
+
+#: includes/class-yit-assets.php:164
+msgid "Clear"
+msgstr "Καθαρισμός"
+
+#: includes/class-yit-assets.php:165
+msgid "Clear color"
+msgstr "Καθαρισμός χρώματος"
+
+#: includes/class-yit-assets.php:166
+msgid "Default"
+msgstr "Προεπιλεγμένο"
+
+#: includes/class-yit-assets.php:167
+msgid "Select default color"
+msgstr "Επιλογή προεπιλεγμένου χρώματος"
+
+#: includes/class-yit-assets.php:168
+msgid "Select Color"
+msgstr "Επιλογή Χρώματος"
+
+#: includes/class-yit-assets.php:169
+msgid "Color value"
+msgstr "Αξία χρώματος"
+
+#: includes/class-yit-help-desk.php:152
+msgid "There was an error with your request; please try again later."
+msgstr ""
+
+#: includes/class-yit-plugin-panel-woocommerce.php:430
+msgid "The changes you have made will be lost if you leave this page."
+msgstr ""
+"Οι αλλαγές που έχετε δημιουργήσει θα χαθούν αν αφήσετε αυτήν την σελίδα."
+
+#: includes/class-yit-plugin-panel.php:83
+msgid "Plugin Settings"
+msgstr "Ρυθμίσεις Προσθέτου"
+
+#: includes/class-yit-plugin-panel.php:84
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: includes/class-yit-plugin-panel.php:455
+#: includes/class-yit-plugin-panel.php:458
+msgid "How to install premium version"
+msgstr "Πώς να εγκαταστήσετε την προηγμένη έκδοση"
+
+#: includes/class-yit-plugin-panel.php:659
+#: includes/class-yit-plugin-subpanel.php:132
+msgid "Save Changes"
+msgstr "Αποθήκευση Αλλαγών"
+
+#: includes/class-yit-plugin-panel.php:664
+#: includes/class-yit-plugin-subpanel.php:136
+#: templates/panel/woocommerce/woocommerce-form.php:14
+msgid ""
+"If you continue with this action, you will reset all options in this page."
+msgstr ""
+"Αν συνεχίσετε με αυτή την ενέργεια θα επαναφέρετε όλες τις επιλογές στη "
+"σελίδα."
+
+#: includes/class-yit-plugin-panel.php:664
+#: includes/class-yit-plugin-subpanel.php:136
+#: templates/panel/woocommerce/woocommerce-form.php:14
+msgid "Are you sure?"
+msgstr "Είστε σίγουρος;"
+
+#: includes/class-yit-plugin-panel.php:668
+#: includes/class-yit-plugin-subpanel.php:139
+msgid "Reset to default"
+msgstr "Επαναφορά σε προεπιλεγμένο"
+
+#: includes/class-yit-plugin-panel.php:1047
+msgid ""
+"The element you have entered already exists. Please, enter another name."
+msgstr "Το στοιχείο που εισάγατε υπάρχει ήδη. Παρακαλώ, εισάγετε άλλο όνομα."
+
+#: includes/class-yit-plugin-panel.php:1048
+msgid "Settings saved"
+msgstr "Ρυθμίσεις αποθηκεύτηκαν"
+
+#: includes/class-yit-plugin-panel.php:1049
+msgid "Settings reset"
+msgstr "Επαναφορά ρυθμίσεων"
+
+#: includes/class-yit-plugin-panel.php:1050
+msgid "Element deleted correctly."
+msgstr "Το στοιχείο διαγράφηκε επιτυχώς."
+
+#: includes/class-yit-plugin-panel.php:1051
+#: includes/class-yit-plugin-panel.php:1052
+msgid "Element updated correctly."
+msgstr "Το στοιχείο αναβαθμίστηκε επιτυχώς."
+
+#: includes/class-yit-plugin-panel.php:1053
+msgid "Database imported correctly."
+msgstr "Επιτυχής εισαγωγή βάσης δεδομένων."
+
+#: includes/class-yit-plugin-panel.php:1054
+msgid "An error has occurred during import. Please try again."
+msgstr "Παρουσιάστηκε σφάλμα κατά την εισαγωγή. Παρακαλώ προσπαθήστε ξανά."
+
+#: includes/class-yit-plugin-panel.php:1055
+msgid "The added file is not valid."
+msgstr "Το προστιθέμενο αρχείο δεν είναι έγκυρο."
+
+#: includes/class-yit-plugin-panel.php:1056
+msgid "Sorry, import is disabled."
+msgstr "Συγνώμη, η εισαγωγή είναι απενεργοποιημένη."
+
+#: includes/class-yit-plugin-panel.php:1057
+msgid "Sorting successful."
+msgstr "Διαλογή επιτυχής."
+
+#: includes/class-yit-plugin-panel.php:1525
+msgid "We need your support"
+msgstr "Χρειαζόμαστε την υποστήριξή σας"
+
+#: includes/class-yit-plugin-panel.php:1526
+msgid "to keep updating and improving the plugin. Please,"
+msgstr ""
+"για να διατηρήσετε την ενημέρωση και τη βελτίωση του πρόσθετου. Παρακαλώ,"
+
+#: includes/class-yit-plugin-panel.php:1528
+msgid "help us by leaving a good review"
+msgstr ""
+
+#: includes/class-yit-plugin-panel.php:1529
+msgid ":) Thanks!"
+msgstr ":) Ευχαριστώ!"
+
+#: includes/class-yit-pointers.php:80
+msgid "Plugins Activated"
+msgstr "Ενεργοποιημένα Πρόσθετα"
+
+#: includes/class-yit-pointers.php:81
+msgid ""
+"From now on, you can find all plugin options in YITH menu. Plugin "
+"customization settings will be available as a new entry in YITH menu."
+msgstr ""
+
+#. translators: 1. YITH site link; 2. WordPress site link.
+#: includes/class-yit-pointers.php:84 includes/class-yit-pointers.php:100
+msgid "Discover all our plugins available on: %1$s and %2$s"
+msgstr "Ανακαλύψτε όλα τα διαθέσιμά μας πρόσθετα στο: %1$s και %2$s"
+
+#: includes/class-yit-pointers.php:96
+msgid "Plugins Upgraded"
+msgstr "Αναβαθμισμένα Πρόσθετα"
+
+#: includes/class-yit-pointers.php:97
+msgid ""
+"From now on, you can find the option panel of YITH plugins in YITH menu. "
+"Every time one of our plugins is added, a new entry will be added to this "
+"menu. For example, after the update, plugin options (such as for YITH "
+"WooCommerce Wishlist, YITH WooCommerce Ajax Search, etc.) will be moved from "
+"previous location to YITH menu."
+msgstr ""
+
+#: includes/class-yith-dashboard.php:35
+msgid "YITH Latest Updates"
+msgstr "Τελευταίες Αναβαθμίσεις YITH"
+
+#: includes/class-yith-dashboard.php:36
+msgid "Latest news from YITH Blog"
+msgstr "Τελευταία νέα από YITH Blog"
+
+#: includes/class-yith-dashboard.php:56
+msgid "RSS Error:"
+msgstr "Σφάλμα RSS:"
+
+#: includes/class-yith-dashboard.php:63
+msgid ""
+"An error has occurred, which probably means the feed is down. Try again "
+"later."
+msgstr ""
+"Παρουσιάστηκε σφάλμα, που πιθανότατα σημαίνει ότι έπεσε το τροφοδοτικό. "
+"Προσπαθήστε ξανά αργότερα."
+
+#. translators: %s is the name of the post type (example Back to "Membership
+#. Plans").
+#: includes/class-yith-post-type-admin.php:286
+msgid "Back to \"%s\""
+msgstr ""
+
+#: includes/class-yith-post-type-admin.php:286
+msgid "Back to the list"
+msgstr ""
+
+#: includes/class-yith-system-status.php:110
+msgid "WordPress Version"
+msgstr "Έκδοση WordPress"
+
+#: includes/class-yith-system-status.php:111
+msgid "WooCommerce Version"
+msgstr "Έκδοση WooCommerce"
+
+#: includes/class-yith-system-status.php:112
+msgid "Available Memory"
+msgstr "Διαθέσιμη Μνήμη"
+
+#: includes/class-yith-system-status.php:113
+msgid "PHP Version"
+msgstr "Έκδοση PHP"
+
+#: includes/class-yith-system-status.php:114
+msgid "TLS Version"
+msgstr "Έκδοση TLS"
+
+#: includes/class-yith-system-status.php:115
+msgid "WordPress Cron"
+msgstr "WordPress Cron"
+
+#: includes/class-yith-system-status.php:116
+msgid "SimpleXML"
+msgstr "SimpleXML"
+
+#: includes/class-yith-system-status.php:117
+msgid "MultiByte String"
+msgstr "MultiByte String"
+
+#: includes/class-yith-system-status.php:118
+msgid "ImageMagick Version"
+msgstr "Έκδοση ImageMagick"
+
+#: includes/class-yith-system-status.php:119
+msgid "GD Library"
+msgstr "Βιβλιοθήκη GD"
+
+#: includes/class-yith-system-status.php:120
+msgid "Iconv Module"
+msgstr "Άρθρωμα Iconv"
+
+#: includes/class-yith-system-status.php:121
+msgid "OPCache Save Comments"
+msgstr "OPCache Save Comments"
+
+#: includes/class-yith-system-status.php:122
+msgid "URL FOpen"
+msgstr "URL FOpen"
+
+#: includes/class-yith-system-status.php:140
+#: includes/class-yith-system-status.php:141
+#: templates/sysinfo/system-information-panel.php:11
+msgid "System Status"
+msgstr "Κατάσταση Συστήματος"
+
+#: includes/class-yith-system-status.php:183
+msgid "YITH Plugins"
+msgstr "Πρόσθετα YITH"
+
+#: includes/class-yith-system-status.php:191
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: includes/class-yith-system-status.php:342
+msgid "Warning!"
+msgstr "Προσοχή!"
+
+#. translators: %1$s open link tag, %2$s open link tag
+#: includes/class-yith-system-status.php:346
+msgid ""
+"The system check has detected some compatibility issues on your installation."
+"%1$sClick here%2$s to know more"
+msgstr ""
+"Ο έλεγχος συστήματος έχει εντοπίσει κάποια προβλήματα συμβατότητας στην "
+"εγκατάστασή σας.%1$sΚάντε κλικ εδώ%2$s για να μάθετε περισσότερα"
+
+#: includes/class-yith-system-status.php:488
+msgid "Enabled"
+msgstr "Ενεργοποιημένο"
+
+#: includes/class-yith-system-status.php:488
+msgid "Disabled"
+msgstr "Απενεργοποιημένο"
+
+#: includes/class-yith-system-status.php:493
+msgid "N/A"
+msgstr "N/A"
+
+#. translators: %1$s plugin name, %2$s requirement name
+#: includes/class-yith-system-status.php:520
+msgid "%1$s needs %2$s enabled"
+msgstr "%1$s χρειάζεται %2$s ενεργοποιημένο"
+
+#. translators: %1$s plugin name, %2$s required memory amount
+#: includes/class-yith-system-status.php:523
+msgid "%1$s needs at least %2$s of available memory"
+msgstr "%1$s χρειάζεται τουλάχιστον %2$s διαθέσιμης μνήμης"
+
+#. translators: %1$s plugin name, %2$s version number
+#: includes/class-yith-system-status.php:526
+msgid "%1$s needs at least %2$s version"
+msgstr "%1$s χρειάζεται τουλάχιστον %2$s έκδοση"
+
+#: includes/class-yith-system-status.php:550
+msgid ""
+"Update it to the latest version in order to benefit of all new features and "
+"security updates."
+msgstr ""
+"Κάντε αναβάθμιση της τελευταίας έκδοσης για να επωφεληθείτε από τα νέα "
+"χαρακτηριστικά και τις αναβαθμίσεις προστασίας."
+
+#: includes/class-yith-system-status.php:554
+#: includes/class-yith-system-status.php:560
+msgid "Contact your hosting company in order to update it."
+msgstr "Επικοινωνήστε με την εταιρεία hosting σας για να αναβαθμίσετε."
+
+#: includes/class-yith-system-status.php:558
+msgid "Contact your hosting company in order to install it."
+msgstr "Επικοινωνήστε με την εταιρεία hosting σας για να το ενεργοποιήσετε."
+
+#. translators: %1$s code, %2$s file name
+#: includes/class-yith-system-status.php:565
+msgid "Remove %1$s from %2$s file"
+msgstr "Αφαίρεση %1$s από αρχείο %2$s"
+
+#: includes/class-yith-system-status.php:573
+msgid "Contact your hosting company in order to enable it."
+msgstr "Επικοινωνήστε με την εταιρεία hosting σας για να ενεργοποιήσετε."
+
+#. translators: %1$s opening link tag, %2$s closing link tag
+#: includes/class-yith-system-status.php:577
+#: includes/class-yith-system-status.php:600
+msgid ""
+"Read more %1$shere%2$s or contact your hosting company in order to increase "
+"it."
+msgstr ""
+"Μάθετε περισσότερα %1$sεδώ%2$s ή επικοινωνήστε με την εταιρεία hosting σας "
+"για να το βελτιώσετε."
+
+#. translators: %s recommended memory amount
+#: includes/class-yith-system-status.php:597
+msgid ""
+"For optimal functioning of our plugins, we suggest setting at least %s of "
+"available memory"
+msgstr ""
+"Για την βέλτιστη λειτουργικότητα των προσθέτων μας, προτείνουμε να ορίσετε "
+"τουλάχιστον %s διαθέσιμης μνήμης"
+
+#. translators: %1$s TLS label, %2$s cURL label
+#: includes/class-yith-system-status.php:605
+msgid ""
+"The system check cannot determine which %1$s version is installed because "
+"%2$s module is disabled. Ask your hosting company to enable it."
+msgstr ""
+"Το σύστημα δεν μπορεί να καθορίσει ποια %1$s έκδοση έχει εγκατασταθεί γιατί "
+"το %2$s άρθρωμα είναι απενεργοποιημένο. Ζητήστε από την εταιρεία hosting σας "
+"να το ενεργοποιήσει."
+
+#. translators: %1$s TLS label
+#: includes/class-yith-system-status.php:608
+msgid ""
+"The system check cannot determine which %1$s version is installed due to a "
+"connection issue between your site and our server."
+msgstr ""
+"Ο έλεγχος συστήματος δεν μπορεί να διευκρινήσει ποια έκδοση %1$s έχει "
+"εγκατασταθεί λόγω προβλήματος σύνδεσης ανάμεσα στον ιστότοπο σας και τον "
+"διακομιστή μας."
+
+#: templates/fields/ajax-customers.php:41
+msgid "Search Customers"
+msgstr "Αναζήτηση Πελατών"
+
+#. translators: 1. user display name; 2. user ID; 3. user email.
+#: templates/fields/ajax-customers.php:68
+#: templates/fields/ajax-customers.php:79
+msgid "%1$s (#%2$s &ndash; %3$s)"
+msgstr "%1$s (#%2$s &ndash; %3$s)"
+
+#: templates/fields/ajax-posts.php:41
+msgid "Search Posts"
+msgstr "Αναζήτηση Άρθρου"
+
+#: templates/fields/ajax-products.php:14
+msgid "Search Product"
+msgstr "Αναζήτηση Προϊόντος"
+
+#: templates/fields/ajax-terms.php:41
+msgid "Search Categories"
+msgstr "Αναζήτηση Κατηγοριών"
+
+#: templates/fields/customtabs.php:17
+msgid "Close all"
+msgstr "Απενεργοποίηση όλων"
+
+#: templates/fields/customtabs.php:17
+msgid "Expand all"
+msgstr "Ανάπτυξη όλων"
+
+#: templates/fields/customtabs.php:25 templates/fields/customtabs.php:68
+msgid "Remove"
+msgstr "Αφαίρεση"
+
+#: templates/fields/customtabs.php:34 templates/fields/customtabs.php:76
+msgid "Name"
+msgstr "Όνομα"
+
+#: templates/fields/customtabs.php:40 templates/fields/customtabs.php:81
+msgid "Value"
+msgstr "Τιμή"
+
+#: templates/fields/customtabs.php:41 templates/fields/customtabs.php:82
+msgid "Content of the tab. (HTML is supported)"
+msgstr "Περιεχόμενο καρτέλας. (Υποστηρίζεται HTML)"
+
+#: templates/fields/customtabs.php:52
+msgid "Add custom product tab"
+msgstr "Προσθέστε καρτέλα προσαρμοσμένου προϊόντος"
+
+#: templates/fields/customtabs.php:93
+msgid "Do you want to remove the custom tab?"
+msgstr "Θέλετε να αφαιρέσετε την προσαρμοσμένη καρτέλα;"
+
+#: templates/fields/date-format.php:65
+msgid "Custom:"
+msgstr "Προσαρμογή:"
+
+#: templates/fields/date-format.php:70
+msgid "Preview:"
+msgstr "Προεπισκόπηση:"
+
+#: templates/fields/icons.php:78
+msgid "Set Default"
+msgstr "Ορίστε Προεπιλεγμένο"
+
+#: templates/fields/image-gallery.php:29 templates/fields/image-gallery.php:40
+msgid "Delete image"
+msgstr "Διαγραφή εικόνας"
+
+#: templates/fields/image-gallery.php:37
+msgid "Add Images to Gallery"
+msgstr "Προσθέστε Εικόνες στη Συλλογή"
+
+#: templates/fields/image-gallery.php:38
+msgid "Add to gallery"
+msgstr "Προσθέστε στη συλλογή"
+
+#: templates/fields/image-gallery.php:39
+msgid "Add images"
+msgstr "Προσθέστε εικόνες"
+
+#: templates/fields/image-gallery.php:41
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: templates/fields/select-buttons.php:19
+msgid "Add All"
+msgstr "Προσθήκη Όλων"
+
+#: templates/fields/select-buttons.php:20
+msgid "Remove All"
+msgstr "Αφαίρεση Όλων"
+
+#: templates/fields/sidebars.php:20
+msgid "Left sidebar"
+msgstr "Αριστερή πλευρική στήλη"
+
+#: templates/fields/sidebars.php:23
+msgid "Right sidebar"
+msgstr "Δεξιά πλευρική στήλη"
+
+#: templates/fields/sidebars.php:26 templates/fields/sidebars.php:29
+msgid "No sidebar"
+msgstr "Χωρίς πλευρική στήλη"
+
+#: templates/fields/sidebars.php:39
+msgid "Left Sidebar"
+msgstr "Αριστερή Πλευρική Στήλη"
+
+#: templates/fields/sidebars.php:41 templates/fields/sidebars.php:56
+msgid "Choose a sidebar"
+msgstr "Επιλέξτε πλευρική στήλη"
+
+#: templates/fields/sidebars.php:54
+msgid "Right Sidebar"
+msgstr "Δεξιά Πλευρική Στήλη"
+
+#: templates/fields/upload.php:34
+#: templates/panel/woocommerce/woocommerce-upload.php:37
+msgid "Upload"
+msgstr "Ανέβασμα"
+
+#: templates/fields/upload.php:39
+msgid "Reset"
+msgstr "Επαναφορά"
+
+#: templates/panel/woocommerce/woocommerce-form.php:28
+#: templates/panel/woocommerce/woocommerce-form.php:32
+msgid "Save Options"
+msgstr ""
+
+#: templates/panel/woocommerce/woocommerce-form.php:32
+msgid "Options Saved"
+msgstr ""
+
+#: templates/panel/woocommerce/woocommerce-form.php:38
+msgid "Reset Defaults"
+msgstr "Επαναφορά Προεπιλεγμένων"
+
+#: templates/sysinfo/system-information-panel.php:12
+msgid "PHPInfo"
+msgstr "PHPInfo"
+
+#: templates/sysinfo/system-information-panel.php:13
+#: templates/sysinfo/tabs/error-log.php:25
+msgid "Log Files"
+msgstr "Αρχεία Καταγραφής"
+
+#: templates/sysinfo/system-information-panel.php:22
+msgid "YITH System Information"
+msgstr "Σύστημα Πληροφοριών YITH"
+
+#: templates/sysinfo/tabs/error-log.php:13
+msgid "WP debug.log file"
+msgstr "Αρχείο WP debug.log"
+
+#: templates/sysinfo/tabs/error-log.php:18
+msgid "PHP error_log file"
+msgstr "Αρχείο PHP error_log"
+
+#: templates/sysinfo/tabs/error-log.php:60
+msgid "Download"
+msgstr "Κατέβασμα"
+
+#: templates/sysinfo/tabs/error-log.php:72
+msgid "The file size exceeds 8 megabytes so it must be downloaded"
+msgstr ""
+"Το μέγεθος αρχείου υπερβαίνει τα 8 megabytes οπότε θα πρέπει να το κατεβάσετε"
+
+#. translators: %s file name.
+#: templates/sysinfo/tabs/error-log.php:96
+msgid ""
+"No Log file available. Enable the WordPress debug by adding this in the %s "
+"file of your installation"
+msgstr ""
+"Δεν υπάρχει διαθέσιμο αρχείο Καταγραφής. Ενεργοποιήστε την αποσφαλμάτωση "
+"WordPress προσθέτοντάς το στο αρχείο %s της εγκατάστασής σας"
+
+#: templates/sysinfo/tabs/error-log.php:105
+msgid "Copied!"
+msgstr "Έγινε αντιγραφή!"
+
+#: templates/sysinfo/tabs/error-log.php:105
+msgid "Copy Code"
+msgstr "Αντιγραφή Κώδικα"
+
+#: templates/sysinfo/tabs/main.php:17
+msgid "Site Info"
+msgstr "Στοιχεία Ιστότοπου"
+
+#: templates/sysinfo/tabs/main.php:22
+msgid "Site URL"
+msgstr "URL Ιστοσελίδας"
+
+#: templates/sysinfo/tabs/main.php:31
+msgid "Output IP Address"
+msgstr "Διεύθυνση IP Παραγωγής"
+
+#: templates/sysinfo/tabs/main.php:39
+msgid "Defined WP_CACHE"
+msgstr "Καθορισμένο WP_CACHE"
+
+#: templates/sysinfo/tabs/main.php:42 templates/sysinfo/tabs/main.php:50
+msgid "Yes"
+msgstr "Ναι"
+
+#: templates/sysinfo/tabs/main.php:47
+msgid "External object cache"
+msgstr "Cache εξωτερικού αντικειμένου"
+
+#: templates/sysinfo/tabs/main.php:55
+msgid "YITH Plugin Framework Version"
+msgstr ""
+
+#. translators: %s is the name of the plugin that is loading the framework.
+#: templates/sysinfo/tabs/main.php:64
+msgid "loaded by %s"
+msgstr ""
+
+#: templates/sysinfo/tabs/main.php:73
+msgid "Plugins Requirements"
+msgstr "Προϋποθέσεις Πρόσθετων"
+
+#: templates/sysinfo/tabs/main.php:108
+msgid "Database Info"
+msgstr ""
+
+#: templates/sysinfo/tabs/main.php:113
+msgid "MySQL version"
+msgstr ""
+
+#. Translators: %s: Codex link.
+#: templates/sysinfo/tabs/main.php:123
+msgid "WordPress recommends a minimum MySQL version of 5.6. See: %s"
+msgstr ""
+
+#: templates/sysinfo/tabs/main.php:123
+msgid "WordPress requirements"
+msgstr ""
+
+#: templates/sysinfo/tabs/main.php:130
+msgid "Total Database Size"
+msgstr ""
+
+#: templates/sysinfo/tabs/main.php:138
+msgid "Database Data Size"
+msgstr ""
+
+#: templates/sysinfo/tabs/main.php:146
+msgid "Database Index Size"
+msgstr ""
+
+#: templates/sysinfo/tabs/main.php:154
+msgid "Database Free Size"
+msgstr ""
+
+#. Translators: %1$f: Table size, %2$f: Index size, %3$f: Free size, %4$s
+#. Engine.
+#: templates/sysinfo/tabs/main.php:168
+msgid "Data: %1$.2fMB | Index: %2$.2fMB | Free: %3$.2fMB | Engine: %4$s"
+msgstr ""
+
+#. translators: %s is the title of the post object.
+#: yit-functions.php:1911
+msgid "Are you sure you want to move \"%s\" to trash?"
+msgstr ""
+
+#. translators: %s is the title of the post object.
+#: yit-functions.php:1913 yit-functions.php:2073
+msgid "Are you sure you want to delete \"%s\"?"
+msgstr ""
+
+#: yit-functions.php:2011 yit-functions.php:2019 yit-functions.php:2136
+msgid "Further actions"
+msgstr ""
+
+#: yit-plugin.php:205
+msgid "License"
+msgstr "Άδεια χρήσης προϊόντος"
+
+#. Author of the plugin/theme
+msgid "YITH"
+msgstr "YITH"
+
+#. translators: %s it the Elementor Widget title.
+#: includes/builders/elementor/class-yith-elementor-widget.php:252
+msgctxt "Elementor Widget - section title"
+msgid "%s - Options"
+msgstr ""
+
+#: includes/builders/gutenberg/class-yith-gutenberg.php:149
+msgctxt "[gutenberg]: Category Name"
+msgid "YITH"
+msgstr "YITH"
+
+#: includes/class-yit-assets.php:134
+msgctxt "Button text"
+msgid "Confirm"
+msgstr ""
+
+#: includes/class-yit-assets.php:135
+msgctxt "Button text"
+msgid "Cancel"
+msgstr ""
+
+#: includes/class-yit-assets.php:148 yit-functions.php:1982
+msgctxt "Trash confirmation action"
+msgid "Yes, move to trash"
+msgstr ""
+
+#: includes/class-yit-assets.php:152 yit-functions.php:2000
+#: yit-functions.php:2127
+msgctxt "Delete confirmation action"
+msgid "Yes, delete"
+msgstr ""
+
+#: includes/class-yit-plugin-panel.php:492
+msgctxt "Help tab name"
+msgid "Help"
+msgstr ""
+
+#. translators: 1. Plugin name.
+#: includes/class-yit-plugin-panel.php:805
+msgctxt "Help tab default title"
+msgid "Thank you for purchasing %s!"
+msgstr ""
+
+#: includes/class-yit-plugin-panel.php:806
+msgctxt "Help tab default description"
+msgid ""
+"We want to help you to enjoy a wonderful experience with all our products."
+msgstr ""
+
+#: includes/class-yit-plugin-panel.php:853
+msgctxt "Premium tab name"
+msgid "Get premium"
+msgstr ""
+
+#: includes/class-yith-dashboard.php:96
+msgctxt "Plugin FW"
+msgid "View Changelog"
+msgstr "Προβολή Αρχείου Καταγραφής"
+
+#: includes/class-yith-dashboard.php:97
+msgctxt "Plugin FW"
+msgid "Latest update released on"
+msgstr "Τελευταία αναβάθμιση κυκλοφόρησε στις"
+
+#: includes/class-yith-dashboard.php:137
+msgctxt "Button label"
+msgid "Close"
+msgstr "Απενεργοποίηση"
+
+#: includes/privacy/class-yith-privacy.php:61
+msgctxt "Privacy Policy Guide Title"
+msgid "YITH Plugins"
+msgstr "Πρόσθετα YITH"
+
+#: includes/privacy/class-yith-privacy.php:93
+msgctxt "Privacy Policy Content"
+msgid ""
+"This sample language includes the basics around what personal data your "
+"store may be collecting, storing and sharing, as well as who may have access "
+"to that data. Depending on what settings are enabled and which additional "
+"plugins are used, the specific information shared by your store will vary. "
+"We recommend consulting with a lawyer when deciding what information to "
+"disclose on your privacy policy."
+msgstr ""
+"Αυτό το δείγμα γλώσσας περιλαμβάνει τα βασικά στοιχεία γύρω από το τι "
+"προσωπικά δεδομένα το κατάστημά σας μπορεί να συλλέγει, την αποθήκευση και "
+"την κοινή χρήση, καθώς και ποιοι μπορεί να έχουν πρόσβαση σε αυτά τα "
+"δεδομένα. Ανάλογα με τις ρυθμίσεις που είναι ενεργοποιημένες και ποια "
+"επιπλέον πρόσθετα χρησιμοποιούνται, οι συγκεκριμένες πληροφορίες που "
+"κοινοποιούνται από το κατάστημά σας θα ποικίλλουν. Συνιστούμε τη διαβούλευση "
+"με έναν δικηγόρο, όταν αποφασίζετε ποιες πληροφορίες να αποκαλύπτετε στην "
+"πολιτική απορρήτου σας."
+
+#: includes/privacy/class-yith-privacy.php:97
+msgctxt "Privacy Policy Content"
+msgid "What we collect and store"
+msgstr "Τι συλλέγουμε και αποθηκεύουμε"
+
+#: includes/privacy/class-yith-privacy.php:100
+msgctxt "Privacy Policy Content"
+msgid "Who on our team has access"
+msgstr "Ποιος στην ομάδα μας έχει πρόσβαση"
+
+#: includes/privacy/class-yith-privacy.php:103
+msgctxt "Privacy Policy Content"
+msgid "What we share with others"
+msgstr "Τι μοιραζόμαστε με τους άλλους"
+
+#: includes/privacy/class-yith-privacy.php:106
+msgctxt "Privacy Policy Content"
+msgid "Payments"
+msgstr "Πληρωμές"
+
+#: templates/fields/copy-to-clipboard.php:41
+msgctxt "Copy-to-clipboard message"
+msgid "Copied!"
+msgstr ""
+
+#: templates/fields/copy-to-clipboard.php:45
+msgctxt "Copy-to-clipboard button text"
+msgid "Copy"
+msgstr ""
+
+#: templates/fields/dimensions.php:13
+msgctxt "Position in the \"Dimensions\" field"
+msgid "Top"
+msgstr "Κορυφή"
+
+#: templates/fields/dimensions.php:14
+msgctxt "Position in the \"Dimensions\" field"
+msgid "Right"
+msgstr "Δεξιά"
+
+#: templates/fields/dimensions.php:15
+msgctxt "Position in the \"Dimensions\" field"
+msgid "Bottom"
+msgstr "Κάτω"
+
+#: templates/fields/dimensions.php:16
+msgctxt "Position in the \"Dimensions\" field"
+msgid "Left"
+msgstr "Αριστερά"
+
+#: templates/fields/dimensions.php:94
+msgctxt "Tooltip in the \"Dimensions\" field"
+msgid "Link values together"
+msgstr "Συνδέστε αξίες"
+
+#: templates/fields/image-dimensions.php:18
+msgctxt "Image width field label"
+msgid "Width"
+msgstr ""
+
+#: templates/fields/image-dimensions.php:23
+msgctxt "Image height field label"
+msgid "Height"
+msgstr ""
+
+#: templates/fields/onoff.php:28
+msgctxt "YES/NO button: use MAX 4 characters!"
+msgid "YES"
+msgstr "ΝΑΙ"
+
+#: templates/fields/onoff.php:29
+msgctxt "YES/NO button: use MAX 4 characters!"
+msgid "NO"
+msgstr "ΟΧΙ"
+
+#. translators: 1. Url to EN playlist.
+#: templates/panel/help-tab.php:87
+msgctxt "Help tab view all video link"
+msgid ""
+"Check the full <a href=\"%s\" target=\"_blank\">Playlist on Youtube</a> to "
+"learn more >"
+msgstr ""
+
+#: templates/panel/help-tab.php:94
+msgctxt "Help tab Watch Videotutorials link"
+msgid "Videos are also available in:"
+msgstr ""
+
+#: templates/panel/help-tab.php:137
+msgctxt "Help tab Watch Videotutorials link"
+msgid "Watch our videotutorials"
+msgstr ""
+
+#: templates/panel/help-tab.php:140
+msgctxt "Help tab Watch Videotutorials link"
+msgid "We show you some use cases"
+msgstr ""
+
+#: templates/panel/help-tab.php:124
+msgctxt "Help tab Read Documentation link"
+msgid "Read the documentation"
+msgstr ""
+
+#: templates/panel/help-tab.php:127
+msgctxt "Help tab Read Documentation link"
+msgid "to learn from basics how it works"
+msgstr ""
+
+#: templates/panel/help-tab.php:150
+msgctxt "Help tab view FAQs link"
+msgid "Check the FAQs"
+msgstr ""
+
+#: templates/panel/help-tab.php:153
+msgctxt "Help tab view FAQs link"
+msgid "to find answers to your doubts"
+msgstr ""
+
+#: templates/panel/help-tab.php:169
+msgctxt "Help tab FAQ title"
+msgid "Last FAQs in our Help Center"
+msgstr ""
+
+#: templates/panel/help-tab.php:183
+msgctxt "Help tab FAQ link"
+msgid "View all FAQs >"
+msgstr ""
+
+#: templates/panel/help-tab.php:192
+msgctxt "Help tab submit ticket title"
+msgid "Need help?"
+msgstr ""
+
+#: templates/panel/help-tab.php:195
+msgctxt "Help tab submit ticket description"
+msgid ""
+"If you are experiencing some technical issue ask help to our developers. "
+"Submit a ticket in our support desk and we will help you as soon as possible."
+msgstr ""
+
+#: templates/panel/help-tab.php:203
+msgctxt "Help tab submit ticket button"
+msgid "Submit a ticket"
+msgstr ""
+
+#: templates/panel/premium-tab.php:30
+msgctxt "Premium Tab"
+msgid "Get the premium version to unlock advanced features"
+msgstr ""
+
+#: templates/panel/premium-tab.php:34
+msgctxt "Premium Tab"
+msgid "Get premium"
+msgstr ""
+
+#: templates/panel/premium-tab.php:39
+msgctxt "Premium Tab"
+msgid "Plugin premium features images"
+msgstr ""
+
+#. translators: alt attribute of main image tag.
+#: templates/panel/premium-tab.php:51
+msgctxt "Premium Tab"
+msgid "And so much more!"
+msgstr ""
+
+#: templates/panel/premium-tab.php:53
+msgctxt "Premium Tab"
+msgid "Check the free vs premium features >"
+msgstr ""
+
+#: templates/panel/premium-tab.php:58
+msgctxt "Premium Tab"
+msgid "Get the premium version"
+msgstr ""
+
+#: yit-functions.php:1925
+msgctxt "Post action"
+msgid "Preview"
+msgstr ""
+
+#: yit-functions.php:1934
+msgctxt "Post action"
+msgid "View"
+msgstr ""
+
+#: yit-functions.php:1945
+msgctxt "Post action"
+msgid "Edit"
+msgstr ""
+
+#: yit-functions.php:1953
+msgctxt "Post action"
+msgid "Duplicate"
+msgstr ""
+
+#: yit-functions.php:1965
+msgctxt "Post action"
+msgid "Restore"
+msgstr ""
+
+#: yit-functions.php:1973
+msgctxt "Post action"
+msgid "Trash"
+msgstr ""
+
+#: yit-functions.php:1990
+msgctxt "Post action"
+msgid "Delete Permanently"
+msgstr ""
+
+#: yit-functions.php:2087
+msgctxt "Term action"
+msgid "View"
+msgstr ""
+
+#: yit-functions.php:2097
+msgctxt "Term action"
+msgid "Edit"
+msgstr ""
+
+#: yit-functions.php:2105
+msgctxt "Term action"
+msgid "Duplicate"
+msgstr ""
+
+#: yit-functions.php:2118
+msgctxt "Term action"
+msgid "Delete"
+msgstr ""
+
+#: yit-plugin.php:84
+msgctxt "Plugin Row Meta"
+msgid "Live Demo"
+msgstr "Live Demo"
+
+#: yit-plugin.php:88
+msgctxt "Plugin Row Meta"
+msgid "Documentation"
+msgstr "Εγχειρίδιο χρήσης"
+
+#: yit-plugin.php:92
+msgctxt "Plugin Row Meta"
+msgid "Support"
+msgstr "Υποστήριξη"
+
+#: yit-plugin.php:96
+msgctxt "Plugin Row Meta"
+msgid "Premium version"
+msgstr "Premium έκδοση"
+
+#: yit-plugin.php:201
+msgctxt "Action links"
+msgid "Settings"
+msgstr "Ρυθμίσεις"

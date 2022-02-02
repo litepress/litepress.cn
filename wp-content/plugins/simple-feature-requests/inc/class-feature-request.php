@@ -288,6 +288,31 @@ class JCK_SFR_Feature_Request
     }
     
     /**
+     * Set attachments.
+     *
+     * @param array|bool $taxonomies
+     * @param bool       $append
+     */
+    public function set_attachments( $attachment_ids )
+    {
+        if ( empty($attachment_ids) ) {
+            return;
+        }
+        $attachments = array_filter( array_map( 'intval', $attachment_ids ) );
+        // ensure attachment ids
+        foreach ( $attachments as $attachment_id ) {
+            // attach post as attachment parent
+            wp_update_post( array(
+                'ID'          => $attachment_id,
+                'post_parent' => $this->post->ID,
+            ) );
+            update_post_meta( $attachment_id, '_via', 'jck_sfr' );
+            // needed for cron job to clean unused items
+        }
+        update_post_meta( $this->post->ID, '_attachments', $attachments );
+    }
+    
+    /**
      * Has user voted?
      *
      * @param null|int $user_id User ID to check.

@@ -47,6 +47,8 @@
 			jck_sfr.setup_toggle_buttons();
 			jck_sfr.setup_toggle_user_type();
 			jck_sfr.setup_submission_form();
+			jck_sfr.setup_image_uploader();
+			jck_sfr.setup_image_gallery();
 		},
 
 		/**
@@ -418,8 +420,159 @@
 					jck_sfr.els.submission_form.clear.show();
 				}
 			}
+		},
+
+		/**
+		 * Image upload handler
+		 */
+		setup_image_uploader: function(){
+			if ( typeof Dropzone !== 'undefined' ) {
+				var uploader = $('#jck-sfr-image-uploader');
+
+				if( !uploader.length ){
+					return;
+				}
+
+				var submit_btn = jck_sfr.els.submission_form.form.find('.jck-sfr-form__button');
+
+				uploader.dropzone({
+					url: jck_sfr_vars.ajax_url,
+					params: {
+						action: 'jck_sfr_set_feature_request_attachments',
+						nonce: jck_sfr_vars.attachment_nonce
+					},
+					init: function(){
+
+						jck_sfr.check_for_already_submitted_attachments( uploader, this );
+
+						this.on('successmultiple', function(data, response){
+							if( response.success && response.data.attachment_ids ){
+
+								uploader.find('[name="attachment_ids[]"]').remove();
+
+								$.each( response.data.attachment_ids, function( i, id ){
+									uploader.append( '<input type="hidden" name="attachment_ids[]" value="'+id+'" />' );
+								});
+							}
+						});
+
+						this.on('processingmultiple', function(){
+							submit_btn.prop('disabled', true);
+						});
+
+						this.on('successmultiple', function(){
+							submit_btn.removeAttr('disabled');
+							submit_btn.trigger('click');
+						});
+
+						this.on('removedfile', function(file){
+							if( ! file.attachment_id ){
+								return;
+							}
+
+							$('[name="attachment_ids[]"][value="'+file.attachment_id+'"]').remove();
+						});
+					},
+					acceptedFiles: 'image/*',
+					uploadMultiple: true,
+					paramName: 'attachments',
+					autoProcessQueue: false,
+					addRemoveLinks: true,
+					hiddenInputContainer: uploader[0],
+					maxFiles: 5,
+					maxFilesize: jck_sfr_vars['attachments_max_filesize'],
+					parallelUploads: 5
+				});
+
+				var dropzone = Dropzone.forElement( uploader.get(0) );
+
+				jck_sfr.els.submission_form.form.on('submit', function(e){
+
+					if( !dropzone.getQueuedFiles().length ){
+						return;
+					}
+
+					e.preventDefault();
+					dropzone.processQueue();
+				});
+			}
+		},
+
+		/**
+		 * Initiate already added attachments
+		 *
+		 * @param {jQuery} el jquery element of attachments container
+		 * @param {Dropzone} dropzone Dropzone instance
+		 */
+		check_for_already_submitted_attachments: function( el, dropzone ){
+			if ( typeof Dropzone !== 'undefined' ) {
+				var attachment_ids = el.find( '[name="attachment_ids[]"]' );
+
+				if( ! attachment_ids.length ){
+					return;
+				}
+
+				var values = attachment_ids.toArray().map( function( input ){ return $( input ).val(); });
+
+				$.get({
+					url: jck_sfr_vars.ajax_url,
+					data: {
+						action: 'jck_sfr_get_feature_request_attachments',
+						nonce: jck_sfr_vars.attachment_nonce,
+						attachment_ids: values
+					},
+					success: function(response){
+						if( response.success && response.data.attachments ){
+							$.each( response.data.attachments, function( i, attachment ){
+
+								var mockFile = { name: attachment.name, size: attachment.size, attachment_id: i };
+
+								dropzone.emit("addedfile", mockFile);
+								dropzone.options.thumbnail.call(dropzone, mockFile, attachment.url);
+								dropzone.emit("complete", mockFile);
+							});
+						}
+					}
+				});
+			}
+		},
+
+		/**
+		 * Image gallery on frontend
+		 */
+		setup_image_gallery: function(){
+
+			var wrapper 	= $('.jck-sfr-attachments');
+
+			if( ! wrapper.length ){
+				return;
+			}
+
+			wrapper.on('click', '.jck-sfr-attachment', function(){
+
+				var attachments = $(this).parent().find('.jck-sfr-attachment');
+				var images 		= [];
+
+				attachments.each(function(){
+
+					var img = $(this).find('img');
+					if( img ){
+						images.push({
+							src: img.data('src'),
+							w: img.data('width'),
+							h: img.data('height'),
+						});
+					}
+				});
+
+				var gallery = new PhotoSwipe( $('.pswp').get(0), PhotoSwipeUI_Default, images, {index: 0});
+				gallery.init();
+			});
 		}
 	};
 
+	if( ( typeof Dropzone !== 'undefined' && Dropzone !== null ) && jck_sfr_vars.allow_attachments ) {
+    	Dropzone.autoDiscover = false;
+	}
 	$( document ).ready( jck_sfr.on_ready );
 }( jQuery, document ));

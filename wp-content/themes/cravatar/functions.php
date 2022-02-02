@@ -8,29 +8,6 @@ define( 'CA_ROOT_URL', get_stylesheet_directory_uri() );
 
 const CA_LOG_NAME = 'Cravatar';
 
-ini_set( 'display_errors', 1 );
-
-/*
- * $upyun = new Upyun();
-$r = $upyun->get( 'flow/common_data', array(
-	'start_time'  => '2021-7-1 10:0:0',
-	'end_time'    => '2021-7-2 10:0:0',
-	'query_type'  => 'domain',
-	'query_value' => 'd.w.org.ibadboy.net',
-	'flow_type'   => 'cdn',
-	'flow_source' => 'cdn',
-) );
-*/
-/*
-$upyun = new Upyun();
-$r = $upyun->post( 'buckets/purge/batch', array(
-	'noif'  => 1,
-	'source_url'    => 'https://download.wp-china-yes.net/image/*',
-) );
-var_dump($r);
-exit;
-*/
-
 /**
  * 替换终极会员插件的gravatar头像地址
  *
@@ -66,7 +43,25 @@ add_action( 'um_after_upload_db_meta_profile_photo', function ( $user_id ) {
 add_action( 'lpcn_sensitive_content_recognition', 'LitePress\Cravatar\Inc\sensitive_content_recognition', 10, 3 );
 
 
-require CA_ROOT_PATH . '/inc/class-upyun.php';
+/**
+ * 设置标题
+ */
+add_filter( 'wp_title', function ( $title, $sep, $seplocation ) {
+	$uri = $_SERVER['REQUEST_URI'];
+	list( $uri ) = explode( '?', $uri );
+	list( $uri ) = explode( '#', $uri );
+
+	$site_title = get_bloginfo( 'name' );
+
+	if ( '/' === $uri ) {
+		$title = 'Cravatar &#8211; 互联网公共头像服务';
+	} else {
+		$title .= $site_title;
+	}
+
+	return $title;
+}, 9999, 3 );
+
 
 require CA_ROOT_PATH . '/inc/class-q-cloud.php';
 

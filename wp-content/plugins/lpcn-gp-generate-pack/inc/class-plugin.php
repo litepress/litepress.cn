@@ -9,6 +9,7 @@ class Plugin {
 	const ALLOWED_TYPE = array(
 		'plugin' => 1,
 		'theme'  => 2,
+		'core'   => 3,
 		'other'  => 5,
 	);
 
@@ -41,6 +42,10 @@ class Plugin {
 	 * Initializes the plugin.
 	 */
 	public function plugins_loaded() {
+		if ( class_exists( 'WP_CLI' ) ) {
+			require __DIR__ . '/cli.php';
+		}
+
 		add_action( 'lpcn_generate_all_language_pack', array( $this, 'generate_all_language_pack' ) );
 
 		$timestamp = wp_next_scheduled( 'lpcn_generate_all_language_pack' );

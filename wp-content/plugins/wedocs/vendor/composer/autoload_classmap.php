@@ -10,6 +10,7 @@ return array(
     'Appsero\\Insights' => $vendorDir . '/appsero/client/src/Insights.php',
     'Appsero\\License' => $vendorDir . '/appsero/client/src/License.php',
     'Appsero\\Updater' => $vendorDir . '/appsero/client/src/Updater.php',
+    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'WeDevs\\WeDocs\\API' => $baseDir . '/includes/API.php',
     'WeDevs\\WeDocs\\API\\API' => $baseDir . '/includes/API/API.php',
     'WeDevs\\WeDocs\\Admin' => $baseDir . '/includes/Admin.php',

@@ -41,7 +41,7 @@ class JCK_SFR_Template_Methods
                 'filter' => 'my-requests',
             ), $archive_url ),
                 'class' => array(),
-                'label' => __( 'My Requests', 'simple-feature-requests' ),
+                'label' => __( 'My ' . apply_filters( 'jck_sfr_plural_request_name', 'Requests', true ), 'simple-feature-requests' ),
             );
         }
         $status_excludes = ( is_user_logged_in() ? array() : array( 'pending' ) );
@@ -154,21 +154,38 @@ class JCK_SFR_Template_Methods
         
         if ( $feature_request->is_single() ) {
             ?>
-			<h1 class="jck-sfr-loop-item__title"><?php 
+			<<?php 
+            echo  JCK_SFR_Post_Types::get_single_title_tag() ;
+            ?> class="jck-sfr-loop-item__title"><?php 
             echo  $feature_request->post->post_title ;
-            ?></h1>
+            ?></<?php 
+            echo  JCK_SFR_Post_Types::get_single_title_tag() ;
+            ?>>
 			<?php 
+            if ( JCK_SFR_Post_types::hide_entry_title() ) {
+                ?>
+				<style>
+				.entry-header {
+					display: none;
+				}
+				</style>
+				<?php 
+            }
             return;
         }
         
         ?>
-		<h2 class="jck-sfr-loop-item__title">
+		<<?php 
+        echo  JCK_SFR_Post_Types::get_archive_title_tag() ;
+        ?> class="jck-sfr-loop-item__title">
 			<a href="<?php 
         echo  get_the_permalink( $feature_request->post->ID ) ;
         ?>"><?php 
         echo  $feature_request->post->post_title ;
         ?></a>
-		</h2>
+		</<?php 
+        echo  JCK_SFR_Post_Types::get_archive_title_tag() ;
+        ?>>
 		<?php 
     }
     
@@ -374,16 +391,31 @@ class JCK_SFR_Template_Methods
      */
     public static function back_to_archive_link()
     {
+        $boards = get_the_terms( $feature_request->post, 'request_board' );
         $href = apply_filters( 'jck_sfr_archive_link', JCK_SFR_Post_Types::get_archive_url() );
-        ?>
-		<a href="<?php 
-        echo  esc_attr( $href ) ;
-        ?>" class="jck-sfr-back-to-archive-link">
+        
+        if ( $boards ) {
+            ?>
+				<a href="<?php 
+            echo  esc_attr( $href ) . '?board=' . $boards[0]->slug ;
+            ?>" class="jck-sfr-back-to-archive-link">
+					<?php 
+            _e( '&larr; Back to Board', 'simple-feature-requests' );
+            ?>
+				</a>
 			<?php 
-        _e( '&larr; All Feature Requests', 'simple-feature-requests' );
-        ?>
+        } else {
+            ?>
+		<a href="<?php 
+            echo  esc_attr( $href ) ;
+            ?>" class="jck-sfr-back-to-archive-link">
+			<?php 
+            _e( '&larr; All ' . apply_filters( 'jck_sfr_plural_request_name', 'Feature Requests', true ), 'simple-feature-requests' );
+            ?>
 		</a>
 		<?php 
+        }
+    
     }
 
 }

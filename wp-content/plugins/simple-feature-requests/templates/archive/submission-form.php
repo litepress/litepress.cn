@@ -23,9 +23,9 @@ $submission  = isset( $submission ) ? $submission : true;
 	<input style="display:none" type="password" name="jck-sfr-ignore-autocomplete-password" />
 
 	<label for="jck-sfr-input-title" class="jck-sfr-form__row">
-		<strong><?php _e( 'Your Request', 'simple-feature-requests' ); ?></strong>
+		<strong><?php _e( 'Your ' . apply_filters('jck_sfr_single_request_name', 'Request', true), 'simple-feature-requests'); ?></strong>
 		<div class="jck-sfr-search-field">
-			<input id="jck-sfr-input-title" name="jck-sfr-submission-title" class="jck-sfr-form__field jck-sfr-form__field--input jck-sfr-form__title" type="text" placeholder="<?php esc_attr_e( 'Enter your request...', 'simple-feature-requests' ); ?>" value="<?php echo esc_attr( $title ); ?>" autocomplete="jck-sfr-ac-off">
+			<input id="jck-sfr-input-title" name="jck-sfr-submission-title" class="jck-sfr-form__field jck-sfr-form__field--input jck-sfr-form__title" type="text" placeholder="<?php esc_attr_e( 'Enter your ' . apply_filters('jck_sfr_single_request_name', 'request', false) . '...', 'simple-feature-requests' ); ?>" value="<?php echo esc_attr( $title ); ?>" autocomplete="jck-sfr-ac-off">
 			<i class="jck-sfr-search-field__icon jck-sfr-search-field__icon--loader"></i>
 			<i class="jck-sfr-search-field__icon jck-sfr-search-field__icon--clear jck-sfr-js-clear-search-field" <?php if ( $search ) {
 				echo 'style="display: block;"';
@@ -57,9 +57,9 @@ $submission  = isset( $submission ) ? $submission : true;
 		<div class="jck-sfr-form__choices" <?php if ( ! $search || $jck_sfr_requests->found_posts <= 0 ) {
 			echo 'style="display: none;"';
 		} ?>>
-			<span class="jck-sfr-form__choices-vote"><?php printf( __( 'Vote for an existing request (%s)', 'simple-feature-requests' ), sprintf( '<span class="jck-sfr-form__choices-count">%s</span>', $jck_sfr_requests->found_posts ) ); ?></span>
+			<span class="jck-sfr-form__choices-vote"><?php printf( __( 'Vote for an existing ' . apply_filters('jck_sfr_single_request_name', 'request', false) . ' (%s)', 'simple-feature-requests' ), sprintf( '<span class="jck-sfr-form__choices-count">%s</span>', $jck_sfr_requests->found_posts ) ); ?></span>
 			<span class="jck-sfr-form__choices-or">or</span>
-			<a href="#" class="jck-sfr-form__choices-post"><?php _e( 'Post a new request', 'simple-feature-requests' ); ?></a>
+			<a href="#" class="jck-sfr-form__choices-post"><?php _e( 'Post a new ' . apply_filters('jck_sfr_single_request_name', 'request', false), 'simple-feature-requests' ); ?></a>
 		</div>
 	<?php } ?>
 </form>

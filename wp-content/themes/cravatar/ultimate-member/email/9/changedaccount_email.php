@@ -4,7 +4,7 @@
 </div>
 <div style="padding: 0 30px 30px 30px; border-bottom: 3px solid #eeeeee;">
 <div style="padding: 30px 0; font-size: 24px; text-align: center; line-height: 40px;">
-<p><span><span class="goog-text-highlight">您最近更新了您的 {site_name} 帐户。</span></span></p>
+<p><span class="goog-text-highlight">您最近更新了您的 {site_name} 帐户。</span></p>
 </div>
 <div style="padding: 10px 0 50px 0; text-align: center;"><a style="background: #555555; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 3px; letter-spacing: 0.3px;" href="{user_account_link}">转到您的帐户</a></div>
 <div style="padding: 15px; background: #eee; border-radius: 3px; text-align: center;">如果您没有进行此更改并认为您的 {site_name} 帐户已被盗用，请通过以下电子邮件地址与我们联系： <a style="color: #3ba1da; text-decoration: none;" href="mailto:{admin_email}">{admin_email}</a> 。</div>

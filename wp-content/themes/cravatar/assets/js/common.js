@@ -287,6 +287,10 @@ $(function () {
         }
     })
 
+    const endVal = $("#counter").attr("data-to");
+    const c = new countUp.CountUp("counter", endVal)
+    c.start()
+
 
 
 });

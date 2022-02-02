@@ -7,7 +7,7 @@ namespace Automattic\WooCommerce\Admin\Features\PaymentGatewaySuggestions;
 
 defined( 'ABSPATH' ) || exit;
 
-use Automattic\WooCommerce\Admin\Features\OnboardingTasks;
+use Automattic\WooCommerce\Admin\Features\OnboardingTasks\Init as OnboardingTasks;
 
 /**
  * Default Payment Gateways
@@ -43,7 +43,51 @@ class DefaultPaymentGateways {
 				'image'                   => WC()->plugin_url() . '/assets/images/stripe.png',
 				'plugins'                 => array( 'woocommerce-gateway-stripe' ),
 				'is_visible'              => array(
-					self::get_rules_for_countries( OnboardingTasks::get_stripe_supported_countries() ),
+					// https://stripe.com/global.
+					self::get_rules_for_countries(
+						array(
+							'AU',
+							'AT',
+							'BE',
+							'BG',
+							'BR',
+							'CA',
+							'CY',
+							'CZ',
+							'DK',
+							'EE',
+							'FI',
+							'FR',
+							'DE',
+							'GR',
+							'HK',
+							'IN',
+							'IE',
+							'IT',
+							'JP',
+							'LV',
+							'LT',
+							'LU',
+							'MY',
+							'MT',
+							'MX',
+							'NL',
+							'NZ',
+							'NO',
+							'PL',
+							'PT',
+							'RO',
+							'SG',
+							'SK',
+							'SI',
+							'ES',
+							'SE',
+							'CH',
+							'GB',
+							'US',
+							'PR',
+						)
+					),
 					self::get_rules_for_cbd( false ),
 				),
 				'recommendation_priority' => 3,
@@ -173,10 +217,104 @@ class DefaultPaymentGateways {
 				),
 				'image'                   => plugins_url( 'images/onboarding/wcpay.svg', WC_ADMIN_PLUGIN_FILE ),
 				'plugins'                 => array( 'woocommerce-payments' ),
-				'description'             => 'Try the new way to get paid. Securely accept credit and debit cards on your site. Manage transactions without leaving your WordPress dashboard. Only with WooCommerce Payments.',
+				'description'             => 'With WooCommerce Payments, you can securely accept major cards, Apple Pay, and payments in over 100 currencies. Track cash flow and manage recurring revenue directly from your store’s dashboard - with no setup costs or monthly fees.',
 				'is_visible'              => array(
 					self::get_rules_for_cbd( false ),
 					self::get_rules_for_countries( self::get_wcpay_countries() ),
+					(object) array(
+						'type'     => 'plugin_version',
+						'plugin'   => 'woocommerce',
+						'version'  => '5.10.0-dev',
+						'operator' => '<',
+					),
+					(object) array(
+						'type'     => 'or',
+						'operands' => (object) array(
+							(object) array(
+								'type'    => 'not',
+								'operand' => [
+									(object) array(
+										'type'    => 'plugins_activated',
+										'plugins' => [ 'woocommerce-admin' ],
+									),
+								],
+							),
+							(object) array(
+								'type'     => 'plugin_version',
+								'plugin'   => 'woocommerce-admin',
+								'version'  => '2.9.0-dev',
+								'operator' => '<',
+							),
+						),
+					),
+				),
+				'recommendation_priority' => 1,
+			),
+			array(
+				'id'                      => 'woocommerce_payments:non-us',
+				'title'                   => __( 'WooCommerce Payments', 'woocommerce' ),
+				'content'                 => __(
+					'Manage transactions without leaving your WordPress Dashboard. Only with WooCommerce Payments.',
+					'woocommerce'
+				),
+				'image'                   => plugins_url( 'images/onboarding/wcpay.svg', WC_ADMIN_PLUGIN_FILE ),
+				'plugins'                 => array( 'woocommerce-payments' ),
+				'description'             => 'With WooCommerce Payments, you can securely accept major cards, Apple Pay, and payments in over 100 currencies. Track cash flow and manage recurring revenue directly from your store’s dashboard - with no setup costs or monthly fees.',
+				'is_visible'              => array(
+					self::get_rules_for_cbd( false ),
+					self::get_rules_for_countries( array_diff( self::get_wcpay_countries(), array( 'US' ) ) ),
+					(object) array(
+						'type'     => 'or',
+						// Older versions of WooCommerce Admin require the ID to be `woocommerce-payments` to show the suggestion card.
+						'operands' => (object) array(
+							(object) array(
+								'type'     => 'plugin_version',
+								'plugin'   => 'woocommerce-admin',
+								'version'  => '2.9.0-dev',
+								'operator' => '>=',
+							),
+							(object) array(
+								'type'     => 'plugin_version',
+								'plugin'   => 'woocommerce',
+								'version'  => '5.10.0-dev',
+								'operator' => '>=',
+							),
+						),
+					),
+				),
+				'recommendation_priority' => 1,
+			),
+			array(
+				'id'                      => 'woocommerce_payments:us',
+				'title'                   => __( 'WooCommerce Payments', 'woocommerce' ),
+				'content'                 => __(
+					'Manage transactions without leaving your WordPress Dashboard. Only with WooCommerce Payments.',
+					'woocommerce'
+				),
+				'image'                   => plugins_url( 'images/onboarding/wcpay.svg', WC_ADMIN_PLUGIN_FILE ),
+				'plugins'                 => array( 'woocommerce-payments' ),
+				'description'             => 'With WooCommerce Payments, you can securely accept major cards, Apple Pay, and payments in over 100 currencies – with no setup costs or monthly fees – and you can now accept in-person payments with the Woo mobile app.',
+				'is_visible'              => array(
+					self::get_rules_for_cbd( false ),
+					self::get_rules_for_countries( array( 'US' ) ),
+					(object) array(
+						'type'     => 'or',
+						// Older versions of WooCommerce Admin require the ID to be `woocommerce-payments` to show the suggestion card.
+						'operands' => (object) array(
+							(object) array(
+								'type'     => 'plugin_version',
+								'plugin'   => 'woocommerce-admin',
+								'version'  => '2.9.0-dev',
+								'operator' => '>=',
+							),
+							(object) array(
+								'type'     => 'plugin_version',
+								'plugin'   => 'woocommerce',
+								'version'  => '5.10.0-dev',
+								'operator' => '>=',
+							),
+						),
+					),
 				),
 				'recommendation_priority' => 1,
 			),
@@ -212,8 +350,8 @@ class DefaultPaymentGateways {
 			),
 			array(
 				'id'         => 'eway',
-				'title'      => __( 'eWAY', 'woocommerce' ),
-				'content'    => __( 'The eWAY extension for WooCommerce allows you to take credit card payments directly on your store without redirecting your customers to a third party site to make payment.', 'woocommerce' ),
+				'title'      => __( 'Eway', 'woocommerce' ),
+				'content'    => __( 'The Eway extension for WooCommerce allows you to take credit card payments directly on your store without redirecting your customers to a third party site to make payment.', 'woocommerce' ),
 				'image'      => plugins_url( 'images/onboarding/eway.png', WC_ADMIN_PLUGIN_FILE ),
 				'plugins'    => array( 'woocommerce-gateway-eway' ),
 				'is_visible' => array(
@@ -236,7 +374,7 @@ class DefaultPaymentGateways {
 								self::get_rules_for_cbd( true ),
 							),
 							array(
-								self::get_rules_for_countries( array( 'US', 'CA', 'JP', 'GB', 'AU', 'IE' ) ),
+								self::get_rules_for_countries( array( 'US', 'CA', 'JP', 'GB', 'AU', 'IE', 'FR' ) ),
 								self::get_rules_for_selling_venues( array( 'brick-mortar', 'brick-mortar-other' ) ),
 							),
 						),

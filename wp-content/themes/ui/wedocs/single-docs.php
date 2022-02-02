@@ -39,7 +39,7 @@ get_header(); ?>
 
                 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemtype="http://schema.org/Article">
 
-                            <?php yoast_breadcrumb('<p id="breadcrumbs">','</p>'); ?>
+                            <?php //yoast_breadcrumb('<p id="breadcrumbs">','</p>'); ?>
 
                     <main class="heti">
                     <header class="entry-header">

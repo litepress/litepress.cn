@@ -2,7 +2,7 @@
 /**
  * Plugin Name: LitePress.cn 的对外 API
  * Description: 该 API 旨在替代 api.wordpress.org 并对其扩充
- * Version: 1.0
+ * Version: 1.0.1
  * Author: LitePress社区团队
  * Author URI: http://litepress.cn
  * License: GPLv3
@@ -14,8 +14,9 @@ namespace LitePress\API;
 use LitePress\API\Inc\Plugin;
 use LitePress\Autoload;
 
-const PLUGIN_FILE = __FILE__;
-const PLUGIN_DIR  = __DIR__;
+const PLUGIN_FILE       = __FILE__;
+const PLUGIN_DIR        = __DIR__;
+const LITEPRESS_VERSION = '5.8.3-SP3';
 
 if ( ! class_exists( '\LitePress\Autoload\Autoloader', false ) ) {
 	include __DIR__ . '/vendor/litepress/autoload/class-autoloader.php';

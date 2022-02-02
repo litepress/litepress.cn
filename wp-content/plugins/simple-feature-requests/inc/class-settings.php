@@ -188,7 +188,7 @@ class JCK_SFR_Settings
             'section_id'          => 'credit',
             'section_title'       => __( 'Credit', 'simple-feature-requests' ),
             'section_description' => '',
-            'section_order'       => 30,
+            'section_order'       => 40,
             'fields'              => array( array(
             'id'       => 'enable',
             'title'    => __( 'Enable Credit', 'simple-feature-requests' ),
@@ -262,6 +262,45 @@ class JCK_SFR_Settings
             'subtitle' => __( 'How many requests to show per page in the archive.', 'simple-feature-requests' ),
             'type'     => 'custom',
             'default'  => JCK_Simple_Feature_Requests::get_pro_button(),
+        );
+        $settings['sections']['general_setup']['fields']['single_title_tag'] = array(
+            'id'       => 'single_title_tag',
+            'title'    => __( 'Single Request Title Tag', 'simple-feature-requests' ),
+            'subtitle' => __( 'Tag to use for single request title.', 'simple-feature-requests' ),
+            'type'     => 'select',
+            'choices'  => array(
+            'h1' => 'h1',
+            'h2' => 'h2',
+            'h3' => 'h3',
+            'h4' => 'h4',
+            'h5' => 'h5',
+            'h6' => 'h6',
+            'p'  => 'p',
+        ),
+            'default'  => 'h1',
+        );
+        $settings['sections']['general_setup']['fields']['archive_title_tag'] = array(
+            'id'       => 'archive_title_tag',
+            'title'    => __( 'Archive Request Title Tag', 'simple-feature-requests' ),
+            'subtitle' => __( 'Tag to use for request titles in the request archive.', 'simple-feature-requests' ),
+            'type'     => 'select',
+            'choices'  => array(
+            'h1' => 'h1',
+            'h2' => 'h2',
+            'h3' => 'h3',
+            'h4' => 'h4',
+            'h5' => 'h5',
+            'h6' => 'h6',
+            'p'  => 'p',
+        ),
+            'default'  => 'h2',
+        );
+        $settings['sections']['general_setup']['fields']['hide_entry_title'] = array(
+            'id'       => 'hide_entry_title',
+            'title'    => __( 'Hide Entry Title On Single Request View', 'simple-feature-requests' ),
+            'subtitle' => __( 'Hide the default entry title output by your theme when viewing single feature requests.', 'simple-feature-requests' ),
+            'type'     => 'checkbox',
+            'default'  => 0,
         );
         $settings['sections']['notifications_admin'] = array(
             'tab_id'              => 'notifications',
@@ -353,10 +392,95 @@ class JCK_SFR_Settings
     }
     
     /**
+     * Populate status slug tracker if empty.
+     */
+    public static function populate_slug_tracker( $statuses )
+    {
+        if ( empty($statuses) ) {
+            return false;
+        }
+        $statuses = maybe_unserialize( $statuses );
+        if ( !is_array( $statuses ) ) {
+            return false;
+        }
+        $tracker = array();
+        foreach ( $statuses as $key => $status ) {
+            $tracker[$status['row_id']] = jck_sfr_get_status_slug( $status['status_title'] );
+        }
+        $tracker = array_filter( $tracker );
+        update_option( 'jck_sfr_status_slug_tracker', $tracker );
+        return $tracker;
+    }
+    
+    public static function compare_slug_tracker( $statuses, $tracker )
+    {
+        if ( empty($statuses) ) {
+            return false;
+        }
+        $statuses = maybe_unserialize( $statuses );
+        if ( !is_array( $statuses ) ) {
+            return false;
+        }
+        if ( empty($tracker) ) {
+            return false;
+        }
+        $tracker = maybe_unserialize( $tracker );
+        if ( !is_array( $tracker ) ) {
+            return false;
+        }
+        $update_tracker = false;
+        // Convert to matching array for comparison.
+        $existing = array();
+        foreach ( $statuses as $status ) {
+            $existing[$status['row_id']] = jck_sfr_get_status_slug( $status['status_title'] );
+        }
+        $leftovers = $tracker;
+        foreach ( $existing as $row_id => $slug ) {
+            // An existing status needs to be added to the tracker
+            
+            if ( !array_key_exists( $row_id, $tracker ) ) {
+                $tracker[$row_id] = $slug;
+                $update_tracker = true;
+            } else {
+                
+                if ( $slug != $tracker[$row_id] ) {
+                    // It exists, but the slug changed. Update posts.
+                    jck_sfr_fix_post_statuses( $tracker[$row_id], $slug );
+                    $tracker[$row_id] = $slug;
+                    $update_tracker = true;
+                }
+            
+            }
+            
+            unset( $leftovers[$row_id] );
+        }
+        // Change posts with deleted status to pending.
+        if ( !empty($leftovers) ) {
+            foreach ( $leftovers as $leftover_row_id => $left_over_slug ) {
+                jck_sfr_fix_post_statuses( $left_over_slug, apply_filters( 'jck_sfr_default_missing_status', 'pending' ) );
+                unset( $tracker[$leftover_row_id] );
+                $update_tracker = true;
+            }
+        }
+        if ( $update_tracker === true ) {
+            update_option( 'jck_sfr_status_slug_tracker', $tracker );
+        }
+    }
+    
+    /**
      * After save settings.
      */
     public static function after_save_settings()
     {
+        $slug_tracker = get_option( 'jck_sfr_status_slug_tracker', array() );
+        $custom_statuses = jck_sfr_get_custom_statuses();
+        
+        if ( empty($slug_tracker) ) {
+            $slug_tracker = self::populate_slug_tracker( $custom_statuses );
+        } else {
+            $slug_tracker = self::compare_slug_tracker( $custom_statuses, $slug_tracker );
+        }
+        
         JCK_SFR_Post_Types::flush_permalinks();
     }
     

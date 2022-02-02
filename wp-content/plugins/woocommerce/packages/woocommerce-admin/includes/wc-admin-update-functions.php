@@ -8,6 +8,7 @@
  */
 
 use \Automattic\WooCommerce\Admin\Install as Installer;
+use \Automattic\WooCommerce\Admin\Features\OnboardingTasks\TaskLists;
 use \Automattic\WooCommerce\Admin\Notes\Notes;
 use \Automattic\WooCommerce\Admin\Notes\UnsecuredReportFiles;
 use \Automattic\WooCommerce\Admin\Notes\DeactivatePlugin;
@@ -271,4 +272,86 @@ function wc_admin_update_271_update_task_list_options() {
  */
 function wc_admin_update_271_db_version() {
 	Installer::update_db_version( '2.7.1' );
+}
+
+/**
+ * Update order stats `status`.
+ */
+function wc_admin_update_280_order_status() {
+	global $wpdb;
+
+	$wpdb->query(
+		"UPDATE {$wpdb->prefix}wc_order_stats refunds
+		INNER JOIN {$wpdb->prefix}wc_order_stats orders
+			ON orders.order_id = refunds.parent_id
+		SET refunds.status = orders.status
+		WHERE refunds.parent_id != 0"
+	);
+}
+
+/**
+ * Update DB Version.
+ */
+function wc_admin_update_280_db_version() {
+	Installer::update_db_version( '2.8.0' );
+}
+
+/**
+ * Update the old task list options.
+ */
+function wc_admin_update_290_update_apperance_task_option() {
+	$is_actioned = get_option( 'woocommerce_task_list_appearance_complete', false );
+
+	$task = TaskLists::get_task( 'appearance' );
+	if ( $task && $is_actioned ) {
+		$task->mark_actioned();
+	}
+
+	delete_option( 'woocommerce_task_list_appearance_complete' );
+}
+
+/**
+ * Delete the old woocommerce_default_homepage_layout option.
+ */
+function wc_admin_update_290_delete_default_homepage_layout_option() {
+	delete_option( 'woocommerce_default_homepage_layout' );
+}
+
+/**
+ * Update DB Version.
+ */
+function wc_admin_update_290_db_version() {
+	Installer::update_db_version( '2.9.0' );
+}
+
+/**
+ * Use woocommerce_admin_activity_panel_inbox_last_read from the user meta to set wc_admin_notes.is_read col.
+ */
+function wc_admin_update_300_update_is_read_from_last_read() {
+	global $wpdb;
+	$meta_key = 'woocommerce_admin_activity_panel_inbox_last_read';
+	// phpcs:ignore
+	$users    = get_users( "meta_key={$meta_key}&orderby={$meta_key}&fields=all_with_meta&number=1" );
+
+	if ( count( $users ) ) {
+		$last_read   = current( $users )->{$meta_key};
+		$date_in_utc = gmdate( 'Y-m-d H:i:s', intval( $last_read ) / 1000 );
+		$wpdb->query(
+			$wpdb->prepare(
+				"
+				update {$wpdb->prefix}wc_admin_notes set is_read = 1
+				where
+				date_created <= %s",
+				$date_in_utc
+			)
+		);
+		$wpdb->query( $wpdb->prepare( "delete from {$wpdb->usermeta} where meta_key=%s", $meta_key ) );
+	}
+}
+
+/**
+ * Update DB Version.
+ */
+function wc_admin_update_300_db_version() {
+	Installer::update_db_version( '3.0.0' );
 }

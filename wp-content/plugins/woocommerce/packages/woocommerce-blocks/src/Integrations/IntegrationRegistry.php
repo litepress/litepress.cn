@@ -32,12 +32,12 @@ class IntegrationRegistry {
 		}
 
 		if ( empty( $this->registry_identifier ) ) {
-			_doing_it_wrong( __METHOD__, esc_html( __( 'Integration registry requires an identifier.', 'woocommerce' ) ) );
+			_doing_it_wrong( __METHOD__, esc_html__( 'Integration registry requires an identifier.', 'woocommerce' ), '4.6.0' );
 			return false;
 		}
 
 		/**
-		 * Hook: integration_registration.
+		 * Fires when the IntegrationRegistry is initialized.
 		 *
 		 * Runs before integrations are initialized allowing new integration to be registered for use. This should be
 		 * used as the primary hook for integrations to include their scripts, styles, and other code extending the
@@ -64,7 +64,7 @@ class IntegrationRegistry {
 
 		if ( $this->is_registered( $name ) ) {
 			/* translators: %s: Integration name. */
-			_doing_it_wrong( __METHOD__, esc_html( sprintf( __( '"%s" is already registered.', 'woocommerce' ), $name ) ) );
+			_doing_it_wrong( __METHOD__, esc_html( sprintf( __( '"%s" is already registered.', 'woocommerce' ), $name ) ), '4.6.0' );
 			return false;
 		}
 
@@ -95,7 +95,7 @@ class IntegrationRegistry {
 
 		if ( ! $this->is_registered( $name ) ) {
 			/* translators: %s: Integration name. */
-			_doing_it_wrong( __METHOD__, esc_html( sprintf( __( 'Integration "%s" is not registered.', 'woocommerce' ), $name ) ) );
+			_doing_it_wrong( __METHOD__, esc_html( sprintf( __( 'Integration "%s" is not registered.', 'woocommerce' ), $name ) ), '4.6.0' );
 			return false;
 		}
 

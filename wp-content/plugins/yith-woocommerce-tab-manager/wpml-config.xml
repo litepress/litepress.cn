@@ -1,0 +1,5 @@
+<wpml-config>
+    <custom-types>
+        <custom-type translate="1">ywtm_tab</custom-type>
+    </custom-types>
+</wpml-config>

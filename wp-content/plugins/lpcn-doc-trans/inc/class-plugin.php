@@ -12,7 +12,7 @@ class Plugin {
 	 */
 	private static ?Plugin $instance = null;
 
-	private WP_Post $wp_post;
+	private ?WP_Post $wp_post;
 
 	/**
 	 * Instantiates a new Plugin object.
@@ -42,20 +42,22 @@ class Plugin {
 		add_filter( 'pre_get_document_title', array( $this, 'translate' ), 999 );
 		add_filter( 'the_content', array( $this, 'translate' ), 1 );
 
+/*
 		add_filter( 'wpseo_breadcrumb_single_link_info', function ( $link_info ) {
 			$link_info['text'] = $this->translate( $link_info['text'] );
 
 			return $link_info;
 		} );
+*/
 	}
 
 	public function translate( string $content ): string {
 		if ( empty( $this->wp_post ) ) {
-			$post_id = get_the_ID();
-			if ( empty( $post_id ) ) {
+			global $post;
+			if ( empty( $post ) ) {
 				return $content;
 			}
-			$this->wp_post = get_post( $post_id );
+			$this->wp_post = $post;
 
 			$slug = "docs/docs-{$this->wp_post->post_name}/body";
 

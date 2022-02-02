@@ -4,6 +4,7 @@ namespace LitePress\API\Inc\Api;
 
 use LitePress\API\Inc\Api\Plugins\Update_Check as Plugins_Update_Check;
 use LitePress\API\Inc\Api\Themes\Update_Check as Themes_Update_Check;
+use LitePress\API\Inc\Api\Core\Update_Check as Core_Update_Check;
 
 /**
  * Class Base
@@ -28,6 +29,7 @@ class Base {
 	public static function load_routes() {
 		new Plugins_Update_Check();
 		new Themes_Update_Check();
+		new Core_Update_Check();
 	}
 
 	/**

@@ -5,6 +5,7 @@ use Automattic\WooCommerce\Blocks\AssetsController as AssetsController;
 use Automattic\WooCommerce\Blocks\Assets\Api as AssetApi;
 use Automattic\WooCommerce\Blocks\Assets\AssetDataRegistry;
 use Automattic\WooCommerce\Blocks\BlockTypesController;
+use Automattic\WooCommerce\Blocks\BlockTemplatesController;
 use Automattic\WooCommerce\Blocks\InboxNotifications;
 use Automattic\WooCommerce\Blocks\Installer;
 use Automattic\WooCommerce\Blocks\Registry\Container;
@@ -58,20 +59,22 @@ class Bootstrap {
 	public function __construct( Container $container ) {
 		$this->container = $container;
 		$this->package   = $container->get( Package::class );
-		$this->init();
-		/**
-		 * Usable as a safe event hook for when the plugin has been loaded.
-		 */
-		do_action( 'woocommerce_blocks_loaded' );
+		if ( $this->has_core_dependencies() ) {
+			$this->init();
+			/**
+			 * Fires after WooCommerce Blocks plugin has loaded.
+			 *
+			 * This hook is intended to be used as a safe event hook for when the plugin has been loaded, and all
+			 * dependency requirements have been met.
+			 */
+			do_action( 'woocommerce_blocks_loaded' );
+		}
 	}
 
 	/**
 	 * Init the package - load the blocks library and define constants.
 	 */
 	protected function init() {
-		if ( ! $this->has_core_dependencies() ) {
-			return;
-		}
 		$this->register_dependencies();
 		$this->register_payment_methods();
 
@@ -99,6 +102,7 @@ class Bootstrap {
 		$this->container->get( RestApi::class );
 		$this->container->get( GoogleAnalytics::class );
 		$this->container->get( BlockTypesController::class );
+		$this->container->get( BlockTemplatesController::class );
 		if ( $this->package->feature()->is_feature_plugin_build() ) {
 			$this->container->get( PaymentsApi::class );
 		}
@@ -223,6 +227,12 @@ class Bootstrap {
 				$asset_api           = $container->get( AssetApi::class );
 				$asset_data_registry = $container->get( AssetDataRegistry::class );
 				return new BlockTypesController( $asset_api, $asset_data_registry );
+			}
+		);
+		$this->container->register(
+			BlockTemplatesController::class,
+			function ( Container $container ) {
+				return new BlockTemplatesController();
 			}
 		);
 		$this->container->register(

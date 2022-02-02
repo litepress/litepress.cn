@@ -2,5 +2,5 @@
 printf(
 	/* translators: %s: URL. */
 	__( 'Redirecting to: %s...', 'glotpress' ),
-	esc_html( $url )
+	esc_html( $query_url )
 );

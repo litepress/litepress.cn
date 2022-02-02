@@ -39,11 +39,11 @@ get_header();
                         </div>
                     </section>
 
-                    <section class="theme-boxshadow bg-white mt-4 index-forum heading-xxs wp-notice">
+                    <section class="theme-boxshadow bg-white index-forum heading-xxs wp-notice">
                         <i class="fas fa-bullhorn"></i> 领取你的专属技术顾问吧！任何和LitePress及WordPress相关的问题都可以直接在此发帖提问，我们会在工作日的一小时内给出可行方案！
                     </section>
 
-                    <section class="theme-boxshadow bg-white mt-4 index-forum">
+                    <section class="theme-boxshadow bg-white index-forum">
 						<?php
 						wp_nav_menu(
 							array(

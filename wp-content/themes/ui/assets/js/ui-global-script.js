@@ -14,10 +14,8 @@ $(".ant-btn").on("change", "input[type='file']", function () {
         return false
     }
 });
-const searchinput = $(".header-search input");
-$(searchinput).keyup(function () {
-    search()
-});
+
+
 
 
 
@@ -51,51 +49,12 @@ $(searchinput).keyup(function () {
     });
 })(jQuery);
 
+/*搜索词跟随*/
+const header_search_val = decodeURIComponent($.Request("keyword"));
+$(".search-form  .header-search input").val(header_search_val)
 
 
 
-
-
-
-
-function search() {
-    var content = "";
-    const formData = new FormData();
-    var key = $(searchinput).val()
-    formData.append("action", "lava_ajax_search_query");
-    formData.append("search_term", key);
-    $.ajax({
-        url: "/wp-admin/admin-ajax.php",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        beforeSend: function (data) {
-            $(".header-search").addClass("ajax-loading")
-        },
-        success: function (data) {
-            if (data.length > 0) {
-                $.each(data, function (wp, val) {
-                    content += val.value;
-                    /*console.log(val.value);*/
-                });
-                $(".header-search").removeClass("ajax-loading");
-                $("#showDiv").slideDown().html(content);
-            }
-
-            $(document).click(function (e) {
-                const $target = $(e.target);
-                if (!$target.is('#showDiv *')) {
-                    $('#showDiv').slideUp();
-                }
-            });
-
-        },
-        error: function () {
-            console.log("error！");
-        }
-    });
-}
 
 
 
@@ -230,4 +189,60 @@ $(function () {
     const project_name = $.Request("project_name");
     $("input[name=textdomain]").val(textdomain);
     $("input[name=project_name]").val(project_name);
+/*$("li .um-notification-b").click(function () {
+    $('.um-notification-live-feed').animate({width:'toggle'},350);
+
 })
+    $(".um-notification-i-close").click(function () {
+
+        $('.um-notification-live-feed').animate({width:'toggle'},350);
+
+})*/
+
+
+
+
+
+    $(".trusteeship_form").on('click', '.btn-primary', function () {
+
+        $.ajax({
+            url: "https://litepress.cn/translate/wp-json/gp/v1/projects/new",
+            type: "post",
+            data: {
+                "project_name": $("#tf_project_name").val(),
+                "text_domain": $("#tf_project_textdomin").val(),
+                "description": $("#tf_project_textarea").val(),
+                "icon": $("#tf_project_icon").val(),
+            },
+            headers: {
+                'X-WP-Nonce': wpApiSettings.nonce
+            },
+            success: function (s) {
+                console.log(s);
+                if (s.message !== undefined ) {
+                    $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> " + s.message);
+                    setTimeout(function(){
+                        window.href.location = s.project_url; // 你的url地址
+                    },500);
+
+                } else {
+                    $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i> " + s.error);
+                }
+                $('#liveToast').toast('show')
+            },
+
+        })
+        return false;
+    })
+
+
+
+
+
+
+
+
+
+})
+
+

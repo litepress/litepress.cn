@@ -43,21 +43,38 @@ $plural = sprintf(
                             <?php textareas($translation, array($can_edit, $can_approve_translation)); ?>
                         <?php else : ?>
                             <?php if (absint($locale->nplurals) === 2 && 'n != 1' === $locale->plural_expression) : ?>
-                                <p>
-                                    <?php
-                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                    echo $singular;
-                                    ?>
-                                </p>
-                                <?php textareas($translation, array($can_edit, $can_approve), 0); ?>
-                                <p class="clear">
-                                    <?php
-                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                    echo $plural;
-                                    ?>
-                                </p>
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#s-<?php echo esc_attr($translation->row_id); ?>">单数</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#p-<?php echo esc_attr($translation->row_id); ?>">复数</a>
+                                    </li>
+                                </ul>
 
-                                <?php textareas($translation, array($can_edit, $can_approve), 1); ?>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane container active" id="s-<?php echo esc_attr($translation->row_id); ?>">
+                                        <p>
+		                                    <?php
+		                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		                                    echo $singular;
+		                                    ?>
+                                        </p>
+	                                    <?php textareas($translation, array($can_edit, $can_approve), 0); ?>
+                                    </div>
+                                    <div class="tab-pane container fade" id="p-<?php echo esc_attr($translation->row_id); ?>">
+                                        <p class="clear">
+		                                    <?php
+		                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		                                    echo $plural;
+		                                    ?>
+                                        </p>
+
+	                                    <?php textareas($translation, array($can_edit, $can_approve), 1); ?>
+                                    </div>
+                                </div>
                             <?php else : ?>
                                 <!--
                                 TODO: labels for each plural textarea and a sample number

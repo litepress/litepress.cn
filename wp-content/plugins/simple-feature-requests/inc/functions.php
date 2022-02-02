@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return array
  */
 function jck_sfr_get_statuses( $excludes = array() ) {
-	$statuses = apply_filters( 'jck_sfr_statuses', array(
+	$statuses = array(
 		'pending'      => __( 'Pending', 'simple-feature-requests' ),
 		'publish'      => __( 'Published', 'simple-feature-requests' ),
 		'under-review' => __( 'Under Review', 'simple-feature-requests' ),
@@ -20,13 +20,17 @@ function jck_sfr_get_statuses( $excludes = array() ) {
 		'started'      => __( 'Started', 'simple-feature-requests' ),
 		'completed'    => __( 'Completed', 'simple-feature-requests' ),
 		'declined'     => __( 'Declined', 'simple-feature-requests' ),
-	) );
+	);
+
+	$statuses = apply_filters( 'jck_sfr_statuses', $statuses );
 
 	if ( ! empty( $excludes ) ) {
 		foreach ( $excludes as $exclude ) {
 			unset( $statuses[ $exclude ] );
 		}
 	}
+
+	$statuses = array_filter( $statuses );
 
 	return $statuses;
 }
@@ -39,21 +43,49 @@ function jck_sfr_get_statuses( $excludes = array() ) {
  * @return bool|string
  */
 function jck_sfr_get_status_description( $status ) {
-	$descriptions = apply_filters( 'jck_sfr_status_descriptions', array(
-		'pending'      => __( 'The request is pending approval from an admin.', 'simple-feature-requests' ),
-		'publish'      => __( 'The request is now published on the site.', 'simple-feature-requests' ),
-		'under-review' => __( 'The request is being considered for development.', 'simple-feature-requests' ),
-		'planned'      => __( 'Good news! The request has been planned for development.', 'simple-feature-requests' ),
-		'started'      => __( 'Good news! The request has been started.', 'simple-feature-requests' ),
-		'completed'    => __( 'Good news! The request has now been completed.', 'simple-feature-requests' ),
-		'declined'     => __( 'Sorry, the request has been declined.', 'simple-feature-requests' ),
-	) );
+	$descriptions = array(
+		'pending'      => __( 'The ' . apply_filters('jck_sfr_single_request_name', 'request', false) . ' is pending approval from an admin.', 'simple-feature-requests' ),
+		'publish'      => __( 'The ' . apply_filters('jck_sfr_single_request_name', 'request', false)  . ' is now published on the site.', 'simple-feature-requests' ),
+		'under-review' => __( 'The ' . apply_filters('jck_sfr_single_request_name', 'request', false)  . ' is being considered for development.', 'simple-feature-requests' ),
+		'planned'      => __( 'Good news! The ' . apply_filters('jck_sfr_single_request_name', 'request', false)  . ' has been planned for development.', 'simple-feature-requests' ),
+		'started'      => __( 'Good news! The ' . apply_filters('jck_sfr_single_request_name', 'request', false)  . ' has been started.', 'simple-feature-requests' ),
+		'completed'    => __( 'Good news! The ' . apply_filters('jck_sfr_single_request_name', 'request', false)  . ' has now been completed.', 'simple-feature-requests' ),
+		'declined'     => __( 'Sorry, the ' . apply_filters('jck_sfr_single_request_name', 'request', false)  . ' has been declined.', 'simple-feature-requests' ),
+	);
+
+	$descriptions = apply_filters( 'jck_sfr_status_descriptions', $descriptions );
 
 	if ( ! isset( $descriptions[ $status ] ) ) {
 		return false;
 	}
 
 	return $descriptions[ $status ];
+}
+
+function jck_sfr_get_custom_statuses() {
+	$statuses = wpsf_get_setting( 'jck_sfr', 'general_setup', 'statuses' );
+
+	return $statuses;
+}
+
+function jck_sfr_get_custom_labels( $form = 'single' ) {
+
+	$custom_label_single = wpsf_get_setting( 'jck_sfr', 'general_labels', 'single_request_label');
+	$custom_label_plural = wpsf_get_setting( 'jck_sfr', 'general_labels', 'plural_request_label');
+
+	if( empty( $custom_label_single ) && $form == 'single' ) {
+		$custom_label_single = "Request";
+	}
+	
+	if( empty( $custom_label_plural ) && $form == 'plural' ) {
+		$custom_label_plural = "Requests";
+	}
+
+	if( $form == 'single' ) {
+		return $custom_label_single;
+	} else if( $form == 'plural' ) {
+		return $custom_label_plural;
+	}
 }
 
 /**
@@ -107,6 +139,10 @@ function jck_sfr_get_term_options( $taxonomy, $hide_empty = true ) {
 	return $filter_terms[ $key ];
 }
 
+function jck_sfr_get_status_slug( $title ) {
+	return sanitize_title_with_dashes( $title );
+}
+
 /**
  * Get status label.
  *
@@ -124,6 +160,40 @@ function jck_sfr_get_status_label( $status ) {
 	return $statuses[ $status ];
 }
 
+function jck_sfr_save_settings( $settings ) {
+	if ( ! empty( $settings ) && is_array( $settings ) ) {
+		update_option( 'jck_sfr_settings', $settings );
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function jck_sfr_fix_post_statuses( $old_slug, $new_slug ) {
+	if ( empty( $old_slug ) ) return false;
+	if ( empty( $new_slug ) ) {
+		$new_slug = apply_filters( 'jck_sfr_default_blank_slug_status', 'pending' );
+	}
+
+	$args = array(
+		'post_type' => 'cpt_feature_requests',
+		'meta_query' => array(
+			array(
+				'key' => 'jck_sfr_status',
+				'value' => $old_slug,
+				'compare' => '='
+			)
+		)
+	);
+
+	if ( $requests = get_posts( $args ) ) {
+		foreach ( $requests as $request ) {
+			update_post_meta( $request->ID, 'jck_sfr_status', $new_slug );
+		}
+		return true;
+	}
+}
+
 /**
  * Get status colours.
  *
@@ -132,7 +202,7 @@ function jck_sfr_get_status_label( $status ) {
  * @return mixed
  */
 function jck_sfr_get_status_colors( $status ) {
-	$colors = apply_filters( 'jck_sfr_status_colors', array(
+	$colors = array(
 		'pending'      => array(
 			'background' => '#FFE26C',
 			'color'      => '#0F0F14',
@@ -165,7 +235,9 @@ function jck_sfr_get_status_colors( $status ) {
 			'background' => '#CCC',
 			'color'      => '#0F0F14',
 		),
-	) );
+	);
+
+	$colors = apply_filters( 'jck_sfr_status_colors', $colors );
 
 	return isset( $colors[ $status ] ) ? $colors[ $status ] : $colors['default'];
 }
@@ -232,4 +304,16 @@ function jck_sfr_comments_enabled() {
 	$settings = JCK_SFR_Settings::get_settings();
 
 	return ! empty( $settings['general_comments_enable'] );
+}
+
+/**
+ * Does post have attachments?
+ * 
+ * @return bool
+ */
+function jck_sfr_has_attachments() {
+	$attachments = get_attached_media( 'image', get_the_ID() );
+
+	if( $attachments ) { return true; }
+	else { return false; }
 }

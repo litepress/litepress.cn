@@ -413,70 +413,24 @@ add_filter( 'bbp_get_topic_freshness_link', function ( $anchor, $topic_id, $time
 	}
 }, 10, 5 );
 
-/**
- * Woo的商品链接去掉基础链接后有个产品会和分类目录命名冲突，需要解决
- */
-add_filter( 'request', function ( $query, $request_url = false, $return_object = false ) {
-	$url = $_SERVER['REQUEST_URI'];
+//if ( 6 === (int) $blog_id ) {
+// 此处的配置改为全平台通用
+add_filter( 'comment_form_defaults', function ( $fields ) {
+	$fields['logged_in_as']  = get_avatar( get_current_user_id(), 32 );
+	$fields['submit_button'] = '';
+	$fields['comment_field'] = sprintf(
+		'<p class="comment-form-comment">%s %s %s</p>',
+		sprintf(
+			'<label for="comment">%s</label>',
+			_x( 'Comment', 'noun' )
+		),
+		'<textarea class="form-control" id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea>',
+		'<input type="submit" id="submit" class="btn btn-primary" value="提交评论" />'
+	);
 
-	$pos = strpos( $url, '?' );
-	if ( $pos ) {
-		$url = substr( $url, 0, $pos - strlen( $url ) );
-	}
-
-	/**
-	 * 产品标签请求
-	 */
-	$tag = explode( '/product-tag/', $url )[1] ?? '';
-	if ( ! empty( $tag ) ) {
-		return array( 'product_tag' => $tag );
-	}
-
-	/**
-	 * Ajax请求
-	 */
-	$ajax_route = explode( 'store/wp-json', $url )[1] ?? '';
-	if ( ! empty( $ajax_route ) ) {
-		return array( 'rest_route' => $ajax_route );
-	}
-
-	/**
-	 * 针对特性URL的规则
-	 */
-	return match ( $url ) {
-		'/store/plugins' => array( 'product_cat' => 'plugins' ),
-		'/store/themes' => array( 'product_cat' => 'themes' ),
-		default => $query,
-	};
-}, 9999, 3 );
-
-if ( 6 === (int) $blog_id ) {
-	add_filter( 'comment_form_defaults', function ( $fields ) {
-		$fields['logged_in_as']  = get_avatar( get_current_user_id(), 32 );
-		$fields['submit_button'] = '';
-		$fields['comment_field'] = sprintf(
-			'<p class="comment-form-comment">%s %s %s</p>',
-			sprintf(
-				'<label for="comment">%s</label>',
-				_x( 'Comment', 'noun' )
-			),
-			'<textarea class="form-control" id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea>',
-			'<input type="submit" id="submit" class="btn btn-primary" value="提交评论" />'
-		);
-
-		return $fields;
-	} );
-}
-
-/*
- * 用来批量替换自定义固定连接的代码，这段代码看不懂的话千万别取消注释，很容易造成破坏
-$urls = get_option('permalink-manager-uris');
-$new_urls = array();
-foreach ($urls as $k => $v) {
-	$new_urls[$k] = str_replace( 'apps/', '', $v );
-}
-update_option('permalink-manager-uris', $new_urls);
-*/
+	return $fields;
+} );
+//}
 
 /**
  * 身份铭牌支持
@@ -579,12 +533,21 @@ add_filter( 'wedocs_breadcrumbs', function ( $args ) {
 } );
 
 add_filter( 'wpseo_breadcrumb_links', function ( $links ) {
-	array_unshift( $links, array(
-		'url'  => '/',
-		'text' => '首页',
-		'id'   => 1,
-	) );
-	$links[1]['text'] = '文档平台';
+	if ( ! str_starts_with( $_SERVER['REQUEST_URI'], '/forums' ) ) {
+		array_unshift( $links, array(
+			'url'  => '/',
+			'text' => '首页',
+			'id'   => 1,
+		) );
+	}
+
+	global $blog_id;
+
+	if ( 11 === (int) $blog_id ) {
+		$links[1]['text'] = '使用帮助';
+	} else if ( 14 === (int) $blog_id ) {
+		$links[1]['text'] = '博客';
+	}
 
 	return $links;
 }, 9999 );
@@ -681,3 +644,48 @@ add_action( 'wp_loaded', function () {
 	wp_set_current_user( $user_id );
 	wp_set_auth_cookie( $user_id );
 } );
+
+/**
+ * 按当前子站点的 Slug 为标准去主题的 sub_templates 目录下引用子模板
+ *
+ * @param string $father_template_name
+ *
+ * @return bool
+ */
+function lpcn_use_sub_template( string $father_template_name ): bool {
+	global $blog_id;
+
+	$site = get_site( $blog_id );
+
+	$site = str_replace( '/', '', (string) $site?->path );
+
+	$site = $site ?: 'root';
+
+	$sub_template_name = "{$site}-{$father_template_name}";
+	$sub_template_path = UI_ROOT_PATH . "/sub-templates/$sub_template_name.php";
+
+	if ( file_exists( $sub_template_path ) ) {
+		require $sub_template_path;
+
+		return true;
+	}
+
+	return false;
+}
+
+// 定制标题
+add_filter( 'wp_title', function ( $title, $sep, $seplocation ) {
+	$uri = $_SERVER['REQUEST_URI'];
+	list( $uri ) = explode( '?', $uri );
+	list( $uri ) = explode( '#', $uri );
+
+	$site_title = get_bloginfo( 'name' );
+
+	if ( '/' === $uri ) {
+		$title = 'LitePress &#8211; 中国本土的 WordPress 衍生版';
+	} else {
+		$title .= $site_title;
+	}
+
+	return $title;
+}, 9999, 3 );

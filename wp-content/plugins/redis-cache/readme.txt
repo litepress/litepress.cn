@@ -5,7 +5,7 @@ Tags: redis, predis, phpredis, credis, hhvm, pecl, caching, cache, object cache,
 Requires at least: 3.3
 Tested up to: 5.8
 Requires PHP: 5.6
-Stable tag: 2.0.21
+Stable tag: 2.0.22
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -32,7 +32,7 @@ A **business class** Redis object cache backend. Truly reliable, highly optimize
 * Health checks via WordPress & WP CLI
 * Optimized for WooCommerce, Jetpack & Yoast SEO
 
-Learn more about [Object Cache Pro](https://objectcache.pro/?utm_source=wp-plugin&amp;utm_medium=readme).
+Learn more about [Object Cache Pro](https://objectcache.pro/?ref=oss&amp;utm_source=wp-plugin&amp;utm_medium=readme).
 
 
 == Installation ==
@@ -82,6 +82,19 @@ To see a list of all available WP-CLI commands, please see the [WP CLI commands 
 
 
 == Changelog ==
+
+= 2.0.22 =
+
+- PHP 8.1 compatibility fixes
+- Upgraded to Predis v1.1.9
+- Added settings link to widget
+- Overhauled diagnostics pane
+- Updated ApexCharts to v3.30.0
+- Redirect to plugin settings after activation
+- Fixed wrong path to `diagnostics.php` file
+- Fixed chart overflow in settings tab
+- Fixed Predis cluster ping
+- Avoid warning when content folder is not writeable
 
 = 2.0.21 =
 

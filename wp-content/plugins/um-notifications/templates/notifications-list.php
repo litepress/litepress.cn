@@ -26,7 +26,7 @@ foreach ( $notifications as $notification ) {
 			<?php echo UM()->Notifications_API()->api()->get_icon( $notification->type );
 			echo UM()->Notifications_API()->api()->nice_time( $notification->time ); ?>
 		</span>
-		<span class="um-notification-hide"><a href="javascript:void(0);"><i class="um-icon-android-close"></i></a></span>
+		<span class="um-notification-hide"><a href="javascript:void(0);"><i class="fad fa-times-circle"></i></a></span>
 
 	</div>
 

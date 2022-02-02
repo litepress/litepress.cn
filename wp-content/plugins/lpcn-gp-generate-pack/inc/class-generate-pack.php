@@ -21,7 +21,7 @@ class Generate_Pack {
 
 	private string $version = '';
 
-	private string $branch = '';
+	private array $branches = array();
 
 	public function job( string $slug, string $type, string $version, string $branch = '' ) {
 		$this->slug    = $slug;
@@ -31,12 +31,26 @@ class Generate_Pack {
 		switch ( $type ) {
 			case 'plugin':
 			case 'other':
-				$this->branch = $branch ?: 'body';
+				$this->branches = array(
+					'body' => $slug,
+				);
 
 				$this->generate();
 				break;
 			case 'theme':
-				$this->branch = $branch ?: $slug;
+				$this->branches = array(
+					$slug => $slug,
+				);
+
+				$this->generate();
+				break;
+			case 'core':
+				$this->branches = array(
+					'body'    => '',
+					'cc'      => 'continents-cities',
+					'admin'   => 'admin',
+					'network' => 'admin-network',
+				);
 
 				$this->generate();
 				break;
@@ -46,210 +60,253 @@ class Generate_Pack {
 	}
 
 	private function generate(): bool {
-		$gp_project = GP::$project->by_path( "{$this->type}s/$this->slug" );
-		if ( ! $gp_project ) {
-			Logger::error( 'LanguagePack', '无效的 slug' );
+		$pack_file_paths   = array();
+		$build_directory   = self::BASE_PACK_DIR . "/{$this->type}s/{$this->slug}/{$this->version}";
+		$working_directory = "/tmp/litepress/language-pack-tmp/{$this->slug}";
+		$export_directory  = "{$working_directory}/{$this->version}/zh_CN";
+
+		foreach ( $this->branches as $branch => $textdomain ) {
+			$gp_project = GP::$project->by_path( "{$this->type}s/$this->slug" );
+			if ( ! $gp_project ) {
+				Logger::error( 'LanguagePack', '无效的 slug' );
+
+				return false;
+			}
+
+			$gp_project = GP::$project->by_path( "{$this->type}s/$this->slug/$branch" );
+			if ( ! $gp_project ) {
+				Logger::error( 'LanguagePack', '项目信息获取失败，项目slug：' . $this->slug );
+
+				return false;
+			}
+
+			$translation_sets = GP::$translation_set->by_project_id( $gp_project->id );
+			if ( ! $translation_sets ) {
+				Logger::error( 'LanguagePack', '翻译集获取失败，项目slug：' . $this->slug );
+
+				return false;
+			}
+
+			if ( ! $this->version ) {
+				Logger::error( 'LanguagePack', '版本号为空，项目slug：' . $this->slug );
+
+				return false;
+			}
+
+			$data                    = new stdClass();
+			$data->type              = $this->type;
+			$data->domain            = $textdomain;
+			$data->slug              = $this->slug;
+			$data->version           = $this->version;
+			$data->translation_sets  = $translation_sets;
+			$data->gp_project        = $gp_project;
+			$data->working_directory = $gp_project;
+			$data->export_directory  = $export_directory;
+			$r                       = $this->build_language_packs( $data );
+			if ( ! $r ) {
+				return false;
+			}
+
+			$pack_file_paths[] = $r;
+		}
+
+		$zip_file       = "{$export_directory}/{$this->slug}-zh_CN.zip";
+		$build_zip_file = "{$build_directory}/zh_CN.zip";
+
+		// 创建 ZIP 压缩包
+		$pack_files = array();
+		foreach ( $pack_file_paths as $pack_file_path ) {
+			$pack_files[] = $pack_file_path['po_file'];
+			$pack_files[] = $pack_file_path['mo_file'];
+			foreach ( (array) $pack_file_path['json_files'] as $item ) {
+				$pack_files[] = $item;
+			}
+		}
+		$result = $this->execute_command( sprintf(
+			'zip -9 -j %s %s 2>&1',
+			escapeshellarg( $zip_file ),
+			implode( ' ', array_map( 'escapeshellarg', $pack_files ) )
+		) );
+
+		if ( is_wp_error( $result ) ) {
+			Logger::warning( 'LanguagePack', "ZIP generation for zh_CN failed.", $result->get_error_data() );
+
+			// 清理工作目录
+			$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $working_directory ) ) );
 
 			return false;
 		}
 
-		$gp_project = GP::$project->by_path( "{$this->type}s/$this->slug/$this->branch" );
-		if ( ! $gp_project ) {
-			Logger::error( 'LanguagePack', '项目信息获取失败，项目slug：' . $this->slug );
+		// 创建语言包存储目录
+		$result = $this->execute_command( sprintf(
+			'mkdir -p %s 2>&1',
+			escapeshellarg( $build_directory )
+		) );
+
+		if ( is_wp_error( $result ) ) {
+			Logger::warning( 'LanguagePack', "Creating build directories for zh_CN failed.", $result->get_error_data() );
+
+			// 清理工作目录
+			$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $working_directory ) ) );
 
 			return false;
 		}
 
-		$translation_sets = GP::$translation_set->by_project_id( $gp_project->id );
-		if ( ! $translation_sets ) {
-			Logger::error( 'LanguagePack', '翻译集获取失败，项目slug：' . $this->slug );
+		// 将翻译的 ZIP 压缩包移动到语言包存储目录中
+		$result = $this->execute_command( sprintf(
+			'mv %s %s 2>&1',
+			escapeshellarg( $zip_file ),
+			escapeshellarg( $build_zip_file )
+		) );
+
+		if ( is_wp_error( $result ) ) {
+			Logger::warning( 'LanguagePack', "Moving ZIP file for zh_CN failed.", $result->get_error_data() );
+
+			// 清理工作目录
+			$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $working_directory ) ) );
 
 			return false;
 		}
 
-		if ( ! $this->version ) {
-			Logger::error( 'LanguagePack', '版本号为空，项目slug：' . $this->slug );
+		/**
+		 * 将语言包信息插入数据库。
+		 */
+		// 插入前先计算所有生成的文本域中的最大的一个“最后修改时间”
+		$last_modified = '';
+		foreach ( $pack_file_paths as $pack_file_path ) {
+			if ( strtotime( $pack_file_path['last_modified'] ) > strtotime( $last_modified ) ) {
+				$last_modified = $pack_file_path['last_modified'];
+			}
+		}
+		$result = $this->insert_language_pack( $data->type, $data->slug, 'zh_CN', $data->version, $last_modified );
+
+		if ( is_wp_error( $result ) ) {
+			Logger::warning( 'LanguagePack', sprintf( "Language pack for zh_CN failed: %s", $result->get_error_message() ) );
+
+			// Clean up.
+			$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $working_directory ) ) );
 
 			return false;
 		}
 
-		$data                   = new stdClass();
-		$data->type             = $this->type;
-		$data->domain           = $this->slug;
-		$data->version          = $this->version;
-		$data->translation_sets = $translation_sets;
-		$data->gp_project       = $gp_project;
-		$this->build_language_packs( $data );
+		// 清理工作目录
+		$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $working_directory ) ) );
+
+		Logger::info( 'LanguagePack', "为 {$this->slug} 的 zh_CN 成功生成了语言包" );
+
 
 		return true;
 	}
 
 	private function build_language_packs( $data ) {
-		$existing_packs = $this->get_active_language_packs( $data->type, $data->domain, $data->version );
-		foreach ( $data->translation_sets as $set ) {
-			// 获取 WP locale.
-			$gp_locale = GP_Locales::by_slug( $set->locale );
-			if ( ! isset( $gp_locale->wp_locale ) ) {
-				continue;
+		$existing_packs = $this->get_active_language_packs( $data->type, $data->slug, $data->version );
+
+		$set = current( $data->translation_sets );
+		// 获取 WP locale.
+		$gp_locale = GP_Locales::by_slug( $set->locale );
+		if ( ! isset( $gp_locale->wp_locale ) ) {
+			return false;
+		}
+
+		// 设置 wp_locale 直到 GlotPress 为变体返回正确的 wp_locale。
+		$wp_locale = $gp_locale->wp_locale;
+		if ( 'default' !== $set->slug ) {
+			$wp_locale = $wp_locale . '_' . $set->slug;
+		}
+
+		// 检查是否不存在任何”当前“翻译
+		if ( 0 === $set->current_count() ) {
+			Logger::info( 'LanguagePack', "Skip {$wp_locale}, no translations." );
+
+			return false;
+		}
+
+		// 检查项目的翻译百分比是否高于阈值
+		$has_existing_pack = $this->has_active_language_pack( $data->type, $data->slug, $wp_locale );
+		if ( ! $has_existing_pack ) {
+			$percent_translated = $set->percent_translated();
+			if ( $percent_translated < self::PACKAGE_THRESHOLD ) {
+				Logger::info( 'LanguagePack', "Skip {$wp_locale}, translations below threshold ({$percent_translated}%)." );
+
+				return false;
 			}
+		} else {
+			Logger::info( 'LanguagePack', "Skipping threshold check for {$wp_locale}, has existing language pack." );
+		}
 
-			// 设置 wp_locale 直到 GlotPress 为变体返回正确的 wp_locale。
-			$wp_locale = $gp_locale->wp_locale;
-			if ( 'default' !== $set->slug ) {
-				$wp_locale = $wp_locale . '_' . $set->slug;
+		// 检查自从上次打包以来翻译是否被更新过
+		if ( isset( $existing_packs[ $wp_locale ] ) ) {
+			$pack_time      = strtotime( $existing_packs[ $wp_locale ]->updated );
+			$glotpress_time = strtotime( $set->last_modified() );
+
+			if ( $pack_time >= $glotpress_time ) {
+				Logger::info( 'LanguagePack', "Skip {$wp_locale}, no new translations." );
+
+				return false;
 			}
+		}
 
-			// 检查是否不存在任何”当前“翻译
-			if ( 0 === $set->current_count() ) {
-				Logger::info( 'LanguagePack', "Skip {$wp_locale}, no translations." );
-				continue;
-			}
+		$entries = GP::$translation->for_export( $data->gp_project, $set, array( 'status' => 'current' ) );
+		if ( ! $entries ) {
+			Logger::warning( 'LanguagePack', "No current translations available for {$wp_locale}." );
 
-			// 检查项目的翻译百分比是否高于阈值
-			$has_existing_pack = $this->has_active_language_pack( $data->type, $data->domain, $wp_locale );
-			if ( ! $has_existing_pack ) {
-				$percent_translated = $set->percent_translated();
-				if ( $percent_translated < self::PACKAGE_THRESHOLD ) {
-					Logger::info( 'LanguagePack', "Skip {$wp_locale}, translations below threshold ({$percent_translated}%)." );
-					continue;
-				}
-			} else {
-				Logger::info( 'LanguagePack', "Skipping threshold check for {$wp_locale}, has existing language pack." );
-			}
+			return false;
+		}
 
-			// 检查自从上次打包以来翻译是否被更新过
-			if ( isset( $existing_packs[ $wp_locale ] ) ) {
-				$pack_time      = strtotime( $existing_packs[ $wp_locale ]->updated );
-				$glotpress_time = strtotime( $set->last_modified() );
+		if ( empty( $data->domain ) ) {
+			$filename = "$wp_locale";
+		} else {
+			$filename = "{$data->domain}-{$wp_locale}";
+		}
+		$json_file_base = "{$data->export_directory}/{$filename}";
+		$po_file        = "{$data->export_directory}/{$filename}.po";
+		$mo_file        = "{$data->export_directory}/{$filename}.mo";
 
-				if ( $pack_time >= $glotpress_time ) {
-					Logger::info( 'LanguagePack', "Skip {$wp_locale}, no new translations." );
-					continue;
-				}
-			}
+		// 创建目录
+		$this->create_directory( $data->export_directory );
 
-			$entries = GP::$translation->for_export( $data->gp_project, $set, array( 'status' => 'current' ) );
-			if ( ! $entries ) {
-				Logger::warning( 'LanguagePack', "No current translations available for {$wp_locale}." );
-				continue;
-			}
+		// 根据翻译条目出现的位置构建映射并分隔 po 条目。
+		$mapping    = $this->build_mapping( $entries );
+		$po_entries = array_key_exists( 'po', $mapping ) ? $mapping['po'] : [];
 
-			$working_directory = "/tmp/litepress/language-pack-tmp/{$data->domain}";
-			$export_directory  = "{$working_directory}/{$data->version}/{$wp_locale}";
-			$build_directory   = self::BASE_PACK_DIR . "/{$data->type}s/{$data->domain}/{$data->version}";
+		unset( $mapping['po'] );
 
-			$filename       = "{$data->domain}-{$wp_locale}";
-			$json_file_base = "{$export_directory}/{$filename}";
-			$po_file        = "{$export_directory}/{$filename}.po";
-			$mo_file        = "{$export_directory}/{$filename}.mo";
-			$zip_file       = "{$export_directory}/{$filename}.zip";
-			$build_zip_file = "{$build_directory}/{$wp_locale}.zip";
+		// 为每个 JS 文件创建 JED json 文件。
+		$json_files = $this->build_json_files( $data->gp_project, $gp_locale, $set, $mapping, $json_file_base );
 
-			// 创建目录
-			$this->create_directory( $export_directory );
-
-			// 根据翻译条目出现的位置构建映射并分隔 po 条目。
-			$mapping    = $this->build_mapping( $entries );
-			$po_entries = array_key_exists( 'po', $mapping ) ? $mapping['po'] : [];
-
-			unset( $mapping['po'] );
-
-			// 为每个 JS 文件创建 JED json 文件。
-			$json_files = $this->build_json_files( $data->gp_project, $gp_locale, $set, $mapping, $json_file_base );
-
-			// 创建 PO 文件
-			$last_modified = $this->build_po_file( $data->gp_project, $gp_locale, $set, $po_entries, $po_file );
-			if ( is_wp_error( $last_modified ) ) {
-				Logger::warning( 'LanguagePack', sprintf( "PO generation for {$wp_locale} failed: %s", $last_modified->get_error_message() ) );
-
-				// 清理工作目录
-				$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $working_directory ) ) );
-
-				continue;
-			}
-
-			// 创建 MO 文件
-			$result = $this->execute_command( sprintf(
-				'msgfmt %s -o %s 2>&1',
-				escapeshellarg( $po_file ),
-				escapeshellarg( $mo_file )
-			) );
-
-			if ( is_wp_error( $result ) ) {
-				Logger::warning( 'LanguagePack', "MO generation for {$wp_locale} failed.", $result->get_error_data() );
-
-				// 清理工作目录
-				$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $working_directory ) ) );
-
-				continue;
-			}
-
-			// 创建 ZIP 压缩包
-			$result = $this->execute_command( sprintf(
-				'zip -9 -j %s %s %s %s 2>&1',
-				escapeshellarg( $zip_file ),
-				escapeshellarg( $po_file ),
-				escapeshellarg( $mo_file ),
-				implode( ' ', array_map( 'escapeshellarg', $json_files ) )
-			) );
-
-			if ( is_wp_error( $result ) ) {
-				Logger::warning( 'LanguagePack', "ZIP generation for {$wp_locale} failed.", $result->get_error_data() );
-
-				// 清理工作目录
-				$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $working_directory ) ) );
-
-				continue;
-			}
-
-			// 创建语言包存储目录
-			$result = $this->execute_command( sprintf(
-				'mkdir -p %s 2>&1',
-				escapeshellarg( $build_directory )
-			) );
-
-			if ( is_wp_error( $result ) ) {
-				Logger::warning( 'LanguagePack', "Creating build directories for {$wp_locale} failed.", $result->get_error_data() );
-
-				// 清理工作目录
-				$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $working_directory ) ) );
-
-				continue;
-			}
-
-			// 将翻译的 ZIP 压缩包移动到语言包存储目录中
-			$result = $this->execute_command( sprintf(
-				'mv %s %s 2>&1',
-				escapeshellarg( $zip_file ),
-				escapeshellarg( $build_zip_file )
-			) );
-
-			if ( is_wp_error( $result ) ) {
-				Logger::warning( 'LanguagePack', "Moving ZIP file for {$wp_locale} failed.", $result->get_error_data() );
-
-				// 清理工作目录
-				$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $working_directory ) ) );
-
-				continue;
-			}
-
-			// 将语言包信息插入数据库。
-			$result = $this->insert_language_pack( $data->type, $data->domain, $wp_locale, $data->version, $last_modified );
-
-			if ( is_wp_error( $result ) ) {
-				Logger::warning( 'LanguagePack', sprintf( "Language pack for {$wp_locale} failed: %s", $result->get_error_message() ) );
-
-				// Clean up.
-				$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $working_directory ) ) );
-
-				continue;
-			}
+		// 创建 PO 文件
+		$last_modified = $this->build_po_file( $data->gp_project, $gp_locale, $set, $po_entries, $po_file );
+		if ( is_wp_error( $last_modified ) ) {
+			Logger::warning( 'LanguagePack', sprintf( "PO generation for {$wp_locale} failed: %s", $last_modified->get_error_message() ) );
 
 			// 清理工作目录
-			$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $working_directory ) ) );
+			$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $data->working_directory ) ) );
 
-			Logger::info( 'LanguagePack', "为 {$this->slug} 的 {$wp_locale} 成功生成了语言包" );
+			return false;
 		}
+
+		// 创建 MO 文件
+		$result = $this->execute_command( sprintf(
+			'msgfmt %s -o %s 2>&1',
+			escapeshellarg( $po_file ),
+			escapeshellarg( $mo_file )
+		) );
+
+		if ( is_wp_error( $result ) ) {
+			Logger::warning( 'LanguagePack', "MO generation for {$wp_locale} failed.", $result->get_error_data() );
+
+			// 清理工作目录
+			$this->execute_command( sprintf( 'rm -rf %s', escapeshellarg( $data->working_directory ) ) );
+
+			return false;
+		}
+
+		return array(
+			'po_file'       => $po_file,
+			'mo_file'       => $mo_file,
+			'json_files'    => $json_files,
+			'last_modified' => $last_modified,
+		);
 	}
 
 	private function get_active_language_packs( $type, $domain, $version ): array|object {

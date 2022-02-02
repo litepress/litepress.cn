@@ -45,9 +45,9 @@ if(event.keyCode==13){
         });
  
 $(function(){ 
-var　headerval =　$(".header-search input").val();
+var　headerval =　$(".wp-nav .header-search input").val();
 $(projectsearch).val(headerval);
-$(".header-search input").val("");
+$(".wp-nav .header-search input").val("");
 });
  	jQuery('#hide-help-notice').click(function() {
 				jQuery.ajax({url: '/getting-started/hide-notice/'});

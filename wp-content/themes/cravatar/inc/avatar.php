@@ -140,7 +140,7 @@ function handle_avatar() {
 		/**
 		 * 如果经过上述一串操作后还是没有图像的话就按404处理
 		 */
-		if ( empty( $avatar_filename ) ) {
+		if ( empty( $avatar_filename ) || false == $avatar_filename ) {
 			/**
 			 * 如果用户指定返回404的话就终止后续操作直接返回404状态码
 			 */
@@ -152,10 +152,13 @@ function handle_avatar() {
 			$avatar_filename = get_default_avatar_filename( $default );
 		}
 
-		$info          = getimagesize( $avatar_filename );
-		$cache_img_ext = image_type_to_extension( $info[2], false );
-		$fun           = "imagecreatefrom{$cache_img_ext}";
-		$img_info      = $fun( $avatar_filename );
+		// 此替换将保证若https配置不当时，不至于返回500
+		$avatar_filename = str_replace( 'http://litepress.cn/cravatar/', '', $avatar_filename );
+		$info            = getimagesize( $avatar_filename );
+
+		$cache_img_ext   = image_type_to_extension( $info[2], false );
+		$fun             = "imagecreatefrom{$cache_img_ext}";
+		$img_info        = $fun( $avatar_filename );
 
 		$img_size = $size ?: 80;
 		$img_size = (int) ( $img_size > 2000 ? 2000 : $img_size );

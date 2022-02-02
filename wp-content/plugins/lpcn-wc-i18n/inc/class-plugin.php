@@ -113,14 +113,14 @@ class Plugin {
 
 		$categories = get_the_terms( $product_id, 'product_cat' );
 		$type       = get_product_type_by_categories( $categories );
-		$product    = get_post( $product_id );
+		$product    = wc_get_product( $product_id );
 
 		switch ( $type ) {
 			case 'plugin':
-				$gp_project_path = sprintf( 'plugins/%s/readme', $product->post_name );
+				$gp_project_path = sprintf( 'plugins/%s/readme', $product->get_slug() );
 				break;
 			case 'theme':
-				$gp_project_path = sprintf( 'themes/%1$s/%1$s', $product->post_name );
+				$gp_project_path = sprintf( 'themes/%1$s/%1$s', $product->get_slug() );
 				break;
 			default:
 				return $content;
@@ -133,7 +133,7 @@ class Plugin {
 			default => 'un',
 		};
 
-		$cache_key = sprintf( '%s_%s_' . $key, $type, $product->post_name );
+		$cache_key = sprintf( '%s_%s_' . $key, $type, $product->get_slug() );
 
 		return i18n::get_instance()->translate( $cache_key, $content, $gp_project_path );
 	}

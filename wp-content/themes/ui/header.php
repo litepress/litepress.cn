@@ -15,7 +15,7 @@
 	<?php global $blog_id; ?>
 
 	<?php if ( 4 !== (int) $blog_id ): ?>
-        <title><?php wp_title(); ?></title>
+        <title><?php wp_title('&#8211;', true, 'right'); ?></title>
 	<?php endif; ?>
 
 	<?php wp_head(); ?>

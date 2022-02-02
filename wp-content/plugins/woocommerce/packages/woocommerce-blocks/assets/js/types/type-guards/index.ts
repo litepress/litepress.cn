@@ -13,7 +13,11 @@ export const isString = < U >( term: string | U ): term is string => {
 export const isObject = < T extends Record< string, unknown >, U >(
 	term: T | U
 ): term is NonNullable< T > => {
-	return ! isNull( term ) && typeof term === 'object';
+	return (
+		! isNull( term ) &&
+		term instanceof Object &&
+		term.constructor === Object
+	);
 };
 
 export function objectHasProp< P extends PropertyKey >(
@@ -29,4 +33,8 @@ export const isFunction = < T extends Function, U >(
 	term: T | U
 ): term is T => {
 	return typeof term === 'function';
+};
+
+export const isBoolean = ( term: unknown ): term is boolean => {
+	return typeof term === 'boolean';
 };

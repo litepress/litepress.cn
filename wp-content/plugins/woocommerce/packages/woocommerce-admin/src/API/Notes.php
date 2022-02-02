@@ -96,6 +96,18 @@ class Notes extends \WC_REST_CRUD_Controller {
 					'methods'             => \WP_REST_Server::DELETABLE,
 					'callback'            => array( $this, 'delete_all_items' ),
 					'permission_callback' => array( $this, 'update_items_permissions_check' ),
+					'args'                => array(
+						'status' => array(
+							'description'       => __( 'Status of note.', 'woocommerce' ),
+							'type'              => 'array',
+							'sanitize_callback' => 'wp_parse_slug_list',
+							'validate_callback' => 'rest_validate_request_arg',
+							'items'             => array(
+								'enum' => Note::get_allowed_statuses(),
+								'type' => 'string',
+							),
+						),
+					),
 				),
 				'schema' => array( $this, 'get_public_item_schema' ),
 			)
@@ -165,17 +177,62 @@ class Notes extends \WC_REST_CRUD_Controller {
 
 		$notes = NotesRepository::get_notes( 'edit', $query_args );
 
+		$is_tasklist_experiment_assigned_treatment = $this->is_tasklist_experiment_assigned_treatment();
+
 		$data = array();
 		foreach ( (array) $notes as $note_obj ) {
+			// Hide selected notes for users not in experiment.
+			if ( ! $is_tasklist_experiment_assigned_treatment ) {
+				if ( 'wc-admin-complete-store-details' === $note_obj['name'] ) {
+					continue;
+				}
+
+				if ( 'wc-admin-update-store-details' === $note_obj['name'] ) {
+					continue;
+				}
+			}
 			$note   = $this->prepare_item_for_response( $note_obj, $request );
 			$note   = $this->prepare_response_for_collection( $note );
 			$data[] = $note;
 		}
 
 		$response = rest_ensure_response( $data );
-		$response->header( 'X-WP-Total', NotesRepository::get_notes_count( $query_args['type'], $query_args['status'] ) );
+		$response->header( 'X-WP-Total', count( $data ) );
 
 		return $response;
+	}
+
+	/**
+	 * Checks if user is in tasklist experiment.
+	 *
+	 * @return bool Whether remote inbox notifications are enabled.
+	 */
+	private function is_tasklist_experiment_assigned_treatment() {
+		$anon_id        = isset( $_COOKIE['tk_ai'] ) ? sanitize_text_field( wp_unslash( $_COOKIE['tk_ai'] ) ) : '';
+		$allow_tracking = 'yes' === get_option( 'woocommerce_allow_tracking' );
+		$abtest         = new \WooCommerce\Admin\Experimental_Abtest(
+			$anon_id,
+			'woocommerce',
+			$allow_tracking
+		);
+
+		$date = new \DateTime();
+		$date->setTimeZone( new \DateTimeZone( 'UTC' ) );
+
+		$experiment_name = sprintf(
+			'woocommerce_tasklist_progression_headercard_%s_%s',
+			$date->format( 'Y' ),
+			$date->format( 'm' )
+		);
+
+		$experiment_name_2col = sprintf(
+			'woocommerce_tasklist_progression_headercard_2col_%s_%s',
+			$date->format( 'Y' ),
+			$date->format( 'm' )
+		);
+
+		return $abtest->get_variation( $experiment_name ) === 'treatment' ||
+			$abtest->get_variation( $experiment_name_2col ) === 'treatment';
 	}
 
 	/**
@@ -291,7 +348,11 @@ class Notes extends \WC_REST_CRUD_Controller {
 	 * @return WP_REST_Request|WP_Error
 	 */
 	public function delete_all_items( $request ) {
-		$notes = NotesRepository::delete_all_notes();
+		$args = array();
+		if ( isset( $request['status'] ) ) {
+			$args['status'] = $request['status'];
+		}
+		$notes = NotesRepository::delete_all_notes( $args );
 		$data  = array();
 		foreach ( (array) $notes as $note_obj ) {
 			$data[] = $this->prepare_note_data_for_response( $note_obj, $request );
@@ -335,6 +396,11 @@ class Notes extends \WC_REST_CRUD_Controller {
 		if ( ! is_null( $request->get_param( 'is_deleted' ) ) ) {
 			$requested_updates['is_deleted'] = $request->get_param( 'is_deleted' );
 		}
+
+		if ( ! is_null( $request->get_param( 'is_read' ) ) ) {
+			$requested_updates['is_read'] = $request->get_param( 'is_read' );
+		}
+
 		return $requested_updates;
 	}
 
@@ -457,6 +523,7 @@ class Notes extends \WC_REST_CRUD_Controller {
 		$data['content']           = stripslashes( $data['content'] );
 		$data['is_snoozable']      = (bool) $data['is_snoozable'];
 		$data['is_deleted']        = (bool) $data['is_deleted'];
+		$data['is_read']           = (bool) $data['is_read'];
 		foreach ( (array) $data['actions'] as $key => $value ) {
 			$data['actions'][ $key ]->label  = stripslashes( $data['actions'][ $key ]->label );
 			$data['actions'][ $key ]->url    = $this->maybe_add_nonce_to_url(

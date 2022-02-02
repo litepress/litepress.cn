@@ -148,7 +148,10 @@ class Editor extends Component {
 					controls={ [
 						{
 							icon: 'edit',
-							title: __( 'Edit', 'woocommerce' ),
+							title: __(
+								'Edit inner product layout',
+								'woocommerce'
+							),
 							onClick: () => this.togglePreview(),
 							isActive: isEditing,
 						},
