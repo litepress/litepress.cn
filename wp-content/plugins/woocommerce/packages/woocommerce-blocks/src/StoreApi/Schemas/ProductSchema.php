@@ -288,21 +288,27 @@ class ProductSchema extends AbstractSchema {
 							'items'       => [
 								'type'       => 'object',
 								'properties' => [
-									'id'   => [
+									'id'      => [
 										'description' => __( 'The term ID, or 0 if the attribute is not a global attribute.', 'woocommerce' ),
 										'type'        => 'integer',
 										'context'     => [ 'view', 'edit' ],
 										'readonly'    => true,
 									],
-									'name' => [
+									'name'    => [
 										'description' => __( 'The term name.', 'woocommerce' ),
 										'type'        => 'string',
 										'context'     => [ 'view', 'edit' ],
 										'readonly'    => true,
 									],
-									'slug' => [
+									'slug'    => [
 										'description' => __( 'The term slug.', 'woocommerce' ),
 										'type'        => 'string',
+										'context'     => [ 'view', 'edit' ],
+										'readonly'    => true,
+									],
+									'default' => [
+										'description' => __( 'If this is a default attribute', 'woocommerce' ),
+										'type'        => 'boolean',
 										'context'     => [ 'view', 'edit' ],
 										'readonly'    => true,
 									],
@@ -521,6 +527,15 @@ class ProductSchema extends AbstractSchema {
 			$limits[] = $this->get_remaining_stock( $product );
 		}
 
+		/**
+		 * Filters the quantity limit for a product being added to the cart via the Store API.
+		 *
+		 * Filters the variation option name for custom option slugs.
+		 *
+		 * @param integer $quantity_limit Quantity limit which defaults to 99 unless sold individually.
+		 * @param \WC_Product $product Product instance.
+		 * @return integer
+		 */
 		return apply_filters( 'woocommerce_store_api_product_quantity_limit', max( min( array_filter( $limits ) ), 1 ), $product );
 	}
 
@@ -551,17 +566,15 @@ class ProductSchema extends AbstractSchema {
 	 * @returns array
 	 */
 	protected function get_variations( \WC_Product $product ) {
-		if ( ! $product->is_type( 'variable' ) ) {
-			return [];
-		}
-		global $wpdb;
-
-		$variation_ids = $product->get_visible_children();
+		$variation_ids = $product->is_type( 'variable' ) ? $product->get_visible_children() : [];
 
 		if ( ! count( $variation_ids ) ) {
 			return [];
 		}
 
+		/**
+		 * Gets default variation data which applies to all of this products variations.
+		 */
 		$attributes                  = array_filter( $product->get_attributes(), [ $this, 'filter_variation_attribute' ] );
 		$default_variation_meta_data = array_reduce(
 			$attributes,
@@ -575,22 +588,53 @@ class ProductSchema extends AbstractSchema {
 			},
 			[]
 		);
+		$default_variation_meta_keys = array_keys( $default_variation_meta_data );
 
-		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
-		$variation_meta_data = $wpdb->get_results(
+		/**
+		 * Gets individual variation data from the database, using cache where possible.
+		 */
+		$cache_group   = 'product_variation_meta_data';
+		$cache_value   = wp_cache_get( $product->get_id(), $cache_group );
+		$last_modified = get_the_modified_date( 'U', $product->get_id() );
+
+		if ( false === $cache_value || $last_modified !== $cache_value['last_modified'] ) {
+			global $wpdb;
+			// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+			$variation_meta_data = $wpdb->get_results(
+				"
+				SELECT post_id as variation_id, meta_key as attribute_key, meta_value as attribute_value
+				FROM {$wpdb->postmeta}
+				WHERE post_id IN (" . implode( ',', array_map( 'esc_sql', $variation_ids ) ) . ")
+				AND meta_key IN ('" . implode( "','", array_map( 'esc_sql', $default_variation_meta_keys ) ) . "')
 			"
-			SELECT post_id as variation_id, meta_key as attribute_key, meta_value as attribute_value
-			FROM {$wpdb->postmeta}
-			WHERE post_id IN (" . implode( ',', array_map( 'esc_sql', $variation_ids ) ) . ")
-			AND meta_key IN ('" . implode( "','", array_map( 'esc_sql', array_keys( $default_variation_meta_data ) ) ) . "')
-		"
-		);
-		// phpcs:enable
+			);
+			// phpcs:enable
 
+			wp_cache_set(
+				$product->get_id(),
+				[
+					'last_modified' => $last_modified,
+					'data'          => $variation_meta_data,
+				],
+				$cache_group
+			);
+		} else {
+			$variation_meta_data = $cache_value['data'];
+		}
+
+		/**
+		 * Merges and formats default variation data with individual variation data.
+		 */
 		$attributes_by_variation = array_reduce(
 			$variation_meta_data,
-			function( $values, $data ) {
-				$values[ $data->variation_id ][ $data->attribute_key ] = $data->attribute_value;
+			function( $values, $data ) use ( $default_variation_meta_keys ) {
+				// The query above only includes the keys of $default_variation_meta_data so we know all of the attributes
+				// being processed here apply to this product. However, we need an additional check here because the
+				// cache may have been primed elsewhere and include keys from other products.
+				// @see AbstractProductGrid::prime_product_variations.
+				if ( in_array( $data->attribute_key, $default_variation_meta_keys, true ) ) {
+					$values[ $data->variation_id ][ $data->attribute_key ] = $data->attribute_value;
+				}
 				return $values;
 			},
 			array_fill_keys( $variation_ids, [] )
@@ -623,20 +667,33 @@ class ProductSchema extends AbstractSchema {
 	 * @return array
 	 */
 	protected function get_attributes( \WC_Product $product ) {
-		$attributes = array_filter( $product->get_attributes(), [ $this, 'filter_valid_attribute' ] );
-		$return     = [];
+		$attributes         = array_filter( $product->get_attributes(), [ $this, 'filter_valid_attribute' ] );
+		$default_attributes = $product->get_default_attributes();
+		$return             = [];
 
 		foreach ( $attributes as $attribute_slug => $attribute ) {
 			// Only visible and variation attributes will be exposed by this API.
 			if ( ! $attribute->get_visible() || ! $attribute->get_variation() ) {
 				continue;
 			}
+
+			$terms = $attribute->is_taxonomy() ? array_map( [ $this, 'prepare_product_attribute_taxonomy_value' ], $attribute->get_terms() ) : array_map( [ $this, 'prepare_product_attribute_value' ], $attribute->get_options() );
+			// Custom attribute names are sanitized to be the array keys.
+			// So when we do the array_key_exists check below we also need to sanitize the attribute names.
+			$sanitized_attribute_name = sanitize_key( $attribute->get_name() );
+
+			if ( array_key_exists( $sanitized_attribute_name, $default_attributes ) ) {
+				foreach ( $terms as $term ) {
+					$term->default = $term->slug === $default_attributes[ $sanitized_attribute_name ];
+				}
+			}
+
 			$return[] = (object) [
 				'id'             => $attribute->get_id(),
 				'name'           => wc_attribute_label( $attribute->get_name(), $product ),
 				'taxonomy'       => $attribute->is_taxonomy() ? $attribute->get_name() : null,
 				'has_variations' => true === $attribute->get_variation(),
-				'terms'          => $attribute->is_taxonomy() ? array_map( [ $this, 'prepare_product_attribute_taxonomy_value' ], $attribute->get_terms() ) : array_map( [ $this, 'prepare_product_attribute_value' ], $attribute->get_options() ),
+				'terms'          => $terms,
 			];
 		}
 

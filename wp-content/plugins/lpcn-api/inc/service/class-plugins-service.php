@@ -18,7 +18,9 @@ class Plugins_Service {
 		$slugs = array();
 
 		foreach ( $plugins as $plugin => $meta ) {
-			$slugs[] = $meta['TextDomain'] ?? '';
+			list( $slug ) = explode( '/', $plugin );
+
+			$slugs[] = $slug;
 		}
 
 		$fields     = array(

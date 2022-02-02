@@ -51,24 +51,18 @@ switch_to_blog( 1 );
 
 
                     </nav>
-                    <div class="lava-ajax-search-form-wrap header-search">
-                        <form method="get" action="/"><input type="text" name="s" value=""
-                                                             autocomplete="off" placeholder="搜索社区帖子……"
-                                                             data-search-input=""
-                                                             class="ui-autocomplete-input">
-                            <button type="submit">
-                                <div class="actions"><i class="fad fa-search"></i>
-                                    <div class="loading">
-                                        <i class="fa fa-spin fa-spinner"></i>
+                    <div class="header-search">
+                        <form style="max-width: 640px" class="m-auto header-search" method="get" action="/search">
+                            <div class="position-relative">
+                                <input type="text" name="keyword" class="form-control" placeholder="搜索……">
+                                <button type="submit">
+                                    <div class="actions"><i class="fad fa-search"></i>
+
                                     </div>
-                                    <div class="clear hidden">
-                                        <i class="fa fa-close"></i>
-                                    </div>
-                                </div>
-                            </button>
+                                </button>
+                            </div>
+
                         </form>
-                        <ul id="showDiv" tabindex="0"
-                            class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front lava_ajax_search none"></ul>
                     </div>
                     <div class=" header-sign">
 
@@ -105,6 +99,9 @@ switch_to_blog( 1 );
 switch ( $blog_id ) {
 	case 1:
 		// 主站
+		if ( str_starts_with( $_SERVER['REQUEST_URI'], '/forums' ) ) {
+			get_template_part( 'template-parts/header/sub/forums-header' );
+		}
 
 		break;
 	case 3:
@@ -124,6 +121,10 @@ switch ( $blog_id ) {
 	case 6:
 		// 文档平台
 		get_template_part( 'template-parts/header/sub/docs-header' );
+		break;
+	case 14:
+		// 文档平台
+		get_template_part( 'template-parts/header/sub/news-header' );
 		break;
 
 	default:

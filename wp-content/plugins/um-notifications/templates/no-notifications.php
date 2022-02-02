@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
 <div class="um-notification-header">
 	<div class="um-notification-left"><?php _e( 'Notifications', 'um-notifications' ); ?></div>
 	<div class="um-notification-right">
-		<a href="<?php echo esc_url( UM()->account()->tab_link( 'webnotifications' ) ); ?>" class="um-notification-i-settings"><i class="um-faicon-cog"></i></a>
-		<a href="javascript:void(0);" class="um-notification-i-close"><i class="um-icon-android-close"></i></a>
+		<a href="<?php echo esc_url( UM()->account()->tab_link( 'webnotifications' ) ); ?>" class="um-notification-i-settings"><i class="fad fa-cog"></i></a>
+		<a href="javascript:void(0);" class="um-notification-i-close"><i class="fad fa-times-circle"></i></a>
 	</div>
 	<div class="um-clear"></div>
 </div>
@@ -24,6 +24,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
 </div>
 
 <div class="um-notifications-none">
-	<i class="um-icon-ios-bell"></i>
+	<i class="fas fa-bell"></i>
 	<?php _e( 'No new notifications', 'um-notifications' ); ?>
 </div>

@@ -65,6 +65,16 @@ class JCK_SFR_Submission
             'description' => $description,
             'user'        => $user,
         ) );
+        if ( isset( $_GET['board'] ) ) {
+            
+            if ( !empty($_GET['board']) ) {
+                $board = sanitize_text_field( $_GET['board'] );
+                if ( $term = get_term_by( 'slug', $board, JCK_SFR_BOARD_TAXONOMY_NAME ) ) {
+                    $args['board'] = $board;
+                }
+            }
+        
+        }
         $request_id = JCK_SFR_Factory::create( $args );
         
         if ( !$request_id ) {

@@ -170,7 +170,10 @@ class ProductsByAttributeBlock extends Component {
 						controls={ [
 							{
 								icon: 'edit',
-								title: __( 'Edit' ),
+								title: __(
+									'Edit selected attribute',
+									'woocommerce'
+								),
 								onClick: () =>
 									setAttributes( { editMode: ! editMode } ),
 								isActive: editMode,

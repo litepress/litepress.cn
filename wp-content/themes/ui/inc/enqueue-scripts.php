@@ -20,6 +20,9 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_script( 'clipboard', get_stylesheet_directory_uri() . '/assets/js/clipboard.min.js', [], false, true );
 	wp_enqueue_script( 'ui-global-script', get_stylesheet_directory_uri() . '/assets/js/ui-global-script.js', [ 'jquery' ], false, true );
 	wp_enqueue_script( 'bootstrap-bundle', get_stylesheet_directory_uri() . '/assets/js/bootstrap.bundle.min.js', [ 'jquery' ], false, true );
+	
+	// 这个js bug还是有点多，比如鼠标移到注销按钮，直接就注销登录了，暂时移除之
+	//wp_enqueue_script( 'instant.page', 'https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js', [ 'jquery' ], false, true );
 
 	wp_localize_script( 'jquery', 'wpApiSettings', array(
 		'root' => esc_url_raw( rest_url() ),

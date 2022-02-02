@@ -89,7 +89,7 @@ class Notifications_Main_API {
 
 		$user_id = ( $user_id > 0 ) ? $user_id : get_current_user_id();
 
-		$table_name = $wpdb->prefix . "um_notifications";
+		$table_name = "wp_um_notifications";
 		$results = $wpdb->get_results( $wpdb->prepare(
 		"SELECT id
 			FROM {$table_name}
@@ -116,7 +116,7 @@ class Notifications_Main_API {
 		if ( ! is_user_logged_in() ) {
 			return;
 		}
-		$table_name = $wpdb->prefix . "um_notifications";
+		$table_name = "wp_um_notifications";
 		$wpdb->delete( $table_name, array( 'id' => $notification_id ) );
 	}
 
@@ -207,7 +207,7 @@ class Notifications_Main_API {
 	function get_notifications( $per_page = 10, $unread_only = false, $count = false ) {
 		global $wpdb;
 		$user_id = get_current_user_id();
-		$table_name = $wpdb->prefix . "um_notifications";
+		$table_name = "wp_um_notifications";
 
 		if ( $unread_only == 'unread' && $count == true ) {
 
@@ -302,7 +302,7 @@ class Notifications_Main_API {
 			$url = $vars['notification_uri'];
 		}
 
-		$table_name = $wpdb->prefix . "um_notifications";
+		$table_name = "wp_um_notifications";
 
 		$exclude_type = apply_filters( 'um_notifications_exclude_types', array(
 			'comment_reply',
@@ -437,7 +437,7 @@ class Notifications_Main_API {
 	function set_as_read( $notification_id ) {
 		global $wpdb;
 		$user_id = get_current_user_id();
-		$table_name = $wpdb->prefix . "um_notifications";
+		$table_name = "wp_um_notifications";
 		$wpdb->update(
 			$table_name,
 			array(

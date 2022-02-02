@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  * @since 2.0.0 bbPress (r3349)
  *
  * @param array $forum_data Forum post data
- * @param arrap $forum_meta Forum meta data
+ * @param array $forum_meta Forum meta data
  */
 function bbp_insert_forum( $forum_data = array(), $forum_meta = array() ) {
 
@@ -230,7 +230,15 @@ function bbp_new_forum_handler( $action = '' ) {
 
 	/** Forum Duplicate *******************************************************/
 
-	if ( ! bbp_check_for_duplicate( array( 'post_type' => bbp_get_forum_post_type(), 'post_author' => $forum_author, 'post_content' => $forum_content, 'anonymous_data' => $anonymous_data ) ) ) {
+	$dupe_args = array(
+		'post_type'      => bbp_get_forum_post_type(),
+		'post_author'    => $forum_author,
+		'post_content'   => $forum_content,
+		'post_parent'    => $forum_parent_id,
+		'anonymous_data' => $anonymous_data
+	);
+
+	if ( ! bbp_check_for_duplicate( $dupe_args ) ) {
 		bbp_add_error( 'bbp_forum_duplicate', __( '<strong>Error</strong>: This forum already exists.', 'bbpress' ) );
 	}
 
@@ -242,9 +250,12 @@ function bbp_new_forum_handler( $action = '' ) {
 
 	/** Forum Moderation ******************************************************/
 
-	$post_status = bbp_get_public_status_id();
+	// Default to published
+	$forum_status = bbp_get_public_status_id();
+
+	// Maybe force into pending
 	if ( ! bbp_check_for_moderation( $anonymous_data, $forum_author, $forum_title, $forum_content ) ) {
-		$post_status = bbp_get_pending_status_id();
+		$forum_status = bbp_get_pending_status_id();
 	}
 
 	/** Additional Actions (Before Save) **************************************/
@@ -265,7 +276,7 @@ function bbp_new_forum_handler( $action = '' ) {
 		'post_title'     => $forum_title,
 		'post_content'   => $forum_content,
 		'post_parent'    => $forum_parent_id,
-		'post_status'    => $post_status,
+		'post_status'    => $forum_status,
 		'post_type'      => bbp_get_forum_post_type(),
 		'comment_status' => 'closed'
 	) );
@@ -481,9 +492,12 @@ function bbp_edit_forum_handler( $action = '' ) {
 
 	/** Forum Moderation ******************************************************/
 
-	$post_status = bbp_get_public_status_id();
+	// Use existing post_status
+	$forum_status = $forum->post_status;
+
+	// Maybe force into pending
 	if ( ! bbp_check_for_moderation( $anonymous_data, bbp_get_forum_author_id( $forum_id ), $forum_title, $forum_content ) ) {
-		$post_status = bbp_get_pending_status_id();
+		$forum_status = bbp_get_pending_status_id();
 	}
 
 	/** Additional Actions (Before Save) **************************************/
@@ -503,7 +517,7 @@ function bbp_edit_forum_handler( $action = '' ) {
 		'ID'           => $forum_id,
 		'post_title'   => $forum_title,
 		'post_content' => $forum_content,
-		'post_status'  => $post_status,
+		'post_status'  => $forum_status,
 		'post_parent'  => $forum_parent_id
 	) );
 

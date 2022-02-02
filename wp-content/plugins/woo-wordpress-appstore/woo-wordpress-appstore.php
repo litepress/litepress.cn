@@ -1,14 +1,14 @@
 <?php
 /**
  * Plugin Name: Woo WordPress AppStore
- * Description: 使WooCommerce变身为WordPress应用商店，配合客户端可实现类似WP原生商店的应用安装体验
- * Version: 1.0.0
- * Author: WP中国本土化社区
- * Author URI: https://wp-china.org
+ * Description: 使WooCommerce变身为WordPress应用商店，并增加REST API支持
+ * Version: 1.1.0
+ * Author: LitePress团队
+ * Author URI: https://litepress.cn
  * WC requires at least: 4.7.0
- * WC tested up to: 4.7.0
+ * WC tested up to: 5.8
  * Requires WP: 5.5.4
- * Requires PHP: 7.4
+ * Requires PHP: 8.0
  * License: GPLv3 or later
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */

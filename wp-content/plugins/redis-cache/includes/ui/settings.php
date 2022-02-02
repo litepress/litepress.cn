@@ -73,8 +73,9 @@ defined( '\\ABSPATH' ) || exit;
             <div class="section-pro">
 
                 <div class="card">
-                    <h2 class="title">
-                        Object Cache Pro
+                    <h2 class="title" style="line-height: 1.4">
+                        Need more performance and reliability?<br>
+                        Check out <span style="color: #dc2626;">Object Cache Pro</span>!
                     </h2>
                     <p>
                         <?php wp_kses_post( __( '<strong>A business class object cache backend.</strong> Truly reliable, highly-optimized and fully customizable, with a <u>dedicated engineer</u> when you most need it.', 'redis-cache' ) ); ?>
@@ -91,7 +92,7 @@ defined( '\\ABSPATH' ) || exit;
                         <li><?php esc_html_e( 'Optimized for WooCommerce, Jetpack & Yoast SEO', 'redis-cache' ); ?></li>
                     </ul>
                     <p>
-                        <a class="button button-primary" target="_blank" rel="noopener" href="https://objectcache.pro/?utm_source=wp-plugin&amp;utm_medium=settings">
+                        <a class="button button-primary" target="_blank" rel="noopener" href="https://objectcache.pro/?ref=oss&amp;utm_source=wp-plugin&amp;utm_medium=settings">
                             <?php esc_html_e( 'Learn more', 'redis-cache' ); ?>
                         </a>
                     </p>

@@ -69,7 +69,7 @@ const PriceFilterBlock = ( { attributes, isEditor = false } ) => {
 	);
 
 	// Updates the query after a short delay.
-	const [ debouncedUpdateQuery ] = useDebouncedCallback( onSubmit, 500 );
+	const debouncedUpdateQuery = useDebouncedCallback( onSubmit, 500 );
 
 	// Callback when slider or input fields are changed.
 	const onChange = useCallback(
@@ -151,7 +151,9 @@ const PriceFilterBlock = ( { attributes, isEditor = false } ) => {
 	return (
 		<>
 			{ ! isEditor && attributes.heading && (
-				<TagName>{ attributes.heading }</TagName>
+				<TagName className="wc-block-price-filter__title">
+					{ attributes.heading }
+				</TagName>
 			) }
 			<div className="wc-block-price-slider">
 				<PriceSlider

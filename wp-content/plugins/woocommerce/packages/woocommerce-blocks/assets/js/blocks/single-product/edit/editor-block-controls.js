@@ -19,7 +19,10 @@ const EditorBlockControls = ( { isEditing, setIsEditing } ) => {
 				controls={ [
 					{
 						icon: 'edit',
-						title: __( 'Edit', 'woocommerce' ),
+						title: __(
+							'Edit selected product',
+							'woocommerce'
+						),
 						onClick: () => setIsEditing( ! isEditing ),
 						isActive: isEditing,
 					},

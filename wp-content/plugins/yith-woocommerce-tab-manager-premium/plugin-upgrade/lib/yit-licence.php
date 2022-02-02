@@ -436,47 +436,14 @@ if ( !class_exists( 'YITH_Licence' ) ) {
          * @author Andrea Grillo <andrea.grillo@yithemes.com>
          */
         public function check( $product_init, $regenerate_transient = true, $force_check = false ) {
-
-            $status     = false;
-            $body       = false;
-            $product    = $this->get_product( $product_init );
-            $licence    = $this->get_licence();
-            $product_id = $product[ 'product_id' ];
-
-            if ( ! isset( $licence[ $product_id ] ) ) {
-                return false;
-            }
-
-            if( ! $force_check && ! $this->is_check_needed( $licence[ $product_id ] ) ) {
-                return true;
-            }
-
-                
             /**
              * 这里直接去掉了远程验证授权，防止后台卡顿
              * 
              * @author 耗子
              * @created_at 2021/12/24
-             * @updated_at 2021/12/24
+             * @updated_at 2022/01/30
              */
-            $licence[ $product_id ][ 'status_code' ]          = '200';
-            $licence[ $product_id ][ 'activated' ]            = $body[ 'activated' ];
-            $licence[ $product_id ][ 'licence_expires' ]      = $body[ 'licence_expires' ];
-            $licence[ $product_id ][ 'licence_next_check' ]   = time() + 999999999999;
-            $licence[ $product_id ][ 'activation_remaining' ] = $body[ 'activation_remaining' ];
-            $licence[ $product_id ][ 'activation_limit' ]     = $body[ 'activation_limit' ];
-            $licence[ $product_id ][ 'is_membership' ]        = isset( $body[ 'is_membership' ] ) ? $body[ 'is_membership' ] : false;
-            $status                                           = (bool) $body[ 'activated' ];
-            /* === Update Plugin Licence Information === */
-            update_option( $this->_licence_option, $licence );
-
-            /* === Update Plugin Licence Information === */
-            if ( $regenerate_transient ) {
-                yith_plugin_fw_force_regenerate_plugin_update_transient();
-            }
-            
-
-            return $status;
+            return true;
         }
 
         /**

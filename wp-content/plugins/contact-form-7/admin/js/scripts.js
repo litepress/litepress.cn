@@ -7,7 +7,7 @@
 	}
 
 	$( function() {
-		var welcomePanel = $( '#welcome-panel' );
+		var welcomePanel = $( '#wpcf7-welcome-panel' );
 		var updateWelcomePanel;
 
 		updateWelcomePanel = function( visible ) {
@@ -138,7 +138,7 @@
 			}
 		} );
 
-		$( '#wpcf7-sendinblue-enable-contact-list, #wpcf7-sendinblue-enable-transactional-email' ).on( 'change', function() {
+		$( '#wpcf7-ctct-enable-contact-list, #wpcf7-sendinblue-enable-contact-list, #wpcf7-sendinblue-enable-transactional-email' ).on( 'change', function() {
 			if ( $( this ).is( ':checked' ) ) {
 				$( this ).closest( 'tr' ).removeClass( 'inactive' );
 			} else {

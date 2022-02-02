@@ -415,6 +415,19 @@ order by o2 asc" );
 
 		$trans_data = json_decode( $trans_data, true );
 
+		/**
+		 * ----------------------------------------------------------
+		 * 翻译结果处理
+		 * ----------------------------------------------------------
+		 *
+		 * 谷歌翻译的返回值有两种情况，一种是翻译的语句很复杂的情况下，会返回一个复杂的 JSON 字符串
+		 * 另一种是当翻译语句比较简单时只会返回一个仅包含译文的 JSON，例如：[ "你好" ]
+		 *
+		 */
+		if ( count( $trans_data ) === 1 and isset( $trans_data[0] ) ) {
+			return array_combine( $sources, $trans_data );
+		}
+
 		$sentences = $trans_data['sentences'] ?? array();
 
 		$any_trans = '';

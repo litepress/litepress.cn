@@ -7,14 +7,42 @@ use DiDom\Query;
 use Exception;
 use LitePress\Logger\Logger;
 use LitePress\Redis\Redis;
+use Throwable;
 use WC_Product_Simple;
 use WP_CLI_Command;
 use WP_CLI;
 use WP_Error;
 use WP_Http;
+use function LitePress\Helper\get_product_type_by_category_ids;
 use function LitePress\WP_Http\wp_remote_get;
 
 class WPOrg_Product_Update extends WP_CLI_Command {
+
+	public function delete_all_product() {
+		global $wpdb;
+
+		$ids = $wpdb->get_results( "select ID
+from wp_3_posts
+where post_type = 'product'
+  and post_name='WooCommerce'
+  and post_author = 1" );
+
+		$ids = array_map( function ( $item ) {
+			return $item->ID;
+		}, $ids );
+
+		foreach ( $ids as $id ) {
+			$p = wc_get_product( $id );
+			if ( $p ) {
+				$p->delete( true );
+			}
+
+			unset( $p );
+		}
+
+		var_dump( 'over' );
+		exit;
+	}
 
 	public function worker() {
 		if ( Redis::get_instance() ) {
@@ -30,15 +58,25 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 				//exit;
 
 				$msg = Redis::get_instance()->xRead( array( 'slug_update_check' => '0-0' ), 1, true );
-				if ( $msg ) {
+				if ( $msg && isset( $msg['slug_update_check'] ) && ! empty( $msg['slug_update_check'] ) ) {
 					$data = current( $msg['slug_update_check'] );
 					$type = key( $data );
 					$slug = end( $data );
 
-					$this->update( $type, $slug );
+					Redis::get_instance()->xDel( 'slug_update_check', array( key( $msg['slug_update_check'] ) ) );
+
+					try {
+						$this->update( $type, $slug );
+					} catch ( Throwable $exception ) {
+						Logger::error( Logger::STORE, '应用市场爬虫抓取数据失败', array(
+							'slug'    => $slug,
+							'type'    => $type,
+							'message' => $exception->getMessage(),
+							'file'    => $exception->getFile(),
+							'line'    => $exception->getLine()
+						) );
+					}
 				}
-				var_dump( $msg );
-				exit;
 			}
 		} else {
 			WP_CLI::line( '连接 Redis 失败。' );
@@ -67,11 +105,11 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 		}
 
 		$info = $this->parse_plugin_info_by_html( $html );
-
+		//file_put_contents( WP_CONTENT_DIR . '/aaa.txt', json_encode( $info ) . PHP_EOL, FILE_APPEND );
 		// 为了防止插件和主题的 Slug 冲突，入库时统一添加前缀
 		$full_slug = "plugin-$slug";
 
-		$this->update_product( $full_slug, $info );
+		$this->update_product( 15, $full_slug, $info );
 
 		return true;
 	}
@@ -100,11 +138,18 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 		return wp_remote_retrieve_body( $r );
 	}
 
+	/**
+	 * @throws \DiDom\Exceptions\InvalidSelectorException
+	 */
 	private function parse_plugin_info_by_html( string $html ): array {
 		$document = new Document( $html );
 
 		$meta_str = $document->first( '//script[@type="application/ld+json"]/text()', Query::TYPE_XPATH )?->text();
-		$meta     = current( json_decode( $meta_str, true ) );
+		if ( empty( $meta_str ) ) {
+			throw new Exception( '数据抓取失败，该插件可能已被下架' );
+		}
+
+		$meta = current( json_decode( $meta_str, true ) );
 
 		$article         = $document->first( '//article', Query::TYPE_XPATH );
 		$plugin_meta_dom = $article->find( '//div[@class="widget plugin-meta"]/ul/li', Query::TYPE_XPATH );
@@ -170,7 +215,7 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 		foreach ( $article->find( '//div[@id="screenshots"]/ul/li/figure', Query::TYPE_XPATH ) as $item ) {
 			$screenshots[] = array(
 				'url' => str_replace( 'ps.w.org', 'ps.w.org.ibadboy.net', $this->prepare_url( $item->first( 'a/img/@src', Query::TYPE_XPATH ) ) ),
-				'alt' => $item->first( 'figcaption/text()', Query::TYPE_XPATH ),
+				'alt' => $item->first( 'figcaption/text()', Query::TYPE_XPATH ) ?: '',
 			);
 		}
 
@@ -182,7 +227,7 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 		/**
 		 * @var string $dt
 		 */
-		foreach ( $faq_dts as $key => $dt ) {
+		foreach ( (array) $faq_dts as $key => $dt ) {
 			$dd     = $faq_dds[ $key ]->html();
 			$faqs[] = array(
 				'question' => $dt,
@@ -214,8 +259,8 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 			'download_url'        => str_replace( 'downloads.wordpress.org', 'd.w.org.ibadboy.net', $this->prepare_url( $meta['downloadUrl'] ) ),
 			'date_modified'       => $meta['dateModified'],
 			'rating'              => array(
-				'rating_value' => $meta['aggregateRating']['ratingValue'],
-				'rating_count' => $meta['aggregateRating']['ratingCount'],
+				'rating_value' => $meta['aggregateRating']['ratingValue'] ?? 0,
+				'rating_count' => $meta['aggregateRating']['ratingCount'] ?? 0,
 			),
 			'icon'                => $icon_url,
 			'banner'              => $banner_url,
@@ -236,7 +281,7 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 		return $url;
 	}
 
-	private function update_product( string $full_slug, array $info ) {
+	private function update_product( int $category_id, string $full_slug, array $info ): bool {
 		global $wpdb;
 
 		$r = $wpdb->get_var( $wpdb->prepare( "select ID from {$wpdb->prefix}posts where post_name=%s limit 1;", $full_slug ) );
@@ -250,15 +295,15 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 		$product->set_slug( $full_slug );
 
 		$product->set_image_id( $this->update_image( $info['thumbnail'] ) );
-		$product->set_description( $info['short_description'] );
+		$product->set_short_description( $info['short_description'] ?? '' );
 
 		$product->add_meta_data( '51_default_editor', $info['description'], true );
-		$product->add_meta_data( '47_default_editor', $info['changelog'], true );
-		$product->add_meta_data( '46_custom_list_faqs', $info['faqs'], true );
-		$product->add_meta_data( '365_default_editor', $info['installation'], true );
+		$product->add_meta_data( '47_default_editor', $info['changelog'] ?? '', true );
+		$product->add_meta_data( '46_custom_list_faqs', $info['faqs'] ?? array(), true );
+		$product->add_meta_data( '365_default_editor', $info['installation'] ?? '', true );
 
 		$image_ids = array();
-		foreach ( $info['screenshots'] as $screenshot ) {
+		foreach ( $info['screenshots'] ?? array() as $screenshot ) {
 			$image_ids[] = $this->update_image( $screenshot['url'], $screenshot['alt'] );
 		}
 		$product->set_gallery_image_ids( $image_ids );
@@ -269,26 +314,30 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 			if ( ! $term ) {
 				$term = wp_insert_term( $tag, 'product_tag' );
 
-				$term = get_term_by( 'id', $term['term_id'], WC_PRODUCT_VENDORS_TAXONOMY, ARRAY_A );
+				$term = get_term_by( 'id', $term['term_id'], 'product_tag', ARRAY_A );
 			}
 
 			if ( is_wp_error( $term ) ) {
 				throw new Exception( $term->get_error_message() );
 			}
 
+			if ( ! $term ) {
+				throw new Exception( "创建标签失败，失败的标签：{$tag}" );
+			}
+
 			$tags[] = $term['term_id'];
 		}
 		$product->set_tag_ids( $tags );
-		$product->set_category_ids( array( 15 ) );
+		$product->set_category_ids( array( $category_id ) );
 
 		$product->add_meta_data( '_api_new_version', $info['version'], true );
 		$product->add_meta_data( '_api_version_required', $info['wordpress_version'], true );
-		$product->add_meta_data( '_api_tested_up_to', $info['tested_up'], true );
+		$product->add_meta_data( '_api_tested_up_to', $info['tested_up'] ?? '', true );
 		$product->add_meta_data( '_api_requires_php', $info['php_version'], true );
 
 		$product->add_meta_data( '_download_url', $info['download_url'], true );
 		$product->add_meta_data( '_no_auth_download', 'yes', true );
-		$product->add_meta_data( '_banner', $info['banner'], true );
+		$product->add_meta_data( '_banner', $info['banner'] ?? '', true );
 		if ( isset( $info['preview_url'] ) ) {
 			$product->add_meta_data( 'preview_url', $info['preview_url'], true );
 		}
@@ -301,6 +350,10 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 		$product->add_meta_data( 'wporg_active_installation', $info['active_installation'], true );
 
 		$product->set_regular_price( '0' );
+
+		$product->set_date_created( $info['date_modified'] );
+		$product->set_date_modified( $info['date_modified'] );
+
 		$product->save();
 
 		// 商品创建完后应该创建并绑定作者
@@ -329,6 +382,14 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 		}
 
 		wp_set_post_terms( $product->get_id(), $term['slug'], WC_PRODUCT_VENDORS_TAXONOMY, false );
+
+		// 手工触发 save_post_product 钩子，以使诸如 EP 等插件监控到产品的更新
+		do_action( 'save_post_product', $product->get_id(), $product );
+
+		// 触发一个自定义钩子，方便在产品更新后执行一些平台特有的操作，比如刷新 CDN、更新翻译
+		do_action( 'lpcn_wp_product_updated', $product->get_slug(), get_product_type_by_category_ids( array( $category_id ) ) );
+
+		unset( $product );
 
 		return true;
 	}
@@ -362,6 +423,9 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 		return $attachment_id;
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	private function theme_update( string $slug ) {
 		$url  = "http://wordpress.org/themes/$slug/";
 		$html = $this->http_get( $url );
@@ -371,10 +435,12 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 
 		$info = $this->parse_theme_info_by_html( $html );
 
+		//file_put_contents( WP_CONTENT_DIR . '/aaa.txt', json_encode( $info ) . PHP_EOL, FILE_APPEND );
+
 		// 为了防止插件和主题的 Slug 冲突，入库时统一添加前缀
 		$full_slug = "theme-$slug";
 
-		$this->update_product( $full_slug, $info );
+		$this->update_product( 17, $full_slug, $info );
 
 		return true;
 	}
@@ -383,6 +449,10 @@ class WPOrg_Product_Update extends WP_CLI_Command {
 		$document = new Document( $html );
 
 		$meta_str = $document->first( '//*[@id="wporg-theme-js-extra"]/text()', Query::TYPE_XPATH )->text();
+		if ( empty( $meta_str ) ) {
+			throw new Exception( '数据抓取失败，该主题可能已被下架' );
+		}
+
 		$meta_str = str_replace( array(
 			"\n/* <![CDATA[ */\nvar _wpThemeSettings = ",
 			";\n/* ]]> */\n"

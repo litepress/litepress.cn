@@ -63,14 +63,16 @@ class Plugin {
 			return $post_args;
 		}
 
+		$slug = preg_replace( array( '/plugin-/', '/theme-/' ), '', $post_args['post_name'], 1 );
+
 		$type = get_product_type_by_categories( $post_args['terms']['product_cat'] );
 
 		switch ( $type ) {
 			case 'plugin':
-				$gp_project_path = sprintf( 'plugins/%s/readme', $post_args['post_name'] );
+				$gp_project_path = sprintf( 'plugins/%s/readme', $slug );
 				break;
 			case 'theme':
-				$gp_project_path = sprintf( 'themes/%1$s/%1$s', $post_args['post_name'] );
+				$gp_project_path = sprintf( 'themes/%1$s/%1$s', $slug );
 				break;
 			default:
 				return $post_args;
@@ -78,10 +80,15 @@ class Plugin {
 
 		// 翻译标题
 		$post_args['post_title_en'] = $post_args['post_title'];
-		$cache_key                  = sprintf( '%s_%s_title', $type, $post_args['post_name'] );
+		$cache_key                  = sprintf( '%s_%s_title', $type, $slug );
 		$post_args['post_title']    = i18n::get_instance()->translate( $cache_key, $post_args['post_title'] ?? '', $gp_project_path, true );
 
 		// 记录slug（产品的post_name参数可能因重复而多了-1、-2这些后缀）
+		/**
+		 * 2022年1月3日更：目前 post_name 已经不会重复了，因为格式改为了 类型-Slug，例如 plugin-woo。
+		 * 因此以下的代码注释掉
+		 */
+		/*
 		$urls = get_option( 'permalink-manager-uris' );
 
 		if ( isset( $urls[ $post_args['ID'] ] ) ) {
@@ -93,16 +100,18 @@ class Plugin {
 		} else {
 			$post_args['slug'] = $post_args['post_name'];
 		}
+		*/
+		$post_args['slug'] = $slug;
 
 		// 翻译简介
 		$post_args['post_excerpt_en'] = $post_args['post_excerpt'];
-		$cache_key                    = sprintf( '%s_%s_short_description', $type, $post_args['post_name'] );
-		$post_args['post_excerpt']    = i18n::get_instance()->translate( $cache_key, $post_args['post_excerpt'] ?? '', $gp_project_path, true  );
+		$cache_key                    = sprintf( '%s_%s_short_description', $type, $slug );
+		$post_args['post_excerpt']    = i18n::get_instance()->translate( $cache_key, $post_args['post_excerpt'] ?? '', $gp_project_path, true );
 
 		// 填充并翻译内容（产品内容默认是保存在Meta中的）
 		$content                      = $post_args['meta']['51_default_editor'][0]['value'] ?? '';
 		$post_args['post_content_en'] = $content;
-		$cache_key                    = sprintf( '%s_%s', $type, $post_args['post_name'] );
+		$cache_key                    = sprintf( '%s_%s', $type, $slug );
 		$post_args['post_content']    = i18n::get_instance()->translate( $cache_key, $content, $gp_project_path );
 
 		return $post_args;

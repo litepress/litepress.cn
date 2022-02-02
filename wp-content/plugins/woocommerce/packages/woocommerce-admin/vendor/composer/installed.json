@@ -2,27 +2,27 @@
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
-            "version": "v2.10.2",
-            "version_normalized": "2.10.2.0",
+            "version": "v2.10.5",
+            "version_normalized": "2.10.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Automattic/jetpack-autoloader.git",
-                "reference": "79a541381c1617b02980ab48d4ed0a0fb6ba462d"
+                "reference": "ec66177eefa1126d5319f3135ff3a7185e21a0ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Automattic/jetpack-autoloader/zipball/79a541381c1617b02980ab48d4ed0a0fb6ba462d",
-                "reference": "79a541381c1617b02980ab48d4ed0a0fb6ba462d",
+                "url": "https://api.github.com/repos/Automattic/jetpack-autoloader/zipball/ec66177eefa1126d5319f3135ff3a7185e21a0ba",
+                "reference": "ec66177eefa1126d5319f3135ff3a7185e21a0ba",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.1 || ^2.0"
             },
             "require-dev": {
-                "automattic/jetpack-changelogger": "^1.1",
-                "yoast/phpunit-polyfills": "0.2.0"
+                "automattic/jetpack-changelogger": "^1.2",
+                "yoast/phpunit-polyfills": "1.0.1"
             },
-            "time": "2021-04-27T14:41:27+00:00",
+            "time": "2021-08-31T17:20:29+00:00",
             "type": "composer-plugin",
             "extra": {
                 "autotagger": true,
@@ -49,21 +49,24 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Creates a custom autoloader for a plugin or theme.",
+            "support": {
+                "source": "https://github.com/Automattic/jetpack-autoloader/tree/v2.10.5"
+            },
             "install-path": "../automattic/jetpack-autoloader"
         },
         {
             "name": "composer/installers",
-            "version": "v1.11.0",
-            "version_normalized": "1.11.0.0",
+            "version": "v1.12.0",
+            "version_normalized": "1.12.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "ae03311f45dfe194412081526be2e003960df74b"
+                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/ae03311f45dfe194412081526be2e003960df74b",
-                "reference": "ae03311f45dfe194412081526be2e003960df74b",
+                "url": "https://api.github.com/repos/composer/installers/zipball/d20a64ed3c94748397ff5973488761b22f6d3f19",
+                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19",
                 "shasum": ""
             },
             "require": {
@@ -81,7 +84,7 @@
                 "symfony/phpunit-bridge": "^4.2 || ^5",
                 "symfony/process": "^2.3"
             },
-            "time": "2021-04-28T06:42:17+00:00",
+            "time": "2021-09-13T08:19:44+00:00",
             "type": "composer-plugin",
             "extra": {
                 "class": "Composer\\Installers\\Plugin",
@@ -164,6 +167,7 @@
                 "modx",
                 "moodle",
                 "osclass",
+                "pantheon",
                 "phpbb",
                 "piwik",
                 "ppi",
@@ -184,6 +188,10 @@
                 "zend",
                 "zikula"
             ],
+            "support": {
+                "issues": "https://github.com/composer/installers/issues",
+                "source": "https://github.com/composer/installers/tree/v1.12.0"
+            },
             "funding": [
                 {
                     "url": "https://packagist.com",

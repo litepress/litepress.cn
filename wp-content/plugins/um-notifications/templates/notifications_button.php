@@ -9,7 +9,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; ?>
 
 <div class="um-notification-b <?php echo esc_attr( UM()->options()->get( 'notify_pos' ) ) ?>" data-show-always="<?php echo esc_attr( UM()->options()->get( 'notification_icon_visibility' ) ) ?>" <?php echo empty( $static ) ? '' : 'style="position:static;"' ?>>
-	<i class="um-icon-ios-bell"></i>
+	<i class="fad fa-bell"></i>
 	<span class="um-notification-live-count count-<?php echo esc_attr( $unread ) ?>">
 		<?php echo $unread_count ?>
 	</span>

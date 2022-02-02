@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/wp-content/themes/cravatar/assets/img/ico.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="/wp-content/themes/cravatar/assets/img/ico.png" type="image/x-icon"/>
     <link rel="profile" href="https://gmpg.org/xfn/11">
-    <title><?php wp_title(); ?></title>
-    <?php wp_head(); ?>
-    <?php ?>
+    <title><?php wp_title( '&#8211;', true, 'right' ); ?></title>
+    <meta name="keywords" content="cravatar,gravatar,wordpress头像,头像,公共头像"/>
+	<?php wp_head(); ?>
+	<?php ?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -44,7 +45,7 @@ wp_body_open();
                     </filter>
                 </defs>
                 <g id="LOGO" class="cls-1">
-                    <svg >
+                    <svg>
                         <defs>
                             <style>.a {
                                     fill: #fff;
@@ -87,14 +88,14 @@ wp_body_open();
                     </svg>
                 </g>
             </svg>
-            <?php
-            /*            $custom_logo_id = get_theme_mod( 'custom_logo' );
-                        $logo           = wp_get_attachment_image_src( $custom_logo_id, 'full' );
-                        if ( has_custom_logo() ) {
-                            echo '<img src="' . esc_url( $logo[0] ) . '" alt="' . get_bloginfo( 'name' ) . '" width="' . get_theme_mod( 'lpcn_sections_logo_range', '200' ) . '" >';
-                        } else {
-                            echo '<h1>' . esc_attr( get_bloginfo( 'name' ) ) . '</h1>';
-                        } */ ?></a>
+			<?php
+			/*            $custom_logo_id = get_theme_mod( 'custom_logo' );
+						$logo           = wp_get_attachment_image_src( $custom_logo_id, 'full' );
+						if ( has_custom_logo() ) {
+							echo '<img src="' . esc_url( $logo[0] ) . '" alt="' . get_bloginfo( 'name' ) . '" width="' . get_theme_mod( 'lpcn_sections_logo_range', '200' ) . '" >';
+						} else {
+							echo '<h1>' . esc_attr( get_bloginfo( 'name' ) ) . '</h1>';
+						} */ ?></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -102,34 +103,34 @@ wp_body_open();
         <div class="collapse navbar-collapse " id="navbarCollapse">
             <section>
                 <nav>
-                    <?php
-                    wp_nav_menu(
-                        array(
-                            'theme_location' => 'primary_menu',
-                            'container' => false,
-                            'items_wrap' => '<ul class="navbar-nav  %2$s">%3$s</ul>',
-                            'fallback_cb' => false,
-                            'walker' => new Wp_Sub_Menu(),
-                        )
-                    );
-                    ?>
+					<?php
+					wp_nav_menu(
+						array(
+							'theme_location' => 'primary_menu',
+							'container'      => false,
+							'items_wrap'     => '<ul class="navbar-nav  %2$s">%3$s</ul>',
+							'fallback_cb'    => false,
+							'walker'         => new Wp_Sub_Menu(),
+						)
+					);
+					?>
 
 
                 </nav>
 
                 <div class=" header-sign">
 
-                    <?php
-                    wp_nav_menu(
-                        array(
-                            'theme_location' => 'register_menu',
-                            'container' => false,
-                            'items_wrap' => '<ul class="navbar-nav  %2$s">%3$s</ul>',
-                            'fallback_cb' => false,
-                            'walker' => new Wp_Sub_Menu(),
-                        )
-                    );
-                    ?>
+					<?php
+					wp_nav_menu(
+						array(
+							'theme_location' => 'register_menu',
+							'container'      => false,
+							'items_wrap'     => '<ul class="navbar-nav  %2$s">%3$s</ul>',
+							'fallback_cb'    => false,
+							'walker'         => new Wp_Sub_Menu(),
+						)
+					);
+					?>
 
                 </div>
             </section>
@@ -138,6 +139,6 @@ wp_body_open();
 </header>
 
 
-<?php echo do_shortcode('[contact-form-7 id="67" title="我要上榜"]') ?>
+<?php echo do_shortcode( '[contact-form-7 id="67" title="我要上榜"]' ) ?>
 
 

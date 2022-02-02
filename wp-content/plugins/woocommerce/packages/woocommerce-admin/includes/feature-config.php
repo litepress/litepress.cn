@@ -19,9 +19,10 @@ if ( ! function_exists( 'wc_admin_get_feature_config' ) ) {
 			'payment-gateway-suggestions' => true,
 			'settings' => false,
 			'shipping-label-banner' => true,
+			'subscriptions' => true,
 			'store-alerts' => true,
-			'tasks' => false,
 			'transient-notices' => true,
+			'wc-pay-promotion' => true,
 		);
 	}
 }

@@ -55,6 +55,8 @@ do_action( 'jck_sfr_before_loop_item', $feature_request );
 		<?php
 		/**
 		 * jck_sfr_loop_item_after_text hook.
+		 * 
+		 * @hooked JCK_SFR_Template_Hooks::add_attachments_to_loop__premium_only() - 10
 		 */
 		do_action( 'jck_sfr_loop_item_after_text', $feature_request );
 		?>
@@ -68,6 +70,7 @@ do_action( 'jck_sfr_before_loop_item', $feature_request );
 			 * @hooked JCK_SFR_Template_Methods::loop_item_author() - 20
 			 * @hooked JCK_SFR_Template_Methods::loop_item_posted_date() - 30
 			 * @hooked JCK_SFR_Template_Methods::loop_item_comment_count() - 40
+			 * @hooked JCK_SFR_Template_Methods::loop_item_attachment_indicator__premium_only() - 50
 			 */
 			do_action( 'jck_sfr_loop_item_meta', $feature_request );
 			?>

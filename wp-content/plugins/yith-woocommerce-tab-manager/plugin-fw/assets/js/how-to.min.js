@@ -1,0 +1,1 @@
+!function(r){var t=jQuery("#yith-how-to-premium").parent();void 0!==t&&t.prop("target","_blank")}();

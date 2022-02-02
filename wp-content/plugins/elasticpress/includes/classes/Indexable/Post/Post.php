@@ -277,18 +277,36 @@ class Post extends Indexable {
 	 * @return string|WP_Error|false $version
 	 */
 	public function determine_mapping_version() {
-		$index   = $this->get_index_name();
-		$mapping = Elasticsearch::factory()->get_mapping( $index );
+		$version = get_transient( 'ep_post_mapping_version' );
 
-		if ( empty( $mapping ) ) {
-			return new \WP_Error( 'ep_failed_mapping_version', esc_html__( 'Error while fetching the mapping version.', 'elasticpress' ) );
+		if ( empty( $version ) ) {
+			$index   = $this->get_index_name();
+			$mapping = Elasticsearch::factory()->get_mapping( $index );
+
+			if ( empty( $mapping ) ) {
+				return new \WP_Error( 'ep_failed_mapping_version', esc_html__( 'Error while fetching the mapping version.', 'elasticpress' ) );
+			}
+
+			if ( ! isset( $mapping[ $index ] ) ) {
+				return false;
+			}
+
+			$version = $this->determine_mapping_version_based_on_existing( $mapping, $index );
+
+			set_transient(
+				'ep_post_mapping_version',
+				$version,
+				/**
+				 * Filter the post mapping version cache expiration.
+				 *
+				 * @hook ep_post_mapping_version_cache_expiration
+				 * @since 3.6.5
+				 * @param  {int} $version Time in seconds for the transient expiration
+				 * @return {int} New time
+				 */
+				apply_filters( 'ep_post_mapping_version_cache_expiration', DAY_IN_SECONDS )
+			);
 		}
-
-		if ( ! isset( $mapping[ $index ] ) ) {
-			return false;
-		}
-
-		$version = $this->determine_mapping_version_based_on_existing( $mapping, $index );
 
 		/**
 		 * Filter the mapping version for posts.
@@ -327,6 +345,8 @@ class Post extends Indexable {
 		 * @return  {array} New mapping
 		 */
 		$mapping = apply_filters( 'ep_post_mapping', $mapping );
+
+		delete_transient( 'ep_post_mapping_version' );
 
 		return Elasticsearch::factory()->put_mapping( $this->get_index_name(), $mapping );
 	}
@@ -867,6 +887,32 @@ class Post extends Indexable {
 			),
 		);
 		$use_filters = false;
+
+		// Sanitize array query args. Elasticsearch will error if a terms query contains empty items like an
+		// empty string.
+		$keys_to_sanitize = [
+			'author__in',
+			'author__not_in',
+			'category__and',
+			'category__in',
+			'category__not_in',
+			'tag__and',
+			'tag__in',
+			'tag__not_in',
+			'tag_slug__and',
+			'tag_slug__in',
+			'post_parent__in',
+			'post_parent__not_in',
+			'post__in',
+			'post__not_in',
+			'post_name__in',
+		];
+		foreach ( $keys_to_sanitize as $key ) {
+			if ( ! isset( $args[ $key ] ) ) {
+				continue;
+			}
+			$args[ $key ] = array_filter( (array) $args[ $key ] );
+		}
 
 		/**
 		 * Tax Query support
@@ -1637,6 +1683,15 @@ class Post extends Indexable {
 
 		if ( isset( $args['paged'] ) && $args['paged'] > 1 ) {
 			$formatted_args['from'] = $args['posts_per_page'] * ( $args['paged'] - 1 );
+		}
+
+		/**
+		 * Fix negative offset. This happens, for example, on hierarchical post types.
+		 *
+		 * Ref: https://github.com/10up/ElasticPress/issues/2480
+		 */
+		if ( $formatted_args['from'] < 0 ) {
+			$formatted_args['from'] = 0;
 		}
 
 		if ( $use_filters ) {

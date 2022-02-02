@@ -482,23 +482,6 @@ class JCK_SFR_Core_Settings {
 			),
 		);
 
-		if ( current_user_can( 'manage_options' ) && ! defined( 'ICONIC_DISABLE_DASH' ) && ! defined( 'JCK_SFR_DISABLE_DASH' ) ) {
-			if ( ! empty( self::$args['cross_sells'] ) ) {
-				$cross_sells = JCK_SFR_Core_Cross_Sells::run( array(
-					'plugins' => self::$args['cross_sells'],
-				) );
-
-				$settings['sections']['cross-sells'] = array(
-					'tab_id'              => 'dashboard',
-					'section_id'          => 'cross-sells',
-					'section_title'       => __( 'Works Well With...', 'simple-feature-requests' ),
-					'section_description' => $cross_sells::get_output(),
-					'section_order'       => 40,
-					'fields'              => array(),
-				);
-			}
-		}
-
 		return $settings;
 	}
 

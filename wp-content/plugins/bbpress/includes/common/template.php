@@ -217,6 +217,7 @@ function bbp_is_topic( $post_id = 0 ) {
 
 	// Assume false
 	$retval = false;
+
 	// Supplied ID is a topic
 	if ( ! empty( $post_id ) && ( bbp_get_topic_post_type() === get_post_type( $post_id ) ) ) {
 		$retval = true;
@@ -964,8 +965,9 @@ function bbp_is_edit() {
  * @param array $custom_classes
  * @return array Body Classes
  */
-function bbp_body_class( $wp_classes, $custom_classes = false ) {
+function bbp_body_class( $wp_classes = array(), $custom_classes = false ) {
 
+	// Default to no classes
 	$bbp_classes = array();
 
 	/** Archives **************************************************************/
@@ -1075,12 +1077,15 @@ function bbp_body_class( $wp_classes, $custom_classes = false ) {
 		$bbp_classes[] = 'bbp-shortcode';
 	}
 
-	/** Clean up **************************************************************/
+	/** General ***************************************************************/
 
-	// Add bbPress class if we are within a bbPress page
+	// Any page with bbPress content
 	if ( ! empty( $bbp_classes ) ) {
 		$bbp_classes[] = 'bbpress';
+		$bbp_classes[] = 'no-js';
 	}
+
+	/** Clean up **************************************************************/
 
 	// Merge WP classes with bbPress classes and remove any duplicates
 	$classes = array_unique( array_merge( (array) $bbp_classes, (array) $wp_classes ) );
@@ -2046,8 +2051,8 @@ function bbp_view_id( $view = '' ) {
 		$bbp = bbpress();
 
 		// User supplied string
-		if ( ! empty( $view ) ) {
-			$view_id = sanitize_key( $view );
+		if ( ! empty( $view ) && is_string( $view ) ) {
+			$view_id = $view;
 
 		// Current view ID
 		} elseif ( ! empty( $bbp->current_view_id ) ) {
@@ -2149,7 +2154,7 @@ function bbp_view_url( $view = false ) {
  *
  * @return bool True if match, false if not
  */
-function bbp_is_query_name( $name = '' )  {
+function bbp_is_query_name( $name = '' ) {
 	return (bool) ( bbp_get_query_name() === $name );
 }
 
@@ -2160,7 +2165,7 @@ function bbp_is_query_name( $name = '' )  {
  *
  * @return string To return the query var value
  */
-function bbp_get_query_name()  {
+function bbp_get_query_name() {
 	return get_query_var( '_bbp_query_name' );
 }
 
@@ -2171,7 +2176,7 @@ function bbp_get_query_name()  {
  *
  * @param string $name What to set the query var to
  */
-function bbp_set_query_name( $name = '' )  {
+function bbp_set_query_name( $name = '' ) {
 	set_query_var( '_bbp_query_name', $name );
 }
 

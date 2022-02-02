@@ -268,5 +268,18 @@ class JCK_SFR_Template_Hooks
             2
         );
     }
+    
+    public static function add_photoswipe_template()
+    {
+        if ( !function_exists( 'wpsf_get_setting' ) ) {
+            return;
+        }
+        $post_type = get_post_type( get_the_ID() );
+        $archive_page = wpsf_get_setting( 'jck_sfr', 'general_setup', 'archive_page_id' );
+        $attachments_allowed = wpsf_get_setting( 'jck_sfr', 'general_attachments', 'allow_attachments' );
+        if ( is_page( $archive_page ) && $attachments_allowed == 1 || $attachments_allowed == 1 && $post_type == 'cpt_feature_requests' ) {
+            self::include_template( 'photoswipe' );
+        }
+    }
 
 }

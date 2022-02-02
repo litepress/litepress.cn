@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Woo Data Entry
- * Description: Woo的数据录入插件，该插件改造了Woo的Rest Api，使其适合爬虫录入数据
+ * Description: 【此插件已被更优方案取代，不久后移除】 Woo的数据录入插件，该插件改造了Woo的Rest Api，使其适合爬虫录入数据
  * Version: 1.0.0
  * Author: WP中国本土化社区
  * Author URI: https://wp-china.org

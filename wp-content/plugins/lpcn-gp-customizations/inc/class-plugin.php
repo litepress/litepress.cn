@@ -41,7 +41,8 @@ class Plugin {
 	 * Initializes the plugin.
 	 */
 	public function plugins_loaded() {
-		add_action( 'gp_translation_prepare_for_save', array( $this, 'translation_format' ), 1, 2 );
+		// TODO: 这个功能暂时禁掉，因为这个格式化是在翻译导入后才执行的，如果不能在导入前执行格式化的话就无法对比下次导入的字符串和本次是否相同（因为本次的被格式化过）
+		// add_action( 'gp_translation_prepare_for_save', array( $this, 'translation_format' ), 1, 2 );
 
 		add_filter( 'gp_pre_can_user', array( $this, 'can_user' ), 10, 2 );
 
@@ -60,6 +61,11 @@ class Plugin {
 		 * 自定义翻译条目列表的查询
 		 */
 		add_filter( 'gp_for_translation_where', array( $this, 'gp_for_translation_where' ), 10, 2 );
+
+		/**
+		 * 在导出翻译时执行
+		 */
+		add_filter( 'gp_for_translation_rows', array( $this, 'prepare_plural_for_export' ) );
 
 		/**
 		 * 通过外部 API 来导入翻译文件的接口
@@ -100,6 +106,16 @@ class Plugin {
 			register_rest_route( 'gp/v1', 'projects/approve', array(
 				'methods'  => 'POST',
 				'callback' => array( new Route_Project(), 'apply_approve' ),
+			) );
+		} );
+
+		/**
+		 * 申请托管某个项目
+		 */
+		add_action( 'rest_api_init', function () {
+			register_rest_route( 'gp/v1', 'projects/new', array(
+				'methods'  => 'POST',
+				'callback' => array( new Route_Project(), 'create_for_api' ),
 			) );
 		} );
 	}
@@ -215,6 +231,20 @@ class Plugin {
 		$wpdb->query( $sql );
 
 		return $where;
+	}
+
+	/**
+	 * 在导出翻译时格式化复数翻译形式
+	 */
+	public function prepare_plural_for_export( $rows ) {
+		foreach ( $rows as &$row ) {
+			if ( ! empty( $row->plural ) && empty( $row->translation_1 ) ) {
+				$row->translation_1 = $row->translation_0;
+			}
+		}
+		unset( $row );
+
+		return $rows;
 	}
 
 }

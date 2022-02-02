@@ -1,10 +1,10 @@
 === Simple Feature Requests Free - User Feedback Board ===
-Contributors: jamesckemp
+Contributors: spellhammer, freemius
 Donate link: https://simplefeaturerequests.com/pricing/?utm_source=JCK&utm_medium=wp.org&utm_campaign=Readme
 Tags: feature request, customer feedback, user feedback, roadmap, idea management
 Requires at least: 4.9
-Tested up to: 5.6
-Stable tag: 2.1.2
+Tested up to: 5.8.2
+Stable tag: 2.2.2
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -41,6 +41,10 @@ The [Pro version](https://simplefeaturerequests.com/?utm_source=JCK&utm_medium=
 * [Add a roadmap](https://docs.simplefeaturerequests.com/getting-started/shortcodes#the-roadmap-shortcode-pro?utm_source=JCK&utm_medium=wp.org&utm_campaign=Readme) to keep your users updated about where your product is heading.
 * [Enable email notifications](https://docs.simplefeaturerequests.com/pro-features/enable-notifications?utm_source=JCK&utm_medium=wp.org&utm_campaign=Readme) for status changes or new comments, so your users keep in the loop.
 * [Limit votes](https://docs.simplefeaturerequests.com/pro-features/limit-votes?utm_source=JCK&utm_medium=wp.org&utm_campaign=Readme) per user to ensure they vote on only essential features.
+* [Image Uploads](https://docs.simplefeaturerequests.com/pro-features/image-uploads-v-2.2.0?utm_source=JCK&utm_medium=wp.org&utm_campaign=Readme) for feature requests.
+* [Custom Statuses](https://docs.simplefeaturerequests.com/pro-features/custom-statuses-v-2.2.0) for feature requests.
+* [Multiple Boards](https://docs.simplefeaturerequests.com/pro-features/multiple-boards) for grouping feature requests.
+* [Custom request labels](https://docs.simplefeaturerequests.com/pro-features/custom-labels) to allow you to rename 'request' and 'requests' to whatever is most appropriate for your use-case.
 
 [Upgrade to Pro](https://simplefeaturerequests.com/pricing/?utm_source=JCK&utm_medium=wp.org&utm_campaign=Readme)
 
@@ -108,7 +112,7 @@ Gathering customer feedback in this way will enable you to prioritise which feat
 
 No! Users submit feature requests through the front-end of your website. They never have to know you’re using WordPress if you don’t want them to.
 
-= Can I categorize or add a status to feature requests? =
+= Can I categorize feature requests? =
 
 Yes, with the [Pro version](https://simplefeaturerequests.com/?utm_source=JCK&utm_medium=wp.org&utm_campaign=Readme).
 
@@ -124,6 +128,23 @@ You may need to refresh your permalinks. Go to Settings > Permalinks. Just visit
 4. The admin view of feature requests.
 
 == Changelog ==
+
+**v2.2.2** (2021-11-11)**
+[new] Added ability to organize requests by board, allowing multiple boards per site
+[new] Added ability to rename 'Request' and 'Requests' to any other applicable label, e.g. 'Report' and 'Reports'
+[update] Added setting to hide default entry title on single request view
+[update] Added options to select heading tags for single request titles and archive request titles
+[update] Added filters for all SFR redirects
+[fix] Corrected the presence of non-unique IDs on SFR form fields
+[fix] Corrected fatal error on Easy Digital Downloads receipt page
+
+**v2.2.1** (2021-06-29)
+[fix] Corrected issue that caused PhotoSwipe template to be loaded where it wasn't required
+
+**v2.2.0** (2021-06-28)
+[new] Custom Statuses UI [pro]
+[new] Option to allow image uploads on feature requests [pro]
+[fix] Ensured text domain is properly loaded
 
 **v2.1.3** (2020-11-26)
 [new] List all users who voted on a request (admin) [pro]

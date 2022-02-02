@@ -11,4 +11,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<p class="jck-sfr-no-requests-found"><?php _e( 'Sorry, no feature requests were found.', 'simple-feature-requests' ); ?></p>
+<p class="jck-sfr-no-requests-found"><?php _e( 'Sorry, no ' . apply_filters('jck_sfr_plural_request_name', 'feature requests', false) . ' were found.', 'simple-feature-requests' ); ?></p>

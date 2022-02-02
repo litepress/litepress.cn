@@ -131,3 +131,6 @@ var _hmt = _hmt || [];
 </script>
 html;
 } );
+
+// 在管理后台禁止解析简码，否则诸如 ep 等插件无法正常运行
+remove_all_shortcodes();

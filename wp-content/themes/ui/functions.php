@@ -8,11 +8,7 @@ define( 'UI_ROOT_URI', get_stylesheet_directory_uri() );
  */
 ini_set( 'display_errors', 1 );
 error_reporting( E_ERROR | E_WARNING | E_PARSE );
-/*
-add_filter( 'home_url', function ( $url ) {
-	return str_replace( 'wp-sitemap', 'sitemap', $url );
-} );
-*/
+
 /**
  * 标记主题支持BBPress
  */

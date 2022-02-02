@@ -4,7 +4,7 @@ Tags: gutenberg, woocommerce, woo commerce, products, blocks, woocommerce blocks
 Requires at least: 5.8
 Tested up to: 5.8
 Requires PHP: 7.0
-Stable tag: 5.9.1
+Stable tag: 6.5.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -85,6 +85,158 @@ Release and roadmap notes available on the [WooCommerce Developers Blog](https:/
 
 == Changelog ==
 
+= 6.5.2 - 2022-01-17 =
+
+#### Bug Fixes
+
+- Update WooCommerce plugin slug for Block Templates. ([5519](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5519))
+
+= 6.5.1 - 2021-12-22 =
+
+#### Bug Fixes
+
+- Fixed error reporting block templates do not exist after editing WooCommerce templates on WP 5.8. ([5425](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5425))
+- Added By template column value is user friendly for modified WooCommerce block templates. ([5420](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5420))
+- Avoid WooCommerce template names being editable. ([5385](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5385))
+- Use the themes product archive block template for product category & product tag pages if the theme does not have more specific templates for those. ([5380](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5380))
+- Fixed issue with variable products add to cart error, and gallery not updating to show correct product variant image. ([5346](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5346))
+- Fix error when reverting WooCommerce templates. ([5342](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5342))
+- Fix: WooCommerce block templates loading for WP 5.9 without Gutenberg plugin. ([5335](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5335))
+
+= 6.5.0 - 2021-12-06 =
+
+#### Enhancements
+
+- Added global styles (text color, link color, line height, and font size) to the Product Title block. ([5133](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5133))
+
+#### Bug Fixes
+
+- Fixed Featured Product Block search not working for large stores. ([5156](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5156))
+
+= 6.4.0 - 2021-11-22 =
+
+#### Enhancements
+
+- Pass to payment methods a wrapper component that handles the loading state. ([5135](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5135))
+
+#### Bug Fixes
+
+- Gate WC template editing (FSE) to versions of WC 6.0 or higher. ([5210](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5210))
+- Fix manual entry within Quantity Inputs in Cart block. ([5197](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5197))
+- Correctly align Terms and Conditions block checkbox in Checkout block. ([5191](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5191))
+- Add support for decimal and thousand separators in the `formatPrice` function. ([5188](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5188))
+- Reduce the size of the checkbox component label to prevent accidental input. ([5164](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5164))
+- Lazy load missing translation files on frontend to ensure that all visible texts are translatable. ([5112](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5112))
+
+= 6.3.3 - 2021-11-25 =
+
+#### Bug Fixes
+
+- Fix fatal error in certain WP 5.9 pre-release versions. ([5183](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5183))
+
+= 6.3.2 - 2021-11-17 =
+
+#### Enhancements
+
+- Legacy Template Block: allow users to delete the block. ([5176](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5176))
+
+#### Bug Fixes
+
+- Removed WooCommerce block templates from appearing in the template dropdown for a page or post. ([5167](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5167))
+
+= 6.3.1 - 2021-11-17 =
+
+#### Bug Fixes
+
+- Fix 'Country is required' error on the Cart block when updating shipping address ([5129](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5129))
+- Fix state validation to compare state codes, and only validate if a country is given ([5132](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5132))
+- Make order note block removable ([5139](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5139))
+
+= 6.3.0 - 2021-11-16 =
+
+#### Enhancements
+
+- Add placeholder text when modifying product search input in the editor. ([5122](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5122))
+- FSE: Add basic product archive block template. ([5049](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5049))
+- FSE: Add basic taxonomy block templates. ([5063](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5063))
+- FSE: Add single product block template. ([5054](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5054))
+- FSE: Remove the `do_action( 'woocommerce_sidebar' );` action from the `LegacyTemplate.php` block. ([5097](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5097))
+- Fix duplicate queries in product grids #4695. ([5002](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5002))
+- FSE: Add abstract block legacy template for core PHP templates. ([4991](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4991))
+- FSE: Add render logic to BlockTemplateController. ([4984](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4984))
+- Improve accessibility by using self-explaining edit button titles. ([5113](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5113))
+- Improve readability of terms and condition text by not displaying the text justified. ([5120](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5120))
+- Improve rendering performance for Single Product block. ([5107](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5107))
+- Improve the product images placeholder display by adding a light gray border to it. ([4950](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4950))
+- Deprecate the __experimental_woocommerce_blocks_checkout_update_order_from_request action in favour of woocommerce_blocks_checkout_update_order_from_request. ([5015](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5015))
+- Deprecate the __experimental_woocommerce_blocks_checkout_update_order_meta action in favour of woocommerce_blocks_checkout_update_order_meta. ([5017](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5017))
+- Deprecate the __experimental_woocommerce_blocks_checkout_order_processed action in favour of woocommerce_blocks_checkout_order_processed. ([5014](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5014))
+
+#### Bug Fixes
+
+- Fix label alignment of the product search in the editor. ([5072](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5072))
+- Fix sale badge alignment on smaller screen. ([5061](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5061))
+- FSE: Fix missing `is_custom` property for WooCommerce block template objects. ([5067](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5067))
+- Replace incorrect with correct text domain. ([5020](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5020))
+- Scripts using `wc-settings` or script that depend on it would be enqueued in the footer if they're enqueued in the header. ([5059](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5059))
+
+= 6.2.0 - 2021-10-26 =
+
+#### Enhancements
+
+- Cart v2: The cart block, like checkout block, now supports inner blocks that allow for greater customizability. ([4973](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4973))
+- BlockTemplateController: Adds the ability to load and manage block template files. ([4981](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4981))
+- Improve accessibility for the editor view of the Product search block. ([4905](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4905))
+
+#### Bug Fixes
+
+- Fix custom classname support for inner checkout blocks. ([4978](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4978))
+- Fix a bug in free orders and trial subscription products. ([4955](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4955))
+- Remove duplicate attributes in saved block HTML. ([4941](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4941))
+- Fix render error of Filter by Attribute block when no attribute is selected. ([4847](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4847))
+- Store API - Ensure returned customer address state is valid. ([4844](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4844))
+
+= 6.1.0 - 2021-10-12 =
+
+#### Bug Fixes
+
+- Fix the dropdown list in Product Category List Block for nested categories ([4920](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4920))
+- Fixed string translations within the All Products Block. ([4897](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4897))
+- Filter By Price: Update aria values to be more representative of the actual values presented. ([4839](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4839))
+- Fixed: Filter button from Filter Products by Attribute block is not aligned with the input field. ([4814](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4814))
+- Remove IntersectionObserver shim in favor of dropping IE11 support. ([4808](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4808))
+
+= 6.0.0 - 2021-09-28 =
+
+#### Enhancements
+
+- Checkout v2: The checkout now supports inner blocks that allow for greater customizability. This update also includes an optional Terms and Conditions field. ([4745](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4745))
+- Added global styles to All Reviews, Reviews by Category and Reviews by Product blocks. Now it's possible to change the text color and font size of those blocks. ([4323](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4323))
+- Improve the Checkout Order Summary block accessibility by making more info available to screen readers. ([4810](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4810))
+- Update canMakePayment to receive cart as argument and make it react to changes in billingData.  Improve the performance of calculating canMakePayment after changes in the Checkout block. ([4776](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4776))
+- Add support for extensions to filter express payment methods. ([4774](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4774))
+
+#### Bug Fixes
+
+- Checkout: Throw an exception if there is a shipping method required and one isn't selected at the time of placing an order. ([4784](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4784))
+- Fix infinite recursion when removing an attribute filter from the Active filters block. ([4816](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4816))
+- Show placeholder message in the shipping section when there are no rates. ([4765](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4765))
+- Update All Reviews block so it honors 'ratings enabled' and 'show avatars' preferences. ([4764](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4764))
+- Fix state validation if base location has a state, and the address has an optional state. ([4761](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4761))
+- Products by Category: Moved renderEmptyResponsePlaceholder to separate method to prevent unnecessary rerender. ([4751](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4751))
+- Fix validation message styling so they never overlap other elements. ([4734](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4734))
+- Removed `receiveCart` method that was exposed in a couple of SlotFills by mistake. ([4730](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4730))
+- Fix calculation of number of reviews in the Reviews by Category block. ([4729](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4729))
+
+#### Documentation
+
+- Add documentation for registerPaymentMethodExtensionCallbacks. ([4834](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4834))
+
+#### Performance
+
+- Removed `wp-blocks` dependency from several frontend scripts. ([4767](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4767))
+
+
 = 5.9.1 - 2021-09-23 =
 
 #### Bug fixes
@@ -120,6 +272,12 @@ Release and roadmap notes available on the [WooCommerce Developers Blog](https:/
 - Update documentation for the snackbarNoticeVisibility filter. ([4508](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4508))
 - Add documentation for `extensionCartUpdate` method - this allows extensions to update the client-side cart after it has been modified on the server. ([4377](https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/4377))
 
+= 5.7.2 - 2021-09-23 =
+
+#### Bug Fixes
+
+- Fix infinite recursion when removing an attribute filter from the Active filters block. #4816
+- Fix Product Search block displaying incorrectly. #4740
 
 = 5.7.1 - 2021-08-30 =
 

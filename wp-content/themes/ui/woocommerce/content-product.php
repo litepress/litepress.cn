@@ -81,7 +81,8 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                 <div class="col-7">
                     <h5 class="card-title"><a
                                 href="<?php echo $product->get_permalink(); ?>"
-                                data-bs-toggle="tooltip" data-bs-original-title="<?php echo $product->get_name(); ?>"><?php echo $product->get_title(); ?></a>
+                                data-bs-toggle="tooltip"
+                                data-bs-original-title="<?php echo $product->get_name(); ?>"><?php echo esc_html( $product->get_title() ); ?></a>
                     </h5>
                     <div class="woocommerce row"><span class="price col-4">
                             <span class="woocommerce-Price-amount amount">
@@ -103,7 +104,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                         <small><?php /*echo $product->get_short_description(); */ ?></small>
                     </p>-->
                     <div class="card-text project-description">
-                        <pre><?php echo $product->get_short_description(); ?></pre>
+                        <pre><?php echo esc_html( $product->get_short_description() ); ?></pre>
                     </div>
                 </div>
             </div>
@@ -118,7 +119,8 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                 <div class="card-body row align-items-center">
                     <p class="card-text">
                         <a href="<?php echo $product->get_permalink(); ?>"
-                           data-bs-toggle="tooltip" data-bs-original-title="<?php echo $product->get_name(); ?>"><?php echo $product->get_title(); ?></a>
+                           data-bs-toggle="tooltip"
+                           data-bs-original-title="<?php echo $product->get_name(); ?>"><?php echo esc_html( $product->get_title() ); ?></a>
                     </p>
 
                     <div class="woocommerce row"><span class="price col-4">

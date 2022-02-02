@@ -444,11 +444,27 @@ function bbp_user_profile_link( $user_id = 0 ) {
 			return false;
 		}
 
-		$user      = get_userdata( $user_id );
-		$user_link = '<a href="' . esc_url( bbp_get_user_profile_url( $user_id ) ) . '">' . esc_html( $user->display_name ) . '</a>';
+		// Get the user
+		$user = get_userdata( $user_id );
+		if ( empty( $user ) ) {
+			return false;
+		}
+
+		// Display Name
+		$name = ! empty( $user->display_name )
+			? $user->display_name
+			: bbp_get_fallback_display_name();
+
+		// URL
+		$url = bbp_get_user_profile_url( $user_id );
+
+		// Link
+		$link = ! empty( $url )
+			? '<a href="' . esc_url( $url ) . '">' . esc_html( $name ) . '</a>'
+			: esc_html( $name );
 
 		// Filter & return
-		return apply_filters( 'bbp_get_user_profile_link', $user_link, $user_id );
+		return (string) apply_filters( 'bbp_get_user_profile_link', $link, $user_id );
 	}
 
 /**
@@ -596,11 +612,27 @@ function bbp_user_profile_edit_link( $user_id = 0 ) {
 			return false;
 		}
 
-		$user      = get_userdata( $user_id );
-		$edit_link = '<a href="' . esc_url( bbp_get_user_profile_edit_url( $user_id ) ) . '">' . esc_html( $user->display_name ) . '</a>';
+		// Get the user
+		$user = get_userdata( $user_id );
+		if ( empty( $user ) ) {
+			return false;
+		}
+
+		// Display Name
+		$name = ! empty( $user->display_name )
+			? $user->display_name
+			: bbp_get_fallback_display_name();
+
+		// URL
+		$url = bbp_get_user_profile_edit_url( $user_id );
+
+		// Link
+		$link = ! empty( $url )
+			? '<a href="' . esc_url( $url ) . '">' . esc_html( $name ) . '</a>'
+			: esc_html( $name );
 
 		// Filter & return
-		return apply_filters( 'bbp_get_user_profile_edit_link', $edit_link, $user_id );
+		return (string) apply_filters( 'bbp_get_user_profile_edit_link', $link, $user_id );
 	}
 
 /**
@@ -1826,7 +1858,7 @@ function bbp_user_languages_dropdown( $args = array() ) {
 function bbp_login_notices() {
 
 	// loggedout was passed
-	if ( ! empty( $_GET['loggedout'] ) && ( true === $_GET['loggedout'] ) ) {
+	if ( ! empty( $_GET['loggedout'] ) && ( 'true' === $_GET['loggedout'] ) ) {
 		bbp_add_error( 'loggedout', esc_html__( 'You are now logged out.', 'bbpress' ), 'message' );
 
 	// registration is disabled
@@ -1979,7 +2011,6 @@ function bbp_author_link( $args = array() ) {
 		), 'get_author_link' );
 
 		// Confirmed topic
-
 		if ( bbp_is_topic( $r['post_id'] ) ) {
 			return bbp_get_topic_author_link( $r );
 
@@ -2295,8 +2326,8 @@ function bbp_current_user_can_access_create_reply_form() {
 	if ( bbp_is_user_keymaster() ) {
 		$retval = true;
 
-	// Looking at a single topic, topic is open, and forum is open
-	} elseif ( ( bbp_is_single_topic() || is_page() || is_single() ) && bbp_is_topic_open() && bbp_is_forum_open() && bbp_is_topic_published() ) {
+	// Looking at single topic (and singulars), topic is open, and forum is open
+	} elseif ( ( bbp_is_single_topic() || is_singular() ) && bbp_is_topic_open() && bbp_is_forum_open() && bbp_is_topic_published() ) {
 		$retval = bbp_current_user_can_publish_replies();
 
 	// User can edit this reply

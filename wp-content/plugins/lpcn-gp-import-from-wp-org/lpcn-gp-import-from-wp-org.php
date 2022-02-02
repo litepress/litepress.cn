@@ -17,11 +17,9 @@ use function LitePress\Helper\get_product_from_es;
 use function LitePress\WP_Http\wp_remote_get;
 use WP_Error;
 
-class GP_Import_From_WP_Org {
+require __DIR__ . '/class-base.php';
 
-	const PLUGIN = 'plugin';
-
-	const THEME = 'theme';
+class GP_Import_From_WP_Org extends Base {
 
 	/**
 	 * 只有崭新的项目才会从w.org导入翻译，否则就只导入原文
@@ -158,23 +156,6 @@ class GP_Import_From_WP_Org {
 		return true;
 	}
 
-	private static function get_web_page_contents( $url ) {
-		$response = wp_remote_get( $url, array(
-			'timeout'   => 60,
-			'sslverify' => false
-		) );
-		if ( is_wp_error( $response ) ) {
-			return $response;
-		}
-
-		$status_code = wp_remote_retrieve_response_code( $response );
-		if ( 200 !== $status_code ) {
-			return new WP_Error( 'http_request_error', '抓取项目失败，返回状态码：' . $status_code );
-		}
-
-		return $response['body'] ?? false;
-	}
-
 	private static function get_plugin_sub_project( $slug ): array|WP_Error {
 		$type         = self::PLUGIN;
 		$type_for_int = 1;
@@ -301,38 +282,6 @@ class GP_Import_From_WP_Org {
 			'version'     => $r['hits']['hits'][0]['_source']['meta']['_api_new_version'][0]['value'] ?? '',
 			'description' => $description,
 		);
-	}
-
-	private static function create_project( string $name, string $slug, string $type, int $parent_project_id = 0, string $parent_project_slug = '' ): int {
-		global $wpdb;
-
-		$type_for_int        = 'plugin' === $type ? 1 : 2;
-		$type_slug           = self::PLUGIN === $type ? 'plugins' : 'themes';
-		$parent_project_slug = empty( $parent_project_slug ) ? '' : $parent_project_slug . '/';
-
-		$res = $wpdb->insert( 'wp_4_gp_projects', array(
-			'name'                => $name,
-			'author'              => '',
-			'slug'                => $slug,
-			'path'                => sprintf( '%s/%s%s', $type_slug, $parent_project_slug, $slug ),
-			'description'         => '',
-			'source_url_template' => '',
-			'parent_project_id'   => 0 === $parent_project_id ? $type_for_int : $parent_project_id,
-			'active'              => 1
-		) );
-
-		$project_id = $wpdb->insert_id;
-
-		if ( 0 !== (int) $res && 0 !== $parent_project_id ) {
-			$wpdb->insert( 'wp_4_gp_translation_sets', array(
-				'name'       => '简体中文',
-				'slug'       => 'default',
-				'project_id' => $project_id,
-				'locale'     => 'zh-cn'
-			) );
-		}
-
-		return $project_id;
 	}
 
 	private static function update_project( string $project_id, string $name, string $description, string $version ): bool {
@@ -495,6 +444,13 @@ class GP_Import_From_WP_Org {
 
 new GP_Import_From_WP_Org();
 
+
+// 加载命令行
+if ( class_exists( 'WP_CLI' ) ) {
+	require __DIR__ . '/import-release.php';
+}
+
+
 if ( isset( $_GET['debug-import'] ) ) {
 	/*
 	add_action( 'wp_loaded', function () {
@@ -506,7 +462,7 @@ if ( isset( $_GET['debug-import'] ) ) {
 
 	add_action( 'wp_loaded', function () {
 		//GP_Import_From_WP_Org::handle( 'woocommerce', GP_Import_From_WP_Org::PLUGIN );
-		GP_Import_From_WP_Org::handle( 'slim-seo', GP_Import_From_WP_Org::PLUGIN );
+		GP_Import_From_WP_Org::gp_wp_import( 'woocommerce', GP_Import_From_WP_Org::PLUGIN );
 		var_dump( 'ss' );
 		exit;
 	} );

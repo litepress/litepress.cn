@@ -93,6 +93,8 @@ class JCK_SFR_Factory {
 			'votes'       => 1,
 			'user'        => false,
 			'taxonomies'  => false,
+			'attachments' => array(),
+			'board'       => false
 		);
 
 		$args = apply_filters( 'jck_sfr_create_post_args', wp_parse_args( $args, $defaults ) );
@@ -144,6 +146,11 @@ class JCK_SFR_Factory {
 		$feature_request->set_status( $default_status, true );
 		self::status_updated( $default_status, $feature_request );
 		$feature_request->update_taxonomies( $args['taxonomies'] );
+		$feature_request->set_attachments( $args['attachments'] );
+
+		if ( $args['board'] !== false ) {
+			wp_set_object_terms( $inserted_id, $args['board'], JCK_SFR_BOARD_TAXONOMY_NAME );
+		}
 
 		do_action( 'jck_sfr_post_created', $inserted_id );
 

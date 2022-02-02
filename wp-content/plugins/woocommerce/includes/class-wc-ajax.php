@@ -125,7 +125,6 @@ class WC_AJAX {
 			'get_order_details',
 			'add_attribute',
 			'add_new_attribute',
-			'remove_variation',
 			'remove_variations',
 			'save_attributes',
 			'add_variation',
@@ -141,10 +140,6 @@ class WC_AJAX {
 			'remove_order_coupon',
 			'remove_order_item',
 			'remove_order_tax',
-			'reduce_order_item_stock',
-			'increase_order_item_stock',
-			'add_order_item_meta',
-			'remove_order_item_meta',
 			'calc_line_taxes',
 			'save_order_items',
 			'load_order_items',
@@ -932,6 +927,7 @@ class WC_AJAX {
 
 			// Add items to order.
 			$order_notes = array();
+			$added_items = array();
 
 			foreach ( $items_to_add as $item ) {
 				if ( ! isset( $item['id'], $item['qty'] ) || empty( $item['id'] ) ) {
@@ -955,7 +951,7 @@ class WC_AJAX {
 					/* translators: %s: error message */
 					throw new Exception( sprintf( __( 'Error: %s', 'woocommerce' ), $validation_error->get_error_message() ) );
 				}
-				$item_id                 = $order->add_product( $product, $qty );
+				$item_id                 = $order->add_product( $product, $qty, array( 'order' => $order ) );
 				$item                    = apply_filters( 'woocommerce_ajax_order_item', $order->get_item( $item_id ), $item_id, $order, $product );
 				$added_items[ $item_id ] = $item;
 				$order_notes[ $item_id ] = $product->get_formatted_name();
@@ -2129,6 +2125,10 @@ class WC_AJAX {
 						'%s',
 					)
 				);
+
+				if ( 0 === $wpdb->insert_id ) {
+					throw new Exception( __( 'There was an error generating your API Key.', 'woocommerce' ) );
+				}
 
 				$key_id                      = $wpdb->insert_id;
 				$response                    = $data;

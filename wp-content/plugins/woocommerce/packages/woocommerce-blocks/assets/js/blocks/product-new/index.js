@@ -18,7 +18,7 @@ registerBlockType( 'woocommerce/product-new', {
 	title: __( 'Newest Products', 'woocommerce' ),
 	icon: {
 		src: <Icon srcElement={ exclamation } />,
-		foreground: '#96588a',
+		foreground: '#7f54b3',
 	},
 	category: 'woocommerce',
 	keywords: [ __( 'WooCommerce', 'woocommerce' ) ],

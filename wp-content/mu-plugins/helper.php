@@ -12,6 +12,7 @@
 namespace LitePress\Helper;
 
 use DiDom\Document;
+use LitePress\Upyun\Upyun;
 use WP_Error;
 use WP_Http;
 

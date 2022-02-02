@@ -2,7 +2,18 @@
 
 global $blog_id;
 
-use WCY\Inc\WooPay\Xunhu_Wechat;
+/**
+ * 注册小工具区域
+ */
+register_sidebar( array(
+	'name'          => 'UI 侧边栏',
+	'id'            => 'ui-sidebar',
+	'description'   => '为 UI 主题添加侧边栏',
+	'before_widget' => '<li>',
+	'after_widget'  => '</li>',
+	'before_title'  => '<h2>',
+	'after_title'   => '</h2>',
+) );
 
 /**
  * 格式化作品已安装数量
@@ -327,140 +338,140 @@ add_filter( 'gp_tmpl_load_locations', function ( $locations, $template, $args, $
 /**
  * 为Woo的API返回增加字段
  */
-add_action( 'rest_api_init', function () {
-	/**
-	 * 供应商字段
-	 */
-	register_rest_field( 'product', 'vendor', array(
-		'get_callback' => function ( $product ) {
-			$vendor = WC_Product_Vendors_Utils::get_vendor_data_by_id( WC_Product_Vendors_Utils::get_vendor_id_from_product( $product['id'] ) );
-
-			$allowed = array( 'name', 'slug' );
-
-			foreach ( (array) $vendor as $key => $value ) {
-				if ( ! in_array( $key, $allowed ) ) {
-					unset( $vendor[ $key ] );
-				}
-			}
-
-			return $vendor;
-		},
-	) );
-
-	/**
-	 * 缩略图字段
-	 */
-	register_rest_field( 'product', 'thumbnail_src', array(
-		'get_callback' => function ( $product ) {
-			$medium_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $product['id'] ), 'medium' );
-
-			return $medium_image_url[0] ?? 'https://avatar.ibadboy.net/avatar/' . md5( rand() ) . '?d=identicon&s=256';
-		},
-	) );
-
-	/**
-	 * Woo默认的傻逼Meta Data惊得我下巴都掉了，非常不便于索引，于是这里重新搞个meta字段
-	 */
-	register_rest_field( 'product', 'meta', array(
-		'get_callback' => function ( $product ) {
-			$meta = get_post_meta( $product['id'] );
-
-			foreach ( $meta as $key => $value ) {
-				$meta[ $key ] = $value[0];
-			}
-
-			return $meta;
-		},
-	) );
-
-	/**
-	 * 为Woo增加评论内容
-	 */
-	register_rest_field( 'product', 'reviews', array(
-		'get_callback' => function ( $product ) {
-			$args             = array(
-				'status'      => 'approve',
-				'post_status' => 'publish',
-				'post_id'     => $product['id'],
-			);
-			$comments         = get_comments( $args );
-			$comments_section = '';
-
-			foreach ( $comments as $comment ) {
-				/**
-				 * 不知道哪个鸟插件拦截修改了wp的get_avatar方法，导致修改不了图像大小，他妈的，只能自己手工拼接了
-				 */
-				$args         = array(
-					'size' => 12,
-				);
-				$gravatar_url = get_avatar_url( $comment->comment_author_email, $args );
-				$gravatar     = "<img src='$gravatar_url'>";
-				$star_rating  = '';
-
-				$rating_num     = (float) get_comment_meta( $comment->comment_ID, 'rating', true ) ?: 0;
-				$rating_num_tmp = $rating_num;
-				for ( $i = 0; $i < 5; $i ++ ) {
-					if ( 0 < $rating_num_tmp && $rating_num_tmp < 1 ) {
-						$star_rating .= '<span class="star dashicons dashicons-star-half"></span>';
-					} elseif ( $rating_num_tmp >= 1 ) {
-						$star_rating .= '<span class="star dashicons dashicons-star-filled"></span>';
-					} else {
-						$star_rating .= '<span class="star dashicons dashicons-star-empty"></span>';
-					}
-
-					$rating_num_tmp -= 1;
-				}
-
-				$comments_section .= <<<html
-<div class="review">
-    <div class="review-head">
-        <div class="reviewer-info">
-            <div class="review-title-section">
-                <div class="star-rating">
-                    <div class="wporg-ratings" aria-label="{$rating_num}星（最高5星）" data-title-template="%s星（最高5星）" data-rating="5" style="color:#ffb900;">
-                      {$star_rating}
-                </div>
-            </div>
-            <p class="reviewer">
-                由 {$gravatar} {$comment->comment_author} 发表于<span class="review-date">{$comment->comment_date}</span>
-            </p>
-        </div>
-    </div>
-    <div class="review-body">
-        {$comment->comment_content}
-    </div>
-</div>
-html;
-			}
-
-			return $comments_section;
-		},
-	) );
-
-	/**
-	 * 为订单增加支付URL
-	 */
-	register_rest_field( 'shop_order', 'pay_url', array(
-		'get_callback' => function ( $order ) {
-			$pay = new Xunhu_Wechat();
-
-			return $pay->woocommerce_receipt( $order['id'] );
-		},
-	) );
-
-	/**
-	 * 注册订单支付状况监控API
-	 */
-	register_rest_route( 'lp-api/v1', '/woo/orders/is_paid', array(
-		'methods'             => WP_REST_Server::READABLE,
-		'callback'            => function () {
-			$pay = new Xunhu_Wechat();
-
-			$pay->wechat_order_is_paid();
-		},
-		'permission_callback' => '__return_true'
-	) );
-} );
+//add_action( 'rest_api_init', function () {
+//	/**
+//	 * 供应商字段
+//	 */
+//	register_rest_field( 'product', 'vendor', array(
+//		'get_callback' => function ( $product ) {
+//			$vendor = WC_Product_Vendors_Utils::get_vendor_data_by_id( WC_Product_Vendors_Utils::get_vendor_id_from_product( $product['id'] ) );
+//
+//			$allowed = array( 'name', 'slug' );
+//
+//			foreach ( (array) $vendor as $key => $value ) {
+//				if ( ! in_array( $key, $allowed ) ) {
+//					unset( $vendor[ $key ] );
+//				}
+//			}
+//
+//			return $vendor;
+//		},
+//	) );
+//
+//	/**
+//	 * 缩略图字段
+//	 */
+//	register_rest_field( 'product', 'thumbnail_src', array(
+//		'get_callback' => function ( $product ) {
+//			$medium_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $product['id'] ), 'medium' );
+//
+//			return $medium_image_url[0] ?? 'https://avatar.ibadboy.net/avatar/' . md5( rand() ) . '?d=identicon&s=256';
+//		},
+//	) );
+//
+//	/**
+//	 * Woo默认的傻逼Meta Data惊得我下巴都掉了，非常不便于索引，于是这里重新搞个meta字段
+//	 */
+//	register_rest_field( 'product', 'meta', array(
+//		'get_callback' => function ( $product ) {
+//			$meta = get_post_meta( $product['id'] );
+//
+//			foreach ( $meta as $key => $value ) {
+//				$meta[ $key ] = $value[0];
+//			}
+//
+//			return $meta;
+//		},
+//	) );
+//
+//	/**
+//	 * 为Woo增加评论内容
+//	 */
+//	register_rest_field( 'product', 'reviews', array(
+//		'get_callback' => function ( $product ) {
+//			$args             = array(
+//				'status'      => 'approve',
+//				'post_status' => 'publish',
+//				'post_id'     => $product['id'],
+//			);
+//			$comments         = get_comments( $args );
+//			$comments_section = '';
+//
+//			foreach ( $comments as $comment ) {
+//				/**
+//				 * 不知道哪个鸟插件拦截修改了wp的get_avatar方法，导致修改不了图像大小，他妈的，只能自己手工拼接了
+//				 */
+//				$args         = array(
+//					'size' => 12,
+//				);
+//				$gravatar_url = get_avatar_url( $comment->comment_author_email, $args );
+//				$gravatar     = "<img src='$gravatar_url'>";
+//				$star_rating  = '';
+//
+//				$rating_num     = (float) get_comment_meta( $comment->comment_ID, 'rating', true ) ?: 0;
+//				$rating_num_tmp = $rating_num;
+//				for ( $i = 0; $i < 5; $i ++ ) {
+//					if ( 0 < $rating_num_tmp && $rating_num_tmp < 1 ) {
+//						$star_rating .= '<span class="star dashicons dashicons-star-half"></span>';
+//					} elseif ( $rating_num_tmp >= 1 ) {
+//						$star_rating .= '<span class="star dashicons dashicons-star-filled"></span>';
+//					} else {
+//						$star_rating .= '<span class="star dashicons dashicons-star-empty"></span>';
+//					}
+//
+//					$rating_num_tmp -= 1;
+//				}
+//
+//				$comments_section .= <<<html
+//<div class="review">
+//    <div class="review-head">
+//        <div class="reviewer-info">
+//            <div class="review-title-section">
+//                <div class="star-rating">
+//                    <div class="wporg-ratings" aria-label="{$rating_num}星（最高5星）" data-title-template="%s星（最高5星）" data-rating="5" style="color:#ffb900;">
+//                      {$star_rating}
+//                </div>
+//            </div>
+//            <p class="reviewer">
+//                由 {$gravatar} {$comment->comment_author} 发表于<span class="review-date">{$comment->comment_date}</span>
+//            </p>
+//        </div>
+//    </div>
+//    <div class="review-body">
+//        {$comment->comment_content}
+//    </div>
+//</div>
+//html;
+//			}
+//
+//			return $comments_section;
+//		},
+//	) );
+//
+//	/**
+//	 * 为订单增加支付URL
+//	 */
+//	register_rest_field( 'shop_order', 'pay_url', array(
+//		'get_callback' => function ( $order ) {
+//			$pay = new Xunhu_Wechat();
+//
+//			return $pay->woocommerce_receipt( $order['id'] );
+//		},
+//	) );
+//
+//	/**
+//	 * 注册订单支付状况监控API
+//	 */
+//	register_rest_route( 'lp-api/v1', '/woo/orders/is_paid', array(
+//		'methods'             => WP_REST_Server::READABLE,
+//		'callback'            => function () {
+//			$pay = new Xunhu_Wechat();
+//
+//			$pay->wechat_order_is_paid();
+//		},
+//		'permission_callback' => '__return_true'
+//	) );
+//} );
 
 /**
  * 新需求默认发布.
@@ -541,11 +552,12 @@ add_action( 'wp_after_admin_bar_render', function () {
 	if ( 3 !== (int) $blog_id ) {
 		return;
 	}
-
-	$vendor = WC_Product_Vendors_Utils::get_vendor_data_from_user();
-	if ( ! empty( $vendor ) && 'POST' !== $_SERVER['REQUEST_METHOD'] ) {
-		if ( ! isset( $vendor['paypal'] ) || empty( $vendor['paypal'] ) ) {
-			echo '<div class="updated"><p>你还未填写支付宝提现信息哦，请前往 <a href="/store/wp-admin/admin.php?page=wcpv-vendor-settings">店铺设置</a> 填写</p></div>';
+	if ( class_exists( WC_Product_Vendors_Utils::class ) ) {
+		$vendor = WC_Product_Vendors_Utils::get_vendor_data_from_user();
+		if ( ! empty( $vendor ) && 'POST' !== $_SERVER['REQUEST_METHOD'] ) {
+			if ( ! isset( $vendor['paypal'] ) || empty( $vendor['paypal'] ) ) {
+				echo '<div class="updated"><p>你还未填写支付宝提现信息哦，请前往 <a href="/store/wp-admin/admin.php?page=wcpv-vendor-settings">店铺设置</a> 填写</p></div>';
+			}
 		}
 	}
 } );

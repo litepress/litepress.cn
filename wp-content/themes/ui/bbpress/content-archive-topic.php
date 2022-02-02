@@ -10,46 +10,65 @@
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
+
+// 设置一下面包屑，否则的话翻页时面包屑是失效的
+
 ?>
+<section class="theme-boxshadow bg-white index-forum">
+	<?php
+	wp_nav_menu(
+		array(
+			'theme_location' => 'forum_menu',
+			'container'      => false,
+			'items_wrap'     => '<ul class="forum_%2$s">%3$s</ul>',
+			'fallback_cb'    => false,
+			'walker'         => new WCY_Sub_Menu(),
+		)
+	);
+	?>
+    <hr class="dropdown-divider forum-menu-divider">
 
-<div id="bbpress-forums" class="bbpress-wrapper">
+    <div id="bbpress-forums" class="bbpress-wrapper">
 
-	<?php if ( bbp_allow_search() ) : ?>
+		<?php if ( bbp_allow_search() ) : ?>
 
-		<div class="bbp-search-form">
-			<?php bbp_get_template_part( 'form', 'search' ); ?>
-		</div>
+            <div class="bbp-search-form">
+				<?php bbp_get_template_part( 'form', 'search' ); ?>
+            </div>
 
-	<?php endif; ?>
+		<?php endif; ?>
 
-	<?php bbp_breadcrumb(); ?>
+		<?php bbp_breadcrumb(); ?>
 
-	<?php do_action( 'bbp_template_before_topic_tag_description' ); ?>
+		<?php do_action( 'bbp_template_before_topic_tag_description' ); ?>
 
-	<?php if ( bbp_is_topic_tag() ) : ?>
+		<?php if ( bbp_is_topic_tag() ) : ?>
 
-		<?php bbp_topic_tag_description( array( 'before' => '<div class="bbp-template-notice info"><ul><li>', 'after' => '</li></ul></div>' ) ); ?>
+			<?php bbp_topic_tag_description( array(
+				'before' => '<div class="bbp-template-notice info"><ul><li>',
+				'after'  => '</li></ul></div>'
+			) ); ?>
 
-	<?php endif; ?>
+		<?php endif; ?>
 
-	<?php do_action( 'bbp_template_after_topic_tag_description' ); ?>
+		<?php do_action( 'bbp_template_after_topic_tag_description' ); ?>
 
-	<?php do_action( 'bbp_template_before_topics_index' ); ?>
+		<?php do_action( 'bbp_template_before_topics_index' ); ?>
 
-	<?php if ( bbp_has_topics() ) : ?>
+		<?php if ( bbp_has_topics() ) : ?>
 
-		<?php bbp_get_template_part( 'pagination', 'topics'    ); ?>
+			<?php bbp_get_template_part( 'pagination', 'topics' ); ?>
 
-		<?php bbp_get_template_part( 'loop',       'topics'    ); ?>
+			<?php bbp_get_template_part( 'loop', 'topics' ); ?>
 
-		<?php bbp_get_template_part( 'pagination', 'topics'    ); ?>
+			<?php bbp_get_template_part( 'pagination', 'topics' ); ?>
 
-	<?php else : ?>
+		<?php else : ?>
 
-		<?php bbp_get_template_part( 'feedback',   'no-topics' ); ?>
+			<?php bbp_get_template_part( 'feedback', 'no-topics' ); ?>
 
-	<?php endif; ?>
+		<?php endif; ?>
 
-	<?php do_action( 'bbp_template_after_topics_index' ); ?>
-
-</div>
+		<?php do_action( 'bbp_template_after_topics_index' ); ?>
+    </div>
+</section>

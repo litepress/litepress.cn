@@ -672,21 +672,183 @@ SQL;
 
 		$path = sanitize_text_field( gp_post( 'path' ) );
 
-		$subject = '新的翻译权限申请';
-		$message = <<<html
-申请用户：{$current_user->user_login}: 
-<br/>
-申请项目：<a href="https://litepress.cn/translate/projects/{$path}">{$path}</a>
-html;
-
-		$headers[] = 'From: LitePress 翻译平台 <noreplay@litepress.cn>';
-		$headers[] = 'Content-Type: text/html; charset=UTF-8';
-
-		if ( (bool) wp_mail( 'sxy@ibadboy.net', $subject, $message, $headers ) ) {
-			echo json_encode( array( 'message' => '申请已提交，我们将会在工作日的 6 个小时内审核，通过后会为你发送邮件通知。' ), JSON_UNESCAPED_SLASHES );
-		} else {
-			echo json_encode( array( 'error' => '申请失败，请致件管理员手工申请：sxy@ibadboy.net' ), JSON_UNESCAPED_SLASHES );
+		// 对路径预处理一下，如果包含结尾的 /body 则将其删除，这是早期版本的 LP Translate 插件中的写法，已不适用
+		if ( str_ends_with( $path, '/body' ) ) {
+			$path = preg_replace( '~/body$~', '', $path, 1 );
 		}
+
+		// 尝试获取用户请求的项目
+		$project = GP::$project->find_one( array( 'path' => $path ) );
+		if ( ! $project ) {
+			echo json_encode( array( 'error' => '未能在平台中检索到你所申请的项目。' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$sub_projects  = GP::$project->find_many( array(
+			'parent_project_id' => $project->id,
+		) );
+		$current_count = 0;
+		$all_count     = 0;
+		foreach ( $sub_projects as $sub_project ) {
+			$sub_translation_set = GP::$translation_set->by_project_id( $sub_project->id )[0];
+
+			// 累加总的词条数
+			$all_count += $sub_translation_set->all_count();
+
+			// 累加当前用户贡献的翻译数
+			global $wpdb;
+
+			$r             = $wpdb->get_row( "select count(*) as count from wp_4_gp_translations where translation_set_id={$sub_translation_set->id} and user_id={$current_user->ID} and status='current'" );
+			$current_count += $r->count;
+		}
+
+		if ( round( ( $current_count / $all_count ) * 100 ) < 10 ) {
+			echo json_encode( array( 'error' => '您需要为项目贡献超过 10% 的【已审批/当前】翻译才可以申请审批权限哦~' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		/**
+		 * 超过 10% 后添加权限
+		 */
+		// 先判断下是否重复申请
+		GP::$permission->user_can( $current_user->ID, 'approve' );
+		$exist_permission = GP::$permission->find_one( array(
+			'user_id'   => $current_user->ID,
+			'action'    => 'approve',
+			'object_id' => "{$project->id}|zh-cn|default"
+		) );
+		if ( $exist_permission ) {
+			echo json_encode( array( 'error' => '你已经是该项目的审批者了，不可以重复申请哦（如果前端未显示请尝试刷新页面，对于插件端用户请等待 24 小时）~' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		// 如果不存在权限的话就添加
+		GP::$permission->create( array(
+			'user_id'     => $current_user->ID,
+			'action'      => 'approve',
+			'object_type' => "project|locale|set-slug",
+			'object_id'   => "{$project->id}|zh-cn|default",
+		) );
+
+		echo json_encode( array( 'message' => '权限申请已通过，请刷新页面查看（PS：如果你通过插件端申请，则可能会有24小时的缓存延迟）' ), JSON_UNESCAPED_SLASHES );
+		exit;
+	}
+
+	/**
+	 * 创建项目的 API 接口
+	 *
+	 * 只需要传递项目名、文本域 即可创建一个项目，当然如果同时传入了 Icon 以及项目简介更佳。
+	 *
+	 * @param \WP_REST_Request $request
+	 */
+	public function create_for_api( WP_REST_Request $request ) {
+		$current_user = wp_get_current_user();
+
+		if ( empty( $current_user->ID ) ) {
+			echo json_encode( array( 'error' => '你还未登录' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		$project_name = sanitize_text_field( $_POST['project_name'] ?? '' );
+		$text_domain  = sanitize_text_field( $_POST['text_domain'] ?? '' );
+		$description  = sanitize_text_field( $_POST['description'] ?? '' );
+
+		if ( empty( $project_name ) ) {
+			echo json_encode( array( 'error' => '项目名不能为空' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		} else if ( empty( $text_domain ) ) {
+			echo json_encode( array( 'error' => '文本域不能为空' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		// 正式创建前先检查下是否有重复的项目
+		$exist = GP::$project->find_one( array(
+			'path' => "others/{$text_domain}",
+		) );
+		if ( $exist ) {
+			echo json_encode( array( 'error' => "该文本域已经被托管，所属项目：https://litepress.cn/translate/projects/others/{$text_domain}/" ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		/**
+		 * 创建父项目
+		 */
+		$new_project = array(
+			'name'                => $project_name,
+			'slug'                => $text_domain,
+			'description'         => $description,
+			'source_url_template' => '',
+			'parent_project_id'   => 5,
+			'active'              => 'on',
+		);
+		/**
+		 * @var GP_Project $project
+		 */
+		$project = GP::$project->create( $new_project );
+		if ( ! $project ) {
+			echo json_encode( array( 'error' => '项目创建失败，请联系平台管理员解决。' ), JSON_UNESCAPED_SLASHES );
+			exit;
+		}
+
+		// 如果上传了 Icon，则录入
+		if ( isset( $_FILES['icon'] ) || ! empty( $_FILES['icon'] ) ) {
+			if ( ! function_exists( 'wp_handle_upload' ) ) {
+				require_once( ABSPATH . 'wp-admin/includes/file.php' );
+			}
+
+			$uploadedfile     = $_FILES['icon'];
+			$upload_overrides = array(
+				'test_form' => false
+			);
+
+			$movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
+			if ( $movefile && ! isset( $movefile['error'] ) ) {
+				gp_update_meta( $project->id, 'icon', $movefile['url'], 'project' );
+			} else {
+				echo json_encode( array( 'error' => '项目创建时设置封面图失败，请联系平台管理员解决。' ), JSON_UNESCAPED_SLASHES );
+				exit;
+			}
+		}
+
+		/**
+		 * 创建子项目
+		 */
+		$new_sub_project = array(
+			'name'                => '程序主体',
+			'slug'                => 'body',
+			'description'         => '',
+			'source_url_template' => $project->source_url_template,
+			'parent_project_id'   => $project->id,
+			'active'              => 'on',
+		);
+		/**
+		 * @var GP_Project $project2
+		 */
+		$sub_project = GP::$project->create_and_select( $new_sub_project );
+
+		$args = array(
+			'name'       => '简体中文',
+			'slug'       => 'default',
+			'project_id' => $sub_project->id,
+			'locale'     => 'zh-cn'
+		);
+		GP::$translation_set->create( $args );
+
+		// 如果存在管理员用户对象，则将其添加为项目管理员
+		if ( isset( $current_user ) ) {
+			GP::$permission->create( array(
+				'user_id'     => $current_user->ID,
+				'action'      => 'approve',
+				'object_type' => 'project|locale|set-slug',
+				'object_id'   => "{
+			$project->id}|zh - cn |default",
+			) );
+		}
+
+		echo json_encode( array(
+			'message'     => '此项目已成功在平台创建',
+			'project_url' => "https://litepress.cn/translate/projects/others/{$text_domain}/",
+		), JSON_UNESCAPED_SLASHES );
 	}
 
 }

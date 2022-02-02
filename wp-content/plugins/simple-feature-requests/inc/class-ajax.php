@@ -20,8 +20,10 @@ class JCK_SFR_AJAX {
 	 */
 	public static function add_ajax_events() {
 		$ajax_events = array(
-			'update_vote_count'       => true,
-			'search_feature_requests' => true,
+			'update_vote_count'       		   => true,
+			'search_feature_requests' 		   => true,
+			'set_feature_request_attachments' => true,
+			'get_feature_request_attachments' => true
 		);
 
 		foreach ( $ajax_events as $ajax_event => $nopriv ) {
@@ -142,5 +144,108 @@ class JCK_SFR_AJAX {
 		$response = apply_filters( 'jck_sfr_search_feature_requests_response', $response );
 
 		wp_send_json( $response );
+	}
+
+
+	public static function set_feature_request_attachments(){
+
+		$response = array(
+			'success'    => false,
+			'message'    => null,
+		);
+
+		$nonce = check_ajax_referer( 'jck-sfr-attachment-nonce', 'nonce', false );
+
+		if ( ! $nonce ) {
+			$response['message'] = __( 'Nonce check failed.', 'simple-feature-requests' );
+			wp_send_json( $response );
+		}
+
+		$attachments = $_FILES['attachments'];
+
+		if( ! isset( $attachments['name'] ) || ! count( $attachments['name'] ) ){
+			$response['message'] = __( 'No attachments found.', 'simple-feature-requests' );
+			wp_send_json( $response );
+		}
+
+		$attachment_ids = array();
+
+		foreach( $attachments['name'] as $index => $name ){
+
+			$file_data = array( 'tmp_name' => $attachments['tmp_name'][$index], 'size' => $attachments['size'][$index], 'name' => $name );
+			$file      =  wp_handle_upload(  $file_data, array( 'test_form' => false ) );
+
+			if( isset( $file['error'] ) && $file['error'] ){
+				continue; // skip to next if uploading failed
+			}
+
+			$wp_filetype   = wp_check_filetype( $name, null );
+			$attachment    = array(
+				'guid' 			 => $file['url'],
+				'post_mime_type' => $file['type'],
+				'post_parent' 	 => 0,
+				'post_title' 	 => preg_replace('/\.[^.]+$/', '', $name),
+				'post_content' 	 => '',
+				'post_status' 	 => 'inherit'
+			);
+
+			$attachment_id = wp_insert_attachment( $attachment, $file['file'], 0, true );
+
+			if ( ! is_wp_error( $attachment_id ) ) {
+
+				if ( ! function_exists( 'wp_crop_image' ) ) {
+					include( ABSPATH . 'wp-admin/includes/image.php' );
+				}
+
+				$attachment_data = wp_generate_attachment_metadata( $attachment_id, $file['file'] );
+				wp_update_attachment_metadata( $attachment_id,  $attachment_data );
+
+				$attachment_ids[] = $attachment_id;
+			}
+		}
+
+		$response['success'] 		 = true;
+		$response['attachment_ids'] = $attachment_ids;
+
+		wp_send_json_success( $response );
+	}
+
+
+	public static function get_feature_request_attachments(){
+
+		$response = array(
+			'success'    => false,
+			'message'    => null,
+		);
+
+		$nonce = check_ajax_referer( 'jck-sfr-attachment-nonce', 'nonce', false );
+
+		if ( ! $nonce ) {
+			$response['message'] = __( 'Nonce check failed.', 'simple-feature-requests' );
+			wp_send_json( $response );
+		}
+
+		$attachment_ids = $_GET['attachment_ids'];
+		$attachments 	 = array();
+
+		foreach( $attachment_ids as $attachment_id ){
+
+			$dir  = wp_upload_dir();
+			$url  = wp_get_attachment_image_src( $attachment_id, array( 50, 50 ) )[0];
+			$size = filesize( get_attached_file( $attachment_id ) );
+
+			$data = array(
+				'name' => basename( $url ),
+				'url'  => $url,
+				'size' => $size
+			);
+
+			$attachments[$attachment_id] = $data;
+		}
+
+		$response['success'] 	  = true;
+		$response['attachments'] = $attachments;
+
+		wp_send_json_success( $response );
 	}
 }

@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
 <!-- um-notifications/templates/feed.php -->
 <?php
 	if ( version_compare( get_bloginfo('version'),'5.4', '<' ) ) {
-		echo do_shortcode( '[ultimatemember_notifications_button static="0"]' );
+		//echo do_shortcode( '[ultimatemember_notifications_button static="0"]' );
 	} else {
-		echo apply_shortcodes( '[ultimatemember_notifications_button static="0"]' );
+		//echo apply_shortcodes( '[ultimatemember_notifications_button static="0"]' );
 	}
 ?>
 

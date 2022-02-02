@@ -26,7 +26,7 @@ import type {
 	CartResponseBillingAddress,
 	CartResponseShippingAddress,
 	CartResponseCouponItem,
-	CartResponseCouponItemWithLabel,
+	CartResponseCoupons,
 } from '@woocommerce/types';
 import {
 	emptyHiddenAddressFields,
@@ -37,6 +37,7 @@ import {
  * Internal dependencies
  */
 import { useEditorContext } from '../../providers/editor-context';
+import { useStoreCartEventListeners } from './use-store-cart-event-listeners';
 
 declare module '@wordpress/html-entities' {
 	// eslint-disable-next-line @typescript-eslint/no-shadow
@@ -129,6 +130,7 @@ export const defaultCartData: StoreCart = {
  *
  * @return {StoreCart} Object containing cart data.
  */
+
 export const useStoreCart = (
 	options: { shouldSelect: boolean } = { shouldSelect: true }
 ): StoreCart => {
@@ -136,6 +138,10 @@ export const useStoreCart = (
 	const previewCart = previewData?.previewCart;
 	const { shouldSelect } = options;
 	const currentResults = useRef();
+
+	// This will keep track of jQuery and DOM events triggered by other blocks
+	// or components and will invalidate the store resolution accordingly.
+	useStoreCartEventListeners();
 
 	const results: StoreCart = useSelect(
 		( select, { dispatch } ) => {
@@ -178,6 +184,7 @@ export const useStoreCart = (
 			const cartIsLoading = ! store.hasFinishedResolution(
 				'getCartData'
 			);
+
 			const shippingRatesLoading = store.isCustomerDataUpdating();
 			const { receiveCart } = dispatch( storeKey );
 			const billingAddress = decodeValues( cartData.billingAddress );
@@ -194,7 +201,7 @@ export const useStoreCart = (
 			// Add a text property to the coupon to allow extensions to modify
 			// the text used to display the coupon, without affecting the
 			// functionality when it comes to removing the coupon.
-			const cartCoupons: CartResponseCouponItemWithLabel[] =
+			const cartCoupons: CartResponseCoupons =
 				cartData.coupons.length > 0
 					? cartData.coupons.map(
 							( coupon: CartResponseCouponItem ) => ( {

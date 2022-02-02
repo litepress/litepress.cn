@@ -66,7 +66,7 @@ class JCK_SFR_Notices {
 			<?php if ( empty( $notices ) ) {
 				continue;
 			} ?>
-
+			
 			<ul class="jck-sfr-notices jck-sfr-notices--<?php echo esc_attr( $type ); ?>">
 				<?php foreach ( $notices as $notice ) { ?>
 					<li class="jck-sfr-notices__notice"><?php echo $notice; ?></li>

@@ -12,7 +12,8 @@ class Web extends GP_Route{
 	 */
 	public function add_web_translate_job( $project_id ) {
 		$project = GP::$project->find_one( array( 'id' => $project_id ) )->fields();
-
+var_dump('asfasf');
+exit;
 		// 获取待翻译原文
 		$sql = <<<SQL
 select *

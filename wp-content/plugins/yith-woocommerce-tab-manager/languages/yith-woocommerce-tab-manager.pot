@@ -1,0 +1,397 @@
+# Copyright (C) 2021 YITH
+# This file is distributed under the same license as the YITH WooCommerce Tab Manager package.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH WooCommerce Tab Manager 1.7.0\n"
+"Report-Msgid-Bugs-To: YITH <plugins@yithemes.com>\n"
+"POT-Creation-Date: 2021-12-29 15:17:07+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: YITH <info@yithemes.com>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:67
+#: includes/class.yith-wctm-post-type.php:184
+msgid "Date"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:97
+msgid "All"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:98
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:341
+msgid "Published"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:99
+msgid "Mine"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:100
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:285
+msgid "Trash"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:101
+msgid "Draft"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:160
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:274
+msgid "Restore"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:162
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:284
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:289
+msgid "Edit"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:168
+msgid "Delete Permanently"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:170
+msgid "Move to Trash"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:274
+msgid "Restore this item from Trash"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:282
+msgid "Delete permanently"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:322
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:323
+msgid "Unpublished"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:326
+msgid "Y/m/d g:i:s a"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:334
+#. translators: %s is the time
+msgid "%s ago"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:336
+msgid "Y/m/d"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:344
+msgid "Missed schedule"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:346
+msgid "Scheduled"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:349
+msgid "Last Modified"
+msgstr ""
+
+#: includes/class.yith-wctm-admin.php:89
+#: includes/class.yith-wctm-post-type.php:111
+#: plugin-options/settings-options.php:27
+msgid "Tab Manager"
+msgstr ""
+
+#: includes/class.yith-wctm-admin.php:93
+msgid "Premium Version"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:71
+msgid "ywtm_tab"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:72
+msgid "Yith Tab Manager Description"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:112
+msgid "Parent Item:"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:113
+msgid "All Tabs"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:114
+msgid "View Tabs"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:115
+#: includes/class.yith-wctm-post-type.php:116
+#: plugin-options/settings-options.php:28
+msgid "Add New Tab"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:117
+msgid "Edit Tab"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:118
+msgid "Update Tab"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:119
+msgid "Search Tab"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:120
+msgid "Not found"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:121
+msgid "Not found in Trash"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:143
+#: includes/class.yith-wctm-post-type.php:147
+#. translators: %s is the name of post type
+msgid "%s updated"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:144
+msgid "Custom field updated"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:145
+msgid "Custom field deleted"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:149
+#. translators: %s is the revision number
+msgid "Tab restored to version %s"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:151
+#. translators: %s is the name of post type
+msgid "%s published"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:153
+#. translators: %s is the name of post type
+msgid "%s saved"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:155
+#. translators: %s is the name of post type
+msgid "%s submitted"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:158
+#. translators: %s is the name of post type
+msgid "%s draft updated"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:181
+msgid "Title"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:182
+msgid "Is Visible"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:183
+msgid "Tab Position"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:285
+msgid "Back to Tabs"
+msgstr ""
+
+#: includes/metabox/tab-metabox.php:10
+msgid "Tab Settings"
+msgstr ""
+
+#: includes/metabox/tab-metabox.php:16
+msgid "Settings"
+msgstr ""
+
+#: includes/metabox/tab-metabox.php:21
+msgid "Content Tab"
+msgstr ""
+
+#: includes/metabox/tab-metabox.php:26
+msgid "Enable Tab"
+msgstr ""
+
+#: includes/metabox/tab-metabox.php:27
+msgid "Show Tab in frontend"
+msgstr ""
+
+#: includes/metabox/tab-metabox.php:33
+msgid "Tab Priority"
+msgstr ""
+
+#: includes/metabox/tab-metabox.php:34
+msgid "The plugin tabs are displayed after the WooCommerce Tabs"
+msgstr ""
+
+#: init.php:56
+msgid ""
+"YITH WooCommerce Tab Manager is enabled but not effective. It requires "
+"WooCommerce in order to work."
+msgstr ""
+
+#: init.php:70
+msgid ""
+"You can't activate the free version of YITH WooCommerce Tab Manager while "
+"you are using the premium one."
+msgstr ""
+
+#: templates/admin/premium.php:202 templates/admin/premium.php:373
+msgid ""
+"Upgrade to %1$spremium version%2$s of %1$sYITH WooCommerce Tab Manager%2$s "
+"to benefit from all features!"
+msgstr ""
+
+#: templates/admin/premium.php:206 templates/admin/premium.php:377
+msgid "UPGRADE"
+msgstr ""
+
+#: templates/admin/premium.php:207 templates/admin/premium.php:378
+msgid "to the premium version"
+msgstr ""
+
+#: templates/admin/premium.php:213
+msgid "Premium Features"
+msgstr ""
+
+#: templates/admin/premium.php:221
+msgid "Free tab sorting"
+msgstr ""
+
+#: templates/admin/premium.php:226
+msgid ""
+"Enjoy creating unlimited tabs to add to your products and sort them in the "
+"way you think is the best\n"
+"                    one. To do that, take advantage of the innovation added "
+"in the premium version: %1$syou will not be\n"
+"                    forced to let your tabs appear after WooCommerce "
+"tabs%2$s, but it will be up to you to decide to display\n"
+"                    them before or after them. Finally, you are free to "
+"sort them!"
+msgstr ""
+
+#: templates/admin/premium.php:246
+msgid "An icon for each tab"
+msgstr ""
+
+#: templates/admin/premium.php:251
+msgid ""
+"Placing an icon next to the name of each tab is a wonderful way to give "
+"style to your tab. You’ll\n"
+"                    have a %1$swide selection of icons%2$s (Font Awesome "
+"and Font Retina) put at your disposal, but if you want\n"
+"                    even more, you can upload your own icon and preview it "
+"before publishing it."
+msgstr ""
+
+#: templates/admin/premium.php:276
+msgid "Tab type"
+msgstr ""
+
+#: templates/admin/premium.php:281
+msgid ""
+"Not all tabs are meant to be associated to all products indiscriminately. "
+"Choose your tab type among\n"
+"                    %1$s“global”, “category”%2$s and %1$s“product”%2$s and "
+"associate the tab either to all products, as set by default,\n"
+"                    to all products belonging to one or more categories or "
+"to one or more specific products."
+msgstr ""
+
+#: templates/admin/premium.php:300
+msgid "Custom tab for each product"
+msgstr ""
+
+#: templates/admin/premium.php:305
+msgid ""
+"Do you want a tab with a %1$sdifferent content%2$s for each product? You "
+"can have it!%3$s A specific option of\n"
+"                    this plugin allows you to change the content according "
+"to the product and directly from its page in\n"
+"                    WooCommerce for a quick and simple management."
+msgstr ""
+
+#: templates/admin/premium.php:331
+msgid "8 tab layouts available"
+msgstr ""
+
+#: templates/admin/premium.php:336
+msgid ""
+"One would say “... and you name it!”%1$s\n"
+"                    %2$sEight different layouts%3$s will allow you to "
+"create unlimited tabs with different contents, which is\n"
+"                    not just text. You can add image or video galleries, "
+"contact forms, maps, F.A.Q.s, files available\n"
+"                    for download or set the tab so that you can add "
+"whatever shortcode you need.\n"
+"                    %2$sYou do not need anything more to achieve the best "
+"results!%3$s"
+msgstr ""
+
+#: templates/admin/premium.php:358
+msgid "WooCommerce tabs"
+msgstr ""
+
+#: templates/admin/premium.php:361
+msgid ""
+"Edit or remove %1$s\"Reviews\"%2$s and %1$s\"Description\"%2$s tabs that "
+"WooCommerce adds defaultly in every product of the shop. In this way, you "
+"will have the full control of every detail of the pages, shaping them as "
+"you want."
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"<code><strong>YITH WooCommerce Tab Manager</strong></code> allows you to "
+"add additional tabs in the product page. <a href "
+"=\"https://yithemes.com\">Get more plugins for your e-commerce shop on "
+"<strong>YITH</strong></a>"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:64
+msgctxt "column name"
+msgid "Title"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:65
+msgctxt "column name"
+msgid "Is Visible"
+msgstr ""
+
+#: includes/admin-tables/class.ywctm-tab-manager-table.php:66
+msgctxt "column name"
+msgid "Tab Position"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:109
+msgctxt "Post Type General Name"
+msgid "YITH WooCommerce Tab Manager"
+msgstr ""
+
+#: includes/class.yith-wctm-post-type.php:110
+msgctxt "Post Type Singular Name"
+msgid "Tab"
+msgstr ""

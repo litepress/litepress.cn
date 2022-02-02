@@ -129,7 +129,7 @@ class Locale {
 		unset( $contributors, $editor_ids );
 
 		uasort( $locale_contributors['contributors'], function ( $a, $b ) {
-			return $a->total_count < $b->total_count;
+			return (int) ( $a->total_count < $b->total_count );
 		} );
 
 		return $locale_contributors;
@@ -162,6 +162,7 @@ class Locale {
 
 	private function _encode( $raw ): string {
 		$raw = mb_convert_encoding( $raw, 'UTF-8', 'ASCII, JIS, UTF-8, Windows-1252, ISO-8859-1' );
+
 		return ent2ncr( htmlspecialchars_decode( htmlentities( $raw, ENT_NOQUOTES, 'UTF-8' ), ENT_NOQUOTES ) );
 	}
 }

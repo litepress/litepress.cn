@@ -20,6 +20,8 @@
                     <div class="search-form  row justify-content-end">
                         <div class="col-xl-4 text-end">
                             <a class="btn btn-light btn-small"
+                               href="/translate/projects/others/-new">申请托管</a>
+                            <a class="btn btn-light btn-small"
                                href="/translate/languages/zh-cn/default/glossary">术语表</a>
                         </div>
                         <form class="col-xl-8">

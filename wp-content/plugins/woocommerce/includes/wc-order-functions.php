@@ -715,16 +715,11 @@ function wc_restock_refunded_items( $order, $refunded_line_items ) {
 		// Update _reduced_stock meta to track changes.
 		$item_stock_reduced = $item_stock_reduced - $qty_to_refund;
 
-		if ( 0 < $item_stock_reduced ) {
-			// Keeps track of total running tally of reduced stock.
-			$item->update_meta_data( '_reduced_stock', $item_stock_reduced );
+		// Keeps track of total running tally of reduced stock.
+		$item->update_meta_data( '_reduced_stock', $item_stock_reduced );
 
-			// Keeps track of only refunded items that needs restock.
-			$item->update_meta_data( '_restock_refunded_items', $qty_to_refund + $restock_refunded_items );
-		} else {
-			$item->delete_meta_data( '_reduced_stock' );
-			$item->delete_meta_data( '_restock_refunded_items' );
-		}
+		// Keeps track of only refunded items that needs restock.
+		$item->update_meta_data( '_restock_refunded_items', $qty_to_refund + $restock_refunded_items );
 
 		/* translators: 1: product ID 2: old stock level 3: new stock level */
 		$order->add_order_note( sprintf( __( 'Item #%1$s stock increased from %2$s to %3$s.', 'woocommerce' ), $product->get_id(), $old_stock, $new_stock ) );
@@ -915,6 +910,12 @@ add_action( 'woocommerce_order_status_cancelled', 'wc_update_coupon_usage_counts
 function wc_cancel_unpaid_orders() {
 	$held_duration = get_option( 'woocommerce_hold_stock_minutes' );
 
+	// Re-schedule the event before cancelling orders
+	// this way in case of a DB timeout or (plugin) crash the event is always scheduled for retry.
+	wp_clear_scheduled_hook( 'woocommerce_cancel_unpaid_orders' );
+	$cancel_unpaid_interval = apply_filters( 'woocommerce_cancel_unpaid_orders_interval_minutes', absint( $held_duration ) );
+	wp_schedule_single_event( time() + ( absint( $cancel_unpaid_interval ) * 60 ), 'woocommerce_cancel_unpaid_orders' );
+
 	if ( $held_duration < 1 || 'yes' !== get_option( 'woocommerce_manage_stock' ) ) {
 		return;
 	}
@@ -931,9 +932,6 @@ function wc_cancel_unpaid_orders() {
 			}
 		}
 	}
-	wp_clear_scheduled_hook( 'woocommerce_cancel_unpaid_orders' );
-	$cancel_unpaid_interval = apply_filters( 'woocommerce_cancel_unpaid_orders_interval_minutes', absint( $held_duration ) );
-	wp_schedule_single_event( time() + ( absint( $cancel_unpaid_interval ) * 60 ), 'woocommerce_cancel_unpaid_orders' );
 }
 add_action( 'woocommerce_cancel_unpaid_orders', 'wc_cancel_unpaid_orders' );
 

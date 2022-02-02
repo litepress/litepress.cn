@@ -81,7 +81,7 @@ abstract class AbstractBlock {
 	 */
 	public function render_callback( $attributes = [], $content = '' ) {
 		$render_callback_attributes = $this->parse_render_callback_attributes( $attributes );
-		if ( ! is_admin() ) {
+		if ( ! is_admin() && ! WC()->is_rest_api_request() ) {
 			$this->enqueue_assets( $render_callback_attributes );
 		}
 		return $this->render( $render_callback_attributes, $content );
@@ -107,7 +107,7 @@ abstract class AbstractBlock {
 	 */
 	protected function initialize() {
 		if ( empty( $this->block_name ) ) {
-			_doing_it_wrong( __METHOD__, esc_html( __( 'Block name is required.', 'woocommerce' ) ), '4.5.0' );
+			_doing_it_wrong( __METHOD__, esc_html__( 'Block name is required.', 'woocommerce' ), '4.5.0' );
 			return false;
 		}
 		$this->integration_registry->initialize( $this->block_name . '_block' );
@@ -153,19 +153,45 @@ abstract class AbstractBlock {
 	}
 
 	/**
+	 * Injects Chunk Translations into the page so translations work for lazy loaded components.
+	 *
+	 * The chunk names are defined when creating lazy loaded components using webpackChunkName.
+	 *
+	 * @param string[] $chunks Array of chunk names.
+	 */
+	protected function register_chunk_translations( $chunks ) {
+		foreach ( $chunks as $chunk ) {
+			$handle = 'wc-blocks-' . $chunk . '-chunk';
+			$this->asset_api->register_script( $handle, $this->asset_api->get_block_asset_build_path( $chunk ), [], true );
+			wp_add_inline_script(
+				$this->get_block_type_script( 'handle' ),
+				wp_scripts()->print_translations( $handle, false ),
+				'before'
+			);
+			wp_deregister_script( $handle );
+		}
+	}
+
+	/**
 	 * Registers the block type with WordPress.
 	 */
 	protected function register_block_type() {
+		$block_settings = [
+			'render_callback' => $this->get_block_type_render_callback(),
+			'editor_script'   => $this->get_block_type_editor_script( 'handle' ),
+			'editor_style'    => $this->get_block_type_editor_style(),
+			'style'           => $this->get_block_type_style(),
+			'attributes'      => $this->get_block_type_attributes(),
+			'supports'        => $this->get_block_type_supports(),
+		];
+
+		if ( isset( $this->api_version ) && '2' === $this->api_version ) {
+			$block_settings['api_version'] = 2;
+		}
+
 		register_block_type(
 			$this->get_block_type(),
-			array(
-				'render_callback' => $this->get_block_type_render_callback(),
-				'editor_script'   => $this->get_block_type_editor_script( 'handle' ),
-				'editor_style'    => $this->get_block_type_editor_style(),
-				'style'           => $this->get_block_type_style(),
-				'attributes'      => $this->get_block_type_attributes(),
-				'supports'        => $this->get_block_type_supports(),
-			)
+			$block_settings
 		);
 	}
 
@@ -297,39 +323,6 @@ abstract class AbstractBlock {
 		$this->enqueue_data( $attributes );
 		$this->enqueue_scripts( $attributes );
 		$this->enqueued_assets = true;
-	}
-
-	/**
-	 * Injects block attributes into the block.
-	 *
-	 * @param string $content HTML content to inject into.
-	 * @param array  $attributes Key value pairs of attributes.
-	 * @return string Rendered block with data attributes.
-	 */
-	protected function inject_html_data_attributes( $content, array $attributes ) {
-		return preg_replace( '/<div /', '<div ' . $this->get_html_data_attributes( $attributes ) . ' ', $content, 1 );
-	}
-
-	/**
-	 * Converts block attributes to HTML data attributes.
-	 *
-	 * @param array $attributes Key value pairs of attributes.
-	 * @return string Rendered HTML attributes.
-	 */
-	protected function get_html_data_attributes( array $attributes ) {
-		$data = [];
-
-		foreach ( $attributes as $key => $value ) {
-			if ( is_bool( $value ) ) {
-				$value = $value ? 'true' : 'false';
-			}
-			if ( ! is_scalar( $value ) ) {
-				$value = wp_json_encode( $value );
-			}
-			$data[] = 'data-' . esc_attr( strtolower( preg_replace( '/(?<!\ )[A-Z]/', '-$0', $key ) ) ) . '="' . esc_attr( $value ) . '"';
-		}
-
-		return implode( ' ', $data );
 	}
 
 	/**

@@ -617,7 +617,7 @@ class JCK_SFR_Post_Types
         $status_colors = jck_sfr_get_status_colors( $status );
         return sprintf(
             '<span style="
-				background-color: %s; 
+				background-color: %s;
 				height: 24px;
 				line-height: 24px;
 				text-transform: uppercase;
@@ -776,6 +776,48 @@ class JCK_SFR_Post_Types
     }
     
     /**
+     * Get single request title tag
+     * 
+     * @return string
+     */
+    public static function get_single_title_tag()
+    {
+        $settings = JCK_SFR_Settings::get_settings();
+        if ( empty($settings) || empty($settings['general_setup_single_title_tag']) ) {
+            return apply_filters( 'jck_sfr_single_title_tag', 'h1' );
+        }
+        return apply_filters( 'jck_sfr_single_title_tag', $settings['general_setup_single_title_tag'] );
+    }
+    
+    /**
+     * Get archive request title tag
+     * 
+     * @return string
+     */
+    public static function get_archive_title_tag()
+    {
+        $settings = JCK_SFR_Settings::get_settings();
+        if ( empty($settings) || empty($settings['general_setup_archive_title_tag']) ) {
+            return apply_filters( 'jck_sfr_archive_title_tag', 'h1' );
+        }
+        return apply_filters( 'jck_sfr_archive_title_tag', $settings['general_setup_archive_title_tag'] );
+    }
+    
+    /**
+     * Check if we should hide default theme entry title on single request view
+     * 
+     * @return bool
+     */
+    public static function hide_entry_title()
+    {
+        $settings = JCK_SFR_Settings::get_settings();
+        if ( empty($settings) || empty($settings['general_setup_hide_entry_title']) ) {
+            return apply_filters( 'jck_sfr_hide_entry_title', 0 );
+        }
+        return apply_filters( 'jck_sfr_hide_entry_title', $settings['general_setup_hide_entry_title'] );
+    }
+    
+    /**
      * Flush permalinks.
      */
     public static function flush_permalinks()
@@ -795,20 +837,20 @@ class JCK_SFR_Post_Types
         $menu_id = 'jck-sfr';
         $wp_admin_bar->add_menu( array(
             'id'    => $menu_id,
-            'title' => __( 'Requests', 'simple-feature-requests' ),
+            'title' => __( apply_filters( 'jck_sfr_plural_request_name', 'Requests', true ), 'simple-feature-requests' ),
             'href'  => '',
         ) );
         if ( self::is_type( 'single' ) ) {
             $wp_admin_bar->add_menu( array(
                 'parent' => $menu_id,
-                'title'  => __( 'Edit Feature Request', 'simple-feature-requests' ),
+                'title'  => __( 'Edit ' . apply_filters( 'jck_sfr_single_request_name', 'Feature Request', true ), 'simple-feature-requests' ),
                 'id'     => 'jck-sfr-edit',
                 'href'   => get_edit_post_link(),
             ) );
         }
         $wp_admin_bar->add_menu( array(
             'parent' => $menu_id,
-            'title'  => __( 'Manage Feature Requests', 'simple-feature-requests' ),
+            'title'  => __( 'Manage ' . apply_filters( 'jck_sfr_plural_request_name', 'Feature Requests', true ), 'simple-feature-requests' ),
             'id'     => 'jck-sfr-manage',
             'href'   => admin_url( 'edit.php?post_type=cpt_feature_requests' ),
         ) );
@@ -821,7 +863,7 @@ class JCK_SFR_Post_Types
      */
     public static function get_menu_title()
     {
-        $title = __( 'Requests', 'simple-feature-requests' );
+        $title = __( apply_filters( 'jck_sfr_plural_request_name', 'Requests', true ), 'simple-feature-requests' );
         $pending = JCK_SFR_Query::count_pending_requests();
         if ( empty($pending) ) {
             return $title;
@@ -918,6 +960,41 @@ class JCK_SFR_Post_Types
         }
         $notices = JCK_SFR_Notices::instance();
         $notices->add( $status_description, 'error' );
+    }
+    
+    /**
+     * Attachments metabox
+     */
+    public static function attachments_meta_box( $post )
+    {
+        $attachment_ids = array_filter( array_map( 'intval', (array) get_post_meta( $post->ID, '_attachments', true ) ) );
+        ?>
+		<div class="jck-sfr-attachments-container">
+			<ul class="jck-sfr-attachments">
+				<?php 
+        foreach ( $attachment_ids as $attachment_id ) {
+            ?>
+				<li class="jck-sfr-attachment" data-attachment_id="<?php 
+            echo  $attachment_id ;
+            ?>">
+					<?php 
+            echo  wp_get_attachment_image( $attachment_id, 'thumbnail' ) ;
+            ?>
+					<a hre="#" class="jck-sfr-remove_attachment"></a>
+				</li>
+				<?php 
+        }
+        ?>
+			</ul>
+			<input type="hidden" name="jck_sfr_attachments" value="<?php 
+        echo  implode( ',', $attachment_ids ) ;
+        ?>">
+
+			<a href="#" class="jck-sfr-add_attachments"><?php 
+        _e( 'Add attachments', 'simple-feature-requests' );
+        ?></a>
+		</div>
+		<?php 
     }
 
 }

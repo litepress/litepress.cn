@@ -34,6 +34,6 @@ add_action( 'um_post_account_update', 'um_notification_account_update' );
  */
 function um_notification_delete_user_data( $user_id ) {
 	global $wpdb;
-	$wpdb->delete( $wpdb->prefix . "um_notifications" , array( 'user' => $user_id ) );
+	$wpdb->delete( "wp_um_notifications" , array( 'user' => $user_id ) );
 }
 add_action( 'um_delete_user', 'um_notification_delete_user_data' );

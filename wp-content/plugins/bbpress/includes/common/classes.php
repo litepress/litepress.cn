@@ -334,6 +334,7 @@ class BBP_Walker_Reply extends Walker {
 	 * @since 2.4.0 bbPress (r4944)
 	 */
 	public function display_element( $element = false, &$children_elements = array(), $max_depth = 0, $depth = 0, $args = array(), &$output = '' ) {
+
 		if ( empty( $element ) ) {
 			return;
 		}

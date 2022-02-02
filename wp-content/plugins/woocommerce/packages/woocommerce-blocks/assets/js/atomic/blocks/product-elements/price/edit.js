@@ -36,7 +36,7 @@ const TextControl = ( {
 			<ColorPalette
 				value={ color.color }
 				onChange={ setColor }
-				label={ __( 'Color' ) }
+				label={ __( 'Color', 'woocommerce' ) }
 			/>
 		</BaseControl>
 	</>

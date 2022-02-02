@@ -2,11 +2,11 @@
 
 /**
  * Plugin Name: Simple Feature Requests
- * Plugin URI: http://jckemp.com
+ * Plugin URI: https://simplefeaturerequests.com
  * Description: Customer led feature requests with voting.
- * Version: 2.1.3
- * Author: James Kemp
- * Author URI: https://jckemp.com
+ * Version: 2.2.2
+ * Author: Spellhammer
+ * Author URI: https://elijahmills.com
  * Text Domain: simple-feature-requests
  *
  */
@@ -23,7 +23,7 @@ class JCK_Simple_Feature_Requests
      *
      * @var string
      */
-    public static  $version = "2.1.3" ;
+    public static  $version = "2.2.1" ;
     /**
      * Full name
      *
@@ -60,6 +60,7 @@ class JCK_Simple_Feature_Requests
         $this->define_constants();
         self::load_files();
         $this->load_classes();
+        $this->actions();
     }
     
     /**
@@ -69,12 +70,131 @@ class JCK_Simple_Feature_Requests
     {
         $this->define( 'JCK_SFR_PATH', plugin_dir_path( __FILE__ ) );
         $this->define( 'JCK_SFR_URL', plugin_dir_url( __FILE__ ) );
+        $this->define( 'JCK_SFR_RELPATH', plugin_basename( JCK_SFR_PATH ) );
         $this->define( 'JCK_SFR_INC_PATH', JCK_SFR_PATH . 'inc/' );
         $this->define( 'JCK_SFR_VENDOR_PATH', JCK_SFR_INC_PATH . 'vendor/' );
         $this->define( 'JCK_SFR_TEMPLATES_PATH', JCK_SFR_PATH . 'templates/' );
         $this->define( 'JCK_SFR_ASSETS_URL', JCK_SFR_URL . 'assets/' );
         $this->define( 'JCK_SFR_BASENAME', plugin_basename( __FILE__ ) );
         $this->define( 'JCK_SFR_VERSION', self::$version );
+        $this->define( 'JCK_SFR_BOARD_TAXONOMY_NAME', 'request_board' );
+    }
+    
+    public function actions()
+    {
+        add_action( 'init', array( $this, 'localization' ) );
+        add_filter(
+            'jck_sfr_statuses',
+            array( $this, 'add_custom_statuses' ),
+            10,
+            1
+        );
+        add_filter(
+            'jck_sfr_single_request_name',
+            array( $this, 'add_custom_labels_single' ),
+            10,
+            2
+        );
+        add_filter(
+            'jck_sfr_plural_request_name',
+            array( $this, 'add_custom_labels_plural' ),
+            10,
+            2
+        );
+        add_filter(
+            'jck_sfr_status_descriptions',
+            array( $this, 'add_custom_status_descriptions' ),
+            10,
+            1
+        );
+        add_filter(
+            'jck_sfr_status_colors',
+            array( $this, 'add_custom_status_colors' ),
+            10,
+            1
+        );
+    }
+    
+    public function localization()
+    {
+        load_plugin_textdomain( 'simple-feature-requests', false, JCK_SFR_RELPATH . '/languages/' );
+    }
+    
+    public function add_custom_statuses( $statuses = array() )
+    {
+        $custom_statuses = jck_sfr_get_custom_statuses();
+        $custom_statuses = maybe_unserialize( $custom_statuses );
+        if ( !empty($custom_statuses) && is_array( $custom_statuses ) ) {
+            foreach ( $custom_statuses as $status ) {
+                $slug = jck_sfr_get_status_slug( $status['status_title'] );
+                if ( !array_key_exists( $slug, $statuses ) ) {
+                    $statuses[$slug] = $status['status_title'];
+                }
+            }
+        }
+        return $statuses;
+    }
+    
+    public function add_custom_status_descriptions( $descriptions = array() )
+    {
+        $custom_statuses = jck_sfr_get_custom_statuses();
+        $custom_statuses = maybe_unserialize( $custom_statuses );
+        if ( !empty($custom_statuses && is_array( $custom_statuses )) ) {
+            foreach ( $custom_statuses as $status ) {
+                $slug = jck_sfr_get_status_slug( $status['status_title'] );
+                if ( !array_key_exists( $slug, $descriptions ) ) {
+                    $descriptions[$slug] = $status['status_description'];
+                }
+            }
+        }
+        return $descriptions;
+    }
+    
+    public function add_custom_status_colors( $colors = array() )
+    {
+        $custom_statuses = jck_sfr_get_custom_statuses();
+        $custom_statuses = maybe_unserialize( $custom_statuses );
+        $default_bg_color = apply_filters( 'jck_sfr_custom_status_default_bg_color', '#d16060' );
+        $default_text_color = apply_filters( 'jck_sfr_custom_status_default_text_color', '#FFFFFF' );
+        if ( !empty($custom_statuses && is_array( $custom_statuses )) ) {
+            foreach ( $custom_statuses as $status ) {
+                $slug = jck_sfr_get_status_slug( $status['status_title'] );
+                
+                if ( !array_key_exists( $slug, $colors ) ) {
+                    $colors[$slug]['color'] = ( !empty($status['status_text_color']) ? $status['status_text_color'] : $default_text_color );
+                    $colors[$slug]['background'] = ( !empty($status['status_bg_color']) ? $status['status_bg_color'] : $default_bg_color );
+                }
+            
+            }
+        }
+        return $colors;
+    }
+    
+    /**
+     * Custom labels
+     */
+    public function add_custom_labels_single( $string, $capitalize )
+    {
+        $custom_label_single = jck_sfr_get_custom_labels( 'single' );
+        
+        if ( $capitalize ) {
+            return ucfirst( $custom_label_single );
+        } else {
+            return strtolower( $custom_label_single );
+        }
+    
+    }
+    
+    public function add_custom_labels_plural( $string, $capitalize )
+    {
+        $custom_label_plural = jck_sfr_get_custom_labels( 'plural' );
+        
+        if ( $capitalize ) {
+            return ucfirst( $custom_label_plural );
+        } else {
+            return strtolower( $custom_label_plural );
+        }
+    
     }
     
     /**

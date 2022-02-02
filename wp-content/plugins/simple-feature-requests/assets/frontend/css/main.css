@@ -7,7 +7,7 @@
 /**
  * Spin.
  */
-@-webkit-keyframes jck_sfr_spin {
+ @-webkit-keyframes jck_sfr_spin {
   0% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -241,6 +241,112 @@
 
 .jck-sfr-form .selectric {
   max-width: none;
+}
+
+/* Attachments */
+
+.jck-sfr-form__field--image-uploader {
+  background: #fff;
+  padding: 1em;
+  border: 1px dashed #0F0F14;
+  border-radius: 4px;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: inherit;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.jck-sfr-form__field--image-uploader .dz-message {
+  margin: 0 auto;
+}
+
+.jck-sfr-form__field--image-uploader .dz-message .dz-message-emphasis {
+    text-decoration: underline;
+}
+
+.jck-sfr-form__field--image-uploader .dz-preview {
+  margin: 0 2.66% 10px 0;
+  width: 23%;
+}
+
+.jck-sfr-form__field--image-uploader .dz-preview:nth-of-type(4n + 1) {
+  margin-right: 0;
+}
+
+.jck-sfr-form__field--image-uploader .dz-preview .dz-details {
+  display: none;
+}
+
+.jck-sfr-form__field--image-uploader .dz-preview .dz-image {
+  border-radius: 0;
+  width: auto;
+  height: auto;
+}
+
+.jck-sfr-form__field--image-uploader .dz-preview .dz-image > img {
+  width: 100%;
+}
+
+.jck-sfr-form__field--image-uploader.dropzone .dz-preview:hover .dz-image img {
+    filter: none;
+    transform: none;
+    background-color: black;
+}
+
+.jck-sfr-form__field--image-uploader .dz-preview .dz-progress {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 6px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.jck-sfr-attachments-title {
+}
+
+/* -- Attachments/Error */
+.dz-image-preview.dz-error .dz-image,
+.dz-file-preview.dz-error .dz-image {
+filter: grayscale(100%);
+}
+
+.dz-image-preview.dz-error .dz-remove,
+.dz-file-preview.dz-error .dz-remove {
+color: #be2626
+}
+
+.dz-image-preview.dz-error .dz-error-message,
+.dz-file-preview.dz-error .dz-error-message {
+opacity:  1;
+top: 0;
+left: 0;
+width: 100%;
+border-radius: 0;
+}
+
+.dz-image-preview.dz-error .dz-error-message::after,
+.dz-file-preview.dz-error .dz-error-message::after {
+display: none;
+}
+
+.dz-image-preview.dz-error .dz-error-mark,
+.dz-file-preview.dz-error .dz-error-mark {
+display: none;
+}
+
+.dz-image-preview.dz-error .dz-remove,
+.dz-image-preview.dz-error .dz-remove {
+z-index: 100;
+}
+
+.dz-file-preview.dz-error .dz-error-message {
+  position: static;
 }
 
 /**
@@ -833,4 +939,43 @@
   display: block;
   margin: 30px 0 0;
   text-align: center;
+}
+
+.jck-sfr-attachments {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(32px, 1fr));
+  column-gap: 8px;
+  row-gap: 8px;
+  padding-top: 8px;
+  border-radius: 4px;
+}
+
+.jck-sfr-attachments-title {
+    display: block;
+    margin-top: 32px;
+}
+
+.jck-sfr-attachments .jck-sfr-attachment {
+    cursor: pointer;
+    transition: 300ms all ease-in-out;
+}
+
+.jck-sfr-attachments .jck-sfr-attachment:hover {
+    transform: scale3d(1.1, 1.1, 2);
+}
+
+.jck-sfr-attachments .jck-sfr-attachment > img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.jck-sfr-attachment-indicator > img {
+    width: 16px;
+}
+
+/**
+* Modal
+*/
+.pswp {
+  z-index: 99999;
 }
