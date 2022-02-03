@@ -22,7 +22,7 @@ $cats = get_categories();
 		</div>
 		<div class="ltp-single-content col-xl-7">
 			<article class="docs">
-				<?php //yoast_breadcrumb('<p id="breadcrumbs">','</p>'); ?>
+				<?php lpcn_breadcrumb(); ?>
 				<main class="heti">
 					<header><h1><?php the_title(); ?></h1></header>
 
