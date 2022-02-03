@@ -99,7 +99,7 @@ add_action( 'wcy_product_vendor', function () {
  */
 add_filter( 'woocommerce_product_get_image', function ( $image ) {
 	if ( strpos( $image, 'woocommerce-placeholder.png' ) ) {
-		$image = '<img src="https://avatar.ibadboy.net/avatar/' . md5( rand() ) . '?d=identicon&s=256" class="attachment-128 size-128" alt="" loading="lazy">';
+		$image = '<img src="https://cravatar.cn/avatar/' . md5( rand() ) . '?d=identicon&s=256" class="attachment-128 size-128" alt="" loading="lazy">';
 	}
 
 	echo $image;
@@ -324,26 +324,6 @@ add_action( 'woocommerce_add_to_cart_handler', 'empty_cart_before_add_to_cart' )
  * 删除结算页面的“成功添加到购物车”消息
  */
 add_filter( 'wc_add_to_cart_message_html', '__return_null' );
-
-/**
- * 替换bbp的板块URL
- */
-add_filter( 'bbp_get_forum_permalink', function ( $forum_permalink, $forum_id ) {
-	switch ( $forum_id ) {
-		case 228:
-			return '/forum-help';
-		case 104:
-			return '/forum-translate';
-		case 226:
-			return '/forum-proposal';
-		case 19915:
-			return '/experience-sharing';
-		case 19921:
-			return '/feedback';
-		default:
-			return $forum_permalink;
-	}
-}, 1, 2 );
 
 /**
  * 控制用户访问商家入驻界面的条件（必须登录 and 必须实名）
