@@ -532,37 +532,6 @@ add_filter( 'wedocs_breadcrumbs', function ( $args ) {
 	return $args;
 } );
 
-add_filter( 'wpseo_breadcrumb_links', function ( $links ) {
-	if ( ! str_starts_with( $_SERVER['REQUEST_URI'], '/forums' ) ) {
-		array_unshift( $links, array(
-			'url'  => '/',
-			'text' => '首页',
-			'id'   => 1,
-		) );
-	}
-
-	global $blog_id;
-
-	if ( 11 === (int) $blog_id ) {
-		$links[1]['text'] = '使用帮助';
-	} else if ( 14 === (int) $blog_id ) {
-		$links[1]['text'] = '博客';
-	}
-
-	return $links;
-}, 9999 );
-
-/**
- * 搜索结果页面短码支持
- */
-add_shortcode( 'wcorg-search-results-tab', function () {
-	lava_ajaxSearch()->core->print_tabs();
-} );
-
-add_shortcode( 'wcorg-search-results-results', function () {
-	lava_ajaxSearch()->core->print_results();
-} );
-
 /**
  * bbpress无需帖子ID调用内置简码
  */
