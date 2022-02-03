@@ -196,12 +196,14 @@ input:focus, input[type="text"]:focus, input[type="email"]:focus, input[type="ur
 
 section.breadcrumb {
     margin-bottom: 0;
-    padding: 15px 0;
+    padding: 15px 0 0;
     background: var(--wp-theme-bgcolor);
     color: rgba(0, 0, 0, .65);
     position: relative;
 }
-
+.wp-breadcrumb {
+    color: rgba(0, 0, 0, .65);
+}
 .navbar-expand-md .navbar-collapse section {
     justify-content: space-between;
     width: 100%;
