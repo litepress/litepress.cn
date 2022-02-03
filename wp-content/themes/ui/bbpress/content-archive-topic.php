@@ -10,9 +10,6 @@
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
-
-// 设置一下面包屑，否则的话翻页时面包屑是失效的
-
 ?>
 <section class="theme-boxshadow bg-white index-forum">
 	<?php
