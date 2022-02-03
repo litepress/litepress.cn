@@ -14,8 +14,6 @@ if (bbp_is_reply_edit()) : ?>
 
     <div id="bbpress-forums" class="bbpress-wrapper">
 
-        <?php bbp_breadcrumb(); ?>
-
         <?php endif; ?>
 
         <?php if (bbp_current_user_can_access_create_reply_form()) : ?>

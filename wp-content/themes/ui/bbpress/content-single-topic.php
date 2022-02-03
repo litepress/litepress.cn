@@ -14,9 +14,6 @@ defined( 'ABSPATH' ) || exit;
 
 <div id="bbpress-forums" class="bbpress-wrapper">
 
-
-	<?php bbp_breadcrumb(); ?>
-
 <div class="operation-sticker">
         <div class="menu">
           <!--<a class="wp-thumb-up"  href="javascript:;" data-html="点赞">

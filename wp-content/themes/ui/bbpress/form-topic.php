@@ -14,8 +14,6 @@ if ( ! bbp_is_single_forum() ) : ?>
 
 <secation id="bbpress-forums" class="bbpress-wrapper">
 
-<!--	<?php bbp_breadcrumb(); ?>-->
-
 <?php endif; ?>
 
 <?php if ( bbp_is_topic_edit() ) : ?>

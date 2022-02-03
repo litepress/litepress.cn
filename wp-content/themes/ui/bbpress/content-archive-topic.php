@@ -38,8 +38,6 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php endif; ?>
 
-		<?php bbp_breadcrumb(); ?>
-
 		<?php do_action( 'bbp_template_before_topic_tag_description' ); ?>
 
 		<?php if ( bbp_is_topic_tag() ) : ?>

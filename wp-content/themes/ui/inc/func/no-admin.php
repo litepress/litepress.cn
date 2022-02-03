@@ -689,3 +689,13 @@ add_filter( 'wp_title', function ( $title, $sep, $seplocation ) {
 
 	return $title;
 }, 9999, 3 );
+
+/**
+ * 面包屑
+ */
+// BBP 面包屑定制
+add_filter( 'bbp_after_get_breadcrumb_parse_args', function ( array $args ): array {
+	$args['sep'] = ' »';
+
+	return $args;
+} );
