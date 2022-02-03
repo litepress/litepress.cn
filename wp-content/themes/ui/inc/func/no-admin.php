@@ -510,28 +510,6 @@ add_filter( 'set_url_scheme', function ( $url ) {
 	return $url;
 }, 9999 );
 
-add_filter( 'woocommerce_breadcrumb_home_url', function () {
-	return '/';
-} );
-
-add_filter( 'gp_breadcrumb_items', function ( $breadcrumbs ) {
-	array_unshift( $breadcrumbs, '<a href="/">首页</a>' );
-
-	foreach ( $breadcrumbs as $key => $breadcrumb ) {
-		if ( stristr( '<a href="/translate/projects/">项目</a>', $breadcrumb ) ) {
-			$breadcrumbs[ $key ] = '<a href="/translate/">翻译平台</a>';
-		}
-	}
-
-	return $breadcrumbs;
-}, 9999 );
-
-add_filter( 'wedocs_breadcrumbs', function ( $args ) {
-	$args['delimiter'] = '&nbsp;&#187;&nbsp;';
-
-	return $args;
-} );
-
 /**
  * bbpress无需帖子ID调用内置简码
  */
@@ -662,9 +640,95 @@ add_filter( 'wp_title', function ( $title, $sep, $seplocation ) {
 /**
  * 面包屑
  */
+// 全局面包屑
+function lpcn_breadcrumb() {
+	printf( '<a href="/" rel="nofollow">首页</a>' );
+
+	$uri = $_SERVER['REQUEST_URI'];
+	list( $uri ) = explode( '?', $uri );
+	list( $uri ) = explode( '#', $uri );
+
+	global $current_blog;
+
+	$blog_name = str_replace( 'LitePress ', '', get_bloginfo( 'name' ) );
+
+	if ( $current_blog->path === $uri ) {
+		printf( " » $blog_name" );
+	} else if ( str_starts_with( $uri, $current_blog->path ) ) {
+		printf( ' » <a href="%s" rel="nofollow">%s</a>', $current_blog->path, $blog_name );
+	}
+
+	if ( is_category() || is_single() ) {
+		$cat  = get_the_category()[0] ?? new stdClass();
+		$link = get_category_link( $cat->term_id );
+
+		$site_info = get_current_site();
+
+		$link = str_replace( "https://$site_info->domain", '', $link );
+
+		if ( $link === $uri ) {
+			printf( " » $cat->name" );
+		} else if ( str_starts_with( $uri, $current_blog->path ) ) {
+			printf( ' » <a href="%s" rel="nofollow">%s</a>', $link, $cat->name );
+		}
+
+		if ( is_single() ) {
+			echo ' » ';
+			the_title();
+		}
+	} elseif ( is_page() ) {
+		echo ' » ';
+		echo the_title();
+	} elseif ( is_search() ) {
+		echo ' » Search Results for…';
+		echo '“<em>';
+		the_search_query();
+		echo '</em>”';
+	}
+}
+
 // BBP 面包屑定制
 add_filter( 'bbp_after_get_breadcrumb_parse_args', function ( array $args ): array {
 	$args['sep'] = ' »';
 
 	return $args;
 } );
+
+// Woo 面包屑定制
+add_filter( 'woocommerce_breadcrumb_home_url', function () {
+	return '/';
+} );
+
+// GlotPress 面包屑定制
+add_filter( 'gp_breadcrumb_items', function ( $breadcrumbs ) {
+	array_unshift( $breadcrumbs, '<a href="/">首页</a>' );
+
+	foreach ( $breadcrumbs as $key => $breadcrumb ) {
+		if ( stristr( '<a href="/translate/projects/">项目</a>', $breadcrumb ) ) {
+			$breadcrumbs[ $key ] = '<a href="/translate/">翻译平台</a>';
+		}
+	}
+
+	return $breadcrumbs;
+}, 9999 );
+
+// WeDocs 面包屑定制
+add_filter( 'wedocs_breadcrumbs', function ( $args ) {
+	$args['delimiter'] = '&nbsp;&#187;&nbsp;';
+
+	return $args;
+} );
+
+add_filter( 'wedocs_breadcrumbs_html', function ( $html, $args ) {
+	// 去除所有换行
+	$html = str_replace( PHP_EOL, '', $html );
+
+	// 替换开头部分
+	$html = str_replace(
+		'<li><i class="wedocs-icon wedocs-icon-home"></i></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">            <a itemprop="item" href="https://litepress.cn/manual/">            <span itemprop="name">首页</span></a>            <meta itemprop="position" content="1" />        </li>&nbsp;&#187;&nbsp;<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">            <a itemprop="item" href="https://litepress.cn/manual/">            <span itemprop="name">文档</span></a>            <meta itemprop="position" content="2" />        </li>',
+		'<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">            <a itemprop="item" href="https://litepress.cn/">            <span itemprop="name">首页</span></a>            <meta itemprop="position" content="1" />        </li>&nbsp;&#187;&nbsp;<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">            <a itemprop="item" href="https://litepress.cn/manual/">            <span itemprop="name">手册资源</span></a>            <meta itemprop="position" content="2" />        </li>',
+		$html
+	);
+
+	return $html;
+}, 10, 2 );
