@@ -13,6 +13,7 @@ namespace LitePress\GlotPress\GP_Import_From_WP_Org;
 
 use GP;
 use GP_Route;
+use Translation_Entry;
 use function LitePress\Helper\get_product_from_es;
 use function LitePress\WP_Http\wp_remote_get;
 use WP_Error;
@@ -131,6 +132,22 @@ class GP_Import_From_WP_Org extends Base {
 
 					// 将翻译创建者统一设置为 超级 AI (用户编号 517)
 					wp_set_current_user( 517 );
+
+					/**
+					 * 禁止导入翻译字符串为空或仅仅包含一个换行符的条目，这些问题的翻译文件是又 GlotPress 的 BUG 在翻译导出时生成的
+					 *
+					 * @var $entry Translation_Entry
+					 */
+					foreach ( $translations->entries as &$entry ) {
+						if ( empty( $entry->translations ) ) {
+							continue;
+						}
+
+						if ( $entry->translations[0] === "\n" ) {
+							$entry->translations = array();
+						}
+					}
+					unset( $entry );
 
 					$translation_set->import( $translations );
 					//}
@@ -462,7 +479,7 @@ if ( isset( $_GET['debug-import'] ) ) {
 
 	add_action( 'wp_loaded', function () {
 		//GP_Import_From_WP_Org::handle( 'woocommerce', GP_Import_From_WP_Org::PLUGIN );
-		GP_Import_From_WP_Org::gp_wp_import( 'woocommerce', GP_Import_From_WP_Org::PLUGIN );
+		GP_Import_From_WP_Org::gp_wp_import( 'yoco-payment-gateway', GP_Import_From_WP_Org::PLUGIN );
 		var_dump( 'ss' );
 		exit;
 	} );
