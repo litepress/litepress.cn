@@ -46,8 +46,25 @@ function get_trans_waiting_list() {
      * 查询翻译集对应的项目路径，并输出超链接列表到页面
      */
     $projects = $wpdb->get_results($sql);
-    printf( '总计：' . count( $projects ) . ' 个项目<br/>' );
-    foreach ($projects as $v) {
-        printf('<a href="/translate/projects/%s/zh-cn/default/?filters[translated]=yes&filters[status]=waiting" target="_blank">%s</a><br/>', $v->path, $v->path);
-    }
+    echo "<style>
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.2rem;
+    background-color: #fff;
+    border: 1px solid #eef2f7;
+    color: var(--wp-theme-color);
 }
+</style>";
+    echo "<section class='theme-boxshadow bg-white p-3'><ul>";
+
+    printf( '总计：' . count( $projects ) . ' 个待审核项目' );
+    echo "<ul class='list-group mt-2'>";
+
+    foreach ($projects as $v) {
+        printf('<a class="list-group-item list-group-item-action" href="/translate/projects/%s/zh-cn/default/?filters[translated]=yes&filters[status]=waiting" target="_blank">%s</a>', $v->path, $v->path);
+    }
+    echo "</ul>";
+    echo "</section>";
+}
+
