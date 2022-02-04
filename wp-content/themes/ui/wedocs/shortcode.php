@@ -1,10 +1,5 @@
 <?php if ( $docs ) { ?>
    <!-- --><?php /*wedocs_breadcrumbs(); */?>
-        <style>
-            .breadcrumb{
-                display: none;
-            }
-        </style>
 <div class="wedocs-shortcode-wrap">
     <ul class="wedocs-docs-list col-<?php echo $col; ?>">
 
