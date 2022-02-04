@@ -11,7 +11,7 @@ border: 0;
     margin:0 5px;
 }
 .wp-body{
-    padding: 15px!important;
+    padding: 15px;
 }
 .wedocs-shortcode-wrap ul.wedocs-docs-list ul.wedocs-doc-sections li{
     list-style: inherit;
