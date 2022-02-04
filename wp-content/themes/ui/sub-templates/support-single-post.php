@@ -22,7 +22,9 @@ $cats = get_categories();
 		</div>
 		<div class="ltp-single-content col-xl-7">
 			<article class="docs">
+                <section class="wp-breadcrumb">
 				<?php lpcn_breadcrumb(); ?>
+                </section>
 				<main class="heti">
 					<header><h1><?php the_title(); ?></h1></header>
 

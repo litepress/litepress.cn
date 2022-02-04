@@ -201,7 +201,9 @@ section.breadcrumb {
     color: rgba(0, 0, 0, .65);
     position: relative;
 }
-
+.wp-breadcrumb {
+    color: rgba(0, 0, 0, .65);
+}
 .navbar-expand-md .navbar-collapse section {
     justify-content: space-between;
     width: 100%;
