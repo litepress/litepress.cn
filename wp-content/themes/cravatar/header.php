@@ -7,6 +7,7 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <title><?php wp_title( '&#8211;', true, 'right' ); ?></title>
     <meta name="keywords" content="cravatar,gravatar,wordpress头像,头像,公共头像"/>
+    <meta name="description" content="Cravatar 是 Gravatar 在中国的完美替代方案，我们提供独有的三级头像匹配机制，支持在未设置 Cravatar 和 Gravatar 头像时返回 QQ 头像。">
 	<?php wp_head(); ?>
 	<?php ?>
 </head>
