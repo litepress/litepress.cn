@@ -22,8 +22,6 @@ get_header();
         }
 
 
-
-
         .wp-img-ground .card {
             display: flex;
             padding: 10px;
