@@ -44,7 +44,7 @@ $plural = sprintf(
                         <?php else : ?>
                             <?php if (absint($locale->nplurals) === 2 && 'n != 1' === $locale->plural_expression) : ?>
                                 <p class="original_raw"><?php echo esc_translation($translation->singular); ?></p>
-                                <p style="display: none" class="original_plural_raw"><?php echo esc_translation($translation->plural); ?></p>
+                                <p style="display: none" class="original_plural_raw"></p>
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs">
                                     <li class="nav-item">
@@ -63,6 +63,7 @@ $plural = sprintf(
 		                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		                                    echo $singular;
 		                                    ?>
+                                            <span class="original_raw"><?php echo esc_translation($translation->singular); ?></span>
                                         </p>
 	                                    <?php textareas($translation, array($can_edit, $can_approve), 0); ?>
                                     </div>
@@ -72,6 +73,7 @@ $plural = sprintf(
 		                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		                                    echo $plural;
 		                                    ?>
+                                            <span class="original_raw"><?php echo esc_translation($translation->plural); ?></span>
                                         </p>
 
 	                                    <?php textareas($translation, array($can_edit, $can_approve), 1); ?>
