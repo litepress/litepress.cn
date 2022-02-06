@@ -3,6 +3,12 @@
  * Template name: 首页模板
  * Description: 该模板是首页模板
  */
+
+// 设置页面 SEO 信息
+add_filter('lpcn_seo_description', function () {
+    return '该项目旨在解决 WordPress 在中国的一系列特色问题，期望交付一个挣脱枷锁，一身轻的本土 WordPress 发行版。';
+});
+
 get_header();
 ?>
     <style>
@@ -15,15 +21,7 @@ get_header();
             display: inline-block;
         }
 
-        .btn-primary-soft.active, .btn-primary-soft:focus, .btn-primary-soft:hover {
-            background-color: rgba(51, 94, 234, .15);
-            color: #335eea;
-        }
 
-        .btn-primary-soft {
-            background-color: rgba(51, 94, 234, .1);
-            color: #335eea;
-        }
 
 
         .wp-img-ground .card {

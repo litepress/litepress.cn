@@ -13,6 +13,13 @@
         <title><?php wp_title( '&#8211;', true, 'right' ); ?></title>
 	<?php endif; ?>
 
+	<?php
+	/** 输出页面描述 */
+	$description = apply_filters( 'lpcn_seo_description', false );
+	if ( ! empty( $description ) ): ?>
+        <meta name="description" content="<?php echo $description; ?>">
+	<?php endif; ?>
+
 	<?php wp_head(); ?>
 	<?php ?>
 </head>
