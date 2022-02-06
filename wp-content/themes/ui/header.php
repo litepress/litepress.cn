@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="profile" href="https://gmpg.org/xfn/11">
 
-	<?php /** 标题不在翻译平台输出，因为翻译平台有自己的标题机制 */ ?>
+	<?php
+	/** 标题不在翻译平台输出，因为翻译平台有自己的标题机制 */
+	global $blog_id;
 
-	<?php global $blog_id; ?>
-
-	<?php if ( 4 !== (int) $blog_id ): ?>
-        <title><?php wp_title('&#8211;', true, 'right'); ?></title>
+	if ( 4 !== (int) $blog_id ): ?>
+        <title><?php wp_title( '&#8211;', true, 'right' ); ?></title>
 	<?php endif; ?>
 
 	<?php wp_head(); ?>
