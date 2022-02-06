@@ -84,7 +84,7 @@ $(function () {
 
 
 $(".auto-translate").click(function () {
-  const originals = $(this).parent("").parent("").prev().find(".original").text();
+  const originals = $(this).parent().parent().prev().find(".original_raw").text();
   const textarea = $(this).parent().prev();
 /*  console.log(originals)*/
   $.ajax({
