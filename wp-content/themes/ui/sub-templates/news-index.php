@@ -10,26 +10,33 @@ get_header();
                 <div class="col-xl-9">
                     <article class="card theme-boxshadow py-3 px-4 blog-article-list">
 
-                    <?php while (have_posts()) :
-                        the_post(); ?>
+						<?php while ( have_posts() ) :
+							the_post(); ?>
 
 
-                        <div class=" pb-3 my-2 event">
-                            <h6 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
-                            <div class="des">
-                <?php the_excerpt(); ?>
-              </div>
-                            <span class="post-meta">
-                发布于：<?php the_date() ?> | 分类：<?php the_category(','); ?> | 阅读量：<?php echo get_post_meta(get_the_ID(), 'views', true) ?: 0; ?>
-              </span>
-                        </div>
+                            <div class=" pb-3 my-2 event">
+                                <h6 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
+                                <div class="des">
+									<?php the_excerpt(); ?>
+                                </div>
+                                <span class="post-meta">
+                                发布于：<?php the_date() ?>
+									<?php if ( ! empty( get_the_category() ) ): ?>
+                                        | 分类：<?php the_category( ',' ); ?>
+									<?php endif; ?>
+                                |
+                                作者：<a href="/user/<?php the_author_meta( 'user_login' ) ?>"
+                                      target="_blank"><?php the_author_meta( 'display_name' ) ?></a>
+                                | 阅读：<?php echo get_post_meta( get_the_ID(), 'views', true ) ?: 0; ?> 次
+                                </span>
+                            </div>
 
 
-                    <?php endwhile; ?>
+						<?php endwhile; ?>
                     </article>
                 </div>
                 <section class="col-xl-3 blog-aside">
-                <?php get_sidebar(); ?>
+					<?php get_sidebar(); ?>
                 </section>
             </div>
         </div>
