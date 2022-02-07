@@ -177,6 +177,15 @@ a:hover {
 .btn-outline-primary:hover {
     background-color: var(--wp-theme-color);
 }
+.btn-primary-soft.active, .btn-primary-soft:focus, .btn-primary-soft:hover {
+    background-color: rgba(51, 94, 234, .15);
+    color: #335eea;
+}
+
+.btn-primary-soft {
+    background-color: rgba(51, 94, 234, .1);
+    color: #335eea;
+}
 
 input:focus, input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, input[type="reset"]:focus, input[type="search"]:focus, textarea:focus {
     border-color: var(--wp-theme-color);
