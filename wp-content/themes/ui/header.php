@@ -14,6 +14,13 @@
 	<?php endif; ?>
 
 	<?php
+	/** 输出页面关键字 */
+	$keywords = apply_filters( 'lpcn_seo_keywords', false );
+	if ( ! empty( $keywords ) ): ?>
+        <meta name="keywords" content="<?php echo $keywords; ?>">
+	<?php endif; ?>
+
+	<?php
 	/** 输出页面描述 */
 	$description = apply_filters( 'lpcn_seo_description', false );
 	if ( ! empty( $description ) ): ?>
