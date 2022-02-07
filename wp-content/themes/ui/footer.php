@@ -64,6 +64,15 @@
                         </ul>
                     </div>
                     <div class="col">
+                        <h5 class="text-uppercase text-white opacity-85 mb-3">贡献</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-1"><a class="link-600" href="/about/timeline">参与开发</a></li>
+                            <li class="mb-1"><a class="link-600" href="#!">参与翻译</a></li>
+                            <li class="mb-1"><a class="link-600" href="/about/council">捐赠</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="col">
                         <h5 class="text-uppercase text-white opacity-85 mb-3">关于</h5>
                         <ul class="list-unstyled">
                             <li class="mb-1"><a class="link-600" href="/about/timeline">发展历程</a></li>
@@ -75,9 +84,9 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <h5 class="text-uppercase text-white opacity-85 mb-3">与核心团队交流</h5>
+                <h5 class="text-uppercase text-white opacity-85 mb-3">与我们交流</h5>
 <p>
-    需要注意的是 QQ 群中不受理任何技术支持类请求
+    需要注意的是 QQ 群中不受理非项目相关的技术支持类请求
 </p>
                 <div class="mt-3">
                     <a href="/create" class="btn btn-primary-soft  me-1">
@@ -92,10 +101,10 @@
         <hr>
         <div class="wp-rich-text text-center">
             <p>
-                LitePress 是中国本土的 WordPress 衍生版，我们会在未来几年内接管 WordPress 在中国的所有用户群并以适合国内的方式促进生态整体的发展。
+                LitePress 是中国本土的 WordPress 衍生版，我们计划在未来几年内接管 WordPress 在中国的所有用户群并以适合国内的方式促进生态整体的发展。
             </p>
             <p>
-                © 2020-2022 <a href="https://litepress.cn">LitePress</a> 版权所有
+                © 2020-2022 <a href="https://litepress.cn">LitePress.cn</a> 版权所有
                 <a href="http://beian.miit.gov.cn" class="imprint" title="工信部备案" rel="nofollow" target="_blank">
                     鲁ICP备2021028118号-2
                 </a>
