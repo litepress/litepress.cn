@@ -111,6 +111,16 @@
                 </div>
                 <div class="col">
                     <div class="card">
+                        <a href="https://www.wjdun.cn" target="_blank" rel="noopener" data-caption=""
+                           itemprop="contentUrl" one-link-mark="yes">
+                            <img class="uabb-gallery-img card-img"
+                                 src="/wp-content/uploads/2022/01/2022012506083569.jpg"
+                                 alt="" itemprop="thumbnail" title="稳坚盾">
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
                         <a href="https://console.upyun.com/register/?invite=SyMTvwEi_" target="_blank" rel="noopener" data-caption=""
                            itemprop="contentUrl" one-link-mark="yes">
                             <img class="uabb-gallery-img card-img"
@@ -123,109 +133,6 @@
 
             <small>你也可以选择一次性捐赠来支持我们的工作</small>
 
-            <div class="row row-cols-5 row-cols-md-5 wp-img-ground-sm">
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.weixiaoduo.com/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/08/weixiaoduo-logo-2020-300x134.png"
-                                 alt="金牌赞助" itemprop="thumbnail" title="weixiaoduo-logo-2020">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.y8x.cc/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/10/1599017171-a6e6e4152170cfe-300x111.png"
-                                 alt="" itemprop="thumbnail" title="1599017171-a6e6e4152170cfe">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.vpsor.cn/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/08/logo.png" alt=""
-                                 itemprop="thumbnail" title="logo">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.appnode.com/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/08/logo-s.gif" alt=""
-                                 itemprop="thumbnail" title="logo-s">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.upyun.com/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/08/又拍云_logo5-300x153.png"
-                                 alt="" itemprop="thumbnail" title="又拍云_logo5">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.weixiaoduo.com/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/08/weixiaoduo-logo-2020-300x134.png"
-                                 alt="金牌赞助" itemprop="thumbnail" title="weixiaoduo-logo-2020">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.y8x.cc/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/10/1599017171-a6e6e4152170cfe-300x111.png"
-                                 alt="" itemprop="thumbnail" title="1599017171-a6e6e4152170cfe">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.vpsor.cn/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/08/logo.png" alt=""
-                                 itemprop="thumbnail" title="logo">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.appnode.com/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/08/logo-s.gif" alt=""
-                                 itemprop="thumbnail" title="logo-s">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.upyun.com/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/08/又拍云_logo5-300x153.png"
-                                 alt="" itemprop="thumbnail" title="又拍云_logo5">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
             <a href="/translate" target="_blank" class="btn btn-outline-primary d-block"
                role="button">
                 <i class="fas fa-handshake-alt" style=""></i>
@@ -237,83 +144,6 @@
 
     </section>
 
-    <section class="theme-boxshadow bg-white mt-3 d-none d-sm-block">
-        <header class="  d-flex aside-header align-items-center">
-            <div class="me-2 wp-icon">
-                <i class="fas fa-user-friends"></i></div>
-            <span>推广者名单</span></header>
-        <article>
-            <small>社区需要流量才能健康发展，感谢每位为此努力的人</small>
-            <div class="row row-cols-3 row-cols-md-3 wp-img-ground">
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.weixiaoduo.com/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/08/weixiaoduo-logo-2020-300x134.png"
-                                 alt="金牌赞助" itemprop="thumbnail" title="weixiaoduo-logo-2020">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.y8x.cc/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/10/1599017171-a6e6e4152170cfe-300x111.png"
-                                 alt="" itemprop="thumbnail" title="1599017171-a6e6e4152170cfe">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.vpsor.cn/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/08/logo.png" alt=""
-                                 itemprop="thumbnail" title="logo">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.appnode.com/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/08/logo-s.gif" alt=""
-                                 itemprop="thumbnail" title="logo-s">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <a href="https://www.upyun.com/" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2020/08/又拍云_logo5-300x153.png"
-                                 alt="" itemprop="thumbnail" title="又拍云_logo5">
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card more">
-                        <a href="/promoters" target="_blank" rel="noopener" data-caption=""
-                           itemprop="contentUrl" one-link-mark="yes">
-                            <img class="uabb-gallery-img card-img"
-                                 src="/wp-content/uploads/2021/01/logo-1.png" alt=""
-                                 itemprop="thumbnail" title="推广者名单">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <a href="create" target="_blank" class="btn btn-outline-primary d-block"
-               role="button">
-                <i class="fas fa-users-class" style=""></i>
-                <span class="uabb-button-text uabb-creative-button-text">我要推广</span>
-            </a>
-        </article>
-
-    </section>
     <section class="theme-boxshadow bg-white mt-3 d-none d-sm-block">
         <header class="  d-flex aside-header align-items-center">
             <div class="me-2 wp-icon">
