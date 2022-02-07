@@ -26,9 +26,11 @@ class Import_Release extends WP_CLI_Command {
 		$display_version = $assoc_args['display_version'] ?? '';
 
 		// 对版本号进行一下处理。用户传入的是诸如 5.8.3,需要处理成 5.8.x
-		$tmp                      = explode( '.', $version );
-		$tmp[ count( $tmp ) - 1 ] = 'x';
-		$version                  = join( '.', $tmp );
+		if ( $version !== 'dev' ) {
+			$tmp                      = explode( '.', $version );
+			$tmp[ count( $tmp ) - 1 ] = 'x';
+			$version                  = join( '.', $tmp );
+		}
 
 		// 检查当前版本是否已存在
 		$sub_projects = array(
