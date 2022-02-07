@@ -199,7 +199,19 @@ $query_time = sprintf( "%.3f", $end_time - $start_time );
                                                 <span class="badge bg-primary"><?php echo $site ?></span>
 											<?php endif; ?>
                                             <!--输出标题及超链接-->
-                                            <a class="title ms-2" href="<?php the_permalink(); ?>"
+											<?php
+											// 论坛帖子回复的超链接需要特别适配一下
+											$permalink = get_the_permalink();
+
+											if ( 'reply' === $wp_query->post->post_type ) {
+												// 获取该回复所属的帖子
+												$parent_permalink = get_permalink( $wp_query->post->post_parent );
+												if ( ! empty( $parent_permalink ) ) {
+													$permalink = "{$parent_permalink}#post-{$wp_query->post->ID}";
+												}
+											}
+											?>
+                                            <a class="title ms-2" href="<?php echo $permalink; ?>"
                                                target="_blank"><?php the_title() ?></a>
                                         </header>
                                         <!--输出详情-->
@@ -224,11 +236,11 @@ $query_time = sprintf( "%.3f", $end_time - $start_time );
 						<?php endif; ?>
                         <nav aria-label="Page navigation " class="py-3">
                             <ul class="pagination">
-                        <!--输出上一页按钮-->
-						<?php if ( $paged > 1 ): ?>
+                                <!--输出上一页按钮-->
+								<?php if ( $paged > 1 ): ?>
 
-                                <a class="page-link"
-                                   href="<?php echo add_query_arg( array( 'paged' => $paged - 1 ) ) ?>">上一页</a>
+                                    <a class="page-link"
+                                       href="<?php echo add_query_arg( array( 'paged' => $paged - 1 ) ) ?>">上一页</a>
 								<?php endif; ?>
 
                                 <!--输出分页按钮-->
