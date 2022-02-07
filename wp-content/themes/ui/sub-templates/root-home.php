@@ -5,9 +5,12 @@
  */
 
 // 设置页面 SEO 信息
-add_filter('lpcn_seo_description', function () {
-    return '该项目旨在解决 WordPress 在中国的一系列特色问题，期望交付一个挣脱枷锁，一身轻的本土 WordPress 发行版。';
-});
+add_filter( 'lpcn_seo_keywords', function () {
+	return 'litepress,wp-china-yes,wordpress 中国,wordpress 中文';
+} );
+add_filter( 'lpcn_seo_description', function () {
+	return '该项目旨在解决 WordPress 在中国的一系列特色问题，期望交付一个挣脱枷锁，一身轻的本土 WordPress 发行版。';
+} );
 
 get_header();
 ?>
@@ -20,8 +23,6 @@ get_header();
             margin: 0 14px;
             display: inline-block;
         }
-
-
 
 
         .wp-img-ground .card {
@@ -81,8 +82,9 @@ get_header();
             color: rgba(0, 0, 0, .65);
             font-size: .875em;
         }
-        .sponsor a{
-          margin-bottom: 1rem;
+
+        .sponsor a {
+            margin-bottom: 1rem;
         }
     </style>
     <main>
@@ -347,7 +349,8 @@ get_header();
                             </div>
                         </div>
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                             aria-labelledby="pills-profile-tab"><div>
+                             aria-labelledby="pills-profile-tab">
+                            <div>
                                 <p>
                                     项目核心开发团队及志愿者所产出的所有代码、数据（隐私数据除外）均严格遵守GPL协议开源。我们确保任何人都可以在有想法的时候完整复刻整个项目，以确保贡献者的劳动成果是持久存在的，不会在意外情况来临时因项目闭源而无法采取有效措施。
                                 </p>
@@ -358,7 +361,8 @@ get_header();
                             </div>
                         </div>
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                             aria-labelledby="pills-contact-tab"><div>
+                             aria-labelledby="pills-contact-tab">
+                            <div>
                                 <p>
                                     项目核心开发团队及志愿者所产出的所有代码、数据（隐私数据除外）均严格遵守GPL协议开源。我们确保任何人都可以在有想法的时候完整复刻整个项目，以确保贡献者的劳动成果是持久存在的，不会在意外情况来临时因项目闭源而无法采取有效措施。
                                 </p>
@@ -385,15 +389,16 @@ get_header();
                     <div class="col">
 
 
-                            <div class="card py-3  theme-boxshadow">
+                        <div class="card py-3  theme-boxshadow">
 
-                                <div class="card-body text-center">
-                                    <h5 class="card-title ">社区发帖（推荐）</h5>
-                                    <p class="card-text text-muted">对于系统化的提议，论坛是一个不错的交流渠道，其让双方可以长篇大论的具体叙述想法。同时我们确保回复每一篇帖子。</p>
-                                    <a class="btn btn-primary mt-3" href="/forums">前往论坛 <i class="fad fa-user-friends" aria-hidden="true"></i></a>
-                                </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title ">社区发帖（推荐）</h5>
+                                <p class="card-text text-muted">
+                                    对于系统化的提议，论坛是一个不错的交流渠道，其让双方可以长篇大论的具体叙述想法。同时我们确保回复每一篇帖子。</p>
+                                <a class="btn btn-primary mt-3" href="/forums">前往论坛 <i class="fad fa-user-friends"
+                                                                                       aria-hidden="true"></i></a>
                             </div>
-
+                        </div>
 
 
                     </div>
@@ -405,17 +410,17 @@ get_header();
 
                             <div class="card-body text-center">
                                 <h5 class="card-title ">QQ 群</h5>
-                                <p class="card-text text-muted">相较于论坛，QQ 群适合于对时效性要求高的交流，在这里你可以 @ 任意项目团队成员。但需要注意的是，这里不受理技术支持。</p>
-                                <a class="btn btn-primary mt-3" href="https://jq.qq.com/?_wv=1027&k=AizcubYC">前往 QQ 群 <i class="fab fa-qq"></i></a>
+                                <p class="card-text text-muted">相较于论坛，QQ 群适合于对时效性要求高的交流，在这里你可以 @
+                                    任意项目团队成员。但需要注意的是，这里不受理技术支持。</p>
+                                <a class="btn btn-primary mt-3" href="https://jq.qq.com/?_wv=1027&k=AizcubYC">前往 QQ 群 <i
+                                            class="fab fa-qq"></i></a>
                             </div>
                         </div>
-
 
 
                     </div>
 
                 </div>
-
 
 
             </div> <!-- / .container -->
