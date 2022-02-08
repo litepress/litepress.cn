@@ -836,3 +836,6 @@ a.toc-link:after{
         padding: 10px;
     }
 }
+#comment {
+    display: block!important;
+}
