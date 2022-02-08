@@ -1164,6 +1164,10 @@ code {
     padding-bottom: 10px;
     flex-wrap: wrap;
 }
+.comments-area .comment > ul.children{
+    margin-left: 48px;
+
+}
 
 .comments-area .comment img.avatar {
     box-shadow: 0 1px 10px 0 #a3b4bf !important;
