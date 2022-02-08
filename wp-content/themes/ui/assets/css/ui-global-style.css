@@ -1162,6 +1162,7 @@ code {
     width: 100%;
     position: relative;
     padding-bottom: 10px;
+    flex-wrap: wrap;
 }
 
 .comments-area .comment img.avatar {
