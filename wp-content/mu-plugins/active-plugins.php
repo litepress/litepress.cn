@@ -24,11 +24,13 @@ add_filter( 'site_option_active_sitewide_plugins', function ( $value ) {
 add_filter( 'option_active_plugins', function ( $value ) {
 	global $blog_id;
 
-	if ( ! is_admin() && 3 !== (int) $blog_id ) {
+	if ( ! is_admin() && 1 === (int) $blog_id ) {
 		$key = array_search( 'woocommerce/woocommerce.php', $value );
-		array_splice( $value, $key, 1 );
-	}
 
+		if ( $key || 0 === $key ) {
+			unset( $value[ $key ] );
+		}
+	}
 
 	return $value;
 } );
