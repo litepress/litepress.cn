@@ -11,9 +11,23 @@
 add_filter( 'site_option_active_sitewide_plugins', function ( $value ) {
 	global $blog_id;
 
-	/*if ( 3 !== (int) $blog_id && 1 !== (int) $blog_id ) {
-		unset( $value['woocommerce/woocommerce.php'] );
-	}*/
+	/**if ( 3 !== (int) $blog_id && 1 !== (int) $blog_id ) {
+	 * unset( $value['woocommerce/woocommerce.php'] );
+	 * }
+	 */
+
+
+	return $value;
+} );
+
+// 为论坛前台取消激活 Woo ，它会和区块编辑器加载冲突
+add_filter( 'option_active_plugins', function ( $value ) {
+	global $blog_id;
+
+	if ( ! is_admin() && 3 !== (int) $blog_id ) {
+		$key = array_search( 'woocommerce/woocommerce.php', $value );
+		array_splice( $value, $key, 1 );
+	}
 
 
 	return $value;
