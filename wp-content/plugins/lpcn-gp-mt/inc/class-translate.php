@@ -400,7 +400,7 @@ order by o2 asc" );
 			'sslverify'  => false,
 			'timeout'    => 30,
 		);
-		$r    = wp_remote_post( $url, $args );
+		$r    = wp_remote_get( $url, $args );
 		if ( is_wp_error( $r ) ) {
 			return $r;
 		}
