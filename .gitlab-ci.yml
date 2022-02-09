@@ -3,6 +3,8 @@ stages:
 
 deploy-job:
   stage: deploy
+  tags:
+    - deploy
   script:
     - dnf install rsync -y
     - export RSYNC_PASSWORD=$RSYNC_PASS
