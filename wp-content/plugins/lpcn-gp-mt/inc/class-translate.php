@@ -379,10 +379,11 @@ order by o2 asc" );
 
 		$q = join( "\n", $sources_urlencoded );
 
-		$base_url = 'https://101.32.10.79/translate_a/t';
+		$base_url = 'https://43.154.75.224/translate_a/t';
 
 		$args = array(
-			'client' => 'dict-chrome-ex',
+			//'client' => 'dict-chrome-ex',
+			'client' => 'gtx',
 			'sl'     => 'en',
 			'tl'     => 'zh-CN',
 			'q'      => $q,
