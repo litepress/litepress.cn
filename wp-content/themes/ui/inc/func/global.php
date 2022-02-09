@@ -599,3 +599,26 @@ add_filter( 'ep_weighting_configuration_for_search', function ( $weight_config, 
 
 	return $weight_config;
 }, 10, 2 );
+/**
+ * 过滤允许的古腾堡区块
+ */
+add_filter( 'gutenberg_everywhere_allowed_blocks', function ( $allowed, $editor_type ): array {
+	$allowed[] = 'core/quote';
+	$allowed[] = 'core/heading';
+	$allowed[] = 'core/image';
+	$allowed[] = 'core/table';
+	$allowed[] = 'core/video';
+	$allowed[] = 'core/audio';
+	$allowed[] = 'core/verse';
+	$allowed[] = 'core/preformatted';
+	$allowed[] = 'core/pullquote';
+	$allowed[] = 'core/media-text';
+	$allowed[] = 'core/freeform';
+	$allowed[] = 'core/heading';
+	$allowed[] = 'core/html';
+	$allowed[] = 'core/columns';
+	$allowed[] = 'core/column';
+	$allowed[] = 'core/group';
+
+	return $allowed;
+}, 10, 2 );
