@@ -9,7 +9,7 @@ use LitePress\WP_Http\WP_Http;
 use Translation_Entry;
 use Translations;
 use WP_Error;
-use function LitePress\WP_Http\wp_remote_post;
+use function LitePress\WP_Http\wp_remote_get;
 
 /**
  * 机器翻译引擎
