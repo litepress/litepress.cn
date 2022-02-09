@@ -401,11 +401,11 @@ add_filter( 'comment_form_defaults', function ( $fields ) {
 	$fields['comment_field'] = sprintf(
 		'<p class="comment-form-comment">%s %s %s</p>',
 		sprintf(
-			'<label for="comment">%s</label>',
+			'<label for="comment" class="comment-label">%s</label>',
 			_x( 'Comment', 'noun' )
 		),
 		'<textarea class="form-control" id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea>',
-		'<input type="submit" id="submit" class="btn btn-primary" value="提交评论" />'
+		'<input type="submit" id="submit" class="btn btn-primary mt-2" value="提交评论" />'
 	);
 
 	return $fields;

@@ -1719,8 +1719,14 @@ padding: 0;
 .blog-aside .wp-block-latest-comments__comment article{
     font-size: 12px;
 }
+.blog-aside .wp-block-archives-list{
+    padding-left:0;
+}
 .has-avatars .wp-block-latest-comments__comment .wp-block-latest-comments__comment-excerpt, .has-avatars .wp-block-latest-comments__comment .wp-block-latest-comments__comment-meta {
     margin-left: 4.25em;
+}
+.comment-form-comment > .comment-label + div {
+    width: 100%;
 }
 @media screen and (min-width: 768px) {
     li.menu-item-has-children:hover .dropdown-menu {
