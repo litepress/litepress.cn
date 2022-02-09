@@ -687,9 +687,10 @@ padding-top:0 ;
 .wp-code pre {
     margin: 0;
     white-space: pre-line;
-    display: flex;
-
-}.wp-code pre > ul{
+    border:0;
+    padding: 0;
+}
+.wp-code pre > ul{
     margin: 0;
      line-height: 23px;
     list-style: none;
@@ -1721,6 +1722,12 @@ padding: 0;
 }
 .blog-aside .wp-block-archives-list{
     padding-left:0;
+}
+.comment-form-comment{
+    width: 89%;
+}
+.wp-block-image img{
+    height: 100%;
 }
 .has-avatars .wp-block-latest-comments__comment .wp-block-latest-comments__comment-excerpt, .has-avatars .wp-block-latest-comments__comment .wp-block-latest-comments__comment-meta {
     margin-left: 4.25em;
