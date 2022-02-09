@@ -379,7 +379,7 @@ order by o2 asc" );
 
 		$q = join( "\n", $sources_urlencoded );
 
-		$base_url = 'https://43.154.75.224/translate_a/t';
+		$base_url = 'https://101.32.10.79/translate_a/t';
 
 		$args = array(
 			//'client' => 'dict-chrome-ex',
@@ -468,7 +468,15 @@ order by o2 asc" );
 			exit;
 		}
 
-		$gp_originals = GP::$original->find_many( array( 'singular' => $request_originals, 'status' => '+active' ) );
+		$gp_originals_singular = GP::$original->find_many( array(
+			'singular' => $request_originals,
+			'status'   => '+active'
+		) );
+		$gp_originals_plural   = GP::$original->find_many( array(
+			'plural' => $request_originals,
+			'status' => '+active'
+		) );
+		$gp_originals          = array_merge( $gp_originals_singular, $gp_originals_plural );
 		if ( empty( $gp_originals ) ) {
 			echo json_encode( array( 'error' => '你请求的字符串未托管在 LitePress 翻译平台上。碍于系统资源有限，我们暂时无法将接口完全对外开放。' ), JSON_UNESCAPED_SLASHES );
 			exit;
@@ -477,7 +485,7 @@ order by o2 asc" );
 		// 取用户请求翻译的字符串与 GlotPress 数据库中积累的项目字符串的交集，也就是说，只允许翻译项目中存在的字符串
 		$originals = array();
 		foreach ( $gp_originals as $gp_original ) {
-			if ( in_array( $gp_original->singular, $request_originals ) ) {
+			if ( in_array( $gp_original->singular, $request_originals ) || in_array( $gp_original->plural, $request_originals ) ) {
 				$originals[] = $gp_original;
 			}
 		}
