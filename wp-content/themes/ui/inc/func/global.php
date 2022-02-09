@@ -599,26 +599,50 @@ add_filter( 'ep_weighting_configuration_for_search', function ( $weight_config, 
 
 	return $weight_config;
 }, 10, 2 );
+
 /**
  * 过滤允许的古腾堡区块
  */
-add_filter( 'gutenberg_everywhere_allowed_blocks', function ( $allowed, $editor_type ): array {
-	$allowed[] = 'core/quote';
-	$allowed[] = 'core/heading';
-	$allowed[] = 'core/image';
-	$allowed[] = 'core/table';
-	$allowed[] = 'core/video';
-	$allowed[] = 'core/audio';
-	$allowed[] = 'core/verse';
-	$allowed[] = 'core/preformatted';
-	$allowed[] = 'core/pullquote';
-	$allowed[] = 'core/media-text';
-	$allowed[] = 'core/freeform';
-	$allowed[] = 'core/heading';
-	$allowed[] = 'core/html';
-	$allowed[] = 'core/columns';
-	$allowed[] = 'core/column';
-	$allowed[] = 'core/group';
+add_filter( 'gutenberg_everywhere_allowed_blocks', function ( $allowed, $editor_type ) {
 
-	return $allowed;
+	return null;
 }, 10, 2 );
+
+/**
+ * 为古腾堡提个一个上传图片接口
+ */
+function upload_image(): WP_REST_Response {
+
+	require_once ABSPATH . "wp-admin" . '/includes/image.php';
+	require_once ABSPATH . "wp-admin" . '/includes/file.php';
+	require_once ABSPATH . "wp-admin" . '/includes/media.php';
+
+	if ( ! $_FILES["upload_img_file"] ) {
+		$output = array(
+			'code'    => 1,
+			'message' => '非法请求',
+		);
+		$result = new WP_REST_Response( $output );
+		$result->set_headers( array( 'Content-Type' => 'application/json' ) );
+
+		return $result;
+	}
+	$attach_id = media_handle_upload( 'upload_img_file', 0 );
+	$image_url = wp_get_attachment_image_src( $attach_id, 'full' )[0];
+	$output    = array(
+		'code'    => 0,
+		'message' => 'success',
+		'link'    => $image_url,
+	);
+	$result    = new WP_REST_Response( $output );
+	$result->set_headers( array( 'Content-Type' => 'application/json' ) );
+
+	return $result;
+}
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'upload_image/v1', '/upload', array(
+		'methods'  => 'POST',
+		'callback' => 'upload_image',
+	) );
+} );
