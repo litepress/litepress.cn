@@ -603,7 +603,7 @@ add_filter( 'ep_weighting_configuration_for_search', function ( $weight_config, 
 /**
  * 过滤允许的古腾堡区块
  */
-add_filter( 'gutenberg_everywhere_allowed_blocks', function ( $allowed, $editor_type ): null {
+add_filter( 'gutenberg_everywhere_allowed_blocks', function ( $allowed, $editor_type ) {
 
 	return null;
 }, 10, 2 );
