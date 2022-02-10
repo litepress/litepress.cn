@@ -72,23 +72,10 @@ if ( ! bbp_is_single_forum() ) : ?>
 
 				<?php endif; ?>
                 <!--图片上传按钮-->
-                <input id="upload_image" type="file" accept="image/*" multiple="multiple"/>
-                <label for="upload_image" id="up_img_label"><i class="fa fa-image"></i> 上传图片</label> <span
+                <input id="upload_image" class="d-none" type="file" accept="image/*" multiple="multiple"/>
+                <label class="btn btn-primary" for="upload_image" id="up_img_label"><i class="fad fa-image"></i> 上传图片</label> <span
                         id="image_url">编辑器升级中，暂由此处上传图片</span>
                 <hr>
-                <style type="text/css">
-                    #upload_image {
-                        display: none;
-                    }
-
-                    #up_img_label {
-                        color: #fff;
-                        background-color: #0274be;
-                        border-radius: 5px;
-                        display: inline-block;
-                        padding: 5.2px;
-                    }
-                </style>
                 <script type="text/javascript">
                     jQuery('#upload_image').change(function () {
                         for (var i = 0; i < this.files.length; i++) {
