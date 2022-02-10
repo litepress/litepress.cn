@@ -79,7 +79,7 @@ get_header();
                         <p class="">使用 LitePress 的安装包直接部署一个全新站点是接入本土生态体系最简单便捷的方式。同时，你可以在体验状态不佳时方便的切换回 WordPress。
                         </p>
                         <a href="download.php" class="py-3 d-inline-block">安装方法</a>
-                        <p class="">
+                        <p class=" ">
                             推荐服务器配置
                         </p>
                                 <div class="row fs--1 fw-semi-bold text-500 mt-3 gy-3 mt-3 mt-xxl-2">
