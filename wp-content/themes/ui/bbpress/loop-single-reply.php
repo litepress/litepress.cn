@@ -22,14 +22,16 @@ defined( 'ABSPATH' ) || exit;
 <div id="comment" <?php bbp_reply_class(); ?>>
 
 
-    <div class="bbp-reply-author-avatar wp-reply-content-avatar">
 
-        <?php bbp_reply_author_link( array( 'show_role' => true ) ); ?>
-
-    </div>
 
 <main>
     <div class="bbp-reply-author ">
+
+        <div class="bbp-reply-author-avatar wp-reply-content-avatar">
+
+            <?php bbp_reply_author_link( array( 'show_role' => true ) ); ?>
+
+        </div>
 
         <?php
         $user_id = get_post(bbp_get_reply_id())->post_author;
