@@ -68,10 +68,10 @@ defined( 'ABSPATH' ) || exit;
         </div>
     </div><!-- .bbp-reply-author -->
 
-	<div class="bbp-reply-content heti" >
-
+	<div class="bbp-reply-content" >
+<section class=" heti">
 		<?php do_action( 'bbp_theme_before_reply_content' ); ?>
-
+</section>
         <?php bbp_reply_content(); ?>
 
         <div id="post-<?php bbp_reply_id(); ?>" class="bbp-reply-header">
