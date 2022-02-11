@@ -526,7 +526,9 @@ div.bbp-template-notice li, div.bbp-template-notice p {
     max-width: 100%;
     height: auto;    display: block;
 }
-
+.wp-reply > li > .wp-reply-content .bbp-reply-author-meta {
+    flex-wrap: wrap;
+}
 
 .inner-comment-lists .bbp-reply-content p a, .inner-comment-lists .bbp-reply-content p a * {
     color: var(--wp-theme-color);
