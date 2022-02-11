@@ -605,7 +605,9 @@ div.bbp-template-notice li, div.bbp-template-notice p {
 .bbp-reply-form, .bbp-no-reply,.bbp-no-topic,#new-topic-0 {
     padding: 20px;
 }
-
+.bbp-reply-content .bbp-reply-form{
+    padding: 0;
+}
 .theme-boxshadow.bg-white .bbp-submit-wrapper .btn-outline-primary {
     display: none;
 }
