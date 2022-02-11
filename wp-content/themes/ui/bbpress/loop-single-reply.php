@@ -71,9 +71,9 @@ defined( 'ABSPATH' ) || exit;
 	<div class="bbp-reply-content" >
 <section class=" heti">
 		<?php do_action( 'bbp_theme_before_reply_content' ); ?>
-</section>
-        <?php bbp_reply_content(); ?>
 
+        <?php bbp_reply_content(); ?>
+</section>
         <div id="post-<?php bbp_reply_id(); ?>" class="bbp-reply-header">
             <div class="bbp-meta">
 	            <?php
