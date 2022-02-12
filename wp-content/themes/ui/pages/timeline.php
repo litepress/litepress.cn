@@ -147,7 +147,7 @@ get_header();
             transform-origin: top center;
         }
     </style>
-    <div class="text-center bg-overlay-dark-7 py-7 " style="background:url(https://wizixo.webestica.com/assets/images/bg/04.jpg) no-repeat; background-size:cover; background-position: center center;">
+    <div class="text-center bg-overlay-dark-7 py-7 " style="background:url(/wp-content/uploads/2022/02/2022020906361956.jpg) no-repeat; background-size:cover; background-position: center center;">
         <div class="container">
             <div class="row all-text-white">
                 <div class="col-md-12 align-self-center">
@@ -155,8 +155,8 @@ get_header();
                     <h6 class="mb-5">We transform your perception into an excellent website</h6>-->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item active"><a href="index.html"><i class="ti-home"></i> Home</a></li>
-                            <li class="breadcrumb-item">Timeline</li>
+                            <li class="breadcrumb-item active"><a href="/"><i class="ti-home"></i> 首页</a></li>
+                            <li class="breadcrumb-item">发展历程</li>
                         </ol>
                     </nav>
                 </div>
@@ -181,7 +181,7 @@ get_header();
                 </div>
             </div>
             <div class="row o-hidden o-lg-visible">
-                <div class="col d-flex flex-column align-items-center">
+                <div class="col-11 m-auto d-flex flex-column align-items-center">
                     <ol class="process-vertical">
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>

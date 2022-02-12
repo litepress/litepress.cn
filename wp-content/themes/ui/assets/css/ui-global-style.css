@@ -687,8 +687,6 @@ padding-top:0 ;
 .wp-code pre {
     margin: 0;
     white-space: pre-line;
-    border:0;
-    padding: 0;
 }
 .wp-code pre > ul{
     margin: 0;
