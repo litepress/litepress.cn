@@ -18,7 +18,7 @@
 	<script>
     var $ = jQuery.noConflict();
 
-var projectsearch =  $(".search-form input[type=search]");
+/*var projectsearch =  $(".search-form input[type=search]");
 var url = $(location).attr('href'); //获取url地址
 var jqurl = url.split("/").splice(0, 6).join("/");
  if(url.indexOf("plugins") >= 0){ 
@@ -42,13 +42,13 @@ if(event.keyCode==13){
 }
 })
 
-        });
+        });*/
  
 $(function(){ 
-var　headerval =　$(".wp-nav .header-search input").val();
+/*var　headerval =　$(".wp-nav .header-search input").val();
 $(projectsearch).val(headerval);
 $(".wp-nav .header-search input").val("");
-});
+});*/
  	jQuery('#hide-help-notice').click(function() {
 				jQuery.ajax({url: '/getting-started/hide-notice/'});
 				jQuery('#help-notice').fadeOut(1000);

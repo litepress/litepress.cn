@@ -24,9 +24,10 @@
                             <a class="btn btn-light btn-small"
                                href="/translate/languages/zh-cn/default/glossary">术语表</a>
                         </div>
-                        <form class="col-xl-8">
-                            <input placeholder="搜索插件..." type="search" id="projects-filter" name="s" value=""
-                                   class="filter-search" onkeydown="if(event.keyCode==13)return false;">
+                        <form class="col-xl-8" method="get"action="/search">
+                            <input placeholder="项目搜索..." name="keyword" type="search" value="" id="projects-filter" class="filter-search"
+                            >
+                            <input type="hidden" name="tag_id" value="4"/>
                         </form>
                     </div>
                 </div>

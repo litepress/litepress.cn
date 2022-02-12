@@ -10,9 +10,10 @@
                 <h1><span>博客</span></h1></div>
             <div class="col-xl-6">
                 <div class="search-form  row justify-content-end">
-                    <form class="col-xl-8" method="get" action="https://wp-china-yes.com/">
-                        <input placeholder="搜索..." type="search" value="" id="projects-filter" class="filter-search"
-                               onkeydown="if(event.keyCode==13)return false;">
+                    <form class="col-xl-8" method="get" action="/search">
+                        <input placeholder="博客搜索..." name="keyword" type="search" value="" id="projects-filter" class="filter-search"
+                        >
+                        <input type="hidden" name="tag_id" value="14"/>
                     </form>
                 </div>
             </div>
