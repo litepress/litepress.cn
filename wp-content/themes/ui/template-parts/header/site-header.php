@@ -54,7 +54,7 @@ switch_to_blog( 1 );
                     <div class="header-search">
                         <form style="max-width: 640px" class="m-auto header-search" method="get" action="/search">
                             <div class="position-relative">
-                                <input type="text" name="keyword" class="form-control" placeholder="搜索……">
+                                <input type="text" name="keyword" class="form-control" placeholder="全局搜索……">
                                 <button type="submit">
                                     <div class="actions"><i class="fad fa-search"></i>
 
