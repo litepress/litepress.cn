@@ -14,7 +14,7 @@
                         <input placeholder="手册搜索..." name="keyword" type="search" value="" id="projects-filter"
                                class="filter-search"
                         >
-                        <input type="hidden" name="tag_id" value="11"/>
+                        <input type="hidden" name="tag_id" value="6"/>
                     </form>
                 </div>
             </div>
