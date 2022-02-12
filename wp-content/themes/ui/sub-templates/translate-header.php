@@ -24,8 +24,9 @@
                             <a class="btn btn-light btn-small"
                                href="/translate/languages/zh-cn/default/glossary">术语表</a>
                         </div>
-                        <form class="col-xl-8" method="get"action="/search">
-                            <input placeholder="项目搜索..." name="keyword" type="search" value="" id="projects-filter" class="filter-search"
+                        <form class="col-xl-8" method="get" action="/search">
+                            <input placeholder="项目搜索..." name="keyword" type="search" value="" id="projects-filter"
+                                   class="filter-search"
                             >
                             <input type="hidden" name="tag_id" value="4"/>
                         </form>
