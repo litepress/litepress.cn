@@ -478,10 +478,12 @@ div.bbp-template-notice li, div.bbp-template-notice p {
     display: flex;
 }
 
-.wp-reply #comment .bbp-reply-author-avatar, .wp-reply .bbp-reply-author-avatar {
+ .wp-reply .bbp-reply-author-avatar {
     width: 7%;
 }
-
+.wp-reply #comment .bbp-reply-author-avatar{
+    width: 4%;
+}
 .wp-reply .bbp-reply-author-avatar {
     margin-top: -2px;
 }
@@ -518,13 +520,15 @@ div.bbp-template-notice li, div.bbp-template-notice p {
 }
 
 .inner-comment-lists .bbp-reply-content {
-    padding: 5px 0;
+    padding: 5px 0 5px 35px;
 }
 .heti img,.bbp-upload-input{
     max-width: 100%;
     height: auto;    display: block;
 }
-
+.wp-reply > li > .wp-reply-content .bbp-reply-author-meta {
+    flex-wrap: wrap;
+}
 
 .inner-comment-lists .bbp-reply-content p a, .inner-comment-lists .bbp-reply-content p a * {
     color: var(--wp-theme-color);
@@ -537,7 +541,9 @@ div.bbp-template-notice li, div.bbp-template-notice p {
 .wp-reply-content .wp-reply .wp-reply-content-avatar {
     display: block;
 }
-
+.wp-reply-content .wp-reply .wp-reply-content-avatar  img.avatar{
+    width: 2em;
+}
 .wp-reply main:before {
     position: absolute;
     top: 13px;
@@ -599,7 +605,9 @@ div.bbp-template-notice li, div.bbp-template-notice p {
 .bbp-reply-form, .bbp-no-reply,.bbp-no-topic,#new-topic-0 {
     padding: 20px;
 }
-
+.bbp-reply-content .bbp-reply-form{
+    padding: 0;
+}
 .theme-boxshadow.bg-white .bbp-submit-wrapper .btn-outline-primary {
     display: none;
 }
