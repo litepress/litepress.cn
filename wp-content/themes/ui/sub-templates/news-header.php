@@ -11,7 +11,8 @@
             <div class="col-xl-6">
                 <div class="search-form  row justify-content-end">
                     <form class="col-xl-8" method="get" action="/search">
-                        <input placeholder="博客搜索..." name="keyword" type="search" value="" id="projects-filter" class="filter-search"
+                        <input placeholder="博客搜索..." name="keyword" type="search" value="" id="projects-filter"
+                               class="filter-search"
                         >
                         <input type="hidden" name="tag_id" value="14"/>
                     </form>
@@ -22,6 +23,6 @@
 </header>
 <section class="breadcrumb">
     <div class="container">
-        <?php lpcn_breadcrumb(); ?>
+		<?php lpcn_breadcrumb(); ?>
     </div>
 </section>
