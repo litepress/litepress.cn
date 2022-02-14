@@ -57,7 +57,7 @@ class Plugin {
 
 			return $actions;
 		} );
-		
+
 	}
 
 
