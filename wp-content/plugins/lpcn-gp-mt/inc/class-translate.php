@@ -369,41 +369,20 @@ order by o2 asc" );
 	}
 
 	/**
-	 * 谷歌翻译接口封装函数
+	 * 翻译接口封装函数
 	 */
 	private function google_translate( array $sources ): string|array|WP_Error {
 
-		// 不允许原文中出现换行符，因为计划用换行符来分割多条原文。
-		$sources_urlencoded = array_map( function ( $source ) {
-			return urlencode( str_replace( array( "\n", "\n\r", "\r\n" ), '', $source ) );
-		}, $sources );
-
-		$q = join( "\n", $sources_urlencoded );
-
-		$base_url = 'http://translate-api.litepress.cn/translate_a/t';
-
-		$token = new Token();
+		$base_url = 'http://translate-api.litepress.cn/g_translate';
 
 		$args = array(
-			//'client' => 'dict-chrome-ex',
-			'client' => 'gtx',
-			'sl'     => 'en',
-			'tl'     => 'zh-CN',
-			'q'      => $q,
-			'tk'     => $token->generateToken( 'en', 'zh-CN', $q ),
+			'text' => json_encode( $sources ),
 		);
 		$url  = add_query_arg( $args, $base_url );
 
-		$args = array(
-			'headers'    => array(
-				'Accept'          => '*/*',
-				'Accept-Encoding' => 'gzip, deflate, br',
-			),
-			'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0',
-			'sslverify'  => false,
-			'timeout'    => 30,
-		);
-		$r    = wp_remote_get( $url, $args );
+		var_dump( $url );
+		exit;
+		$r = wp_remote_get( $url );
 		if ( is_wp_error( $r ) ) {
 			return $r;
 		}
@@ -412,38 +391,20 @@ order by o2 asc" );
 
 		$status_code = wp_remote_retrieve_response_code( $r );
 		if ( WP_Http::OK !== $status_code ) {
-			return new WP_Error( 'mt_error', '翻译接口返回状态码：' . $status_code, array(
+			return new WP_Error( 'mt_error', '翻译接口返回http状态码：' . $status_code, array(
 				'body' => $trans_data,
 			) );
 		}
 
 		$trans_data = json_decode( $trans_data, true );
 
-		/**
-		 * ----------------------------------------------------------
-		 * 翻译结果处理
-		 * ----------------------------------------------------------
-		 *
-		 * 谷歌翻译的返回值有两种情况，一种是翻译的语句很复杂的情况下，会返回一个复杂的 JSON 字符串
-		 * 另一种是当翻译语句比较简单时只会返回一个仅包含译文的 JSON，例如：[ "你好" ]
-		 *
-		 */
-		if ( count( $trans_data ) === 1 and isset( $trans_data[0] ) ) {
-			return array_combine( $sources, $trans_data );
+		if ( '0' !== $trans_data['code'] ) {
+			return new WP_Error( 'mt_error', '翻译接口返回code异常：' . $trans_data['code'], array(
+				'body' => $trans_data,
+			) );
 		}
 
-		$sentences = $trans_data['sentences'] ?? array();
-
-		$any_trans = '';
-
-		// 去除最后一个字段，因为最后一个是所有译文的拼音
-		unset( $sentences[ count( $sentences ) - 1 ] );
-
-		foreach ( $sentences as $sentence ) {
-			$any_trans .= $sentence['trans'];
-		}
-
-		$trans_list = explode( "\n", $any_trans );
+		$trans_list = $trans_data['data'];
 
 		// 如果翻译的数量和原文的数量对不上的话就记录错误日志同时返回空数组
 		if ( count( $trans_list ) !== count( $sources ) ) {
