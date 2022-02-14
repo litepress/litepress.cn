@@ -140,14 +140,10 @@ class Translate extends GP_Route {
 			}
 
 			/**
-			 * 对 '&' 进行特殊替换，GET提交的数据以'&'做分割
+			 * 对 '&' 和 '#' 进行特殊替换，GET提交的数据以'&'和'#'做分割
 			 */
 			$source_esc = str_replace( '&', "<flag_and>", $source_esc );
-
-			/**
-			 * 斯坦福开源的 postag 库很准确但是相当占服务器资源，其他库很弱智，加和不加一样，所以暂时将该特性屏蔽
-			 */
-			//$pos_map = self::get_pos_tags( $source_esc );
+			$source_esc = str_replace( '#', "<flag_jing>", $source_esc );
 
 			/**
 			 * 替换术语库
