@@ -372,6 +372,16 @@ order by o2 asc" );
 	 * 谷歌翻译接口封装函数
 	 */
 	private function google_translate( array $sources ): string|array|WP_Error {
+	    
+	    // 设置代理
+	    $proxy = new Proxy();
+		$proxy_pool = $proxy->get_ip();
+		foreach ($proxy_pool as $ip => $port) {
+		    define('WP_PROXY_HOST', '203.86.236.148');
+            define('WP_PROXY_PORT', '3128');
+            break;
+		}
+
 		// 不允许原文中出现换行符，因为计划用换行符来分割多条原文。
 		$sources_urlencoded = array_map( function ( $source ) {
 			return urlencode( str_replace( array( "\n", "\n\r", "\r\n" ), '', $source ) );
@@ -379,7 +389,7 @@ order by o2 asc" );
 
 		$q = join( "\n", $sources_urlencoded );
 
-		$base_url = 'https://101.32.10.79/translate_a/t';
+		$base_url = 'https://clients2.google.com/translate_a/t';
 
 		$args = array(
 			//'client' => 'dict-chrome-ex',
