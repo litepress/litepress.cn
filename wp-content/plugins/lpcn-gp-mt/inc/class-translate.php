@@ -126,55 +126,7 @@ class Translate extends GP_Route {
 				continue;
 			}
 
-			/**
-			 * 文本替换前进行预处理（主要去除HTML标签，这样防止在后续处理的时候把HTML标签也处理了）
-			 */
-			preg_match_all( '/<.+?>/', $source_esc, $matches );
-			$matches = $matches[0] ?? array();
-
-			// 结果集去重
-			$matches = array_unique( $matches );
-
-			// 原文中被替换的关键字以及代号 id
 			$id_map = array();
-
-			foreach ( $matches as $match ) {
-				// 排除掉结束标签（替换开始标签时会顺带替换对应的结束标签）
-				if ( str_contains( $match, '</' ) ) {
-					continue;
-				}
-
-				$rand_id = rand( 0, 99999 );
-
-				/**
-				 * 替换 HTML 开始标签
-				 */
-				$h_id            = "<$rand_id>";
-				$id_map[ $h_id ] = $match;
-				// 替换 HTML 后对两端增加空格，以使标识符与周围单词划开界限
-				$source_esc = str_replace( $match, " $h_id ", $source_esc );
-
-				/**
-				 * 替换 HTML 开始标签
-				 */
-				$h_id = "</$rand_id>";
-
-				// 先提取一下这个标签究竟是何方牛马
-				preg_match_all( '/<(\w+)[^>]*>/', $match, $tag_matches );
-				$tag_name = $tag_matches[1][0] ?? '';
-
-				if ( ! empty( $tag_name ) ) {
-					$id_map[ $h_id ] = "</$tag_name>";
-					// 替换 HTML 后对两端增加空格，以使标识符与周围单词划开界限
-					$source_esc = str_replace( "</$tag_name>", " $h_id ", $source_esc );
-
-					// 为了防止有的人不讲武德，写不规范的结束标签，所以多匹配一种情况
-					$h_id            = "</ $rand_id>";
-					$id_map[ $h_id ] = "</$tag_name>";
-					// 替换 HTML 后对两端增加空格，以使标识符与周围单词划开界限
-					$source_esc = str_replace( "</ $rand_id>", " $h_id ", $source_esc );
-				}
-			}
 
 			/**
 			 * 替换简码
@@ -186,6 +138,11 @@ class Translate extends GP_Route {
 				$id_map[ $id ] = $match;
 				$source_esc    = str_replace( $match, "#$id", $source_esc );
 			}
+
+			/**
+			 * 对 '&' 进行特殊替换，GET提交的数据以'&'做分割
+			 */
+			$source_esc = str_replace( '&', "<flag_and>", $source_esc );
 
 			/**
 			 * 斯坦福开源的 postag 库很准确但是相当占服务器资源，其他库很弱智，加和不加一样，所以暂时将该特性屏蔽
@@ -335,10 +292,7 @@ class Translate extends GP_Route {
 		}
 	}
 
-	public
-	static function query_memory(
-		string $source,
-	): string|WP_Error {
+	public static function query_memory( string $source ): string|WP_Error {
 		global $wpdb;
 
 		$source = strtolower( $source );
@@ -373,22 +327,25 @@ order by o2 asc" );
 	 */
 	private function google_translate( array $sources ): string|array|WP_Error {
 
+		// 为加快接口速度，不使用https
 		$base_url = 'http://translate-api.litepress.cn/g_translate';
 
+		// 拼接请求参数，接口支持批量翻译
 		$args = array(
 			'text' => json_encode( $sources ),
 		);
 		$url  = add_query_arg( $args, $base_url );
 
-		var_dump( $url );
-		exit;
+		// 发生请求并尝试捕获错误
 		$r = wp_remote_get( $url );
 		if ( is_wp_error( $r ) ) {
 			return $r;
 		}
 
+		// 取得响应主体
 		$trans_data = wp_remote_retrieve_body( $r );
 
+		// 取得响应http状态码
 		$status_code = wp_remote_retrieve_response_code( $r );
 		if ( WP_Http::OK !== $status_code ) {
 			return new WP_Error( 'mt_error', '翻译接口返回http状态码：' . $status_code, array(
@@ -396,14 +353,15 @@ order by o2 asc" );
 			) );
 		}
 
+		// 尝试解码并捕获错误
 		$trans_data = json_decode( $trans_data, true );
-
-		if ( '0' !== $trans_data['code'] ) {
-			return new WP_Error( 'mt_error', '翻译接口返回code异常：' . $trans_data['code'], array(
+		if ( json_last_error() !== JSON_ERROR_NONE ) {
+			return new WP_Error( 'mt_error', '翻译接口返回的不是标准json数据：' . $status_code, array(
 				'body' => $trans_data,
 			) );
 		}
 
+		// 接口返回的数据位于data字段
 		$trans_list = $trans_data['data'];
 
 		// 如果翻译的数量和原文的数量对不上的话就记录错误日志同时返回空数组
@@ -455,7 +413,6 @@ order by o2 asc" );
 		}
 
 		$translations = $this->job( 0, $originals );
-
 
 		$data = array();
 		foreach ( $translations->entries as $translation ) {
