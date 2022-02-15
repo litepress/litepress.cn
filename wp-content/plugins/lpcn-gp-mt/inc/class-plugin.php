@@ -58,6 +58,11 @@ class Plugin {
 			return $actions;
 		} );
 
+		// 加载命令行
+		if ( class_exists( 'WP_CLI' ) ) {
+			require __DIR__ . '/translate-cli.php';
+		}
+
 	}
 
 
