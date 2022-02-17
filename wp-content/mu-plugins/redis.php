@@ -46,7 +46,7 @@ class Redis {
 	private function redis(): Redis_Lib|bool {
 		if ( empty( $this->redis ) ) {
 			$this->redis = new Redis_Lib();
-			if ( ! $this->redis->connect( '127.0.0.1', 6379 ) ) {
+			if ( ! $this->redis->connect( '10.88.0.1', 6379 ) ) {
 				Logger::error( Logger::GLOBAL, 'Redis 连接失败：' . $this->redis->getLastError() );
 
 				return false;
