@@ -42,7 +42,7 @@
 
 <footer id="site-footer" role="contentinfo" class="header-footer-group wp-footer p-2  ">
     <div class="container">
-        <div class="row pt-5 pb-3 gy-5">
+        <div class="row pt-5 pb-3 gb-5">
             <div class="col">
                 <div class="row gy-5">
                     <div class="col-6 col-md-3">
