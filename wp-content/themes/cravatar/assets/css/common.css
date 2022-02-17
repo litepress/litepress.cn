@@ -780,7 +780,7 @@ svg {
     justify-content: center;
     padding-top: 33%;
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: .5rem;
 }
 .wp-img-ground .card a {
     display: flex;
