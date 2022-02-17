@@ -1,4 +1,4 @@
-<aside class="wp-aside col-xl-3">
+<aside class="wp-aside col-xl-3 mt-3 mt-xl-0">
     <section class="theme-boxshadow bg-white wp-accordion">
         <header class="  d-flex aside-header align-items-center">
             <div class="me-2 wp-icon">
