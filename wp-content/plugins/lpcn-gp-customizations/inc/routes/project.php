@@ -840,8 +840,14 @@ SQL;
 				'user_id'     => $current_user->ID,
 				'action'      => 'approve',
 				'object_type' => 'project|locale|set-slug',
-				'object_id'   => "{
-			$project->id}|zh - cn |default",
+				'object_id'   => "{$project->id}|zh-cn|default",
+			) );
+
+			GP::$permission->create( array(
+				'user_id'     => $current_user->ID,
+				'action'      => 'manage',
+				'object_type' => 'project|locale|set-slug',
+				'object_id'   => "{$project->id}|zh-cn|default",
 			) );
 		}
 
