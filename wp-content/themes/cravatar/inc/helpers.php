@@ -101,7 +101,7 @@ function get_user_id_by_hash( string $md5 ): int {
 }
 
 function get_gravatar_to_file( string $hash, string $query ): string {
-	$url = "http://sdn.geekzu.org/avatar/{$hash}" . ( ! empty( $query ) ? "?$query" : '' );
+	$url = "http://gravatar.litepress.cn/avatar/{$hash}" . ( ! empty( $query ) ? "?$query" : '' );
 
 	/**
 	 * 默认从Gravatar加载尺寸为400的图片，太大的话没啥用还浪费带宽

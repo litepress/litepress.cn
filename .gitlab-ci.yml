@@ -9,4 +9,4 @@ deploy-job:
     - dnf install rsync -y
     - export RSYNC_PASSWORD=$RSYNC_PASS
     - cd /builds/litepress/litepress.cn/wp-content/
-    - rsync -rapogz --port=$RSYNC_PORT --chown=www:www --chmod=775 --delete --include "plugins/" --include "themes/" --include "mu-plugins/" --exclude "/*" . $RSYNC_USER@$RSYNC_HOST::$RSYNC_USER/wp-content/
+    - rsync -rapogz --port=$RSYNC_PORT --chown=nobody:nobody --chmod=775 --delete --include "plugins/" --include "themes/" --include "mu-plugins/" --exclude "/*" . $RSYNC_USER@$RSYNC_HOST::$RSYNC_USER/

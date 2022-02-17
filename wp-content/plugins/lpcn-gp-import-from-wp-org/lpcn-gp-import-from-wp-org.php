@@ -491,7 +491,7 @@ if ( isset( $_GET['debug-import'] ) ) {
 		$body = wp_json_encode( $body );
 
 		$request = wp_remote_post(
-			'http://localhost:9200/_sql?format=json',
+			'http://10.88.0.1:9200/_sql?format=json',
 			[
 				'timeout' => 10,
 				'headers' => array(
