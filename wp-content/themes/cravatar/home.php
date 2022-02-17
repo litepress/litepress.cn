@@ -108,6 +108,16 @@ $is_login = is_user_logged_in();
                         </div>
                         <div class="col">
                             <div class="card">
+                                <a href="https://www.ilxtx.com/" target="_blank" rel="noopener" data-caption=""
+                                   itemprop="contentUrl" one-link-mark="yes">
+                                    <img class="uabb-gallery-img card-img"
+                                         src="/wp-content/themes/cravatar/assets/img/ilxtx.png" alt="ilxtx"
+                                         itemprop="thumbnail" title="龙笑天下">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
                                 <a href="javascript:" target="_blank" rel="noopener" data-caption=""
                                    itemprop="contentUrl" one-link-mark="yes" style="" data-bs-toggle="modal"
                                    data-bs-target="#Cooperation">
