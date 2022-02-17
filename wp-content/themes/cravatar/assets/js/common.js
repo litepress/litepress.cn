@@ -291,9 +291,48 @@ $(function () {
     const c = new countUp.CountUp("counter", endVal)
     c.start()
 
-    hljs.highlightAll();
+
+    /*代码高亮+代码行数+复制*/
+    hljs.highlightAll(".heti pre code");
     $(".heti pre").each(function () {
         $(this).wrap("<section class=\"wp-code\"></section>")
     });
+    $(".wp-code code").each(function () {
+        $(this).html("<ul><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ul>");
+    });
+    $(function () {
+        var numLi = $(".wp-code .hljs ul li").length;
+
+        for (var i = 0; i < numLi; i++) {
+            $(".wp-code .hljs ul li").eq(i).wrap('<div  id="L'+ (i + 1) +'" ></div>');
+        }
+    })
+
+    $(".wp-code pre").after(" <button class=\"btn-clipboard\" " + " style=\"display: none\">复制\n" + "</button>");
+
+
+    $(".wp-code").hover(function () {
+        $(this).find(".btn-clipboard").css("display", "block")
+    }, function () {
+        $(this).find(".btn-clipboard").css("display", "none")
+    });
+
+    const n = $(".btn-clipboard");
+    n.click(function () {
+        $(this).text("已复制");
+        var o = this;
+        setTimeout(function () {
+            $(o).text("复制"),
+                window.getSelection().removeAllRanges()
+        }, 1500)
+    });
+    new ClipboardJS('.wp-code > pre + .btn-clipboard', {
+        target: function (trigger) {
+            return trigger.previousElementSibling;
+        }
+    });
+
+
+
 
 });
