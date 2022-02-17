@@ -6,8 +6,8 @@ define( 'UI_ROOT_URI', get_stylesheet_directory_uri() );
 /**
  * TODO 调试
  */
-ini_set( 'display_errors', 1 );
-error_reporting( E_ERROR | E_WARNING | E_PARSE );
+//ini_set( 'display_errors', 1 );
+//error_reporting( E_ERROR | E_WARNING | E_PARSE );
 
 /**
  * 标记主题支持BBPress
