@@ -17,6 +17,7 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_script( 'wp-util', get_stylesheet_directory_uri() . 'wp-includes/js/wp-util.js', [ 'jquery' ], false, true );
 	wp_enqueue_script( 'cropper-js', get_stylesheet_directory_uri() . '/assets/js/cropper.min.js', [ 'jquery' ], false, true );
 	wp_enqueue_script( 'countUp', get_stylesheet_directory_uri() . '/assets/js/countUp.umd.min.js', [ 'jquery' ], false, true );
+	wp_enqueue_script( 'highlight', get_stylesheet_directory_uri() . '/assets/js/highlight.min.js', [ 'jquery' ], false, true );
 } );
 
 /**
