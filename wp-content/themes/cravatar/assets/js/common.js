@@ -291,6 +291,9 @@ $(function () {
     const c = new countUp.CountUp("counter", endVal)
     c.start()
 
-
+    hljs.highlightAll();
+    $(".heti pre").each(function () {
+        $(this).wrap("<section class=\"wp-code\"></section>")
+    });
 
 });
