@@ -293,7 +293,10 @@ $(function () {
 
 
     /*代码高亮+代码行数+复制*/
-    hljs.highlightAll(".heti pre code");
+    document.querySelectorAll('.heti pre code').forEach(el => {
+        // then highlight each
+        hljs.highlightElement(el);
+    });
     $(".heti pre").each(function () {
         $(this).wrap("<section class=\"wp-code\"></section>")
     });
