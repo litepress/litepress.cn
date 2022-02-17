@@ -35,7 +35,7 @@ get_header();
 						<?php endwhile; ?>
                     </article>
                 </div>
-                <section class="col-xl-3 blog-aside">
+                <section class="col-xl-3 blog-aside mt-3 mt-xl-0">
 					<?php get_sidebar(); ?>
                 </section>
             </div>
