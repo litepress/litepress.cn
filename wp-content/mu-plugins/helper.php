@@ -118,7 +118,7 @@ function get_product_from_es( string $slug, string $type, array $fields = array(
 	$body = wp_json_encode( $body );
 
 	$request = wp_remote_post(
-		'http://localhost:9200/litepresscnstore-post-3/_search' . ( empty( $fields ) ? '' : ( '?_source_includes=' . join( ',', $fields ) ) ),
+		'http://10.88.0.1:9200/litepresscnstore-post-3/_search' . ( empty( $fields ) ? '' : ( '?_source_includes=' . join( ',', $fields ) ) ),
 		[
 			'timeout' => 10,
 			'headers' => array(
@@ -175,7 +175,7 @@ function get_products_from_es( array $slugs, string $type, array $fields = array
 	$body = wp_json_encode( $body );
 
 	$request = wp_remote_post(
-		'http://localhost:9200/litepresscnstore-post-3/_search' . ( empty( $fields ) ? '' : ( '?_source_includes=' . join( ',', $fields ) ) ),
+		'http://10.88.0.1:9200/litepresscnstore-post-3/_search' . ( empty( $fields ) ? '' : ( '?_source_includes=' . join( ',', $fields ) ) ),
 		[
 			'timeout' => 10,
 			'headers' => array(
