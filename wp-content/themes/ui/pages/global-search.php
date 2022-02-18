@@ -146,7 +146,7 @@ $query_time = sprintf( "%.3f", $end_time - $start_time );
                     <ul class="forum_menu">
                         <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2143 <?php echo 0 === (int) $tag_id ? 'current-menu-item' : ''; ?>">
                             <a href="<?php echo remove_query_arg( array( 'tag_id', 'paged' ) ); ?>" aria-current="page"
-                               class="nav-link">全部</a>
+                               class="nav-link">聚合</a>
                         </li>
                         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2150 <?php echo 1 === (int) $tag_id ? 'current-menu-item' : ''; ?>">
                             <a
