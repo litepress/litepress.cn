@@ -613,27 +613,44 @@ img.gravatar.avatar.avatar-40.um-avatar {
     position: relative;
 }
 
-.wp-code {
-    /*word-wrap: break-word;*/
+.wp-code{
     position: relative;
 }
-
 .wp-code .hljs ul {
-    list-style: decimal;
-    margin: 0px 0px 0 40px !important;
+    list-style-type: none;
     padding: 0px;
+    margin: 0;
 }
 
-.wp-code .hljs ul li {
-    /*    list-style: decimal-leading-zero;*/
-    border-left: 1px solid #505050;
-    padding: 5px !important;
+.wp-code .hljs ul > li {
+
     margin: 0 !important;
     line-height: 14px;
     word-break: break-all;
     word-wrap: break-word;
+    counter-increment: customlistcounter;
+    display: flex;
+    align-items: center;
 }
-
+.wp-code .hljs ul > li:before  {
+    content: counter(customlistcounter) " ";
+    font-weight: bold;
+    min-width: 2em;
+    margin-right: 10px;
+    color: #616875;
+    text-align: right;
+}
+.wp-code .hljs ul > li >li:before{
+    height: 100%;
+    width: 1px;
+    background: #000;
+}
+.wp-code .hljs ul > li >li{
+    flex: 1;
+    border-left: 1px solid #505050;
+    padding: 0px 5px 0px 10px;
+    line-height: 1.5em;
+}
 .btn-clipboard {
     position: absolute;
     top: 10px;
