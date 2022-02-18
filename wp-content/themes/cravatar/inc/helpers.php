@@ -15,7 +15,7 @@ use WP_Error;
  * 通过哈希值尝试获取用户的QQ邮箱
  */
 function get_qq_for_hash( string $hash ): string|false {
-	$table = 'email_hash_' . ( hexdec( substr( $hash, 0, 10 ) ) ) % 5001 + 1;
+	$table = 'email_hash_' . ( hexdec( substr( $hash, 0, 10 ) ) ) % 5000 + 1;
 
 	$conn = mysqli_connect( LOW_DB_HOST, LOW_DB_USER, LOW_DB_PASSWORD, LOW_DB_NAME );
 
