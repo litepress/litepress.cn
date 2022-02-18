@@ -8,7 +8,7 @@
 $data = file_get_contents( 'php://input' );
 
 $ch = curl_init();
-curl_setopt( $ch, CURLOPT_URL, 'http://localhost:9200/litepresscnstore-post-3/_search' );
+curl_setopt( $ch, CURLOPT_URL, 'http://10.88.0.1:9200/litepresscnstore-post-3/_search' );
 curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 curl_setopt( $ch, CURLOPT_POST, 1 );
 curl_setopt( $ch, CURLOPT_POSTFIELDS, $data );

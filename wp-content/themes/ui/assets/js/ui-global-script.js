@@ -84,19 +84,27 @@ $(function () {
      });*/
 });
 
-/*$(".mce-tinymce").ready(function () {
-    QTags.addButton('按钮', '按钮', '<a class="btn btn-primary" href="http://修改URL">', '</a>');
-    QTags.addButton('加粗', '加粗', '<strong>', '</strong>');
-    QTags.addButton('p', 'p', '<p>', '</p>');
-    QTags.addButton('hr', 'hr', '<hr>', '');
-});*/
 
 
-hljs.highlightAll();
+
+/*代码高亮+代码行数+复制*/
+document.querySelectorAll('.heti pre code').forEach(el => {
+    // then highlight each
+    hljs.highlightElement(el);
+});
 $(".heti pre").each(function () {
     $(this).wrap("<section class=\"wp-code\"></section>")
 });
+$(".wp-code code").each(function () {
+    $(this).html("<ul><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ul>");
+});
+$(function () {
+    var numLi = $(".wp-code .hljs ul > li").length;
 
+    for (var i = 0; i < numLi; i++) {
+        $(".wp-code .hljs ul > li").eq(i).wrap('<li  id="L'+ (i + 1) +'" ></div>');
+    }
+})
 
 $(".wp-code pre").after(" <button class=\"btn-clipboard\" " + " style=\"display: none\">复制\n" + "</button>");
 
@@ -107,16 +115,6 @@ $(".wp-code").hover(function () {
     $(this).find(".btn-clipboard").css("display", "none")
 });
 
-$(".wp-code code").each(function () {
-    $(this).html("<ul><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ul>");
-});
-$(function () {
-var numLi = $(".wp-code .hljs ul li").length;
-
-for (var i = 0; i < numLi; i++) {
-    $(".wp-code .hljs ul li").eq(i).wrap('<div  id="L'+ (i + 1) +'" ></div>');
-}
-})
 const n = $(".btn-clipboard");
 n.click(function () {
     $(this).text("已复制");
@@ -131,11 +129,9 @@ new ClipboardJS('.wp-code > pre + .btn-clipboard', {
         return trigger.previousElementSibling;
     }
 });
-new ClipboardJS('.enlighter-origin + .btn-clipboard', {
-    target: function (trigger) {
-        return trigger.previousElementSibling.previousElementSibling;
-    }
-});
+
+
+
 $("#site-header .menu-item").each(function () {
     menu_a = $(this).find("a").attr("href");
     pathname = $(location).attr('pathname');
