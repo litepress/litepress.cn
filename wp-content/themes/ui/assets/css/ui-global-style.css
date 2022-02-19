@@ -51,12 +51,19 @@
     padding-top: 5rem !important;
 }
 /*ul p删除外距、列表样式*/
+
 ul, p, li {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-
+ol {
+    padding-left: 1.5rem;
+    margin: 0;
+}
+ol > li{
+    list-style-type: decimal;
+}
 hr {
     background: var(--wp-theme-gray-color)
 }
@@ -422,6 +429,7 @@ img.gravatar.avatar.avatar-40.um-avatar {
     font-family: 'Font Awesome 5 pro';
     margin-left: auto;
     background: none;
+    padding-left: .5rem;
 }
 
 .accordion-button:not(.collapsed)::after {
@@ -1752,6 +1760,60 @@ padding: 0;
 .comment-form-comment > .comment-label + div {
     width: 100%;
 }
+
+
+
+.help .card-text {
+    min-height: 131px;
+    font-size: .875em;
+}
+.py-7 {
+    padding-top: 7rem !important;
+    padding-bottom: 7rem !important;
+}
+.shape {
+    pointer-events: none;
+    position: absolute;
+}
+.shape-bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.shape:not([class*=shape-blur]) {
+    overflow: hidden;
+}
+.shape:not([class*=shape-blur])>* {
+    transform: scale(2);
+}
+.shape-fluid-x>* {
+    height: auto;
+    width: 100%;
+}
+.shape-bottom>* {
+    transform-origin: top center;
+}
+.deviation i {
+    width: 1px;
+    height: 10px;
+    background: #000;
+    opacity: 0.8;
+    margin: 0 14px;
+    display: inline-block;
+}
+.dot {
+    width: .625rem;
+    height: .625rem;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: .5rem;
+}
+
+
+
+
+
+
 @media screen and (min-width: 768px) {
     li.menu-item-has-children:hover .dropdown-menu {
         display: block;
