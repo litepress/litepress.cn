@@ -39,6 +39,22 @@
     </div>
 </div>
 
+<div class="position-fixed bottom-05 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="https://litepress.cn/wp-content/uploads/2021/05/%E8%B5%84%E6%BA%90-5-150x150.png" style="
+    width: 20px;
+    margin-right: 5px;
+">
+            <strong class="me-auto">LitePress 通知</strong>
+            <small></small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+
+        </div>
+    </div>
+</div>
 
 <footer id="site-footer" role="contentinfo" class="header-footer-group wp-footer p-2  ">
     <div class="container">

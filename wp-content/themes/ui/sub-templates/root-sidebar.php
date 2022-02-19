@@ -6,25 +6,26 @@
             <span>社区规范</span></header>
 
         <div class="accordion accordion-flush" id="accordionFlushExample">
-            <div class="aside-accordion-item">
+            <ol>
+            <li class="aside-accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-collapseOne" aria-expanded="false"
                             aria-controls="flush-collapseOne">
-                        1.只发有关WordPress的相关内容
+                        只发有关WordPress的相关内容
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse"
                      aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">本社区所有内容都必须关于WordPress，或者 WordPress 生态圈相关。</div>
                 </div>
-            </div>
-            <div class="aside-accordion-item">
+            </li>
+            <li class="aside-accordion-item">
                 <h2 class="accordion-header" id="flush-headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-collapseTwo" aria-expanded="false"
                             aria-controls="flush-collapseTwo">
-                        2.请保持友善
+                        请保持友善
                     </button>
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse"
@@ -32,25 +33,26 @@
                     <div class="accordion-body">不能有任何形式的人身攻击，这是讨论的基本底线。与人为善，比聪明更重要。</div>
                 </div>
 
-            </div>
-            <div class="aside-accordion-item">
+            </li>
+            <li class="aside-accordion-item">
                 <h2 class="accordion-header" id="flush-headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-collapseThree" aria-expanded="false"
                             aria-controls="flush-collapseTwo">
-                        3.提问的艺术：梳理自己的问题
+                        提问的艺术：梳理自己的问题
                     </button>
                 </h2>
                 <div id="flush-collapseThree" class="accordion-collapse collapse"
                      aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                        <li>1.问题的主体。（问题的简单总结）</li>
-                        <li>2.问题的前因后果及背景体条件。（例如：问题的网址、问题的复现条件）</li>
-                        <li>3.问题的落脚点。（展开说说）</li>
-                        </div>
+                    <ol class="accordion-body">
+                        <li>问题的主体。（问题的简单总结）</li>
+                        <li>问题的前因后果及背景体条件。（例如：问题的网址、问题的复现条件）</li>
+                        <li>问题的落脚点。（展开说说）</li>
+                        </ol>
                 </div>
 
-            </div>
+            </li>
+            </ol>
         </div>
     </section>
     <section class="my-3">

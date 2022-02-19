@@ -4,53 +4,7 @@
  */
 get_header();
 ?>
-<style>
-    .help .card-text {
-        min-height: 131px;
-        font-size: .875em;
-    }
-    .py-7 {
-        padding-top: 7rem !important;
-        padding-bottom: 7rem !important;
-    }
-    .shape {
-        pointer-events: none;
-        position: absolute;
-    }
-    .shape-bottom {
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
-    .shape:not([class*=shape-blur]) {
-        overflow: hidden;
-    }
-    .shape:not([class*=shape-blur])>* {
-        transform: scale(2);
-    }
-    .shape-fluid-x>* {
-        height: auto;
-        width: 100%;
-    }
-    .shape-bottom>* {
-        transform-origin: top center;
-    }
-    .deviation i {
-        width: 1px;
-        height: 10px;
-        background: #000;
-        opacity: 0.8;
-        margin: 0 14px;
-        display: inline-block;
-    }
-    .dot {
-        width: .625rem;
-        height: .625rem;
-        border-radius: 50%;
-        display: inline-block;
-        margin-right: .5rem;
-    }
-</style>
+
     <div class="text-center bg-overlay-dark-7 py-7 " style="background-size:cover; background-position: center center;background: #0274be;">
         <div class="container">
             <div class="row all-text-white">

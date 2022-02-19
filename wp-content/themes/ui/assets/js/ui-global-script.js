@@ -16,10 +16,6 @@ $(".ant-btn").on("change", "input[type='file']", function () {
 });
 
 
-
-
-
-
 (function ($) {
     $.extend({
         Request: function (m) {
@@ -131,7 +127,7 @@ new ClipboardJS('.wp-code > pre + .btn-clipboard', {
 });
 
 
-
+/*激活当前页面导航*/
 $("#site-header .menu-item").each(function () {
     menu_a = $(this).find("a").attr("href");
     pathname = $(location).attr('pathname');
@@ -143,16 +139,8 @@ $("#site-header .menu-item").each(function () {
     })
 });
 
-/*$(".um-profile-photo a.um-profile-photo-img img").attr({
-    "data-bs-toggle" : "tooltip",
-    "data-bs-placement" : "bottom",
-    "data-bs-html" : "true",
-    "title" : "你可以在<a href=\"https://cravatar.cn/\" target=\"_blank\">Cravatar</a>上更改你的头像"
-}).addClass("tooltip-show");*/
-//下拉框查询组件点击查询栏时不关闭下拉框
-$("body").on('click', '[data-stopPropagation]', function (e) {
-    e.stopPropagation();
-});
+
+
 
 if ($(window).width() > 991) {
 
@@ -234,11 +222,130 @@ $(function () {
 
 
 
-
-
-
-
-
 })
 
 
+// 如果验证不通过禁止提交表单
+// 获取表单验证样式
+        var forms = document.querySelectorAll('.needs-validation')
+// 循环并禁止提交
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+
+/*封装表单验证*/
+function form_validation() {
+    if ( $(".form-control:invalid").length > 0 ) {
+        $(".needs-validation").addClass("was-validated")
+    }
+    if ($(" .form-control:invalid").length > 0){
+        $(this).siblings(".invalid-feedback").show();
+    }
+    else {
+        $(this).siblings(".invalid-feedback").hide();
+    }
+}
+
+
+/*失去焦点和发生改变表单验证*/
+$(".form-control").on("blur change",function(){
+    form_validation()
+});
+
+
+/*升级表单*/
+const $lp_apply_modal = $("#lp-apply-Modal");
+$("#lp-apply-button").on("click",function(){
+    form_validation()
+    const site = $("#lp-apply-site").val();
+    if ( $(this).parent().find(".form-control:invalid").length === 0 ) {
+        $lp_apply_modal.modal('show');
+        /*        $(".lp-apply-site").text(site);
+                $(".lp-apply-code").text(md5(site));*/
+        $("#lp-apply-Modal .modal-body").html(' <ol><li>请在 <code class="lp-apply-site"> ' + site + ' </code> 根目录下建立<code class="lp-apply-file">lp-check.txt</code>文件</li><li>内容为<code class="lp-apply-code">' + md5(site) + '</code></li><li>配置完成后可<a href="' + site + '/lp-check.txt" target="_blank"><span class="text-primary">点此</span></a>测试访问是否正常，访问正常即可点击下面开始验证按钮提交后端验证。</li></ol>')
+        $(".verify-btn").on("click", function () {
+            var $this = $(this);
+            $.ajax({
+                type: "POST",
+                url: '/wp-json/lp/apply',
+                data: {'site': site},
+                datatype: "json",
+                //在请求之前调用的函数
+                beforeSend: function () {
+                    console.log('验证中...')
+                    $this.find("a").text("验证中...").end().find(".spinner-border").removeClass("hide")
+                },
+                //成功返回之后调用的函数
+                success: function (s) {
+                    $lp_apply_modal.modal('hide');
+                    if (s.code === 0) {
+                        $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> " + s.msg);
+                    } else {
+                        $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i> " + s.msg);
+                    }
+                    $('#liveToast').toast('show')
+                },
+                //调用出错执行的函数
+                error: function () {
+                    $lp_apply_modal.modal('hide');
+                    $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i>  请求失败，请检查本地网络！");
+                    $('#liveToast').toast('show')
+                    console.log('错误')
+                }
+            });
+        })
+
+    }
+    $(".verify-btn").find("a").text("开始验证").end().find(".spinner-border").addClass("hide")
+});
+
+$("#lp-exit-button").on("click",function(){
+    form_validation()
+    const site = $("#lp-exit-site").val();
+    if ( $(this).parent().find(".form-control:invalid").length === 0 ) {
+        $lp_apply_modal.modal('show');
+        /*        $(".lp-apply-site").text(site);
+                $(".lp-apply-code").text(md5(site));*/
+        $("#lp-apply-Modal .modal-body").html(' <ol><li>请在 <code class="lp-apply-site"> ' + site + ' </code> 根目录下建立<code class="lp-apply-file">lp-check.txt</code>文件</li><li>内容为<code class="lp-apply-code">' + md5(site) + '</code></li><li>配置完成后可<a href="' + site + '/lp-check.txt" target="_blank"><span class="text-primary">点此</span></a>测试访问是否正常，访问正常即可点击下面开始验证按钮提交后端验证。</li></ol>')
+        $(".verify-btn").on("click", function () {
+            const $this = $(this);
+            $.ajax({
+                type: "POST",
+                url: '/wp-json/lp/exit',
+                data: {'site': site},
+                datatype: "json",
+                //在请求之前调用的函数
+                beforeSend: function () {
+                    console.log('验证中...')
+                    $this.find("a").text("验证中...").end().find(".spinner-border").removeClass("hide")
+                },
+                //成功返回之后调用的函数
+                success: function (s) {
+                    $lp_apply_modal.modal('hide');
+                    if (s.code === 0) {
+                        $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> " + s.msg);
+                    } else {
+                        $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i> " + s.msg);
+                    }
+                    $('#liveToast').toast('show')
+
+                },
+                //调用出错执行的函数
+                error: function () {
+                    $lp_apply_modal.modal('hide');
+                    $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i>  请求失败，请检查本地网络！");
+                    $('#liveToast').toast('show')
+                    console.log('错误')
+                }
+            });
+        })
+    }
+    $(".verify-btn").find("a").text("开始验证").end().find(".spinner-border").addClass("hide")
+});
