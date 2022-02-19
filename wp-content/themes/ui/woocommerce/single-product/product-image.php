@@ -27,7 +27,7 @@ global $product;
 $attachment_ids = $product->get_gallery_image_ids();
 
 if ( empty( $attachment_ids ) ) {
-    return;
+	return;
 }
 
 $columns           = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );
@@ -44,39 +44,35 @@ $wrapper_classes   = apply_filters(
 ?>
 <h4>屏幕截图</h4>
 <section class="screenshots">
-<!-- Swiper -->
-<div class="swiper-container gallery-top">
-    <div class="swiper-wrapper">
-        <?php
-        foreach( $attachment_ids as $attachment_id )
-        {
-            //echo Image instead of URL
-            echo '<div class="swiper-slide"><div class="img-box">'.wp_get_attachment_image($attachment_id, 'full').'</div></div>';
-        }
-        ?>
+    <!-- Swiper -->
+    <div class="swiper-container gallery-top">
+        <div class="swiper-wrapper">
+			<?php
+			foreach ( $attachment_ids as $attachment_id ) {
+				//echo Image instead of URL
+				echo '<div class="swiper-slide"><div class="img-box">' . wp_get_attachment_image( $attachment_id, 'full' ) . '</div></div>';
+			}
+			?>
 
+        </div>
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next hidden-xs"></div>
+        <div class="swiper-button-prev hidden-xs"></div>
     </div>
-    <div class="swiper-pagination"></div>
-    <!-- Add Arrows -->
-    <div class="swiper-button-next hidden-xs"></div>
-    <div class="swiper-button-prev hidden-xs"></div>
-</div>
-<div class="swiper-container gallery-thumbs">
-    <div class="swiper-wrapper">
-        <?php
-        global $product;
-        $attachment_ids = $product->get_gallery_image_ids();
-        foreach( $attachment_ids as $attachment_id )
-        {
-            echo '<div class="swiper-slide"><div class="img-box"><img   src="' .$shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_id, 512 )[0] .'" alt=""></div></div>';
-        }
-        ?>
+    <div class="swiper-container gallery-thumbs">
+        <div class="swiper-wrapper">
+			<?php
+			global $product;
+			$attachment_ids = $product->get_gallery_image_ids();
+			foreach ( $attachment_ids as $attachment_id ) {
+				echo '<div class="swiper-slide"><div class="img-box"><img   src="' . $shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_id, 512 )[0] . '" alt=""></div></div>';
+			}
+			?>
+        </div>
     </div>
-</div>
 </section>
-<link href="https://cdn.bootcdn.net/ajax/libs/Swiper/6.5.6/swiper-bundle.css" rel="stylesheet">
 
-<script src="https://cdn.bootcdn.net/ajax/libs/Swiper/6.5.6/swiper-bundle.min.js"></script>
 <script>
     var galleryTop = new Swiper('.screenshots .gallery-top', {
         spaceBetween: 10,
