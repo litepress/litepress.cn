@@ -62,12 +62,12 @@ if ( is_admin() ) {
 
 add_action( 'rest_api_init', '\LitePress\Apply\lp_apply_register_rest_route' );
 function lp_apply_register_rest_route() {
-	register_rest_route( 'lp/', 'apply', array(
+	register_rest_route( 'lp', 'apply', array(
 		'methods'             => WP_REST_Server::CREATABLE,
 		'callback'            => '\LitePress\Apply\lp_apply',
 		'permission_callback' => '__return_true',
 	) );
-	register_rest_route( 'lp/', 'exit', array(
+	register_rest_route( 'lp', 'exit', array(
 		'methods'             => WP_REST_Server::CREATABLE,
 		'callback'            => '\LitePress\Apply\lp_exit',
 		'permission_callback' => '__return_true',
