@@ -68,7 +68,7 @@ get_header();
                                 </ol>
                             </blockquote>
                             <!--申请表单-->
-                            <form class="needs-validation"  novalidate id="lp-apply-form">
+                            <form class="needs-validation"  novalidate id="lp-apply-form" onsubmit="return false">
                                 <div class="form-floating mb-3">
                                     <input type="url" name="site" autocomplete="off" class="form-control" id="lp-apply-site"
                                            placeholder="站点地址" pattern="^[^/](.*[^/])?$" required>
@@ -92,7 +92,7 @@ get_header();
                                     </li>
                                 </ol>
                             </blockquote>
-                            <form class="needs-validation"  novalidate id="lp-exit-form">
+                            <form class="needs-validation"  novalidate id="lp-exit-form" onsubmit="return false">
                                 <div class="form-floating mb-3">
                                     <input type="url" name="site" autocomplete="off" class="form-control" id="lp-exit-site"
                                            placeholder="站点地址" pattern="^[^/](.*[^/])?$" required>
