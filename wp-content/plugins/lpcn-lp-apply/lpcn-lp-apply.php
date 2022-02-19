@@ -94,6 +94,9 @@ function lp_apply( WP_REST_Request $request ): WP_REST_Response {
 			return new WP_REST_Response( $args );
 		}
 
+		// 去除可能的换行符、空字符
+		$remote_site = str_replace( array( ' ', "\r", "\n", "\t" ), '', $remote_site );
+
 		if ( $remote_site == $apply_site ) {
 
 			if ( $apply_site_list[ $params['site'] ] ?? 0 ) {
