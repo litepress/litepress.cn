@@ -642,7 +642,8 @@ function upload_image(): WP_REST_Response {
 
 add_action( 'rest_api_init', function () {
 	register_rest_route( 'upload_image/v1', '/upload', array(
-		'methods'  => 'POST',
-		'callback' => 'upload_image',
+		'methods'             => 'POST',
+		'callback'            => 'upload_image',
+		'permission_callback' => 'is_user_logged_in',
 	) );
 } );
