@@ -3,6 +3,7 @@
 namespace LitePress\Cravatar\Inc;
 
 use LitePress\Cravatar\Inc\DataObject\Avatar_Status;
+use LitePress\Logger\Logger;
 
 function handle_avatar() {
 	/**
@@ -157,6 +158,12 @@ function handle_avatar() {
 		$info            = getimagesize( $avatar_filename );
 
 		$cache_img_ext   = image_type_to_extension( $info[2], false );
+		if ( false === $cache_img_ext || empty( $info ) ) {
+			Logger::error( 'Cravatar', '获取图片类型失败', array(
+				'avatar_filename' => $avatar_filename,
+			) );
+		}
+
 		$fun             = "imagecreatefrom{$cache_img_ext}";
 		$img_info        = $fun( $avatar_filename );
 
