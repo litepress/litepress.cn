@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 mt-3 mt-xl-0">
                 <h5 class="text-uppercase text-white opacity-85 mb-3">与我们交流</h5>
 <p>
     需要注意的是 QQ 群中不受理非项目相关的技术支持类请求
