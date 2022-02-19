@@ -13,8 +13,8 @@ require_once ABSPATH . '/wp-includes/wp-diff.php';
 
 class Translation_Memory_Client {
 
-	const API_ENDPOINT = 'http://10.88.0.1:9200/translate_memory/_search';
-	const API_BULK_ENDPOINT = 'http://10.88.0.1:9200/translate_memory/_bulk';
+	const API_ENDPOINT = 'http://localhost:9200/translate_memory/_search';
+	const API_BULK_ENDPOINT = 'http://localhost:9200/translate_memory/_bulk';
 
 	/**
 	 * 更新翻译记忆库内容
