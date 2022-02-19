@@ -172,7 +172,7 @@ function get_qqavatar_to_file( string $hash, string $qq ): string {
  *
  * @return string
  */
-function get_avatar_to_file( string $hash, string $url, string $type = 'gravatar' ): string {
+function get_avatar_to_file( string $hash, string $url, string $type = 'gravatar' ): string | false {
 	global $wpdb;
 
 	$file_path = "/www/cravatar-cache/$type/$hash.png";
@@ -202,8 +202,14 @@ function get_avatar_to_file( string $hash, string $url, string $type = 'gravatar
 			return '';
 		}
 
-		// 最后将头像数据缓存到磁盘
-		file_put_contents( $file_path, $avatar );
+		// 最后将头像数据缓存到本地
+		if ( false === file_put_contents( $file_path, $avatar ) ) {
+			Logger::error( 'Cravatar', '保存头像到本地失败，可能是没有权限', array(
+				'file_path' => $file_path,
+				'type'  => $type,
+			) );
+			return false;
+		}
 	}
 
 	return $file_path;
