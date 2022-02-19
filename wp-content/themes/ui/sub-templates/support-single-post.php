@@ -7,80 +7,77 @@ get_header();
 
 $cats = get_categories();
 ?>
-	<div class="wedocs-single-wrap">
-		<div class="ltp-sidebar wedocs-hide-mobile  col-xl-2">
+    <div class="wedocs-single-wrap">
+        <div class="ltp-sidebar wedocs-hide-mobile  col-xl-2">
 
 
-			<ul class="doc-nav-list">
+            <ul class="doc-nav-list">
 				<?php foreach ( $cats as $item ): ?>
-					<li class="page_item page-item-687">
-						<a href="<?php echo get_category_link( $item ) ?>"><?php echo $item->cat_name ?><span
-								class="wedocs-caret"></span></a>
-					</li>
+                    <li class="page_item page-item-687">
+                        <a href="<?php echo get_category_link( $item ) ?>"><?php echo $item->cat_name ?><span
+                                    class="wedocs-caret"></span></a>
+                    </li>
 				<?php endforeach; ?>
-			</ul>
-		</div>
-		<div class="ltp-single-content col-xl-7">
-			<article class="docs">
+            </ul>
+        </div>
+        <div class="ltp-single-content col-xl-7">
+            <article class="docs">
                 <section class="wp-breadcrumb">
-				<?php lpcn_breadcrumb(); ?>
+					<?php lpcn_breadcrumb(); ?>
                 </section>
-				<main class="heti">
-					<header><h1><?php the_title(); ?></h1></header>
+                <main class="heti">
+                    <header><h1><?php the_title(); ?></h1></header>
 
-					<article class="entry-content"><?php the_content(); ?></article>
-				</main>
-			</article>
-		</div>
-		<aside class="col-xl-3">
-			<nav class="js-toc"></nav>
-			<link href="https://cdn.bootcdn.net/ajax/libs/tocbot/4.12.2/tocbot.min.css" rel="stylesheet">
-			<script src="https://cdn.bootcdn.net/ajax/libs/tocbot/4.12.2/tocbot.min.js"></script>
+                    <article class="entry-content"><?php the_content(); ?></article>
+                </main>
+            </article>
+        </div>
+        <aside class="col-xl-3">
+            <nav class="js-toc"></nav>
+        </aside>
+    </div>
 
-		</aside>
-	</div>
+    <!-- Modal -->
+    <div class="modal  fade" id="translation_doc" tabindex="-1" aria-labelledby="translation_doc" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">翻译</h5>
+                    <small class="ms-3 badge rounded-pill">
 
-	<!-- Modal -->
-	<div class="modal  fade" id="translation_doc" tabindex="-1" aria-labelledby="translation_doc" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-xl">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">翻译</h5>
-					<small class="ms-3 badge rounded-pill">
+                    </small>
 
-					</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
 
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-
-					<div class="mb-3 source-string">
-						<p class="original"></p>
-						<small>
-							<blockquote class="original_zh-cn">
-							</blockquote>
-						</small>
-					</div>
-					<div class="form-floating">
+                    <div class="mb-3 source-string">
+                        <p class="original"></p>
+                        <small>
+                            <blockquote class="original_zh-cn">
+                            </blockquote>
+                        </small>
+                    </div>
+                    <div class="form-floating">
                         <textarea class="form-control translation_text" id="floatingTextarea"
                                   style="height: 150px"></textarea>
-						<label for="floatingTextarea">译文</label>
-						<button class="copy_original mt-2 btn btn-outline-primary btn-sm" tabindex="-1"
-						        title="将原始字符串复制到翻译区域（覆盖现有文本）。">
-							从原文复制
-						</button>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-					<button type="button" class="btn btn-primary ok" id="ok" data-bs-dismiss="modal">提交翻译</button>
-				</div>
-			</div>
-		</div>
-	</div>
+                        <label for="floatingTextarea">译文</label>
+                        <button class="copy_original mt-2 btn btn-outline-primary btn-sm" tabindex="-1"
+                                title="将原始字符串复制到翻译区域（覆盖现有文本）。">
+                            从原文复制
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary ok" id="ok" data-bs-dismiss="modal">提交翻译</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-	<style>
+    <style>
 
         @font-face {
             font-family: 'wedocs';
@@ -653,9 +650,9 @@ $cats = get_categories();
         }
 
 
-	</style>
+    </style>
 
-	<script>
+    <script>
         var $ = jQuery.noConflict();
 
 
@@ -791,7 +788,7 @@ $cats = get_categories();
 
 
         });
-	</script>
+    </script>
 
 
 <?php

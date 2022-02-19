@@ -7,7 +7,6 @@
 get_header();
 ?>
 
-<script src="https://cdn.bootcdn.net/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 <div id="particles-js">
 
 

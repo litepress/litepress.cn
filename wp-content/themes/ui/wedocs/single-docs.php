@@ -126,9 +126,6 @@ the_post(); ?>
             </div><!-- .wedocs-single-content -->
             <aside class="col-xl-3">
                 <nav class="js-toc"></nav>
-                <link href="https://cdn.bootcdn.net/ajax/libs/tocbot/4.12.2/tocbot.min.css" rel="stylesheet">
-                <script src="https://cdn.bootcdn.net/ajax/libs/tocbot/4.12.2/tocbot.min.js"></script>
-
             </aside>
 
         </div><!-- .wedocs-single-wrap -->
