@@ -6,22 +6,24 @@ $(function () {
         "            <i class=\"fas fa-clipboard-list-check fa-fw\" style=\"\"></i></div>\n" +
         "        <span>文章目录</span></header><nav class=\"js-toc\"></nav></section>")
 $(".heti h2").each(function () {
-    text = $(this).text();
+    let text = $(this).text();
     $(this).attr("id", text);
 });
-tocbot.init({
-    // Where to render the table of contents.
-    tocSelector: '.js-toc',
-    // Where to grab the headings to build the table of contents.
-    contentSelector: '.bbp-reply-content.heti ',
-    // Which headings to grab inside of the contentSelector element.
-    headingSelector: 'h1, h2, h3',
-    // For headings inside relative or absolute positioned containers within content.
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollSmoothOffset: -90,
-    headingsOffset: 150
-});
+    if ($(".js-toc").length > 0) {
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '.js-toc',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: '.bbp-reply-content.heti ',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+            scrollSmooth: true,
+            scrollSmoothOffset: -90,
+            headingsOffset: 150
+        });
+    }
     $(".bbpress .js-toc").each(function () {
     if ($(this).is(":empty") || $(".toc-list-item").length < 3 ) {
         $(this).parent().remove();
@@ -92,7 +94,7 @@ $(".wp-subscribe").click(function () {
         success: function (success) {
             sc = success.content;
             const reg = /[\u4e00-\u9fa5]+/g;
-            newData = sc.match(reg);
+            let newData = sc.match(reg);
             if ('退订' === newData[0]) {
                 $('.wp-subscribe span').html("已关注");
             } else {
@@ -117,9 +119,11 @@ if ('退订' === $('.subscription-toggle').html()) {
 
 
 const navBar = $(".operation-sticker");
-const navToTop = navBar.offset().top - 20;
+if (navBar.length > 0){
+var navToTop = navBar.offset().top - 20
+}
 $(document).on('scroll', function () {
-    var scrollDistance = $(document).scrollTop();
+    const scrollDistance = $(document).scrollTop();
     if (scrollDistance > navToTop) {
         navBar.addClass("fixed");
     } else {
@@ -127,9 +131,9 @@ $(document).on('scroll', function () {
     }
 })
 
-var $root = $('html, body');
+const $root = $('html, body');
 $('.wp-replies').click(function () {
-    var href = $.attr(this, 'href');
+    const href = $.attr(this, 'href');
     $root.animate({
         scrollTop: $(href).offset().top - 100
     }, 800, function () {
@@ -138,7 +142,7 @@ $('.wp-replies').click(function () {
     return false;
 });
 $(".inner-comment-lists").each(function () {
-    height = $(this).height();
+    let height = $(this).height();
     // console.log(height);
     if (height > "500") {
         $(this).addClass("unfold").append("<div class='unfold-btn unfold-bg'><i class=\"fad fa-chevron-circle-down\"></i>展开更多</div>");
@@ -146,7 +150,7 @@ $(".inner-comment-lists").each(function () {
 });
 
 $('.unfold-btn').click(function () {
-    text = $(this).text();
+    let text = $(this).text();
     $(".inner-comment-lists").toggleClass("unfold");
     $(this).toggleClass("unfold-bg");
     if (text === "展开更多") {
@@ -158,19 +162,7 @@ $('.unfold-btn').click(function () {
 $(" .bbp-reply-content.heti img").each(function () {
     let src = $(this).attr("src");
     $(this).wrap("<a class=\"item\" href='" + src + "' ></a>")
-    /*srcsetval =$(this).attr("srcset");
-    let size_full = $(this).hasClass("size-full");
-    let bbp_thumb = $(this).hasClass("size-d4p-bbp-thumb");
-    if (srcsetval !== undefined &&  size_full === false ){
-        before ='-'+src.split("-").splice(-1, 1).join("");
-        after ='.'+src.split(".").splice(-1, 1).join("");
-        unzip =src.replace(before,after);
-        $(this).wrap("<a class=\"item\" href='"+unzip+"'></a>")
-    }
-    else if (bbp_thumb=== true){
-    }
-    else {
-    }*/
+
 });
 $(function () {
     lightGallery(document.getElementById('lightgallery'), {
