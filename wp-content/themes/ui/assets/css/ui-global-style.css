@@ -40,7 +40,9 @@
     margin-top: -3rem !important;
 }
 }
-
+.z-index-1{
+    z-index: 1;
+}
 .my-7{
     margin-top: 4rem!important;
     margin-bottom:4rem!important;
