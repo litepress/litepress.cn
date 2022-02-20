@@ -36,11 +36,11 @@ gp_tmpl_header();
                     </li>
                     <li class="mb-3">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="plugin" value="plugin" checked required>
+                        <input class="form-check-input" type="radio" name="plugin" id="plugin" value="plugin" checked required>
                         <label class="form-check-label" for="plugin">插件</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="theme" value="theme" required>
+                        <input class="form-check-input" type="radio" name="theme" id="theme" value="theme" required>
                         <label class="form-check-label" for="theme">主题</label>
                     </div>
                     </li>

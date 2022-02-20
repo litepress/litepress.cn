@@ -52,7 +52,25 @@ SQL;
 	/**
 	 * 输出周榜
 	 */
-	$html .= '周榜';
+	$html .= '
+	
+	<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">周榜</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">总榜</button>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+</div>
+	
+	';
 	foreach ( $translators_week as $k => $v ) {
 		$user_info = get_user_by( 'id', $v->user_id );
 		if ( $user_info ) {
