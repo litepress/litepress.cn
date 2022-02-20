@@ -17,7 +17,7 @@ get_header();
                             <li class=" pb-3 my-2 event">
                                 <h6 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
                                 <div class="des">
-									<?php the_excerpt(); ?>
+                                    <a style="color: inherit" href="<?php the_permalink(); ?>"><?php the_excerpt(); ?></a>
                                 </div>
                                 <span class="post-meta">
                                 发布于：<?php the_date() ?>
