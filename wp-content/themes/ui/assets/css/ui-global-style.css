@@ -47,7 +47,10 @@
     margin-top: 4rem!important;
     margin-bottom:4rem!important;
 }
-
+.wp-block-code{
+    padding: 0;
+    border: 0;
+}
 .py-8 {
     padding-bottom: 5rem !important;
     padding-top: 5rem !important;
@@ -1300,9 +1303,16 @@ code {
     padding: 10px;
     background-size: cover;
 }
-
-.ltp-single-content .comment-form-comment label, .ltp-single-content .comment-reply-title {
-    display: none;
+#editor-toolbar {
+    border: 1px solid #e8e8e8;
+    border-radius: 4px 4px 0 0;
+    border-bottom: none;
+}
+#editor-container{
+    min-height: 188px;
+    border: 1px solid #e8e8e8;
+    border-radius: 0 0 4px 4px;
+    border-top: none;
 }
 
 .ltp-single-content .comment-form, .ltp-single-content .comment-form-comment {
