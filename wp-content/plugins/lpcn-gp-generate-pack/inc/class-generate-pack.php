@@ -216,7 +216,7 @@ class Generate_Pack {
 	}
 
 	private function build_language_packs( $data ) {
-		$existing_packs = $this->get_active_language_packs( $data->type, $data->slug, $data->version );
+		$existing_packs = $this->get_active_language_packs( $data->type_raw, $data->slug, $data->version );
 
 		$set = current( $data->translation_sets );
 		// 获取 WP locale.
@@ -239,7 +239,7 @@ class Generate_Pack {
 		}
 
 		// 检查项目的翻译百分比是否高于阈值
-		$has_existing_pack = $this->has_active_language_pack( $data->type, $data->slug, $wp_locale );
+		$has_existing_pack = $this->has_active_language_pack( $data->type_raw, $data->slug, $wp_locale );
 		if ( ! $has_existing_pack ) {
 			$percent_translated = $set->percent_translated();
 			if ( $percent_translated < self::PACKAGE_THRESHOLD ) {
@@ -326,12 +326,12 @@ class Generate_Pack {
 		);
 	}
 
-	private function get_active_language_packs( $type, $domain, $version ): array|object {
+	private function get_active_language_packs( $type_raw, $domain, $version ): array|object {
 		global $wpdb;
 
 		$active_language_packs = $wpdb->get_results( $wpdb->prepare(
-			'SELECT language, updated FROM language_packs WHERE type = %s AND domain = %s AND version = %s AND active = 1',
-			$type,
+			'SELECT language, updated FROM language_packs WHERE type_raw = %s AND domain = %s AND version = %s AND active = 1',
+			$type_raw,
 			$domain,
 			$version
 		), OBJECT_K );
@@ -343,12 +343,12 @@ class Generate_Pack {
 		return $active_language_packs;
 	}
 
-	private function has_active_language_pack( $type, $domain, $locale ): bool {
+	private function has_active_language_pack( $type_raw, $domain, $locale ): bool {
 		global $wpdb;
 
 		return (bool) $wpdb->get_var( $wpdb->prepare(
-			'SELECT updated FROM language_packs WHERE type = %s AND domain = %s AND language = %s AND active = 1 LIMIT 1',
-			$type,
+			'SELECT updated FROM language_packs WHERE type_raw = %s AND domain = %s AND language = %s AND active = 1 LIMIT 1',
+			$type_raw,
 			$domain,
 			$locale
 		) );
