@@ -39,7 +39,7 @@ select user_id, count(*) as count
 from wp_4_gp_translations
 where user_id != 517
   and user_id != 0
-
+and DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= date(date_added)
 group by user_id
 order by count desc
 limit 10;
