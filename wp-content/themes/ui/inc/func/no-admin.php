@@ -714,16 +714,23 @@ add_filter( 'wedocs_breadcrumbs_html', function ( $html, $args ) {
 }, 10, 2 );
 
 // 移除bbPress对非管理员提交的过滤
-remove_filter( 'bbp_new_topic_pre_content', 'bbp_encode_bad',  10 );
+remove_filter( 'bbp_new_topic_pre_content', 'bbp_encode_bad', 10 );
 remove_filter( 'bbp_new_topic_pre_content', 'bbp_filter_kses', 30 );
-remove_filter( 'bbp_new_forum_pre_content', 'bbp_encode_bad',  10 );
+remove_filter( 'bbp_new_forum_pre_content', 'bbp_encode_bad', 10 );
 remove_filter( 'bbp_new_forum_pre_content', 'bbp_filter_kses', 30 );
-remove_filter( 'bbp_new_reply_pre_content', 'bbp_encode_bad',  10 );
+remove_filter( 'bbp_new_reply_pre_content', 'bbp_encode_bad', 10 );
 remove_filter( 'bbp_new_reply_pre_content', 'bbp_filter_kses', 30 );
 
-remove_filter( 'bbp_edit_topic_pre_content', 'bbp_encode_bad',  10 );
+remove_filter( 'bbp_edit_topic_pre_content', 'bbp_encode_bad', 10 );
 remove_filter( 'bbp_edit_topic_pre_content', 'bbp_filter_kses', 30 );
-remove_filter( 'bbp_edit_forum_pre_content', 'bbp_encode_bad',  10 );
+remove_filter( 'bbp_edit_forum_pre_content', 'bbp_encode_bad', 10 );
 remove_filter( 'bbp_edit_forum_pre_content', 'bbp_filter_kses', 30 );
-remove_filter( 'bbp_edit_reply_pre_content', 'bbp_encode_bad',  10 );
+remove_filter( 'bbp_edit_reply_pre_content', 'bbp_encode_bad', 10 );
 remove_filter( 'bbp_edit_reply_pre_content', 'bbp_filter_kses', 30 );
+
+/**
+ * 修改文章简介的阶段样式
+ */
+add_filter( 'excerpt_more', function () {
+	return '...';
+} );
