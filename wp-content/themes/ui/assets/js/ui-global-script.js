@@ -66,18 +66,6 @@ $(function () {
     }) ;   $(".textareas").each(function (){
         $(this).addClass("active");
     })
-
-
-
-
-    /* $(window).scroll(function(){
-         if($(window).scrollTop()>0){
-             $(".wp-nav").css({"position":"fixed","top":0,"z-index":"1001","width":"100%"});
-
-         }else{
-             $(".wp-nav").css({"position":"static"});
-         }
-     });*/
 });
 
 
@@ -186,7 +174,7 @@ $(function () {
 
 
 
-
+/*申请第三方项目ajax*/
     $(".trusteeship_form").on('click', '.btn-primary', function () {
 
         $.ajax({
@@ -206,7 +194,7 @@ $(function () {
                 if (s.message !== undefined ) {
                     $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> " + s.message);
                     setTimeout(function(){
-                        window.href.location = s.project_url; // 你的url地址
+                        window.location.href = s.project_url; // 你的url地址
                     },500);
 
                 } else {
