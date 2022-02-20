@@ -26,9 +26,9 @@ class Translations_Service {
 		$domains = join( ',', $domains );
 		if ( 'core' === $query_type ) {
 			$version = current( $projects );
-			$sql     = $wpdb->prepare( "select domain, version, updated from language_packs where type=%s and version=%s and active=1", $query_type, $version );
+			$sql     = $wpdb->prepare( "select type, domain, version, updated from language_packs where type_raw=%s and version=%s and active=1", $query_type, $version );
 		} else {
-			$sql = $wpdb->prepare( "select domain, version, updated from language_packs where type=%s and domain in ({$domains}) and active=1", $query_type, );
+			$sql = $wpdb->prepare( "select type, domain, version, updated from language_packs where type_raw=%s and domain in ({$domains}) and active=1", $query_type, );
 		}
 		$r = $wpdb->get_results( $sql, ARRAY_A );
 
@@ -123,7 +123,7 @@ class Translations_Service {
 			'language'   => 'zh_CN',
 			'version'    => $version,
 			'updated'    => $updated,
-			'package'    => "https://litepress.cn/wp-content/language-pack/{$type}s/{$slug}/{$version}/zh_CN.zip",
+			'package'    => "https://litepress.cn/wp-content/language-pack/{$info['type']}s/{$slug}/{$version}/zh_CN.zip",
 			'autoupdate' => true
 		);
 	}
