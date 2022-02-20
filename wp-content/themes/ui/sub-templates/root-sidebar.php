@@ -135,7 +135,7 @@
 
             <small>你也可以选择一次性捐赠来支持我们的工作</small>
 
-            <a href="/translate" target="_blank" class="btn btn-outline-primary d-block"
+            <a href="/translate" target="_blank" class="btn btn-outline-primary d-block mt-2"
                role="button">
                 <i class="fas fa-handshake-alt" style=""></i>
                 <span class="uabb-button-text uabb-creative-button-text">赞助 or 支持</span>
@@ -151,10 +151,12 @@
             <div class="me-2 wp-icon">
                 <i class="fad fa-language"></i></div>
             <span>翻译贡献榜</span></header>
-        <article>
-            <small>参与翻译工作是进行社区贡献的好方式</small>
+        <article class="pt-0">
+
             <?php  echo do_shortcode('[translators]') ?>
-            <a href="/translate" target="_blank" class="btn btn-outline-primary d-block"
+            <small>参与翻译工作是进行社区贡献的好方式</small>
+
+            <a href="/translate" target="_blank" class="btn btn-outline-primary d-block mt-2"
                role="button">
                 <i class=" fad fa-users-medical"></i>
                 <span class="uabb-button-text uabb-creative-button-text">参与贡献</span>
