@@ -15,17 +15,17 @@ add_action( 'dynamic_sidebar', 'um_remove_scripts_and_styles_widget' );
 
 /**
  * Maybe remove Ultimate Member CSS and JS
- * @global WP_Post $post
+ * @return NULL
  * @global bool $um_load_assets
  * @global WP_Scripts $wp_scripts
  * @global WP_Styles $wp_styles
- * @return NULL
+ * @global WP_Post $post
  */
 function um_remove_scripts_and_styles() {
 	global $post, $um_load_assets, $wp_scripts, $wp_styles;
 
 	// Set here IDs of the pages, that use Ultimate Member scripts and styles
-	$um_posts = array(0);
+	$um_posts = array( 0 );
 
 	// Set here URLs of the pages, that use Ultimate Member scripts and styles
 	$um_urls = array(
@@ -44,29 +44,29 @@ function um_remove_scripts_and_styles() {
 	if ( is_admin() || is_ultimatemember() ) {
 		return;
 	}
-	
+
 	$REQUEST_URI = $_SERVER['REQUEST_URI'];
 	if ( in_array( $REQUEST_URI, $um_urls ) ) {
 		return;
 	}
 	foreach ( $um_urls as $key => $um_url ) {
-		if ( strpos( $REQUEST_URI, $um_url ) !== FALSE ) {
+		if ( strpos( $REQUEST_URI, $um_url ) !== false ) {
 			return;
 		}
 	}
 
-	if ( !empty( $um_load_assets ) ) {
+	if ( ! empty( $um_load_assets ) ) {
 		return;
 	}
-	
+
 	if ( isset( $post ) && is_a( $post, 'WP_Post' ) ) {
 		if ( in_array( $post->ID, $um_posts ) ) {
 			return;
 		}
-		if ( strpos( $post->post_content, '[ultimatemember_' ) !== FALSE ) {
+		if ( strpos( $post->post_content, '[ultimatemember_' ) !== false ) {
 			return;
 		}
-		if ( strpos( $post->post_content, '[ultimatemember form_id' ) !== FALSE ) {
+		if ( strpos( $post->post_content, '[ultimatemember form_id' ) !== false ) {
 			return;
 		}
 	}
@@ -76,24 +76,35 @@ function um_remove_scripts_and_styles() {
 	}
 
 	foreach ( $wp_scripts->queue as $key => $script ) {
-		if ( strpos( $script, 'um_' ) === 0 || strpos( $script, 'um-' ) === 0 || strpos( $wp_scripts->registered[$script]->src, '/ultimate-member/assets/' ) !== FALSE ) {
-			unset( $wp_scripts->queue[$key] );
+		// 允许消息通知插件全局加载
+		if ( str_contains( $script, 'notifications' ) ) {
+			continue;
+		}
+
+		if ( strpos( $script, 'um_' ) === 0 || strpos( $script, 'um-' ) === 0 || strpos( $wp_scripts->registered[ $script ]->src, '/ultimate-member/assets/' ) !== false ) {
+			unset( $wp_scripts->queue[ $key ] );
 		}
 	}
 
 	foreach ( $wp_styles->queue as $key => $style ) {
-		if ( strpos( $style, 'um_' ) === 0 || strpos( $style, 'um-' ) === 0 || strpos( $wp_styles->registered[$style]->src, '/ultimate-member/assets/' ) !== FALSE ) {
-			unset( $wp_styles->queue[$key] );
+		// 允许消息通知插件全局加载
+		if ( str_contains( $style, 'notifications' ) ) {
+			continue;
+		}
+
+		if ( strpos( $style, 'um_' ) === 0 || strpos( $style, 'um-' ) === 0 || strpos( $wp_styles->registered[ $style ]->src, '/ultimate-member/assets/' ) !== false ) {
+			unset( $wp_styles->queue[ $key ] );
 		}
 	}
 }
 
 /**
  * Check whether Ultimate Member widget was used
+ *
  * @param array $widget
  */
 function um_remove_scripts_and_styles_widget( $widget ) {
 	if ( strpos( $widget['id'], 'um_' ) === 0 || strpos( $widget['id'], 'um-' ) === 0 ) {
-		$GLOBALS['um_load_assets'] = TRUE;
+		$GLOBALS['um_load_assets'] = true;
 	}
 }
