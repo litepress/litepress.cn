@@ -65,7 +65,7 @@
                         <h5 class="text-uppercase text-white opacity-85 mb-3">项目</h5>
                         <ul class="list-unstyled">
                             <li class="mb-1"><a class="link-600" href="http://cravatar.cn">Cravatar</a></li>
-                            <li class="mb-1"><a class="link-600" href="#!">WP-China-Yes</a></li>
+                            <li class="mb-1"><a class="link-600" href="/download">WP-China-Yes</a></li>
                             <li class="mb-1"><a class="link-600" href="#!">LP Translate</a></li>
 
                         </ul>
