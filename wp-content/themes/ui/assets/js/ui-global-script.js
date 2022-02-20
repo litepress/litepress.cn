@@ -337,3 +337,46 @@ $("#lp-exit-button").on("click",function(){
     }
     $(".verify-btn").find("a").text("开始验证").end().find(".spinner-border").addClass("hide")
 });
+
+
+$(function(){
+    $.fn.autoHeight = function(){
+        function autoHeight(elem){
+            elem.style.height = 'auto';
+            elem.scrollTop = 0; //防抖动
+            elem.style.height = elem.scrollHeight + 'px';
+        }
+        this.each(function(){
+            autoHeight(this);
+            $(this).on('keyup', function(){
+                autoHeight(this);
+            });
+        });
+    }
+    $('textarea[autoHeight]').autoHeight();
+})
+
+
+const E = window.wangEditor; // 全局变量
+const editorConfig = { MENU_CONF: {} }
+editorConfig.placeholder = '请输入内容'
+editorConfig.MENU_CONF['uploadImage'] = {
+    fieldName: 'index-fileName',
+    base64LimitSize: 10 * 1024 * 1024, // 10M 以下插入 base64
+}
+
+editorConfig.onChange = function() {
+    const html = editor.getHtml()
+    document.getElementById('comment').innerHTML = html
+}
+
+const editor = E.createEditor({
+    selector: '#editor-container',
+    config: editorConfig,
+    mode: 'simple'
+})
+const toolbar = E.createToolbar({
+    editor,
+    selector: '#editor-toolbar',
+    mode: 'simple'
+})
