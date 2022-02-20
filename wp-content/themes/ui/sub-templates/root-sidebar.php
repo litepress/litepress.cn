@@ -68,7 +68,6 @@
                 <i class="fas fa-users" style=""></i></div>
             <span>赞助商＆支持者</span></header>
         <article>
-            <small>赞助商负担了社区大部分成本开支</small>
 
             <div class="row row-cols-3 row-cols-xl-2 wp-img-ground">
                 <div class="col">
@@ -133,8 +132,6 @@
                 </div>
             </div>
 
-            <small>你也可以选择一次性捐赠来支持我们的工作</small>
-
             <a href="/translate" target="_blank" class="btn btn-outline-primary d-block mt-2"
                role="button">
                 <i class="fas fa-handshake-alt" style=""></i>
@@ -154,7 +151,6 @@
         <article class="pt-0">
 
             <?php  echo do_shortcode('[translators]') ?>
-            <small>参与翻译工作是进行社区贡献的好方式</small>
 
             <a href="/translate" target="_blank" class="btn btn-outline-primary d-block mt-2"
                role="button">
