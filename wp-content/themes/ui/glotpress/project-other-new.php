@@ -41,7 +41,7 @@ gp_tmpl_header();
 
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="thene" value="thene" required>
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="theme" value="theme" required>
                         <label class="form-check-label" for="inlineRadio2">主题</label>
                     </div>
                     </li>
