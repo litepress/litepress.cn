@@ -65,7 +65,7 @@
                         <h5 class="text-uppercase text-white opacity-85 mb-3">项目</h5>
                         <ul class="list-unstyled">
                             <li class="mb-1"><a class="link-600" href="http://cravatar.cn">Cravatar</a></li>
-                            <li class="mb-1"><a class="link-600" href="#!">WP-China-Yes</a></li>
+                            <li class="mb-1"><a class="link-600" href="/download">WP-China-Yes</a></li>
                             <li class="mb-1"><a class="link-600" href="#!">LP Translate</a></li>
 
                         </ul>
@@ -73,9 +73,9 @@
                     <div class="col-6 col-md-3">
                         <h5 class="text-uppercase text-white opacity-85 mb-3">新闻</h5>
                         <ul class="list-unstyled">
-                            <li class="mb-1"><a class="link-600" href="#!">动态</a></li>
-                            <li class="mb-1"><a class="link-600" href="#!">版本发布</a></li>
-                            <li class="mb-1"><a class="link-600" href="#!">维护通知</a></li>
+                            <li class="mb-1"><a class="link-600" href="/news/archives/category/news">动态</a></li>
+                            <li class="mb-1"><a class="link-600" href="/news/archives/category/release">版本发布</a></li>
+                            <li class="mb-1"><a class="link-600" href="/news/archives/category/maintenance">维护通知</a></li>
 
                         </ul>
                     </div>
@@ -83,7 +83,7 @@
                         <h5 class="text-uppercase text-white opacity-85 mb-3">贡献</h5>
                         <ul class="list-unstyled">
                             <li class="mb-1"><a class="link-600" href="/about/timeline">参与开发</a></li>
-                            <li class="mb-1"><a class="link-600" href="#!">参与翻译</a></li>
+                            <li class="mb-1"><a class="link-600" href="/translate/">参与翻译</a></li>
                             <li class="mb-1"><a class="link-600" href="/about/council">捐赠</a></li>
 
                         </ul>

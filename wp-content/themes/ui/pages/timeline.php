@@ -154,10 +154,10 @@ get_header();
 <!--                    <h1 class="fw-bold">Timeline</h1>
                     <h6 class="mb-5">We transform your perception into an excellent website</h6>-->
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
+                        <ul class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item active"><a href="/"><i class="ti-home"></i> 首页</a></li>
                             <li class="breadcrumb-item">发展历程</li>
-                        </ol>
+                        </ul>
                     </nav>
                 </div>
             </div>
