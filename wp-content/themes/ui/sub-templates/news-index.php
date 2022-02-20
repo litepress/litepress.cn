@@ -14,7 +14,7 @@ get_header();
 							the_post(); ?>
 
 
-                            <div class=" pb-3 my-2 event">
+                            <li class=" pb-3 my-2 event">
                                 <h6 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
                                 <div class="des">
 									<?php the_excerpt(); ?>
@@ -29,7 +29,7 @@ get_header();
                                       target="_blank"><?php the_author_meta( 'display_name' ) ?></a>
                                 | 阅读：<?php echo get_post_meta( get_the_ID(), 'views', true ) ?: 0; ?> 次
                                 </span>
-                            </div>
+                            </li>
 
 
 						<?php endwhile; ?>
