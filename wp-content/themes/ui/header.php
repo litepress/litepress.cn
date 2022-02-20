@@ -32,7 +32,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div class="py-3 bg-dark bg-pattern @@classList">
+<div class="py-3 bg-dark  z-index-1">
     <div class="container">
         <div class="row">
             <div class="col-12">
