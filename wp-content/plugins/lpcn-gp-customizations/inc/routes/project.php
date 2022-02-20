@@ -752,6 +752,7 @@ SQL;
 		$project_name = sanitize_text_field( $_POST['project_name'] ?? '' );
 		$text_domain  = sanitize_text_field( $_POST['text_domain'] ?? '' );
 		$description  = sanitize_text_field( $_POST['description'] ?? '' );
+		$type         = sanitize_text_field( $_POST['type'] ?? '' );
 
 		if ( empty( $project_name ) ) {
 			echo json_encode( array( 'error' => '项目名不能为空' ), JSON_UNESCAPED_SLASHES );
@@ -808,6 +809,13 @@ SQL;
 				echo json_encode( array( 'error' => '项目创建时设置封面图失败，请联系平台管理员解决。' ), JSON_UNESCAPED_SLASHES );
 				exit;
 			}
+		}
+
+		/**
+		 * 在 project meta 中标记当前项目属于插件还是主题
+		 */
+		if ( in_array( $type, array( 'plugin', 'theme' ) ) ) {
+			gp_update_meta( $project->id, 'type_raw', $type, 'project' );
 		}
 
 		/**
