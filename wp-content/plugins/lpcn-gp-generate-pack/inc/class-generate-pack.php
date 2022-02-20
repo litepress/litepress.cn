@@ -19,14 +19,30 @@ class Generate_Pack {
 
 	private string $type = '';
 
+	/**
+	 * -------------------------------------------------------------
+	 * 标记项目原始类型
+	 * -------------------------------------------------------------
+	 * 对于第三方托管项目，其 type 为 other，此时难以通过 API 为用户推送翻译，
+	 * 因为不知道该项目到底是插件还是主题。由此为新项目引入名为 type_raw 的
+	 * meta 字段，来标识项目的“原始类型”，其值只可能是 plugin 或 theme 。
+	 *
+	 * 对于数据库中的 type_raw 字段，如果项目自身不存在 type_raw 值的话，则会
+	 * 调用他的 type 值，由此其值将也可能是 core、other
+	 *
+	 * @var string
+	 */
+	private string $type_raw = '';
+
 	private string $version = '';
 
 	private array $branches = array();
 
-	public function job( string $slug, string $type, string $version, string $branch = '' ) {
-		$this->slug    = $slug;
-		$this->type    = $type;
-		$this->version = $version;
+	public function job( string $slug, string $type, string $version, string $branch = '', string $type_raw = '' ) {
+		$this->slug     = $slug;
+		$this->type     = $type;
+		$this->version  = $version;
+		$this->type_raw = $type_raw;
 
 		switch ( $type ) {
 			case 'plugin':
@@ -95,6 +111,7 @@ class Generate_Pack {
 
 			$data                    = new stdClass();
 			$data->type              = $this->type;
+			$data->type_raw          = $this->type_raw;
 			$data->domain            = $textdomain;
 			$data->slug              = $this->slug;
 			$data->version           = $this->version;
@@ -178,7 +195,7 @@ class Generate_Pack {
 				$last_modified = $pack_file_path['last_modified'];
 			}
 		}
-		$result = $this->insert_language_pack( $data->type, $data->slug, 'zh_CN', $data->version, $last_modified );
+		$result = $this->insert_language_pack( $data->type, $data->type_raw, $data->slug, 'zh_CN', $data->version, $last_modified );
 
 		if ( is_wp_error( $result ) ) {
 			Logger::warning( 'LanguagePack', sprintf( "Language pack for zh_CN failed: %s", $result->get_error_message() ) );
@@ -443,12 +460,15 @@ class Generate_Pack {
 		return $match[1];
 	}
 
-	private function insert_language_pack( $type, $domain, $language, $version, $updated ): WP_Error|bool {
+	private function insert_language_pack( $type, $type_raw, $domain, $language, $version, $updated ): WP_Error|bool {
 		global $wpdb;
 
+		$type_raw = $type_raw ?: $type;
+
 		$existing = $wpdb->get_var( $wpdb->prepare(
-			'SELECT id FROM language_packs WHERE type = %s AND domain = %s AND language = %s AND version = %s AND updated = %s AND active = 1',
+			'SELECT id FROM language_packs WHERE type = %s AND type_raw = %s AND domain = %s AND language = %s AND version = %s AND updated = %s AND active = 1',
 			$type,
+			$type_raw,
 			$domain,
 			$language,
 			$version,
@@ -462,6 +482,7 @@ class Generate_Pack {
 		$now      = current_time( 'mysql', 1 );
 		$inserted = $wpdb->insert( 'language_packs', [
 			'type'          => $type,
+			'type_raw'      => $type_raw,
 			'domain'        => $domain,
 			'language'      => $language,
 			'version'       => $version,
@@ -477,9 +498,10 @@ class Generate_Pack {
 
 		// 将相同版本的旧语言包标记为非活动。
 		$wpdb->query( $wpdb->prepare(
-			'UPDATE language_packs SET active = 0, date_modified = %s WHERE type = %s AND domain = %s AND language = %s AND version = %s AND id <> %d',
+			'UPDATE language_packs SET active = 0, date_modified = %s WHERE type = %s AND type_raw = %s AND domain = %s AND language = %s AND version = %s AND id <> %d',
 			$now,
 			$type,
+			$type_raw,
 			$domain,
 			$language,
 			$version,

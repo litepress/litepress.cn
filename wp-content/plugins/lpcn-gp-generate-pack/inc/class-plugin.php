@@ -61,12 +61,15 @@ class Plugin {
 			$products = GP::$project->find_many( array( 'parent_project_id' => $id ) );
 
 			foreach ( $products as $product ) {
-				$version = gp_get_meta( 'project', $product->id, 'version' ) ?: '';
+				$version  = gp_get_meta( 'project', $product->id, 'version' ) ?: '';
+				$type_raw = gp_get_meta( 'project', $product->id, 'type_raw' ) ?: '';
 
 				$generate_pack->job(
 					$product->slug,
 					$type,
 					$version,
+					'',
+					$type_raw
 				);
 			}
 		}
