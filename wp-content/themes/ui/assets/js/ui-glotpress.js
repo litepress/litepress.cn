@@ -5,35 +5,36 @@ $(".action.edit").click(function(){
 $("tr.preview").dblclick(function(){
   $(this).next().find(".textareas").addClass("active");
 })
-
-$("#translations").tooltip({
-  items: ".glossary-word",
-  content: function() {
-    var i = $("<ul>");
-    return $.each($(this).data("translations"), function (t, e) {
-      e.locale_entry = undefined;
-      var r = $("<li>");
-      e.locale_entry && r.append($("<span>", {
-        text: e.locale_entry
-      }).addClass("locale-entry bubble")),
-          r.append($("<span>", {
-            text: e.pos
-          }).addClass("pos")),
-          r.append($("<span>", {
-            text: e.translation
-          }).addClass("translation")),
-          r.append($("<span>", {
-            text: e.comment
-          }).addClass("comment")),
-          i.append(r)
-    })
-        ,
-        i
-  },
-  hide: !1,
-  show: !1
-})
-
+const $translations = $("#translations");
+if ($translations.length > 0) {
+  $translations.tooltip({
+    items: ".glossary-word",
+    content: function () {
+      const i = $("<ul>");
+      return $.each($(this).data("translations"), function (t, e) {
+        e.locale_entry = undefined;
+        const r = $("<li>");
+        e.locale_entry && r.append($("<span>", {
+          text: e.locale_entry
+        }).addClass("locale-entry bubble")),
+            r.append($("<span>", {
+              text: e.pos
+            }).addClass("pos")),
+            r.append($("<span>", {
+              text: e.translation
+            }).addClass("translation")),
+            r.append($("<span>", {
+              text: e.comment
+            }).addClass("comment")),
+            i.append(r)
+      })
+          ,
+          i
+    },
+    hide: !1,
+    show: !1
+  })
+}
 $(".btn.replace").click(function(){
   $(this).parent().siblings(".replace").toggle();
   $(this).parent().siblings(".filters-expanded:not(.replace)").hide();
