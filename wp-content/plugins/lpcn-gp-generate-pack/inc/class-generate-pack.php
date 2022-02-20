@@ -100,7 +100,7 @@ class Generate_Pack {
 			$data->version           = $this->version;
 			$data->translation_sets  = $translation_sets;
 			$data->gp_project        = $gp_project;
-			$data->working_directory = $gp_project;
+			$data->working_directory = $working_directory;
 			$data->export_directory  = $export_directory;
 			$r                       = $this->build_language_packs( $data );
 			if ( ! $r ) {
