@@ -64,8 +64,10 @@
 
 .w-e-text-placeholder {
     left: 10px;
-    top: 17px;
-    width: 90%
+    /*top: 17px;*/
+    width: 90%;
+    top:0;/*适配heti*/
+
 }
 
 .w-e-max-length-info, .w-e-text-placeholder {
@@ -262,7 +264,9 @@
 
 .w-e-select-list ul {
     line-height: 1;
-    list-style: none
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .w-e-select-list ul .selected {
@@ -320,7 +324,8 @@
     padding: 5px;
     position: absolute;
     right: 8px;
-    top: 7px
+    top: 7px;
+    background: none;
 }
 
 .w-e-modal .btn-close svg {
@@ -555,14 +560,6 @@ body .w-e-modal, body .w-e-modal * {
     box-shadow: none
 }
 
-.w-e-text-container [data-slate-editor] ol, .w-e-text-container [data-slate-editor] ul {
-    padding-left: 20px
-}
-
-.w-e-text-container [data-slate-editor] li {
-    line-height: inherit;
-    margin: 10px 0
-}
 
 .w-e-text-container [data-slate-editor] table {
     border-collapse: collapse
