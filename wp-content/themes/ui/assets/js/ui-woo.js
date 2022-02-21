@@ -32,7 +32,7 @@ $(function () {
         $(projectsearch).attr("placeholder", "搜索小程序……");
     } else if (url === "price-desc") {
     }
-    $("#projects-filter").on("input", function () {
+/*    $("#projects-filter").on("input", function () {
 
         var projectval = $(projectsearch).val();
 
@@ -42,7 +42,7 @@ $(function () {
             }
         })
 
-    });
+    });*/
 
     $(function () {
         var headerval = $(".wp-nav .header-search input").val();
