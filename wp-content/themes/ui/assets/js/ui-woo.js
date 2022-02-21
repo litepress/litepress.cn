@@ -16,39 +16,17 @@ $(function () {
     });
 
 
-    var projectsearch = $(".search-form input[type=search]");
-    var url = $(location).attr('href'); //获取url地址
-    var url_noparm = location.protocol + '//' + location.host + location.pathname;
-    var url_noparm4 = url_noparm.split("/").splice(0, 4).join("/");
-    if (url.indexOf("plugins") >= 0) {
-        $(projectsearch).attr("placeholder", "搜索插件……");
-    } else if (url.indexOf("docs") >= 0) {
-        $(projectsearch).attr("placeholder", "搜索文档……");
-    } else if (url.indexOf("themes") >= 0) {
-        $(projectsearch).attr("placeholder", "搜索主题……");
-    } else if (url.indexOf("wordpress") >= 0) {
-        $(projectsearch).attr("placeholder", "搜索WordPress核心……");
-    } else if (url.indexOf("mini_programs") >= 0) {
-        $(projectsearch).attr("placeholder", "搜索小程序……");
-    } else if (url === "price-desc") {
-    }
-/*    $("#projects-filter").on("input", function () {
 
-        var projectval = $(projectsearch).val();
 
-        $(projectsearch).keydown(function (event) {
-            if (event.keyCode === 13) {
-                $(location).prop('href', url_noparm4 + "/?s=" + projectval);
-            }
-        })
-
-    });*/
 
     $(function () {
         var headerval = $(".wp-nav .header-search input").val();
         $(projectsearch).val(headerval);
         $(".wp-nav .header-search input").val("");
     });
+
+
+
     jQuery('#hide-help-notice').click(function () {
         jQuery.ajax({url: '/getting-started/hide-notice/'});
         jQuery('#help-notice').fadeOut(1000);
