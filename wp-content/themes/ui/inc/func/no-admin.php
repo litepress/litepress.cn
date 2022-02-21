@@ -401,8 +401,9 @@ add_filter( 'comment_form_defaults', function ( $fields ) {
 	$fields['comment_field'] = sprintf(
 		'<section class="comment-form-comment"><li class="form-floating w-100">%s %s</li> %s</section>',
         '<textarea  class="form-control d-none" id="comment" name="comment"  maxlength="65525" ></textarea>
+<section>
       <div id="editor-toolbar"></div>
-      <div id="editor-container" class="heti"></div>',
+      <div id="editor-container" class="heti"></div></section>',
 		sprintf(
 			'<!--<label for="comment">%s</label>-->',
 			_x( 'Comment', 'noun' )
