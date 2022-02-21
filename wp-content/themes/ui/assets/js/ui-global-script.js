@@ -375,7 +375,7 @@ if ( $("#editor-container").length > 0 ) {
         config: editorConfig,
         mode: 'default'
     })
-}
+
 const toolbarConfig = {
     excludeKeys: [
         // 排除菜单组，写菜单组 key 的值即可
@@ -400,7 +400,7 @@ const toolbar = E.createToolbar({
     config: toolbarConfig,
     mode: 'simple'
 })
-
+}
 
 /*搜索占位符*/
 const projectsearch = $(".search-form input[type=search]");
