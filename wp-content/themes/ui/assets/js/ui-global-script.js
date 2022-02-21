@@ -46,12 +46,12 @@ $(".ant-btn").on("change", "input[type='file']", function () {
 })(jQuery);
 
 /*搜索词跟随*/
-const header_search_keyword = decodeURIComponent($.Request("keyword"));
-const header_search_s = decodeURIComponent($.Request("s"));
-if (header_search_keyword.length > 0){
-    $(".search-form input").val(header_search_keyword)
-}else if(header_search_s.length > 0) {
-    $(".search-form input").val(header_search_s)
+var header_search_keyword = $.Request("keyword");
+var header_search_s = $.Request("s");
+if (header_search_keyword != null){
+    $(".search-form input").val(decodeURIComponent(header_search_keyword))
+}else if(header_search_s != null) {
+    $(".search-form input").val(decodeURIComponent(header_search_s))
 }
 
 
