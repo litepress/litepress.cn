@@ -764,10 +764,14 @@ SQL;
 
 		// 正式创建前先检查下是否有重复的项目
 		$exist = GP::$project->find_one( array(
-			'path' => "others/{$text_domain}",
+			'path' => array(
+				"others/{$text_domain}",
+				"plugins/{$text_domain}",
+				"themes/{$text_domain}",
+			)
 		) );
 		if ( $exist ) {
-			echo json_encode( array( 'error' => "该文本域已经被托管，所属项目：https://litepress.cn/translate/projects/others/{$text_domain}/" ), JSON_UNESCAPED_SLASHES );
+			echo json_encode( array( 'error' => "该文本域已经被托管，所属项目：https://litepress.cn/translate/projects/{$exist->path}/。" ), JSON_UNESCAPED_SLASHES );
 			exit;
 		}
 
