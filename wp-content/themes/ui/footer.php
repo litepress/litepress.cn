@@ -92,7 +92,7 @@
                         <h5 class="text-uppercase text-white opacity-85 mb-3">关于</h5>
                         <ul class="list-unstyled">
                             <li class="mb-1"><a class="link-600" href="/about/timeline">发展历程</a></li>
-                            <li class="mb-1"><a class="link-600" href="#!">开源许可</a></li>
+                            <li class="mb-1"><a class="link-600" href="/about/open-source-license/">开源许可</a></li>
                             <li class="mb-1"><a class="link-600" href="/about/council">社区理事会</a></li>
 
                         </ul>
