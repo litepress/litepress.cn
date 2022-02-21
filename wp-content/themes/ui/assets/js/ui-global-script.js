@@ -46,8 +46,13 @@ $(".ant-btn").on("change", "input[type='file']", function () {
 })(jQuery);
 
 /*搜索词跟随*/
-const header_search_val = decodeURIComponent($.Request("keyword"));
-$(".search-form  .header-search input").val(header_search_val)
+const header_search_keyword = decodeURIComponent($.Request("keyword"));
+const header_search_s = decodeURIComponent($.Request("s"));
+if (header_search_keyword === "null"){
+    $(".search-form input").val(header_search_s)
+}else {
+    $(".search-form input").val(header_search_keyword)
+}
 
 
 
@@ -161,19 +166,6 @@ $(function () {
     const project_name = $.Request("project_name");
     $("input[name=textdomain]").val(textdomain);
     $("input[name=project_name]").val(project_name);
-/*$("li .um-notification-b").click(function () {
-    $('.um-notification-live-feed').animate({width:'toggle'},350);
-
-})
-    $(".um-notification-i-close").click(function () {
-
-        $('.um-notification-live-feed').animate({width:'toggle'},350);
-
-})*/
-
-
-
-
 /*申请第三方项目ajax*/
     $(".trusteeship_form").on('click', '.btn-primary', function () {
 
@@ -293,7 +285,7 @@ $("#lp-apply-button").on("click",function(){
     }
     $(".verify-btn").find("a").text("开始验证").end().find(".spinner-border").addClass("hide")
 });
-
+/*回退表单*/
 $("#lp-exit-button").on("click",function(){
     form_validation()
     const site = $("#lp-exit-site").val();
@@ -338,7 +330,7 @@ $("#lp-exit-button").on("click",function(){
     $(".verify-btn").find("a").text("开始验证").end().find(".spinner-border").addClass("hide")
 });
 
-
+/*textarea自适应高度*/
 $(function(){
     $.fn.autoHeight = function(){
         function autoHeight(elem){
@@ -414,7 +406,7 @@ if (url.indexOf("plugins") >= 0) {
 } else if (url.indexOf("themes") >= 0) {
     $(projectsearch).attr("placeholder", "搜索主题……");
 } else if (url.indexOf("cores") >= 0) {
-    $(projectsearch).attr("placeholder", "搜索WordPress核心……");
+    $(projectsearch).attr("placeholder", "搜索核心……");
 } else if (url.indexOf("mini-app") >= 0) {
     $(projectsearch).attr("placeholder", "搜索小程序……");
 } else if (url.indexOf("others") >= 0) {
