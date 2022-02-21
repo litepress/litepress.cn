@@ -402,7 +402,7 @@ add_filter( 'comment_form_defaults', function ( $fields ) {
 		'<section class="comment-form-comment"><li class="form-floating w-100">%s %s</li> %s</section>',
         '<textarea  class="form-control d-none" id="comment" name="comment"  maxlength="65525" ></textarea>
       <div id="editor-toolbar"></div>
-      <div id="editor-container"></div>',
+      <div id="editor-container" class="heti"></div>',
 		sprintf(
 			'<!--<label for="comment">%s</label>-->',
 			_x( 'Comment', 'noun' )

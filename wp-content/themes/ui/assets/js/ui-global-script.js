@@ -362,12 +362,12 @@ const editorConfig = { MENU_CONF: {} }
 editorConfig.placeholder = '请输入内容'
 editorConfig.MENU_CONF['uploadImage'] = {
     fieldName: 'index-fileName',
-    base64LimitSize: 10 * 1024 * 1024, // 10M 以下插入 base64
+    // 小于该值就插入 base64 格式（而不上传），默认为 0
+    base64LimitSize: 5 * 1024 // 5kb
 }
 
 editorConfig.onChange = function() {
-    const html = editor.getHtml()
-    document.getElementById('comment').innerHTML = html
+    document.getElementById('comment').innerHTML = editor.getHtml()
 }
 
 const editor = E.createEditor({
@@ -375,8 +375,27 @@ const editor = E.createEditor({
     config: editorConfig,
     mode: 'simple'
 })
+const toolbarConfig = {
+    excludeKeys: [
+        // 排除菜单组，写菜单组 key 的值即可
+        'blockquote',
+        'header1',
+        'header2',
+        'header3',
+        'bgColor',
+        "justifyLeft",
+        "justifyRight",
+        "justifyCenter",
+        "group-image",
+         "insertVideo",
+        "insertTable",
+        "fullScreen"
+
+    ]
+}
 const toolbar = E.createToolbar({
     editor,
     selector: '#editor-toolbar',
+    config: toolbarConfig,
     mode: 'simple'
 })
