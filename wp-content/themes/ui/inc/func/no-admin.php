@@ -399,13 +399,16 @@ add_filter( 'comment_form_defaults', function ( $fields ) {
 	$fields['logged_in_as']  = get_avatar( get_current_user_id(), 32 );
 	$fields['submit_button'] = '';
 	$fields['comment_field'] = sprintf(
-		'<p class="comment-form-comment">%s %s %s</p>',
+		'<section class="comment-form-comment"><li class="form-floating w-100">%s %s</li> %s</section>',
+        '<textarea  class="form-control d-none" id="comment" name="comment"  maxlength="65525" ></textarea>
+<section>
+      <div id="editor-toolbar"></div>
+      <div id="editor-container" class="heti"></div></section>',
 		sprintf(
-			'<label for="comment" class="comment-label">%s</label>',
+			'<!--<label for="comment">%s</label>-->',
 			_x( 'Comment', 'noun' )
 		),
-		'<textarea class="form-control" id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea>',
-		'<input type="submit" id="submit" class="btn btn-primary mt-2" value="提交评论" />'
+		'<button type="submit" id="submit" class="btn btn-primary mt-2"><i class="fad fa-paper-plane"></i> 提交评论</button>'
 	);
 
 	return $fields;

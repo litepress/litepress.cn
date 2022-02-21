@@ -337,3 +337,85 @@ $("#lp-exit-button").on("click",function(){
     }
     $(".verify-btn").find("a").text("开始验证").end().find(".spinner-border").addClass("hide")
 });
+
+
+$(function(){
+    $.fn.autoHeight = function(){
+        function autoHeight(elem){
+            elem.style.height = 'auto';
+            elem.scrollTop = 0; //防抖动
+            elem.style.height = elem.scrollHeight + 'px';
+        }
+        this.each(function(){
+            autoHeight(this);
+            $(this).on('keyup', function(){
+                autoHeight(this);
+            });
+        });
+    }
+    $('textarea[autoHeight]').autoHeight();
+})
+
+
+const E = window.wangEditor; // 全局变量
+const editorConfig = { MENU_CONF: {} }
+editorConfig.placeholder = '点击评论'
+editorConfig.MENU_CONF['uploadImage'] = {
+    fieldName: 'index-fileName',
+    // 小于该值就插入 base64 格式（而不上传），默认为 0
+    base64LimitSize: 5 * 1024 // 5kb
+}
+
+editorConfig.onChange = function() {
+    document.getElementById('comment').innerHTML = editor.getHtml()
+}
+if ( $("#editor-container").length > 0 ) {
+    const editor = E.createEditor({
+        selector: '#editor-container',
+        config: editorConfig,
+        mode: 'default'
+    })
+
+const toolbarConfig = {
+    excludeKeys: [
+        // 排除菜单组，写菜单组 key 的值即可
+        'blockquote',
+        'header1',
+        'header2',
+        'header3',
+        'bgColor',
+        "justifyLeft",
+        "justifyRight",
+        "justifyCenter",
+        "group-image",
+         "insertVideo",
+        "insertTable",
+        "fullScreen"
+
+    ]
+}
+const toolbar = E.createToolbar({
+    editor,
+    selector: '#editor-toolbar',
+    config: toolbarConfig,
+    mode: 'simple'
+})
+}
+
+/*搜索占位符*/
+const projectsearch = $(".search-form input[type=search]");
+const url = $(location).attr('href'); //获取url地址
+const url_noparm = location.protocol + '//' + location.host + location.pathname;
+const url_noparm4 = url_noparm.split("/").splice(0, 4).join("/");
+if (url.indexOf("plugins") >= 0) {
+    $(projectsearch).attr("placeholder", "搜索插件……");
+} else if (url.indexOf("docs") >= 0) {
+    $(projectsearch).attr("placeholder", "搜索文档……");
+} else if (url.indexOf("themes") >= 0) {
+    $(projectsearch).attr("placeholder", "搜索主题……");
+} else if (url.indexOf("wordpress") >= 0) {
+    $(projectsearch).attr("placeholder", "搜索WordPress核心……");
+} else if (url.indexOf("mini-app") >= 0) {
+    $(projectsearch).attr("placeholder", "搜索小程序……");
+} else if (url === "price-desc") {
+}

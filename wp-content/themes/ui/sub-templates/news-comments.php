@@ -35,7 +35,8 @@ if ( post_password_required() ) {
 			<?php wp_list_comments( array(
 				'callback' => 'bootstrapwp_comment',
 			) ); ?>
-        </ol><!-- .comment-list -->
+        </ol>
+        <!-- .comment-list -->
 
 		<?php
 		// Are there comments to navigate through?
@@ -55,7 +56,13 @@ if ( post_password_required() ) {
 	<?php endif; // have_comments() ?>
 
 	<?php if ( is_user_logged_in() ): ?>
-		<?php comment_form();?>
+        <?php
+        comment_form(
+            array(
+                'title_reply'        => null,
+            )
+        );
+        ?>
 	<?php else: ?>
 
         <section class="comment_form_sign">
@@ -71,6 +78,8 @@ if ( post_password_required() ) {
         </section>
 
 	<?php endif; ?>
+
+
 
 
 </div><!-- #comments -->

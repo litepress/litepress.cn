@@ -26,7 +26,8 @@ get_header();
                             </div>
                         </header>
                         <hr class="dropdown-divider mb-3">
-                        <div class="content heti "><?php the_content(); ?></div>
+                        <div class="content heti heti-indent"><?php the_content(); ?></div>
+
                         <section class="ltp-single-content mt-3">
 							<?php if ( comments_open() || get_comments_number() ) :
 								comments_template();
