@@ -1314,7 +1314,9 @@ code {
     border-radius: 0 0 4px 4px;
     border-top: none;
 }
-
+.heti-indent p{
+    text-indent: 2em;
+}
 .ltp-single-content .comment-form, .ltp-single-content .comment-form-comment {
     display: flex;
     flex-wrap: wrap;
