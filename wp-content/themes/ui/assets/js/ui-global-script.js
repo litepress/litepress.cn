@@ -359,7 +359,7 @@ $(function(){
 
 const E = window.wangEditor; // 全局变量
 const editorConfig = { MENU_CONF: {} }
-editorConfig.placeholder = '请输入内容'
+editorConfig.placeholder = '点击评论'
 editorConfig.MENU_CONF['uploadImage'] = {
     fieldName: 'index-fileName',
     // 小于该值就插入 base64 格式（而不上传），默认为 0
@@ -373,7 +373,7 @@ editorConfig.onChange = function() {
 const editor = E.createEditor({
     selector: '#editor-container',
     config: editorConfig,
-    mode: 'simple'
+    mode: 'default'
 })
 const toolbarConfig = {
     excludeKeys: [
