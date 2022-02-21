@@ -170,7 +170,7 @@ $(function () {
     $(".trusteeship_form").on('click', '.btn-primary', function () {
 
         $.ajax({
-            url: "https://litepress.cn/translate/wp-json/gp/v1/projects/new",
+            url: "/translate/wp-json/gp/v1/projects/new",
             type: "post",
             data: {
                 "project_name": $("#tf_project_name").val(),
