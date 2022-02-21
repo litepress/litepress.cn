@@ -18,7 +18,7 @@
                             <a class="btn btn-light btn-small" href="/store/vendor-registration">申请入驻</a>
 						<?php endif; ?>
                     </div>
-                    <form class="col-xl-8" method="get" action="/">
+                    <form class="col-xl-8" method="get" action="">
                         <input placeholder="搜索插件..." name="s" type="search" value="" id="projects-filter"
                                class="filter-search"
                         >
