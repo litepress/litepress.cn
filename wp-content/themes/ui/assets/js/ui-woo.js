@@ -16,17 +16,6 @@ $(function () {
     });
 
 
-
-
-
-    $(function () {
-        var headerval = $(".wp-nav .header-search input").val();
-        $(projectsearch).val(headerval);
-        $(".wp-nav .header-search input").val("");
-    });
-
-
-
     jQuery('#hide-help-notice').click(function () {
         jQuery.ajax({url: '/getting-started/hide-notice/'});
         jQuery('#help-notice').fadeOut(1000);
