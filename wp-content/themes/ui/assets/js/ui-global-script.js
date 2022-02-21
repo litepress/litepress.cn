@@ -358,10 +358,11 @@ editorConfig.MENU_CONF['uploadImage'] = {
     base64LimitSize: 5 * 1024 // 5kb
 }
 
-editorConfig.onChange = function() {
-    document.getElementById('comment').innerHTML = editor.getHtml()
-}
+
 if ( $("#editor-container").length > 0 ) {
+    editorConfig.onChange = function() {
+        document.getElementById('comment').value = editor.getHtml()
+    }
     const editor = E.createEditor({
         selector: '#editor-container',
         config: editorConfig,
@@ -392,6 +393,41 @@ const toolbar = E.createToolbar({
     config: toolbarConfig,
     mode: 'simple'
 })
+}
+
+if ( $("#bbp-editor-container").length > 0 ) {
+    editorConfig.onChange = function() {
+        document.getElementById('bbp_reply_content').value = editor.getHtml()
+    }
+    const editor = E.createEditor({
+        selector: '#bbp-editor-container',
+        config: editorConfig,
+        mode: 'default'
+    })
+
+    const toolbarConfig = {
+        excludeKeys: [
+            // 排除菜单组，写菜单组 key 的值即可
+            'blockquote',
+            'header1',
+            'header2',
+            'header3',
+            'bgColor',
+            "justifyLeft",
+            "justifyRight",
+            "justifyCenter",
+            "insertVideo",
+            "insertTable",
+            "fullScreen"
+
+        ]
+    }
+    const toolbar = E.createToolbar({
+        editor,
+        selector: '#bbp-editor-toolbar',
+        config: toolbarConfig,
+        mode: 'simple'
+    })
 }
 
 /*搜索占位符*/

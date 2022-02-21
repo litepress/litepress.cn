@@ -71,52 +71,7 @@ if ( ! bbp_is_single_forum() ) : ?>
                     </div>
 
 				<?php endif; ?>
-                <!--图片上传按钮-->
-                <input id="upload_image" class="d-none" type="file" accept="image/*" multiple="multiple"/>
-                <label class="btn btn-primary" for="upload_image" id="up_img_label"><i class="fad fa-image"></i> 上传图片</label> <span
-                        id="image_url">编辑器升级中，暂由此处上传图片</span>
-                <hr>
-                <script type="text/javascript">
-                    jQuery('#upload_image').change(function () {
-                        for (var i = 0; i < this.files.length; i++) {
-                            var f = this.files[i];
-                            var formData = new FormData();
-                            formData.append('upload_img_file', f);
-                            jQuery.ajax({
-                                async: true,
-                                crossDomain: true,
-                                url: '<?php echo rest_url( "upload_image/v1/upload" ); ?>',
-                                type: 'POST',
-                                processData: false,
-                                contentType: false,
-                                data: formData,
-                                beforeSend: function () {
-                                    jQuery('#up_img_label').html('<i class="fa fa-image"></i> 上传中...');
-                                },
-                                success: function (res) {
-                                    if (res.code == 0) {
-                                        var oInput = document.createElement('input');
-                                        oInput.value = res.link;
-                                        document.body.appendChild(oInput);
-                                        oInput.select(); // 选择对象
-                                        document.execCommand("Copy"); // 执行浏览器复制命令
-                                        oInput.className = 'oInput';
-                                        oInput.style.display = 'none';
-                                        jQuery("#image_url").html('外链：' + res.link);
-                                        jQuery("#image_url").css('font-size', '10px');
-                                        alert('上传成功，链接已复制，请粘贴到图片区块！');
-                                        jQuery("#up_img_label").html('<i class="fa fa-image"></i> 上传图片');
-                                    } else {
-                                        alert('上传出错，请刷新重试');
-                                    }
-                                },
-                                error: function () {
-                                    alert('上传出错，请刷新重试');
-                                }
-                            });
-                        }
-                    });
-                </script>
+
 				<?php do_action( 'bbp_template_notices' ); ?>
 
                 <div class="row">

@@ -1303,13 +1303,12 @@ code {
     padding: 10px;
     background-size: cover;
 }
-#editor-toolbar {
+.editor-toolbar {
     border: 1px solid #e8e8e8;
     border-radius: 4px 4px 0 0;
     border-bottom: none;
 }
-#editor-container{
-
+.editor-container{
     border: 1px solid #e8e8e8;
     border-radius: 0 0 4px 4px;
     border-top: none;
