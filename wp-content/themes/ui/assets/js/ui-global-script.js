@@ -369,12 +369,13 @@ editorConfig.MENU_CONF['uploadImage'] = {
 editorConfig.onChange = function() {
     document.getElementById('comment').innerHTML = editor.getHtml()
 }
-
-const editor = E.createEditor({
-    selector: '#editor-container',
-    config: editorConfig,
-    mode: 'default'
-})
+if ( $("#editor-container").length > 0 ) {
+    const editor = E.createEditor({
+        selector: '#editor-container',
+        config: editorConfig,
+        mode: 'default'
+    })
+}
 const toolbarConfig = {
     excludeKeys: [
         // 排除菜单组，写菜单组 key 的值即可
@@ -399,3 +400,22 @@ const toolbar = E.createToolbar({
     config: toolbarConfig,
     mode: 'simple'
 })
+
+
+/*搜索占位符*/
+const projectsearch = $(".search-form input[type=search]");
+const url = $(location).attr('href'); //获取url地址
+const url_noparm = location.protocol + '//' + location.host + location.pathname;
+const url_noparm4 = url_noparm.split("/").splice(0, 4).join("/");
+if (url.indexOf("plugins") >= 0) {
+    $(projectsearch).attr("placeholder", "搜索插件……");
+} else if (url.indexOf("docs") >= 0) {
+    $(projectsearch).attr("placeholder", "搜索文档……");
+} else if (url.indexOf("themes") >= 0) {
+    $(projectsearch).attr("placeholder", "搜索主题……");
+} else if (url.indexOf("wordpress") >= 0) {
+    $(projectsearch).attr("placeholder", "搜索WordPress核心……");
+} else if (url.indexOf("mini-app") >= 0) {
+    $(projectsearch).attr("placeholder", "搜索小程序……");
+} else if (url === "price-desc") {
+}
