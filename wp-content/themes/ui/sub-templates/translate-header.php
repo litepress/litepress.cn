@@ -24,7 +24,7 @@
                             <a class="btn btn-light btn-small"
                                href="/translate/languages/zh-cn/default/glossary">术语表</a>
                         </div>
-                        <form class="col-xl-8" method="get" action="/">
+                        <form class="col-xl-8" method="get" action="">
                             <input placeholder="项目搜索..." name="s" type="search" value="" id="projects-filter"
                                    class="filter-search"
                             >
