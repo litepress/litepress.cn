@@ -413,9 +413,10 @@ if (url.indexOf("plugins") >= 0) {
     $(projectsearch).attr("placeholder", "搜索文档……");
 } else if (url.indexOf("themes") >= 0) {
     $(projectsearch).attr("placeholder", "搜索主题……");
-} else if (url.indexOf("wordpress") >= 0) {
+} else if (url.indexOf("cores") >= 0) {
     $(projectsearch).attr("placeholder", "搜索WordPress核心……");
 } else if (url.indexOf("mini-app") >= 0) {
     $(projectsearch).attr("placeholder", "搜索小程序……");
-} else if (url === "price-desc") {
+} else if (url.indexOf("others") >= 0) {
+    $(projectsearch).attr("placeholder", "搜索第三方……");
 }
