@@ -1312,6 +1312,11 @@ code {
     border: 1px solid #e8e8e8;
     border-radius: 0 0 4px 4px;
     border-top: none;
+    height: 188px;
+}
+.w-e-full-screen-container{
+    z-index: 99999;
+    overflow: hidden;
 }
 .heti-indent p{
     text-indent: 2em;
