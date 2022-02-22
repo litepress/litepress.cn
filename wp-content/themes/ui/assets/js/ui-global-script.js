@@ -389,7 +389,6 @@ const toolbarConfig = {
         "group-image",
          "insertVideo",
         "insertTable",
-        "fullScreen"
     ],
     insertKeys: {
         index: 5, // 插入的位置，基于当前的 toolbarKeys
