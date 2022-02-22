@@ -353,9 +353,15 @@ const E = window.wangEditor; // 全局变量
 const editorConfig = { MENU_CONF: {} }
 editorConfig.placeholder = '点击评论'
 editorConfig.MENU_CONF['uploadImage'] = {
+    server: '/wp-content/uploads/2022/02',
     fieldName: 'index-fileName',
     // 小于该值就插入 base64 格式（而不上传），默认为 0
-    base64LimitSize: 5 * 1024 // 5kb
+    base64LimitSize: 5 * 1024, // 5kb
+    allowedFileTypes: ['image/*'],
+    // 上传错误，或者触发 timeout 超时
+    onError(file, err, res) {
+        console.log(`${file.name} 上传出错`, err, res)
+    },
 }
 
 
@@ -418,7 +424,6 @@ if ( $("#bbp-editor-container").length > 0 ) {
             "justifyCenter",
             "insertVideo",
             "insertTable",
-            "fullScreen"
 
         ]
     }
