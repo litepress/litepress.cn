@@ -403,12 +403,13 @@ const toolbar = E.createToolbar({
 
 if ( $("#bbp-editor-container").length > 0 ) {
     editorConfig.onChange = function() {
-        document.getElementById('bbp_reply_content').value = editor.getHtml()
+        document.getElementById('bbp_reply_content').value = editor.getHtml();
     }
-    const editor = E.createEditor({
+    var editor = E.createEditor({
         selector: '#bbp-editor-container',
         config: editorConfig,
-        mode: 'default'
+        mode: 'default',
+
     })
 
     const toolbarConfig = {
@@ -433,8 +434,11 @@ if ( $("#bbp-editor-container").length > 0 ) {
         config: toolbarConfig,
         mode: 'simple'
     })
-}
+    editor.on('fullScreen', () => { $("body").addClass("overflow-hidden") })
+    editor.on('unFullScreen', () => { $("body").removeClass("overflow-hidden") })
 
+
+}
 /*搜索占位符*/
 const projectsearch = $(".search-form input[type=search]");
 const url = $(location).attr('href'); //获取url地址
