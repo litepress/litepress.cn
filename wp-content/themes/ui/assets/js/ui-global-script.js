@@ -390,8 +390,11 @@ const toolbarConfig = {
          "insertVideo",
         "insertTable",
         "fullScreen"
-
-    ]
+    ],
+    insertKeys: {
+        index: 5, // 插入的位置，基于当前的 toolbarKeys
+        keys: ["emotion"]
+    },
 }
 const toolbar = E.createToolbar({
     editor,
@@ -426,7 +429,11 @@ if ( $("#bbp-editor-container").length > 0 ) {
             "insertVideo",
             "insertTable",
 
-        ]
+        ],
+        insertKeys: {
+            index: 5, // 插入的位置，基于当前的 toolbarKeys
+            keys: ["emotion"]
+        },
     }
     const toolbar = E.createToolbar({
         editor,
