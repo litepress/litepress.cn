@@ -443,12 +443,13 @@ if ( $("#bbp-editor-container").length > 0 ) {
     editor.on('fullScreen', () => { $("body").addClass("overflow-hidden") })
     editor.on('unFullScreen', () => { $("body").removeClass("overflow-hidden") })
     $(function() {
-       const bbp_content= $(".bbp_topic_content_hide").html()
-       const bbp_content_text= $(".bbp_topic_content_hide").html(bbp_content).text()
-        editor.dangerouslyInsertHtml('<div>'+bbp_content_text+'</div>')
+        const bbp_content = $(".bbp_topic_content_hide").html();
+        const C1 = $(".bbp_topic_content_hide").html(bbp_content).text();
+        const C2 = C1.replace(/<!--(.|[\r\n])*?-->/g, '');
+        editor.dangerouslyInsertHtml(C2)
     })
-
-
+    /*        const C2 = C1.replace(/\n/g,"");*/
+    /*        const C4 = C3.replace(/class\s*?=\s*?([‘"])[\s\S]*?\1/g, '');*/
 }
 /*搜索占位符*/
 const projectsearch = $(".search-form input[type=search]");
