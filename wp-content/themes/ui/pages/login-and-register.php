@@ -12,7 +12,7 @@ get_header();
 
 
 
-<main class="form-signin bg-white theme-boxshadow my-4">
+<main class="form-signin bg-white theme-boxshadow m-4">
 
         <?php
         $custom_logo_id = get_theme_mod( 'custom_logo' );

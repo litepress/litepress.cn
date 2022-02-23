@@ -81,19 +81,25 @@ if ( ! bbp_is_single_forum() ) : ?>
 					<?php do_action( 'bbp_theme_before_topic_form_title' ); ?>
                     <!--表单标题-->
                     <div class="post-form-main fl-col col-xl-9">
-                        <p>
+
+                        <li class="form-floating">
+                            <input type="text" class="form-control" id="bbp_topic_title" value="<?php bbp_form_topic_title(); ?>"  placeholder="在此输入标题……" size="40" name="bbp_topic_title"
+                            maxlength="<?php bbp_title_max_length(); ?>" required="">
                             <label for="bbp_topic_title"><?php printf( esc_html__( 'Topic Title (Maximum Length: %d):', 'bbpress' ), bbp_get_title_max_length() ); ?></label><br/>
-                            <input type="text" id="bbp_topic_title" value="<?php bbp_form_topic_title(); ?>"
-                                   placeholder="在此输入标题……" size="40" name="bbp_topic_title"
-                                   maxlength="<?php bbp_title_max_length(); ?>"/>
-                        </p>
-                        <label for="bbp_topic_content">正文：</label><br/>
+                            <div class="invalid-feedback">
+                                必填项 *
+                            </div>
+                        </li>
 						<?php do_action( 'bbp_theme_after_topic_form_title' ); ?>
 
 						<?php do_action( 'bbp_theme_before_topic_form_content' ); ?>
 
-						<?php bbp_the_content( array( 'context' => 'topic' ) ); ?>
-
+						<?php /*bbp_the_content( array( 'context' => 'topic' ) ); */?>
+                        <textarea class="bbp-the-content wp-editor-area" rows="12" tabindex="1" autocomplete="off" cols="40" name="bbp_topic_content" id="bbp_topic_content" aria-hidden="true" style="display: none;"></textarea>
+                        <section class="wang-editor">
+                            <div id="bbp-editor-toolbar" class="editor-toolbar"></div>
+                            <div id="bbp-editor-container" style="height:301px" class="editor-container heti"></div>
+                        </section>
 						<?php do_action( 'bbp_theme_after_topic_form_content' ); ?>
 
 						<?php if ( ! ( bbp_use_wp_editor() || current_user_can( 'unfiltered_html' ) ) ) : ?>
@@ -111,12 +117,12 @@ if ( ! bbp_is_single_forum() ) : ?>
                     </div>
                 <!--表单标签-->
                     <div class="fl-col post-form-sidebar col-xl-3">
-                        <p class="pf-side-item">
-                            <label for="bbp_topic_tags"
-                                   class="pf-side-label"><?php esc_html_e( 'Topic Tags:', 'bbpress' ); ?></label><br/>
-                            <input class="pf-side-input" type="text" value="<?php bbp_form_topic_tags(); ?>" size="40"
+                        <p class="form-floating my-3  mt-xl-0">
+
+                            <input class="form-control" type="text" value="<?php bbp_form_topic_tags(); ?>" size="40"
                                    name="bbp_topic_tags"
-                                   id="bbp_topic_tags" <?php disabled( bbp_is_topic_spam() ); ?> />
+                                   id="bbp_topic_tags" <?php disabled( bbp_is_topic_spam() ); ?> placeholder="输入话题标签……" />
+                            <label for="bbp_topic_tags"><?php esc_html_e( 'Topic Tags:', 'bbpress' ); ?></label>
                         </p>
 
 						<?php do_action( 'bbp_theme_after_topic_form_tags' ); ?>

@@ -619,10 +619,9 @@ div.bbp-template-notice li, div.bbp-template-notice p {
     width: -webkit-fill-available!important;
     max-width: unset!important;
     margin: 5px!important;
-    background: #fff!important;
     border: 1px solid #eaeaea;
 }
-#bbpress-forums fieldset.bbp-form input[type=text], #bbpress-forums fieldset.bbp-form select {
+ #bbpress-forums fieldset.bbp-form select {
     font-size: 15px!important;
     height: auto!important;
 }
@@ -635,13 +634,7 @@ div.bbp-template-notice li, div.bbp-template-notice p {
 .bbp-upload .pf-side-label{
     border: 1px solid #efefef;
 }
-#bbp_topic_title {
-    width: -webkit-fill-available;
-    background: #fff;
-    border: 1px solid #eaeaea;
-    padding: 5px;
-    font-size: 15px;
-}
+
 #bbp_topic_content_ifr{
     width:99.9%!important;
 }
