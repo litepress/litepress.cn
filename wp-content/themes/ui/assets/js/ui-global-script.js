@@ -443,7 +443,8 @@ if ( $("#bbp-editor-container").length > 0 ) {
     editor.on('fullScreen', () => { $("body").addClass("overflow-hidden") })
     editor.on('unFullScreen', () => { $("body").removeClass("overflow-hidden") })
     $(function() {
-        editor.dangerouslyInsertHtml($(".bbp_topic_content_hide").html())
+       const bbp_content= $(".bbp_topic_content_hide").html().text()
+        editor.dangerouslyInsertHtml('<div>'+bbp_content+'</div>')
     })
 
 
