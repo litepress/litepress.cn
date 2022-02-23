@@ -404,6 +404,7 @@ const toolbar = E.createToolbar({
 }
 
 if ( $("#bbp-editor-container").length > 0 ) {
+    $('.wp-editor-area').val($(".bbp_topic_content_hide").html())
     editorConfig.onChange = function() {
         $('.wp-editor-area').val(editor.getHtml())
     }
