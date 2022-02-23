@@ -407,7 +407,7 @@ if ( $("#bbp-editor-container").length > 0 ) {
     editorConfig.onChange = function() {
         $('.wp-editor-area').val(editor.getHtml())
     }
-    const editor = E.createEditor({
+    var editor = E.createEditor({
         selector: '#bbp-editor-container',
         config: editorConfig,
         mode: 'default',
