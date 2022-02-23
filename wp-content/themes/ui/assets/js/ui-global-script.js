@@ -404,7 +404,6 @@ const toolbar = E.createToolbar({
 }
 
 if ( $("#bbp-editor-container").length > 0 ) {
-    $('.wp-editor-area').val($(".bbp_topic_content_hide").html())
     editorConfig.onChange = function() {
         $('.wp-editor-area').val(editor.getHtml())
     }
@@ -443,6 +442,7 @@ if ( $("#bbp-editor-container").length > 0 ) {
     })
     editor.on('fullScreen', () => { $("body").addClass("overflow-hidden") })
     editor.on('unFullScreen', () => { $("body").removeClass("overflow-hidden") })
+    editor.dangerouslyInsertHtml($(".bbp_topic_content_hide").html())
 
 
 }
