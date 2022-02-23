@@ -96,7 +96,7 @@ if ( ! bbp_is_single_forum() ) : ?>
 
 						<?php /*bbp_the_content( array( 'context' => 'topic' ) ); */?>
                         <textarea class="bbp-the-content wp-editor-area"  autocomplete="off" cols="40" name="bbp_topic_content" id="bbp_topic_content" aria-hidden="true" style="display: none;"></textarea>
-                        <div class="d-none bbp_topic_content_hide"><?php bbp_form_topic_content(); ?></div>
+                        <div class="d-none bbp_topic_content_hide"><p><?php bbp_form_topic_content(); ?></p></div>
                         <section class="wang-editor">
                             <div id="bbp-editor-toolbar" class="editor-toolbar"></div>
                             <div id="bbp-editor-container" style="height:301px" class="editor-container heti"></div>
