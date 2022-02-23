@@ -94,12 +94,12 @@ if ( ! bbp_is_single_forum() ) : ?>
 
 						<?php do_action( 'bbp_theme_before_topic_form_content' ); ?>
 
-						<?php bbp_the_content( array( 'context' => 'topic' ) ); ?>
-<!--                        <textarea class="bbp-the-content wp-editor-area" rows="12" tabindex="1" autocomplete="off" cols="40" name="bbp_topic_content" id="bbp_topic_content" aria-hidden="true" style="display: none;"></textarea>
+						<?php /*bbp_the_content( array( 'context' => 'topic' ) ); */?>
+                        <textarea class="bbp-the-content wp-editor-area" rows="12" tabindex="1" autocomplete="off" cols="40" name="bbp_topic_content" id="bbp_topic_content" aria-hidden="true" style="display: none;"></textarea>
                         <section class="wang-editor">
                             <div id="bbp-editor-toolbar" class="editor-toolbar"></div>
                             <div id="bbp-editor-container" style="height:301px" class="editor-container heti"></div>
-                        </section>-->
+                        </section>
 						<?php do_action( 'bbp_theme_after_topic_form_content' ); ?>
 
 						<?php if ( ! ( bbp_use_wp_editor() || current_user_can( 'unfiltered_html' ) ) ) : ?>
