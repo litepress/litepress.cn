@@ -1,5 +1,5 @@
 var $ = jQuery.noConflict();
-
+$(".bbp_dropdown").addClass("form-select");
 $(function () {
     $(".dropdown-divider + .bbp-body .bbp-reply-content.heti").before("<section class=\"section-toc wp-card\"><header class=\"d-flex align-items-center\">\n" +
         "        <div class=\"me-2 wp-icon\">\n" +

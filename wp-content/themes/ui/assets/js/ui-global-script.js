@@ -351,7 +351,7 @@ $(function(){
 
 const E = window.wangEditor; // 全局变量
 const editorConfig = { MENU_CONF: {} }
-editorConfig.placeholder = '点击评论'
+editorConfig.placeholder = '点击开始写作……'
 editorConfig.MENU_CONF['uploadImage'] = {
     server: '/wp-content/uploads/2022/02',
     fieldName: 'index-fileName',
@@ -405,9 +405,9 @@ const toolbar = E.createToolbar({
 
 if ( $("#bbp-editor-container").length > 0 ) {
     editorConfig.onChange = function() {
-        document.getElementById('bbp_reply_content').value = editor.getHtml();
+        $('.wp-editor-area').val(editor.getHtml())
     }
-    var editor = E.createEditor({
+    const editor = E.createEditor({
         selector: '#bbp-editor-container',
         config: editorConfig,
         mode: 'default',
@@ -463,3 +463,13 @@ if (url.indexOf("plugins") >= 0) {
 } else if (url.indexOf("others") >= 0) {
     $(projectsearch).attr("placeholder", "搜索第三方……");
 }
+/*点击区域外隐藏通知*/
+$(document).on("click",function(e)
+{
+    if($(e.target).closest(".um-notification-live-feed").length === 0)
+    {
+        $(".um-notification-live-feed").hide();
+    }
+});
+
+

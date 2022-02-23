@@ -295,10 +295,10 @@
 }
 
 .w-e-drop-panel {
-    margin-top: 40px;
+    margin-top: 36px;
     min-width: 200px;
     padding: 10px;
-    top: -4px;
+    top: 0
 }
 
 .w-e-drop-panel, .w-e-modal {
