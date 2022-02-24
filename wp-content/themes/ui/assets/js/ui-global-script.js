@@ -443,9 +443,9 @@ if ( $("#bbp-editor-container").length > 0 ) {
     editor.on('fullScreen', () => { $("body").addClass("overflow-hidden") })
     editor.on('unFullScreen', () => { $("body").removeClass("overflow-hidden") })
     $(function() {
-        const bbp_content = $(".bbp_topic_content_hide").html();
+        const bbp_content = $(".topic-edit .bbp_topic_content_hide").html();
 
-        const pre_class = $(".bbp_topic_content_hide pre").attr("class");
+        const pre_class = $(".topic-edit .bbp_topic_content_hide pre").attr("class");
         if (pre_class !== undefined ){
             const pre_class_1 = pre_class.replace(/^\s*/,"");
             const C1 = bbp_content.replace("tabindex=\"0\"","")
