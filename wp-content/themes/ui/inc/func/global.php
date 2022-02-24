@@ -619,31 +619,28 @@ function upload_image(): WP_REST_Response {
 
 	if ( ! $_FILES["upload_img_file"] ) {
 		$output = array(
-			'code'    => 1,
+			'errno'   => 1,
 			'message' => '非法请求',
 		);
-		$result = new WP_REST_Response( $output );
-		$result->set_headers( array( 'Content-Type' => 'application/json' ) );
 
-		return $result;
+		return new WP_REST_Response( $output );
 	}
 	$attach_id = media_handle_upload( 'upload_img_file', 0 );
 	$image_url = wp_get_attachment_image_src( $attach_id, 'full' )[0];
 	$output    = array(
-		'code'    => 0,
-		'message' => 'success',
-		'link'    => $image_url,
+		'errno'   => 0,
+		'data'    => array(
+			'url' => $image_url,
+		),
 	);
-	$result    = new WP_REST_Response( $output );
-	$result->set_headers( array( 'Content-Type' => 'application/json' ) );
 
-	return $result;
+	return new WP_REST_Response( $output );
 }
 
 add_action( 'rest_api_init', function () {
 	register_rest_route( 'upload_image/v1', '/upload', array(
 		'methods'             => 'POST',
 		'callback'            => 'upload_image',
-		'permission_callback' => 'is_user_logged_in',
+		'permission_callback' => '__return_true',
 	) );
 } );
