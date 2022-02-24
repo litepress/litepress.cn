@@ -444,12 +444,18 @@ if ( $("#bbp-editor-container").length > 0 ) {
     editor.on('unFullScreen', () => { $("body").removeClass("overflow-hidden") })
     $(function() {
         const bbp_content = $(".bbp_topic_content_hide").html();
+
         const pre_class = $(".bbp_topic_content_hide pre").attr("class");
-        const pre_class_1 = pre_class.replace(/^\s*/,"");
-        const C1 = bbp_content.replace("tabindex=\"0\"","")
-        /*const C4 = C1.replace(/class\s*?=\s*?([‘"])[\s\S]*?\1/g, '')*/
-        const C4 = C1.replaceAll(pre_class, pre_class_1)
-        editor.dangerouslyInsertHtml(C4)
+        if (pre_class !== undefined ){
+            const pre_class_1 = pre_class.replace(/^\s*/,"");
+            const C1 = bbp_content.replace("tabindex=\"0\"","")
+            /*const C4 = C1.replace(/class\s*?=\s*?([‘"])[\s\S]*?\1/g, '')*/
+            const C4 = C1.replaceAll(pre_class, pre_class_1)
+            editor.dangerouslyInsertHtml(C4)
+        }else {
+            editor.dangerouslyInsertHtml(bbp_content)
+        }
+
     })
 
 }
