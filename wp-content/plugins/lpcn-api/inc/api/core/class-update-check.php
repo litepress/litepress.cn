@@ -71,6 +71,9 @@ class Update_Check extends Base {
 					//update_site_option( 'lp_apply_site', $apply_site_list );
 				}
 			}
+		} else if ( ! $wp_ua_check ) {
+			$wp_check = false;
+			$lp_check = true;
 		}
 
 		if ( $wp_check && ! $lp_check ) {
