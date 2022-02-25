@@ -68,7 +68,8 @@ if ( bbp_is_reply_edit() ) : ?>
 					<?php do_action( 'bbp_theme_before_reply_form_content' ); ?>
 
 					<?php /*bbp_the_content( array( 'context' => 'reply' ) ); */?>
-                    <textarea class="bbp-the-content wp-editor-area d-none"  autocomplete="off" cols="40" name="bbp_reply_content" id="bbp_reply_content" aria-hidden="false" ></textarea>
+                    <div class="d-none bbp_topic_content_hide"><?php bbp_reply_content(); ?></div>
+                    <textarea class="bbp-the-content wp-editor-area d-none"  autocomplete="off" name="bbp_reply_content" id="bbp_reply_content" aria-hidden="false" ></textarea>
                    <section class="wang-editor">
                         <div id="bbp-editor-toolbar" class="editor-toolbar"></div>
                         <div id="bbp-editor-container" class="editor-container heti"></div>
