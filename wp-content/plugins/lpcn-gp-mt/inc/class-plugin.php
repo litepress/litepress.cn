@@ -45,8 +45,8 @@ class Plugin {
 		 */
 		GP::$router->add( '/api/mt/translate', array( $t, 'api' ), 'post' );
 
-		GP::$router->add( "/gp-mt/(.+?)", array( Web::class, 'add_web_translate_job' ), 'get' );
-		GP::$router->add( "/gp-mt/(.+?)", array( Web::class, 'add_web_translate_job' ), 'post' );
+		//GP::$router->add( "/gp-mt/(.+?)", array( Web::class, 'add_web_translate_job' ), 'get' );
+		//GP::$router->add( "/gp-mt/(.+?)", array( Web::class, 'add_web_translate_job' ), 'post' );
 
 
 		add_action( 'lpcn_schedule_gp_mt', array( $t, 'web' ), 999, 2 );
@@ -57,12 +57,6 @@ class Plugin {
 
 			return $actions;
 		} );
-
-		// 加载命令行
-		if ( class_exists( 'WP_CLI' ) ) {
-			require __DIR__ . '/translate-cli.php';
-		}
-
 	}
 
 

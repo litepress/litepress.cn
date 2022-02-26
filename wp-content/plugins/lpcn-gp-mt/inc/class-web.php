@@ -12,7 +12,8 @@ class Web extends GP_Route{
 	 */
 	public function add_web_translate_job( $project_id ) {
 		$project = GP::$project->find_one( array( 'id' => $project_id ) )->fields();
-
+var_dump('asfasf');
+exit;
 		// 获取待翻译原文
 		$sql = <<<SQL
 select *
@@ -38,7 +39,7 @@ SQL;
 				break;
 			}
 
-			do_action( 'lpcn_schedule_gp_mt', $project_id, $item );
+			//do_action( 'lpcn_schedule_gp_mt', $project_id, $item );
 
 			wp_schedule_single_event( time() + 1, 'lpcn_schedule_gp_mt', [
 				'project_id' => $project_id,
