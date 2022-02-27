@@ -30,8 +30,7 @@ $(".ant-btn").on("change", "input[type='file']", function () {
                 var tmp = name + "=" + value;
                 if (url.match(reg) != null) {
                     r = url.replace(eval(reg), tmp);
-                }
-                else {
+                } else {
                     if (url.match("[\?]")) {
                         r = url + "&" + tmp;
                     } else {
@@ -48,15 +47,11 @@ $(".ant-btn").on("change", "input[type='file']", function () {
 /*搜索词跟随*/
 var header_search_keyword = $.Request("keyword");
 var header_search_s = $.Request("s");
-if (header_search_keyword != null){
+if (header_search_keyword != null) {
     $(".search-form input").val(decodeURIComponent(header_search_keyword))
-}else if(header_search_s != null) {
+} else if (header_search_s != null) {
     $(".search-form input").val(decodeURIComponent(header_search_s))
 }
-
-
-
-
 
 
 $(function () {
@@ -64,16 +59,15 @@ $(function () {
     $(".api-manager-domains td").attr('colspan', '5');
     $('[data-bs-toggle="tooltip"]').tooltip();
     $('.tooltip-show').tooltip('show');
-    $("tr.editor").each(function (){
-        if($(this).is(':visible')){
+    $("tr.editor").each(function () {
+        if ($(this).is(':visible')) {
             $(this).find(".textareas").addClass("active");
         }
-    }) ;   $(".textareas").each(function (){
+    });
+    $(".textareas").each(function () {
         $(this).addClass("active");
     })
 });
-
-
 
 
 /*代码高亮+代码行数+复制*/
@@ -91,7 +85,7 @@ $(function () {
     var numLi = $(".wp-code .hljs ul > li").length;
 
     for (var i = 0; i < numLi; i++) {
-        $(".wp-code .hljs ul > li").eq(i).wrap('<li  id="L'+ (i + 1) +'" ></div>');
+        $(".wp-code .hljs ul > li").eq(i).wrap('<li  id="L' + (i + 1) + '" ></div>');
     }
 })
 
@@ -133,8 +127,6 @@ $("#site-header .menu-item").each(function () {
 });
 
 
-
-
 if ($(window).width() > 991) {
 
     $("#site-header .menu-item-has-children > .nav-link").removeAttr("data-bs-toggle");
@@ -159,14 +151,12 @@ $(window).resize(function () {
 });
 
 
-
-
 $(function () {
     const textdomain = $.Request("textdomain");
     const project_name = $.Request("project_name");
     $("input[name=textdomain]").val(textdomain);
     $("input[name=project_name]").val(project_name);
-/*申请第三方项目ajax*/
+    /*申请第三方项目ajax*/
     $(".trusteeship_form").on('click', '.btn-primary', function () {
 
         $.ajax({
@@ -183,11 +173,11 @@ $(function () {
             },
             success: function (s) {
                 console.log(s);
-                if (s.message !== undefined ) {
+                if (s.message !== undefined) {
                     $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> " + s.message);
-                    setTimeout(function(){
+                    setTimeout(function () {
                         window.location.href = s.project_url; // 你的url地址
-                    },500);
+                    }, 500);
 
                 } else {
                     $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i> " + s.error);
@@ -200,52 +190,49 @@ $(function () {
     })
 
 
-
-
 })
 
 
 // 如果验证不通过禁止提交表单
 // 获取表单验证样式
-        var forms = document.querySelectorAll('.needs-validation')
+var forms = document.querySelectorAll('.needs-validation')
 // 循环并禁止提交
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-                    form.classList.add('was-validated')
-                }, false)
-            })
+Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+        }, false)
+    })
 
 /*封装表单验证*/
 function form_validation() {
-    if ( $(".form-control:invalid").length > 0 ) {
+    if ($(".form-control:invalid").length > 0) {
         $(".needs-validation").addClass("was-validated")
     }
-    if ($(" .form-control:invalid").length > 0){
+    if ($(" .form-control:invalid").length > 0) {
         $(this).siblings(".invalid-feedback").show();
-    }
-    else {
+    } else {
         $(this).siblings(".invalid-feedback").hide();
     }
 }
 
 
 /*失去焦点和发生改变表单验证*/
-$(".form-control").on("blur change",function(){
+$(".form-control").on("blur change", function () {
     form_validation()
 });
 
 
 /*升级表单*/
 const $lp_apply_modal = $("#lp-apply-Modal");
-$("#lp-apply-button").on("click",function(){
+$("#lp-apply-button").on("click", function () {
     form_validation()
     const site = $("#lp-apply-site").val();
-    if ( $(this).parent().find(".form-control:invalid").length === 0 ) {
+    if ($(this).parent().find(".form-control:invalid").length === 0) {
         $lp_apply_modal.modal('show');
         /*        $(".lp-apply-site").text(site);
                 $(".lp-apply-code").text(md5(site));*/
@@ -286,10 +273,10 @@ $("#lp-apply-button").on("click",function(){
     $(".verify-btn").find("a").text("开始验证").end().find(".spinner-border").addClass("hide")
 });
 /*回退表单*/
-$("#lp-exit-button").on("click",function(){
+$("#lp-exit-button").on("click", function () {
     form_validation()
     const site = $("#lp-exit-site").val();
-    if ( $(this).parent().find(".form-control:invalid").length === 0 ) {
+    if ($(this).parent().find(".form-control:invalid").length === 0) {
         $lp_apply_modal.modal('show');
         /*        $(".lp-apply-site").text(site);
                 $(".lp-apply-code").text(md5(site));*/
@@ -331,16 +318,17 @@ $("#lp-exit-button").on("click",function(){
 });
 
 /*textarea自适应高度*/
-$(function(){
-    $.fn.autoHeight = function(){
-        function autoHeight(elem){
+$(function () {
+    $.fn.autoHeight = function () {
+        function autoHeight(elem) {
             elem.style.height = 'auto';
             elem.scrollTop = 0; //防抖动
             elem.style.height = elem.scrollHeight + 'px';
         }
-        this.each(function(){
+
+        this.each(function () {
             autoHeight(this);
-            $(this).on('keyup', function(){
+            $(this).on('keyup', function () {
                 autoHeight(this);
             });
         });
@@ -350,7 +338,7 @@ $(function(){
 
 
 const E = window.wangEditor; // 全局变量
-const editorConfig = { MENU_CONF: {} }
+const editorConfig = {MENU_CONF: {}}
 editorConfig.placeholder = '点击开始写作……'
 editorConfig.MENU_CONF['uploadImage'] = {
     server: '/wp-json/upload_image/v1/upload',
@@ -365,8 +353,8 @@ editorConfig.MENU_CONF['uploadImage'] = {
 }
 
 
-if ( $("#editor-container").length > 0 ) {
-    editorConfig.onChange = function() {
+if ($("#editor-container").length > 0) {
+    editorConfig.onChange = function () {
         document.getElementById('comment').value = editor.getHtml()
     }
     const editor = E.createEditor({
@@ -375,37 +363,68 @@ if ( $("#editor-container").length > 0 ) {
         mode: 'default'
     })
 
-const toolbarConfig = {
-    excludeKeys: [
-        // 排除菜单组，写菜单组 key 的值即可
-        'blockquote',
-        'header1',
-        'header2',
-        'header3',
-        'bgColor',
-        "justifyLeft",
-        "justifyRight",
-        "justifyCenter",
-        "group-image",
-         "insertVideo",
-        "insertTable",
-    ],
-    insertKeys: {
-        index: 5, // 插入的位置，基于当前的 toolbarKeys
-        keys: ["emotion"]
-    },
-}
-const toolbar = E.createToolbar({
-    editor,
-    selector: '#editor-toolbar',
-    config: toolbarConfig,
-    mode: 'simple'
-})
+    const toolbarConfig = {
+        toolbarKeys: [
+            "emotion",
+            {
+                key: 'group-code', // 必填，要以 group 开头
+                title: '代码', // 必填
+                iconSvg: "<svg viewBox=\"0 0 1280 1024\"><path d=\"M832 736l96 96 320-320L928 192l-96 96 224 224zM448 288l-96-96L32 512l320 320 96-96-224-224zM701.312 150.528l69.472 18.944-192 704.032-69.472-18.944 192-704.032z\"></path></svg>", // 可选
+                menuKeys: ["code", "codeBlock",] // 下级菜单 key ，必填
+            },
+            {
+                "key": "group-image",
+                "title": "图片",
+                "iconSvg": "<svg viewBox=\"0 0 1024 1024\"><path d=\"M959.877 128l0.123 0.123v767.775l-0.123 0.122H64.102l-0.122-0.122V128.123l0.122-0.123h895.775zM960 64H64C28.795 64 0 92.795 0 128v768c0 35.205 28.795 64 64 64h896c35.205 0 64-28.795 64-64V128c0-35.205-28.795-64-64-64zM832 288.01c0 53.023-42.988 96.01-96.01 96.01s-96.01-42.987-96.01-96.01S682.967 192 735.99 192 832 234.988 832 288.01zM896 832H128V704l224.01-384 256 320h64l224.01-192z\"></path></svg>",
+                "menuKeys": [
+                    "insertImage",
+                    "uploadImage"
+                ]
+            },
+            "insertLink",
+            "|",
+            "bold",
+            "underline",
+            "italic",
+            "through",
+            "color",
+            "clearStyle",
+            "|",
+            "bulletedList",
+            "numberedList",
+            "todo",
+            "|",
+            {
+                "key": "group-more-style",
+                "title": "更多",
+                "iconSvg": "<svg viewBox=\"0 0 1024 1024\"><path d=\"M204.8 505.6m-76.8 0a76.8 76.8 0 1 0 153.6 0 76.8 76.8 0 1 0-153.6 0Z\"></path><path d=\"M505.6 505.6m-76.8 0a76.8 76.8 0 1 0 153.6 0 76.8 76.8 0 1 0-153.6 0Z\"></path><path d=\"M806.4 505.6m-76.8 0a76.8 76.8 0 1 0 153.6 0 76.8 76.8 0 1 0-153.6 0Z\"></path></svg>",
+                "menuKeys": [
+                    "bgColor",
+                    "sup",
+                    "sub",
+                    "insertVideo",
+                    "insertTable",
+                    "divider"
+                ]
+            },
+            "|",
+            "undo",
+            "redo",
+            "|",
+            "fullScreen",
+        ],
+    }
+    const toolbar = E.createToolbar({
+        editor,
+        selector: '#editor-toolbar',
+        config: toolbarConfig,
+        mode: 'simple'
+    })
 
 }
 
-if ( $("#bbp-editor-container").length > 0 ) {
-    editorConfig.onChange = function() {
+if ($("#bbp-editor-container").length > 0) {
+    editorConfig.onChange = function () {
         $('.wp-editor-area').val(editor.getHtml())
     }
     var editor = E.createEditor({
@@ -416,24 +435,55 @@ if ( $("#bbp-editor-container").length > 0 ) {
     })
 
     const toolbarConfig = {
-        excludeKeys: [
-            // 排除菜单组，写菜单组 key 的值即可
-            'blockquote',
-            'header1',
-            'header2',
-            'header3',
-            'bgColor',
-            "justifyLeft",
-            "justifyRight",
-            "justifyCenter",
-            "insertVideo",
-            "insertTable",
-
+        toolbarKeys: [
+            "emotion",
+            {
+                key: 'group-code', // 必填，要以 group 开头
+                title: '代码', // 必填
+                iconSvg: "<svg viewBox=\"0 0 1280 1024\"><path d=\"M832 736l96 96 320-320L928 192l-96 96 224 224zM448 288l-96-96L32 512l320 320 96-96-224-224zM701.312 150.528l69.472 18.944-192 704.032-69.472-18.944 192-704.032z\"></path></svg>", // 可选
+                menuKeys: ["code", "codeBlock",] // 下级菜单 key ，必填
+            },
+            {
+                "key": "group-image",
+                "title": "图片",
+                "iconSvg": "<svg viewBox=\"0 0 1024 1024\"><path d=\"M959.877 128l0.123 0.123v767.775l-0.123 0.122H64.102l-0.122-0.122V128.123l0.122-0.123h895.775zM960 64H64C28.795 64 0 92.795 0 128v768c0 35.205 28.795 64 64 64h896c35.205 0 64-28.795 64-64V128c0-35.205-28.795-64-64-64zM832 288.01c0 53.023-42.988 96.01-96.01 96.01s-96.01-42.987-96.01-96.01S682.967 192 735.99 192 832 234.988 832 288.01zM896 832H128V704l224.01-384 256 320h64l224.01-192z\"></path></svg>",
+                "menuKeys": [
+                    "insertImage",
+                    "uploadImage"
+                ]
+            },
+            "insertLink",
+            "|",
+            "bold",
+            "underline",
+            "italic",
+            "through",
+            "color",
+            "clearStyle",
+            "|",
+            "bulletedList",
+            "numberedList",
+            "todo",
+            "|",
+            {
+                "key": "group-more-style",
+                "title": "更多",
+                "iconSvg": "<svg viewBox=\"0 0 1024 1024\"><path d=\"M204.8 505.6m-76.8 0a76.8 76.8 0 1 0 153.6 0 76.8 76.8 0 1 0-153.6 0Z\"></path><path d=\"M505.6 505.6m-76.8 0a76.8 76.8 0 1 0 153.6 0 76.8 76.8 0 1 0-153.6 0Z\"></path><path d=\"M806.4 505.6m-76.8 0a76.8 76.8 0 1 0 153.6 0 76.8 76.8 0 1 0-153.6 0Z\"></path></svg>",
+                "menuKeys": [
+                    "bgColor",
+                    "sup",
+                    "sub",
+                    "insertVideo",
+                    "insertTable",
+                    "divider"
+                ]
+            },
+            "|",
+            "undo",
+            "redo",
+            "|",
+            "fullScreen",
         ],
-        insertKeys: {
-            index: 5, // 插入的位置，基于当前的 toolbarKeys
-            keys: ["emotion"]
-        },
     }
     const toolbar = E.createToolbar({
         editor,
@@ -441,32 +491,36 @@ if ( $("#bbp-editor-container").length > 0 ) {
         config: toolbarConfig,
         mode: 'simple'
     })
-    editor.on('fullScreen', () => { $("body").addClass("overflow-hidden") })
-    editor.on('unFullScreen', () => { $("body").removeClass("overflow-hidden") })
+    editor.on('fullScreen', () => {
+        $("body").addClass("overflow-hidden")
+    })
+    editor.on('unFullScreen', () => {
+        $("body").removeClass("overflow-hidden")
+    })
     /*话题编辑同步内容*/
-    $(function() {
+    $(function () {
         const bbp_content = $(".topic-edit .bbp_topic_content_hide").html();
         const pre_class = $(".topic-edit .bbp_topic_content_hide pre").attr("class");
-        if (pre_class !== undefined ){
-            const pre_class_1 = pre_class.replace(/^\s*/,"");
-            const C1 = bbp_content.replace("tabindex=\"0\"","")
+        if (pre_class !== undefined) {
+            const pre_class_1 = pre_class.replace(/^\s*/, "");
+            const C1 = bbp_content.replace("tabindex=\"0\"", "")
             const C4 = C1.replaceAll(pre_class, pre_class_1)
             editor.dangerouslyInsertHtml(C4)
-        }else {
+        } else {
             editor.dangerouslyInsertHtml(bbp_content)
         }
 
     })
     /*评论编辑同步内容*/
-    $(function() {
+    $(function () {
         const bbp_content = $(".reply-edit .bbp_topic_content_hide").html();
         const pre_class = $(".reply-edit .bbp_topic_content_hide pre").attr("class");
-        if (pre_class !== undefined ){
-            const pre_class_1 = pre_class.replace(/^\s*/,"");
-            const C1 = bbp_content.replace("tabindex=\"0\"","")
+        if (pre_class !== undefined) {
+            const pre_class_1 = pre_class.replace(/^\s*/, "");
+            const C1 = bbp_content.replace("tabindex=\"0\"", "")
             const C4 = C1.replaceAll(pre_class, pre_class_1)
             editor.dangerouslyInsertHtml(C4)
-        }else {
+        } else {
             editor.dangerouslyInsertHtml(bbp_content)
         }
 
@@ -491,10 +545,8 @@ if (url.indexOf("plugins") >= 0) {
     $(projectsearch).attr("placeholder", "搜索第三方……");
 }
 /*点击区域外隐藏通知*/
-$(document).on("click",function(e)
-{
-    if($(e.target).closest(".um-notification-live-feed").length === 0)
-    {
+$(document).on("click", function (e) {
+    if ($(e.target).closest(".um-notification-live-feed").length === 0) {
         $(".um-notification-live-feed").hide();
     }
 });
