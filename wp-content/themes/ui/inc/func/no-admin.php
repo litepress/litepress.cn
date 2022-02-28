@@ -393,29 +393,24 @@ add_filter( 'bbp_get_topic_freshness_link', function ( $anchor, $topic_id, $time
 	}
 }, 10, 5 );
 
-//if ( 6 === (int) $blog_id ) {
-// 此处的配置改为全平台通用
-add_filter( 'comment_form_defaults', function ( $fields ) {
-	$fields['logged_in_as']  = get_avatar( get_current_user_id(), 32 );
-	$fields['submit_button'] = '';
-	$fields['comment_field'] = sprintf(
-		'<section class="comment-form-comment"><li class="form-floating w-100">%s %s</li> %s</section>',
-        '<textarea  class="form-control d-none" id="comment" name="comment"  maxlength="65525" ></textarea>
-<section class="wang-editor">
-                        <div id="editor-toolbar" class="editor-toolbar"></div>
-                        <div id="editor-container" class="editor-container heti"></div>
-                    </section>',
-		sprintf(
-			'<!--<label for="comment">%s</label>-->',
-			_x( 'Comment', 'noun' )
-		),
-		'<button type="submit" id="submit" class="btn btn-primary mt-2"><i class="fad fa-paper-plane"></i> 提交评论</button>'
-	);
 
-	return $fields;
-} );
-//}
 
+
+
+/*删除取消回复*/
+function remove_comment_reply_link($link) {
+    return '';
+}
+add_filter('cancel_comment_reply_link', 'remove_comment_reply_link', 10);
+// Add the comment reply button to the end of the comment form.
+// Remove the my_remove_comment_reply_link filter first so that it will actually output something.
+function after_comment_form($post_id) {
+    remove_filter('cancel_comment_reply_link', 'remove_comment_reply_link', 10);
+    echo "<div class='btn mt-2 ms-2 btn-outline-primary cancel-comment-reply-link'><i class=\"fa-duotone fa-xmark\"></i> ";
+    cancel_comment_reply_link('取消回复');
+    echo "</div>";
+}
+add_action('comment_form_submit_field', 'after_comment_form', 99);
 /**
  * 身份铭牌支持
  */

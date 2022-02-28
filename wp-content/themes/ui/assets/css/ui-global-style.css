@@ -1209,13 +1209,19 @@ code {
     margin: 0px auto 0;
 }
 
-.comment-form img.avatar {
+.comment-form-comment img.avatar {
     box-shadow: 0 1px 10px 0 #a3b4bf !important;
     border: 1px solid #fff !important;
     border-radius: 100% !important;
     margin-right: 10px;
 }
-
+.cancel-comment-reply-link a{
+    color: var(--wp-theme-black-color);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.cancel-comment-reply-link:hover a{
+    color: #fff;
+}
 .comments-title {
     margin-bottom: 1em;
 }
@@ -1332,11 +1338,7 @@ code {
     margin-bottom: 10px;
 }
 
-.ltp-single-content .comment-form {
-    border-top: var(--wp-theme-hr);
-    padding-top: 20px;
 
-}
 
 .comment-list + .comment-respond .comment-form {
     border: 0;
@@ -1766,7 +1768,7 @@ padding: 0;
 .blog-aside .wp-block-archives-list{
     padding-left:0;
 }
-.comment-form-comment{
+.comment-respond{
     width: 89%;
 }
 .wp-block-image img{
