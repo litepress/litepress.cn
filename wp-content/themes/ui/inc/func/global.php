@@ -216,6 +216,11 @@ if ( ! function_exists( 'bootstrapwp_comment' ) ) :
 								) ) );
 								?>
                             </div>
+                            <?php if ( current_user_can('level_10') ) {
+                            $url = home_url();
+                            echo '<a id="delete-'. $comment->comment_ID .'" href="' . wp_nonce_url("$url/wp-admin/comment.php?action=deletecomment&p=" . $comment->comment_post_ID . '&c=' . $comment->comment_ID, 'delete-comment_' . $comment->comment_ID) . '" >&nbsp;删除</a>';
+                            }
+                            ?>
                         </footer>
                     </article>
                 </article>
