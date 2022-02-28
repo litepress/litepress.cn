@@ -67,7 +67,7 @@ if ( post_password_required() ) {
                 'title_reply_after'  => '</h2>',
                 'logged_in_as'  => '',
                 'comment_field'        => '<textarea  class="form-control d-none" id="comment" name="comment"  maxlength="65525" ></textarea>
-<section class="wang-editor w-100">
+<section class="wang-editor">
                         <div id="editor-toolbar" class="editor-toolbar"></div>
                         <div id="editor-container" class="editor-container heti"></div>
 </section>
