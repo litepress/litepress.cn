@@ -526,6 +526,13 @@ if ($("#bbp-editor-container").length > 0) {
 
     })
 }
+if($("#reply-title a").length > 0){
+    const text = $("#reply-title a").text();
+$('.w-e-text-placeholder').text('回复 '+text +' :')
+}
+else {
+    $(".cancel-comment-reply-link").hide()
+}
 /*搜索占位符*/
 const projectsearch = $(".search-form input[type=search]");
 const url = $(location).attr('href'); //获取url地址

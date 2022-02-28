@@ -127,22 +127,7 @@ if ( ! function_exists( 'lpcn_mce' ) ) {
 }
 add_filter( 'tiny_mce_before_init', 'lpcn_mce' );
 
-/*add_filter( 'mce_external_plugins', 'my_add_tinymce_plugin' );
-add_filter( 'mce_buttons_2', 'my_register_mce_button' );
-// 声明新按钮的脚本
-function my_add_tinymce_plugin( $plugin_array ) {
-	$plugin_array['youran_button'] = get_template_directory_uri() . '/assets/js/mce-button.js';
 
-	return $plugin_array;
-}
-
-// 在编辑器上注册新按钮
-function my_register_mce_button( $buttons ) {
-	array_push( $buttons, 'my_mce_button' );
-	array_push( $buttons, 'youran_button' );
-
-	return $buttons;
-}*/
 
 /*
 ?* 评论列表的显示
@@ -203,10 +188,11 @@ if ( ! function_exists( 'bootstrapwp_comment' ) ) :
 							comment_text();
 							?></div>
                         <footer class="wp-reply-meta">
+                            <ul class="nav">
 							<?php // 显示评论的编辑链接
-							edit_comment_link( __( '编辑', 'bootstrapwp' ), '<p class="edit-link">', '</p>' );
+							edit_comment_link( __( '编辑', 'bootstrapwp' ), '<li class="edit-link">', '</li>' );
 							?>
-                            <div class="reply">
+                            <li class="reply">
 								<?php // 显示评论的回复链接
 								comment_reply_link( array_merge( $args, array(
 									'reply_text' => __( '回复', 'bootstrapwp' ),
@@ -215,12 +201,13 @@ if ( ! function_exists( 'bootstrapwp_comment' ) ) :
 									'max_depth'  => $args['max_depth']
 								) ) );
 								?>
-                            </div>
+                            </li>
                             <?php if ( current_user_can('level_10') ) {
                             $url = home_url();
-                            echo '<a id="delete-'. $comment->comment_ID .'" href="' . wp_nonce_url("$url/wp-admin/comment.php?action=deletecomment&p=" . $comment->comment_post_ID . '&c=' . $comment->comment_ID, 'delete-comment_' . $comment->comment_ID) . '" >&nbsp;删除</a>';
+                            echo '<li><a id="delete-'. $comment->comment_ID .'" href="' . wp_nonce_url("$url/wp-admin/comment.php?action=deletecomment&p=" . $comment->comment_post_ID . '&c=' . $comment->comment_ID, 'delete-comment_' . $comment->comment_ID) . '" >删除</a></li>';
                             }
                             ?>
+                            </ul>
                         </footer>
                     </article>
                 </article>
@@ -229,6 +216,7 @@ if ( ! function_exists( 'bootstrapwp_comment' ) ) :
 		endswitch; // end comment_type check
 	}
 endif;
+
 
 /**
  * 供应商入驻表单申请提交成功后在用户的user meta中更新上当前激活的供应商ID，否则的话这个鸟插件会在用户登录供应商后台时遍历所有的供应商term来

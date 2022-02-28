@@ -56,13 +56,47 @@ if ( post_password_required() ) {
 	<?php endif; // have_comments() ?>
 
 	<?php if ( is_user_logged_in() ): ?>
+    <section class="comment-form-comment">
+    <aside>
+        <?php echo get_avatar( get_current_user_id(), 32 )?>
+    </aside>
         <?php
         comment_form(
             array(
-                'title_reply'        => null,
+                'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title d-none">',
+                'title_reply_after'  => '</h2>',
+                'logged_in_as'  => '',
+                'comment_field'        => '<textarea  class="form-control d-none" id="comment" name="comment"  maxlength="65525" ></textarea>
+<section class="wang-editor">
+                        <div id="editor-toolbar" class="editor-toolbar"></div>
+                        <div id="editor-container" class="editor-container heti"></div>
+</section>
+ <button type="submit" id="submit" class="btn btn-primary mt-2"><i class="fad fa-paper-plane"></i> 提交评论</button>                   
+                    ',
             )
         );
         ?>
+    </section>
+<!--        <form action="<?php /*echo esc_url( home_url( '/' ) ); */?>wp-comments-post.php" method="post" class="comment-form">
+            <?php /*echo get_avatar( get_current_user_id(), 32 )*/?>
+            <main class="comment-form-comment">
+                <li class="form-floating w-100">
+                    <textarea  class="form-control d-none" id="comment" name="comment"  maxlength="65525" ></textarea>
+                </li>
+                    <section class="wang-editor w-100">
+                        <div id="editor-toolbar" class="editor-toolbar"></div>
+                        <div id="editor-container" class="editor-container heti"></div>
+                    </section>
+<ul class="mt-2">
+                <button type="submit" id="submit" class="btn btn-primary "><i class="fad fa-paper-plane"></i> 提交评论</button>
+                <button type="submit" id="submit" class="btn btn-outline-primary mt-2"><i class="fa-duotone fa-xmark"></i> 取消</button>
+</ul>
+                </main>
+            <?php
+/*            echo get_comment_id_fields( $post->id );
+            do_action( 'comment_form', $post->id );
+            */?>
+        </form>-->
 	<?php else: ?>
 
         <section class="comment_form_sign">
