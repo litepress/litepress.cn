@@ -38,7 +38,7 @@
             <div class="col-12">
                 <div class="text-center text-white">
               <span class="heading-xxs letter-spacing-xl">
-               平台开发中，欢迎参与测试。你可以在<a href="https://jq.qq.com/?_wv=1027&k=AizcubYC"> QQ群:1046115671 </a>中与我们交流，或是直接在社区发帖。
+               平台开发中，欢迎参与测试。你可以在<a href="https://jq.qq.com/?_wv=1027&k=AizcubYC"> QQ群:1046115671 </a>中与我们交流，或是直接在<a href="/create">社区发帖</a>。
               </span>
                 </div>
             </div>
@@ -110,11 +110,15 @@ switch_to_blog( 1 );
 						)
 					);
 					?>
-                    <nav class="hide">
+                    <?php
+                    if ( is_user_logged_in() ) {
+                        echo '';
+                    } else {
+                        echo '<nav class="hide">
                         <ul class="navbar-nav menu">
                             <li class="">
                                 <a href="https://litepress.cn/login" class="nav-link" data-bs-toggle="modal"
-                                   data-bs-target="#exampleModal"><i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                                   data-bs-target="#sign-in"><i class="fas fa-sign-in-alt" aria-hidden="true"></i>
                                     登录</a>
                             </li>
                             <li class="">
@@ -122,6 +126,10 @@ switch_to_blog( 1 );
                                             class="fas fa-user-plus" aria-hidden="true"></i> 注册</a></li>
                         </ul>
                     </nav>
+                    ';
+                    }
+                    ?>
+
                 </div>
             </section>
         </div>
