@@ -1,40 +1,93 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="sign-in" tabindex="-1"  data-bs-backdrop="static" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <div class="modal-header border-0 pb-0">
+                <!--<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <main class="form-signin">
-                    <form>
-                        <img class="mb-4" src="" alt="" width="72" height="57">
-                        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+<style>
+    .form-sign img {
+        width: 60%;
+        margin: auto;
+        display: block;
+    }
+</style>
+            <div class="modal-body pt-0">
+                <main class="form-sign p-3">
+                    <img class="mb-4" alt="" width="100%" src="https://dev.litepress.cn/wp-content/uploads/2021/05/logo.svg">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs mb-3 border-0" id="sign-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="sign-in-tab" data-bs-toggle="tab" data-bs-target="#form-sign-in" type="button" role="tab" aria-controls="home" aria-selected="true">登录</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="sign-up-tab" data-bs-toggle="tab" data-bs-target="#form-sign-up" type="button" role="tab" aria-controls="profile" aria-selected="false">注册</button>
+                        </li>
+                    </ul>
 
-                        <div class="form-floating">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Email address</label>
-                        </div>
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
-                        </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <form class="tab-pane active" id="form-sign-in" role="tabpanel">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <label for="floatingInput">用户名/邮箱</label>
+                                <div class="invalid-feedback">
+                                    请输入帐号
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                <label for="floatingPassword">密码</label>
+                                <div class="invalid-feedback">
+                                    请输入登录密码
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="checkbox col">
+                                    <input class="form-check-input" type="checkbox" name="rememberme" id="remember-me" value="1">
+                                    <label class="form-check-label" for="remember-me">保持登录状态</label>
+                                </div>
+                                <div class=" col text-end">
+                                    忘记密码？
+                                </div>
+                            </div>
+                            <button class="w-100 btn btn-lg btn-primary" type="submit">登录</button>
+                        </form>
+                        <form class="tab-pane" id="form-sign-up" role="tabpanel"> <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <label for="floatingInput">用户名/邮箱</label>
+                                <div class="invalid-feedback">
+                                    请输入帐号
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                <label for="floatingPassword">密码</label>
+                                <div class="invalid-feedback">
+                                    请输入登录密码
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                <label for="floatingPassword">确认密码</label>
+                                <div class="invalid-feedback">
+                                    请输入密码
+                                </div>
+                            </div>
+                            <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">注册</button>
+                            <p class="text-center">
 
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" value="remember-me"> Remember me
-                            </label>
-                        </div>
-                        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-                        <p class="mt-5 mb-3 text-muted">© 2017–2021</p>
-                    </form>
+                                <small>注册即表示同意 用户协议、 隐私协议</small>
+
+                            </p>
+                        </form>
+
+                    </div>
+
                 </main>
             </div>
-            <div class="modal-footer">
-                <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-                <button class="btn btn-primary btn-block btn-lg" type="submit">提交注册</button>
-            </div>
+
         </div>
     </div>
 </div>
