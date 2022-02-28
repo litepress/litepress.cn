@@ -1215,11 +1215,12 @@ code {
     border-radius: 100% !important;
     margin-right: 10px;
 }
-.cancel-comment-reply-link a{
+
+.cancel-comment-reply-link a,#bbp-cancel-reply-to-link{
     color: var(--wp-theme-black-color);
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-.cancel-comment-reply-link:hover a{
+.cancel-comment-reply-link:hover a,.bbp-submit-wrapper .btn:hover #bbp-cancel-reply-to-link{
     color: #fff;
 }
 .comments-title {
