@@ -1328,7 +1328,7 @@ code {
 .heti-indent p{
     text-indent: 2em;
 }
-.ltp-single-content .comment-form, .ltp-single-content .comment-form-comment {
+ .ltp-single-content .comment-form-comment {
     display: flex;
     flex-wrap: wrap;
     flex: 1;
@@ -1770,7 +1770,7 @@ padding: 0;
     padding-left:0;
 }
 .comment-respond{
-    width: 89%;
+    flex: 1;
 }
 .wp-block-image img{
     height: 100%;
