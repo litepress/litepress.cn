@@ -160,9 +160,11 @@ a.um-button{
 }
 
 .um-profile-nav{
-    background:var(--wp-theme-color)
+    background:var(--wp-theme-color)!important;
 }
-
+.um-profile-nav-item a:hover{
+    background:#3ba1da
+}
 @media screen and (max-width: 768px){
 .um .um-profile-subnav a{
     padding: 10px 10px!important;
