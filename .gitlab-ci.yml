@@ -4,7 +4,7 @@ stages:
 deploy-job:
   stage: deploy
   tags:
-    - deploy
+    - litepress-runner
   script:
     - dnf install rsync -y
     - export RSYNC_PASSWORD=$RSYNC_PASS
