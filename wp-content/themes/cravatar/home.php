@@ -25,7 +25,7 @@ $is_login = is_user_logged_in();
                         </div>
                         <small class="mt-4 g-color-auxiliary">我们昨日共响应了 <span data-countup='{"startVal": 0}'
                                                                              data-to="<?php echo get_last_day_cdn_analysis()['req_num'] ?? 0 ?>"
-                                                                             id="counter" class="badge bg-primary">5,000,000</span>
+                                                                             id="counter" class="badge bg-primary lh-base">5,000,000</span>
                             次请求。</small>
 
 
