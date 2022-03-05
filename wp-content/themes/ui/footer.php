@@ -30,14 +30,14 @@
                     <div class="tab-content">
                         <form class="tab-pane active" id="form-sign-in" role="tabpanel">
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <input type="email" class="form-control" id="" placeholder="name@example.com">
                                 <label for="floatingInput">用户名/邮箱</label>
                                 <div class="invalid-feedback">
                                     请输入帐号
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                <input type="password" class="form-control" id="" placeholder="Password">
                                 <label for="floatingPassword">密码</label>
                                 <div class="invalid-feedback">
                                     请输入登录密码
