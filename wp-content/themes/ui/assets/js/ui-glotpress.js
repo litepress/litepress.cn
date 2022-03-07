@@ -82,35 +82,3 @@ $(function () {
     })
     return false;
   })
-
-
-$(".auto-translate").click(function () {
-  const originals = $(this).parent().parent().prev().find(".original_raw").text();
-  const textarea = $(this).parent().prev();
-/*  console.log(originals)*/
-  $.ajax({
-    url:"https://api.litepress.cn/mt/translate",
-    type: "post",
-    data: {"originals":  JSON.stringify([originals])},
-    beforeSend:function (b){
-      textarea.val("翻译中，请等待1秒左右……");
-    },
-    success: function (s) {
-      const auto_translate = s[originals];
-/*      console.log(auto_translate);      */
-        if (auto_translate !== undefined ) {
-          textarea.val(auto_translate);
-        }
-        else {
-          $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i> 接口返回空数据，请重试或者联系管理员解决");
-          $('#liveToast').toast('show')
-        }
-    },
-    error: function (e) {
-      $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i> 机器翻译引擎返回错误，请联系管理员解决");
-      $('#liveToast').toast('show')
-    }
-  })
-
-
-})
