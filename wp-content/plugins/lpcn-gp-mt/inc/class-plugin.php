@@ -57,6 +57,11 @@ class Plugin {
 
 			return $actions;
 		} );
+
+		// 载入静态文件
+		add_action( 'wp_enqueue_scripts', function () {
+			wp_enqueue_script( 'lpcn-mt', GP_MT_URL . 'assets/js/lpcn-mt.js', array( 'jquery' ) );
+		} );
 	}
 
 
