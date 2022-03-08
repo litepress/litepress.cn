@@ -51,7 +51,7 @@
                                     <label class="form-check-label" for="rememberme">保持登录状态</label>
                                 </div>
                                 <div class=" col text-end">
-                                    <a href="/password-reset">忘记密码？</a>
+                                    <a target="_blank"  href="/password-reset">忘记密码？</a>
                                 </div>
                             </div>
                             <button class="w-100 btn btn-lg btn-primary" data-type="submit" type="button">
