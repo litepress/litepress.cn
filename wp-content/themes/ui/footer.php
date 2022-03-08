@@ -21,7 +21,7 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="sign-in-tab" data-bs-toggle="tab" data-bs-target="#form-sign-in" type="button" role="tab" aria-controls="home" aria-selected="true">登录</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li class="nav-item hide" role="presentation">
                             <button class="nav-link" id="sign-up-tab" data-bs-toggle="tab" data-bs-target="#form-sign-up" type="button" role="tab" aria-controls="profile" aria-selected="false">注册</button>
                         </li>
                     </ul>
