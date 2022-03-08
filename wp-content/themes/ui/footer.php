@@ -14,7 +14,7 @@
     }
 </style>
             <div class="modal-body pt-0">
-                <main class="form-sign p-3">
+                <main class="form-sign p-3 pt-0">
                     <img class="mb-4" alt="" width="100%" src="https://dev.litepress.cn/wp-content/uploads/2021/05/logo.svg">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs mb-3 border-0" id="sign-tab" role="tablist">
@@ -28,54 +28,64 @@
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <form class="tab-pane active" id="form-sign-in" role="tabpanel">
+
+
+                        <form class="needs-validation tab-pane active" id="form-sign-in" role="tabpanel" >
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="" placeholder="name@example.com">
-                                <label for="floatingInput">用户名/邮箱</label>
+                                <input type="text" class="form-control" id="username" placeholder="name@example.com" required>
+                                <label for="username">用户名/邮箱</label>
                                 <div class="invalid-feedback">
                                     请输入帐号
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="" placeholder="Password">
-                                <label for="floatingPassword">密码</label>
+                                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                                <label for="password">密码</label>
                                 <div class="invalid-feedback">
                                     请输入登录密码
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="checkbox col">
-                                    <input class="form-check-input" type="checkbox" name="rememberme" id="remember-me" value="1">
-                                    <label class="form-check-label" for="remember-me">保持登录状态</label>
+                                    <input class="form-check-input" name="rememberme" type="checkbox" id="rememberme" value="0">
+                                    <label class="form-check-label" for="rememberme">保持登录状态</label>
                                 </div>
                                 <div class=" col text-end">
                                     忘记密码？
                                 </div>
                             </div>
-                            <button class="w-100 btn btn-lg btn-primary" type="submit">登录</button>
+                            <button class="w-100 btn btn-lg btn-primary" data-type="submit" type="button">
+                                <span class="spinner-border spinner-border-sm hide me-2" role="status" aria-hidden="true"></span><a>登录</a>
+                            </button>
+                            <input type="hidden" name="tcaptcha-ticket" id="tcaptcha-ticket" value="">
+                            <input type="hidden" name="tcaptcha-randstr" id="tcaptcha-randstr" value="">
                         </form>
-                        <form class="tab-pane" id="form-sign-up" role="tabpanel"> <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+
+<!--注册-->
+                        <form class="tab-pane hide" id="form-sign-up" role="tabpanel"> <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                                 <label for="floatingInput">用户名/邮箱</label>
                                 <div class="invalid-feedback">
                                     请输入帐号
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                                 <label for="floatingPassword">密码</label>
                                 <div class="invalid-feedback">
                                     请输入登录密码
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                                 <label for="floatingPassword">确认密码</label>
                                 <div class="invalid-feedback">
-                                    请输入密码
+                                    请再次输入密码
                                 </div>
                             </div>
-                            <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">注册</button>
+                            <button class="w-100 btn btn-lg btn-primary" data-type="submit" type="button">
+                                <span class="spinner-border spinner-border-sm hide me-2" role="status" aria-hidden="true"></span><a>注册</a>
+                            </button>
                             <p class="text-center">
 
                                 <small>注册即表示同意 用户协议、 隐私协议</small>
@@ -92,7 +102,7 @@
     </div>
 </div>
 
-<div class="position-fixed bottom-05 end-0 p-3" style="z-index: 11">
+<div class="position-fixed bottom-05 end-0 p-3 toast-box">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
             <img src="https://litepress.cn/wp-content/uploads/2021/05/%E8%B5%84%E6%BA%90-5-150x150.png" style="
@@ -104,7 +114,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
-
+            <section class="text-success hide"><i class="fad fa-check-circle  me-2"></i><span></span></section>
+            <section class="text-danger hide"><i class="fad fa-exclamation-circle  me-2"></i><span></span></section>
         </div>
     </div>
 </div>

@@ -173,13 +173,13 @@ $(function () {
             success: function (s) {
                 console.log(s);
                 if (s.message !== undefined) {
-                    $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> " + s.message);
+                    $("#liveToast .hide.text-success").siblings().hide().end().show().find("span").html(s.message)
                     setTimeout(function () {
                         window.location.href = s.project_url; // 你的url地址
                     }, 500);
 
                 } else {
-                    $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i> " + s.error);
+                    $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html(s.error)
                 }
                 $('#liveToast').toast('show')
             },
@@ -211,19 +211,32 @@ Array.prototype.slice.call(forms)
 function form_validation() {
     if ($(".form-control:invalid").length > 0) {
         $(".needs-validation").addClass("was-validated")
-    }
-    if ($(" .form-control:invalid").length > 0) {
         $(this).siblings(".invalid-feedback").show();
-    } else {
+    }
+ else {
+        $(".needs-validation").removeClass("was-validated")
         $(this).siblings(".invalid-feedback").hide();
     }
 }
 
 
+
 /*失去焦点和发生改变表单验证*/
-$(".form-control").on("blur change", function () {
+/*$(".form-control").on("blur change", function () {
     form_validation()
+});*/
+$(".form-control").on("blur change", function () {
+    if ($(this).is(":invalid")) {
+        $(this).parent().addClass("was-validated")
+        $(this).siblings(".invalid-feedback").show();
+    }
+    else {
+        $(this).parent().removeClass("was-validated")
+        $(this).siblings(".invalid-feedback").hide();
+    }
 });
+
+
 
 
 /*升级表单*/
@@ -252,7 +265,7 @@ $("#lp-apply-button").on("click", function () {
                 success: function (s) {
                     $lp_apply_modal.modal('hide');
                     if (s.code === 0) {
-                        $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> " + s.msg);
+                        $("#liveToast .hide.text-success").siblings().hide().end().show().find("span").html(s.msg)
                     } else {
                         $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i> " + s.msg);
                     }
@@ -298,7 +311,7 @@ $("#lp-exit-button").on("click", function () {
                     if (s.code === 0) {
                         $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> " + s.msg);
                     } else {
-                        $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i> " + s.msg);
+                        $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html(s.msg)
                     }
                     $('#liveToast').toast('show')
 
@@ -306,7 +319,7 @@ $("#lp-exit-button").on("click", function () {
                 //调用出错执行的函数
                 error: function () {
                     $lp_apply_modal.modal('hide');
-                    $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i>  请求失败，请检查本地网络！");
+                    $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html("请求失败，请检查本地网络！")
                     $('#liveToast').toast('show')
                     console.log('错误')
                 }
@@ -557,39 +570,87 @@ $(document).on("click", function (e) {
     }
 });
 
+$("#rememberme").click(function (){
+    if(this.checked){
+        $(this).val(1)
+    }else{
+        $(this).val(0)
+    }
+})
 
 $("#form-sign-in").on("click","[data-type='submit']",function (){
     form_validation()
     const $this = $(this);
-    const redirect_to =$('#form-sign-in #redirect_to').val();
+    const $this_form = $(this).closest("form");
+    const username =$this_form.find("#username").val()
+    const password = $this_form.find("#password").val()
+    const rememberme = $this_form.find("#rememberme").val()
+
+
     if ($(this).parent().find(".form-control:invalid").length === 0) {
-        $.ajax({
-            type: "POST",
-            url: "/wp-login.php",
-            data: {
-                'log': $('#form-sign-in #username').val(),
-                'pwd': $('#form-sign-in #password').val(),
-    },
-            datatype: "json",
-            //在请求之前调用的函数
-            beforeSend: function () {
-                /*console.log('登录中...')*/
-                $this.find("a").text("登录中...").end().find(".spinner-border").removeClass("hide")
-            },
-            //成功返回之后调用的函数
-            success: function (s) {
-                $this.closest(".modal").modal('hide');
-                $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> " + "登录成功");
+        const UMTCaptcha = {"captcha_appid": "2032867318"};
+        const lp_captcha = new TencentCaptcha(UMTCaptcha.captcha_appid, function (res) {
+            if (res.ret === 0) {
+
+                $("#tcaptcha-ticket").val(res.ticket)
+                $("#tcaptcha-randstr").val(res.randstr)
+                const ticket = $this_form.find("#tcaptcha-ticket").val()
+                const randstr = $this_form.find("#tcaptcha-randstr").val()
+                $.ajax({
+                    type: "POST",
+                    url: "/lpcn/login",
+                    data: {
+                        'username': username,
+                        'password': password,
+                        "tcaptcha-ticket": ticket,
+                        "tcaptcha-randstr": randstr,
+                        "remember": rememberme
+
+                    },
+                    datatype: "json",
+                    //在请求之前调用的函数
+                    beforeSend: function () {
+                        $this.find("a").text("登录中...").end().find(".spinner-border").removeClass("hide")
+                    },
+                    //成功返回之后调用的函数
+                    success: function (s) {
+
+                        if (s.code === 1) {
+                            $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html(s.error)
+                            $('#liveToast').toast('show')
+                            $this.find("a").text("登录").end().find(".spinner-border").addClass("hide");
+                            if(s.error === "用户名或者密码错误！"){
+
+                            }
+                        }
+                        else {
+                            $this.closest(".modal").modal('hide');
+                            $("#liveToast .hide.text-success").siblings().hide().end().show().find("span").html(s.message)
+                            $('#liveToast').toast('show')
+                            $this.find("a").text("登录").end().find(".spinner-border").addClass("hide");
+                            window.location.reload()
+                        }
+
+
+                    },
+                    //调用出错执行的函数
+                    error: function (e) {
+                        $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html("请求失败，请检查本地网络！")
+                        $('#liveToast').toast('show')
+                        console.log(e)
+                    }
+                });
+
+
+            }
+            else {
+                $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html("图形验证失败，请重试！")
                 $('#liveToast').toast('show')
-                $this.find("a").text("登录").end().find(".spinner-border").addClass("hide");
-                console.log(s)
-            },
-            //调用出错执行的函数
-            error: function () {
-                $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i>  请求失败，请检查本地网络！");
-                $('#liveToast').toast('show')
-                console.log('错误')
             }
         });
+        // 显示验证码
+        lp_captcha.show();
+
+
     }
 })
