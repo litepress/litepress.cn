@@ -111,6 +111,7 @@ html, body {
 a ,.page-link{
     text-decoration: none;
     color: var(--wp-theme-color);
+    word-break: break-all;
 }
 
 .heti .bbp-submit-wrapper a, .bbp-meta a {
