@@ -15,6 +15,7 @@ use LitePress\Autoload;
 
 const PLUGIN_FILE = __FILE__;
 const PLUGIN_DIR  = __DIR__;
+define( 'GP_MT_URL', plugin_dir_url( __FILE__ ) );
 
 include __DIR__ . '/vendor/autoload.php';
 
