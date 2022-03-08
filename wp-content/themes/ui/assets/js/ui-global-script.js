@@ -1,4 +1,5 @@
 var $ = jQuery.noConflict();
+const wp_ajax_url = "/wp-admin/admin-ajax.php";
 $("li.menu-item-has-children > a").attr("data-bs-toggle", "dropdown");
 $(".ant-btn").on("change", "input[type='file']", function () {
     var filePath = $(this).val();
@@ -75,10 +76,11 @@ hljs.highlightAll();
 $(".heti pre").each(function () {
     $(this).wrap("<section class=\"wp-code\"></section>")
 });
-$(".wp-code code").each(function () {
-    $(this).html("<ul><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ul>");
-});
+
 $(function () {
+    $(".wp-code code").each(function () {
+        $(this).html("<ul><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ul>");
+    });
     var numLi = $(".wp-code .hljs ul > li").length;
 
     for (var i = 0; i < numLi; i++) {
@@ -556,3 +558,38 @@ $(document).on("click", function (e) {
 });
 
 
+$("#form-sign-in").on("click","[data-type='submit']",function (){
+    form_validation()
+    const $this = $(this);
+    const redirect_to =$('#form-sign-in #redirect_to').val();
+    if ($(this).parent().find(".form-control:invalid").length === 0) {
+        $.ajax({
+            type: "POST",
+            url: "/wp-login.php",
+            data: {
+                'log': $('#form-sign-in #username').val(),
+                'pwd': $('#form-sign-in #password').val(),
+    },
+            datatype: "json",
+            //在请求之前调用的函数
+            beforeSend: function () {
+                /*console.log('登录中...')*/
+                $this.find("a").text("登录中...").end().find(".spinner-border").removeClass("hide")
+            },
+            //成功返回之后调用的函数
+            success: function (s) {
+                $this.closest(".modal").modal('hide');
+                $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> " + "登录成功");
+                $('#liveToast').toast('show')
+                $this.find("a").text("登录").end().find(".spinner-border").addClass("hide");
+                console.log(s)
+            },
+            //调用出错执行的函数
+            error: function () {
+                $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i>  请求失败，请检查本地网络！");
+                $('#liveToast').toast('show')
+                console.log('错误')
+            }
+        });
+    }
+})
