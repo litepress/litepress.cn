@@ -1830,7 +1830,9 @@ padding: 0;
     margin-right: .5rem;
 }
 
-
+.toast-box{
+    z-index: 1056;
+}
 
 
 
