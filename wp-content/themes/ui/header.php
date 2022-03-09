@@ -98,31 +98,29 @@ switch_to_blog( 1 );
                         </div>
                     </form>
                 </div>
-                <div class=" header-sign">
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'register_menu',
-							'container'      => false,
-							'items_wrap'     => '<ul class="navbar-nav  %2$s">%3$s</ul>',
-							'fallback_cb'    => false,
-							'walker'         => new WCY_Sub_Menu(),
-						)
-					);
-					?>
+                <div class="header-sign">
+
                     <?php
                     if ( is_user_logged_in() ) {
-                        echo '';
+                        wp_nav_menu(
+                            array(
+                                'theme_location' => 'register_menu',
+                                'container'      => false,
+                                'items_wrap'     => '<ul class="navbar-nav  %2$s">%3$s</ul>',
+                                'fallback_cb'    => false,
+                                'walker'         => new WCY_Sub_Menu(),
+                            )
+                        );
                     } else {
-                        echo '<nav class="hide">
+                        echo '<nav class=""> 
                         <ul class="navbar-nav menu">
                             <li class="">
-                                <a href="https://litepress.cn/login" class="nav-link" data-bs-toggle="modal"
+                                <a href="/login" class="nav-link" data-bs-toggle="modal"
                                    data-bs-target="#sign-in"><i class="fas fa-sign-in-alt" aria-hidden="true"></i>
                                     登录</a>
                             </li>
                             <li class="">
-                                <a href="https://litepress.cn/register" class="nav-link"><i
+                                <a href="/register" class="nav-link"><i
                                             class="fas fa-user-plus" aria-hidden="true"></i> 注册</a></li>
                         </ul>
                     </nav>
