@@ -76,9 +76,7 @@ hr {
     bottom: 5%!important
 }
 
-.tooltip{
-    z-index: 1039;
-}
+
 .form-check-input:checked, .btn-check:focus + .btn-primary, .btn-primary:focus {
     background-color: var(--wp-theme-color);
     border-color: var(--wp-theme-color);
