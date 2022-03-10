@@ -146,6 +146,11 @@ if ( '/lpcn/login' === $current_url ) {
 		$user_id  = $user->ID;
 		$userinfo = get_userdata( $user_id );
 
+		// 登录成功需要生成一下缓存插件的 Cookie，这样才能标识当前用户已登录从而不对其缓存
+		do_action( 'set_logged_in_cookie' );
+		do_action( 'wp_login' );
+		do_action( 'login_init' );
+
 		echo json_encode( array( 'code' => 0, 'message' => '登陆成功' ), JSON_UNESCAPED_UNICODE );
 		exit;
 	}
