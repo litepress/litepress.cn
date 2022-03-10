@@ -170,7 +170,7 @@
 </p>
                 <div class="mt-3">
                     <a href="/create" class="btn btn-primary-soft  me-1">
-                        论坛发帖 <i class="fad fa-language  ms-3"></i>
+                        论坛发帖 <i class="fa-duotone fa-file-circle-plus"></i>
                     </a>
                     <a href="https://jq.qq.com/?_wv=1027&k=AizcubYC" class="btn btn-primary-soft  tooltip-show" data-bs-original-title="" title="">
                         加 QQ 群 <i class="fad fa-user-friends ms-3" aria-hidden="true"></i>
