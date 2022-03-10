@@ -154,18 +154,12 @@
 
 <div class="position-fixed bottom-05 end-0 p-3 toast-box">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <img src="https://litepress.cn/wp-content/uploads/2021/05/%E8%B5%84%E6%BA%90-5-150x150.png" style="
-    width: 20px;
-    margin-right: 5px;
-">
-            <strong class="me-auto">LitePress 通知</strong>
-            <small></small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
+        <div class="d-flex">
         <div class="toast-body">
-            <section class="text-success hide"><i class="fad fa-check-circle  me-2"></i><span></span></section>
-            <section class="text-danger hide"><i class="fad fa-exclamation-circle  me-2"></i><span></span></section>
+            <section class="success hide"><i class="fad fa-check-circle  me-2"></i><span></span></section>
+            <section class="danger hide"><i class="fad fa-exclamation-circle  me-2"></i><span></span></section>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     </div>
 </div>
