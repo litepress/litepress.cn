@@ -724,7 +724,7 @@ display: none;
     font-style: normal !important;
     background-color: var(--wp-theme-yellow)!important;
     border-color: var(--wp-theme-yellow)!important;
-    padding: 0px 5px;
+    padding: 1px 5px;
     border-radius: 3px;
     display: flex;
     margin-left: 8px;

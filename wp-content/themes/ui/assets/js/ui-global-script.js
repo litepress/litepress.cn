@@ -6,8 +6,8 @@ $(".ant-btn").on("change", "input[type='file']", function () {
     //filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1
     if (filePath.length > 0) {
         $(".fileerrorTip").html("").hide();
-        var arr = filePath.split('\\');
-        var fileName = arr[arr.length - 1];
+        const arr = filePath.split('\\');
+        const fileName = arr[arr.length - 1];
         $(".showFileName").html(fileName);
     } else {
         $(".showFileName").html("");
@@ -46,8 +46,8 @@ $(".ant-btn").on("change", "input[type='file']", function () {
 })(jQuery);
 
 /*搜索词跟随*/
-var header_search_keyword = $.Request("keyword");
-var header_search_s = $.Request("s");
+const header_search_keyword = $.Request("keyword");
+const header_search_s = $.Request("s");
 if (header_search_keyword != null) {
     $(".search-form input").val(decodeURIComponent(header_search_keyword))
 } else if (header_search_s != null) {
@@ -81,9 +81,9 @@ $(function () {
     $(".wp-code code").each(function () {
         $(this).html("<ul><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ul>");
     });
-    var numLi = $(".wp-code .hljs ul > li").length;
+    const numLi = $(".wp-code .hljs ul > li").length;
 
-    for (var i = 0; i < numLi; i++) {
+    for (let i = 0; i < numLi; i++) {
         $(".wp-code .hljs ul > li").eq(i).wrap('<li  id="L' + (i + 1) + '" ></div>');
     }
 })
@@ -100,7 +100,7 @@ $(".wp-code").hover(function () {
 const n = $(".btn-clipboard");
 n.click(function () {
     $(this).text("已复制");
-    var o = this;
+    const o = this;
     setTimeout(function () {
         $(o).text("复制"),
             window.getSelection().removeAllRanges()
@@ -115,7 +115,7 @@ new ClipboardJS('.wp-code > pre + .btn-clipboard', {
 
 /*激活当前页面导航*/
 $("#site-header .menu-item").each(function () {
-    menu_a = $(this).find("a").attr("href");
+    let menu_a = $(this).find("a").attr("href");
     pathname = $(location).attr('pathname');
     if (pathname.indexOf(menu_a) > -1 && pathname !== "/") {
         $(this).addClass("current-menu-item").siblings().removeClass('current-menu-item');
