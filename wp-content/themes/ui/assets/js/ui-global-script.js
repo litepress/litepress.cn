@@ -628,7 +628,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
                             $("#liveToast .hide.text-success").siblings().hide().end().show().find("span").html(s.message)
                             $('#liveToast').toast('show')
                             $this.find("a").text("登录").end().find(".spinner-border").addClass("hide");
-                            /*window.location.reload()*/
+                            window.location.reload()
                         }
 
 
