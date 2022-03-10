@@ -116,12 +116,11 @@ switch_to_blog( 1 );
                         <ul class="navbar-nav menu">
                             <li class="">
                                 <a href="/login" class="nav-link" data-bs-toggle="modal"
-                                   data-bs-target="#sign-in"><i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                                   data-bs-target="#sign-in"><i class="fa-duotone fa-right-to-bracket"></i>
                                     登录</a>
                             </li>
                             <li class="">
-                                <a href="/register" class="nav-link"><i
-                                            class="fas fa-user-plus" aria-hidden="true"></i> 注册</a></li>
+                                <a href="/register" class="nav-link"><i class="fa-duotone fa-user-plus"></i> 注册</a></li>
                         </ul>
                     </nav>
                     ';
