@@ -48,8 +48,3 @@ require 'glotpress/helper-functions.php';
  * 引入终极会员相关代码
  */
 require __DIR__ . '/inc/ultimate-member/register.php';
-
-/**
- * 载入登录接口
- */
-require __DIR__ . '/inc/login-api.php';
