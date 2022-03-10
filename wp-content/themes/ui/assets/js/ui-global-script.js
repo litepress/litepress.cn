@@ -598,7 +598,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
                 const randstr = $this_form.find("#tcaptcha-randstr").val()
                 $.ajax({
                     type: "POST",
-                    url: "/lpcn/login",
+                    url: "/auth/wp-json/lpcn/user/login",
                     data: {
                         'username': username,
                         'password': password,
@@ -655,7 +655,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
     }
 })
 
-
+/*快捷登录打开小窗口*/
 function openWin(url) {
     window.open(url, 'newwindow', 'height=600, width=600, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
 }
