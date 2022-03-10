@@ -119,29 +119,31 @@
                         <div class=" col  ">
                             <ul class="member-social-list  flex-row navbar-nav justify-content-end">
                                 <li class="social-item social-qq">
-                                    <a  href="" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
-                                       aria-label="QQ" data-bs-original-title="QQ登录"><i class="fa-brands fa-qq"></i></a>
+                                    <a  href="https://baidu.com" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
+                                       aria-label="QQ" data-bs-original-title="QQ登录" ><i class="fa-brands fa-qq" style="color: #4CAFE9"></i></a>
                                 </li>
                                 <li class="social-item social-wechat">
                                     <a href="" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="微信" data-bs-original-title="微信登录">
-                                        <i class="fa-brands fa-weixin"></i></a>
+                                        <i class="fa-brands fa-weixin" style="color:#2aae67"></i></a>
                                 </li>
                                 <li class="social-item social-weibo">
                                     <a href="" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="微博" data-bs-original-title="微博登录">
-                                        <i class="fa-brands fa-weibo"></i>
+                                        <i class="fa-brands fa-weibo" style="color: #da2733"></i>
+                                    </a>
+                                </li>
+                                <li class="social-item social-github">
+                                    <a href="" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
+                                       aria-label="github" data-bs-original-title="Github登录">
+                                        <i class="fa-brands fa-github" style="color: #24292f"></i>
                                     </a>
                                 </li>
                             </ul>
                         </div>
 
                     </div>
-<style>
-    .social-item{
-        padding:0 .5rem;
-    }
-</style>
+
 
                 </main>
             </div>
