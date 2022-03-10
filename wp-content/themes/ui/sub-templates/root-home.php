@@ -57,7 +57,9 @@ get_header();
             object-fit: cover;
             height: 100%;
         }
-
+        .derivative img,.derivative svg{
+            max-height: 180px;
+        }
         .bg-gradient-light-white {
             background-image: linear-gradient(180deg, #f9fbfd 0, #fff);
         }
