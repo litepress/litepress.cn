@@ -79,7 +79,18 @@ hr {
 .social-item{
     padding:0 .5rem;
 }
-
+.divider-content-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    padding-left: .5rem;
+    padding-right: .5rem;
+    background-color: var(--bs-white);
+    white-space: nowrap;
+}
 .form-check-input:checked, .btn-check:focus + .btn-primary, .btn-primary:focus {
     background-color: var(--wp-theme-color);
     border-color: var(--wp-theme-color);
