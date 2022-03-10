@@ -234,9 +234,16 @@ $(".form-control").on("blur change", function () {
         $(this).parent().removeClass("was-validated")
         $(this).siblings(".invalid-feedback").hide();
     }
+
 });
+$(".form-control#password2").on("keyup blur change", function () {
+if($("#form-sign-up #password").val()!==$(this).val()){
+    $(this).attr("class","form-control is-invalid").siblings(".invalid-feedback").show()
+}else {
+    $(this).attr("class","form-control is-valid")
+}
 
-
+})
 
 
 /*升级表单*/
@@ -658,7 +665,7 @@ $(".social-item a").click(function (){
     openWin(url)
     return false;
 })
-
+/*封装通知*/
 function alert_danger(html){
     const T = $("#liveToast")
     T.find(".danger").show().siblings().hide().closest(".d-flex").attr("class","d-flex alert-danger")

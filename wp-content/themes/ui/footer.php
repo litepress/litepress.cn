@@ -28,7 +28,7 @@
                         <li class="nav-item hide" role="presentation">
                             <button class="nav-link" id="sign-up-tab" data-bs-toggle="tab"
                                     data-bs-target="#form-sign-up" type="button" role="tab" aria-controls="profile"
-                                    aria-selected="false">注册
+                                    aria-selected="false">注册（暂未支持）
                             </button>
                         </li>
                     </ul>
@@ -73,29 +73,29 @@
                         </form>
 
                         <!--注册-->
-                        <form class="tab-pane" id="form-sign-up" role="tabpanel">
+                        <form class="needs-validation tab-pane" id="form-sign-up" role="tabpanel">
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput"
+                                <input type="email" class="form-control" id="email"
                                        placeholder="name@example.com" required>
-                                <label for="floatingInput">用户名/邮箱</label>
+                                <label for="email">邮箱</label>
                                 <div class="invalid-feedback">
-                                    请输入帐号
+                                    请输入邮箱
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                                <input type="password" class="form-control" id="password" placeholder="Password"
                                        required>
-                                <label for="floatingPassword">密码</label>
+                                <label for="password">密码</label>
                                 <div class="invalid-feedback">
-                                    请输入登录密码
+                                    请输入密码
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                                <input type="password" class="form-control" id="password2" placeholder="Password"
                                        required>
-                                <label for="floatingPassword">确认密码</label>
+                                <label for="password2">确认密码</label>
                                 <div class="invalid-feedback">
-                                    请再次输入密码
+                                    密码不相同，请重新输入
                                 </div>
                             </div>
                             <button class="w-100 btn btn-lg btn-primary" data-type="submit" type="button">
@@ -109,8 +109,11 @@
 
                     <div class="row mt-3 member-form-footer">
                         <p class="text-center mb-2">
+                        <div class="position-relative">
+                            <hr class="bg-300">
+                            <div class="divider-content-center"><small class="text-muted">注册即表示同意 用户协议、 隐私协议</small></div>
+                        </div>
 
-                            <small class="text-muted">注册即表示同意 用户协议、 隐私协议</small>
 
                         </p>
                         <div class="col">
