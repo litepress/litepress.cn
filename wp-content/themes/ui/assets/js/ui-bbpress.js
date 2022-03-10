@@ -159,7 +159,7 @@ $('.unfold-btn').click(function () {
         $(this).html("<i class=\"fad fa-chevron-circle-down\"></i>展开更多");
     }
 });
-$(" .bbp-reply-content.heti img").each(function () {
+$(".heti img").each(function () {
     let src = $(this).attr("src");
     $(this).wrap("<a class=\"item\" href='" + src + "' ></a>")
 

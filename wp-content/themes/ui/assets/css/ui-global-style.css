@@ -1299,11 +1299,11 @@ code {
     display: none
 }
 
-.ltp-single-content .comment_form_sign p {
+.comment_form_sign p {
     line-height: 2.5em;
 }
 
-.ltp-single-content .comment_form_sign {
+ .comment_form_sign {
     background: #fafcff url(https://gw.alipayobjects.com/zos/bmw-prod/3c6e1fe4-2b10-466a-84c2-76dfa1099ad6.svg) no-repeat;
     border: 1px solid #e8e8e8;
     border-radius: 4px;
