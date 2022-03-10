@@ -598,6 +598,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
                 const randstr = $this_form.find("#tcaptcha-randstr").val()
                 $.ajax({
                     type: "POST",
+                    xhrFields: { withCredentials: true },
                     url: "/auth/wp-json/lpcn/user/login",
                     data: {
                         'username': username,
