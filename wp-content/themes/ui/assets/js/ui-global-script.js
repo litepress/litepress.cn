@@ -173,15 +173,15 @@ $(function () {
             success: function (s) {
                 console.log(s);
                 if (s.message !== undefined) {
-                    $("#liveToast .hide.text-success").siblings().hide().end().show().find("span").html(s.message)
+                    alert_success.html(s.message)
                     setTimeout(function () {
                         window.location.href = s.project_url; // 你的url地址
                     }, 500);
 
                 } else {
-                    $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html(s.error)
+                    alert_danger.html(s.error)
                 }
-                $('#liveToast').toast('show')
+
             },
 
         })
@@ -309,19 +309,16 @@ $("#lp-exit-button").on("click", function () {
                 success: function (s) {
                     $lp_apply_modal.modal('hide');
                     if (s.code === 0) {
-                        $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> " + s.msg);
+                        alert_success.html(s.msg)
                     } else {
-                        $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html(s.msg)
+                        alert_danger.html(s.msg)
                     }
-                    $('#liveToast').toast('show')
 
                 },
                 //调用出错执行的函数
                 error: function () {
                     $lp_apply_modal.modal('hide');
-                    $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html("请求失败，请检查本地网络！")
-                    $('#liveToast').toast('show')
-                    console.log('错误')
+                    alert_danger("请求失败，请检查本地网络！")
                 }
             });
         })
@@ -569,7 +566,7 @@ $(document).on("click", function (e) {
         $(".um-notification-live-feed").hide();
     }
 });
-
+/*登录弹窗*/
 $("#rememberme").click(function (){
     if(this.checked){
         $(this).val(1)
@@ -617,8 +614,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
                     success: function (s) {
 
                         if (s.code === 1) {
-                            $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html(s.error)
-                            $('#liveToast').toast('show')
+                            alert_danger.html(s.error)
                             $this.find("a").text("登录").end().find(".spinner-border").addClass("hide");
                             if(s.error === "用户名或者密码错误！"){
 
@@ -626,8 +622,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
                         }
                         else {
                             $this.closest(".modal").modal('hide');
-                            $("#liveToast .hide.text-success").siblings().hide().end().show().find("span").html(s.message)
-                            $('#liveToast').toast('show')
+                            alert_success(s.message)
                             $this.find("a").text("登录").end().find(".spinner-border").addClass("hide");
                             window.location.reload()
                         }
@@ -636,8 +631,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
                     },
                     //调用出错执行的函数
                     error: function (e) {
-                        $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html("请求失败，请检查本地网络！")
-                        $('#liveToast').toast('show')
+                        alert_danger("请求失败，请检查本地网络！")
                         console.log(e)
                     }
                 });
@@ -645,8 +639,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
 
             }
             else {
-                $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html("图形验证失败，请重试！")
-                $('#liveToast').toast('show')
+                alert_danger("图形验证失败，请重试！")
             }
         });
         // 显示验证码
@@ -665,3 +658,14 @@ $(".social-item a").click(function (){
     openWin(url)
     return false;
 })
+
+function alert_danger(html){
+    const T = $("#liveToast")
+    T.find(".danger").show().siblings().hide().closest(".d-flex").attr("class","d-flex alert-danger")
+    T.toast('show').find("span").html(html)
+   }
+function alert_success(html){
+    const T = $("#liveToast")
+    T.find(".success").show().siblings().hide().closest(".d-flex").attr("class","d-flex alert-success")
+    T.toast('show').find("span").html(html)
+}
