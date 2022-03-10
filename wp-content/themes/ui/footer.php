@@ -159,7 +159,7 @@
             <section class="success hide"><i class="fad fa-check-circle  me-2"></i><span></span></section>
             <section class="danger hide"><i class="fad fa-exclamation-circle  me-2"></i><span></span></section>
         </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     </div>
 </div>
