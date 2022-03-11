@@ -236,8 +236,8 @@ $(".form-control").on("blur change", function () {
     }
 
 });
-$(".form-control#password2").on("keyup blur change", function () {
-if($("#form-sign-up #password").val()!==$(this).val()){
+$("#sign-up-password2").on("keyup blur change", function () {
+if($("#sign-up-password").val()!==$(this).val()){
     $(this).attr("class","form-control is-invalid").siblings(".invalid-feedback").show()
 }else {
     $(this).attr("class","form-control is-valid")
