@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="password" placeholder="Password"
+                                <input type="password" class="form-control" id="sign-up-password" placeholder="Password"
                                        required>
                                 <label for="password">密码</label>
                                 <div class="invalid-feedback">
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="password2" placeholder="Password"
+                                <input type="password" class="form-control" id="sign-up-password2" placeholder="Password"
                                        required>
                                 <label for="password2">确认密码</label>
                                 <div class="invalid-feedback">
