@@ -28,7 +28,7 @@
                         <li class="nav-item hide" role="presentation">
                             <button class="nav-link" id="sign-up-tab" data-bs-toggle="tab"
                                     data-bs-target="#form-sign-up" type="button" role="tab" aria-controls="profile"
-                                    aria-selected="false">注册（暂未支持）
+                                    aria-selected="false">注册
                             </button>
                         </li>
                     </ul>
@@ -46,10 +46,13 @@
                                     请输入帐号
                                 </div>
                             </div>
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-3 input-group">
                                 <input type="password" class="form-control" id="password" placeholder="Password"
                                        required>
                                 <label for="password">密码</label>
+                                <a class="toggle-password input-group-text"">
+                                <i class="fa-duotone fa-fw fa-eye-slash"></i>
+                                </a>
                                 <div class="invalid-feedback">
                                     请输入登录密码
                                 </div>
@@ -82,18 +85,24 @@
                                     请输入邮箱
                                 </div>
                             </div>
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-3 input-group">
                                 <input type="password" class="form-control" id="sign-up-password" placeholder="Password"
                                        required>
                                 <label for="password">密码</label>
+                                <a class="toggle-password input-group-text"">
+                                    <i class="fa-duotone fa-fw fa-eye-slash"></i>
+                                </a>
                                 <div class="invalid-feedback">
                                     请输入密码
                                 </div>
                             </div>
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-3 input-group">
                                 <input type="password" class="form-control" id="sign-up-password2" placeholder="Password"
                                        required>
                                 <label for="password2">确认密码</label>
+                                <a class="toggle-password input-group-text"">
+                                <i class="fa-duotone fa-fw fa-eye-slash"></i>
+                                </a>
                                 <div class="invalid-feedback">
                                     密码不相同，请重新输入
                                 </div>
@@ -122,10 +131,10 @@
                         <div class=" col  ">
                             <ul class="member-social-list  flex-row navbar-nav justify-content-end">
                                 <li class="social-item social-qq">
-                                    <a  href="https://baidu.com" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
+                                    <a  href="/oauth/qq" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="QQ" data-bs-original-title="QQ登录" ><i class="fa-brands fa-qq" style="color: #4CAFE9"></i></a>
                                 </li>
-                                <li class="social-item social-wechat">
+<!--                                <li class="social-item social-wechat">
                                     <a href="" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="微信" data-bs-original-title="微信登录">
                                         <i class="fa-brands fa-weixin" style="color:#2aae67"></i></a>
@@ -135,7 +144,7 @@
                                        aria-label="微博" data-bs-original-title="微博登录">
                                         <i class="fa-brands fa-weibo" style="color: #da2733"></i>
                                     </a>
-                                </li>
+                                </li>-->
                                 <li class="social-item social-github">
                                     <a href="" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="github" data-bs-original-title="Github登录">
