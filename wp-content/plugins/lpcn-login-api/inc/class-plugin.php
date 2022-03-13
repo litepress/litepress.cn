@@ -3,8 +3,6 @@
 namespace LitePress\Login_Api;
 
 
-use GuzzleHttp\Psr7\Request;
-use LitePress\GlotPress\Customizations\Inc\Routes\Route_Project;
 use WP_REST_Request;
 use WP_REST_Response;
 
