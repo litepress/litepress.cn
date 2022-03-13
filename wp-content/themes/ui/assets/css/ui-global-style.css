@@ -105,6 +105,10 @@ hr {
     border-radius: 0 .25rem .25rem 0!important;
     background: none;
 }
+#sign-in .modal-dialog{
+    max-width: 440px;
+}
+
 .hide{
     display: none;
 }
@@ -133,13 +137,15 @@ html, body {
 a ,.page-link{
     text-decoration: none;
     color: var(--wp-theme-color);
-    word-break: break-all;
+
 }
 
 .heti .bbp-submit-wrapper a, .bbp-meta a {
     color: inherit;
 }
-
+.heti a{
+    word-break: break-all;
+}
 a:hover {
     color: var(--wp-theme-color);
 }

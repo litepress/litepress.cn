@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="sign-in" tabindex="-1" data-bs-backdrop="static" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog  modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header border-0 pb-0">
                 <!--<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
@@ -131,7 +131,7 @@
                         <div class=" col  ">
                             <ul class="member-social-list  flex-row navbar-nav justify-content-end">
                                 <li class="social-item social-qq">
-                                    <a  href="/oauth/qq" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
+                                    <a  href="/wp-content/plugins/lpcn-login-api/oauth/qq/example/oauth/index.php" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="QQ" data-bs-original-title="QQ登录" ><i class="fa-brands fa-qq" style="color: #4CAFE9"></i></a>
                                 </li>
 <!--                                <li class="social-item social-wechat">
