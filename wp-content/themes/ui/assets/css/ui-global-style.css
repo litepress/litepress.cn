@@ -79,11 +79,36 @@ hr {
 .social-item{
     padding:0 .5rem;
 }
-
+.divider-content-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    padding-left: .5rem;
+    padding-right: .5rem;
+    background-color: var(--bs-white);
+    white-space: nowrap;
+}
+.form-floating.input-group>.form-control:focus, .form-floating.input-group>.form-select:focus {
+    z-index: 0;
+}
+.form-floating.input-group [type="password"]::-ms-reveal{
+    display: none;
+}
 .form-check-input:checked, .btn-check:focus + .btn-primary, .btn-primary:focus {
     background-color: var(--wp-theme-color);
     border-color: var(--wp-theme-color);
 }
+.form-floating.input-group .input-group-text{
+    border-radius: 0 .25rem .25rem 0!important;
+    background: none;
+}
+#sign-in .modal-dialog{
+    max-width: 440px;
+}
+
 .hide{
     display: none;
 }
@@ -112,13 +137,15 @@ html, body {
 a ,.page-link{
     text-decoration: none;
     color: var(--wp-theme-color);
-    word-break: break-all;
+
 }
 
 .heti .bbp-submit-wrapper a, .bbp-meta a {
     color: inherit;
 }
-
+.heti a{
+    word-break: break-all;
+}
 a:hover {
     color: var(--wp-theme-color);
 }

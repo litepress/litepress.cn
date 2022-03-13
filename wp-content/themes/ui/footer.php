@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="sign-in" tabindex="-1" data-bs-backdrop="static" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog  modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header border-0 pb-0">
                 <!--<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
@@ -46,10 +46,13 @@
                                     请输入帐号
                                 </div>
                             </div>
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-3 input-group">
                                 <input type="password" class="form-control" id="password" placeholder="Password"
                                        required>
                                 <label for="password">密码</label>
+                                <a class="toggle-password input-group-text"">
+                                <i class="fa-duotone fa-fw fa-eye-slash"></i>
+                                </a>
                                 <div class="invalid-feedback">
                                     请输入登录密码
                                 </div>
@@ -73,29 +76,35 @@
                         </form>
 
                         <!--注册-->
-                        <form class="tab-pane" id="form-sign-up" role="tabpanel">
+                        <form class="needs-validation tab-pane" id="form-sign-up" role="tabpanel">
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput"
+                                <input type="email" class="form-control" id="email"
                                        placeholder="name@example.com" required>
-                                <label for="floatingInput">用户名/邮箱</label>
+                                <label for="email">邮箱</label>
                                 <div class="invalid-feedback">
-                                    请输入帐号
+                                    请输入邮箱
                                 </div>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                            <div class="form-floating mb-3 input-group">
+                                <input type="password" class="form-control" id="sign-up-password" placeholder="Password"
                                        required>
-                                <label for="floatingPassword">密码</label>
+                                <label for="password">密码</label>
+                                <a class="toggle-password input-group-text"">
+                                    <i class="fa-duotone fa-fw fa-eye-slash"></i>
+                                </a>
                                 <div class="invalid-feedback">
-                                    请输入登录密码
+                                    请输入密码
                                 </div>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                            <div class="form-floating mb-3 input-group">
+                                <input type="password" class="form-control" id="sign-up-password2" placeholder="Password"
                                        required>
-                                <label for="floatingPassword">确认密码</label>
+                                <label for="password2">确认密码</label>
+                                <a class="toggle-password input-group-text"">
+                                <i class="fa-duotone fa-fw fa-eye-slash"></i>
+                                </a>
                                 <div class="invalid-feedback">
-                                    请再次输入密码
+                                    密码不相同，请重新输入
                                 </div>
                             </div>
                             <button class="w-100 btn btn-lg btn-primary" data-type="submit" type="button">
@@ -109,8 +118,11 @@
 
                     <div class="row mt-3 member-form-footer">
                         <p class="text-center mb-2">
+                        <div class="position-relative">
+                            <hr class="bg-300">
+                            <div class="divider-content-center"><small class="text-muted">注册即表示同意 用户协议、 隐私协议</small></div>
+                        </div>
 
-                            <small class="text-muted">注册即表示同意 用户协议、 隐私协议</small>
 
                         </p>
                         <div class="col">
@@ -119,10 +131,10 @@
                         <div class=" col  ">
                             <ul class="member-social-list  flex-row navbar-nav justify-content-end">
                                 <li class="social-item social-qq">
-                                    <a  href="https://baidu.com" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
+                                    <a  href="/wp-content/plugins/lpcn-login-api/oauth/qq/example/oauth/index.php" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="QQ" data-bs-original-title="QQ登录" ><i class="fa-brands fa-qq" style="color: #4CAFE9"></i></a>
                                 </li>
-                                <li class="social-item social-wechat">
+<!--                                <li class="social-item social-wechat">
                                     <a href="" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="微信" data-bs-original-title="微信登录">
                                         <i class="fa-brands fa-weixin" style="color:#2aae67"></i></a>
@@ -132,7 +144,7 @@
                                        aria-label="微博" data-bs-original-title="微博登录">
                                         <i class="fa-brands fa-weibo" style="color: #da2733"></i>
                                     </a>
-                                </li>
+                                </li>-->
                                 <li class="social-item social-github">
                                     <a href="" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="github" data-bs-original-title="Github登录">
@@ -154,18 +166,12 @@
 
 <div class="position-fixed bottom-05 end-0 p-3 toast-box">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <img src="https://litepress.cn/wp-content/uploads/2021/05/%E8%B5%84%E6%BA%90-5-150x150.png" style="
-    width: 20px;
-    margin-right: 5px;
-">
-            <strong class="me-auto">LitePress 通知</strong>
-            <small></small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
+        <div class="d-flex">
         <div class="toast-body">
-            <section class="text-success hide"><i class="fad fa-check-circle  me-2"></i><span></span></section>
-            <section class="text-danger hide"><i class="fad fa-exclamation-circle  me-2"></i><span></span></section>
+            <section class="success hide"><i class="fad fa-check-circle  me-2"></i><span></span></section>
+            <section class="danger hide"><i class="fad fa-exclamation-circle  me-2"></i><span></span></section>
+        </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     </div>
 </div>
