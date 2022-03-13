@@ -298,14 +298,14 @@ function textareas( $entry, $permissions, $index = 0 ) {
 			}
 			?>
             </div>
-        <div class="actions ms-auto p-0">
-            <?php if ( $can_edit ) : ?>
-                <button class="ok btn btn-primary" data-nonce="<?php echo esc_attr( wp_create_nonce( 'add-translation_' . $translation->original_id ) ); ?>">
-                    <?php echo $can_approve_translation ? __( 'Add translation &rarr;', 'glotpress' ) : __( 'Suggest new translation &rarr;', 'glotpress' ); ?>
+<!--        <div class="actions ms-auto p-0">
+            <?php /*if ( $can_edit ) : */?>
+                <button class="ok btn btn-primary" data-nonce="<?php /*echo esc_attr( wp_create_nonce( 'add-translation_' . $translation->original_id ) ); */?>">
+                    <?php /*echo $can_approve_translation ? __( 'Add translation &rarr;', 'glotpress' ) : __( 'Suggest new translation &rarr;', 'glotpress' ); */?>
                 </button>
-            <?php endif; ?>
-            <?php _e( 'or', 'glotpress' ); ?> <a href="#" class="close btn btn-outline-primary"><?php _e( 'Cancel', 'glotpress' ); ?></a>
-        </div>
+            <?php /*endif; */?>
+            <?php /*_e( 'or', 'glotpress' ); */?> <a href="#" class="close btn btn-outline-primary"><?php /*_e( 'Cancel', 'glotpress' ); */?></a>
+        </div>-->
 
         </div>
 	</div>
