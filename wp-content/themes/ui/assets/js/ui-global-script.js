@@ -173,15 +173,15 @@ $(function () {
             success: function (s) {
                 console.log(s);
                 if (s.message !== undefined) {
-                    $("#liveToast .hide.text-success").siblings().hide().end().show().find("span").html(s.message)
+                    alert_success.html(s.message)
                     setTimeout(function () {
                         window.location.href = s.project_url; // 你的url地址
                     }, 500);
 
                 } else {
-                    $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html(s.error)
+                    alert_danger.html(s.error)
                 }
-                $('#liveToast').toast('show')
+
             },
 
         })
@@ -234,10 +234,49 @@ $(".form-control").on("blur change", function () {
         $(this).parent().removeClass("was-validated")
         $(this).siblings(".invalid-feedback").hide();
     }
+
 });
+$("#sign-up-password2").on("keyup blur change", function () {
+if($("#sign-up-password").val()!==$(this).val()){
+    $(this).attr("class","form-control is-invalid").siblings(".invalid-feedback").show()
+}else {
+    $(this).attr("class","form-control is-valid")
+}
 
+})
+$(".toggle-password").on("click", function () {
+$(this).siblings(".form-control").toggleAttrVal('type', "password", "text");
+    $(this).find("i").toggleClass("fa-eye-slash fa-eye")
+return false;
+})
 
+// jquery toggle whole attribute
+$.fn.toggleAttr = function(attr, val) {
+    var test = $(this).attr(attr);
+    if ( test ) {
+        // if attrib exists with ANY value, still remove it
+        $(this).removeAttr(attr);
+    } else {
+        $(this).attr(attr, val);
+    }
+    return this;
+};
 
+// jquery toggle just the attribute value
+$.fn.toggleAttrVal = function(attr, val1, val2) {
+    var test = $(this).attr(attr);
+    if ( test === val1) {
+        $(this).attr(attr, val2);
+        return this;
+    }
+    if ( test === val2) {
+        $(this).attr(attr, val1);
+        return this;
+    }
+    // default to val1 if neither
+    $(this).attr(attr, val1);
+    return this;
+};
 
 /*升级表单*/
 const $lp_apply_modal = $("#lp-apply-Modal");
@@ -309,19 +348,16 @@ $("#lp-exit-button").on("click", function () {
                 success: function (s) {
                     $lp_apply_modal.modal('hide');
                     if (s.code === 0) {
-                        $(" .toast-body").html("<i class=\"fad fa-check-circle text-success\"></i> " + s.msg);
+                        alert_success.html(s.msg)
                     } else {
-                        $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html(s.msg)
+                        alert_danger.html(s.msg)
                     }
-                    $('#liveToast').toast('show')
 
                 },
                 //调用出错执行的函数
                 error: function () {
                     $lp_apply_modal.modal('hide');
-                    $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html("请求失败，请检查本地网络！")
-                    $('#liveToast').toast('show')
-                    console.log('错误')
+                    alert_danger("请求失败，请检查本地网络！")
                 }
             });
         })
@@ -569,7 +605,7 @@ $(document).on("click", function (e) {
         $(".um-notification-live-feed").hide();
     }
 });
-
+/*登录弹窗*/
 $("#rememberme").click(function (){
     if(this.checked){
         $(this).val(1)
@@ -617,8 +653,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
                     success: function (s) {
 
                         if (s.code === 1) {
-                            $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html(s.error)
-                            $('#liveToast').toast('show')
+                            alert_danger.html(s.error)
                             $this.find("a").text("登录").end().find(".spinner-border").addClass("hide");
                             if(s.error === "用户名或者密码错误！"){
 
@@ -626,8 +661,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
                         }
                         else {
                             $this.closest(".modal").modal('hide');
-                            $("#liveToast .hide.text-success").siblings().hide().end().show().find("span").html(s.message)
-                            $('#liveToast').toast('show')
+                            alert_success(s.message)
                             $this.find("a").text("登录").end().find(".spinner-border").addClass("hide");
                             window.location.reload()
                         }
@@ -636,8 +670,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
                     },
                     //调用出错执行的函数
                     error: function (e) {
-                        $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html("请求失败，请检查本地网络！")
-                        $('#liveToast').toast('show')
+                        alert_danger("请求失败，请检查本地网络！")
                         console.log(e)
                     }
                 });
@@ -645,8 +678,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
 
             }
             else {
-                $("#liveToast .hide.text-danger").siblings().hide().end().show().find("span").html("图形验证失败，请重试！")
-                $('#liveToast').toast('show')
+                alert_danger("图形验证失败，请重试！")
             }
         });
         // 显示验证码
@@ -658,10 +690,21 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
 
 /*快捷登录打开小窗口*/
 function openWin(url) {
-    window.open(url, 'newwindow', 'height=600, width=600, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+    window.open(url, 'Login', 'height=660, width=600, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
 }
 $(".social-item a").click(function (){
     const url = $(this).attr("href");
     openWin(url)
     return false;
 })
+/*封装通知*/
+function alert_danger(html){
+    const T = $("#liveToast")
+    T.find(".danger").show().siblings().hide().closest(".d-flex").attr("class","d-flex alert-danger")
+    T.toast('show').find("span").html(html)
+   }
+function alert_success(html){
+    const T = $("#liveToast")
+    T.find(".success").show().siblings().hide().closest(".d-flex").attr("class","d-flex alert-success")
+    T.toast('show').find("span").html(html)
+}
