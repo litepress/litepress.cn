@@ -690,7 +690,7 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
 
 /*快捷登录打开小窗口*/
 function openWin(url) {
-    window.open(url, 'newwindow', 'height=600, width=600, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+    window.open(url, 'Login', 'height=600, width=600, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
 }
 $(".social-item a").click(function (){
     const url = $(this).attr("href");

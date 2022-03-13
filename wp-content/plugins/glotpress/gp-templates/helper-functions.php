@@ -282,7 +282,8 @@ function textareas( $entry, $permissions, $index = 0 ) {
 		<blockquote class="translation"><em><small><?php echo prepare_original( esc_translation( gp_array_get( $entry->translations, $index ) ) ); ?></small></em></blockquote>
 		<textarea class="foreign-text" name="translation[<?php echo esc_attr( $entry->original_id ); ?>][]" id="translation_<?php echo esc_attr( $entry->original_id ); ?>_<?php echo esc_attr( $index ); ?>" <?php echo disabled( ! $can_edit ); ?>><?php echo gp_prepare_translation_textarea( esc_translation( gp_array_get( $entry->translations, $index ) ) ); ?></textarea>
 
-		<p>
+		<div class="d-flex">
+            <div>
 			<?php
 			if ( $can_edit ) {
 				gp_entry_actions();
@@ -296,7 +297,17 @@ function textareas( $entry, $permissions, $index = 0 ) {
 				);
 			}
 			?>
-		</p>
+            </div>
+        <div class="actions ms-auto p-0">
+            <?php if ( $can_edit ) : ?>
+                <button class="ok btn btn-primary" data-nonce="<?php echo esc_attr( wp_create_nonce( 'add-translation_' . $translation->original_id ) ); ?>">
+                    <?php echo $can_approve_translation ? __( 'Add translation &rarr;', 'glotpress' ) : __( 'Suggest new translation &rarr;', 'glotpress' ); ?>
+                </button>
+            <?php endif; ?>
+            <?php _e( 'or', 'glotpress' ); ?> <a href="#" class="close btn btn-outline-primary"><?php _e( 'Cancel', 'glotpress' ); ?></a>
+        </div>
+
+        </div>
 	</div>
 	<?php
 }
