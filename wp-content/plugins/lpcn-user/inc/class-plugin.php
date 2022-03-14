@@ -1,6 +1,6 @@
 <?php
 
-namespace LitePress\Login_Api;
+namespace LitePress\User;
 
 
 use WP_REST_Request;

@@ -36,13 +36,13 @@ include_once("session.php");
  * 在你运行本demo之前请到 http://connect.opensns.qq.com/申请appid, appkey, 并注册callback地址
  */
 //申请到的appid
-$_SESSION["appid"]    = 100330156; 
+$_SESSION["appid"]    = 101996059;
 
 //申请到的appkey
-$_SESSION["appkey"]   = "e184b2f2d2a12bc8f24cc551b6e80bff"; 
+$_SESSION["appkey"]   = "b47e03df55090070f9353b2bd8463428";
 
 //QQ登录成功后跳转的地址,请确保地址真实可用，否则会导致登录失败。
-$_SESSION["callback"] = "http://www.webpluz.org/sdk/Connect1.5/oauth/get_access_token.php"; 
+$_SESSION["callback"] = "https://litepress.cn/auth/qq/callback";
 
 $_SESSION["scope"] = "get_user_info,add_share,list_album,add_album,upload_pic,add_topic,add_one_blog,add_weibo";
 
