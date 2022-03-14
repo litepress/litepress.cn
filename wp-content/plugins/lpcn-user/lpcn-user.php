@@ -9,7 +9,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace LitePress\Login_Api;
+namespace LitePress\User;
 
 use LitePress\Autoload;
 
