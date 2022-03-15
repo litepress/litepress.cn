@@ -15,7 +15,7 @@ $(".ant-btn").on("change", "input[type='file']", function () {
         return false
     }
 });
-  
+
 
 (function ($) {
     $.extend({
@@ -708,3 +708,9 @@ function alert_success(html){
     T.find(".success").show().siblings().hide().closest(".d-flex").attr("class","d-flex alert-success")
     T.toast('show').find("span").html(html)
 }
+
+
+/*翻译跳转*/
+let fanyi_seach_val = $(".search-form input").val()
+$(".menu-item-translate a").attr("href", '/translate/projects/plugins/?s=' + fanyi_seach_val)
+$(".menu-item-manual  a").attr("href", '/translate/projects/plugins/?s=' + fanyi_seach_val)

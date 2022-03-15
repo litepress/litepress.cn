@@ -165,13 +165,13 @@ $query_time = sprintf( "%.3f", $end_time - $start_time );
                             <a
                                     href="<?php echo add_query_arg( array( 'tag_id' => 11 ), remove_query_arg( 'paged' ) ) ?>"
                                     class="nav-link">文档</a></li>
-                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19924 <?php echo 6 === (int) $tag_id ? 'current-menu-item' : ''; ?>">
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-manual <?php echo 6 === (int) $tag_id ? 'current-menu-item' : ''; ?>">
                             <a
                                     href="<?php echo add_query_arg( array( 'tag_id' => 6 ), remove_query_arg( 'paged' ) ) ?>"
                                     class="nav-link">手册</a></li>
-                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19924 <?php echo 4 === (int) $tag_id ? 'current-menu-item' : ''; ?>">
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-translate <?php echo 4 === (int) $tag_id ? 'current-menu-item' : ''; ?>">
                             <a
-                                    href="<?php echo add_query_arg( array( 'tag_id' => 4 ), remove_query_arg( 'paged' ) ) ?>"
+                                    href="<?php /*echo add_query_arg( array( 'tag_id' => 4 ), remove_query_arg( 'paged' ) ) */?>"
                                     class="nav-link">翻译</a></li>
                     </ul>
 

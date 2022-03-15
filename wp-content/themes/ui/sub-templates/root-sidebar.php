@@ -56,7 +56,7 @@
         </div>
     </section>
     <section class="my-3">
-        <a href="/create" target="_blank" class="btn btn-primary d-block"
+        <a href="/create" <?php if ( ! is_user_logged_in()) {echo ' data-bs-toggle="modal" data-bs-target="#sign-in" '; } ?> target="_blank" class="btn btn-primary d-block"
            role="button">
             <i class="fad fa-paper-plane"></i>
             <span class="uabb-button-text uabb-creative-button-text">发表话题</span>
