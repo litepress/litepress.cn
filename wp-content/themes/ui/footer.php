@@ -131,26 +131,26 @@
                         <div class=" col  ">
                             <ul class="member-social-list  flex-row navbar-nav justify-content-end">
                                 <li class="social-item social-qq">
-                                    <a  href="/wp-content/plugins/lpcn-login-api/oauth/qq/example/oauth/index.php" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
+                                    <a  href="/wp-content/plugins/lpcn-user/oauth/qq/example/oauth/index.php" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="QQ" data-bs-original-title="QQ登录" ><i class="fa-brands fa-qq" style="color: #4CAFE9"></i></a>
                                 </li>
-<!--                                <li class="social-item social-wechat">
+                               <li class="social-item social-wechat">
                                     <a href="" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="微信" data-bs-original-title="微信登录">
                                         <i class="fa-brands fa-weixin" style="color:#2aae67"></i></a>
                                 </li>
-                                <li class="social-item social-weibo">
+<!--                                <li class="social-item social-weibo">
                                     <a href="" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="微博" data-bs-original-title="微博登录">
                                         <i class="fa-brands fa-weibo" style="color: #da2733"></i>
                                     </a>
-                                </li>-->
+                                </li>
                                 <li class="social-item social-github">
                                     <a href="" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="github" data-bs-original-title="Github登录">
                                         <i class="fa-brands fa-github" style="color: #24292f"></i>
                                     </a>
-                                </li>
+                                </li>-->
                             </ul>
                         </div>
 
@@ -164,8 +164,8 @@
     </div>
 </div>
 
-<div class="position-fixed bottom-05 end-0 p-3 toast-box">
-    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+<div class="position-fixed top-15 start-50 translate-middle p-3 toast-box">
+    <div id="liveToast" class="toast w-auto" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
         <div class="toast-body">
             <section class="success hide"><i class="fad fa-check-circle  me-2"></i><span></span></section>
