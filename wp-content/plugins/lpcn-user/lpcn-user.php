@@ -12,6 +12,7 @@
 namespace LitePress\User;
 
 use LitePress\Autoload;
+use LitePress\User\Inc\Plugin;
 
 const PLUGIN_FILE = __FILE__;
 const PLUGIN_DIR  = __DIR__;
@@ -20,6 +21,9 @@ if ( ! class_exists( '\LitePress\Autoload\Autoloader', false ) ) {
 	include __DIR__ . '/vendor/litepress/autoload/class-autoloader.php';
 }
 
-Autoload\register_class_path( __NAMESPACE__, __DIR__ . '/inc' );
+Autoload\register_class_path( __NAMESPACE__ . '\Inc', __DIR__ . '/inc' );
+Autoload\register_class_path( __NAMESPACE__ . '\Inc\Api', __DIR__ . '/inc/api' );
+
+require __DIR__ . '/inc/helpers.php';
 
 Plugin::get_instance();
