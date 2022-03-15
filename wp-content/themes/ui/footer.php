@@ -164,8 +164,8 @@
     </div>
 </div>
 
-<div class="position-fixed bottom-05 end-0 p-3 toast-box">
-    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+<div class="position-fixed top-15 start-50 translate-middle p-3 toast-box">
+    <div id="liveToast" class="toast w-auto" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
         <div class="toast-body">
             <section class="success hide"><i class="fad fa-check-circle  me-2"></i><span></span></section>

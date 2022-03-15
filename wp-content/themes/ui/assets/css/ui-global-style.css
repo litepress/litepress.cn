@@ -75,7 +75,9 @@ hr {
 .bottom-05 {
     bottom: 5%!important
 }
-
+.top-15 {
+    top: 15%!important
+}
 .social-item{
     padding:0 .5rem;
 }
