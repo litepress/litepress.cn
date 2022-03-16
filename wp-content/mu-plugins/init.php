@@ -26,6 +26,10 @@ require __DIR__ . '/library/loader.php';
 add_action( 'user_register', function ( $user_id ) {
 	global $wpdb;
 
+	if ( empty( $_POST['user_email-3'] ) ) {
+		return $user_id;
+	}
+
 	$address = strtolower( trim( $_POST['user_email-3'] ) );
 	$wpdb->replace( 'wp_9_avatar_email', array(
 		'md5'       => md5( $address ),
@@ -33,6 +37,8 @@ add_action( 'user_register', function ( $user_id ) {
 		'user_id'   => $user_id,
 		'is_master' => 1,
 	) );
+
+	return $user_id;
 } );
 
 /**
