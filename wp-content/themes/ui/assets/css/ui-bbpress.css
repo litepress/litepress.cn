@@ -390,7 +390,7 @@ div.bbp-submit-wrapper {
     left: 0;
     background: var(--wp-theme-color);
 }
-.bbp-meta a:after{
+.bbp-meta a:after,#bbpress-forums div.bbp-reply-content a.item:after{
     display: none;
 }
 #bbpress-forums {
