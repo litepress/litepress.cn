@@ -173,13 +173,13 @@ $(function () {
             success: function (s) {
                 console.log(s);
                 if (s.message !== undefined) {
-                    alert_success.html(s.message)
+                    alert_success(s.message)
                     setTimeout(function () {
                         window.location.href = s.project_url; // 你的url地址
                     }, 500);
 
                 } else {
-                    alert_danger.html(s.error)
+                    alert_danger(s.error)
                 }
 
             },
@@ -212,13 +212,11 @@ function form_validation() {
     if ($(".form-control:invalid").length > 0) {
         $(".needs-validation").addClass("was-validated")
         $(this).siblings(".invalid-feedback").show();
-    }
- else {
+    } else {
         $(".needs-validation").removeClass("was-validated")
         $(this).siblings(".invalid-feedback").hide();
     }
 }
-
 
 
 /*失去焦点和发生改变表单验证*/
@@ -229,31 +227,30 @@ $(".form-control").on("blur change", function () {
     if ($(this).is(":invalid")) {
         $(this).parent().addClass("was-validated")
         $(this).siblings(".invalid-feedback").show();
-    }
-    else {
+    } else {
         $(this).parent().removeClass("was-validated")
         $(this).siblings(".invalid-feedback").hide();
     }
 
 });
 $("#sign-up-password2").on("keyup blur change", function () {
-if($("#sign-up-password").val()!==$(this).val()){
-    $(this).attr("class","form-control is-invalid").siblings(".invalid-feedback").show()
-}else {
-    $(this).attr("class","form-control is-valid")
-}
+    if ($("#sign-up-password").val() !== $(this).val()) {
+        $(this).attr("class", "form-control is-invalid").siblings(".invalid-feedback").show()
+    } else {
+        $(this).attr("class", "form-control is-valid")
+    }
 
 })
 $(".toggle-password").on("click", function () {
-$(this).siblings(".form-control").toggleAttrVal('type', "password", "text");
+    $(this).siblings(".form-control").toggleAttrVal('type', "password", "text");
     $(this).find("i").toggleClass("fa-eye-slash fa-eye")
-return false;
+    return false;
 })
 
 // jquery toggle whole attribute
-$.fn.toggleAttr = function(attr, val) {
+$.fn.toggleAttr = function (attr, val) {
     var test = $(this).attr(attr);
-    if ( test ) {
+    if (test) {
         // if attrib exists with ANY value, still remove it
         $(this).removeAttr(attr);
     } else {
@@ -263,13 +260,13 @@ $.fn.toggleAttr = function(attr, val) {
 };
 
 // jquery toggle just the attribute value
-$.fn.toggleAttrVal = function(attr, val1, val2) {
+$.fn.toggleAttrVal = function (attr, val1, val2) {
     var test = $(this).attr(attr);
-    if ( test === val1) {
+    if (test === val1) {
         $(this).attr(attr, val2);
         return this;
     }
-    if ( test === val2) {
+    if (test === val2) {
         $(this).attr(attr, val1);
         return this;
     }
@@ -348,9 +345,9 @@ $("#lp-exit-button").on("click", function () {
                 success: function (s) {
                     $lp_apply_modal.modal('hide');
                     if (s.code === 0) {
-                        alert_success.html(s.msg)
+                        alert_success(s.msg)
                     } else {
-                        alert_danger.html(s.msg)
+                        alert_danger(s.msg)
                     }
 
                 },
@@ -574,11 +571,10 @@ if ($("#bbp-editor-container").length > 0) {
 
     })
 }
-if($("#reply-title a").length > 0){
+if ($("#reply-title a").length > 0) {
     const text = $("#reply-title a").text();
-$('.w-e-text-placeholder').text('回复 '+text +' :')
-}
-else {
+    $('.w-e-text-placeholder').text('回复 ' + text + ' :')
+} else {
     $(".cancel-comment-reply-link").hide()
 }
 /*搜索占位符*/
@@ -605,36 +601,37 @@ $(document).on("click", function (e) {
         $(".um-notification-live-feed").hide();
     }
 });
+
 /*登录弹窗*/
-$("#rememberme").click(function (){
-    if(this.checked){
+$("#rememberme").click(function () {
+    if (this.checked) {
         $(this).val(1)
-    }else{
+    } else {
         $(this).val(0)
     }
 })
-
-$("#form-sign-in").on("click","[data-type='submit']",function (){
+var UMTCaptcha = {"captcha_appid": "2032867318"};
+$("#form-sign-in").on("click", "[data-type='submit']", function () {
     form_validation()
     const $this = $(this);
-    const $this_form = $(this).closest("form");
-    const username =$this_form.find("#username").val()
+    const $this_form = $this.closest("form");
+    const username = $this_form.find("#username").val()
     const password = $this_form.find("#password").val()
     const rememberme = $this_form.find("#rememberme").val()
-
+    const t_ticket = $this_form.find("#tcaptcha-ticket")
+    const t_randstr = $this_form.find("#tcaptcha-randstr")
 
     if ($(this).parent().find(".form-control:invalid").length === 0) {
-        const UMTCaptcha = {"captcha_appid": "2032867318"};
         const lp_captcha = new TencentCaptcha(UMTCaptcha.captcha_appid, function (res) {
             if (res.ret === 0) {
 
-                $("#tcaptcha-ticket").val(res.ticket)
-                $("#tcaptcha-randstr").val(res.randstr)
-                const ticket = $this_form.find("#tcaptcha-ticket").val()
-                const randstr = $this_form.find("#tcaptcha-randstr").val()
+                t_ticket.val(res.ticket)
+                t_randstr.val(res.randstr)
+                const ticket = t_ticket.val()
+                const randstr = t_randstr.val()
                 $.ajax({
                     type: "POST",
-                    xhrFields: { withCredentials: true },
+                    xhrFields: {withCredentials: true},
                     url: "/auth/wp-json/lpcn/user/login",
                     data: {
                         'username': username,
@@ -647,22 +644,19 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
                     datatype: "json",
                     //在请求之前调用的函数
                     beforeSend: function () {
-                        $this.find("a").text("登录中...").end().find(".spinner-border").removeClass("hide")
+
                     },
                     //成功返回之后调用的函数
                     success: function (s) {
 
                         if (s.code === 1) {
-                            alert_danger.html(s.error)
-                            $this.find("a").text("登录").end().find(".spinner-border").addClass("hide");
-                            if(s.error === "用户名或者密码错误！"){
+                            alert_danger(s.error)
+                            if (s.error === "用户名或者密码错误！") {
 
                             }
-                        }
-                        else {
+                        } else {
                             $this.closest(".modal").modal('hide');
                             alert_success(s.message)
-                            $this.find("a").text("登录").end().find(".spinner-border").addClass("hide");
                             window.location.reload()
                         }
 
@@ -670,14 +664,13 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
                     },
                     //调用出错执行的函数
                     error: function (e) {
-                        alert_danger("请求失败，请检查本地网络！")
+                        alert_danger(e.responseJSON.message)
                         console.log(e)
                     }
                 });
 
 
-            }
-            else {
+            } else {
                 alert_danger("图形验证失败，请重试！")
             }
         });
@@ -686,27 +679,247 @@ $("#form-sign-in").on("click","[data-type='submit']",function (){
 
 
     }
+    btn_load()
 })
+
+
+/*! jquery.cookie v1.4.1 | MIT */
+!function (a) {
+    "function" == typeof define && define.amd ? define(["jquery"], a) : "object" == typeof exports ? a(require("jquery")) : a(jQuery)
+}(function (a) {
+    function b(a) {
+        return h.raw ? a : encodeURIComponent(a)
+    }
+
+    function c(a) {
+        return h.raw ? a : decodeURIComponent(a)
+    }
+
+    function d(a) {
+        return b(h.json ? JSON.stringify(a) : String(a))
+    }
+
+    function e(a) {
+        0 === a.indexOf('"') && (a = a.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, "\\"));
+        try {
+            return a = decodeURIComponent(a.replace(g, " ")), h.json ? JSON.parse(a) : a
+        } catch (b) {
+        }
+    }
+
+    function f(b, c) {
+        var d = h.raw ? b : e(b);
+        return a.isFunction(c) ? c(d) : d
+    }
+
+    var g = /\+/g, h = a.cookie = function (e, g, i) {
+        if (void 0 !== g && !a.isFunction(g)) {
+            if (i = a.extend({}, h.defaults, i), "number" == typeof i.expires) {
+                var j = i.expires, k = i.expires = new Date;
+                k.setTime(+k + 864e5 * j)
+            }
+            return document.cookie = [b(e), "=", d(g), i.expires ? "; expires=" + i.expires.toUTCString() : "", i.path ? "; path=" + i.path : "", i.domain ? "; domain=" + i.domain : "", i.secure ? "; secure" : ""].join("")
+        }
+        for (var l = e ? void 0 : {}, m = document.cookie ? document.cookie.split("; ") : [], n = 0, o = m.length; o > n; n++) {
+            var p = m[n].split("="), q = c(p.shift()), r = p.join("=");
+            if (e && e === q) {
+                l = f(r, g);
+                break
+            }
+            e || void 0 === (r = f(r)) || (l[q] = r)
+        }
+        return l
+    };
+    h.defaults = {}, a.removeCookie = function (b, c) {
+        return void 0 === a.cookie(b) ? !1 : (a.cookie(b, "", a.extend({}, c, {expires: -1})), !a.cookie(b))
+    }
+});
+
+
+$(".send-sms-code").on("click", function () {
+    const $this = $(this)
+    const $this_form = $this.closest("form")
+    const mobile = $this_form.find("#mobile")
+    const agree = $this_form.find("#form-sign-up-agree")
+    const mobile_val = mobile.val()
+    const t_ticket = $this_form.find("#tcaptcha-ticket")
+    const t_randstr = $this_form.find("#tcaptcha-randstr")
+
+
+    if ($this_form.find(".form-control:invalid,.form-check-input:invalid").length === 0) {
+
+        const lp_captcha = new TencentCaptcha(UMTCaptcha.captcha_appid, function (res) {
+            if (res.ret === 0) {
+                /*滑块通过*/
+                t_ticket.val(res.ticket)
+                t_randstr.val(res.randstr)
+                const ticket = t_ticket.val()
+                const randstr = t_randstr.val()
+
+
+                let count = 60;
+                const resend = setInterval(function () {
+                    count--;
+                    if (count > 0) {
+                        $this.html("重新发送 " + count + "s").addClass("disabled");
+                        $.cookie("captcha", count, {path: '/', expires: (1 / 86400) * count});
+                    } else {
+                        clearInterval(resend);
+                        $this.html("重新发送").toggleClass("disabled");
+                    }
+                }, 1000);
+
+                $.ajax({
+                    type: "POST",
+                    xhrFields: {withCredentials: true},
+                    url: "/auth/wp-json/lpcn/user/send_sms_code",
+                    data: {
+                        'mobile': mobile_val,
+                        "tcaptcha-ticket": ticket,
+                        "tcaptcha-randstr": randstr,
+                    },
+                    datatype: "json",
+                    //在请求之前调用的函数
+                    beforeSend: function () {
+
+                    },
+                    //成功返回之后调用的函数
+                    success: function (s) {
+                        alert_success(s.message)
+                        $this_form.find("section.hide").show().siblings().hide()
+                        $("#sms-code").focus()
+                        console.log(s)
+                    },
+                    //调用出错执行的函数
+                    error: function (e) {
+                        alert_danger(e.responseJSON.message)
+                        console.log(e)
+                    }
+                });
+
+            } else {
+                alert_danger("图形验证失败，请重试！")
+            }
+        });
+        // 显示验证码
+        lp_captcha.show();
+    } else {
+        $(mobile).parent().addClass("was-validated")
+        $(agree).parent().addClass("was-validated")
+    }
+
+
+})
+
+$(".input-smscode").on("click",function () {
+    $("#sms-code").focus()
+})
+$("#sms-code").on("keyup",function () {
+    const $this = $("#form-sign-up")
+    const mobile = $this.find("#mobile")
+    const sms_code = $this.find("#sms-code").val()
+    const mobile_val = mobile.val()
+    if (sms_code.length ===4) {
+        $.ajax({
+            /*检测注册*/
+        type: "POST",
+            url: "/auth/wp-json/lpcn/user/exist-mobile",
+            data: {
+            'mobile': mobile_val,
+        },
+        datatype: "json",
+            //在请求之前调用的函数
+            beforeSend: function () {
+        },
+        //成功返回之后调用的函数
+        success: function (s) {
+            console.log(s)
+
+      $.ajax({
+            /*手机号登录*/
+            type: "POST",
+            url: "/auth/wp-json/lpcn/user/login_by_mobile",
+            data: {
+                'mobile': mobile_val,
+                'sms_code': sms_code,
+            },
+            datatype: "json",
+            //在请求之前调用的函数
+            beforeSend: function () {
+
+            },
+            //成功返回之后调用的函数
+            success: function (s) {
+                alert_success(s.message)
+
+            },
+            //调用出错执行的函数
+            error: function (e) {
+                alert_danger(e.responseJSON.message)
+            }
+        });
+
+        },
+        //调用出错执行的函数
+        error: function (e) {
+            alert_danger(e.responseJSON.message)
+            console.log(e)
+        }
+    });
+
+
+
+    }
+})
+
+
+
 
 /*快捷登录打开小窗口*/
 function openWin(url) {
     window.open(url, 'Login', 'height=720, width=630, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
 }
-$(".social-item a").click(function (){
+
+$(".social-item a").click(function () {
     const url = $(this).attr("href");
     openWin(url)
     return false;
 })
+
 /*封装通知*/
-function alert_danger(html){
+function alert_danger(html) {
     const T = $("#liveToast")
-    T.find(".danger").show().siblings().hide().closest(".d-flex").attr("class","d-flex alert-danger")
+    T.find(".danger").show().siblings().hide().closest(".d-flex").attr("class", "d-flex alert-danger")
     T.toast('show').find("span").html(html)
-   }
-function alert_success(html){
+}
+
+function alert_success(html) {
     const T = $("#liveToast")
-    T.find(".success").show().siblings().hide().closest(".d-flex").attr("class","d-flex alert-success")
+    T.find(".success").show().siblings().hide().closest(".d-flex").attr("class", "d-flex alert-success")
     T.toast('show').find("span").html(html)
+}
+
+/*封装加载按钮*/
+function btn_loading() {
+    const a = $(".btn_loading:visible")
+    const b = "中……"
+    a.prepend("<span class=\"spinner-border spinner-border-sm me-2\" role=\"status\" aria-hidden=\"true\"></span>").append(b)
+}
+
+function btn_loading_remove() {
+    const a = $(".btn_loading:visible")
+    const b = "中……"
+    a.text(a.text().replace(b, ""))
+    a.find(".spinner-border").remove()
+}
+
+function btn_load() {
+    $(document).ajaxStart(function () {
+        btn_loading()
+    })
+        .ajaxStop(function () {
+            btn_loading_remove()
+        });
 }
 
 
@@ -714,3 +927,66 @@ function alert_success(html){
 let fanyi_seach_val = $(".search-form input").val()
 $(".menu-item-translate a").attr("href", '/translate/projects/plugins/?s=' + fanyi_seach_val)
 $(".menu-item-manual  a").attr("href", '/translate/projects/plugins/?s=' + fanyi_seach_val)
+
+
+$('.btn-sign-up .send-sms-code').on('click', function () {
+
+    /*仿刷新：检测是否存在cookie*/
+    if ($.cookie("captcha")) {
+        let count = $.cookie("captcha");
+        $(".send-sms-code").html("重新发送 " + count + "s").addClass("disabled");
+        const resend = setInterval(function () {
+            count--;
+            if (count > 0) {
+                $(".send-sms-code").html("重新发送 " + count + "s").addClass("disabled");
+                $.cookie("captcha", count, {path: '/', expires: (1 / 86400) * count});
+            } else {
+                clearInterval(resend);
+                $(".send-sms-code").html("重新发送").toggleClass("disabled");
+            }
+        }, 1000);
+    }
+
+    return false;
+})
+
+var smsCodeInput =  document.querySelector('.input-smscode-value');
+opts = typeof opts == 'undefined' ? {} :opts;
+opts.maxLength = typeof opts.maxLength == 'undefined' ? 4 : opts.maxLength;
+var inputSmscodeCloseButton = document.querySelector('.input-smscode-button-close');
+function smsCodeInput_onkeyup(e){
+    var tmpCodes = smsCodeInput.value.split('');
+    var smsCodeBox = document.querySelector('.input-smscode');
+    var tmphtml = '';
+    smsCodeBox.innerHTML = tmphtml;
+    var i = 0;
+    [].forEach.call(tmpCodes,function(code){
+        tmphtml+= '<li>'+code+'</li>';
+        i++;
+    });
+    while(i < opts.maxLength){
+        tmphtml+='<li></li>';
+        i++;
+    }
+
+    smsCodeBox.innerHTML =  tmphtml ? tmphtml : '<li></li><li></li><li></li><li></li>';
+}
+function smsCodeInput_onblur(e){
+    smsCodeInput.focus();
+}
+
+function smsCodeInput_setfocus(){
+    smsCodeInput.focus();
+}
+
+
+function smsCodeInput_destory(){
+    document.removeEventListener('keyup',smsCodeInput_onkeyup);
+    smsCodeInput.removeEventListener('blur',smsCodeInput_onblur);
+    inputSmscodeCloseButton.removeEventListener('click',smsCodeInput_destory);
+    document.querySelector('.input-smscode-inner').removeEventListener('click',smsCodeInput_setfocus);
+}
+
+
+document.addEventListener('keyup',smsCodeInput_onkeyup,false);
+
