@@ -301,17 +301,15 @@ $("#lp-apply-button").on("click", function () {
                 success: function (s) {
                     $lp_apply_modal.modal('hide');
                     if (s.code === 0) {
-                        $("#liveToast .hide.text-success").siblings().hide().end().show().find("span").html(s.msg)
+                        alert_success(s.msg)
                     } else {
-                        $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i> " + s.msg);
+                        alert_danger(s.msg)
                     }
-                    $('#liveToast').toast('show')
                 },
                 //调用出错执行的函数
                 error: function () {
                     $lp_apply_modal.modal('hide');
-                    $(" .toast-body").html("<i class=\"fad fa-exclamation-circle text-danger\"></i>  请求失败，请检查本地网络！");
-                    $('#liveToast').toast('show')
+                    alert_danger("请求失败，请检查本地网络！")
                     console.log('错误')
                 }
             });
