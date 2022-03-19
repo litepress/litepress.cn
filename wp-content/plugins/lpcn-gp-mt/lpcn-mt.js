@@ -6,7 +6,7 @@ jQuery(document).ready(function ($) {
 
         const main = async () => {
             const originals = $(this).closest(".panel-content").find(".original_raw").text();
-            const textarea = $(this).parent().prev();
+            const textarea = $(this).closest(".textareas.active").find("textarea");
 
             try {
                 const translation = await lpcnMt(originals, {from: "en", to: "zh-cn"});
