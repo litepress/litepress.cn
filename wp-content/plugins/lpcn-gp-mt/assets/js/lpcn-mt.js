@@ -192,8 +192,8 @@ jQuery(document).ready(function ($) {
         textarea.val("翻译中，请等待1秒左右……");
 
         const main = async () => {
-            const originals = $(this).parent().parent().prev().find(".original_raw").text();
-            const textarea = $(this).parent().prev();
+            const originals = $(this).closest(".panel-content").find(".original_raw").text();
+            const textarea = $(this).closest(".textareas.active").find("textarea");
 
             try {
                 const translation = await lpcnMt(originals, {from: "en", to: "zh-cn"});
