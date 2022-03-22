@@ -6,25 +6,25 @@
  */
 
 add_action( 'wp_loaded', function () {
-	list( $uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
-	if ( '/auth/user/bind' === $uri ) {
-		get_header();
+    list( $uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
+    if ( '/auth/user/bind' === $uri ) {
+        get_header();
 
-		$openid = sanitize_text_field( $_GET['openid'] ?? '' );
-		$qc     = new QC( "", $openid );
-		$arr    = $qc->get_user_info();
+        $openid = sanitize_text_field( $_GET['openid'] ?? '' );
+        $qc     = new QC( "", $openid );
+        $arr    = $qc->get_user_info();
 
-		$login_type      = sanitize_text_field( $_GET['type'] ?? '' );
-		$login_type_html = match ( $login_type ) {
-			'qq' => 'QQ',
-			'mobile' => '手机号',
-			default => '未知',
-		};
+        $login_type      = sanitize_text_field( $_GET['type'] ?? '' );
+        $login_type_html = match ( $login_type ) {
+            'qq' => '<i class="fa-brands fa-qq" style="color: #4CAFE9"></i> QQ',
+            'mobile' => '<i class="fa-duotone fa-mobile"></i> 手机号',
+            default => '<i class="fa-duotone fa-question"></i> 未知',
+        };
 
-		echo <<<HTML
+        echo <<<HTML
 		<main class="wp-body d-flex">
         <div class="container" >
-                <div class="bg-white theme-boxshadow p-xl-5 py-5 m-xl-0 m-3 row justify-content-center" >
+                <div class="bg-white theme-boxshadow pt-5  pb-5 m-xl-0 m-3 row justify-content-center" >
                     <div class="row justify-content-center gx-5" >
                     	<section class="col-12 row  justify-content-center">
                             <div class="d-flex align-items-center col-10 mb-4">
@@ -35,8 +35,9 @@ add_action( 'wp_loaded', function () {
                                     </div>
                             </div>
 						</section>
+						<hr class="mb-4">
                 <section class="col-12 col-xl-5 border-xl-end border-0">
-                <h6 class="form-title">绑定已有帐户</h6>
+                <h6 class="form-title">我是老用户，绑定已有帐户</h6>
                     <form class="needs-validation mt-3" id="bd-old-account" >
                             <div class="form-floating mb-3 was-validated">
                                 <input type="text" class="form-control username" id="qq-sign-up-username" placeholder="name@example.com" required="">
@@ -57,18 +58,18 @@ add_action( 'wp_loaded', function () {
                             </div>
 
                             <button class="w-100 btn btn-primary btn_loading" data-type="submit" type="button">
-                                登录并绑定
+                               <i class="fa-duotone fa-user-lock"></i> 登录并绑定
                             </button>
                             <input type="hidden" name="tcaptcha-ticket" class="tcaptcha-ticket" value="">
                             <input type="hidden" name="tcaptcha-randstr" class="tcaptcha-randstr" value="">
                         </form>
 				</section>
 
-				<section class="col-12 col-xl-5 mt-5 mt-xl-0 border-top border-xl-top-0 pt-xl-0 pt-3">
-				<h6 class="form-title">没有帐户，我是新用户</h6>
+				<section class="col-12 col-xl-5 mt-4 mt-xl-0 border-top border-xl-top-0 pt-xl-0 pt-3">
+				<h6 class="form-title">我是新用户，没有帐户</h6>
 				<form class="needs-validation mt-3" id="bd-new-account" >
                     <button class="w-100 btn btn-primary" data-type="submit" type="button">
-                        立即登录
+                       <i class="fa-duotone fa-user-plus"></i> 新账号登录
                     </button>
                 </form>
 				</section>
@@ -79,8 +80,8 @@ add_action( 'wp_loaded', function () {
     </main>
 HTML;
 
-		get_footer();
-		exit;
-	}
+        get_footer();
+        exit;
+    }
 } );
 
