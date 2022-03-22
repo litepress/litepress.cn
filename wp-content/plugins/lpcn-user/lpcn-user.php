@@ -21,9 +21,14 @@ if ( ! class_exists( '\LitePress\Autoload\Autoloader', false ) ) {
 	include __DIR__ . '/vendor/litepress/autoload/class-autoloader.php';
 }
 
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/inc/helpers.php';
+require __DIR__ . '/inc/pages/user-bind.php';
+require __DIR__ . '/inc/oauth/qq/api/qqConnectAPI.php';
+require __DIR__ . '/inc/oauth/qq/index.php';
+require __DIR__ . '/inc/oauth/qq/callback.php';
+
 Autoload\register_class_path( __NAMESPACE__ . '\Inc', __DIR__ . '/inc' );
 Autoload\register_class_path( __NAMESPACE__ . '\Inc\Api', __DIR__ . '/inc/api' );
-
-require __DIR__ . '/inc/helpers.php';
 
 Plugin::get_instance();

@@ -1,0 +1,86 @@
+<?php
+/**
+ * 处理用户绑定的通用页面
+ *
+ * 比如说使用手机号登录时绑定已有用户，以及使用 QQ 登录时绑定已有用户。
+ */
+
+add_action( 'wp_loaded', function () {
+	list( $uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
+	if ( '/auth/user/bind' === $uri ) {
+		get_header();
+
+		$openid = sanitize_text_field( $_GET['openid'] ?? '' );
+		$qc     = new QC( "", $openid );
+		$arr    = $qc->get_user_info();
+
+		$login_type      = sanitize_text_field( $_GET['type'] ?? '' );
+		$login_type_html = match ( $login_type ) {
+			'qq' => 'QQ',
+			'mobile' => '手机号',
+			default => '未知',
+		};
+
+		echo <<<HTML
+		<main class="wp-body d-flex">
+        <div class="container" >
+                <div class="bg-white theme-boxshadow p-xl-5 py-5 m-xl-0 m-3 row justify-content-center" >
+                    <div class="row justify-content-center gx-5" >
+                    	<section class="col-12 row  justify-content-center">
+                            <div class="d-flex align-items-center col-10 mb-4">
+									<img class="qq-avatar me-3" src="{$arr["figureurl_2"]}" alt="{$arr["nickname"]}">
+                                    <div class="text-muted">
+                                        欢迎你，{$arr["nickname"]}！<br>
+                                        当前你正在使用 {$login_type_html} 登录，请绑定已有帐户，或者注册新用户绑定。
+                                    </div>
+                            </div>
+						</section>
+                <section class="col-12 col-xl-5 border-xl-end border-0">
+                <h6 class="form-title">绑定已有帐户</h6>
+                    <form class="needs-validation mt-3" id="bd-old-account" >
+                            <div class="form-floating mb-3 was-validated">
+                                <input type="text" class="form-control username" id="qq-sign-up-username" placeholder="name@example.com" required="">
+                                <label for="qq-sign-up-username">手机号/用户名/邮箱</label>
+                                <div class="invalid-feedback">
+                                    请输入帐号
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3 input-group">
+                                <input type="password" class="form-control password" id="qq-sign-up-password" placeholder="Password" required="">
+                                <label for="qq-sign-up-password">密码</label>
+                                <a class="toggle-password input-group-text" "="">
+                                <i class="fa-duotone fa-fw fa-eye-slash"></i>
+                                </a>
+                                <div class="invalid-feedback">
+                                    请输入登录密码
+                                </div>
+                            </div>
+
+                            <button class="w-100 btn btn-primary btn_loading" data-type="submit" type="button">
+                                登录并绑定
+                            </button>
+                            <input type="hidden" name="tcaptcha-ticket" class="tcaptcha-ticket" value="">
+                            <input type="hidden" name="tcaptcha-randstr" class="tcaptcha-randstr" value="">
+                        </form>
+				</section>
+
+				<section class="col-12 col-xl-5 mt-5 mt-xl-0 border-top border-xl-top-0 pt-xl-0 pt-3">
+				<h6 class="form-title">没有帐户，我是新用户</h6>
+				<form class="needs-validation mt-3" id="bd-new-account" >
+                    <button class="w-100 btn btn-primary" data-type="submit" type="button">
+                        立即登录
+                    </button>
+                </form>
+				</section>
+
+                </div>
+        </div>
+      </div>
+    </main>
+HTML;
+
+		get_footer();
+		exit;
+	}
+} );
+

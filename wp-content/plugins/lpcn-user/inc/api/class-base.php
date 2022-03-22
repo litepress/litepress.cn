@@ -25,6 +25,9 @@ class Base {
 	 */
 	public static function load_routes() {
 		new Login();
+		new Register();
+		new Common();
+		new Login_By_Mobile();
 	}
 
 	protected function success( string $message, array $data = array() ): WP_REST_Response {
