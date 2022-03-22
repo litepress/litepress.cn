@@ -87,7 +87,7 @@ get_header();
                                 <ol>
                                     <li>您可提交此表单来 <b class="text-primary">退出</b> LitePress 版本。
                                     </li>
-                                    <li>提交站点需要您完成站点<b class="text-primary"> 所有权验证 </b>，请按页面提示进行操作，如有问题请<a href="/create" target="_blank">发帖咨询</a>。</li>
+                                    <li>提交站点需要您完成站点<b class="text-primary"> 所有权验证 </b>，请按页面提示进行操作，如有问题请<a href="/create" <?php if ( ! is_user_logged_in()) {echo ' data-bs-toggle="modal" data-bs-target="#sign-in" '; } ?> target="_blank">发帖咨询</a>。</li>
                                     <li>LitePress 与 WordPress <b class="text-primary">完全兼容 </b>，在使用 LitePress 的过程中，您可以随时到这里<b class="text-primary"> 回退 Wordpress</b>。
                                     </li>
                                 </ol>
