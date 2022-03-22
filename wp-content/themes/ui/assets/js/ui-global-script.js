@@ -1,5 +1,7 @@
 var $ = jQuery.noConflict();
+var UMTCaptcha = {"captcha_appid": "2032867318"};/*腾讯验证码ID*/
 const wp_ajax_url = "/wp-admin/admin-ajax.php";
+
 $("li.menu-item-has-children > a").attr("data-bs-toggle", "dropdown");
 $(".ant-btn").on("change", "input[type='file']", function () {
     var filePath = $(this).val();
@@ -360,26 +362,8 @@ $("#lp-exit-button").on("click", function () {
     $(".verify-btn").find("a").text("开始验证").end().find(".spinner-border").addClass("hide")
 });
 
-/*textarea自适应高度*/
-$(function () {
-    $.fn.autoHeight = function () {
-        function autoHeight(elem) {
-            elem.style.height = 'auto';
-            elem.scrollTop = 0; //防抖动
-            elem.style.height = elem.scrollHeight + 'px';
-        }
 
-        this.each(function () {
-            autoHeight(this);
-            $(this).on('keyup', function () {
-                autoHeight(this);
-            });
-        });
-    }
-    $('textarea[autoHeight]').autoHeight();
-})
-
-
+/*wangeditor编辑器配置*/
 const E = window.wangEditor; // 全局变量
 const editorConfig = {MENU_CONF: {}}
 editorConfig.placeholder = '点击开始写作……'
@@ -581,17 +565,17 @@ const url = $(location).attr('href'); //获取url地址
 const url_noparm = location.protocol + '//' + location.host + location.pathname;
 const url_noparm4 = url_noparm.split("/").splice(0, 4).join("/");
 if (url.indexOf("plugins") >= 0) {
-    $(projectsearch).attr("placeholder", "搜索插件……");
+    projectsearch.attr("placeholder", "搜索插件……");
 } else if (url.indexOf("docs") >= 0) {
-    $(projectsearch).attr("placeholder", "搜索文档……");
+    projectsearch.attr("placeholder", "搜索文档……");
 } else if (url.indexOf("themes") >= 0) {
-    $(projectsearch).attr("placeholder", "搜索主题……");
+    projectsearch.attr("placeholder", "搜索主题……");
 } else if (url.indexOf("cores") >= 0) {
-    $(projectsearch).attr("placeholder", "搜索核心……");
+    projectsearch.attr("placeholder", "搜索核心……");
 } else if (url.indexOf("mini-app") >= 0) {
-    $(projectsearch).attr("placeholder", "搜索小程序……");
+    projectsearch.attr("placeholder", "搜索小程序……");
 } else if (url.indexOf("others") >= 0) {
-    $(projectsearch).attr("placeholder", "搜索第三方……");
+    projectsearch.attr("placeholder", "搜索第三方……");
 }
 /*点击区域外隐藏通知*/
 $(document).on("click", function (e) {
@@ -600,33 +584,152 @@ $(document).on("click", function (e) {
     }
 });
 
-/*登录弹窗*/
-$("#rememberme").click(function () {
-    if (this.checked) {
-        $(this).val(1)
-    } else {
-        $(this).val(0)
+/*手机号登录注册*/
+$(".input-smscode").on("click", function () {
+    $("#sms-code").focus()
+})
+$("#sms-code").on("keyup", function () {
+    const $this = $(this)
+    const $this_form = $("#form-sign-up")
+    const mobile = $this_form.find("#mobile")
+    const sms_code = $this_form.find("#sms-code").val()
+    const mobile_val = mobile.val()
+    if (sms_code.length === 4) {
+
+                $.ajax({
+                    /*手机号登录*/
+                    type: "POST",
+                    url: "/auth/wp-json/lpcn/user/login-by-mobile",
+                    data: {
+                        'mobile': mobile_val,
+                        'sms_code': sms_code,
+                    },
+                    datatype: "json",
+                    //在请求之前调用的函数
+                    beforeSend: function () {
+
+                    },
+                    //成功返回之后调用的函数
+                    success: function (s) {
+                        alert_success(s.message)
+                        $this.closest(".modal").modal('hide');
+                        window.location.reload()
+                    },
+                    //调用出错执行的函数
+                    error: function (e) {
+                        /*console.log(e)*/
+                         if (e.responseJSON.status===2) {
+                            alert_danger(e.responseJSON.message+"，即将跳转到注册引导")
+                            window.location.href = "/auth/user/bind?type=mobile&?token="+e.responseJSON.data.token
+                        }
+                         else {
+                            alert_danger(e.responseJSON.message)
+                        }
+
+                    }
+                });
+
     }
 })
-var UMTCaptcha = {"captcha_appid": "2032867318"};
-$("#form-sign-in").on("click", "[data-type='submit']", function () {
-    form_validation()
-    const $this = $(this);
-    const $this_form = $this.closest("form");
-    const username = $this_form.find("#username").val()
-    const password = $this_form.find("#password").val()
-    const rememberme = $this_form.find("#rememberme").val()
-    const t_ticket = $this_form.find("#tcaptcha-ticket")
-    const t_randstr = $this_form.find("#tcaptcha-randstr")
 
-    if ($(this).parent().find(".form-control:invalid").length === 0) {
+$(".send-sms-code").on("click", function () {
+    const $this = $(this)
+    const $this_form = $this.closest("form")
+    const mobile = $this_form.find("#mobile")
+    const agree = $this_form.find("#form-sign-up-agree")
+    const mobile_val = mobile.val()
+    const t_ticket = $this_form.find(".tcaptcha-ticket")
+    const t_randstr = $this_form.find(".tcaptcha-randstr")
+
+
+    if ($this_form.find(".form-control:invalid,.form-check-input:invalid").length === 0) {
+
         const lp_captcha = new TencentCaptcha(UMTCaptcha.captcha_appid, function (res) {
             if (res.ret === 0) {
-
+                /*滑块通过*/
                 t_ticket.val(res.ticket)
                 t_randstr.val(res.randstr)
                 const ticket = t_ticket.val()
                 const randstr = t_randstr.val()
+
+
+                let count = 60;
+                const resend = setInterval(function () {
+                    count--;
+                    if (count > 0) {
+                        $this.html("重新发送 " + count + "s").addClass("disabled");
+                        $.cookie("captcha", count, {path: '/', expires: (1 / 86400) * count});
+                    } else {
+                        clearInterval(resend);
+                        $this.html("重新发送").toggleClass("disabled");
+                    }
+                }, 1000);
+
+                $.ajax({
+                    /*发送验证码*/
+                    type: "POST",
+                    xhrFields: {withCredentials: true},
+                    url: "/auth/wp-json/lpcn/user/send_sms_code",
+                    data: {
+                        'mobile': mobile_val,
+                        "tcaptcha-ticket": ticket,
+                        "tcaptcha-randstr": randstr,
+                    },
+                    datatype: "json",
+                    //在请求之前调用的函数
+                    beforeSend: function () {
+                        btn_load($this)
+                    },
+                    //成功返回之后调用的函数
+                    success: function (s) {
+                        alert_success(s.message)
+                        $this_form.find("section.hide").show().siblings().hide()
+                        $("#sms-code").focus()
+                        console.log(s)
+                    },
+                    //调用出错执行的函数
+                    error: function (e) {
+                        alert_danger(e.responseJSON.message)
+                    },
+                    complete:function () {
+                        btn_load_remove($this)
+                    }
+                });
+
+            } else {
+                alert_danger("图形验证失败，请重试！")
+            }
+        });
+        // 显示验证码
+        lp_captcha.show();
+    } else {
+        $(mobile).parent().addClass("was-validated")
+        $(agree).parent().addClass("was-validated")
+    }
+
+
+})
+
+/*密码登录*/
+
+
+$("#form-sign-in").on("click", "[data-type='submit']", function () {
+    form_validation()
+    const $this = $(this);
+    const $this_form = $this.closest("form");
+    const username = $this_form.find(".username").val()
+    const password = $this_form.find(".password").val()
+    const t_ticket = $this_form.find(".tcaptcha-ticket")
+    const t_randstr = $this_form.find(".tcaptcha-randstr")
+
+    if ($(this).parent().find(".form-control:invalid").length === 0) {
+        const lp_captcha = new TencentCaptcha(UMTCaptcha.captcha_appid, function (res) {
+            if (res.ret === 0) {
+                t_ticket.val(res.ticket)
+                t_randstr.val(res.randstr)
+                const ticket = t_ticket.val()
+                const randstr = t_randstr.val()
+
                 $.ajax({
                     type: "POST",
                     xhrFields: {withCredentials: true},
@@ -636,34 +739,29 @@ $("#form-sign-in").on("click", "[data-type='submit']", function () {
                         'password': password,
                         "tcaptcha-ticket": ticket,
                         "tcaptcha-randstr": randstr,
-                        "remember": rememberme
-
                     },
                     datatype: "json",
                     //在请求之前调用的函数
                     beforeSend: function () {
-
+                        btn_load($this)
                     },
                     //成功返回之后调用的函数
                     success: function (s) {
-
                         if (s.code === 1) {
                             alert_danger(s.error)
-                            if (s.error === "用户名或者密码错误！") {
 
-                            }
                         } else {
                             $this.closest(".modal").modal('hide');
                             alert_success(s.message)
                             window.location.reload()
                         }
-
-
                     },
                     //调用出错执行的函数
                     error: function (e) {
                         alert_danger(e.responseJSON.message)
-                        console.log(e)
+                    },
+                    complete:function () {
+                        btn_load_remove($this)
                     }
                 });
 
@@ -674,12 +772,103 @@ $("#form-sign-in").on("click", "[data-type='submit']", function () {
         });
         // 显示验证码
         lp_captcha.show();
-
-
     }
-    btn_load()
+
 })
 
+
+/*绑定旧账号*/
+$("#bd-old-account").on("click", "[data-type='submit']", function () {
+    const $this = $(this);
+    const $this_form = $this.closest("form");
+    const username = $this_form.find(".username").val()
+    const password = $this_form.find(".password").val()
+    const t_ticket = $this_form.find(".tcaptcha-ticket")
+    const t_randstr = $this_form.find(".tcaptcha-randstr")
+    const token = $.Request("token");
+
+    if ($this_form.find(".form-control:invalid").length === 0) {
+    const lp_captcha = new TencentCaptcha(UMTCaptcha.captcha_appid, function (res) {
+        if (res.ret === 0) {
+            /*滑块通过*/
+            t_ticket.val(res.ticket)
+            t_randstr.val(res.randstr)
+            const ticket = t_ticket.val()
+            const randstr = t_randstr.val()
+            $.ajax({
+                type: "POST",
+                url: "/auth/wp-json/lpcn/user/login",
+                data: {
+                    'username': username,
+                    'password': password,
+                    "tcaptcha-ticket": ticket,
+                    "tcaptcha-randstr": randstr,
+                    "token": token
+                },
+                datatype: "json",
+                //在请求之前调用的函数
+                beforeSend: function () {
+                    btn_load($this)
+                },
+                //成功返回之后调用的函数
+                success: function (s) {
+                    alert_success("与登录账号成功绑定,即将跳转到资料页")
+                    window.location.href = "/auth/user"
+                },
+                //调用出错执行的函数
+                error: function (e) {
+                    alert_danger(e.responseJSON.message)
+                },
+                complete:function () {
+                    btn_load_remove($this)
+                }
+            });
+        }
+        else {
+            alert_danger("图形验证失败，请重试！")
+        }
+    });
+        // 显示验证码
+        lp_captcha.show();
+    }
+    })
+
+/*绑定新用户*/
+$("#bd-new-account").on("click", "[data-type='submit']", function () {
+    const $this = $(this);
+    const $this_form = $this.closest("form");
+    const token = $.Request("token");
+
+
+                /*滑块通过*/
+                $.ajax({
+                    type: "POST",
+                    url: "/auth/wp-json/lpcn/user/register",
+                    data: {
+                        "token": token
+                    },
+                    datatype: "json",
+                    //在请求之前调用的函数
+                    beforeSend: function () {
+                        btn_load($this)
+                    },
+                    //成功返回之后调用的函数
+                    success: function (s) {
+                        window.location.href = "/auth/user"
+                    },
+                    //调用出错执行的函数
+                    error: function (e) {
+                        alert_danger(e.responseJSON.message)
+                    },
+                    complete:function () {
+                        btn_load_remove($this)
+                    }
+                });
+
+
+
+
+})
 
 /*! jquery.cookie v1.4.1 | MIT */
 !function (a) {
@@ -734,148 +923,26 @@ $("#form-sign-in").on("click", "[data-type='submit']", function () {
 });
 
 
-$(".send-sms-code").on("click", function () {
-    const $this = $(this)
-    const $this_form = $this.closest("form")
-    const mobile = $this_form.find("#mobile")
-    const agree = $this_form.find("#form-sign-up-agree")
-    const mobile_val = mobile.val()
-    const t_ticket = $this_form.find("#tcaptcha-ticket")
-    const t_randstr = $this_form.find("#tcaptcha-randstr")
 
-
-    if ($this_form.find(".form-control:invalid,.form-check-input:invalid").length === 0) {
-
-        const lp_captcha = new TencentCaptcha(UMTCaptcha.captcha_appid, function (res) {
-            if (res.ret === 0) {
-                /*滑块通过*/
-                t_ticket.val(res.ticket)
-                t_randstr.val(res.randstr)
-                const ticket = t_ticket.val()
-                const randstr = t_randstr.val()
-
-
-                let count = 60;
-                const resend = setInterval(function () {
-                    count--;
-                    if (count > 0) {
-                        $this.html("重新发送 " + count + "s").addClass("disabled");
-                        $.cookie("captcha", count, {path: '/', expires: (1 / 86400) * count});
-                    } else {
-                        clearInterval(resend);
-                        $this.html("重新发送").toggleClass("disabled");
-                    }
-                }, 1000);
-
-                $.ajax({
-                    type: "POST",
-                    xhrFields: {withCredentials: true},
-                    url: "/auth/wp-json/lpcn/user/send_sms_code",
-                    data: {
-                        'mobile': mobile_val,
-                        "tcaptcha-ticket": ticket,
-                        "tcaptcha-randstr": randstr,
-                    },
-                    datatype: "json",
-                    //在请求之前调用的函数
-                    beforeSend: function () {
-
-                    },
-                    //成功返回之后调用的函数
-                    success: function (s) {
-                        alert_success(s.message)
-                        $this_form.find("section.hide").show().siblings().hide()
-                        $("#sms-code").focus()
-                        console.log(s)
-                    },
-                    //调用出错执行的函数
-                    error: function (e) {
-                        alert_danger(e.responseJSON.message)
-                        console.log(e)
-                    }
-                });
-
-            } else {
-                alert_danger("图形验证失败，请重试！")
-            }
-        });
-        // 显示验证码
-        lp_captcha.show();
-    } else {
-        $(mobile).parent().addClass("was-validated")
-        $(agree).parent().addClass("was-validated")
-    }
-
-
-})
-
-$(".input-smscode").on("click",function () {
-    $("#sms-code").focus()
-})
-$("#sms-code").on("keyup",function () {
-    const $this = $("#form-sign-up")
-    const mobile = $this.find("#mobile")
-    const sms_code = $this.find("#sms-code").val()
-    const mobile_val = mobile.val()
-    if (sms_code.length ===4) {
-        $.ajax({
-            /*检测注册*/
-        type: "POST",
-            url: "/auth/wp-json/lpcn/user/exist-mobile",
-            data: {
-            'mobile': mobile_val,
-        },
-        datatype: "json",
-            //在请求之前调用的函数
-            beforeSend: function () {
-        },
-        //成功返回之后调用的函数
-        success: function (s) {
-            console.log(s)
-
-      $.ajax({
-            /*手机号登录*/
-            type: "POST",
-            url: "/auth/wp-json/lpcn/user/login_by_mobile",
-            data: {
-                'mobile': mobile_val,
-                'sms_code': sms_code,
-            },
-            datatype: "json",
-            //在请求之前调用的函数
-            beforeSend: function () {
-
-            },
-            //成功返回之后调用的函数
-            success: function (s) {
-                alert_success(s.message)
-
-            },
-            //调用出错执行的函数
-            error: function (e) {
-                alert_danger(e.responseJSON.message)
-            }
-        });
-
-        },
-        //调用出错执行的函数
-        error: function (e) {
-            alert_danger(e.responseJSON.message)
-            console.log(e)
-        }
-    });
-
-
-
-    }
-})
 
 
 
 
 /*快捷登录打开小窗口*/
 function openWin(url) {
-    window.open(url, 'Login', 'height=720, width=630, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+    childWindow = window.open(url, 'Login', 'height=720, width=630, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+}
+
+function closeChildWindowAndBindUser(token) {
+    childWindow.close();
+
+    window.location.href = "/auth/user/bind?type=qq&token=" + token;
+}
+
+function closeChildWindow() {
+    childWindow.close();
+
+    location.reload();
 }
 
 $(".social-item a").click(function () {
@@ -898,26 +965,16 @@ function alert_success(html) {
 }
 
 /*封装加载按钮*/
-function btn_loading() {
-    const a = $(".btn_loading:visible")
-    const b = "中……"
-    a.prepend("<span class=\"spinner-border spinner-border-sm me-2\" role=\"status\" aria-hidden=\"true\"></span>").append(b)
+function btn_load($this){
+    const a = $($this)
+    const b = $($this).text()
+    const c = "<span class=\"spinner-border spinner-border-sm me-2\" role=\"status\" aria-hidden=\"true\"></span>"
+    a.html(c + b)
 }
-
-function btn_loading_remove() {
-    const a = $(".btn_loading:visible")
-    const b = "中……"
-    a.text(a.text().replace(b, ""))
-    a.find(".spinner-border").remove()
-}
-
-function btn_load() {
-    $(document).ajaxStart(function () {
-        btn_loading()
-    })
-        .ajaxStop(function () {
-            btn_loading_remove()
-        });
+function btn_load_remove($this){
+    const a = $($this)
+    const b = $($this).text()
+    a.html(b)
 }
 
 
@@ -948,43 +1005,36 @@ $('.btn-sign-up .send-sms-code').on('click', function () {
     return false;
 })
 
-var smsCodeInput =  document.querySelector('.input-smscode-value');
-opts = typeof opts == 'undefined' ? {} :opts;
+const smsCodeInput = document.querySelector('.input-smscode-value');
+opts = typeof opts == 'undefined' ? {} : opts;
 opts.maxLength = typeof opts.maxLength == 'undefined' ? 4 : opts.maxLength;
-var inputSmscodeCloseButton = document.querySelector('.input-smscode-button-close');
-function smsCodeInput_onkeyup(e){
-    var tmpCodes = smsCodeInput.value.split('');
-    var smsCodeBox = document.querySelector('.input-smscode');
-    var tmphtml = '';
+const inputSmscodeCloseButton = document.querySelector('.input-smscode-button-close');
+
+function smsCodeInput_onkeyup(e) {
+    const tmpCodes = smsCodeInput.value.split('');
+    const smsCodeBox = document.querySelector('.input-smscode');
+    let tmphtml = '';
     smsCodeBox.innerHTML = tmphtml;
-    var i = 0;
-    [].forEach.call(tmpCodes,function(code){
-        tmphtml+= '<li>'+code+'</li>';
+    let i = 0;
+    [].forEach.call(tmpCodes, function (code) {
+        tmphtml += '<li>' + code + '</li>';
         i++;
     });
-    while(i < opts.maxLength){
-        tmphtml+='<li></li>';
+    while (i < opts.maxLength) {
+        tmphtml += '<li></li>';
         i++;
     }
 
-    smsCodeBox.innerHTML =  tmphtml ? tmphtml : '<li></li><li></li><li></li><li></li>';
+    smsCodeBox.innerHTML = tmphtml ? tmphtml : '<li></li><li></li><li></li><li></li>';
 }
-function smsCodeInput_onblur(e){
+
+function smsCodeInput_onblur(e) {
     smsCodeInput.focus();
 }
 
-function smsCodeInput_setfocus(){
+function smsCodeInput_setfocus() {
     smsCodeInput.focus();
 }
 
-
-function smsCodeInput_destory(){
-    document.removeEventListener('keyup',smsCodeInput_onkeyup);
-    smsCodeInput.removeEventListener('blur',smsCodeInput_onblur);
-    inputSmscodeCloseButton.removeEventListener('click',smsCodeInput_destory);
-    document.querySelector('.input-smscode-inner').removeEventListener('click',smsCodeInput_setfocus);
-}
-
-
-document.addEventListener('keyup',smsCodeInput_onkeyup,false);
+document.addEventListener('keyup', smsCodeInput_onkeyup, false);
 
