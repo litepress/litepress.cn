@@ -4,7 +4,7 @@ use function LitePress\User\Inc\login_by_user_id;
 
 add_action( 'wp_loaded', function () {
 	list( $uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
-	if ( '/auth/oauth/callback/qq' === $uri ) {
+	if ( '/user/oauth/callback/qq' === $uri ) {
 		if ( is_user_logged_in() ) {
 			echo '你已经处于登录状态，平台不允许重复登录，请刷新页面后查看。';
 			exit;
