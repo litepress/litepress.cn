@@ -7,7 +7,7 @@
 
 add_action( 'wp_loaded', function () {
     list( $uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
-    if ( '/auth/user/bind' === $uri ) {
+    if ( '/user/new/bind' === $uri ) {
         get_header();
 
         $openid = sanitize_text_field( $_GET['openid'] ?? '' );

@@ -599,7 +599,7 @@ $("#sms-code").on("keyup", function () {
                 $.ajax({
                     /*手机号登录*/
                     type: "POST",
-                    url: "/auth/wp-json/lpcn/user/login-by-mobile",
+                    url: "/user/wp-json/lpcn/user/login-by-mobile",
                     data: {
                         'mobile': mobile_val,
                         'sms_code': sms_code,
@@ -669,7 +669,7 @@ $(".send-sms-code").on("click", function () {
                     /*发送验证码*/
                     type: "POST",
                     xhrFields: {withCredentials: true},
-                    url: "/auth/wp-json/lpcn/user/send_sms_code",
+                    url: "/user/wp-json/lpcn/user/send_sms_code",
                     data: {
                         'mobile': mobile_val,
                         "tcaptcha-ticket": ticket,
@@ -733,7 +733,7 @@ $("#form-sign-in").on("click", "[data-type='submit']", function () {
                 $.ajax({
                     type: "POST",
                     xhrFields: {withCredentials: true},
-                    url: "/auth/wp-json/lpcn/user/login",
+                    url: "/user/wp-json/lpcn/user/login",
                     data: {
                         'username': username,
                         'password': password,
@@ -797,7 +797,7 @@ $("#bd-old-account").on("click", "[data-type='submit']", function () {
             const randstr = t_randstr.val()
             $.ajax({
                 type: "POST",
-                url: "/auth/wp-json/lpcn/user/login",
+                url: "/user/wp-json/lpcn/user/login",
                 data: {
                     'username': username,
                     'password': password,
@@ -843,7 +843,7 @@ $("#bd-new-account").on("click", "[data-type='submit']", function () {
                 /*滑块通过*/
                 $.ajax({
                     type: "POST",
-                    url: "/auth/wp-json/lpcn/user/register",
+                    url: "/user/wp-json/lpcn/user/register",
                     data: {
                         "token": token
                     },
@@ -854,7 +854,7 @@ $("#bd-new-account").on("click", "[data-type='submit']", function () {
                     },
                     //成功返回之后调用的函数
                     success: function (s) {
-                        window.location.href = "/auth/user"
+                        window.location.href = "/user"
                     },
                     //调用出错执行的函数
                     error: function (e) {
@@ -936,7 +936,7 @@ function openWin(url) {
 function closeChildWindowAndBindUser(token) {
     childWindow.close();
 
-    window.location.href = "/auth/user/bind?type=qq&token=" + token;
+    window.location.href = "/user/new/bind?type=qq&token=" + token;
 }
 
 function closeChildWindow() {

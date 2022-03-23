@@ -149,7 +149,7 @@
                         <div class=" col  ">
                             <ul class="member-social-list  flex-row navbar-nav justify-content-center">
                                 <li class="social-item social-qq">
-                                    <a href="/auth/oauth/qq"
+                                    <a href="/user/oauth/qq"
                                        target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
                                        aria-label="QQ" data-bs-original-title="QQ登录"><i class="fa-brands fa-qq"
                                                                                         style="color: #4CAFE9"></i></a>
