@@ -172,7 +172,7 @@ function get_qqavatar_to_file( string $hash, string $qq ): string {
  *
  * @return string
  */
-function get_avatar_to_file( string $hash, string $url, string $type = 'gravatar' ): string | false {
+function get_avatar_to_file( string $hash, string $url, string $type = 'gravatar' ): string|false {
 	global $wpdb;
 
 	$file_path = "/www/cravatar-cache/$type/$hash.png";
@@ -206,8 +206,9 @@ function get_avatar_to_file( string $hash, string $url, string $type = 'gravatar
 		if ( false === file_put_contents( $file_path, $avatar ) ) {
 			Logger::error( 'Cravatar', '保存头像到本地失败，可能是没有权限', array(
 				'file_path' => $file_path,
-				'type'  => $type,
+				'type'      => $type,
 			) );
+
 			return false;
 		}
 	}
@@ -348,6 +349,11 @@ function get_default_avatar_filename( string $default ): string {
 
 						$filename = $tmpfname;
 					}
+				} else {
+					Logger::error( 'Cravatar', '尝试获取用户指定的默认图片失败', array(
+						'url'         => $default,
+						'status_code' => $status_code,
+					) );
 				}
 			}
 		}
@@ -451,9 +457,9 @@ function get_last_day_cdn_analysis() {
 		if ( ! $data || ! is_array( $data ) ) {
 			return false;
 		}
-		
+
 		$wjdun = new Wjdun();
-		$data2  = $wjdun->get_common_data( 'cravatar.cn', $start_time . '%2000:00:00', $end_time . '%2000:00:00' );
+		$data2 = $wjdun->get_common_data( 'cravatar.cn', $start_time . '%2000:00:00', $end_time . '%2000:00:00' );
 		if ( ! $data2 || ! is_array( $data2 ) || $data2['code'] != 0 ) {
 			return false;
 		}
@@ -470,7 +476,7 @@ function get_last_day_cdn_analysis() {
 				$bytes += $item['bytes'];
 			}
 		}
-		
+
 		foreach ( $data2['data'] as $item ) {
 			if ( isset( $item[1] ) ) {
 				$req_num += $item[1];
