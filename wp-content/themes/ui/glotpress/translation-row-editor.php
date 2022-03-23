@@ -46,7 +46,7 @@ $plural = sprintf(
                                 <p class="original_raw"><?php echo esc_translation($translation->singular); ?></p>
                                 <p style="display: none" class="original_plural_raw"></p>
                                 <!-- Nav tabs -->
-                                <ul class="nav nav-tabs">
+                                <ul class="nav lp-nav-tabs nav-tabs">
                                     <li class="nav-item">
                                         <a class="nav-link active" data-bs-toggle="tab" href="#s-<?php echo esc_attr($translation->row_id); ?>">单数</a>
                                     </li>
