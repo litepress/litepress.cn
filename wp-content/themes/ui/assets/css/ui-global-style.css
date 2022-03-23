@@ -135,6 +135,119 @@ hr {
 .hide{
     display: none;
 }
+.breadcrumb-item+.breadcrumb-item::before{
+    color:inherit;
+}
+.card-header-title {
+    margin-bottom: 0;
+}
+.text-cap {
+    display: block;
+    color: #1e2022;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: .03125rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+.nav-vertical {
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.nav-vertical.nav .nav-item:not(:last-child) {
+    margin-right: 0
+}
+
+.nav-vertical.nav .nav-link {
+    display: -ms-flexbox;
+    display: flex;
+    white-space: nowrap
+}
+
+.nav-vertical .nav-subtitle {
+    padding-left: 1rem
+}
+
+.nav-vertical.nav-tabs {
+    border-bottom-width: 0
+}
+
+.nav-vertical.nav-tabs .nav-link {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left: .1875rem solid transparent;
+    margin-bottom: 0
+}
+
+.nav-vertical.nav-tabs .nav-subtitle {
+    border-left: .1875rem solid rgba(33,50,91,.1)
+}
+
+.nav-vertical.nav-tabs .nav-item.show .nav-link,.nav-vertical.nav-tabs .nav-link.active {
+    border-color: #0274be;
+    color: #0274be;
+}
+
+.nav-vertical.nav.nav-tabs .nav-collapse .nav-link {
+    padding-left: 3rem
+}
+
+.nav-vertical.nav.nav-tabs .nav-collapse .nav-collapse .nav-link {
+    padding-left: 4.5rem
+}
+.navbar-vertical .card .nav-tabs .nav-link {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-right: 0;
+    padding-left: 1.8125rem;
+    margin-left: -1rem;
+    border-radius:0 ;
+    font-weight: bold;
+}
+
+.navbar-vertical .card .nav-tabs .nav-link:not(.active) {
+    border-color: transparent
+}
+.navbar-expand-lg.navbar-vertical.navbar-sidebar {
+    -ms-flex-flow: column;
+    flex-flow: column;
+    overflow-y: scroll;
+    height: 100%;
+    max-height: 100vh
+}
+
+.navbar-expand-lg.navbar-vertical.navbar-sidebar::-webkit-scrollbar {
+    width: .6125rem
+}
+
+.navbar-expand-lg.navbar-vertical.navbar-sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(189,197,209,.6)
+}
+
+.navbar-expand-lg.navbar-vertical.navbar-sidebar .navbar-collapse {
+    width: 100%;
+    display: block!important
+}
+
+.navbar-expand-lg.navbar-vertical.navbar-sidebar .navbar-nav {
+    display: block;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+.nav-link-badge {
+    margin-left: auto;
+}
+.bg-soft-dark {
+    background-color: rgba(33,50,91,.1)!important;
+}
+
+
 @media (min-width: 1200px){
 .border-xl-end {
     border-right: 1px solid #dee2e6!important;
@@ -143,7 +256,7 @@ hr {
     border-top:0!important;
 }
 }
-.qq-avatar {
+.lp-avatar {
     box-shadow: 0 1px 10px 0 #a3b4bf !important;
     border: 1px solid #fff !important;
     border-radius: 100% !important;
@@ -225,10 +338,10 @@ a:hover {
     background: var(--wp-theme-hover-color);
     opacity: .9;
 }
-.nav-item .nav-link:not(.active){
+/*.nav-item .nav-link:not(.active){
     border: 1px solid #CCC;
     background: #FFF;
-}
+}*/
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
      background-color: var(--wp-theme-color);
     border: 1px solid #CCC;
@@ -1755,14 +1868,14 @@ code {
     font-size: 13px
 }
 
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+.lp-nav-tabs.nav-tabs .nav-item.show .nav-link, .lp-nav-tabs.nav-tabs .nav-link.active{
     border: 0;
     color: var(--wp-theme-color);
     background: none;
     position: relative;
 
 }
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active:before{
+.lp-nav-tabs.nav-tabs .nav-item.show .nav-link, .lp-nav-tabs.nav-tabs .nav-link.active:before{
     content: '';
     position: absolute;
     display: block;
@@ -1775,11 +1888,11 @@ code {
     -webkit-transition: opacity 0.15s;
     background-color: #0064AB;
 }
-.nav-tabs {
+.lp-nav-tabs.nav-tabs {
     border-bottom: 1px solid #dee2e6;
     margin-bottom: 10px;
 }
-.nav-item .nav-link:not(.active){
+.lp-nav-tabs .nav-item .nav-link:not(.active){
     border: 0;
     background: none;
 }

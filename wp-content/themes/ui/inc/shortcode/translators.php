@@ -7,7 +7,7 @@ add_shortcode( 'translators', 'wcy_get_translators' );
  */
 function wcy_get_translators() {
 	$html = '
-<ul class="nav nav-tabs justify-content-center" id="translator-list-Tab" role="tablist">
+<ul class="nav lp-nav-tabs nav-tabs justify-content-center" id="translator-list-Tab" role="tablist">
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="Weekly-list-tab" data-bs-toggle="tab" data-bs-target="#Weekly-list" type="button" role="tab" aria-controls="Weekly-list" aria-selected="true">周榜</button>
   </li>
