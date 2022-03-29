@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="sign-in" tabindex="-1" data-bs-backdrop="static" aria-labelledby="" aria-hidden="true"
      xmlns="http://www.w3.org/1999/html">
-    <div class="modal-dialog  modal-dialog-centered ">
+    <div class="modal-dialog modal-s modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header border-0 pb-0">
                 <!--<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
@@ -33,7 +33,19 @@
                                     aria-selected="true">密码登录
                             </button>
                         </li>
+                        <li class="nav-item hide" role="presentation">
+                            <button class="nav-link " id="sign-bind-email" data-bs-toggle="tab"
+                                    data-bs-target="#bind-email" type="button" role="tab" aria-controls="home"
+                                    aria-selected="true">绑定邮箱
+                            </button>
+                        </li>
 
+                        <li class="nav-item hide" role="presentation">
+                            <button class="nav-link " id="sign-bind-email" data-bs-toggle="tab"
+                                    data-bs-target="#bind-email" type="button" role="tab" aria-controls="home"
+                                    aria-selected="true">绑定手机
+                            </button>
+                        </li>
 
                     </ul>
 
@@ -135,6 +147,26 @@
                             </button>
                             <input type="hidden" name="tcaptcha-ticket" class="tcaptcha-ticket" value="">
                             <input type="hidden" name="tcaptcha-randstr" class="tcaptcha-randstr" value="">
+                        </form>
+
+                        <form class="tab-pane" id="bind-email">
+
+                            <div class="form-floating mt-4 mb-3 ">
+                                <input type="email" class="form-control email" id="" placeholder="name@example.com" required>
+                                <label for="mobile">电子邮箱</label>
+
+                                <div class="invalid-feedback">
+                                    请输入正确的邮箱号
+                                </div>
+                            </div>
+
+                            <div class="form-floating input-group">
+                                <input type="text" class="form-control code" id="" placeholder="name@example.com" required>
+                                <label for="mobile">验证码</label>
+                                <a class="send-sms-code input-group-text" role="button">
+                                    发送验证码
+                                </a>
+                            </div>
                         </form>
 
 

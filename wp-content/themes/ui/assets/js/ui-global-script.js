@@ -583,12 +583,56 @@ $(document).on("click", function (e) {
         $(".um-notification-live-feed").hide();
     }
 });
+/*更改基本信息*/
+$(".info-form .btn.btn-primary").on("click", function () {
+    const $this = $(this)
+    const $this_form = $this.closest("form")
+    const display_name = $this_form.find("#display_name").val();
+    const nameplate_text = $this_form.find("#nameplate_text").val();
+    const nameplate_url = $this_form.find("#nameplate_url").val();
+    const gender = $this_form.find(".gender input:radio:checked").val();
+    const brief = $this_form.find("#brief").val();
 
+    $.ajax({
+        /*更新基本信息*/
+        type: "put",
+        url: "/user/wp-json/lpcn/user/center/info",
+        data: {
+            'display_name':display_name,
+            'nameplate_text':nameplate_text,
+            'nameplate_url':nameplate_url,
+            'gender':gender,
+            'brief':brief,
+        },
+        datatype: "json",
+        //在请求之前调用的函数
+        beforeSend: function () {
+            btn_load($this)
+        },
+        //成功返回之后调用的函数
+        success: function (s) {
+            alert_success(s.message)
+            window.location.reload()
+        },
+        //调用出错执行的函数
+        error: function (e) {
+            /*console.log(e)*/
+
+                alert_danger(e.responseJSON.message)
+            },
+        complete:function () {
+            btn_load_remove($this)
+        },
+
+        })
+
+
+})
 /*手机号登录注册*/
 $(".input-smscode").on("click", function () {
     $("#sms-code").focus()
 })
-$("#sms-code").on("keyup", function () {
+$("#sign-in #sms-code").on("keyup", function () {
     const $this = $(this)
     const $this_form = $("#form-sign-up")
     const mobile = $this_form.find("#mobile")
@@ -631,8 +675,50 @@ $("#sms-code").on("keyup", function () {
 
     }
 })
+/*手机号绑定*/
+$("#bind-modal #sms-code").on("keyup", function () {
+    const $this = $(this)
+    const $this_form = $this.closest("form")
+    const mobile = $this_form.find("#mobile")
+    const sms_code = $this_form.find("#sms-code").val()
+    const mobile_val = mobile.val()
+    if (sms_code.length === 4) {
 
-$(".send-sms-code").on("click", function () {
+        $.ajax({
+            /*手机号登录*/
+            type: "put",
+            url: "/user/wp-json/lpcn/user/center/security/bind_mobile",
+            data: {
+                'mobile': mobile_val,
+                'sms_code': sms_code,
+            },
+            datatype: "json",
+            //在请求之前调用的函数
+            beforeSend: function () {
+
+            },
+            //成功返回之后调用的函数
+            success: function (s) {
+                alert_success(s.message)
+                $this.closest(".modal").modal('hide');
+                window.location.reload()
+            },
+            //调用出错执行的函数
+            error: function (e) {
+                /*console.log(e)*/
+                if (e.responseJSON.status===2) {
+                    alert_danger(e.responseJSON.message)
+                }
+                else {
+                    alert_danger(e.responseJSON.message)
+                }
+
+            }
+        });
+
+    }
+})
+$("#sign-in .send-sms-code").on("click", function () {
     const $this = $(this)
     const $this_form = $this.closest("form")
     const mobile = $this_form.find("#mobile")
@@ -839,8 +925,6 @@ $("#bd-new-account").on("click", "[data-type='submit']", function () {
     const $this_form = $this.closest("form");
     const token = $.Request("token");
 
-
-                /*滑块通过*/
                 $.ajax({
                     type: "POST",
                     url: "/user/wp-json/lpcn/user/register",
@@ -950,6 +1034,13 @@ $(".social-item a").click(function () {
     openWin(url)
     return false;
 })
+$(".bind-a").on("click",function () {
+    const data_tab = $(this).attr("data-tab")
+$(data_tab).tab("show")
+$(data_tab).parent().show().siblings().hide()
+})
+
+
 
 /*封装通知*/
 function alert_danger(html) {
@@ -1038,3 +1129,21 @@ function smsCodeInput_setfocus() {
 
 document.addEventListener('keyup', smsCodeInput_onkeyup, false);
 
+if ($(".nav-tabs-user").length > 0) {
+    $(function(){
+        const hash = window.location.hash
+        if (hash) {
+            $('.nav-tabs a[data-bs-target="' + hash + '"]').tab('show');
+        }
+    });
+
+    $('.nav-tabs-user a').on('shown.bs.tab', function (e) {
+        let str = $(this).attr("data-bs-target")
+/*        str=str.substring(1)
+        e_target = $.UrlUpdateParams(window.location.href, "", str)*/
+        e_target = window.location.origin + window.location.pathname + str
+        history.pushState(null,null, e_target);
+    });
+
+
+}
