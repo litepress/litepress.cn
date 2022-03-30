@@ -608,7 +608,7 @@ add_filter( 'wp_title', function ( $title, $sep, $seplocation ) {
 	$site_title = get_bloginfo( 'name' );
 
 	if ( '/' === $uri ) {
-		$title = 'LitePress &#8211; 中国本土的 WordPress 衍生版';
+		$title = 'LitePress &#8211; 本土的 WordPress 衍生版';
 	} else {
 		$title .= $site_title;
 	}

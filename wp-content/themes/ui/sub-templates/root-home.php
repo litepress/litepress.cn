@@ -106,7 +106,7 @@ get_header();
 
                         <!-- Heading -->
                         <h1 class="h2 text-center text-md-start">
-                            <span class="text-primary">LitePress</span> - 中国本土的 WordPress 衍生版
+                            <span class="text-primary">LitePress</span> - 本土的 WordPress 衍生版
                         </h1>
 
                         <!-- Text -->
