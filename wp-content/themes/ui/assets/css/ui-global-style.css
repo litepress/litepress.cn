@@ -104,11 +104,11 @@ hr {
     background-color: var(--wp-theme-color);
     border-color: var(--wp-theme-color);
 }
-.form-floating.input-group .input-group-text{
+.input-group .input-group-text{
     border-radius: 0 .25rem .25rem 0!important;
     background: none;
 }
-#sign-in .modal-dialog{
+.modal-s.modal-dialog{
     max-width: 440px;
 }
 .send-sms-code.disabled{
@@ -149,6 +149,12 @@ hr {
     letter-spacing: .03125rem;
     text-transform: uppercase;
     margin-bottom: 1rem;
+}
+.rank-list__name{
+    width: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .nav-vertical {
     -ms-flex-direction: column;
@@ -260,7 +266,7 @@ hr {
     box-shadow: 0 1px 10px 0 #a3b4bf !important;
     border: 1px solid #fff !important;
     border-radius: 100% !important;
-    width: 4em;
+    width: 7em;
     height: auto;
 }
 blockquote {
@@ -271,7 +277,23 @@ blockquote {
     border-left: 3px solid #eee;
     color: #8C8C8C;
 }
-
+.avatar-tooltip {
+    position: absolute;
+    bottom: 0px;
+    top: 0;
+    display: flex;
+    left: 0;
+    color: #fff;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0 0 0 / 44%);
+    opacity: 0;
+    transition: 1s all;
+}
+.avatar-tooltip:hover{
+    opacity: 1;
+}
 /*去除所有焦点事件的外边框*/
 :focus {
     outline: 0 !important;
