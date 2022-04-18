@@ -44,6 +44,10 @@ class Security extends Base {
 
 		$user_id = get_current_user_id();
 
+		if ( $_SESSION['tncode_check'] ) {
+			return $this->error( '滑块验证码错误' );
+		}
+
 		// 需要验证短信
 		if ( ! check_sms_code( $params['mobile'], $params['sms_code'] ) ) {
 			return $this->error( '短信验证码不匹配！' );
