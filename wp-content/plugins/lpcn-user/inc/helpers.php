@@ -94,6 +94,51 @@ function tcaptcha_check( $Ticket, $Randstr ): bool {
 }
 
 /**
+ * 发送邮件验证码（全局通用）
+ */
+function send_email_code( string $email ): bool|WP_Error {
+	// 生成验证码
+	$code = rand( 1000, 9999 );
+
+	$subject = 'LitePress.cn 平台验证码';
+	$message = <<<html
+你的验证码：{$code}
+<br/>
+此验证码有效期 5 分钟
+html;
+
+	$headers[] = 'From: Cravatar <noreplay@litepress.cn>';
+	$headers[] = 'Content-Type: text/html; charset=UTF-8';
+
+	if ( wp_mail( $email, $subject, $message, $headers ) ) {
+		// 录入 WP 的瞬存
+		set_transient( 'lpcn_user_email_code_' . $email, $code, 300 );
+
+		return true;
+	} else {
+		return new WP_Error( 'send_email_error', '发送邮件验证码失败' );
+	}
+
+}
+
+/**
+ * 验证邮箱验证码
+ *
+ * @param string $email
+ * @param string $code
+ *
+ * @return bool|\WP_Error
+ */
+function check_email_code( string $email, string $code ): bool|WP_Error {
+	$db_code = get_transient( 'lpcn_user_email_code_' . $email );
+	if ( empty( $db_code ) ) {
+		return false;
+	}
+
+	return (int) $code === (int) $db_code;
+}
+
+/**
  * 发送短信验证码（登录与注册功能通用）
  */
 function send_sms_code( string $tel ): bool|WP_Error {
