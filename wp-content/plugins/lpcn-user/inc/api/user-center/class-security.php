@@ -8,7 +8,9 @@ use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
+use function LitePress\Helper\check_tncode;
 use function LitePress\User\Inc\check_sms_code;
+use function LitePress\User\Inc\check_email_code;
 
 /**
  * Class Security
@@ -26,10 +28,57 @@ class Security extends Base {
 			'callback' => array( $this, 'bind_mobile' ),
 		) );
 
+		register_rest_route( 'center', 'security/bind-email', array(
+			'methods'  => WP_REST_Server::EDITABLE,
+			'callback' => array( $this, 'bind_email' ),
+		) );
+
 		register_rest_route( 'center', 'security/reset-passwd', array(
 			'methods'  => WP_REST_Server::EDITABLE,
 			'callback' => array( $this, 'reset_passwd' ),
 		) );
+	}
+
+	public function bind_email( WP_REST_Request $request ): WP_REST_Response {
+		if ( ! is_user_logged_in() ) {
+			return $this->error( '你必须先登录。' );
+		}
+
+		$params = $this->prepare_bind_email_params( $request->get_params() );
+		if ( is_wp_error( $params ) ) {
+			return $this->error( $params->get_error_message() );
+		}
+
+		$user_id = get_current_user_id();
+
+		if ( ! check_tncode() ) {
+			return $this->error( '滑块验证码错误' );
+		}
+
+		// 需要验证短信
+		if ( ! check_email_code( $params['email'], $params['email_code'] ) ) {
+			return $this->error( '邮箱验证码不匹配！' );
+		}
+
+		// 保存用户 Meta 表数据
+		update_user_meta( $user_id, 'user_email', $params['email'] );
+
+		return $this->success( '邮箱绑定成功' );
+	}
+
+	private function prepare_bind_email_params( array $params ): array|WP_Error {
+		$allowed = array(
+			'email',
+			'email_code',
+		);
+
+		foreach ( $params as $key => $param ) {
+			$params[ $key ] = sanitize_text_field( $param );
+		}
+
+		return array_filter( $params, function ( string $param ) use ( $allowed ) {
+			return in_array( $param, $allowed );
+		}, ARRAY_FILTER_USE_KEY );
 	}
 
 	public function bind_mobile( WP_REST_Request $request ): WP_REST_Response {
@@ -44,7 +93,7 @@ class Security extends Base {
 
 		$user_id = get_current_user_id();
 
-		if ( $_SESSION['tncode_check'] ) {
+		if ( ! check_tncode() ) {
 			return $this->error( '滑块验证码错误' );
 		}
 
