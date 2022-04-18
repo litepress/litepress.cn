@@ -6,6 +6,7 @@ use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
+use function LitePress\Helper\check_tncode;
 use function LitePress\User\Inc\send_sms_code;
 use function LitePress\User\Inc\send_email_code;
 
@@ -36,7 +37,7 @@ class Common extends Base {
 			return $this->error( $params->get_error_message() );
 		}
 
-		if ( $_SESSION['tncode_check'] ) {
+		if ( ! check_tncode() ) {
 			return $this->error( '滑块验证码错误' );
 		}
 
@@ -54,7 +55,7 @@ class Common extends Base {
 			return $this->error( $params->get_error_message() );
 		}
 
-		if ( $_SESSION['tncode_check'] ) {
+		if ( ! check_tncode() ) {
 			return $this->error( '滑块验证码错误' );
 		}
 
