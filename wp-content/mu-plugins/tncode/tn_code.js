@@ -440,8 +440,7 @@ var tncode = {
         tncode._onsuccess = fn;
     }
 };
-var $TN = tncode;
-var _old_onload = window.onload;
+const _old_onload = window.onload;
 window.onload = function(){
     if(typeof _old_onload == 'function'){
         _old_onload();
