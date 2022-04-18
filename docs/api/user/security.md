@@ -79,3 +79,29 @@ PUT /user/wp-json/center/security/bind-mobile
   "status": 0
 }
 ```
+
+## 销毁账号
+
+### 认证
+
+是
+
+### 路径
+
+PUT /user/wp-json/center/security/destroy
+
+### 传入字段
+
+| 字段名         | 类型     | 必填  | 备注     |
+|-------------|--------|-----|--------|
+| mobile      | String | 是   | 手机号    |
+| mobile_code | String | 是   | 手机号验证码 |
+
+### 返回值
+
+```json
+{
+  "message": "该用户已注销",
+  "status": 0
+}
+```

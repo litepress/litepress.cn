@@ -37,6 +37,63 @@ class Security extends Base {
 			'methods'  => WP_REST_Server::EDITABLE,
 			'callback' => array( $this, 'reset_passwd' ),
 		) );
+
+		register_rest_route( 'center', 'security/destroy', array(
+			'methods'  => WP_REST_Server::DELETABLE,
+			'callback' => array( $this, 'destroy' ),
+		) );
+	}
+
+	public function destroy( WP_REST_Request $request ): WP_REST_Response {
+		if ( ! is_user_logged_in() ) {
+			return $this->error( '你必须先登录。' );
+		}
+
+		$params = $this->prepare_destroy_params( $request->get_params() );
+		if ( is_wp_error( $params ) ) {
+			return $this->error( $params->get_error_message() );
+		}
+
+		$user_id = get_current_user_id();
+
+		// 需要验证短信
+		if ( ! check_sms_code( $params['mobile'], $params['sms_code'] ) ) {
+			return $this->error( '短信验证码不匹配！' );
+		}
+
+		/**
+		 * 清除用户信息
+		 *
+		 * Meta 中的信息可能涉及商品订单之类的数据直接删除会导致系统错乱，故这里暂时只清除用户的邮箱、手机号、密码、用户名数据
+		 */
+		wp_update_user( array(
+			'ID'            => $user_id,
+			'user_nicename' => '已注销',
+			'display_name'  => '已注销',
+			'user_email'    => '',
+			'user_pass'     => '',
+			'user_url'      => '',
+		) );
+
+		delete_user_meta( $user_id, 'mobile' );
+		delete_user_meta( $user_id, 'qq_openid' );
+
+		return $this->success( '该用户已注销' );
+	}
+
+	private function prepare_destroy_params( array $params ): array|WP_Error {
+		$allowed = array(
+			'mobile',
+			'sms_code',
+		);
+
+		foreach ( $params as $key => $param ) {
+			$params[ $key ] = sanitize_text_field( $param );
+		}
+
+		return array_filter( $params, function ( string $param ) use ( $allowed ) {
+			return in_array( $param, $allowed );
+		}, ARRAY_FILTER_USE_KEY );
 	}
 
 	public function bind_email( WP_REST_Request $request ): WP_REST_Response {
