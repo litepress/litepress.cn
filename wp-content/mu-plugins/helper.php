@@ -12,7 +12,6 @@
 namespace LitePress\Helper;
 
 use DiDom\Document;
-use LitePress\Upyun\Upyun;
 use WP_Error;
 use WP_Http;
 
@@ -354,4 +353,15 @@ function execute_command( string $command, bool $get_return = false ): WP_Error|
 	}
 
 	return $get_return ? join( "\n", $output ) : true;
+}
+
+/**
+ * 验证当前用户是否已经通过滑块验证
+ */
+function check_tncode() {
+	if ( ! isset( $_SESSION ) ) {
+		session_start();
+	}
+
+	return $_SESSION['tncode_check'] ?? false;
 }

@@ -6,7 +6,7 @@ use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
-use function LitePress\User\Inc\tcaptcha_check;
+use function LitePress\Helper\check_tncode;
 
 /**
  * Class Login
@@ -34,8 +34,8 @@ class Login extends Base {
 			return $this->error( $params->get_error_message() );
 		}
 
-		if ( ! tcaptcha_check( $params['tcaptcha-ticket'], $params['tcaptcha-randstr'] ) ) {
-			return $this->error( '验证码错误' );
+		if ( ! check_tncode() ) {
+			return $this->error( '滑块验证码错误' );
 		}
 
 		$login_data['user_login']    = $params['username'];
@@ -93,16 +93,10 @@ class Login extends Base {
 			'username',
 			'password',
 			'token', // 选填，填了此 Token 则代表本次登录后需要绑定用户信息
-			'tcaptcha-ticket',
-			'tcaptcha-randstr',
 		);
 
 		if ( empty( $params['username'] ) || empty( $params['password'] ) ) {
 			return new WP_Error( 'required_field_is_empty', '账号密码不能为空' );
-		}
-
-		if ( empty( $params['tcaptcha-ticket'] ) || empty( $params['tcaptcha-randstr'] ) ) {
-			return new WP_Error( 'required_field_is_empty', '必须完成滑块验证才可登录' );
 		}
 
 		foreach ( $params as $key => $param ) {
