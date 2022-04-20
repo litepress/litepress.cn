@@ -22,4 +22,9 @@ if ( ! class_exists( '\LitePress\Autoload\Autoloader', false ) ) {
 
 Autoload\register_class_path( __NAMESPACE__, __DIR__ . '/inc' );
 
+// 加载命令行
+if ( class_exists( 'WP_CLI' ) ) {
+	require __DIR__ . '/command/class-sync-wporg-svn.php';
+}
+
 Plugin::get_instance();

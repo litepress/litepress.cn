@@ -524,12 +524,12 @@ if ($("#bbp-editor-container").length > 0) {
     editor.on('unFullScreen', () => {
         $("body").removeClass("overflow-hidden")
     })
-    /*话题编辑同步内容*/
+/*    /!*话题编辑同步内容*!/
     $(function () {
         const bbp_content = $(".topic-edit .bbp_topic_content_hide").html();
         const pre_class = $(".topic-edit .bbp_topic_content_hide pre").attr("class");
         if (pre_class !== undefined) {
-            const pre_class_1 = pre_class.replace(/^\s*/, "");
+            const pre_class_1 = pre_class.replace(/^\s*!/, "");
             const C1 = bbp_content.replace("tabindex=\"0\"", "")
             const C4 = C1.replaceAll(pre_class, pre_class_1)
             editor.dangerouslyInsertHtml(C4)
@@ -537,11 +537,11 @@ if ($("#bbp-editor-container").length > 0) {
             editor.dangerouslyInsertHtml(bbp_content)
         }
 
-    })
+    })*/
     /*评论编辑同步内容*/
     $(function () {
-        const bbp_content = $(".reply-edit .bbp_topic_content_hide").html();
-        const pre_class = $(".reply-edit .bbp_topic_content_hide pre").attr("class");
+        const bbp_content = $(".bbp_topic_content_hide").html();
+        const pre_class = $(".bbp_topic_content_hide pre").attr("class");
         if (pre_class !== undefined) {
             const pre_class_1 = pre_class.replace(/^\s*/, "");
             const C1 = bbp_content.replace("tabindex=\"0\"", "")
@@ -724,19 +724,15 @@ $("#sign-in .send-sms-code").on("click", function () {
     const mobile = $this_form.find("#mobile")
     const agree = $this_form.find("#form-sign-up-agree")
     const mobile_val = mobile.val()
-    const t_ticket = $this_form.find(".tcaptcha-ticket")
-    const t_randstr = $this_form.find(".tcaptcha-randstr")
+
 
 
     if ($this_form.find(".form-control:invalid,.form-check-input:invalid").length === 0) {
 
-        const lp_captcha = new TencentCaptcha(UMTCaptcha.captcha_appid, function (res) {
-            if (res.ret === 0) {
+        $('.tncode').trigger("click");
+        tncode.onsuccess(function(){
                 /*滑块通过*/
-                t_ticket.val(res.ticket)
-                t_randstr.val(res.randstr)
-                const ticket = t_ticket.val()
-                const randstr = t_randstr.val()
+
 
 
                 let count = 60;
@@ -782,12 +778,9 @@ $("#sign-in .send-sms-code").on("click", function () {
                     }
                 });
 
-            } else {
-                alert_danger("图形验证失败，请重试！")
-            }
-        });
-        // 显示验证码
-        lp_captcha.show();
+            })
+
+
     } else {
         $(mobile).parent().addClass("was-validated")
         $(agree).parent().addClass("was-validated")
@@ -805,16 +798,11 @@ $("#form-sign-in").on("click", "[data-type='submit']", function () {
     const $this_form = $this.closest("form");
     const username = $this_form.find(".username").val()
     const password = $this_form.find(".password").val()
-    const t_ticket = $this_form.find(".tcaptcha-ticket")
-    const t_randstr = $this_form.find(".tcaptcha-randstr")
 
     if ($(this).parent().find(".form-control:invalid").length === 0) {
-        const lp_captcha = new TencentCaptcha(UMTCaptcha.captcha_appid, function (res) {
-            if (res.ret === 0) {
-                t_ticket.val(res.ticket)
-                t_randstr.val(res.randstr)
-                const ticket = t_ticket.val()
-                const randstr = t_randstr.val()
+        $('.tncode').trigger("click");
+        tncode.onsuccess(function(){
+
 
                 $.ajax({
                     type: "POST",
@@ -823,8 +811,6 @@ $("#form-sign-in").on("click", "[data-type='submit']", function () {
                     data: {
                         'username': username,
                         'password': password,
-                        "tcaptcha-ticket": ticket,
-                        "tcaptcha-randstr": randstr,
                     },
                     datatype: "json",
                     //在请求之前调用的函数
@@ -852,12 +838,9 @@ $("#form-sign-in").on("click", "[data-type='submit']", function () {
                 });
 
 
-            } else {
-                alert_danger("图形验证失败，请重试！")
-            }
-        });
-        // 显示验证码
-        lp_captcha.show();
+            })
+
+
     }
 
 })
@@ -869,26 +852,20 @@ $("#bd-old-account").on("click", "[data-type='submit']", function () {
     const $this_form = $this.closest("form");
     const username = $this_form.find(".username").val()
     const password = $this_form.find(".password").val()
-    const t_ticket = $this_form.find(".tcaptcha-ticket")
-    const t_randstr = $this_form.find(".tcaptcha-randstr")
     const token = $.Request("token");
 
     if ($this_form.find(".form-control:invalid").length === 0) {
-    const lp_captcha = new TencentCaptcha(UMTCaptcha.captcha_appid, function (res) {
-        if (res.ret === 0) {
+
+        $('.tncode').trigger("click");
+        tncode.onsuccess(function(){
             /*滑块通过*/
-            t_ticket.val(res.ticket)
-            t_randstr.val(res.randstr)
-            const ticket = t_ticket.val()
-            const randstr = t_randstr.val()
+
             $.ajax({
                 type: "POST",
                 url: "/user/wp-json/lpcn/user/login",
                 data: {
                     'username': username,
                     'password': password,
-                    "tcaptcha-ticket": ticket,
-                    "tcaptcha-randstr": randstr,
                     "token": token
                 },
                 datatype: "json",
@@ -909,13 +886,9 @@ $("#bd-old-account").on("click", "[data-type='submit']", function () {
                     btn_load_remove($this)
                 }
             });
-        }
-        else {
-            alert_danger("图形验证失败，请重试！")
-        }
-    });
-        // 显示验证码
-        lp_captcha.show();
+        })
+
+
     }
     })
 

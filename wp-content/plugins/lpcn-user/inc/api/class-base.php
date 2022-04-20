@@ -2,6 +2,9 @@
 
 namespace LitePress\User\Inc\Api;
 
+use LitePress\User\Inc\Api\User_Center\Basic_Info;
+use LitePress\User\Inc\Api\User_Center\Security;
+use stdClass;
 use WP_REST_Response;
 
 /**
@@ -28,9 +31,13 @@ class Base {
 		new Register();
 		new Common();
 		new Login_By_Mobile();
+
+		// 引入会员中心相关
+		new Basic_Info();
+		new Security();
 	}
 
-	protected function success( string $message, array $data = array() ): WP_REST_Response {
+	protected function success( string $message, array|stdClass $data = array() ): WP_REST_Response {
 		return new WP_REST_Response( array( 'message' => $message, 'data' => $data, 'status' => 0 ) );
 	}
 

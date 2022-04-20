@@ -16,17 +16,18 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'tocbot', get_stylesheet_directory_uri() . '/assets/css/tocbot.min.css' );
 	wp_enqueue_style( 'swiper-bundle', get_stylesheet_directory_uri() . '/assets/css/swiper-bundle.css' );
 	wp_enqueue_style( 'wangEditor', get_stylesheet_directory_uri() . '/assets/css/wangEditor.min.css' );
+	wp_enqueue_style( 'tn_style', '/wp-content/mu-plugins/tncode/tn_style.css', array() );
 
 	wp_enqueue_script( 'lightgallery', get_stylesheet_directory_uri() . '/assets/js/lightgallery.umd.js', [], false, true );
 	wp_enqueue_script( 'nprogress', get_stylesheet_directory_uri() . '/assets/js/nprogress.min.js', [], false, true );
 	wp_enqueue_script( 'highlight', get_stylesheet_directory_uri() . '/assets/js/highlight.min.js', [], false, true );
 	wp_enqueue_script( 'clipboard', get_stylesheet_directory_uri() . '/assets/js/clipboard.min.js', [], false, true );
-    wp_enqueue_script( 'wangEditor', get_stylesheet_directory_uri() . '/assets/js/wangEditor.min.js', [ 'jquery' ], false, true );
+	wp_enqueue_script( 'wangEditor', get_stylesheet_directory_uri() . '/assets/js/wangEditor.min.js', [ 'jquery' ], false, true );
 	wp_enqueue_script( 'ui-global-script', get_stylesheet_directory_uri() . '/assets/js/ui-global-script.js', [ 'jquery' ], false, true );
 	wp_enqueue_script( 'bootstrap-bundle', get_stylesheet_directory_uri() . '/assets/js/bootstrap.bundle.min.js', [ 'jquery' ], false, true );
 	wp_enqueue_script( 'tocbot', get_stylesheet_directory_uri() . '/assets/js/tocbot.min.js', [ 'jquery' ], false, true );
 	wp_enqueue_script( 'swiper-bundle', get_stylesheet_directory_uri() . '/assets/js/swiper-bundle.min.js', [ 'jquery' ], false, true );
-	wp_enqueue_script( 'tcaptcha', 'https://ssl.captcha.qq.com/TCaptcha.js', array() );
+	wp_enqueue_script( 'tn_code', '/wp-content/mu-plugins/tncode/tn_code.min.js', array() );
 
 	// 这个js bug还是有点多，比如鼠标移到注销按钮，直接就注销登录了，暂时移除之
 	//wp_enqueue_script( 'instant.page', 'https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js', [ 'jquery' ], false, true );

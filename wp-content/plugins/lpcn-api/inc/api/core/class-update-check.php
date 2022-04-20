@@ -61,8 +61,8 @@ class Update_Check extends Base {
 					$wp_check = true;
 					$lp_check = false;
 
-					$apply_site_list[ $site ] = 0;
-					update_site_option( 'lp_apply_site', $apply_site_list );
+					//$apply_site_list[ $site ] = 0;
+					//update_site_option( 'lp_apply_site', $apply_site_list );
 				} else {
 					$wp_check = false;
 					$lp_check = true;

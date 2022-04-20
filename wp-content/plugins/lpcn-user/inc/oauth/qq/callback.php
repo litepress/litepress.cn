@@ -5,17 +5,26 @@ use function LitePress\User\Inc\login_by_user_id;
 add_action( 'wp_loaded', function () {
 	list( $uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
 	if ( '/user/oauth/callback/qq' === $uri ) {
-		if ( is_user_logged_in() ) {
-			echo '你已经处于登录状态，平台不允许重复登录，请刷新页面后查看。';
-			exit;
-		}
-
 		$qc = new QC();
 		$qc->qq_callback();
 		$openid = $qc->get_openid();
 
 		if ( empty( $openid ) ) {
 			echo 'Error!!!';
+			exit;
+		}
+
+		if ( is_user_logged_in() ) {
+			// 已登录状态下绑定 QQ 的行为视为绑定 QQ 号。
+			$user_id = get_current_user_id();
+
+			update_user_meta( $user_id, 'qq_openid', $openid );
+
+			echo <<<JS
+<script>
+window.opener.closeChildWindow();
+</script>
+JS;
 			exit;
 		}
 
