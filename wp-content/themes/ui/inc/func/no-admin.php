@@ -394,23 +394,22 @@ add_filter( 'bbp_get_topic_freshness_link', function ( $anchor, $topic_id, $time
 }, 10, 5 );
 
 
-
-
-
 /*删除取消回复*/
-function remove_comment_reply_link($link) {
-    return '';
+function remove_comment_reply_link( $link ) {
+	return '';
 }
-add_filter('cancel_comment_reply_link', 'remove_comment_reply_link', 10);
+
+add_filter( 'cancel_comment_reply_link', 'remove_comment_reply_link', 10 );
 // Add the comment reply button to the end of the comment form.
 // Remove the my_remove_comment_reply_link filter first so that it will actually output something.
-function after_comment_form($post_id) {
-    remove_filter('cancel_comment_reply_link', 'remove_comment_reply_link', 10);
-    echo "<div class='btn mt-2 ms-2 btn-outline-primary cancel-comment-reply-link'><i class=\"fa-duotone fa-xmark\"></i> ";
-    cancel_comment_reply_link('取消回复');
-    echo "</div>";
+function after_comment_form( $post_id ) {
+	remove_filter( 'cancel_comment_reply_link', 'remove_comment_reply_link', 10 );
+	echo "<div class='btn mt-2 ms-2 btn-outline-primary cancel-comment-reply-link'><i class=\"fa-duotone fa-xmark\"></i> ";
+	cancel_comment_reply_link( '取消回复' );
+	echo "</div>";
 }
-add_action('comment_form_submit_field', 'after_comment_form', 99);
+
+add_action( 'comment_form_submit_field', 'after_comment_form', 99 );
 /**
  * 身份铭牌支持
  */
@@ -733,3 +732,26 @@ remove_filter( 'bbp_edit_reply_pre_content', 'bbp_filter_kses', 30 );
 add_filter( 'excerpt_more', function () {
 	return '...';
 } );
+
+/**
+ * 替换菜单栏上的各种变量为动态数据
+ */
+add_filter( 'wp_nav_menu_objects', function ( $menu_items ) {
+	global $current_user;
+
+	$data = array(
+		'{username}'          => $current_user->display_name ?? '',
+		'{user_avatar_small}' => get_avatar( $current_user->user_email ),
+);
+
+	foreach ( $menu_items as $menu_item ) {
+		foreach ( $data as $k => $v ) {
+			if ( str_contains( $menu_item->title, $k ) ) {
+				$menu_item->title = str_replace( $k, $v, $menu_item->title );
+			}
+		}
+	}
+
+	return $menu_items;
+} );
+
