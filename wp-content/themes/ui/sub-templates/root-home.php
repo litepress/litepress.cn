@@ -115,7 +115,7 @@ get_header();
                         </p>
 
                         <!-- Buttons -->
-                        <div class="text-center text-md-start mt-3 ">
+                        <!--<div class="text-center text-md-start mt-3 ">
                             <a href="https://rat.dev/litepress/LitePress/archive/refs/heads/5.8.3.zip"
                                class="btn btn-primary me-3 pe-4">
                                 <section class="d-flex align-items-center">
@@ -128,7 +128,8 @@ get_header();
                             </a>
 
                             <p class="deviation mt-3 text-muted">发行日志<i></i>版本号：v 5.8.3</p>
-                        </div>
+                        </div>-->
+                        <p class="lead text-center text-md-start text-muted my-7 mb-lg-8">当前正在进行发行版重构工作，敬请期待。</p>
 
                     </div>
                 </div> <!-- / .row -->
