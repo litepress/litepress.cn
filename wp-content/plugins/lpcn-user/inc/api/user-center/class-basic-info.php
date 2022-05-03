@@ -87,7 +87,7 @@ class Basic_Info extends Base {
 		$user_data->nameplate_text = get_user_meta( $user_id, 'nameplate_text', true );
 		$user_data->nameplate_url  = get_user_meta( $user_id, 'nameplate_url', true );
 		$user_data->gender         = get_user_meta( $user_id, 'gender', true );
-		$user_data->description          = get_user_meta( $user_id, 'description', true );
+		$user_data->description    = get_user_meta( $user_id, 'description', true );
 
 		// 获取头像
 		$user_data->avatar = get_avatar_url( $user_data->user_email, array(
@@ -103,7 +103,7 @@ class Basic_Info extends Base {
 			'nameplate_text',
 			'nameplate_url',
 			'gender',
-			'brief',
+			'description',
 		);
 
 		foreach ( $params as $key => $param ) {
