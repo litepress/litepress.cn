@@ -51,7 +51,7 @@ class Basic_Info extends Base {
 		update_user_meta( $user_id, 'nameplate_text', $params['nameplate_text'] );
 		update_user_meta( $user_id, 'nameplate_url', $params['nameplate_url'] );
 		update_user_meta( $user_id, 'gender', $params['gender'] );
-		update_user_meta( $user_id, 'brief', $params['brief'] );
+		update_user_meta( $user_id, 'description', $params['description'] );
 
 		return $this->success( '用户信息更新成功' );
 	}
@@ -80,15 +80,19 @@ class Basic_Info extends Base {
 		$user_data = $user_data->data;
 
 		// 去掉敏感字段
-		unset($user_data->user_pass);
-		unset($user_data->user_activation_key);
-
+		unset( $user_data->user_pass );
+		unset( $user_data->user_activation_key );
 
 		// 尝试提取用户 meta 数据
 		$user_data->nameplate_text = get_user_meta( $user_id, 'nameplate_text', true );
 		$user_data->nameplate_url  = get_user_meta( $user_id, 'nameplate_url', true );
 		$user_data->gender         = get_user_meta( $user_id, 'gender', true );
-		$user_data->brief          = get_user_meta( $user_id, 'brief', true );
+		$user_data->description    = get_user_meta( $user_id, 'description', true );
+
+		// 获取头像
+		$user_data->avatar = get_avatar_url( $user_data->user_email, array(
+			'size' => 248
+		) );
 
 		return $this->success( '获取用户信息成功', $user_data );
 	}
@@ -99,7 +103,7 @@ class Basic_Info extends Base {
 			'nameplate_text',
 			'nameplate_url',
 			'gender',
-			'brief',
+			'description',
 		);
 
 		foreach ( $params as $key => $param ) {
