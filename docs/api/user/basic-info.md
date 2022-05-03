@@ -29,7 +29,7 @@ GET /user/wp-json/center/basic-info
     "nameplate_text": "",
     "nameplate_url": "",
     "gender": "",
-    "brief": ""
+    "description": ""
   },
   "status": 0
 }
@@ -53,7 +53,7 @@ POST /user/wp-json/center/basic-info
 | nameplate_text | String | 是   | 名牌标识       |
 | nameplate_url  | String | 是   | 铭牌网址       |
 | gender         | Int    | 是   | 性别 0:男,1:女 |
-| brief          | String | 是   | 简介         |
+| description    | String | 是   | 简介         |
 
 ### 返回值
 
