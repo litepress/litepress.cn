@@ -178,7 +178,7 @@ var tncode = {
     },
     _send_result_success:function(responseText,responseXML){
         tncode._doing = false;
-        if(responseText=='ok'){
+        if(responseText==='ok'){
             tncode._tncode.innerHTML = '√验证成功';
             tncode._showmsg('√验证成功',1);
             tncode._result = true;
