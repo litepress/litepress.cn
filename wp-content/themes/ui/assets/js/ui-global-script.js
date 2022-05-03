@@ -756,8 +756,6 @@ $("#sign-in .send-sms-code").on("click", function () {
                     url: "/user/wp-json/lpcn/user/send_sms_code",
                     data: {
                         'mobile': mobile_val,
-                        "tcaptcha-ticket": ticket,
-                        "tcaptcha-randstr": randstr,
                     },
                     datatype: "json",
                     //在请求之前调用的函数
