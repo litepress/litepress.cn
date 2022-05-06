@@ -63,7 +63,11 @@ class Login extends Base {
 					return $this->error( '此账号已经绑定其他 QQ 号码' );
 				}
 
-				$r = add_user_meta( $user_verify->ID, 'qq_openid', $token_data['qq_openid'], true );
+				$r = update_user_meta( $user_verify->ID, 'qq_openid', $token_data['qq_openid'] );
+				if ( empty( $r ) ) {
+					return $this->error( '用户创建失败：无法绑定 QQ 号码信息' );
+				}
+				$r = update_user_meta( $user_verify->ID, 'qq_nickname', $token_data['qq_nickname'] );
 				if ( empty( $r ) ) {
 					return $this->error( '用户创建失败：无法绑定 QQ 号码信息' );
 				}
@@ -75,7 +79,7 @@ class Login extends Base {
 					return $this->error( '此账号已经绑定其他手机号码' );
 				}
 
-				$r = add_user_meta( $user_verify->ID, 'mobile', $token_data['mobile'], true );
+				$r = update_user_meta( $user_verify->ID, 'mobile', $token_data['mobile'] );
 				if ( empty( $r ) ) {
 					return $this->error( '用户创建失败：无法绑定手机号码信息' );
 				}

@@ -89,6 +89,10 @@ class Basic_Info extends Base {
 		$user_data->gender         = get_user_meta( $user_id, 'gender', true );
 		$user_data->description    = get_user_meta( $user_id, 'description', true );
 
+		// 获取用户 QQ 和手机号绑定信息
+		$user_data->qq_nickname = get_user_meta( $user_id, 'qq_nickname', true );
+		$user_data->mobile      = get_user_meta( $user_id, 'mobile', true );
+
 		// 获取头像
 		$user_data->avatar = get_avatar_url( $user_data->user_email, array(
 			'size' => 248
