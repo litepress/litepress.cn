@@ -741,8 +741,14 @@ add_filter( 'wp_nav_menu_objects', function ( $menu_items ) {
 
 	$data = array(
 		'{username}'          => $current_user->display_name ?? '',
-		'{user_avatar_small}' => get_avatar( $current_user->user_email ),
-);
+		'{user_avatar_small}' => get_avatar(
+			$current_user->user_email,
+			48,
+			'',
+			'',
+			array( 'class' => 'gravatar avatar avatar-40 um-avatar um-avatar-uploaded' )
+		),
+	);
 
 	foreach ( $menu_items as $menu_item ) {
 		foreach ( $data as $k => $v ) {
