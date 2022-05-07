@@ -213,6 +213,10 @@ class Security extends Base {
 
 		$current_user = wp_get_current_user();
 
+		if ( ! class_exists( 'PasswordHash' ) ) {
+			require 'wp-includes/class-phpass.php';
+		}
+
 		$wp_hasher       = new PasswordHash( 8, true );
 		$password_hashed = $current_user->user_pass;
 		$plain_password  = $params['old_passwd'];
