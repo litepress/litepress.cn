@@ -109,6 +109,10 @@ class Security extends Base {
 			$params[ $key ] = sanitize_text_field( $param );
 		}
 
+		if ( empty( $params['mobile'] ) || empty( $params['sms_code'] ) ) {
+			return new WP_Error( 'required_field_is_empty', '手机号或手机验证码为空' );
+		}
+
 		return array_filter( $params, function ( string $param ) use ( $allowed ) {
 			return in_array( $param, $allowed );
 		}, ARRAY_FILTER_USE_KEY );
@@ -154,6 +158,10 @@ class Security extends Base {
 			$params[ $key ] = sanitize_text_field( $param );
 		}
 
+		if ( empty( $params['email'] ) || empty( $params['email_code'] ) ) {
+			return new WP_Error( 'required_field_is_empty', '邮箱或邮箱验证码为空' );
+		}
+
 		return array_filter( $params, function ( string $param ) use ( $allowed ) {
 			return in_array( $param, $allowed );
 		}, ARRAY_FILTER_USE_KEY );
@@ -194,6 +202,10 @@ class Security extends Base {
 
 		foreach ( $params as $key => $param ) {
 			$params[ $key ] = sanitize_text_field( $param );
+		}
+
+		if ( empty( $params['mobile'] ) || empty( $params['sms_code'] ) ) {
+			return new WP_Error( 'required_field_is_empty', '手机号或手机验证码为空' );
 		}
 
 		return array_filter( $params, function ( string $param ) use ( $allowed ) {
@@ -238,6 +250,14 @@ class Security extends Base {
 
 		foreach ( $params as $key => $param ) {
 			$params[ $key ] = sanitize_text_field( $param );
+		}
+
+		if ( empty( $params['old_passwd'] ) ) {
+			return new WP_Error( 'required_field_is_empty', '旧密码不能为空' );
+		}
+
+		if ( empty( $params['new_passwd'] ) ) {
+			return new WP_Error( 'required_field_is_empty', '新密码不能为空' );
 		}
 
 		return array_filter( $params, function ( string $param ) use ( $allowed ) {
