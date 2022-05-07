@@ -42,6 +42,24 @@ class Security extends Base {
 			'methods'  => WP_REST_Server::DELETABLE,
 			'callback' => array( $this, 'destroy' ),
 		) );
+
+		register_rest_route( 'center', 'security/unbind-qq', array(
+			'methods'  => WP_REST_Server::DELETABLE,
+			'callback' => array( $this, 'unbind_qq' ),
+		) );
+	}
+
+	public function unbind_qq( WP_REST_Request $request ): WP_REST_Response {
+		if ( ! is_user_logged_in() ) {
+			return $this->error( '你必须先登录。' );
+		}
+
+		$user_id = get_current_user_id();
+
+		delete_user_meta( $user_id, 'qq_openid' );
+		delete_user_meta( $user_id, 'qq_nickname' );
+
+		return $this->success( '已成功解绑' );
 	}
 
 	public function destroy( WP_REST_Request $request ): WP_REST_Response {

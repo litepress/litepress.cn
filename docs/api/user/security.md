@@ -105,3 +105,26 @@ PUT /user/wp-json/center/security/destroy
   "status": 0
 }
 ```
+
+## 解绑 QQ 号
+
+### 认证
+
+是
+
+### 路径
+
+PUT /user/wp-json/center/security/unbind-qq
+
+### 传入字段
+
+无
+
+### 返回值
+
+```json
+{
+  "message": "已成功解绑",
+  "status": 0
+}
+```
