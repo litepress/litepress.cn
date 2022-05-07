@@ -10,9 +10,12 @@ add_action( 'wp_loaded', function () {
     if ( '/user/new/bind' === $uri ) {
         get_header();
 
-        $openid = sanitize_text_field( $_GET['openid'] ?? '' );
-        $qc     = new QC( "", $openid );
-        $arr    = $qc->get_user_info();
+        $token = sanitize_text_field( $_GET['token'] ?? '' );
+
+	    $token_data = get_transient( "lpcn_user_bind_{$token}" );
+	    if ( empty( $token_data ) ) {
+		    return $this->error( 'Token 过期或不存在' );
+	    }
 
         $login_type      = sanitize_text_field( $_GET['type'] ?? '' );
         $login_type_html = match ( $login_type ) {
@@ -28,9 +31,9 @@ add_action( 'wp_loaded', function () {
                     <div class="row justify-content-center gx-5" >
                     	<section class="col-12 row  justify-content-center">
                             <div class="d-flex align-items-center col-10 mb-4">
-									<img class="lp-avatar me-3" src="{$arr["figureurl_2"]}" alt="{$arr["nickname"]}">
+									<img class="lp-avatar me-3" src="{$token_data["figureurl"]}" alt="{$token_data["qq_nickname"]}">
                                     <div class="text-muted">
-                                        欢迎你，{$arr["nickname"]}！<br>
+                                        欢迎你，{$token_data["qq_nickname"]}！<br>
                                         当前你正在使用 {$login_type_html} 登录，请绑定已有帐户，或者注册新用户绑定。
                                     </div>
                             </div>

@@ -5,9 +5,10 @@ use function LitePress\User\Inc\login_by_user_id;
 add_action( 'wp_loaded', function () {
 	list( $uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
 	if ( '/user/oauth/callback/qq' === $uri ) {
-		$qc = new QC();
-		$qc->qq_callback();
+		$qc           = new QC();
+		$acs          = $qc->qq_callback();
 		$openid       = $qc->get_openid();
+		$qc           = new QC( $acs, $openid );
 		$qq_user_info = $qc->get_user_info();
 
 		if ( empty( $openid ) ) {
@@ -43,6 +44,7 @@ JS;
 				'type'        => 'qq',
 				'qq_openid'   => $openid,
 				'qq_nickname' => $qq_user_info['nickname'],
+				'figureurl'   => $qq_user_info['figureurl_2'],
 			), 300 );
 
 			echo <<<JS
