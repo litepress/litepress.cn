@@ -140,10 +140,13 @@ class Security extends Base {
 		}
 
 		// 保存用户邮箱信息
-		wp_update_user( array(
+		$r = wp_update_user( array(
 			'ID'         => $user_id,
 			'user_email' => $params['email'],
 		) );
+		if ( is_wp_error( $r ) ) {
+			return $this->error( $params->get_error_message() );
+		}
 
 		return $this->success( '邮箱绑定成功' );
 	}
