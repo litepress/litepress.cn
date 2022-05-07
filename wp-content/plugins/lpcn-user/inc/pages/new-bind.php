@@ -6,25 +6,25 @@
  */
 
 add_action( 'wp_loaded', function () {
-    list( $uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
-    if ( '/user/new/bind' === $uri ) {
-        get_header();
+	list( $uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
+	if ( '/user/new/bind' === $uri ) {
+		$token = sanitize_text_field( $_GET['token'] ?? '' );
 
-        $token = sanitize_text_field( $_GET['token'] ?? '' );
+		$token_data = get_transient( "lpcn_user_bind_{$token}" );
+		if ( empty( $token_data ) ) {
+			wp_die( 'Token 过期或不存在' );
+		}
 
-	    $token_data = get_transient( "lpcn_user_bind_{$token}" );
-	    if ( empty( $token_data ) ) {
-		    return $this->error( 'Token 过期或不存在' );
-	    }
+		get_header();
 
-        $login_type      = sanitize_text_field( $_GET['type'] ?? '' );
-        $login_type_html = match ( $login_type ) {
-            'qq' => '<i class="fa-brands fa-qq" style="color: #4CAFE9"></i> QQ',
-            'mobile' => '<i class="fa-duotone fa-mobile"></i> 手机号',
-            default => '<i class="fa-duotone fa-question"></i> 未知',
-        };
+		$login_type      = sanitize_text_field( $_GET['type'] ?? '' );
+		$login_type_html = match ( $login_type ) {
+			'qq' => '<i class="fa-brands fa-qq" style="color: #4CAFE9"></i> QQ',
+			'mobile' => '<i class="fa-duotone fa-mobile"></i> 手机号',
+			default => '<i class="fa-duotone fa-question"></i> 未知',
+		};
 
-        echo <<<HTML
+		echo <<<HTML
 		<main class="wp-body d-flex">
         <div class="container" >
                 <div class="bg-white theme-boxshadow pt-5  pb-5 m-xl-0 m-3 row justify-content-center" >
@@ -83,8 +83,8 @@ add_action( 'wp_loaded', function () {
     </main>
 HTML;
 
-        get_footer();
-        exit;
-    }
+		get_footer();
+		exit;
+	}
 } );
 
