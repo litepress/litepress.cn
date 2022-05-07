@@ -114,7 +114,7 @@ PUT /user/wp-json/center/security/destroy
 
 ### 路径
 
-PUT /user/wp-json/center/security/unbind-qq
+DELETE /user/wp-json/center/security/unbind-qq
 
 ### 传入字段
 
