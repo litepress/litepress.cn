@@ -130,13 +130,16 @@ class Security extends Base {
 			return $this->error( '滑块验证码错误' );
 		}
 
-		// 需要验证短信
+		// 需要验证邮箱验证码
 		if ( ! check_email_code( $params['email'], $params['email_code'] ) ) {
 			return $this->error( '邮箱验证码不匹配！' );
 		}
 
-		// 保存用户 Meta 表数据
-		update_user_meta( $user_id, 'user_email', $params['email'] );
+		// 保存用户邮箱信息
+		wp_update_user( array(
+			'ID'         => $user_id,
+			'user_email' => $params['email'],
+		) );
 
 		return $this->success( '邮箱绑定成功' );
 	}
