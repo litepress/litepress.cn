@@ -27,6 +27,10 @@ class RelatedPosts extends Feature {
 
 		$this->title = esc_html__( 'Related Posts', 'elasticpress' );
 
+		$this->summary = __( 'ElasticPress understands data in real time, so it can instantly deliver engaging and precise related content with no impact on site performance.', 'elasticpress' );
+
+		$this->docs_url = __( 'https://elasticpress.zendesk.com/hc/en-us/articles/360050447492-Configuring-ElasticPress-via-the-Plugin-Dashboard#related-posts', 'elasticpress' );
+
 		$this->requires_install_reindex = false;
 
 		parent::__construct();
@@ -110,10 +114,10 @@ class RelatedPosts extends Feature {
 	 *
 	 * @param  int $post_id Post ID
 	 * @param  int $return Return code
-	 * @since  2.1
-	 * @return array|bool
+	 * @since  4.1.0
+	 * @return WP_Query
 	 */
-	public function find_related( $post_id, $return = 5 ) {
+	public function get_related_query( $post_id, $return = 5 ) {
 		$args = array(
 			'more_like'           => $post_id,
 			'posts_per_page'      => $return,
@@ -129,7 +133,22 @@ class RelatedPosts extends Feature {
 		 * @since  2.1
 		 * @return  {array} New arguments
 		 */
-		$query = new WP_Query( apply_filters( 'ep_find_related_args', $args ) );
+		return new WP_Query( apply_filters( 'ep_find_related_args', $args ) );
+	}
+
+	/**
+	 * Search Elasticsearch for related content
+	 *
+	 * @param  int $post_id Post ID
+	 * @param  int $return Return code
+	 *
+	 * @since  2.1
+	 * @uses get_related_query
+	 *
+	 * @return array|bool
+	 */
+	public function find_related( $post_id, $return = 5 ) {
+		$query = $this->get_related_query( $post_id, $return = 5 );
 
 		if ( ! $query->have_posts() ) {
 			return false;
@@ -328,17 +347,6 @@ class RelatedPosts extends Feature {
 	 */
 	public function register_widget() {
 		register_widget( __NAMESPACE__ . '\Widget' );
-	}
-
-	/**
-	 * Output feature box summary
-	 *
-	 * @since 2.1
-	 */
-	public function output_feature_box_summary() {
-		?>
-		<p><?php esc_html_e( 'ElasticPress understands data in real time, so it can instantly deliver engaging and precise related content with no impact on site performance.', 'elasticpress' ); ?></p>
-		<?php
 	}
 
 	/**

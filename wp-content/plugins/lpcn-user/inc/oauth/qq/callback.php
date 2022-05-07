@@ -7,7 +7,8 @@ add_action( 'wp_loaded', function () {
 	if ( '/user/oauth/callback/qq' === $uri ) {
 		$qc = new QC();
 		$qc->qq_callback();
-		$openid = $qc->get_openid();
+		$openid       = $qc->get_openid();
+		$qq_user_info = $qc->get_user_info();
 
 		if ( empty( $openid ) ) {
 			echo 'Error!!!';
@@ -19,6 +20,7 @@ add_action( 'wp_loaded', function () {
 			$user_id = get_current_user_id();
 
 			update_user_meta( $user_id, 'qq_openid', $openid );
+			update_user_meta( $user_id, 'qq_nickname', $qq_user_info['nickname'] );
 
 			echo <<<JS
 <script>
@@ -38,8 +40,9 @@ JS;
 		if ( empty( $r ) ) {
 			$token = md5( rand( 100, 999 ) + time() );
 			set_transient( "lpcn_user_bind_$token", array(
-				'type'      => 'qq',
-				'qq_openid' => $openid,
+				'type'        => 'qq',
+				'qq_openid'   => $openid,
+				'qq_nickname' => $qq_user_info['nickname'],
 			), 300 );
 
 			echo <<<JS
