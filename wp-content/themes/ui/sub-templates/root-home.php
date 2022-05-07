@@ -116,7 +116,7 @@ get_header();
 
                         <!-- Buttons -->
                         <!--<div class="text-center text-md-start mt-3 ">
-                            <a href="https://rat.dev/litepress/LitePress/archive/refs/heads/5.8.3.zip"
+                            <a href="https://dl-cdn.haozi.xyz/litepress/LitePress-5.8.3.zip"
                                class="btn btn-primary me-3 pe-4">
                                 <section class="d-flex align-items-center">
                                                                         <span class="fa-stack me-2">  <i
