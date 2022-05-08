@@ -145,7 +145,7 @@ class Security extends Base {
 			'user_email' => $params['email'],
 		) );
 		if ( is_wp_error( $r ) ) {
-			return $this->error( $params->get_error_message() );
+			return $this->error( $r->get_error_message() );
 		}
 
 		return $this->success( '邮箱绑定成功' );
