@@ -186,6 +186,14 @@ class Security extends Base {
 			return $this->error( '滑块验证码错误' );
 		}
 
+		// 判断手机号是否已经存在
+		global $wpdb;
+
+		$r = $wpdb->get_row( $wpdb->prepare( "select * from wp_usermeta where meta_key='mobile' and meta_value=%s", $params['mobile'] ) );
+		if ( ! empty( $r ) ) {
+			return $this->error( '此手机号已被使用' );
+		}
+
 		// 需要验证短信
 		if ( ! check_sms_code( $params['mobile'], $params['sms_code'] ) ) {
 			return $this->error( '短信验证码不匹配！' );
