@@ -40,6 +40,17 @@ class Register extends Base {
 		}
 
 		global $wpdb;
+
+		// 先判断下用户要求绑定的手机号或者 QQ 是否已存在
+		$r = $wpdb->get_row( $wpdb->prepare( "select * from wp_usermeta where meta_key='mobile' and meta_value=%s", $token_data['mobile'] ) );
+		if ( ! empty( $r ) ) {
+			return $this->error( '此手机号已被其他账号使用' );
+		}
+		$r = $wpdb->get_row( $wpdb->prepare( "select * from wp_usermeta where meta_key='qq_openid' and meta_value=%s", $token_data['qq_openid'] ) );
+		if ( ! empty( $r ) ) {
+			return $this->error( '此 QQ 号已被其他账号绑定' );
+		}
+
 		// 临时的用户名，等用户插入成功后将用户名更新为用户 ID，要不然太长了。
 		$username = md5( rand( 100, 999 ) + time() );
 		$user_id  = wp_create_user( $username, '' );
