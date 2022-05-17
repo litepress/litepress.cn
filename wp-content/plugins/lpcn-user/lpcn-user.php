@@ -28,6 +28,7 @@ require __DIR__ . '/inc/pages/new-bind.php';
 require __DIR__ . '/inc/oauth/qq/api/qqConnectAPI.php';
 require __DIR__ . '/inc/oauth/qq/index.php';
 require __DIR__ . '/inc/oauth/qq/callback.php';
+require __DIR__ . '/inc/pages/login.php';
 
 Autoload\register_class_path( __NAMESPACE__ . '\Inc', __DIR__ . '/inc' );
 Autoload\register_class_path( __NAMESPACE__ . '\Inc\Api', __DIR__ . '/inc/api' );
