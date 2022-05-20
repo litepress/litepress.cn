@@ -17,6 +17,7 @@ use LitePress\User\Inc\Plugin;
 
 const PLUGIN_FILE = __FILE__;
 const PLUGIN_DIR  = __DIR__;
+define( 'PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 if ( ! class_exists( '\LitePress\Autoload\Autoloader', false ) ) {
 	include __DIR__ . '/vendor/litepress/autoload/class-autoloader.php';
@@ -33,6 +34,7 @@ require __DIR__ . '/inc/pages/new-bind.php';
 require __DIR__ . '/inc/oauth/qq/api/qqConnectAPI.php';
 require __DIR__ . '/inc/oauth/qq/index.php';
 require __DIR__ . '/inc/oauth/qq/callback.php';
+require __DIR__ . '/inc/enqueue-scripts.php';
 
 Autoload\register_class_path( __NAMESPACE__ . '\Inc', __DIR__ . '/inc' );
 Autoload\register_class_path( __NAMESPACE__ . '\Inc\Api', __DIR__ . '/inc/api' );
