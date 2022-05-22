@@ -7,7 +7,6 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 use function LitePress\User\Inc\check_sms_code;
-use function LitePress\User\Inc\tcaptcha_check;
 
 /**
  * Class Login_By_Mobile
