@@ -38,7 +38,13 @@ class Avatars extends Base {
 
 		register_rest_route( 'cravatar', 'avatars', array(
 			'methods'             => WP_REST_Server::EDITABLE,
-			'callback'            => array( $this, 'add' ),
+			'callback'            => array( $this, 'edit' ),
+			'permission_callback' => 'is_user_logged_in',
+		) );
+
+		register_rest_route( 'cravatar', 'avatars', array(
+			'methods'             => WP_REST_Server::DELETABLE,
+			'callback'            => array( $this, 'delete' ),
 			'permission_callback' => 'is_user_logged_in',
 		) );
 	}
@@ -101,7 +107,7 @@ class Avatars extends Base {
 	}
 
 	/**
-	 * 修改头像头像
+	 * 修改头像
 	 *
 	 * @param \WP_REST_Request $request
 	 *
@@ -137,6 +143,45 @@ class Avatars extends Base {
 
 		if ( empty( $params['image_id'] ) ) {
 			return new WP_Error( 'required_field_is_empty', '未选择图片' );
+		}
+
+		return array_filter( $params, function ( string $param ) use ( $allowed ) {
+			return in_array( $param, $allowed );
+		}, ARRAY_FILTER_USE_KEY );
+	}
+
+	/**
+	 * 删除头像
+	 *
+	 * @param \WP_REST_Request $request
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function delete( WP_REST_Request $request ): WP_REST_Response {
+		$params = $this->prepare_delete_params( $request->get_params() );
+		if ( is_wp_error( $params ) ) {
+			return $this->error( $params->get_error_message() );
+		}
+
+		$r = $this->avatar_service->delete( $params['email'] );
+		if ( is_wp_error( $r ) ) {
+			return $this->error( $r->get_error_message() );
+		}
+
+		return $this->success( '删除成功' );
+	}
+
+	private function prepare_delete_params( array $params ): array|WP_Error {
+		$allowed = array(
+			'email',
+		);
+
+		foreach ( $params as $key => $param ) {
+			$params[ $key ] = sanitize_text_field( $param );
+		}
+
+		if ( empty( $params['email'] ) ) {
+			return new WP_Error( 'required_field_is_empty', '邮箱为空' );
 		}
 
 		return array_filter( $params, function ( string $param ) use ( $allowed ) {

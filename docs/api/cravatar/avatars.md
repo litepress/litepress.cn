@@ -79,3 +79,28 @@ PUT /wp-json/cravatar/avatars
   "status": 0
 }
 ```
+
+## 删除头像接口
+
+### 认证
+
+是
+
+### 路径
+
+PUT /wp-json/cravatar/avatars
+
+### 传入字段
+
+| 字段名        | 类型     | 必填  | 备注    |
+|------------|--------|-----|-------|
+| email      | String | 是   | 邮箱    |
+
+### 返回值
+
+```json
+{
+  "message": "删除成功",
+  "status": 0
+}
+```

@@ -125,4 +125,29 @@ class Avatar {
 		return true;
 	}
 
+	/**
+	 * 删除头像
+	 *
+	 * @param string $email
+	 *
+	 * @return bool|\WP_Error 成功返回 true，失败返回 WP_Error
+	 */
+	public function delete( string $email ): bool|WP_Error {
+		global $wpdb;
+
+
+		// 删除绑定
+		$r = $wpdb->delete( "{$wpdb->prefix}avatar", array(
+			'email' => $email,
+		), array(
+			'%s',
+		) );
+
+		if ( ! $r ) {
+			return new WP_Error( 'insert_database_failed', '数据入库失败' );
+		}
+
+		return true;
+	}
+
 }
