@@ -7,7 +7,7 @@ use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
-use function LitePress\User\Inc\check_email_code;
+use function LitePress\Helper\check_email_code;
 
 /**
  * Class Avatars
@@ -96,9 +96,9 @@ class Avatars extends Base {
 			return new WP_Error( 'required_field_is_empty', '邮箱或邮箱验证码为空' );
 		}
 
-		//if ( ! check_email_code( $params['email'], $params['email_code'] ) ) {
-		//	return new WP_Error( 'validation_failed', '验证码错误' );
-		//}
+		if ( ! check_email_code( $params['email'], $params['email_code'] ) ) {
+			return new WP_Error( 'validation_failed', '验证码错误' );
+		}
 
 		return array_filter( $params, function ( string $param ) use ( $allowed ) {
 			return in_array( $param, $allowed );
