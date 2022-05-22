@@ -50,7 +50,6 @@ class Images extends Base {
 	public function all(): WP_REST_Response {
 		$avatars = $this->avatar_service->all();
 
-
 		return $this->success( '数据获取成功', $avatars );
 	}
 

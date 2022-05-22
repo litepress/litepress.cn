@@ -70,13 +70,12 @@ POST /wp-json/cravatar/avatars
 
 ### 路径
 
-PUT /wp-json/cravatar/avatars
+PUT /wp-json/cravatar/avatars/<id>
 
 ### 传入字段
 
 | 字段名        | 类型     | 必填  | 备注    |
 |------------|--------|-----|-------|
-| email      | String | 是   | 邮箱    |
 | image_id   | Int    | 是   | 图像 ID |
 
 ### 返回值
@@ -96,13 +95,11 @@ PUT /wp-json/cravatar/avatars
 
 ### 路径
 
-PUT /wp-json/cravatar/avatars
+DELETE /wp-json/cravatar/avatars/<id>
 
 ### 传入字段
 
-| 字段名        | 类型     | 必填  | 备注    |
-|------------|--------|-----|-------|
-| email      | String | 是   | 邮箱    |
+无
 
 ### 返回值
 

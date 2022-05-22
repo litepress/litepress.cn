@@ -36,13 +36,13 @@ class Avatars extends Base {
 			'permission_callback' => 'is_user_logged_in',
 		) );
 
-		register_rest_route( 'cravatar', 'avatars', array(
+		register_rest_route( 'cravatar', 'avatars/(?P<id>\w+)', array(
 			'methods'             => WP_REST_Server::EDITABLE,
 			'callback'            => array( $this, 'edit' ),
 			'permission_callback' => 'is_user_logged_in',
 		) );
 
-		register_rest_route( 'cravatar', 'avatars', array(
+		register_rest_route( 'cravatar', 'avatars/(?P<id>\w+)', array(
 			'methods'             => WP_REST_Server::DELETABLE,
 			'callback'            => array( $this, 'delete' ),
 			'permission_callback' => 'is_user_logged_in',
@@ -56,7 +56,6 @@ class Avatars extends Base {
 	 */
 	public function all(): WP_REST_Response {
 		$avatars = $this->avatar_service->all();
-
 
 		return $this->success( '数据获取成功', $avatars );
 	}
@@ -119,7 +118,7 @@ class Avatars extends Base {
 			return $this->error( $params->get_error_message() );
 		}
 
-		$r = $this->avatar_service->edit( $params['email'], $params['image_id'] );
+		$r = $this->avatar_service->edit( $params['id'], $params['image_id'] );
 		if ( is_wp_error( $r ) ) {
 			return $this->error( $r->get_error_message() );
 		}
@@ -129,7 +128,7 @@ class Avatars extends Base {
 
 	private function prepare_edit_params( array $params ): array|WP_Error {
 		$allowed = array(
-			'email',
+			'id',
 			'image_id',
 		);
 
@@ -137,8 +136,8 @@ class Avatars extends Base {
 			$params[ $key ] = sanitize_text_field( $param );
 		}
 
-		if ( empty( $params['email'] ) ) {
-			return new WP_Error( 'required_field_is_empty', '邮箱为空' );
+		if ( empty( $params['id'] ) ) {
+			return new WP_Error( 'required_field_is_empty', '头像 ID 为空' );
 		}
 
 		if ( empty( $params['image_id'] ) ) {
@@ -163,7 +162,7 @@ class Avatars extends Base {
 			return $this->error( $params->get_error_message() );
 		}
 
-		$r = $this->avatar_service->delete( $params['email'] );
+		$r = $this->avatar_service->delete( $params['id'] );
 		if ( is_wp_error( $r ) ) {
 			return $this->error( $r->get_error_message() );
 		}
@@ -173,7 +172,7 @@ class Avatars extends Base {
 
 	private function prepare_delete_params( array $params ): array|WP_Error {
 		$allowed = array(
-			'email',
+			'id',
 		);
 
 		foreach ( $params as $key => $param ) {
@@ -181,7 +180,7 @@ class Avatars extends Base {
 		}
 
 		if ( empty( $params['email'] ) ) {
-			return new WP_Error( 'required_field_is_empty', '邮箱为空' );
+			return new WP_Error( 'required_field_is_empty', '头像 ID 为空' );
 		}
 
 		return array_filter( $params, function ( string $param ) use ( $allowed ) {

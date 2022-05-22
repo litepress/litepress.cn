@@ -98,24 +98,24 @@ class Avatar {
 	/**
 	 * 修改头像
 	 *
-	 * @param string $email
+	 * @param string $md5
 	 * @param int $image_id
 	 *
 	 * @return bool|\WP_Error 成功返回 true，失败返回 WP_Error
 	 */
-	public function edit( string $email, int $image_id ): bool|WP_Error {
+	public function edit( string $md5, int $image_id ): bool|WP_Error {
 		global $wpdb;
 
 		$image_url = wp_get_attachment_image_url( $image_id );
 		if ( ! $image_url ) {
-			return new WP_Error( 'image_id_invalid', '图像 ID 无效' );
+			return new WP_Error( 'image_id_invalid', '图片 ID 无效' );
 		}
 
 		// 修改绑定
 		$r = $wpdb->update( "{$wpdb->prefix}avatar", array(
 			'image_id' => $image_id,
 		), array(
-			'email' => $email,
+			'md5' => $md5,
 		), array(
 			'%d',
 		), array(
@@ -132,17 +132,16 @@ class Avatar {
 	/**
 	 * 删除头像
 	 *
-	 * @param string $email
+	 * @param string $md5
 	 *
 	 * @return bool|\WP_Error 成功返回 true，失败返回 WP_Error
 	 */
-	public function delete( string $email ): bool|WP_Error {
+	public function delete( string $md5 ): bool|WP_Error {
 		global $wpdb;
-
 
 		// 删除绑定
 		$r = $wpdb->delete( "{$wpdb->prefix}avatar", array(
-			'email' => $email,
+			'md5' => $md5,
 		), array(
 			'%s',
 		) );
