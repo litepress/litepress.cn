@@ -2,8 +2,7 @@
 
 namespace LitePress\Cravatar\Inc\Service;
 
-use WP_REST_Request;
-use WP_REST_Response;
+use WP_Error;
 
 /**
  * Class Avatar
@@ -39,6 +38,57 @@ class Avatar {
 		}
 
 		return $avatars;
+	}
+
+	/**
+	 * 添加头像
+	 *
+	 * @param string $email
+	 * @param int $image_id
+	 *
+	 * @return bool|\WP_Error 成功返回 true，失败返回 WP_Error
+	 */
+	public function add( string $email, int $image_id ): bool|WP_Error {
+		global $wpdb;
+
+		/**
+		 * 添加前需要执行一系列检查，任何检查不通过都无法添加此头像
+		 *
+		 * 1. 邮箱是否重复（如果重复还需要判断老邮箱所绑定的账号是否有效，如果原账号已失效则允许新地绑定）
+		 * 2. 申请绑定的图像是否有效
+		 */
+		$r = $wpdb->get_row(
+			$wpdb->prepare( "SELECT user_id FROM {$wpdb->prefix}avatar WHERE email=%s;", $email )
+		);
+		if ( ! empty( $r ) ) {
+			if ( get_userdata( $r->user_id ) ) {
+				return new WP_Error( 'email_already_exists', '邮箱已存在' );
+			}
+		}
+
+		$image_url = wp_get_attachment_image_url( $image_id );
+		if ( ! $image_url ) {
+			return new WP_Error( 'image_id_invalid', '图像 ID 无效' );
+		}
+
+		// 开始绑定
+		$r = $wpdb->insert( "{$wpdb->prefix}avatar", array(
+			'md5'      => md5( $email ),
+			'email'    => $email,
+			'image_id' => $image_id,
+			'user_id'  => $this->user_id,
+		), array(
+			'%s',
+			'%s',
+			'%d',
+			'%d',
+		) );
+
+		if ( ! $r ) {
+			return new WP_Error( 'insert_database_failed', '数据入库失败' );
+		}
+
+		return true;
 	}
 
 }

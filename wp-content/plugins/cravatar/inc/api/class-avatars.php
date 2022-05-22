@@ -32,7 +32,7 @@ class Avatars extends Base {
 
 		register_rest_route( 'cravatar', 'avatars', array(
 			'methods'             => WP_REST_Server::CREATABLE,
-			'callback'            => array( $this, 'get_all' ),
+			'callback'            => array( $this, 'add' ),
 			'permission_callback' => 'is_user_logged_in',
 		) );
 	}
@@ -62,7 +62,12 @@ class Avatars extends Base {
 			return $this->error( $params->get_error_message() );
 		}
 
+		$r = $this->avatar_service->add( $params['email'], $params['image_id'] );
+		if ( is_wp_error( $r ) ) {
+			return $this->error( $r->get_error_message() );
+		}
 
+		return $this->success( '添加成功' );
 	}
 
 	private function prepare_add_params( array $params ): array|WP_Error {
@@ -76,13 +81,13 @@ class Avatars extends Base {
 			$params[ $key ] = sanitize_text_field( $param );
 		}
 
-		if ( empty( 'email' ) || empty( 'email_code' ) ) {
+		if ( empty( $params['email'] ) || empty( $params['email_code'] ) ) {
 			return new WP_Error( 'required_field_is_empty', '邮箱或邮箱验证码为空' );
 		}
 
-		if ( ! check_email_code( $params['email'], $params['email_code'] ) ) {
-			return new WP_Error( 'validation_failed', '验证码错误' );
-		}
+		//if ( ! check_email_code( $params['email'], $params['email_code'] ) ) {
+		//	return new WP_Error( 'validation_failed', '验证码错误' );
+		//}
 
 		return array_filter( $params, function ( string $param ) use ( $allowed ) {
 			return in_array( $param, $allowed );
