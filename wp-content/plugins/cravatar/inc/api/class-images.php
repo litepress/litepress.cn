@@ -79,8 +79,19 @@ class Images extends Base {
 			'image',
 		);
 
+		$allowed_ext = array(
+			'image/jpeg',
+			'image/jpg',
+			'image/png',
+			'image/gif',
+		);
+
 		if ( empty( $params['image'] ) ) {
 			return new WP_Error( 'required_field_is_empty', '未传入图片' );
+		}
+
+		if ( ! in_array( $params['image']['type'], $allowed_ext ) ) {
+			return new WP_Error( 'invalid_format', '仅允许上传以下格式的图片：jpeg,jpg,png,gif' );
 		}
 
 		return array_filter( $params, function ( string $param ) use ( $allowed ) {
