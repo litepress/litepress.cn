@@ -27,14 +27,18 @@ class Avatar {
 	 *
 	 * @return array
 	 */
-	public function get_all(): array {
+	public function all(): array {
 		global $wpdb;
 
-		$sql = $wpdb->prepare( "SELECT email,image_id FROM {$wpdb->prefix}avatar WHERE user_id=%d;", $this->user_id );
+		$sql = $wpdb->prepare( "SELECT md5,email,image_id FROM {$wpdb->prefix}avatar WHERE user_id=%d;", $this->user_id );
 
 		$avatars = array();
 		foreach ( (array) $wpdb->get_results( $sql ) as $item ) {
-			$avatars[ $item->email ] = sprintf( "https://cravatar.cn/avatar/%s?s=400&r=G&d=mp", md5( $item->email ) );
+			$avatars[] = array(
+				'id'    => $item->md5,
+				'email' => $item->email,
+				'image' => sprintf( "https://cravatar.cn/avatar/%s?s=400&r=G&d=mp", md5( $item->email ) ),
+			);
 		}
 
 		return $avatars;

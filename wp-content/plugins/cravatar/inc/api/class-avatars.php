@@ -26,7 +26,7 @@ class Avatars extends Base {
 
 		register_rest_route( 'cravatar', 'avatars', array(
 			'methods'             => WP_REST_Server::READABLE,
-			'callback'            => array( $this, 'get_all' ),
+			'callback'            => array( $this, 'all' ),
 			'permission_callback' => 'is_user_logged_in',
 		) );
 
@@ -54,8 +54,8 @@ class Avatars extends Base {
 	 *
 	 * @return \WP_REST_Response
 	 */
-	public function get_all(): WP_REST_Response {
-		$avatars = $this->avatar_service->get_all();
+	public function all(): WP_REST_Response {
+		$avatars = $this->avatar_service->all();
 
 
 		return $this->success( '数据获取成功', $avatars );

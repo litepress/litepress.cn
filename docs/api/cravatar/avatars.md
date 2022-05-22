@@ -19,10 +19,18 @@ GET /wp-json/cravatar/avatars
 ```json
 {
   "message": "数据获取成功",
-  "data": {
-    "loveqq@outlook.com": "https://cravatar.cn/avatar/0ffca5301a215c555d6587373fdb7ad5?s=400&r=G&d=mp",
-    "977869645@qq.com": "https://cravatar.cn/avatar/526d5c35b2092765ce9865d807612f33?s=400&r=G&d=mp"
-  },
+  "data": [
+    {
+      "id": "0ffca5301a215c555d6587373fdb7ad5",
+      "email": "loveqq@outlook.com",
+      "image": "https://cravatar.cn/avatar/0ffca5301a215c555d6587373fdb7ad5?s=400&r=G&d=mp"
+    },
+    {
+      "id": "526d5c35b2092765ce9865d807612f33",
+      "email": "977869645@qq.com",
+      "image": "https://cravatar.cn/avatar/526d5c35b2092765ce9865d807612f33?s=400&r=G&d=mp"
+    }
+  ],
   "status": 0
 }
 ```
