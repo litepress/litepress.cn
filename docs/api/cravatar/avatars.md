@@ -43,13 +43,39 @@ POST /wp-json/cravatar/avatars
 |------------|--------|-----|-------|
 | email      | String | 是   | 邮箱    |
 | email_code | String | 是   | 邮箱验证码 |
-| image_id   | Int    | 是   | 图像 ID |
+| image_id   | Int    | 否   | 图像 ID |
 
 ### 返回值
 
 ```json
 {
   "message": "添加成功",
+  "status": 0
+}
+```
+
+## 修改头像接口
+
+### 认证
+
+是
+
+### 路径
+
+PUT /wp-json/cravatar/avatars
+
+### 传入字段
+
+| 字段名        | 类型     | 必填  | 备注    |
+|------------|--------|-----|-------|
+| email      | String | 是   | 邮箱    |
+| image_id   | Int    | 是   | 图像 ID |
+
+### 返回值
+
+```json
+{
+  "message": "修改成功",
   "status": 0
 }
 ```

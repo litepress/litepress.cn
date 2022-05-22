@@ -91,4 +91,38 @@ class Avatar {
 		return true;
 	}
 
+	/**
+	 * 修改头像
+	 *
+	 * @param string $email
+	 * @param int $image_id
+	 *
+	 * @return bool|\WP_Error 成功返回 true，失败返回 WP_Error
+	 */
+	public function edit( string $email, int $image_id ): bool|WP_Error {
+		global $wpdb;
+
+		$image_url = wp_get_attachment_image_url( $image_id );
+		if ( ! $image_url ) {
+			return new WP_Error( 'image_id_invalid', '图像 ID 无效' );
+		}
+
+		// 修改绑定
+		$r = $wpdb->update( "{$wpdb->prefix}avatar", array(
+			'image_id' => $image_id,
+		), array(
+			'email' => $email,
+		), array(
+			'%d',
+		), array(
+			'%s',
+		) );
+
+		if ( ! $r ) {
+			return new WP_Error( 'insert_database_failed', '数据入库失败' );
+		}
+
+		return true;
+	}
+
 }
