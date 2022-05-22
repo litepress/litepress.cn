@@ -27,6 +27,7 @@ class Base {
 	 */
 	public static function load_routes() {
 		new Avatars();
+		new Images();
 	}
 
 	protected function success( string $message, array|stdClass $data = array() ): WP_REST_Response {
