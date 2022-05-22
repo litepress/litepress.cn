@@ -50,6 +50,15 @@ class Image {
 	 * @return bool|\WP_Error 成功返回 true，失败返回 WP_Error
 	 */
 	public function add( array $file ): bool|WP_Error {
+		global $wpdb;
+
+		// 每个用户最多允许上传 20 个图片，这是为了防止个别人拿平台当图床用。
+		$sql   = $wpdb->prepare( "SELECT COUNT(*) FROM wp_9_posts WHERE post_type = 'attachment' AND post_status = 'inherit' AND post_author = %d", $this->user_id );
+		$count = $wpdb->get_var( $sql );
+		if ( (int) $count >= 20 ) {
+			return new WP_Error( 'exceeding_the_limit', '为防止滥用，每用户最多添加 20 张图片，请删除旧图片后再添加新图。' );
+		}
+
 		if ( ! function_exists( 'wp_handle_upload' ) ) {
 			require_once( ABSPATH . 'wp-admin/includes/file.php' );
 		}
