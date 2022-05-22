@@ -19,8 +19,9 @@ class Register extends Base {
 
 	public function __construct() {
 		register_rest_route( 'lpcn/user', 'register', array(
-			'methods'  => WP_REST_Server::CREATABLE,
-			'callback' => array( $this, 'register' ),
+			'methods'             => WP_REST_Server::CREATABLE,
+			'callback'            => array( $this, 'register' ),
+			'permission_callback' => '__return_true',
 		) );
 	}
 

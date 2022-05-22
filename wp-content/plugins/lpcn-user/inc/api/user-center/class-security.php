@@ -24,28 +24,33 @@ class Security extends Base {
 
 	public function __construct() {
 		register_rest_route( 'center', 'security/bind-mobile', array(
-			'methods'  => WP_REST_Server::EDITABLE,
-			'callback' => array( $this, 'bind_mobile' ),
+			'methods'             => WP_REST_Server::EDITABLE,
+			'callback'            => array( $this, 'bind_mobile' ),
+			'permission_callback' => 'is_user_logged_in',
 		) );
 
 		register_rest_route( 'center', 'security/bind-email', array(
-			'methods'  => WP_REST_Server::EDITABLE,
-			'callback' => array( $this, 'bind_email' ),
+			'methods'             => WP_REST_Server::EDITABLE,
+			'callback'            => array( $this, 'bind_email' ),
+			'permission_callback' => 'is_user_logged_in',
 		) );
 
 		register_rest_route( 'center', 'security/reset-passwd', array(
-			'methods'  => WP_REST_Server::EDITABLE,
-			'callback' => array( $this, 'reset_passwd' ),
+			'methods'             => WP_REST_Server::EDITABLE,
+			'callback'            => array( $this, 'reset_passwd' ),
+			'permission_callback' => 'is_user_logged_in',
 		) );
 
 		register_rest_route( 'center', 'security/destroy', array(
-			'methods'  => WP_REST_Server::DELETABLE,
-			'callback' => array( $this, 'destroy' ),
+			'methods'             => WP_REST_Server::DELETABLE,
+			'callback'            => array( $this, 'destroy' ),
+			'permission_callback' => 'is_user_logged_in',
 		) );
 
 		register_rest_route( 'center', 'security/unbind-qq', array(
-			'methods'  => WP_REST_Server::DELETABLE,
-			'callback' => array( $this, 'unbind_qq' ),
+			'methods'             => WP_REST_Server::DELETABLE,
+			'callback'            => array( $this, 'unbind_qq' ),
+			'permission_callback' => 'is_user_logged_in',
 		) );
 	}
 
