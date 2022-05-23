@@ -736,7 +736,6 @@ $("#sign-in .send-sms-code").on("click", function () {
                 /*滑块通过*/
 
 
-
                 let count = 60;
                 const resend = setInterval(function () {
                     count--;

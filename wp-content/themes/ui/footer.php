@@ -53,7 +53,7 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
 
-                        <form class="needs-validation tab-pane active" id="form-sign-up" role="tabpanel">
+                        <form class="needs-validation tab-pane active" id="form-sign-up">
                             <section class="">
                                 <div class="form-floating mt-4 mb-3 input-group">
                                     <input type="text" class="form-control" id="mobile"
@@ -62,7 +62,7 @@
                                            required>
 
                                     <label for="mobile">手机号</label>
-                                    <a class="send-sms-code input-group-text" role="button">
+                                    <a class="send-sms-code input-group-text right" role="button">
                                         发送验证码
                                     </a>
                                     <div class="form-text w-100">未注册手机验证后自动登录</div>
@@ -113,11 +113,9 @@
 
 
                             </section>
-                            <input type="hidden" name="tcaptcha-ticket" class="tcaptcha-ticket" value="">
-                            <input type="hidden" name="tcaptcha-randstr" class="tcaptcha-randstr" value="">
                         </form>
 
-                        <form class="needs-validation tab-pane " id="form-sign-in" role="tabpanel">
+                        <form class="needs-validation tab-pane " id="form-sign-in">
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control username" id="sign-in-username" placeholder="name@example.com"
                                        required>
@@ -130,7 +128,7 @@
                                 <input type="password" class="form-control password" id="sign-in-password" placeholder="Password"
                                        required>
                                 <label for="sign-in-password">密码</label>
-                                <a class="toggle-password input-group-text"">
+                                <a class="toggle-password input-group-text right">
                                 <i class="fa-duotone fa-fw fa-eye-slash"></i>
                                 </a>
                                 <div class="invalid-feedback">
@@ -164,7 +162,7 @@
                             <div class="form-floating input-group">
                                 <input type="text" class="form-control code" id="" placeholder="name@example.com" required>
                                 <label for="mobile">验证码</label>
-                                <a class="send-sms-code input-group-text" role="button">
+                                <a class="send-sms-code input-group-text right" role="button">
                                     发送验证码
                                 </a>
                             </div>
