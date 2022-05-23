@@ -19,13 +19,15 @@ class Basic_Info extends Base {
 
 	public function __construct() {
 		register_rest_route( 'center', 'basic-info', array(
-			'methods'  => WP_REST_Server::EDITABLE,
-			'callback' => array( $this, 'edit' ),
+			'methods'             => WP_REST_Server::EDITABLE,
+			'callback'            => array( $this, 'edit' ),
+			'permission_callback' => 'is_user_logged_in',
 		) );
 
 		register_rest_route( 'center', 'basic-info', array(
-			'methods'  => WP_REST_Server::READABLE,
-			'callback' => array( $this, 'show' ),
+			'methods'             => WP_REST_Server::READABLE,
+			'callback'            => array( $this, 'show' ),
+			'permission_callback' => 'is_user_logged_in',
 		) );
 	}
 

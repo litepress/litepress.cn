@@ -19,8 +19,9 @@ class Login extends Base {
 
 	public function __construct() {
 		register_rest_route( 'lpcn/user', 'login', array(
-			'methods'  => WP_REST_Server::CREATABLE,
-			'callback' => array( $this, 'login' ),
+			'methods'             => WP_REST_Server::CREATABLE,
+			'callback'            => array( $this, 'login' ),
+			'permission_callback' => '__return_true',
 		) );
 	}
 

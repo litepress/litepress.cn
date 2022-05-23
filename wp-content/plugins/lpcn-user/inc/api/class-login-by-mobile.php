@@ -7,7 +7,6 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 use function LitePress\User\Inc\check_sms_code;
-use function LitePress\User\Inc\tcaptcha_check;
 
 /**
  * Class Login_By_Mobile
@@ -20,8 +19,9 @@ class Login_By_Mobile extends Base {
 
 	public function __construct() {
 		register_rest_route( 'lpcn/user', 'login-by-mobile', array(
-			'methods'  => WP_REST_Server::CREATABLE,
-			'callback' => array( $this, 'login_by_mobile' ),
+			'methods'             => WP_REST_Server::CREATABLE,
+			'callback'            => array( $this, 'login_by_mobile' ),
+			'permission_callback' => '__return_true',
 		) );
 	}
 

@@ -7,8 +7,8 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 use function LitePress\Helper\check_tncode;
-use function LitePress\User\Inc\send_sms_code;
-use function LitePress\User\Inc\send_email_code;
+use function LitePress\Helper\send_sms_code;
+use function LitePress\Helper\send_email_code;
 
 /**
  * Class Common
@@ -21,13 +21,15 @@ class Common extends Base {
 
 	public function __construct() {
 		register_rest_route( 'common', 'send-sms-code', array(
-			'methods'  => WP_REST_Server::CREATABLE,
-			'callback' => array( $this, 'send_sms_code' ),
+			'methods'             => WP_REST_Server::CREATABLE,
+			'callback'            => array( $this, 'send_sms_code' ),
+			'permission_callback' => '__return_true',
 		) );
 
 		register_rest_route( 'common', 'send-email-code', array(
-			'methods'  => WP_REST_Server::CREATABLE,
-			'callback' => array( $this, 'send_email_code' ),
+			'methods'             => WP_REST_Server::CREATABLE,
+			'callback'            => array( $this, 'send_email_code' ),
+			'permission_callback' => '__return_true',
 		) );
 	}
 
