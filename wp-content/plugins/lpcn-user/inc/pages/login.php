@@ -7,7 +7,7 @@
     <?php wp_head(); ?>
 </head>
 <body>
-<main class="center bg-light">
+<main class="center bg-light" id="sign-in">
     <div class="modal-s main w-100">
         <section class="form-sign card  p-4">
             <img class="mb-4 mx-auto" alt="" width="80%"
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </section>
-                    <section hidden>
+                    <section class="hide">
                         <div class="d-flex align-items-center  my-4">
     <span class="fa-stack fa-2x me-2">
 <i class="fa-duotone fa-mobile fa-stack-2x"></i>
@@ -169,5 +169,24 @@
 </main>
 
 
+<div class="tncode d-none"></div>
+
+<div class="position-fixed top-15 start-50 translate-middle p-3 toast-box">
+    <div id="liveToast" class="toast w-auto" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <section class="success hide"><i class="fad fa-check-circle  me-2"></i><span></span></section>
+                <section class="danger hide"><i class="fad fa-exclamation-circle  me-2"></i><span></span></section>
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<!-- #site-footer -->
+
+
+
+<?php wp_footer(); ?>
 </body>
 </html>

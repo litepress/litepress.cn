@@ -1,7 +1,14 @@
 /*按钮*/
-body{width:100%;overflow-x:hidden;}
-.clear{clear: both;}
-.tncode{
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.clear {
+    clear: both;
+}
+
+.tncode {
     border: 1px solid #ccc;
     border-radius: 2px;
     width: 260px;
@@ -11,47 +18,55 @@ body{width:100%;overflow-x:hidden;}
     line-height: 44px;
 }
 
-.tncode_div{
+.tncode_div {
     display: none;
     background-color: white;
     z-index: 1000000;
-    width: 260px;height: 260px;
+    width: 260px;
+    height: 265px;
     position: absolute;
-    left: 50%;top:50%;
-    margin-top: -130px;
-    margin-left: -130px;
-    border: 1px solid #d1d1d1;
-    border-radius: 2px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: .0625rem solid transparent;
+    border-radius: .3rem;
     overflow: hidden;
-    filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696',Direction=135, Strength=5);/*for ie6,7,8*/
+    filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=135, Strength=5); /*for ie6,7,8*/
     /*background-color: #ccc;*/
-    -moz-box-shadow:2px 2px 5px #969696;/*firefox*/
-    -webkit-box-shadow:2px 2px 5px #969696;/*webkit*/
-    box-shadow:2px 2px 5px #969696;/*opera或ie9*/
+    -moz-box-shadow: 2px 2px 20px #969696; /*firefox*/
+    -webkit-box-shadow: 2px 2px 20px #969696; /*webkit*/
+    box-shadow: 2px 2px 20px #969696; /*opera或ie9*/
 }
-.tncode_div .tncode_canvas_bg{
+
+.tncode_div .tncode_canvas_bg {
     z-index: 0;
 }
-.tncode_div .tncode_canvas_mark{
+
+.tncode_div .tncode_canvas_mark {
     z-index: 10000;
 }
-.tncode_div canvas{
+
+.tncode_div canvas {
     position: absolute;
     left: 10px;
     top: 10px;
 }
-.tncode_div .loading{
+
+.tncode_div .loading {
     padding-top: 60px;
     position: absolute;
     left: 10px;
     top: 10px;
-    background-color: #ccc;
+    background-color: #e4e4e4;
     width: 240px;
     height: 150px;
     text-align: center;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
-.dd{
+
+.dd {
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);
@@ -61,35 +76,80 @@ body{width:100%;overflow-x:hidden;}
     -o-animation: ddf 0.1s ease-in 0s infinite;
     animation: ddf 0.1s ease-in 0s infinite;
 }
+
 @-webkit-keyframes ddf {
-    0% {-webkit-transform: translate(-8px, 3px);}
-    20% {-webkit-transform: translate(-3px, 1.5px);}
-    50% {-webkit-transform: translate(0px, 0px) ;}
-    70% {-webkit-transform: translate(5px, -1.5px) ;}
-    100% {-webkit-transform: translate(0px, 0px);}
+    0% {
+        -webkit-transform: translate(-8px, 3px);
+    }
+    20% {
+        -webkit-transform: translate(-3px, 2px);
+    }
+    50% {
+        -webkit-transform: translate(0px, 0px);
+    }
+    70% {
+        -webkit-transform: translate(5px, -1.5px);
+    }
+    100% {
+        -webkit-transform: translate(0px, 0px);
+    }
 }
+
 @-o-keyframes ddf {
-    0% {-o-transform: translate(-8px, 3px);}
-    20% {-o-transform: translate(-3px, 1.5px);}
-    50% {-o-transform: translate(0px, 0px) ;}
-    70% {-o-transform: translate(5px, -1.5px) ;}
-    100% {-o-transform: translate(0px, 0px);}
+    0% {
+        -o-transform: translate(-8px, 3px);
+    }
+    20% {
+        -o-transform: translate(-3px, 2px);
+    }
+    50% {
+        -o-transform: translate(0px, 0px);
+    }
+    70% {
+        -o-transform: translate(5px, -1.5px);
+    }
+    100% {
+        -o-transform: translate(0px, 0px);
+    }
 }
+
 @-moz-keyframes ddf {
-    0% {-moz-transform: translate(-8px, 3px);}
-    20% {-moz-transform: translate(-3px, 1.5px);}
-    50% {-moz-transform: translate(0px, 0px) ;}
-    70% {-moz-transform: translate(5px, -1.5px) ;}
-    100% {-moz-transform: translate(0px, 0px);}
+    0% {
+        -moz-transform: translate(-8px, 3px);
+    }
+    20% {
+        -moz-transform: translate(-3px, 2px);
+    }
+    50% {
+        -moz-transform: translate(0px, 0px);
+    }
+    70% {
+        -moz-transform: translate(5px, -1.5px);
+    }
+    100% {
+        -moz-transform: translate(0px, 0px);
+    }
 }
+
 @keyframes ddf {
-    0% {transform: translate(-8px, 3px);}
-    20% {transform: translate(-3px, 1.5px);}
-    50% {transform: translate(0px, 0px) ;}
-    70% {transform: translate(5px, -1.5px) ;}
-    100% {transform: translate(0px, 0px);}
+    0% {
+        transform: translate(-8px, 3px);
+    }
+    20% {
+        transform: translate(-3px, 2px);
+    }
+    50% {
+        transform: translate(0px, 0px);
+    }
+    70% {
+        transform: translate(5px, -1.5px);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
 }
-.hgroup{
+
+.hgroup {
     z-index: 20000;
     content: "";
     position: absolute;
@@ -97,7 +157,7 @@ body{width:100%;overflow-x:hidden;}
     top: 70px;
     width: 250px;
     height: 15px;
-    background-color: rgba(255,255,255,.5);
+    background-color: rgba(255, 255, 255, .5);
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);
@@ -107,10 +167,6 @@ body{width:100%;overflow-x:hidden;}
     -o-animation: searchLights 3s ease-in 0s infinite;
     animation: searchLights 3s ease-in 0s infinite;
 }
-
-
-
-
 
 
 @-webkit-keyframes searchLights {
@@ -164,101 +220,106 @@ body{width:100%;overflow-x:hidden;}
 
 
 
-/*拉条*/
-.slide,.slide_block{
-    background-repeat: no-repeat;
-    background-image: url('img/icon.png');
-}
-.tncode_msg_ok{
+.tncode_msg_ok {
     background-color: #24C628;
 }
-.tncode_msg_error{
+
+.tncode_msg_error {
     background-color: #DE5145;
 }
-.tncode_msg_ok,.tncode_msg_error{
+
+.tncode_msg_ok, .tncode_msg_error {
     position: absolute;
-    top:136px;
-    left: 10px;
-    width: 220px;
-    height: 20px;
+    top: auto;
+    left: 0;
+    width: 100%;
     color: #fff;
     margin: 0;
-    padding: 2px 10px;
+    padding: 3px 10px;
+    text-align: center;
     overflow: visible;
-    background-position: 0px 0px;
+    background-position: 0 0;
     font-size: 14px;
-    opacity:0;
+    opacity: 0;
     filter: alpha(opacity=0);
     z-index: 10000;
 }
-.slide{
+
+.slide {
     position: absolute;
-    top:160px;
+    top: 160px;
     width: 93.52%;
-    height: 0px;
-    background-color: white;
-    background-size: 100%;
     margin: 5.39% 3.24%;
-    padding: 0px 0px 13.67%;
+    padding: 0 0 13.67%;
     overflow: visible;
-    background-position: 0px 0px;
+    background: #e4e4e4;
+    border-radius: 50px;
 }
 
-.tools{
+.tools {
     position: absolute;
-    top:210px;
+    top: 210px;
     width: 93.52%;
-    height: 0px;
+    height: 0;
     background-color: white;
     background-size: 100%;
     margin: 5.39% 3.24%;
-    padding: 5px 0px 13.67%;
+    padding: 5px 0 13.67%;
     overflow: visible;
-    background-position: 0px 0px;
+    background-position: 0 0;
     border-top: 1px solid #EEEEEE;
 }
 
-.slide_block{
-background-position: 0px 12.9794%;
-width: 65px;
-height: 65px;
+.slide_block {
     position: absolute;
-    left: 0px;
-    top: 0px;
-margin: -4.62% 0 0 -2.31%;
-cursor: pointer;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+    margin: auto;
+    background-color: rgb(26, 121, 255);
+    box-shadow: rgb(26 121 255 / 52%) 0 0 10px 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 66px;
+    border-radius: 20px;
 }
-.slide_block_text{
-background-position: 0px 12.9794%;
-height: 65px;
+
+.slide_block_text {
+
+    height: 65px;
     position: absolute;
-    left: 65px;
     top: 20px;
-margin: -4.62% 0 0 -2.31%;
-cursor: pointer;
-font-size: 14px;
+    right: 13px;
+    margin: -4.62% 0 0 -2.31%;
+    cursor: pointer;
+    font-size: 13px;
     color: rgb(136, 148, 157);
 }
 
-.tncode_canvas_bg,.tncode_canvas_mark{
-   /* width: 240px;*/
+.tncode_canvas_bg, .tncode_canvas_mark {
+    /* width: 240px;*/
 }
 
-.tools .tncode_close{
-font-size: 20px;
+.tools .tncode_close {
+    font-size: 20px;
     float: left;
     margin-right: 10px;
     cursor: pointer;
 }
-.tools .tncode_refresh{
+
+.tools .tncode_refresh {
     font-size: 20px;
     float: left;
     cursor: pointer;
 }
-.tools .tncode_tips{
+
+.tools .tncode_tips {
     float: right;
 }
-.tools .tncode_tips a{
+
+.tools .tncode_tips a {
     text-decoration: none;
     font-size: 10px;
     color: rgb(136, 148, 157);

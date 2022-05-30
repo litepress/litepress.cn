@@ -7,8 +7,8 @@ add_shortcode('lpcn-user-center', function () {
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <title>React-Bootstrap</title>
-    <link href="/wp-content/plugins/lpcn-user/static/css/main.2a7d239d.css" rel="stylesheet">
-    <script defer="defer" src="/wp-content/plugins/lpcn-user/static/js/main.c15df8e0.js"></script> 
+    <link href="/wp-content/plugins/lpcn-user/static/css/main.c09076b9.css" rel="stylesheet">
+    <script defer="defer" src="/wp-content/plugins/lpcn-user/static/js/main.d8ba90ef.js"></script> 
 </head>
 <body>
 <noscript>🤷‍♂️ 您需要启用 JavaScript 才能运行此应用!<br>You need to enable JavaScript to run this app.</noscript>
