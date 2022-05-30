@@ -179,7 +179,7 @@ class Avatars extends Base {
 			$params[ $key ] = sanitize_text_field( $param );
 		}
 
-		if ( empty( $params['email'] ) ) {
+		if ( empty( $params['id'] ) ) {
 			return new WP_Error( 'required_field_is_empty', '头像 ID 为空' );
 		}
 
