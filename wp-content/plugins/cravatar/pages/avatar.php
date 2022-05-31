@@ -156,7 +156,7 @@ $default = $_GET['default'] ?? $default;
  */
 $force_default = $_GET['f'] ?? $force_default;
 $force_default = $_GET['forcedefault'] ?? $force_default;
-$default       = in_array( $default, array( 'y', 'yes' ) ) ? $default : false;
+$force_default = in_array( $force_default, array( 'y', 'yes' ) ) ? $default : false;
 
 /**
  * 开始准备要返回的头像文件
