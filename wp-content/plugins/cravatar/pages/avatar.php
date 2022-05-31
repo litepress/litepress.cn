@@ -30,6 +30,7 @@ if ( mysqli_connect_error() ) {
  * @param array $data
  *
  * @return void
+ * @throws \Exception
  */
 #[NoReturn] function c_die( string $message, array $data = array() ) {
 	// 记录到本地的错误日志
@@ -70,6 +71,7 @@ HTML;
  * @param string $hash
  * @param string $url
  * @param string $type
+ * @param bool $force
  *
  * @return string
  */
@@ -123,7 +125,7 @@ $md5            = $url_path_array[ count( $url_path_array ) - 1 ] ?? '';
  * 支持的参数列表：
  *
  * s|size:10-2000[默认:80]
- * d|default:404,mp,identicon,monsterid,wavatar,retro,robohash,blank,用户自定义 URL[默认:显示平台 LOGO]
+ * d|default:404,mp,mm,mystery,identicon,monsterid,wavatar,retro,robohash,blank,用户自定义 URL[默认:显示平台 LOGO]
  * f|forcedefault:y[默认:n]
  */
 
