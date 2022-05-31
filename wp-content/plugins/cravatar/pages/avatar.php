@@ -202,7 +202,7 @@ if ( 'y' !== $force_default ) {
 			// 需要拼接出完整路径
 			$image_path = sprintf( '%swp-content/uploads/sites/%d/%s', ABSPATH, SITE_ID, $image_path );
 
-			$avatar_from = 'Cravatar';
+			$avatar_from = 'cravatar';
 		}
 	}
 }
@@ -212,7 +212,7 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 	$url        = "http://gravatar.litepress.cn/avatar/{$md5}.png?s=400&r=g&d=404";
 	$image_path = get_remote_image( $md5, $url );
 	if ( ! empty( $image_path ) ) {
-		$avatar_from = 'Gravatar';
+		$avatar_from = 'gravatar';
 	}
 }
 $image_path = '';
@@ -222,6 +222,7 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 	 * 我们需要先尝试从邮箱 MD5 解析出 QQ 号码，之后才能调取到 QQ 头像
 	 */
 	// 计算出当前的邮箱 MD5 存储在哪个表中
+	// 需要记录 qq 号读取失败的日志
 	/*
 	$table = 'email_hash_' . ( hexdec( substr( $md5, 0, 10 ) ) ) % 5001 + 1;
 
@@ -269,7 +270,7 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 			$image_path = get_remote_image( $md5, $url, 'qq', true );
 		}
 		if ( ! empty( $image_path ) ) {
-			$avatar_from = 'QQ';
+			$avatar_from = 'qq';
 		}
 	}
 }
@@ -317,7 +318,7 @@ if ( empty( $image_path ) ) {
 	}
 
 	if ( ! empty( $image_path ) ) {
-		$avatar_from = 'Default';
+		$avatar_from = 'default';
 	}
 }
 
