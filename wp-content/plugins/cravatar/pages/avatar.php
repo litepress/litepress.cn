@@ -11,6 +11,9 @@ ini_set( 'display_errors', 0 );
 // 载入配置文件
 require '../../../../cravatar-config.php';
 
+// 定义插件根目录产量
+const C_ROOT_PATH = ABSPATH . 'wp-content/plugins/cravatar';
+
 // 尝试连接数据库
 $db = new mysqli( DB_HOST, DB_USER, DB_PASS, DB_NAME );
 if ( mysqli_connect_error() ) {
@@ -30,13 +33,16 @@ if ( mysqli_connect_error() ) {
  * @param array $data
  *
  * @return void
- * @throws \Exception
  */
 #[NoReturn] function c_die( string $message, array $data = array() ) {
 	// 记录到本地的错误日志
-	$data     = json_encode( $data, JSON_UNESCAPED_UNICODE );
-	$datetime = new DateTime( date( "Y-m-d H:i:s" ) );
-	$datetime = $datetime->format( DateTimeInterface::ATOM );
+	$data = json_encode( $data, JSON_UNESCAPED_UNICODE );
+	try {
+		$datetime = new DateTime( date( "Y-m-d H:i:s" ) );
+		$datetime = $datetime->format( DateTimeInterface::ATOM );
+	} catch ( Exception $e ) {
+		$datetime = date( "Y-m-d H:i:s" );
+	}
 
 	file_put_contents(
 		ABSPATH . 'wp-content/run.log',
@@ -75,7 +81,7 @@ HTML;
  *
  * @return string
  */
-function get_remote_image( string $hash, string $url, string $type = 'gravatar', $force = false ): string {
+function get_remote_image( string $hash, string $url, string $type = 'gravatar', bool $force = false ): string {
 	$file_path = "/www/cravatar-cache/$type/$hash.png";
 
 	/**
@@ -84,8 +90,13 @@ function get_remote_image( string $hash, string $url, string $type = 'gravatar',
 	 * 这里缓存时间15天是因为CDN缓存时间为30天，避免CDN回源时命中本地缓存造成数据被缓存60天
 	 */
 	if ( ! file_exists( $file_path ) || filemtime( $file_path ) < ( time() - 1313280 ) || $force ) {
-		if ( ! file_put_contents( $file_path, file_get_contents( $url ) ) ) {
-			die( '保存远程头像到本地失败，可能是没有权限！' );
+		$image_data = file_get_contents( $url );
+		if ( empty( $image_data ) ) {
+			c_die( '读取远程图片失败。失败的 URL：' . $url );
+		}
+
+		if ( ! file_put_contents( $file_path, $image_data ) ) {
+			c_die( '保存远程头像到本地失败，可能是没有权限！请联系管理员解决。' );
 		}
 
 		// 记录文件MD5信息方便信息审查
@@ -262,10 +273,17 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 		}
 	}
 }
+$image_path = '';
 
 // 检索默认头像
 if ( empty( $image_path ) ) {
-// mp有几个别名，需要特别处理下
+	// 如果用户要求直接返回 404 的话就设置 404 状态码并终止执行程序
+	if ( '404' === $default ) {
+		status_header( 404 );
+		exit;
+	}
+
+	// mp有几个别名，需要特别处理下
 	$default = match ( $default ) {
 		'mm' => 'mp',
 		'mystery' => 'mp',
@@ -283,73 +301,74 @@ if ( empty( $image_path ) ) {
 		'robohash'  => 1000,
 	);
 
-	$filename = CA_ROOT_PATH . '/assets/img/default-avatar/default.png';
+	$image_path = C_ROOT_PATH . '/assets/image/default-avatar/default.png';
 
 	if ( key_exists( $default, $default_types ) ) {
-		$filename = sprintf( '%s/assets/img/default-avatar/%s/%s.png', CA_ROOT_PATH, $default, rand( 1, $default_types[ $default ] ) );
+		$image_path = sprintf( '%s/assets/image/default-avatar/%s/%s.png', C_ROOT_PATH, $default, rand( 1, $default_types[ $default ] ) );
 	} elseif ( ! empty( $default ) ) {
 		// 只有当用户给定的默认图中包含 .jpg、.jpeg、.gif、.png 时才尝试获取此默认图
-		if ( str_contains( $default, '.jpg' ) ||
-		     str_contains( $default, '.jpeg' ) ||
-		     str_contains( $default, '.gif' ) ||
-		     str_contains( $default, '.png' )
+		if (
+			str_contains( $default, '.jpg' ) ||
+			str_contains( $default, '.jpeg' ) ||
+			str_contains( $default, '.gif' ) ||
+			str_contains( $default, '.png' )
 		) {
-			$r = wp_remote_get( $default );
-			if ( ! is_wp_error( $r ) && isset( $r['body'] ) && ! empty( $r['body'] ) ) {
-				$status_code = wp_remote_retrieve_response_code( $r );
-				if ( 200 === $status_code ) {
-					$avatar = $r['body'];
-
-					/**
-					 * 脚本结束时该临时文件会被自动删除
-					 */
-					$tmpfname = tempnam( sys_get_temp_dir(), '404_avatar_' );
-					if ( $tmpfname ) {
-						file_put_contents( $tmpfname, $avatar );
-
-						$filename = $tmpfname;
-					}
-				} else {
-					Logger::error( 'Cravatar', '尝试获取用户指定的默认图片失败', array(
-						'url'         => $default,
-						'status_code' => $status_code,
-					) );
-				}
-			}
+			$image_path = get_remote_image( md5( $default ), $default, 'custom' );
 		}
 	}
 
-	return $filename;
+	if ( ! empty( $image_path ) ) {
+		$avatar_from = 'Default';
+	}
 }
 
-var_dump( $image_path );
-exit;
+/**
+ * 按用户指定的参数生成头像数据
+ */
+$info = getimagesize( $image_path );
 
-// 检查此图片是否是违规图
-$sql = $db->prepare( 'SELECT status FROM wp_9_avatar_verify WHERE image_md5=?' );
-$sql->bind_param( 's', $avatar_hash );
-$sql->execute();
-$sql->bind_result( $status );
-$sql->fetch();
-$sql->close();
+$cache_img_ext = image_type_to_extension( $info[2], false );
+if ( empty( $cache_img_ext ) || empty( $info ) ) {
+	c_die( '获取图片类型数据失败，可能图片格式有误。', array(
+		'image_path' => $image_path,
+	) );
+}
 
-exit;
+$fun      = "imagecreatefrom{$cache_img_ext}";
+$img_info = $fun( $image_path );
 
+$image_p = imagecreatetruecolor( $size, $size );
+imageAlphaBlending( $image_p, false );
+imageSaveAlpha( $image_p, true );
+
+$fun = "image{$image_ext}";
 
 /**
- * 按用户请求的格式输出图片
+ * 为了防止裁剪后出现白边，所以取最短边
  */
-var_dump( $image_ext );
-exit;
-$allowed = array(
-	'404',
-	'mp',
-	'identicon',
-	'monsterid',
-	'wavatar',
-	'retro',
-	'robohash',
-	'blank',
-);
-$default = in_array( $default, $allowed ) ? $default : '';
+$src_img_size = $info[0] < $info[1] ? $info[0] : $info[1];
+imagecopyresampled( $image_p, $img_info, 0, 0, 0, 0, $size, $size, $src_img_size, $src_img_size );
 
+// 图片输出时先输出到本地临时文件，再从临时文件读取并输出到浏览器，直接输出的话会卡的一批
+$temp_file = tempnam( sys_get_temp_dir(), 'cravatar' );
+$fun( $image_p, $temp_file );
+
+$img_type = match ( $image_ext ) {
+	'jpg', 'jpeg' => IMAGETYPE_JPEG,
+	'gif' => IMAGETYPE_GIF,
+	'webp' => IMAGETYPE_WEBP,
+	default => IMAGETYPE_PNG,
+};
+$mime     = image_type_to_mime_type( $img_type );
+
+header( 'Content-Type:' . $mime );
+header( 'Content-Length:' . filesize( $temp_file ) );
+header( 'Last-Modified:' . gmdate( 'D, d M Y H:i:s', filemtime( $image_path ) ) . ' GMT' );
+header( 'By:' . 'cravatar.cn' );
+header( 'Avatar-From:' . $avatar_from );
+
+readfile( $temp_file );
+
+unlink( $temp_file );
+imagedestroy( $image_p );
+imagedestroy( $img_info );
