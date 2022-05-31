@@ -292,7 +292,6 @@ if ( empty( $image_path ) ) {
 
 	$default_types = array(
 		'mp'        => 1,
-		'ban'       => 1,
 		'blank'     => 1,
 		'identicon' => 1000,
 		'monsterid' => 1000,
@@ -319,6 +318,35 @@ if ( empty( $image_path ) ) {
 
 	if ( ! empty( $image_path ) ) {
 		$avatar_from = 'Default';
+	}
+}
+
+/**
+ * 处理违规图
+ *
+ * 系统维护了一个数据表，其中按每张原始图片的 MD5 来做为主键索引。每个经过本系统输出的图片都要在表里检索一遍是否是违规图。
+ * 对于表中不存在图，则在检查的同时录入数据。系统会有一个 Cron 进程，每天定时检查新图是否违规并更新状态。
+ */
+// 不对 QQ 头像检查违规图，成本顶不住，而且考虑到腾讯也有实名认证
+if ( 'qq' !== $avatar_from ) {
+	$image_hash = md5_file( $image_path );
+	$sql        = $db->prepare( 'SELECT status FROM wp_9_avatar_verify WHERE image_md5=?' );
+	$sql->bind_param( 's', $image_hash );
+	$sql->execute();
+	$sql->bind_result( $status );
+	$sql->fetch();
+	$sql->close();
+
+	if ( is_null( $status ) ) {
+		$avatar_url = "https://cravatar.cn/avatar/$md5";
+		$sql        = $db->prepare( 'INSERT INTO wp_9_avatar_verify( image_md5, url, type ) VALUES ( ?, ?, ? )' );
+		$sql->bind_param( 'sss', $image_hash, $avatar_url, $avatar_from );
+		$sql->execute();
+		$sql->close();
+	}
+
+	if ( - 1 === (int) $status ) {
+		$image_path = C_ROOT_PATH . '/assets/image/default-avatar/ban/1.png';
 	}
 }
 
