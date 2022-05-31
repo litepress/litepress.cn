@@ -36,7 +36,7 @@ if ( mysqli_connect_error() ) {
 	// 记录到本地的错误日志
 	$data     = json_encode( $data, JSON_UNESCAPED_UNICODE );
 	$datetime = new DateTime( date( "Y-m-d H:i:s" ) );
-	$datetime = $datetime->format( DateTime::ATOM );
+	$datetime = $datetime->format( DateTimeInterface::ATOM );
 
 	file_put_contents(
 		ABSPATH . 'wp-content/run.log',
