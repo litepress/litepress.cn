@@ -123,9 +123,11 @@ function get_remote_image( string $hash, string $url, string $type = 'gravatar',
  * URL 组成：https://cravatar.cn/avatar/邮箱 MD5.图像扩展名?查询参数
  * 此处需要提取 MD5 和头像扩展名
  */
+$image_ext      = 'png'; // 请求响应的图片扩展名
 $url_path_array = explode( '.', parse_url( $_SERVER["REQUEST_URI"], PHP_URL_PATH ) );
 $image_ext      = $url_path_array[1] ?? 'png';
 $image_ext      = in_array( $image_ext, array( 'jpg', 'jpeg', 'png', 'gif' ) ) ? $image_ext : 'png';
+$image_ext      = $image_ext === 'jpg' ? 'jpeg' : $image_ext;
 // 取 URL 路径最后一位作为 md5
 $url_path_array = explode( '/', $url_path_array[0] ?? '' );
 $md5            = $url_path_array[ count( $url_path_array ) - 1 ] ?? '';
@@ -139,11 +141,9 @@ $md5            = $url_path_array[ count( $url_path_array ) - 1 ] ?? '';
  * d|default:404,mp,mm,mystery,identicon,monsterid,wavatar,retro,robohash,blank,用户自定义 URL[默认:显示平台 LOGO]
  * f|forcedefault:y[默认:n]
  */
-
 $size          = 80; // 图片大小
 $default       = ''; // 默认图
 $force_default = 'n'; // 强制输出默认图
-$image_ext     = 'png'; // 请求响应的图片扩展名
 
 /**
  * 过滤 size 参数
