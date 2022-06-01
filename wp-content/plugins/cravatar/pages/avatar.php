@@ -215,7 +215,7 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 		$avatar_from = 'gravatar';
 	}
 }
-$image_path = '';
+
 // 尝试检索 QQ 头像
 if ( empty( $image_path ) && 'y' !== $force_default ) {
 	/**
@@ -274,7 +274,6 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 		}
 	}
 }
-$image_path = '';
 
 // 检索默认头像
 if ( empty( $image_path ) ) {
@@ -375,7 +374,7 @@ $fun = "image{$image_ext}";
 /**
  * 为了防止裁剪后出现白边，所以取最短边
  */
-$src_img_size = $info[0] < $info[1] ? $info[0] : $info[1];
+$src_img_size = min( $info[0], $info[1] );
 imagecopyresampled( $image_p, $img_info, 0, 0, 0, 0, $size, $size, $src_img_size, $src_img_size );
 
 // 图片输出时先输出到本地临时文件，再从临时文件读取并输出到浏览器，直接输出的话会卡的一批
@@ -399,5 +398,3 @@ header( 'Avatar-From:' . $avatar_from );
 readfile( $temp_file );
 
 unlink( $temp_file );
-imagedestroy( $image_p );
-imagedestroy( $img_info );
