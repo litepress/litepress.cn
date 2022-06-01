@@ -150,7 +150,7 @@ $image_ext     = 'png'; // 请求响应的图片扩展名
  */
 $size = $_GET['s'] ?? $size;
 $size = $_GET['size'] ?? $size;
-$size = is_integer( $size ) ? $size : 80;
+$size = (int) $size;
 $size = max( $size, 10 );
 $size = min( $size, 2000 );
 
