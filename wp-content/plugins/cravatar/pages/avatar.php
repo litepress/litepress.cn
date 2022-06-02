@@ -343,6 +343,19 @@ if ( 'qq' !== $avatar_from ) {
 		$sql->bind_param( 'sss', $image_hash, $avatar_url, $avatar_from );
 		$sql->execute();
 		$sql->close();
+
+		// 将违规图检测任务压入任务队列
+		$args    = serialize( array(
+			'url'        => $avatar_url,
+			'image_md5'  => $image_hash,
+			'email_hash' => $md5,
+		) );
+		$start   = time();
+		$nextrun = $start + 10;
+		$sql     = $db->prepare( 'INSERT INTO wp_cavalcade_jobs( site, hook, args, start, nextrun ) VALUES ( 9, "lpcn_sensitive_content_recognition", ?, ?, ? )' );
+		$sql->bind_param( 'sss', $args, $start, $nextrun );
+		$sql->execute();
+		$sql->close();
 	}
 
 	if ( - 1 === (int) $status ) {
