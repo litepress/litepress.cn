@@ -36,7 +36,10 @@ class Image {
 
 		$images = array();
 		foreach ( $attachments as $attachment ) {
-			$images[ $attachment->ID ] = $attachment->guid;
+			$images[] = array(
+				'id'  => $attachment->ID,
+				'url' => $attachment->guid,
+			);
 		}
 
 		return $images;
