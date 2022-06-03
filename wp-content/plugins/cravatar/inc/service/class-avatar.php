@@ -32,12 +32,13 @@ class Avatar {
 
 		$sql = $wpdb->prepare( "SELECT md5,email,image_id FROM {$wpdb->prefix}avatar WHERE user_id=%d;", $this->user_id );
 
+		$now     = time();
 		$avatars = array();
 		foreach ( (array) $wpdb->get_results( $sql ) as $item ) {
 			$avatars[] = array(
 				'id'    => $item->md5,
 				'email' => $item->email,
-				'image' => sprintf( "https://cravatar.cn/avatar/%s?s=400&r=G&d=mp", md5( $item->email ) ),
+				'image' => sprintf( "https://dev.litepress.cn/cravatar/avatar/%s?s=400&r=G&d=mp&ver=" . $now, md5( $item->email ) ),
 			);
 		}
 
