@@ -3,6 +3,7 @@
 namespace LitePress\Cravatar\Inc\Service;
 
 use WP_Error;
+use function LitePress\Cravatar\Inc\purge_avatar_cache;
 
 /**
  * Class Avatar
@@ -126,6 +127,9 @@ class Avatar {
 		if ( ! $r ) {
 			return new WP_Error( 'insert_database_failed', '数据入库失败' );
 		}
+
+		// 成功更换头像后需要刷新 CDN 缓存
+		purge_avatar_cache( array( $md5 ), false );
 
 		return true;
 	}
