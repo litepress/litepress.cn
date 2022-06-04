@@ -35,7 +35,11 @@ class Plugin {
 	 * Initializes the plugin.
 	 */
 	public function plugins_loaded() {
+		// 载入 Rest API
 		add_action( 'rest_api_init', array( Base::class, 'init' ) );
+
+		// 载入头像内容审查功能
+		add_action( 'lpcn_sensitive_content_recognition', array( Avatar_Audit::get_instance(), 'worker' ), 10, 3 );
 	}
 
 }
