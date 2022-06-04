@@ -112,7 +112,7 @@ class Images extends Base {
 			return $this->error( $params->get_error_message() );
 		}
 
-		$r = $this->avatar_service->delete( $params['id'] );
+		$r = $this->avatar_service->delete( (int) $params['id'] );
 		if ( is_wp_error( $r ) ) {
 			return $this->error( $r->get_error_message() );
 		}

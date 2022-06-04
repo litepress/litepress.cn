@@ -73,7 +73,7 @@ class Avatars extends Base {
 			return $this->error( $params->get_error_message() );
 		}
 
-		$r = $this->avatar_service->add( $params['email'], $params['image_id'] );
+		$r = $this->avatar_service->add( $params['email'], (int) $params['image_id'] );
 		if ( is_wp_error( $r ) ) {
 			return $this->error( $r->get_error_message() );
 		}
@@ -118,7 +118,7 @@ class Avatars extends Base {
 			return $this->error( $params->get_error_message() );
 		}
 
-		$r = $this->avatar_service->edit( $params['id'], $params['image_id'] );
+		$r = $this->avatar_service->edit( $params['id'], (int) $params['image_id'] );
 		if ( is_wp_error( $r ) ) {
 			return $this->error( $r->get_error_message() );
 		}
