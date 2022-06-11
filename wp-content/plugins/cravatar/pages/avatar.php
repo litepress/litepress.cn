@@ -92,7 +92,8 @@ function get_remote_image( string $hash, string $url, string $type = 'gravatar',
 	if ( ! file_exists( $file_path ) || filemtime( $file_path ) < ( time() - 1313280 ) || $force ) {
 		$image_data = file_get_contents( $url );
 		if ( empty( $image_data ) ) {
-			c_die( '读取远程图片失败。失败的 URL：' . $url );
+			// c_die( '读取远程图片失败。失败的 URL：' . $url );
+			return '';
 		}
 
 		if ( ! file_put_contents( $file_path, $image_data ) ) {
