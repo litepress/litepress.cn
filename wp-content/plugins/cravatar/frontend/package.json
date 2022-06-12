@@ -1,6 +1,7 @@
 {
   "name": "cravatar",
   "version": "0.1.0",
+  "homepage": "/wp-content/plugins/cravatar/frontend/dist",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",
