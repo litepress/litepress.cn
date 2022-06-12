@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/wp-content/plugins/cravatar/frontend/dist/static/css/main.2da558ac.css",
+    "main.js": "/wp-content/plugins/cravatar/frontend/dist/static/js/main.1be81bc8.js",
+    "static/media/fa-duotone-900.ttf": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-duotone-900.7aaed8882e9e1b7d6613.ttf",
+    "static/media/fa-thin-100.ttf": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-thin-100.e979819d1e09a53c99e5.ttf",
+    "static/media/fa-light-300.ttf": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-light-300.c92b45ddbbac86f40dd8.ttf",
+    "static/media/fa-regular-400.ttf": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-regular-400.ea55734feb601c85fbad.ttf",
+    "static/media/fa-solid-900.ttf": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-solid-900.cd4538f76ba3350d716d.ttf",
+    "static/media/fa-thin-100.woff2": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-thin-100.6d7129de814a5b8a09f5.woff2",
+    "static/media/fa-duotone-900.woff2": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-duotone-900.0f4932ef8d84d6fe728f.woff2",
+    "static/media/fa-light-300.woff2": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-light-300.3a5e485d10f65b240480.woff2",
+    "static/media/fa-regular-400.woff2": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-regular-400.0119858ade891ff7e5cf.woff2",
+    "static/media/fa-solid-900.woff2": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-solid-900.dd93dc2148412b8ed08a.woff2",
+    "static/media/fa-brands-400.ttf": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-brands-400.aa78803d79164416af03.ttf",
+    "static/media/fa-brands-400.woff2": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-brands-400.7fe6c951dbf3b62b07e1.woff2",
+    "static/media/fa-v4compatibility.ttf": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-v4compatibility.a6c478646f0d356e9a05.ttf",
+    "static/media/fa-v4compatibility.woff2": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-v4compatibility.b76a469acd22a118b0b7.woff2",
+    "index.html": "/wp-content/plugins/cravatar/frontend/dist/index.html",
+    "main.2da558ac.css.map": "/wp-content/plugins/cravatar/frontend/dist/static/css/main.2da558ac.css.map",
+    "main.1be81bc8.js.map": "/wp-content/plugins/cravatar/frontend/dist/static/js/main.1be81bc8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2da558ac.css",
+    "static/js/main.1be81bc8.js"
+  ]
+}
