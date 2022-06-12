@@ -82,7 +82,7 @@ HTML;
  * @return string
  */
 function get_remote_image( string $hash, string $url, string $type = 'gravatar', bool $force = false ): string {
-	$file_path = "/www/cravatar-cache/$type/$hash.png";
+	$file_path = "/www/cravatar_cache/$type/$hash.png";
 
 	/**
 	 * 不存在缓存或缓存是15天前创建的就从Gravatar获取数据
