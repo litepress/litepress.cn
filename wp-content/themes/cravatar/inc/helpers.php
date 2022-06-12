@@ -3,7 +3,7 @@
  * 该文件定义了一组帮助函数
  */
 
-namespace LitePress\Cravatar\Inc;
+namespace LitePress\Cravatar_Theme\Inc;
 
 use LitePress\Cravatar\Inc\DataObject\Avatar_Status;
 use LitePress\Logger\Logger;

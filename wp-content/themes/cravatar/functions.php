@@ -6,8 +6,6 @@ use function LitePress\Cravatar\Inc\purge_avatar_cache;
 define( 'CA_ROOT_PATH', get_stylesheet_directory() );
 define( 'CA_ROOT_URL', get_stylesheet_directory_uri() );
 
-const CA_LOG_NAME = 'Cravatar';
-
 /**
  * 替换终极会员插件的gravatar头像地址
  *
@@ -27,20 +25,6 @@ if ( ! stristr( $_SERVER['REQUEST_URI'], '/avatar/' ) ) {
 		return 'https://cravatar.cn/avatar/' . $hash . '?s=200&test=1&d=mp&r=' . time();
 	}, 99999, 3 );
 }
-
-/**
- * 当用户更新头像后主动刷新CDN缓存
- */
-add_action( 'um_after_upload_db_meta_profile_photo', function ( $user_id ) {
-	$emails = get_user_emails( $user_id );
-
-	purge_avatar_cache( $emails, false );
-} );
-
-/**
- * 头像内容审查
- */
-add_action( 'lpcn_sensitive_content_recognition', 'LitePress\Cravatar\Inc\sensitive_content_recognition', 10, 3 );
 
 
 /**
@@ -63,14 +47,6 @@ add_filter( 'wp_title', function ( $title, $sep, $seplocation ) {
 }, 9999, 3 );
 
 
-require CA_ROOT_PATH . '/inc/class-q-cloud.php';
-
 require CA_ROOT_PATH . '/inc/helpers.php';
-
 require CA_ROOT_PATH . '/inc/enqueue-scripts.php';
 
-require CA_ROOT_PATH . '/inc/DataObject/class-avatar-status.php';
-
-require CA_ROOT_PATH . '/inc/ajax-functions.php';
-
-require CA_ROOT_PATH . '/inc/avatar.php';
