@@ -6,8 +6,8 @@ const service = axios.create({
     timeout: 60 * 1000, // 请求超时时间
     headers: {
         'X-WP-Nonce': window.wpApiSettings.nonce,
-        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZGV2LmxpdGVwcmVzcy5jblwvIiwiaWF0IjoxNjU0NzA1MzQyLCJuYmYiOjE2NTQ3MDUzNDIsImV4cCI6MTY1NTMxMDE0MiwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMjUifX19.-JiWsqmfhcU_AWkB8xz1Bl3AKzoztXxmnOEeiVlHNgA'
-    },
+       /* 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZGV2LmxpdGVwcmVzcy5jblwvIiwiaWF0IjoxNjU0NzA1MzQyLCJuYmYiOjE2NTQ3MDUzNDIsImV4cCI6MTY1NTMxMDE0MiwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMjUifX19.-JiWsqmfhcU_AWkB8xz1Bl3AKzoztXxmnOEeiVlHNgA'
+    */},
 
 })
 
