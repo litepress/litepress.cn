@@ -1,4 +1,4 @@
-import {deleteImages, getAvatars, getImages, postAvatars, putAvatars, sendEmailCode} from "../axios/mainApi";
+import {deleteImages, getImages, postAvatars, putAvatars, sendEmailCode} from "../axios/mainApi";
 import {toast} from "react-toastify";
 import {
     Button,
@@ -46,7 +46,6 @@ export function ChangeAvatar(props) {
 
     /*修改图片*/
     const putavatars = (e) => {
-        /*const nav = document.querySelector('.avatar-view.active');const image_id = nav.getAttribute("id")*/
         const avatar_id = e.target.parentNode.parentNode.id;
         const image_id = document.querySelector('.avatar-view.active img').getAttribute("id");
 
@@ -54,7 +53,7 @@ export function ChangeAvatar(props) {
             .then(response => {
                     toast.success(response.data.message)
                     props.getAvatars()
-                document.querySelector('button[class="btn-close"]').click();
+                    document.querySelector('button[class="btn-close"]').click();
                 }
             )
             .catch(error => {
@@ -79,7 +78,7 @@ export function ChangeAvatar(props) {
             .then(response => {
                     toast.success(response.data.message)
                     GetImage()
-                setImgsrc(null)
+                    setImgsrc(null)
                 }
             )
             .catch(error => {
@@ -126,20 +125,20 @@ export function ChangeAvatar(props) {
                     ? <Row className={"row-cols-5 g-3"} id={"image_list"}>
                         {Images.slice(0, 20).map((item, index) =>
                             <Col key={index} className={""}>
-                                <Card className={"avatar-view " + (active === item ? 'active' : '')} >
+                                <Card className={"avatar-view " + (active === item ? 'active' : '')}>
                                     <a>
-                                <img
-                                    className={'img-fluid  '}
-                                    id={item.id} src={item.url} alt="cravatar图片"
-                                    onClick={(e) => {
-                                        setActive(item);
-                                        setImgsrc(e.target.src);
-                                        setImgid(e.target.id)
-                                    }}
-                                    onError={(e) => {
-                                        e.target.onerror = null;
-                                        e.target.src = "https://litepress.cn/cravatar/wp-content/uploads/sites/9/2021/07/default.png"
-                                    }}/>
+                                        <img
+                                            className={'img-fluid  '}
+                                            id={item.id} src={item.url} alt="cravatar图片"
+                                            onClick={(e) => {
+                                                setActive(item);
+                                                setImgsrc(e.target.src);
+                                                setImgid(e.target.id)
+                                            }}
+                                            onError={(e) => {
+                                                e.target.onerror = null;
+                                                e.target.src = "https://litepress.cn/cravatar/wp-content/uploads/sites/9/2021/07/default.png"
+                                            }}/>
                                     </a>
                                 </Card>
                             </Col>
@@ -169,7 +168,7 @@ export function ChangeAvatar(props) {
                     </Card.Header>
                     <Card.Body className={"pt-2 pb-0 d-flex center"}>
 
-                        {Imgsrc ? <img className={"img-fluid"} src={Imgsrc}/> :
+                        {Imgsrc ? <img className={"img-fluid"} alt={""} src={Imgsrc}/> :
                             <svg xmlns="http://www.w3.org/2000/svg" className={"p-1"} width="100" height="100"
                                  viewBox="0 0 400 525" fill="none">
                                 <path
@@ -242,12 +241,15 @@ export function PostAvatars(props) {
         }
     }, [btnDisabled, count])
 
+    const emailform = useRef(null);
+
     // 邮箱验证码按钮点击
     function handleBtnClick(e) {
         e.preventDefault();
 
 
-        const form = e.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode;
+        const form = emailform.current;
+        console.log(form)
         setValidated(true);
         if (form.checkValidity() === true) {
             window.$('.tncode').trigger("click");
@@ -284,7 +286,6 @@ export function PostAvatars(props) {
         if (Emailcode.length > 3) {
 
 
-
         }
     };
 
@@ -294,83 +295,70 @@ export function PostAvatars(props) {
         setBtnDisabled(false)
     }
 
-/*    // 通过 Hooks 创建 Ref
-    const childRef = useRef(null)
-    const handleClick = () => {
-        childRef.current.handleShow()
+
+    /*添加新头像接口*/
+    const {email, email_code} = useRef(null);
+    const Select_Image = () => {
+        const image_id = document.getElementsByClassName('image_id')[0].getAttribute("id");
+        postAvatars(email.current?.value, email_code.current?.value, image_id)
+            .then(response => {
+                /*切换输入验证码*/
+                SetEmailCode(true)
+                toast.success(response.data.message)
+            })
+            .catch(error => {
+                if (error.response) {
+                    toast.warn(error.response.data.message)
+                } else if (error.request) {
+                    console.log(error.request);
+                } else {
+                    console.log('Error', error.message);
+                }
+            });
     }
-    const [bindImgid, setBindimgid] = useState();*/
-
-/*添加新头像接口*/
-
-const Select_Image = () => {
-    const email =  document.getElementById('email').value;
-    const email_code = document.getElementById('email_code').value;
-    const image_id = document.getElementsByClassName('image_id')[0].getAttribute("id");
-  postAvatars(email,email_code,image_id)
-      .then(response => {
-          /*切换输入验证码*/
-          SetEmailCode(true)
-          toast.success(response.data.message)
-      })
-      .catch(error => {
-          if (error.response) {
-              toast.warn(error.response.data.message)
-          } else if (error.request) {
-              console.log(error.request);
-          } else {
-              console.log('Error', error.message);
-          }
-      });
-}
 
     return <>
-        <Form id="bind-email-form" noValidate validated={validated}>
+        <Form id="bind-email-form" ref={emailform} noValidate validated={validated}>
 
 
-
-
-                <Row className={"mb-4"}>
+            <Row className={"mb-4"}>
                 <label htmlFor="newEmailLabel" className="col-lg-3 col-form-label form-label">绑定邮箱</label>
-                    <Col lg={9}>
+                <Col lg={9}>
                     <InputGroup>
-                        <Form.Control
-                            placeholder="name@example.com" id={"email"}
-                            aria-label="name@example.com"
-                                     type="email" required
+                        <Form.Control ref={email}
+                                      placeholder="name@example.com" id={"email"}
+                                      aria-label="name@example.com"
+                                      type="email" required
                         />
                         <button className={"input-group-text right"} onClick={handleBtnClick}
                                 disabled={btnDisabled} type="submit">{content}</button>
                     </InputGroup>
 
-                    </Col>
-                </Row>
-                <Row>
+                </Col>
+            </Row>
+            <Row>
                 <label htmlFor="newEmailLabel" className="col-lg-3 col-form-label form-label">验证码</label>
-                    <Col lg={9}>
-                        <Form.Control type={"number"} required id={"email_code"}
-                        />
+                <Col lg={9}>
+                    <Form.Control ref={email_code} type={"number"} required id={"email_code"}
+                    />
 
-                    </Col>
-                </Row>
-                <Row className="row mt-4">
-                    <label className="col-sm-3 col-form-label form-label d-flex align-items-center">绑定图像</label>
+                </Col>
+            </Row>
+            <Row className="row mt-4">
+                <label className="col-sm-3 col-form-label form-label d-flex align-items-center">绑定图像</label>
 
-                    <Col className={"col-3"}>
+                <Col className={"col-3"}>
 
-                       <ImageGallery   />
-                    </Col>
-                </Row>
+                    <ImageGallery/>
+                </Col>
+            </Row>
 
-                <div className="d-flex justify-content-center justify-content-sm-end gap-3 mt-4">
+            <div className="d-flex justify-content-center justify-content-sm-end gap-3 mt-4">
 
-                    <button type="button" className="btn btn-primary" onClick={Select_Image}><i
-                        className="fa-duotone fa-rectangle-history-circle-user me-2"></i> 添加
-                    </button>
-                </div>
-
-
-
+                <button type="button" className="btn btn-primary" onClick={Select_Image}><i
+                    className="fa-duotone fa-rectangle-history-circle-user me-2"></i> 添加
+                </button>
+            </div>
 
 
         </Form>
