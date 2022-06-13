@@ -76,20 +76,23 @@ HTML;
  *
  * @return bool|string
  */
-function http_get($url)
-{
+function http_get( $url ): bool|string {
 	$oCurl = curl_init();
-	if (stripos($url, "https://") !== FALSE) {
-		curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
-		curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, FALSE);
-		curl_setopt($oCurl, CURLOPT_SSLVERSION, 1); //CURL_SSLVERSION_TLSv1
+
+	if ( stripos( $url, "https://" ) !== false ) {
+		curl_setopt( $oCurl, CURLOPT_SSL_VERIFYPEER, false );
+		curl_setopt( $oCurl, CURLOPT_SSL_VERIFYHOST, false );
+		curl_setopt( $oCurl, CURLOPT_SSLVERSION, 1 );
 	}
-	curl_setopt($oCurl, CURLOPT_URL, $url);
-	curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
-	$sContent = curl_exec($oCurl);
-	$aStatus = curl_getinfo($oCurl);
-	curl_close($oCurl);
-	if (intval($aStatus["http_code"]) == 200) {
+	curl_setopt( $oCurl, CURLOPT_TIMEOUT, 5 );
+	curl_setopt( $oCurl, CURLOPT_URL, $url );
+	curl_setopt( $oCurl, CURLOPT_RETURNTRANSFER, 1 );
+
+	$sContent = curl_exec( $oCurl );
+	$aStatus  = curl_getinfo( $oCurl );
+	curl_close( $oCurl );
+
+	if ( intval( $aStatus["http_code"] ) === 200 ) {
 		return $sContent;
 	} else {
 		return false;
@@ -117,9 +120,8 @@ function get_remote_image( string $hash, string $url, string $type = 'gravatar',
 	 * 这里缓存时间15天是因为CDN缓存时间为30天，避免CDN回源时命中本地缓存造成数据被缓存60天
 	 */
 	if ( ! file_exists( $file_path ) || filemtime( $file_path ) < ( time() - 1313280 ) || $force ) {
-		$image_data = file_get_contents( $url );
+		$image_data = http_get( $url );
 		if ( empty( $image_data ) ) {
-			// c_die( '读取远程图片失败。失败的 URL：' . $url );
 			return '';
 		}
 
