@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/wp-content/plugins/cravatar/frontend/dist/static/css/main.2da558ac.css",
-    "main.js": "/wp-content/plugins/cravatar/frontend/dist/static/js/main.1be81bc8.js",
+    "main.css": "/wp-content/plugins/cravatar/frontend/dist/static/css/main.b21cfad5.css",
+    "main.js": "/wp-content/plugins/cravatar/frontend/dist/static/js/main.5216bbeb.js",
     "static/media/fa-duotone-900.ttf": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-duotone-900.7aaed8882e9e1b7d6613.ttf",
     "static/media/fa-thin-100.ttf": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-thin-100.e979819d1e09a53c99e5.ttf",
     "static/media/fa-light-300.ttf": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-light-300.c92b45ddbbac86f40dd8.ttf",
@@ -17,11 +17,11 @@
     "static/media/fa-v4compatibility.ttf": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-v4compatibility.a6c478646f0d356e9a05.ttf",
     "static/media/fa-v4compatibility.woff2": "/wp-content/plugins/cravatar/frontend/dist/static/media/fa-v4compatibility.b76a469acd22a118b0b7.woff2",
     "index.html": "/wp-content/plugins/cravatar/frontend/dist/index.html",
-    "main.2da558ac.css.map": "/wp-content/plugins/cravatar/frontend/dist/static/css/main.2da558ac.css.map",
-    "main.1be81bc8.js.map": "/wp-content/plugins/cravatar/frontend/dist/static/js/main.1be81bc8.js.map"
+    "main.b21cfad5.css.map": "/wp-content/plugins/cravatar/frontend/dist/static/css/main.b21cfad5.css.map",
+    "main.5216bbeb.js.map": "/wp-content/plugins/cravatar/frontend/dist/static/js/main.5216bbeb.js.map"
   },
   "entrypoints": [
-    "static/css/main.2da558ac.css",
-    "static/js/main.1be81bc8.js"
+    "static/css/main.b21cfad5.css",
+    "static/js/main.5216bbeb.js"
   ]
 }
