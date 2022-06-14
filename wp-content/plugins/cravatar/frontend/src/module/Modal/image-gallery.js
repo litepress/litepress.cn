@@ -1,6 +1,5 @@
 import Modal from "react-bootstrap/Modal";
 import {forwardRef, useImperativeHandle, useState, useEffect} from "react";
-import {ChangeAvatar} from "../form/avatar-form";
 import {Button, Card, Col, Dropdown, Row} from "react-bootstrap";
 import HistoriesLoader from "../Loader";
 import {CropperModal} from "./CropperModal";
@@ -124,7 +123,7 @@ export const ImageGallery = forwardRef((props, ref) => {
                                     {Images.slice(0, 20).map((item, index) =>
                                         <Col key={index} className={""}>
                                             <Card className={"avatar-view " + (active === item ? 'active' : '')}>
-                                                <a>
+                                                <li>
                                                     <img
                                                         className={'img-fluid  '}
                                                         id={item.id} src={item.url} alt="cravatar图片"
@@ -137,7 +136,7 @@ export const ImageGallery = forwardRef((props, ref) => {
                                                             e.target.onerror = null;
                                                             e.target.src = "https://litepress.cn/cravatar/wp-content/uploads/sites/9/2021/07/default.png"
                                                         }}/>
-                                                </a>
+                                                </li>
                                             </Card>
                                         </Col>
                                     )}
@@ -167,7 +166,7 @@ export const ImageGallery = forwardRef((props, ref) => {
                                 </Card.Header>
                                 <Card.Body className={"pt-2 pb-0 d-flex center"}>
 
-                                    {Imgsrc ? <img className={"img-fluid"} src={Imgsrc}/> :
+                                    {Imgsrc ? <img className={"img-fluid"} src={Imgsrc} alt={""} /> :
                                         <svg xmlns="http://www.w3.org/2000/svg" className={"p-1"} width="100"
                                              height="100"
                                              viewBox="0 0 400 525" fill="none">

@@ -1,6 +1,6 @@
 import './App.css';
 import {Button, Card, Col, Nav, Row, Table} from "react-bootstrap";
-import {useEffect, useRef, useState} from "react";
+import {useEffect,  useState} from "react";
 import {deleteAvatars, getAvatars} from "./module/axios/mainApi";
 import {toast} from "react-toastify";
 import BsModal from "./module/Modal/modal";

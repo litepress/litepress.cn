@@ -12,6 +12,7 @@ import HistoriesLoader from "../Loader";
 import useCountDown from "../useCountDown";
 import {CropperModal} from "../Modal/CropperModal";
 import {ImageGallery} from "../Modal/image-gallery";
+import ReactCodeInput from "react-code-input";
 
 
 export function ChangeAvatar(props) {
@@ -126,12 +127,11 @@ export function ChangeAvatar(props) {
                         {Images.slice(0, 20).map((item, index) =>
                             <Col key={index} className={""}>
                                 <Card className={"avatar-view " + (active === item ? 'active' : '')}>
-                                    <a>
+                                    <li className={"img-box"} onClick={()=> setActive(item)}>
                                         <img
                                             className={'img-fluid  '}
                                             id={item.id} src={item.url} alt="cravatar图片"
                                             onClick={(e) => {
-                                                setActive(item);
                                                 setImgsrc(e.target.src);
                                                 setImgid(e.target.id)
                                             }}
@@ -139,7 +139,7 @@ export function ChangeAvatar(props) {
                                                 e.target.onerror = null;
                                                 e.target.src = "https://litepress.cn/cravatar/wp-content/uploads/sites/9/2021/07/default.png"
                                             }}/>
-                                    </a>
+                                    </li>
                                 </Card>
                             </Col>
                         )}
@@ -227,9 +227,7 @@ export function PostAvatars(props) {
     const [validated, setValidated] = useState(false);
     const [content, setContent] = useState('获取验证码')
     const [btnDisabled, setBtnDisabled] = useState(false)
-    const [EmailCode, SetEmailCode] = useState(false)
     const {count, run} = useCountDown()
-    const EmailVal = useRef(null);
     const [Emailcode, setEmailcode] = useState("");
 
     useEffect(() => {
@@ -242,31 +240,30 @@ export function PostAvatars(props) {
     }, [btnDisabled, count])
 
     const emailform = useRef(null);
+    const email = useRef(null);
+
 
     // 邮箱验证码按钮点击
     function handleBtnClick(e) {
         e.preventDefault();
 
-
-        const form = emailform.current;
-        console.log(form)
         setValidated(true);
-        if (form.checkValidity() === true) {
+        if (window.$("#email").is(":valid") === true) {
             window.$('.tncode').trigger("click");
             setValidated(false);
         }
 
         window.tncode.onsuccess(function () {
+            toast.success("验证码已发送到您填写的邮箱上,有效期5分钟，请注意查收")
             setBtnDisabled(true)
             setContent(`重新发送 ${count}s`)
             run()
 
-            const email = {email: EmailVal.current.value}
-            sendEmailCode(email)
+            sendEmailCode(email.current.value)
                 .then(response => {
-                    /*切换输入验证码*/
-                    SetEmailCode(true)
                     toast.success(response.data.message)
+                    document.querySelector('.modal.show button[class="btn-close"]').click();
+
                 })
                 .catch(error => {
                     if (error.response) {
@@ -283,10 +280,6 @@ export function PostAvatars(props) {
 
     const handleEmailcode = Emailcode => {
         setEmailcode(Emailcode);
-        if (Emailcode.length > 3) {
-
-
-        }
     };
 
 
@@ -297,13 +290,12 @@ export function PostAvatars(props) {
 
 
     /*添加新头像接口*/
-    const {email, email_code} = useRef(null);
+
     const Select_Image = () => {
         const image_id = document.getElementsByClassName('image_id')[0].getAttribute("id");
-        postAvatars(email.current?.value, email_code.current?.value, image_id)
+        postAvatars(email.current?.value, Emailcode, image_id)
             .then(response => {
-                /*切换输入验证码*/
-                SetEmailCode(true)
+
                 toast.success(response.data.message)
             })
             .catch(error => {
@@ -330,8 +322,12 @@ export function PostAvatars(props) {
                                       aria-label="name@example.com"
                                       type="email" required
                         />
+
                         <button className={"input-group-text right"} onClick={handleBtnClick}
                                 disabled={btnDisabled} type="submit">{content}</button>
+                        <Form.Control.Feedback type="invalid">
+                            请输入正确的邮箱号
+                        </Form.Control.Feedback>
                     </InputGroup>
 
                 </Col>
@@ -339,9 +335,9 @@ export function PostAvatars(props) {
             <Row>
                 <label htmlFor="newEmailLabel" className="col-lg-3 col-form-label form-label">验证码</label>
                 <Col lg={9}>
-                    <Form.Control ref={email_code} type={"number"} required id={"email_code"}
-                    />
 
+                    <ReactCodeInput fields={4}
+                                    onChange={handleEmailcode}/>
                 </Col>
             </Row>
             <Row className="row mt-4">

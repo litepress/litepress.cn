@@ -32,13 +32,7 @@
 .g-color-auxiliary {
     color: var(--g-color-auxiliary);
 }
-:focus {
-    outline: 0 !important;
-    box-shadow: none !important;
-}
-.hide{
-    display: none;
-}
+
 
 html, body {
     min-height: 100vh;
@@ -389,9 +383,7 @@ width: 100%;
     height: var(--g-icon-size);
     overflow: visible;
 }
-svg {
-    fill: currentColor;
-}
+
 .g-icon--size-90 {
     --g-icon-size: 90px;
     --g-icon-width: auto;
@@ -557,9 +549,7 @@ svg {
     color: #fff;
     text-decoration: underline;
 }
-.modal{
-    color: initial;
-}
+
 .email_list .email {
     background-color: #eee;
     padding: 10px;

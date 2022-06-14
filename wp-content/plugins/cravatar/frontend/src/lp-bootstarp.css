@@ -9652,12 +9652,12 @@ textarea.form-control-lg {
 .btn-outline-white {
   --bs-btn-color: var(--bs-gray-650);
   --bs-btn-bg: var(--bs-white);
-  --bs-btn-border-color:var(--bs-gray-50);
+  --bs-btn-border-color: var(--bs-gray-50);
   --bs-btn-hover-color: var(--bs-primary);
   --bs-btn-hover-border-color: var(--bs-gray-50);
   --bs-btn-active-border-color: var(--bs-gray-50);
-  --bs-btn-disabled-bg:var(--bs-gray-50);
-  --bs-btn-disabled-border-color:var(--bs-gray-50); }
+  --bs-btn-disabled-bg: var(--bs-gray-50);
+  --bs-btn-disabled-border-color: var(--bs-gray-50); }
   .btn-outline-white:focus, .btn-outline-white:hover {
     box-shadow: 0 3px 6px -2px rgba(140, 152, 164, 0.25); }
 
@@ -9691,6 +9691,17 @@ textarea.form-control-lg {
   right: 5px;
   z-index: 0;
   color: #fff; }
+  .avatar-tooltip:after {
+    right: -40px;
+    box-sizing: border-box;
+    border: solid 33px transparent;
+    border-left-color: #0000001a;
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    bottom: -35px;
+    transform: rotate(45deg);
+    z-index: -1; }
 
 .avatar-view {
   object-fit: contain;
@@ -9701,34 +9712,20 @@ textarea.form-control-lg {
   min-height: 80px; }
   .avatar-view.active {
     box-shadow: 0 0 0 2px #0274be; }
-
-.avatar-tooltip:after {
-  right: -40px;
-  box-sizing: border-box;
-  border: solid 33px transparent;
-  border-left-color: #0000001a;
-  border-radius: 50%;
-  content: "";
-  position: absolute;
-  bottom: -35px;
-  transform: rotate(45deg);
-  z-index: -1; }
-
-.avatar-view a {
-  display: flex;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  justify-content: center;
-  align-items: center; }
-
-.avatar-view img, .label {
-  object-fit: cover;
-  margin: auto;
-  max-height: 100%; }
+  .avatar-view .img-box {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center; }
+  .avatar-view img {
+    object-fit: cover;
+    margin: auto;
+    max-height: 100%; }
 
 .input-file {
   font-size: 0;

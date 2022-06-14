@@ -14,9 +14,9 @@ const service = axios.create({
 // 添加请求拦截器)
 service.interceptors.request.use(config => {
     // 在发送请求之前做些什么
-    toast.loading("加载中……", {
+/*    toast.loading("加载中……", {
         toastId: "loading"
-    });
+    });*/
     return config;
 }, error => {
     toast.dismiss();
