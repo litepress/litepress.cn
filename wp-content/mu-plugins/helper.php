@@ -391,7 +391,7 @@ html;
 
 	if ( wp_mail( $email, $subject, $message, $headers ) ) {
 		// 录入 WP 的瞬存
-		set_transient( 'lpcn_user_email_code_' . $email, $code, 300 );
+		set_site_transient( 'lpcn_user_email_code_' . $email, $code, 300 );
 
 		return true;
 	} else {
@@ -409,7 +409,7 @@ html;
  * @return bool|\WP_Error
  */
 function check_email_code( string $email, string $code ): bool|WP_Error {
-	$db_code = get_transient( 'lpcn_user_email_code_' . $email );
+	$db_code = get_site_transient( 'lpcn_user_email_code_' . $email );
 	if ( empty( $db_code ) ) {
 		return false;
 	}
@@ -475,7 +475,7 @@ function send_sms_code( string $tel ): bool|WP_Error {
 		}
 
 		// 录入 WP 的瞬存
-		set_transient( 'lpcn_user_sms_code_' . $tel, $code, 300 );
+		set_site_transient( 'lpcn_user_sms_code_' . $tel, $code, 300 );
 
 		return true;
 	} catch ( TencentCloudSDKException $e ) {
@@ -492,7 +492,7 @@ function send_sms_code( string $tel ): bool|WP_Error {
  * @return bool|\WP_Error
  */
 function check_sms_code( string $tel, string $code ): bool|WP_Error {
-	$db_code = get_transient( 'lpcn_user_sms_code_' . $tel );
+	$db_code = get_site_transient( 'lpcn_user_sms_code_' . $tel );
 	if ( empty( $db_code ) ) {
 		return false;
 	}
