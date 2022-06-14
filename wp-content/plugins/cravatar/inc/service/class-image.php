@@ -31,6 +31,7 @@ class Image {
 		$args        = array(
 			'post_type'   => 'attachment',
 			'numberposts' => 20, // 每个用户最多只允许托管 20 张图片
+			'author__in'  => array( $this->user_id ),
 		);
 		$attachments = get_posts( $args );
 
