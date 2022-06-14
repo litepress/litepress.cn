@@ -123,12 +123,11 @@ export const ImageGallery = forwardRef((props, ref) => {
                                     {Images.slice(0, 20).map((item, index) =>
                                         <Col key={index} className={""}>
                                             <Card className={"avatar-view " + (active === item ? 'active' : '')}>
-                                                <li>
+                                                <li  className={"img-box"} onClick={()=> setActive(item)}>
                                                     <img
                                                         className={'img-fluid  '}
                                                         id={item.id} src={item.url} alt="cravatar图片"
                                                         onClick={(e) => {
-                                                            setActive(item);
                                                             setImgsrc(e.target.src);
                                                             setImgid(e.target.id)
                                                         }}
