@@ -1,6 +1,6 @@
 <?php
 
-namespace LitePress;
+namespace LitePress\Tools;
 
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -9,7 +9,7 @@ use RegexIterator;
 /**
  * 封装常用的文件操作方法
  *
- * @package LitePress
+ * @package LitePress\Tools
  */
 class Filesystem {
 

@@ -21,6 +21,11 @@ require __DIR__ . '/chinese-format/chinese-format.php';
 require __DIR__ . '/library/loader.php';
 
 /**
+ * 载入平台自定义的工具类
+ */
+require __DIR__ . '/tools/loader.php';
+
+/**
  * 新用户注册时在用户meta信息中添加邮箱的hash值（通过md5），这样方便直接通过邮箱hash索引头像
  */
 add_action( 'user_register', function ( $user_id ) {
