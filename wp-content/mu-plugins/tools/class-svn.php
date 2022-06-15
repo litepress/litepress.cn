@@ -12,6 +12,53 @@ namespace LitePress\Tools;
 class SVN {
 
 	/**
+	 * 从 URL 获取 SVN 仓库信息
+	 *
+	 * @static
+	 *
+	 * @param string $url SVN 仓库 URL。
+	 * @param array $options 可选。要传递给 SVN 的选项列表。默认值：空数组。
+	 *
+	 * @return array {
+	 * @type bool|array $result 失败为假。 否则为关联数组。
+	 * @type bool|array $errors 是否遇到任何错误或警告。
+	 * }
+	 */
+	public static function info( string $url, array $options = array() ): array {
+		$esc_url = escapeshellarg( $url );
+
+		$options[] = 'non-interactive';
+
+		$esc_options = self::parse_esc_parameters( $options );
+
+		$output = self::shell_exec( "svn info $esc_options $esc_url 2>&1" );
+		if ( preg_match( '!URL: ' . untrailingslashit( $url ) . '\n!i', $output ) ) {
+			$lines  = explode( "\n", $output );
+			$result = array_filter( array_reduce(
+				$lines,
+				function ( $carry, $item ) {
+					$pair = explode( ':', $item, 2 );
+					if ( isset( $pair[1] ) ) {
+						$key           = trim( $pair[0] );
+						$carry[ $key ] = trim( $pair[1] );
+					} else {
+						$carry[] = trim( $pair[0] );
+					}
+
+					return $carry;
+				},
+				array()
+			) );
+			$errors = false;
+		} else {
+			$result = false;
+			$errors = self::parse_svn_errors( $output );
+		}
+
+		return compact( 'result', 'errors' );
+	}
+
+	/**
 	 * 从 URL 导出 SVN 仓库。
 	 *
 	 * @static
