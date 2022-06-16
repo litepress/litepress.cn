@@ -100,7 +100,7 @@ export const ImageGallery = forwardRef((props, ref) => {
                 <div className={"p-3"}>
 
                     <Row as={"section"}>
-                        <Col lg={8} className={"p-3 image_list_left min-height-15"}>
+                        <Col lg={8} className={"p-3 image_list_left"}>
                             {Images
                                 ? <Row className={"row-cols-5 g-3"} id={"image_list"}>
                                     {Images.slice(0, 20).map((item, index) =>

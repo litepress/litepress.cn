@@ -4,7 +4,7 @@
 /*form*/
 /*list-group*/
 /*dropdown*/
-.dropdown-item { 
+.dropdown-item {
   border-radius: .3125rem; }
 
 .dropdown-menu {
@@ -9750,9 +9750,6 @@ button:disabled {
   background-color: rgba(55, 125, 255, 0.1);
   border: 0; }
 
-.min-height-15 {
-  min-height: 15em; }
-
 .lp-avatar {
   position: relative;
   display: inline-block;
@@ -9805,7 +9802,8 @@ button:disabled {
 
 .image_list_left {
   border: 0.125rem dashed rgba(231, 234, 243, 0.7);
-  border-radius: 0.375rem; }
+  border-radius: 0.375rem;
+  min-height: 18em; }
 
 .croppermodal .modal-content {
   box-shadow: 0 0.125rem 20rem 20px rgba(0, 0, 0, 0.37); }

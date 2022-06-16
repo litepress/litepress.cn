@@ -1,7 +1,4 @@
 @import "lp-bootstarp";
-.min-height-15 {
-  min-height: 15em;
-}
 
 .lp-avatar {
   position: relative;
@@ -68,6 +65,7 @@
 .image_list_left {
   border: .125rem dashed rgba(231, 234, 243, .7);
   border-radius: $border-radius;
+  min-height: 18em;
 }
 
 .croppermodal {
