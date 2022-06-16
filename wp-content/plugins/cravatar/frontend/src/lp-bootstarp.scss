@@ -102,7 +102,6 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 }
 
 
-
 .card-dashed {
   border: .0625rem dashed rgba(231, 234, 243, .7);
 }
@@ -183,7 +182,6 @@ button:disabled {
 }
 
 
-
 .dz-dropzone-card {
   width: 100%;
   background-color: #f8fafd;
@@ -222,7 +220,7 @@ button:disabled {
 }
 
 
-.min-height-15{
+.min-height-15 {
   min-height: 15em;
 }
 
@@ -233,6 +231,7 @@ button:disabled {
   border: 3px solid #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, .15);
 }
+
 .avatar-tooltip {
   position: absolute;
   bottom: 0;
@@ -304,9 +303,7 @@ button:disabled {
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
-
     -webkit-appearance: none;
-
   }
 
   &:focus-visible {
