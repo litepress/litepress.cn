@@ -76,8 +76,6 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 // 6. Optionally include any other parts as needed
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-@import "App.css";
-
 .card {
   box-shadow: $card-box-shadow;
   border: .0625rem solid rgba(231, 234, 243, .7);
@@ -221,9 +219,6 @@ button:disabled {
   background-color: rgba(55, 125, 255, .1);
   border: 0;
 }
-
-
-
 
 
 .min-height-15{
