@@ -100,7 +100,7 @@ export const ImageGallery = forwardRef((props, ref) => {
                 <div className={"p-3"}>
 
                     <Row as={"section"}>
-                        <Col lg={8} className={"p-3 image_list_left"}>
+                        <Col lg={8} className={"p-3 image_list_left min-hight-15"}>
                             {Images
                                 ? <Row className={"row-cols-5 g-3"} id={"image_list"}>
                                     {Images.slice(0, 20).map((item, index) =>
@@ -132,10 +132,19 @@ export const ImageGallery = forwardRef((props, ref) => {
                                     className={"d-flex justify-content-between align-items-center w-100 position-absolute border-0"}>
                                     <small className="text-muted">{Imgsrc ? "图片详情" : "请选择一张图片"}</small>
 
-<Button id={Imgid} size={"sm"}
-        className={"card-dropdown-btn rounded-circle btn-icon"}
-        variant={"ghost-secondary"} onClick={delete_images}><i
-    className="fa-duotone fa-trash-can"></i> 删除</Button>
+                                    <Dropdown className={""}>
+                                        <Dropdown.Toggle size={"sm"}
+                                                         className={"card-dropdown-btn rounded-circle btn-icon"}
+                                                         variant={"ghost-secondary"}><i
+                                            className="fa-duotone fa-trash-can"></i></Dropdown.Toggle>
+                                        <Dropdown.Menu align="end" className={"p-2"}>
+                                            <Dropdown.Header>是否删除这张图片？</Dropdown.Header>
+                                            <Dropdown.Item as={Button} onClick={delete_images} id={Imgid}><i
+                                                className="fa-duotone fa-circle-check"></i> 是</Dropdown.Item>
+                                            <Dropdown.Item as={Button} id={Imgid}><i
+                                                className="fa-duotone fa-circle-x"></i> 否</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
 
                                 </Card.Header>
                                 <Card.Body className={"pt-2 pb-0 d-flex center"}>

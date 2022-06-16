@@ -10,8 +10,8 @@ import {
 import {useEffect, useRef, useState} from 'react'
 import HistoriesLoader from "../Loader";
 import useCountDown from "../useCountDown";
-import {CropperModal} from "../Modal/CropperModal";
-import {ImageGallery} from "../Modal/image-gallery";
+import {CropperModal} from "../modal/CropperModal";
+import {ImageGallery} from "../modal/image-gallery";
 import ReactCodeInput from "react-code-input";
 
 
@@ -124,15 +124,18 @@ export function ChangeAvatar(props) {
                     <Card.Header
                         className={"d-flex justify-content-between align-items-center w-100 position-absolute border-0"}>
                         <small className="text-muted">{Imgsrc ? "图片详情" : "请选择一张图片"}</small>
-                        <Dropdown className={""}>
 
-                            <Dropdown.Toggle size={"sm"} className={"card-dropdown-btn rounded-circle btn-icon"}
+                        <Dropdown className={""}>
+                            <Dropdown.Toggle size={"sm"}
+                                             className={"card-dropdown-btn rounded-circle btn-icon"}
                                              variant={"ghost-secondary"}><i
-                                className="fa-solid fa-ellipsis-vertical"></i></Dropdown.Toggle>
+                                className="fa-duotone fa-trash-can"></i></Dropdown.Toggle>
                             <Dropdown.Menu align="end" className={"p-2"}>
-                                <Dropdown.Header>操作</Dropdown.Header>
+                                <Dropdown.Header>是否删除这张图片？</Dropdown.Header>
                                 <Dropdown.Item as={Button} onClick={delete_images} id={Imgid}><i
-                                    className="fa-duotone fa-trash-can"></i> 删除</Dropdown.Item>
+                                    className="fa-duotone fa-circle-check"></i> 是</Dropdown.Item>
+                                <Dropdown.Item as={Button} id={Imgid}><i
+                                    className="fa-duotone fa-circle-x"></i> 否</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
 
@@ -262,7 +265,7 @@ export function PostAvatars(props) {
     }
 
     return <>
-        <Form id="bind-email-form" ref={emailform} noValidate validated={validated}>
+        <Form id="bind-email-form mt-3" ref={emailform} noValidate validated={validated}>
 
 
             <Row className={"mb-4"}>

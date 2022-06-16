@@ -1,9 +1,9 @@
 import './App.css';
-import {Button, Card, Col, Nav, Row, Table} from "react-bootstrap";
+import {Button, Card, Col, Dropdown, Nav, Row, Table} from "react-bootstrap";
 import {useEffect,  useState} from "react";
 import {deleteAvatars, getAvatars} from "./module/axios/mainApi";
 import {toast} from "react-toastify";
-import BsModal from "./module/Modal/modal";
+import BsModal from "./module/modal/modal";
 import {
     ChangeAvatar, PostAvatars
 } from "./module/form/avatar-form";
@@ -51,7 +51,7 @@ export default function App() {
 
                     <Row>
                         <Col lg={9}>
-                            <Table variant={""} borderless responsive className={"align-middle m-0"}>
+                            <Table variant={""} borderless className={"align-middle m-0"}>
                                 <thead className={"thead-light"}>
                                 <tr>
                                     <th className={"text-center"}>图片</th>
@@ -73,10 +73,22 @@ export default function App() {
                                                      modaltitle={"图片库"}
                                                      body={<ChangeAvatar avatar={user.image} getAvatars={()=> GetAvatars()}   />}/>
 
-                                            <Button size="sm" id={user.id} onClick={deleteavatars}
-                                                    variant="outline-white" className="">
-                                                <i className="fa-duotone fa-trash-can"></i> 删除
-                                            </Button>
+
+
+                                            <Dropdown className={""}>
+                                                <Dropdown.Toggle size={"sm"} className={"card-dropdown-btn"}
+                                                                 variant="outline-white"><i
+                                                    className="fa-duotone fa-trash-can"></i> 删除</Dropdown.Toggle>
+                                                <Dropdown.Menu align="end" className={"p-2"}>
+                                                    <Dropdown.Header>是否删除此账号？</Dropdown.Header>
+                                                    <Dropdown.Item as={Button} onClick={deleteavatars} id={user.id}><i
+                                                        className="fa-duotone fa-circle-check"></i> 是</Dropdown.Item>
+                                                    <Dropdown.Item as={Button} ><i
+                                                        className="fa-duotone fa-circle-x"></i> 否</Dropdown.Item>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
+
+
                                         </div>
                                     </td>
                                 </tr>)}
