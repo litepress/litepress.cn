@@ -1,6 +1,6 @@
 // Custom.scss
 // Option B: Include parts of Bootstrap
-// eslint-disable-next-line
+
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
 @import "../node_modules/bootstrap/scss/functions";
 
@@ -46,13 +46,6 @@ $list-group-border-color: #e7eaf3;
 $dropdown-box-shadow: 0 0.6125rem 2.5rem 0.6125rem rgba(140, 152, 164, .18);
 $dropdown-border-width: 0;
 $dropdown-link-hover-bg: rgba(189, 197, 209, .2);
-.dropdown-item {
-  border-radius: .3125rem;
-}
-
-.dropdown-menu {
-  box-shadow: $dropdown-box-shadow;
-}
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../node_modules/bootstrap/scss/variables";
@@ -75,6 +68,14 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 // 6. Optionally include any other parts as needed
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+.dropdown-item {
+  border-radius: .3125rem;
+}
+
+.dropdown-menu {
+  box-shadow: $dropdown-box-shadow;
+}
 
 .card {
   box-shadow: $card-box-shadow;
