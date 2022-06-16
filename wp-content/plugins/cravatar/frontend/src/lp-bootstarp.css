@@ -9645,6 +9645,74 @@ textarea.form-control-lg {
 
   .d-print-none {
     display: none !important; } }
+.min-height-15 {
+  min-height: 15em; }
+
+.lp-avatar {
+  position: relative;
+  display: inline-block;
+  width: 3.125rem;
+  border: 3px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); }
+
+.avatar-tooltip {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  right: 5px;
+  z-index: 0;
+  color: #fff; }
+  .avatar-tooltip:after {
+    right: -40px;
+    box-sizing: border-box;
+    border: solid 33px transparent;
+    border-left-color: #0000001a;
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    bottom: -35px;
+    transform: rotate(45deg);
+    z-index: -1; }
+
+.avatar-view {
+  object-fit: contain;
+  border: 3px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  overflow: hidden;
+  min-height: 80px; }
+  .avatar-view.active {
+    box-shadow: 0 0 0 2px #0274be; }
+  .avatar-view .img-box {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center; }
+  .avatar-view img {
+    object-fit: cover;
+    margin: auto;
+    max-height: 100%; }
+
+.image_list_left {
+  border: 0.125rem dashed rgba(231, 234, 243, 0.7);
+  border-radius: 0.375rem; }
+
+.croppermodal .modal-content {
+  box-shadow: 0 0.125rem 20rem 20px rgba(0, 0, 0, 0.37); }
+
+.react-code-input > input {
+  margin: 0 10px !important;
+  font-family: inherit !important; }
+  .react-code-input > input::-webkit-outer-spin-button, .react-code-input > input::-webkit-inner-spin-button {
+    -webkit-appearance: none; }
+  .react-code-input > input:focus-visible {
+    outline-color: #0274be; }
+
 .card {
   box-shadow: 0px 3px 8px 0px #00000014;
   border: 0.0625rem solid rgba(231, 234, 243, 0.7); }
@@ -9749,73 +9817,5 @@ button:disabled {
   color: #71869d;
   background-color: rgba(55, 125, 255, 0.1);
   border: 0; }
-
-.min-height-15 {
-  min-height: 15em; }
-
-.lp-avatar {
-  position: relative;
-  display: inline-block;
-  width: 3.125rem;
-  border: 3px solid #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); }
-
-.avatar-tooltip {
-  position: absolute;
-  bottom: 0;
-  display: block;
-  right: 5px;
-  z-index: 0;
-  color: #fff; }
-  .avatar-tooltip:after {
-    right: -40px;
-    box-sizing: border-box;
-    border: solid 33px transparent;
-    border-left-color: #0000001a;
-    border-radius: 50%;
-    content: "";
-    position: absolute;
-    bottom: -35px;
-    transform: rotate(45deg);
-    z-index: -1; }
-
-.avatar-view {
-  object-fit: contain;
-  border: 3px solid #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  overflow: hidden;
-  min-height: 80px; }
-  .avatar-view.active {
-    box-shadow: 0 0 0 2px #0274be; }
-  .avatar-view .img-box {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center; }
-  .avatar-view img {
-    object-fit: cover;
-    margin: auto;
-    max-height: 100%; }
-
-.image_list_left {
-  border: 0.125rem dashed rgba(231, 234, 243, 0.7);
-  border-radius: 0.375rem; }
-
-.croppermodal .modal-content {
-  box-shadow: 0 0.125rem 20rem 20px rgba(0, 0, 0, 0.37); }
-
-.react-code-input > input {
-  margin: 0 10px !important;
-  font-family: inherit !important; }
-  .react-code-input > input::-webkit-outer-spin-button, .react-code-input > input::-webkit-inner-spin-button {
-    -webkit-appearance: none; }
-  .react-code-input > input:focus-visible {
-    outline-color: #0274be; }
 
 /*# sourceMappingURL=lp-bootstarp.css.map */

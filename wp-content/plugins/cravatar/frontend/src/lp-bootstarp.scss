@@ -1,4 +1,3 @@
-
 // Custom.scss
 // Option B: Include parts of Bootstrap
 
@@ -76,6 +75,8 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 // 6. Optionally include any other parts as needed
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+@import "App";
 
 .card {
   box-shadow: $card-box-shadow;
@@ -222,4 +223,3 @@ button:disabled {
 }
 
 
-@import "App";
