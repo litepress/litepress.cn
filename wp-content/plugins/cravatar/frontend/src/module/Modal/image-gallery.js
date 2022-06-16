@@ -24,15 +24,7 @@ export const ImageGallery = forwardRef((props, ref) => {
             const result = response.data.data;
             /*console.log(response.data.data);*/
             setImages(result)
-        }).catch(error => {
-            if (error.response) {
-                toast.warn(error.response.data.message)
-            } else if (error.request) {
-                console.log(error.request);
-            } else {
-                console.log('Error', error.message);
-            }
-        });
+        })
     }
     useEffect(() => {
         GetImage()
@@ -49,15 +41,6 @@ export const ImageGallery = forwardRef((props, ref) => {
                     setImgsrc(null)
                 }
             )
-            .catch(error => {
-                if (error.response) {
-                    toast.warn(error.response.data.message)
-                } else if (error.request) {
-                    console.log(error.request);
-                } else {
-                    console.log('Error', error.message);
-                }
-            });
     }
 
     const SelectImage = (e) => {
@@ -148,19 +131,11 @@ export const ImageGallery = forwardRef((props, ref) => {
                                 <Card.Header
                                     className={"d-flex justify-content-between align-items-center w-100 position-absolute border-0"}>
                                     <small className="text-muted">{Imgsrc ? "图片详情" : "请选择一张图片"}</small>
-                                    <Dropdown className={""}>
 
-                                        <Dropdown.Toggle size={"sm"}
-                                                         className={"card-dropdown-btn rounded-circle btn-icon"}
-                                                         variant={"ghost-secondary"}><i
-                                            className="fa-solid fa-ellipsis-vertical"></i></Dropdown.Toggle>
-                                        <Dropdown.Menu align="end" className={"p-2"}>
-                                            <Dropdown.Header>操作</Dropdown.Header>
-                                            <Dropdown.Item as={Button} onClick={delete_images} id={Imgid}><i
-                                                className="fa-duotone fa-trash-can"></i> 删除</Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-
+<Button id={Imgid} size={"sm"}
+        className={"card-dropdown-btn rounded-circle btn-icon"}
+        variant={"ghost-secondary"} onClick={delete_images}><i
+    className="fa-duotone fa-trash-can"></i> 删除</Button>
 
                                 </Card.Header>
                                 <Card.Body className={"pt-2 pb-0 d-flex center"}>

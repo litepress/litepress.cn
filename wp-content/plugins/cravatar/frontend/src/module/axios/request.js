@@ -11,26 +11,57 @@ const service = axios.create({
 
 })
 
-// 添加请求拦截器)
+/*// 添加请求拦截器)
 service.interceptors.request.use(config => {
     // 在发送请求之前做些什么
-/*    toast.loading("加载中……", {
+/!*    toast.loading("加载中……", {
         toastId: "loading"
-    });*/
+    });*!/
     return config;
 }, error => {
-    toast.dismiss();
+    /!*toast.dismiss();*!/
     // 对请求错误做些什么
     return Promise.reject(error);
-});
+});*/
 
 
 //响应拦截器
 service.interceptors.response.use(response => {
-    toast.dismiss();
+/*响应成功*/
     return response;
 }, error => {
-    toast.dismiss();
+    /*响应错误*/
+    const status =
+        (error.response &&
+            error.response.status &&
+            error.response.status) ||
+        '';
+    const data = (error.response && error.response.data) || {};
+    if (data.message) {
+        toast.warn(data.message);
+        return Promise.reject(data.message);
+    }
+
+    if (
+        error.code === 'ECONNABORTED' &&
+        error.message.indexOf('timeout') !== -1
+    ) {
+        toast.warn('请求超时~~');
+        return Promise.reject('请求超时~~');
+    }
+    if (status === 401) {
+        toast.warn('登录过期,请重新登录');
+        return Promise.reject('登录过期,请重新登录');
+    }
+    if (status === 404) {
+        toast.warn('接口404报错');
+        return Promise.reject('接口404报错');
+    }
+    if (status === 500) {
+        console.log(error.response);
+        toast.warn('服务器错误');
+        return Promise.reject('接口404报错');
+    }
     return Promise.reject(error);
 })
 

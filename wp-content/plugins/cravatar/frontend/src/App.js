@@ -17,15 +17,7 @@ export default function App() {
             const result = response.data.data;
             /*console.log(response.data.data);*/
             setUsers(result)
-        }).catch(error => {
-            if (error.response) {
-                toast.warn(error.response.data.message)
-            } else if (error.request) {
-                console.log(error.request);
-            } else {
-                console.log('Error', error.message);
-            }
-        });
+        })
     }
     useEffect(() => {
         GetAvatars()
@@ -41,15 +33,6 @@ export default function App() {
                     GetAvatars()
                 }
             )
-            .catch(error => {
-                if (error.response) {
-                    toast.warn(error.response.data.message)
-                } else if (error.request) {
-                    console.log(error.request);
-                } else {
-                    console.log('Error', error.message);
-                }
-            });
     };
 
 
@@ -78,10 +61,7 @@ export default function App() {
                                 </thead>
                                 <tbody>
                                 {Users && Users.map((user, index) => <tr key={index}>
-                                    <td className={"text-center"}><img
-                                        className="img-fluid lp-avatar"
-                                        src={user.image}
-                                        alt=""/></td>
+                                    <td className={"text-center"}><Card as={"img"} className={"lp-avatar"} src={user.image} /></td>
                                     <td>{user.email}</td>
                                     <td>
                                         <div

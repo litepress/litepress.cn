@@ -9722,7 +9722,7 @@ textarea.form-control-lg {
     overflow: hidden;
     justify-content: center;
     align-items: center; }
-    .avatar-view img {
+  .avatar-view img {
     object-fit: cover;
     margin: auto;
     max-height: 100%; }

@@ -32,7 +32,7 @@ export function CropperModal(props) {
             const canvasData: HTMLCanvasElement = cropper.getCroppedCanvas();
 
             canvasData.toBlob((blob) => {
-                const croppedFile = new File([blob], file.name, {type: blob.type, lastModified: new Date()});
+                const croppedFile = new File([blob], file.name, {"type": blob.type, 'lastModified': new Date()});
  /*               console.log(file)
                 console.log(croppedFile)*/
                 const formData = new FormData();
@@ -44,15 +44,6 @@ export function CropperModal(props) {
                             props.getImage()
                         }
                     )
-                    .catch(error => {
-                        if (error.response) {
-                            toast.warn(error.response.data.message)
-                        } else if (error.request) {
-                            console.log(error.request);
-                        } else {
-                            console.log('Error', error.message);
-                        }
-                    });
             }, file.name, props.quality);
         }
     }

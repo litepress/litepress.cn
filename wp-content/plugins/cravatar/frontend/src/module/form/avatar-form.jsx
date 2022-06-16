@@ -31,15 +31,7 @@ export function ChangeAvatar(props) {
             const result = response.data.data;
             /*console.log(response.data.data);*/
             setImages(result)
-        }).catch(error => {
-            if (error.response) {
-                toast.warn(error.response.data.message)
-            } else if (error.request) {
-                console.log(error.request);
-            } else {
-                console.log('Error', error.message);
-            }
-        });
+        })
     }
     useEffect(() => {
         GetImage()
@@ -57,17 +49,6 @@ export function ChangeAvatar(props) {
                     document.querySelector('button[class="btn-close"]').click();
                 }
             )
-            .catch(error => {
-                if (error.response) {
-                    toast.warn(error.response.data.message)
-
-                } else if (error.request) {
-                    console.log(error.request);
-                } else {
-                    console.log('Error', error.message);
-                }
-            });
-
 
     };
 
@@ -81,16 +62,7 @@ export function ChangeAvatar(props) {
                     GetImage()
                     setImgsrc(null)
                 }
-            )
-            .catch(error => {
-                if (error.response) {
-                    toast.warn(error.response.data.message)
-                } else if (error.request) {
-                    console.log(error.request);
-                } else {
-                    console.log('Error', error.message);
-                }
-            });
+            );
     }
 
 
@@ -262,18 +234,7 @@ export function PostAvatars(props) {
             sendEmailCode(email.current.value)
                 .then(response => {
                     toast.success(response.data.message)
-                    document.querySelector('.modal.show button[class="btn-close"]').click();
-
                 })
-                .catch(error => {
-                    if (error.response) {
-                        toast.warn(error.response.data.message)
-                    } else if (error.request) {
-                        console.log(error.request);
-                    } else {
-                        console.log('Error', error.message);
-                    }
-                });
 
         })
     }
@@ -295,18 +256,9 @@ export function PostAvatars(props) {
         const image_id = document.getElementsByClassName('image_id')[0].getAttribute("id");
         postAvatars(email.current?.value, Emailcode, image_id)
             .then(response => {
-
                 toast.success(response.data.message)
+                document.querySelector('.modal.show button[class="btn-close"]').click();
             })
-            .catch(error => {
-                if (error.response) {
-                    toast.warn(error.response.data.message)
-                } else if (error.request) {
-                    console.log(error.request);
-                } else {
-                    console.log('Error', error.message);
-                }
-            });
     }
 
     return <>
@@ -320,7 +272,7 @@ export function PostAvatars(props) {
                         <Form.Control ref={email}
                                       placeholder="name@example.com" id={"email"}
                                       aria-label="name@example.com"
-                                      type="email" required
+                                      type="email" required autoFocus
                         />
 
                         <button className={"input-group-text right"} onClick={handleBtnClick}
@@ -336,7 +288,7 @@ export function PostAvatars(props) {
                 <label htmlFor="newEmailLabel" className="col-lg-3 col-form-label form-label">验证码</label>
                 <Col lg={9}>
 
-                    <ReactCodeInput fields={4}
+                    <ReactCodeInput autoFocus={false} fields={4}
                                     onChange={handleEmailcode}/>
                 </Col>
             </Row>

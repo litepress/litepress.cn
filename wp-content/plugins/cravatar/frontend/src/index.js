@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './lp-bootstarp.css';
 import './App.css';
 import App from './App';
 import { ToastContainer } from 'react-toastify';
