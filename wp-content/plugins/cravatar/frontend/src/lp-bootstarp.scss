@@ -76,7 +76,7 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 // 6. Optionally include any other parts as needed
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-@import "App";
+@import "App.css";
 
 .card {
   box-shadow: $card-box-shadow;
