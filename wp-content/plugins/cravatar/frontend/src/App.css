@@ -9649,6 +9649,10 @@ textarea.form-control-lg {
   box-shadow: 0px 3px 8px 0px #00000014;
   border: 0.0625rem solid rgba(231, 234, 243, 0.7); }
 
+.btn-nav-link {
+  padding: 0;
+  border: 0; }
+
 .btn-outline-white {
   --bs-btn-color: var(--bs-gray-650);
   --bs-btn-bg: var(--bs-white);
@@ -9750,9 +9754,6 @@ textarea.form-control-lg {
   width: 3.125rem;
   border: 3px solid #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); }
-
-.placeholder-img {
-  color: #4a82a7; }
 
 .avatar-tooltip {
   position: absolute;

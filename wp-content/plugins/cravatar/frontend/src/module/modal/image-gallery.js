@@ -109,7 +109,7 @@ export const ImageGallery = forwardRef((props, ref) => {
                                 Images.length === 0
                                     ?
                                     <div className={"d-flex center h-100 flex-column"}>
-                                        <i className="fa-duotone fa-boxes-packing fa-5x mb-3 placeholder-img"></i>
+                                        <i className="fa-duotone fa-boxes-packing fa-5x mb-3 text-primary"></i>
                                         <small className={"text-muted"}>暂无图片，请上传图片</small>
                                     </div>
                                     :

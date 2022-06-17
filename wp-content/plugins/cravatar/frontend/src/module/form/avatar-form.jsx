@@ -99,7 +99,7 @@ export function ChangeAvatar(props) {
                     Images.length === 0
                         ?
                         <div className={"d-flex center h-100 flex-column"}>
-                            <i className="fa-duotone fa-boxes-packing fa-5x mb-3 placeholder-img"></i>
+                            <i className="fa-duotone fa-boxes-packing fa-5x mb-3 text-primary"></i>
                             <small className={"text-muted"}>暂无图片，请上传图片</small>
                         </div>
                         :
@@ -288,7 +288,7 @@ export function PostAvatars(props) {
                 </Col>
             </Row>
             <Row className="row mt-4">
-                <label className="col-sm-3 col-form-label form-label d-flex align-items-center">绑定图像</label>
+                <label className="col-sm-3 col-form-label form-label d-flex align-items-center">绑定图片</label>
 
                 <Col className={"col-3"}>
 

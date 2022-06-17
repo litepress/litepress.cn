@@ -7,6 +7,7 @@ import BsModal from "./module/modal/modal";
 import {
     ChangeAvatar, PostAvatars
 } from "./module/form/avatar-form";
+import {ImageGallery} from "./module/modal/image-gallery";
 
 
 
@@ -80,7 +81,7 @@ export default function App() {
                                                                  variant="outline-white"><i
                                                     className="fa-duotone fa-trash-can"></i> 删除</Dropdown.Toggle>
                                                 <Dropdown.Menu align="end" className={"p-2"}>
-                                                    <Dropdown.Header>是否删除此账号？</Dropdown.Header>
+                                                    <Dropdown.Header>是否删除此头像？</Dropdown.Header>
                                                     <Dropdown.Item as={Button} onClick={deleteavatars} id={user.id}><i
                                                         className="fa-duotone fa-circle-check"></i> 是</Dropdown.Item>
                                                     <Dropdown.Item as={Button} ><i
@@ -99,7 +100,7 @@ export default function App() {
                                      class={"card card-body card-dashed-body card-dashed text-center mt-3 text-primary"}
                                      titleicon={'fa-duotone fa-rectangle-history-circle-user'}
                                      icon={"fa-duotone fa-rectangle-history-circle-user fa-2x mb-2"} title={'添加图片'}
-                                     modaltitle={"添加图片"}
+                                     modaltitle={"添加头像"}
                                      body={<PostAvatars/>}/>
                         </Col>
                         <Col className={"border-start"}>
@@ -107,7 +108,13 @@ export default function App() {
                                 <Nav.Item>
 
                                     <Nav.Link active={false}>
-                                        <i className="fa-duotone fa-rectangle-history-circle-user fa-fw me-2"></i> 图片库
+                                       {/* <i className="fa-duotone fa-rectangle-history-circle-user fa-fw me-2"></i> 图片库*/}
+                                        <BsModal modalsize={"lg"}
+                                                 variant={"nav-link"}
+                                                 titleicon={'fa-duotone fa-rectangle-history-circle-user fa-fw me-2'}
+                                                 icon={"fa-duotone fa-rectangle-history-circle-user fa-fw me-2"} title={'图片库'}
+                                                 modaltitle={"图片库"}
+                                                 body={<ChangeAvatar   />}/>
                                     </Nav.Link>
 
                                 </Nav.Item>

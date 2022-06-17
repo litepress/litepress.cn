@@ -81,7 +81,10 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   box-shadow: $card-box-shadow;
   border: .0625rem solid rgba(231, 234, 243, .7);
 }
-
+.btn-nav-link{
+  padding: 0;
+  border: 0;
+}
 .btn-outline-white {
   --bs-btn-color: var(--bs-gray-650);
   --bs-btn-bg: var(--bs-white);

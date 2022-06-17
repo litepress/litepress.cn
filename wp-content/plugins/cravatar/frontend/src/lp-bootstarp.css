@@ -9759,7 +9759,7 @@ button:disabled {
   width: 3.125rem;
   border: 3px solid #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); }
-
+ 
 .avatar-tooltip {
   position: absolute;
   bottom: 0;
@@ -9816,6 +9816,6 @@ button:disabled {
   .react-code-input > input::-webkit-outer-spin-button, .react-code-input > input::-webkit-inner-spin-button {
     -webkit-appearance: none; }
   .react-code-input > input:focus-visible {
-    outline-color: #0274be; } 
+    outline-color: #0274be; }
 
 /*# sourceMappingURL=lp-bootstarp.css.map */
