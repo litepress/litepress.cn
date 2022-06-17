@@ -3,7 +3,7 @@
 /*modal*/
 /*form*/
 /*list-group*/
-/*dropdown*/ 
+/*dropdown*/
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -2498,7 +2498,7 @@ textarea.form-control-lg {
     border-color: var(--bs-btn-disabled-border-color);
     opacity: var(--bs-btn-disabled-opacity); }
 
-.btn-primary {
+.btn-primary { 
   --bs-btn-color: #fff;
   --bs-btn-bg: #0274be;
   --bs-btn-border-color: #0274be;
@@ -9663,7 +9663,8 @@ textarea.form-control-lg {
 
 .btn:disabled, .btn.disabled, fieldset:disabled .btn {
   pointer-events: all;
-  cursor: not-allowed; }
+  cursor: not-allowed;
+  border: 0; }
 
 .card-dashed {
   border: 0.0625rem dashed rgba(231, 234, 243, 0.7); }
@@ -9713,13 +9714,6 @@ textarea.form-control-lg {
 .form-control.is-invalid {
   border-color: #dc3545 !important;
   background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 12 12%27 width=%2712%27 height=%2712%27 fill=%27none%27 stroke=%27%23dc3545%27%3e%3ccircle cx=%276%27 cy=%276%27 r=%274.5%27/%3e%3cpath stroke-linejoin=%27round%27 d=%27M5.8 3.6h.4L6 6.5z%27/%3e%3ccircle cx=%276%27 cy=%278.2%27 r=%27.6%27 fill=%27%23dc3545%27 stroke=%27none%27/%3e%3c/svg%3e") !important; }
-
-button:disabled {
-  pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  color: rgba(33, 37, 41, 0.25); }
 
 .dz-dropzone-card {
   width: 100%;

@@ -22,7 +22,8 @@ export const ImageGallery = forwardRef((props, ref) => {
     const GetImage = () => {
         getImages().then(response => {
             const result = response.data.data;
-            /*console.log(response.data.data);*/
+            console.log(response.data.data);
+            console.log(result.length===0);
             setImages(result)
         })
     }
@@ -84,6 +85,8 @@ export const ImageGallery = forwardRef((props, ref) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+
     return <>
         <Card className={"avatar-view"} onClick={handleShow}>
             <img className="img-fluid image_id"
@@ -94,7 +97,7 @@ export const ImageGallery = forwardRef((props, ref) => {
         <Modal show={show} onHide={handleClose} className={"croppermodal"} size={"lg"}
                backdrop="static" centered>
             <Modal.Header className={"border-0 pb-0"} closeButton>
-                <Modal.Title><i className="fa-duotone fa-crop"></i> 图片库</Modal.Title>
+                <Modal.Title><i className="fa-duotone me-2 fa-circle-user"></i>图片库</Modal.Title>
             </Modal.Header>
             <Modal.Body className={"pt-0"}>
                 <div className={"p-3"}>
@@ -102,28 +105,37 @@ export const ImageGallery = forwardRef((props, ref) => {
                     <Row as={"section"}>
                         <Col lg={8} className={"p-3 image_list_left"}>
                             {Images
-                                ? <Row className={"row-cols-5 g-3"} id={"image_list"}>
-                                    {Images.slice(0, 20).map((item, index) =>
-                                        <Col key={index} className={""}>
-                                            <Card className={"avatar-view " + (active === item ? 'active' : '')}>
-                                                <li  className={"img-box"} onClick={()=> setActive(item)}>
-                                                    <img
-                                                        className={'img-fluid  '}
-                                                        id={item.id} src={item.url} alt="cravatar图片"
-                                                        onClick={(e) => {
-                                                            setImgsrc(e.target.src);
-                                                            setImgid(e.target.id)
-                                                        }}
-                                                        onError={(e) => {
-                                                            e.target.onerror = null;
-                                                            e.target.src = "https://litepress.cn/cravatar/wp-content/uploads/sites/9/2021/07/default.png"
-                                                        }}/>
-                                                </li>
-                                            </Card>
-                                        </Col>
+                                ?
+                                Images.length === 0
+                                    ?
+                                    <div className={"d-flex center h-100 flex-column"}>
+                                        <i className="fa-duotone fa-boxes-packing fa-5x mb-3"></i>
+                                        <p className={"text-muted"}>暂无图片，请上传图片</p>
+                                    </div>
+                                    :
+                                    <Row className={"row-cols-5 g-3"} id={"image_list"}>
+                                        {Images.slice(0, 20).map((item, index) =>
+                                            <Col key={index} className={""}>
+                                                <Card className={"avatar-view " + (active === item ? 'active' : '')}>
+                                                    <li className={"img-box"} onClick={() => setActive(item)}
+                                                        id={item.id}>
+                                                        <img
+                                                            className={'img-fluid  '}
+                                                            id={item.id} src={item.url} alt="cravatar图片"
+                                                            onClick={(e) => {
+                                                                setImgsrc(e.target.src);
+                                                                setImgid(e.target.id)
+                                                            }}
+                                                            onError={(e) => {
+                                                                e.target.onerror = null;
+                                                                e.target.src = "https://litepress.cn/cravatar/wp-content/uploads/sites/9/2021/07/default.png"
+                                                            }}/>
+                                                    </li>
+                                                </Card>
+                                            </Col>
                                     )}
-                                </Row>
-                                : <HistoriesLoader/>
+                                    </Row>
+                                        : <HistoriesLoader/>
                             }
                         </Col>
                         <Col className={"text-center"}>
@@ -135,7 +147,7 @@ export const ImageGallery = forwardRef((props, ref) => {
                                     <Dropdown className={""}>
                                         <Dropdown.Toggle size={"sm"}
                                                          className={"card-dropdown-btn rounded-circle btn-icon"}
-                                                         variant={"ghost-secondary"}><i
+                                                         variant={"ghost-secondary"} disabled={!Imgsrc}><i
                                             className="fa-duotone fa-trash-can"></i></Dropdown.Toggle>
                                         <Dropdown.Menu align="end" className={"p-2"}>
                                             <Dropdown.Header>是否删除这张图片？</Dropdown.Header>
@@ -149,7 +161,7 @@ export const ImageGallery = forwardRef((props, ref) => {
                                 </Card.Header>
                                 <Card.Body className={"pt-2 pb-0 d-flex center"}>
 
-                                    {Imgsrc ? <img className={"img-fluid"} src={Imgsrc} alt={""} /> :
+                                    {Imgsrc ? <img className={"img-fluid"} src={Imgsrc} alt={""}/> :
                                         <svg xmlns="http://www.w3.org/2000/svg" className={"p-1"} width="100"
                                              height="100"
                                              viewBox="0 0 400 525" fill="none">

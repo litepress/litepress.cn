@@ -95,27 +95,36 @@ export function ChangeAvatar(props) {
         <Row as={"section"}>
             <Col lg={8} className={"p-3 image_list_left"}>
                 {Images
-                    ? <Row className={"row-cols-5 g-3"} id={"image_list"}>
-                        {Images.slice(0, 20).map((item, index) =>
-                            <Col key={index} className={""}>
-                                <Card className={"avatar-view " + (active === item ? 'active' : '')}>
-                                    <li className={"img-box"} onClick={()=> setActive(item)}>
-                                        <img
-                                            className={'img-fluid  '}
-                                            id={item.id} src={item.url} alt="cravatar图片"
-                                            onClick={(e) => {
-                                                setImgsrc(e.target.src);
-                                                setImgid(e.target.id)
-                                            }}
-                                            onError={(e) => {
-                                                e.target.onerror = null;
-                                                e.target.src = "https://litepress.cn/cravatar/wp-content/uploads/sites/9/2021/07/default.png"
-                                            }}/>
-                                    </li>
-                                </Card>
-                            </Col>
-                        )}
-                    </Row>
+                    ?
+                    Images.length === 0
+                        ?
+                        <div className={"d-flex center h-100 flex-column"}>
+                            <i className="fa-duotone fa-boxes-packing fa-5x mb-3"></i>
+                            <p className={"text-muted"}>暂无图片，请上传图片</p>
+                        </div>
+                        :
+                        <Row className={"row-cols-5 g-3"} id={"image_list"}>
+                            {Images.slice(0, 20).map((item, index) =>
+                                <Col key={index} className={""}>
+                                    <Card className={"avatar-view " + (active === item ? 'active' : '')}>
+                                        <li className={"img-box"} onClick={() => setActive(item)}
+                                            id={item.id}>
+                                            <img
+                                                className={'img-fluid  '}
+                                                id={item.id} src={item.url} alt="cravatar图片"
+                                                onClick={(e) => {
+                                                    setImgsrc(e.target.src);
+                                                    setImgid(e.target.id)
+                                                }}
+                                                onError={(e) => {
+                                                    e.target.onerror = null;
+                                                    e.target.src = "https://litepress.cn/cravatar/wp-content/uploads/sites/9/2021/07/default.png"
+                                                }}/>
+                                        </li>
+                                    </Card>
+                                </Col>
+                            )}
+                        </Row>
                     : <HistoriesLoader/>
                 }
             </Col>
@@ -128,7 +137,7 @@ export function ChangeAvatar(props) {
                         <Dropdown className={""}>
                             <Dropdown.Toggle size={"sm"}
                                              className={"card-dropdown-btn rounded-circle btn-icon"}
-                                             variant={"ghost-secondary"}><i
+                                             variant={"ghost-secondary"} disabled={!Imgsrc}><i
                                 className="fa-duotone fa-trash-can"></i></Dropdown.Toggle>
                             <Dropdown.Menu align="end" className={"p-2"}>
                                 <Dropdown.Header>是否删除这张图片？</Dropdown.Header>
