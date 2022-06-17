@@ -109,8 +109,8 @@ export const ImageGallery = forwardRef((props, ref) => {
                                 Images.length === 0
                                     ?
                                     <div className={"d-flex center h-100 flex-column"}>
-                                        <i className="fa-duotone fa-boxes-packing fa-5x mb-3"></i>
-                                        <p className={"text-muted"}>暂无图片，请上传图片</p>
+                                        <i className="fa-duotone fa-boxes-packing fa-5x mb-3 text-primary"></i>
+                                        <small className={"text-muted"}>暂无图片，请上传图片</small>
                                     </div>
                                     :
                                     <Row className={"row-cols-5 g-3"} id={"image_list"}>
@@ -162,25 +162,7 @@ export const ImageGallery = forwardRef((props, ref) => {
                                 <Card.Body className={"pt-2 pb-0 d-flex center"}>
 
                                     {Imgsrc ? <img className={"img-fluid"} src={Imgsrc} alt={""}/> :
-                                        <svg xmlns="http://www.w3.org/2000/svg" className={"p-1"} width="100"
-                                             height="100"
-                                             viewBox="0 0 400 525" fill="none">
-                                            <path
-                                                d="M362.5 525H37.5C16.75 525 0 508.25 0 487.5V37.5C0 16.75 16.75 0 37.5 0H275L400 125V487.5C400 508.25 383.25 525 362.5 525Z"
-                                                fill="#E7EAF3"/>
-                                            <path d="M400 125H275V0L400 125Z" fill="#F8FAFD"/>
-                                            <path d="M275 125L400 250V125H275Z" fill="#BDC5D1"/>
-                                            <path
-                                                d="M314.5 405.5L254.25 330.25C252.75 328.25 250.5 327 248 327H244.5C242 327 239.5 328.25 238 330.25L218.75 354.5L178.75 298.5C177.25 296.25 174.75 295 172 295.25H168.75C166.25 295.25 163.75 296.5 162.25 298.5L85.25 405.5C83.5 408 83.5 411.5 85.25 414L87.5 417.75C89 420.25 91.5 421.75 94.25 421.75H305C307.75 421.75 310.5 420.25 311.75 417.75L314 414C316.25 411.5 316.25 408 314.5 405.5ZM115 400.75L170.75 323.5L194.75 400.75H115Z"
-                                                fill="#377DFF"/>
-                                            <path
-                                                d="M268.075 294.664C279.362 291.999 286.352 280.688 283.687 269.401C281.021 258.114 269.711 251.124 258.424 253.79C247.136 256.455 240.147 267.765 242.812 279.053C245.477 290.34 256.788 297.329 268.075 294.664Z"
-                                                fill="#BDC5D1"/>
-                                            <input xmlns="" id="_w_pedant"/>
-                                            <script xmlns=""/>
-                                            <div xmlns="" id="edge-translate-notifier-container"
-                                                 className="edge-translate-notifier-center"/>
-                                        </svg>
+                                        <i className="fa-duotone fa-file-image fa-5x text-primary"></i>
                                     }
 
 
