@@ -99,7 +99,7 @@ export function ChangeAvatar(props) {
                     Images.length === 0
                         ?
                         <div className={"d-flex center h-100 flex-column"}>
-                            <i className="fa-duotone fa-boxes-packing fa-5x mb-3 text-primary"></i>
+                            <i className="fa-duotone fa-boxes-packing fa-5x mb-3 placeholder-img"></i>
                             <small className={"text-muted"}>暂无图片，请上传图片</small>
                         </div>
                         :

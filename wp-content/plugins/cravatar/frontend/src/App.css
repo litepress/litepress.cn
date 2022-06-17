@@ -2498,7 +2498,7 @@ textarea.form-control-lg {
     border-color: var(--bs-btn-disabled-border-color);
     opacity: var(--bs-btn-disabled-opacity); }
 
-.btn-primary { 
+.btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #0274be;
   --bs-btn-border-color: #0274be;
@@ -9750,6 +9750,9 @@ textarea.form-control-lg {
   width: 3.125rem;
   border: 3px solid #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); }
+
+.placeholder-img {
+  color: #4a82a7; }
 
 .avatar-tooltip {
   position: absolute;
