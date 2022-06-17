@@ -2497,7 +2497,7 @@ textarea.form-control-lg {
     background-color: var(--bs-btn-disabled-bg);
     border-color: var(--bs-btn-disabled-border-color);
     opacity: var(--bs-btn-disabled-opacity); }
-
+ 
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #0274be;
