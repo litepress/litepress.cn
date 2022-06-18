@@ -11,7 +11,7 @@ export const ImageGallery = forwardRef((props, ref) => {
 
     /*公共*/
     const [Imgsrc, setImgsrc] = useState()
-    const [activeImg, setactiveImg] = useState("https://dev.litepress.cn/cravatar/wp-content/uploads/sites/9/2022/06/未标题-1-1.png")
+    const [activeImg, setactiveImg] = useState("https://dev.litepress.cn/cravatar/wp-content/uploads/sites/9/2022/06/img1.png")
     const [activeImgid, setactiveImgid] = useState("112")
     const [Imgid, setImgid] = useState()
 
@@ -22,8 +22,6 @@ export const ImageGallery = forwardRef((props, ref) => {
     const GetImage = () => {
         getImages().then(response => {
             const result = response.data.data;
-            console.log(response.data.data);
-            console.log(result.length===0);
             setImages(result)
         })
     }
@@ -91,7 +89,7 @@ export const ImageGallery = forwardRef((props, ref) => {
         <Card className={"avatar-view"} onClick={handleShow}>
             <img className="img-fluid image_id"
                  src={activeImg} id={activeImgid}
-                 alt="cravatar图片"/>
+                 alt="cravatar 图片"/>
             <span className="avatar-tooltip"><i className="fad fa-camera-retro"></i></span>
         </Card>
         <Modal show={show} onHide={handleClose} className={"croppermodal"} size={"lg"}
