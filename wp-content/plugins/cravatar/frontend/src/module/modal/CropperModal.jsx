@@ -13,7 +13,7 @@ export function CropperModal(props) {
 
     const [image, setImage] = useState(null);
 
-    useEffect((e) => {
+    useEffect(() => {
         if (file !== null) {
             setImage("show");
         } else {
@@ -32,7 +32,8 @@ export function CropperModal(props) {
             const canvasData: HTMLCanvasElement = cropper.getCroppedCanvas();
 
             canvasData.toBlob((blob) => {
-                const croppedFile = new File([blob], file.name, {"type": blob.type, 'lastModified': new Date()});
+                const croppedFile = new File([blob], file.name, {"type": blob.type, "lastModified": new Date()});
+                console.log(file)
  /*               console.log(file)
                 console.log(croppedFile)*/
                 const formData = new FormData();

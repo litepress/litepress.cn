@@ -62,7 +62,9 @@ export default function App() {
                                 </thead>
                                 <tbody>
                                 {Users && Users.map((user, index) => <tr key={index}>
-                                    <td className={"text-center"}><Card as={"img"} className={"lp-avatar"} src={user.image} /></td>
+                                    <td className={"text-center"}><Card as={"img"} className={"lp-avatar"} src={"https://litepress.cn/cravatar/wp-content/uploads/sites/9/2021/07/default.png"}  onLoad={(e) => {
+                                        e.target.src = user.image
+                                    }} /></td>
                                     <td>{user.email}</td>
                                     <td>
                                         <div
@@ -108,13 +110,13 @@ export default function App() {
                                 <Nav.Item>
 
                                     <Nav.Link active={false}>
-                                       {/* <i className="fa-duotone fa-rectangle-history-circle-user fa-fw me-2"></i> 图片库*/}
+
                                         <BsModal modalsize={"lg"}
                                                  variant={"nav-link"}
                                                  titleicon={'fa-duotone fa-rectangle-history-circle-user fa-fw me-2'}
                                                  icon={"fa-duotone fa-rectangle-history-circle-user fa-fw me-2"} title={'图片库'}
                                                  modaltitle={"图片库"}
-                                                 body={<ChangeAvatar   />}/>
+                                                 body={<ChangeAvatar />}/>
                                     </Nav.Link>
 
                                 </Nav.Item>

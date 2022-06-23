@@ -42,7 +42,7 @@ export const ImageGallery = forwardRef((props, ref) => {
             )
     }
 
-    const SelectImage = (e) => {
+    const SelectImage = () => {
         const nav = document.querySelector('.avatar-view.active img');
         const id = nav.getAttribute("id")
         const scr = nav.getAttribute("src")
@@ -184,6 +184,7 @@ export const ImageGallery = forwardRef((props, ref) => {
                                        accept="image/*"/>
                                 <i className="fa-duotone fa-camera-retro me-2"></i> 上传新的
                             </Button>
+
                             <Button variant={"primary"} onClick={SelectImage}><i
                                 className="fa-duotone fa-camera-retro me-2"></i> 选择图片</Button>
                         </>
