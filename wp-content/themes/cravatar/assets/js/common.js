@@ -265,7 +265,7 @@ $(function () {
             error: function (e) {}
         })
     })
-    $(window).on('scroll load',  function(){
+/*    $(window).on('scroll load',  function(){
         $navbar_sticky = $('.home #site-header');
         // console.log($(window).scrollTop())
 
@@ -277,7 +277,7 @@ $(function () {
             $navbar_sticky.addClass('navbar-sticky').removeClass("transparent")
 
             //当给.middle添加fixed，.middle就脱离了文档流，下面的内容就一下顶上去了
-            /*$('.bottom').css('margin-top','69px')*/
+            /!*$('.bottom').css('margin-top','69px')*!/
 
         }
         else{//滚动值小于198px
@@ -285,7 +285,7 @@ $(function () {
                 $navbar_sticky.addClass("transparent").removeClass('navbar-sticky');
             }
         }
-    })
+    })*/
 
     const endVal = $("#counter").attr("data-to");
     const c = new countUp.CountUp("counter", endVal)
