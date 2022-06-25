@@ -9,7 +9,7 @@ $is_login = is_user_logged_in();
     <main class="flex-fill">
         <section class="index-banner text-white">
             <div class="container container-2020 ">
-                <div class="row justify-content-center justify-content-lg-between text-center text-lg-left   ">
+<!--                <div class="row justify-content-center justify-content-lg-between text-center text-lg-left   ">
                     <div class="col-12 col-md-10 col-lg-6 center index-banner-left"><h1
                                 class="mb-20 mb-22-md mb-30-xxl 1">Cravatar - 互联网公共头像服务</h1>
                         <p class="subtitle mb-26-xs-md mb-30-md mb-40-xxl w-100 w-75-xxl text-center text-lg-left mx-auto mx-lg-0">
@@ -20,20 +20,20 @@ $is_login = is_user_logged_in();
                         <div class="d-flex justify-content-center justify-content-lg-start"><a
                                     class="btn btn-lg btn-light mt-4" data-offset="30"
                                     id="hgr-homepage-header-cta-get_started"
-                                    href="<?php echo $is_login ? '/emails' : '/login' ?>">现在开始</a>
+                                    href="<?php /*echo $is_login ? '/emails' : '/login' */?>">现在开始</a>
 
                         </div>
                         <small class="mt-4 g-color-auxiliary">我们昨日共响应了 <span data-countup='{"startVal": 0}'
-                                                                             data-to="<?php echo get_last_day_cdn_analysis()['req_num'] ?? 0 ?>"
+                                                                             data-to="<?php /*echo get_last_day_cdn_analysis()['req_num'] ?? 0 */?>"
                                                                              id="counter" class="badge bg-primary lh-base">5,000,000</span>
                             次请求。</small>
 
 
                     </div>
                     <div class="col-lg-6 col-12  d-flex justify-content-center align-items-center ">
-                        <img src="<?php echo CA_ROOT_URL; ?>/assets/img/background-header-image-101b1a9e9b.png">
+                        <img src="<?php /*echo CA_ROOT_URL; */?>/assets/img/background-header-image-101b1a9e9b.png">
                     </div>
-                </div>
+                </div>-->
             </div>
         </section>
 
@@ -42,12 +42,13 @@ $is_login = is_user_logged_in();
 
             <div class="container container-2020">
                 <div id="trust-signals">
-                    <h2 class="mb-5 text-center">你所认识的 WordPress 圈子牛人都在使用</h2>
+                    <h2 class=" text-center">名家信任</h2>
+                    <p class="mb-5 text-center text-muted">一些你所熟悉的人正在使用我们的服务，不妨也试一下？</p>
                     <div class="row row-cols-3 row-cols-xl-6 wp-img-ground justify-content-center">
                         <div class="col">
                             <div class="card">
                                 <a href="https://www.wpdaxue.com/cravatar.html" target="_blank" rel="noopener"
-                                   data-caption="" itemprop="contentUrl" one-link-mark="yes">
+                                   data-caption="" itemprop="contentUrl">
                                     <img class="uabb-gallery-img card-img"
                                          src="/wp-content/themes/cravatar/assets/img/wpdaxue.png" alt="WordPress大学"
                                          itemprop="thumbnail" title="WordPress大学">
@@ -163,7 +164,8 @@ $is_login = is_user_logged_in();
         </section>
         <section class="section-spaces">
             <div class="container">
-                <h2 class="mb-5 text-center">认识我们的赞助商</h2>
+                <h2 class="text-center">赞助商</h2>
+                <p class="mb-5 text-center text-muted">服务的运行需要大量的成本投入，还好有一些机构在支持我们</p>
                 <div class="row row-cols-3 row-cols-xl-6 wp-img-ground justify-content-center mb-5">
                     <div class="col">
                         <div class="card">
@@ -336,7 +338,7 @@ $is_login = is_user_logged_in();
     <section class="section-spaces  section-spaces--bottom">
         <div class="container">
             <div class="row align-items-center justify-content-center flex-column">
-                <div class="col-12 col-lg-6 d-flex flex-column align-items-center text-center">
+                <!--<div class="col-12 col-lg-6 d-flex flex-column align-items-center text-center">
                     <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -363,14 +365,14 @@ $is_login = is_user_logged_in();
                     <div class="d-flex justify-content-center justify-content-lg-start"><a
                                 class="btn btn-lg btn-primary m-4" data-offset="30"
                                 id="hgr-homepage-header-cta-get_started"
-                                href="<?php echo $is_login ? '/emails' : '/login' ?>"
+                                href="<?php /*echo $is_login ? '/emails' : '/login' */?>"
                         >立即创建你的头像</a>
                     </div>
                     <p class="paragraph mt-15 mt-20-sm mt-30-xxl container-2020-sm container-2020-xl-new">
                         Cravatar 当前由 LitePress.cn 提供维护支持，LitePress.cn 诞生的目的是为<br> WordPress
                         在中国搭建起稳定运行所需的所有基础设施，并使其完全本土化。
                     </p>
-                </div>
+                </div>-->
             </div>
         </div>
     </section>

@@ -29,11 +29,10 @@ export function CropperModal(props) {
     const onConfirm = () => {
 
         if (typeof cropper !== "undefined") {
-            const canvasData: HTMLCanvasElement = cropper.getCroppedCanvas();
+            const canvasData = cropper.getCroppedCanvas();
 
             canvasData.toBlob((blob) => {
-                const croppedFile = new File([blob], file.name, {"type": blob.type, "lastModified": new Date()});
-                console.log(file)
+                const croppedFile = new File([blob], file.name, {"type": blob.type, "lastModified": file.lastModified});
  /*               console.log(file)
                 console.log(croppedFile)*/
                 const formData = new FormData();
