@@ -21,10 +21,13 @@ if ( ! class_exists( '\LitePress\Autoload\Autoloader', false ) ) {
 }
 
 Autoload\register_class_path( __NAMESPACE__, __DIR__ . '/inc' );
+Autoload\register_class_path( __NAMESPACE__ . '/Plugin_Readme', __DIR__ . '/inc/plugin-readme' );
+Autoload\register_class_path( __NAMESPACE__ . '/Plugin_Readme', __DIR__ . '/inc/block-json' );
 
 // 加载命令行
 if ( class_exists( 'WP_CLI' ) ) {
 	require __DIR__ . '/command/class-sync-wporg-svn.php';
+	require __DIR__ . '/command/class-sync-product-from-wporg.php';
 }
 
 Plugin::get_instance();
