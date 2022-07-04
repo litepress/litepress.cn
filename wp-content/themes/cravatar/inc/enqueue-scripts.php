@@ -5,7 +5,7 @@ global $blog_id;
  * 全局静态文件引入
  */
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css' );
+	wp_enqueue_style( 'lp-bootstrap', get_stylesheet_directory_uri() . '/assets/css/lp-bootstrap.css' );
 	wp_enqueue_style( 'ui-global-style', get_stylesheet_directory_uri() . '/assets/css/common.css' );
 	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/fontawesome/css/all.min.css' );
 	wp_enqueue_style( 'cropper', get_stylesheet_directory_uri() . '/assets/css/cropper.min.css' );

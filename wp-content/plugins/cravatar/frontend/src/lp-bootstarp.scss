@@ -46,13 +46,6 @@ $list-group-border-color: #e7eaf3;
 $dropdown-box-shadow: 0 0.6125rem 2.5rem 0.6125rem rgba(140, 152, 164, .18);
 $dropdown-border-width: 0;
 $dropdown-link-hover-bg: rgba(189, 197, 209, .2);
-.dropdown-item {
-  border-radius: .3125rem;
-}
-
-.dropdown-menu {
-  box-shadow: $dropdown-box-shadow;
-}
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../node_modules/bootstrap/scss/variables";
@@ -76,11 +69,22 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 // 6. Optionally include any other parts as needed
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+.dropdown-item {
+  border-radius: .3125rem;
+}
+
+.dropdown-menu {
+  box-shadow: $dropdown-box-shadow;
+}
+
 .card {
   box-shadow: $card-box-shadow;
   border: .0625rem solid rgba(231, 234, 243, .7);
 }
-
+.btn-nav-link{
+  padding: 0;
+  border: 0;
+}
 .btn-outline-white {
   --bs-btn-color: var(--bs-gray-650);
   --bs-btn-bg: var(--bs-white);
@@ -99,15 +103,9 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 .btn:disabled, .btn.disabled, fieldset:disabled .btn {
   pointer-events: all;
   cursor: not-allowed;
+  border: 0;
 }
 
-.lp-avatar {
-  position: relative;
-  display: inline-block;
-  width: 3.125rem;
-  border: 3px solid #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, .15);
-}
 
 .card-dashed {
   border: .0625rem dashed rgba(231, 234, 243, .7);
@@ -124,59 +122,6 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   text-transform: uppercase;
 }
 
-
-.avatar-tooltip {
-  position: absolute;
-  bottom: 0px;
-  display: block;
-  right: 5px;
-  z-index: 0;
-  color: #fff;
-
-  &:after {
-    right: -40px;
-    box-sizing: border-box;
-    border: solid 33px transparent;
-    border-left-color: #0000001a;
-    border-radius: 50%;
-    content: "";
-    position: absolute;
-    bottom: -35px;
-    transform: rotate(45deg);
-    z-index: -1;
-  }
-}
-
-.avatar-view {
-  object-fit: contain;
-  border: 3px solid #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, .15);
-  cursor: pointer;
-  overflow: hidden;
-  min-height: 80px;
-
-  &.active {
-    box-shadow: 0 0 0 2px $primary;
-  }
-
-  .img-box {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-  }
-
-  img {
-    object-fit: cover;
-    margin: auto;
-    max-height: 100%;
-  }
-}
 
 .input-file {
   font-size: 0;
@@ -221,38 +166,19 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   z-index: 0;
 }
 
-.form-control.is-valid {
-  background-image: none
-}
 
-.form-control.is-invalid {
-  border-color: $danger !important;
-  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 12 12%27 width=%2712%27 height=%2712%27 fill=%27none%27 stroke=%27%23dc3545%27%3e%3ccircle cx=%276%27 cy=%276%27 r=%274.5%27/%3e%3cpath stroke-linejoin=%27round%27 d=%27M5.8 3.6h.4L6 6.5z%27/%3e%3ccircle cx=%276%27 cy=%278.2%27 r=%27.6%27 fill=%27%23dc3545%27 stroke=%27none%27/%3e%3c/svg%3e") !important;
-}
-
-button:disabled {
-  pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  color: rgba(33, 37, 41, 25%);
-}
-
-.react-code-input > input {
-  margin: 0 10px !important;
-  font-family: inherit !important;
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-
-    -webkit-appearance: none;
-
+.form-control {
+  &.is-valid {
+    background-image: none;
   }
 
-  &:focus-visible {
-    outline-color: $primary;
+  &.is-invalid {
+    border-color: $danger !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 12 12%27 width=%2712%27 height=%2712%27 fill=%27none%27 stroke=%27%23dc3545%27%3e%3ccircle cx=%276%27 cy=%276%27 r=%274.5%27/%3e%3cpath stroke-linejoin=%27round%27 d=%27M5.8 3.6h.4L6 6.5z%27/%3e%3ccircle cx=%276%27 cy=%278.2%27 r=%27.6%27 fill=%27%23dc3545%27 stroke=%27none%27/%3e%3c/svg%3e") !important;
   }
 }
+
+
 
 .dz-dropzone-card {
   width: 100%;
@@ -289,15 +215,4 @@ button:disabled {
   color: #71869d;
   background-color: rgba(55, 125, 255, .1);
   border: 0;
-}
-
-.image_list_left {
-  border: .125rem dashed rgba(231, 234, 243, .7);
-  border-radius: $border-radius;
-}
-
-.croppermodal {
-  .modal-content {
-    box-shadow: 0 0.125rem 20rem 20px rgba(0, 0, 0, .37);
-  }
 }

@@ -17,27 +17,13 @@
 <?php
 wp_body_open();
 ?>
-
-<header id="site-header" class="navbar navbar-light navbar-expand-md transparent wp-nav" role="banner">
+<header id="site-header" class="navbar navbar-dark bd-navbar navbar-expand-md sticky-top">
     <div class="container-fluid container-xxl">
         <a class="navbar-brand" href="/">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="227.007"
                  height="50.184">
                 <defs>
-                    <style>
-                        .cls-1 {
-                            filter: url(#filter);
-                        }
 
-                        .cls-2 {
-                            font-size: 30px;
-                            fill: #fff;
-                            text-anchor: middle;
-                            font-family: "Gen Jyuu Gothic";
-                            font-weight: 500;
-                            text-transform: uppercase;
-                        }
-                    </style>
                     <filter id="filter" filterUnits="userSpaceOnUse">
                         <feImage preserveAspectRatio="none" x="0" y="0" width="300" height="69" result="image"
                                  xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjc1IiBoZWlnaHQ9IjY5IiB2aWV3Qm94PSIwIDAgMjc1IDY5Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiB1cmwoI2xpbmVhci1ncmFkaWVudCk7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhci1ncmFkaWVudCIgeDE9IjU2LjIyMyIgeDI9IjIxOC43NzciIHkyPSI2OSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM0ZDFjYjgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDI3NGJlIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCBjbGFzcz0iY2xzLTEiIHdpZHRoPSIyNzUiIGhlaWdodD0iNjkiLz4KPC9zdmc+Cg=="></feImage>
@@ -119,10 +105,32 @@ wp_body_open();
 
                 </nav>
 
-                <div class=" header-sign">
 
-					<?php
-					wp_nav_menu(
+                <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-link nav-link dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Yulinn
+                        </button>
+                        <ul class="dropdown-menu" >
+                            <div class="dropdown-item-text">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar avatar-sm avatar-circle">
+                                        <img class="avatar-img" src="./assets/img/160x160/img6.jpg" alt="">
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <h5 class="mb-0">Yulinn</h5>
+                                        <p class="card-text text-body">977869645@qq.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <li><a class="dropdown-item" href="#">头像管理</a></li>
+                            <li><a class="dropdown-item" href="#">注销</a></li>
+                        </ul>
+                    </li>
+                </ul>
+<!--					--><?php
+/*					wp_nav_menu(
 						array(
 							'theme_location' => 'register_menu',
 							'container'      => false,
@@ -131,9 +139,9 @@ wp_body_open();
 							'walker'         => new Wp_Sub_Menu(),
 						)
 					);
-					?>
+					*/?>
 
-                </div>
+
             </section>
         </div>
     </div>
