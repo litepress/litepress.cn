@@ -230,7 +230,7 @@ class SVN {
 		$options[]           = 'non-interactive';
 		$options[]           = 'verbose';
 		$options[]           = 'xml';
-		$options['revision'] = is_array( $revision ) ? "{$revision[0]}:{$revision[1]}" : $revision;
+		$options['revision'] = is_array( $revision ) ? sprintf( '{%s}:{%s}', $revision[0], $revision[1] ) : $revision;
 		$esc_options         = self::parse_esc_parameters( $options );
 
 		$esc_url = escapeshellarg( $url );
