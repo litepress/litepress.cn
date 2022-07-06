@@ -6,7 +6,7 @@ global $blog_id;
  */
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'lp-bootstrap', get_stylesheet_directory_uri() . '/assets/css/lp-bootstrap.css' );
-	wp_enqueue_style( 'ui-global-style', get_stylesheet_directory_uri() . '/assets/css/ui-global-style.css' );
+	wp_enqueue_style( 'common', get_stylesheet_directory_uri() . '/assets/css/common.css' );
 	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/fontawesome/css/all.min.css' );
 	wp_enqueue_style( 'agate', get_stylesheet_directory_uri() . '/assets/css/agate.min.css' );
 	wp_enqueue_style( 'heti', get_stylesheet_directory_uri() . '/assets/css/heti.min.css' );
