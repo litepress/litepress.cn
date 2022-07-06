@@ -265,8 +265,8 @@ $(function () {
             error: function (e) {}
         })
     })
-/*    $(window).on('scroll load',  function(){
-        $navbar_sticky = $('.home #site-header');
+    $(window).on('scroll load',  function(){
+        $navbar_sticky = $('#site-header');
         // console.log($(window).scrollTop())
 
         if ( $(window).scrollTop() >= 83 ){
@@ -274,18 +274,18 @@ $(function () {
             //要想使用jQuery slideDown动画,在使用动画之前display只能是none
             $navbar_sticky.slideDown(200)
             //在middle盒子滑下后给其添加fixed类，让其固定定位
-            $navbar_sticky.addClass('navbar-sticky').removeClass("transparent")
+            $navbar_sticky.addClass('position-sticky').removeClass("transparent")
 
             //当给.middle添加fixed，.middle就脱离了文档流，下面的内容就一下顶上去了
-            /!*$('.bottom').css('margin-top','69px')*!/
+            /*$('.bottom').css('margin-top','69px')*/
 
         }
         else{//滚动值小于198px
             if ( $(window).scrollTop() < 82 ){
-                $navbar_sticky.addClass("transparent").removeClass('navbar-sticky');
+                $navbar_sticky.addClass("transparent").removeClass('position-sticky');
             }
         }
-    })*/
+    })
 
     const endVal = $("#counter").attr("data-to");
     const c = new countUp.CountUp("counter", endVal)
@@ -304,9 +304,9 @@ $(function () {
         $(this).html("<ul><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ul>");
     });
    $(function () {
-        var numLi = $(".wp-code .hljs ul > li").length;
+       const numLi = $(".wp-code .hljs ul > li").length;
 
-        for (var i = 0; i < numLi; i++) {
+       for (var i = 0; i < numLi; i++) {
             $(".wp-code .hljs ul > li").eq(i).wrap('<li  id="L'+ (i + 1) +'" ></div>');
         }
     })
@@ -323,7 +323,7 @@ $(function () {
     const n = $(".btn-clipboard");
     n.click(function () {
         $(this).text("已复制");
-        var o = this;
+        const o = this;
         setTimeout(function () {
             $(o).text("复制"),
                 window.getSelection().removeAllRanges()
@@ -353,8 +353,7 @@ String.prototype.rightChars = function(n) {
 };
 
 (function($) {
-    var
-        options = {
+    let options = {
             highlightSpeed: 20,
             typeSpeed: 100,
             clearDelay: 500,
@@ -405,8 +404,7 @@ String.prototype.rightChars = function(n) {
     };
 
     type = function($e) {
-        var
-            // position = $e.data('typePosition'),
+        const // position = $e.data('typePosition'),
             text = $e.data('text'),
             oldLeft = $e.data('oldLeft'),
             oldRight = $e.data('oldRight');
@@ -448,8 +446,7 @@ String.prototype.rightChars = function(n) {
     };
 
     highlight = function($e) {
-        var
-            position = $e.data('highlightPosition'),
+        let position = $e.data('highlightPosition'),
             leftText,
             highlightedText,
             rightText;

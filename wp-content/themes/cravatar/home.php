@@ -9,7 +9,7 @@ $is_login = is_user_logged_in();
     <main class="flex-fill">
 
     <div class="d-lg-flex position-relative">
-        <div class="container d-lg-flex align-items-lg-center content-space-t-3 content-space-lg-0 min-vh-lg-100">
+        <div class="container d-lg-flex align-items-lg-center content-space-t-3 content-space-lg-0 min-vh-lg-93">
             <!-- Heading -->
             <div class="w-100">
                 <div class="row">
@@ -265,7 +265,7 @@ $is_login = is_user_logged_in();
                             <a href="javascript:" target="_blank" rel="noopener" data-caption=""
                                itemprop="contentUrl" one-link-mark="yes" style="" data-bs-toggle="modal"
                                data-bs-target="#Cooperation">
-                                <p class="" style="font-size: 14px"><i class="fad fa-arrow-alt-up"></i> 我 要 上 榜</p>
+                                <p class="m-0" style="font-size: 14px"><i class="fad fa-arrow-alt-up"></i> 我 要 上 榜</p>
                             </a>
                         </div>
                     </div>

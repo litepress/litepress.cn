@@ -17,7 +17,7 @@
 <?php
 wp_body_open();
 ?>
-<header id="site-header" class="navbar navbar-light bd-navbar navbar-expand-md position-absolute w-100">
+<header id="site-header" class="navbar navbar-light bd-navbar navbar-expand-md  w-100">
     <div class="container-fluid container-xxl">
         <a class="navbar-brand" href="/">
             <a class="navbar-brand" href="./index.html" aria-label="Space">

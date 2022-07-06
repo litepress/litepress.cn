@@ -46,6 +46,9 @@ $list-group-border-color: #e7eaf3;
 $dropdown-box-shadow: 0 0.6125rem 2.5rem 0.6125rem rgba(140, 152, 164, .18);
 $dropdown-border-width: 0;
 $dropdown-link-hover-bg: rgba(189, 197, 209, .2);
+$dropdown-divider-bg:rgba(231,234,243,.7);
+$dropdown-padding-x:                .5rem;
+$dropdown-padding-y:                .5rem;
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../node_modules/bootstrap/scss/variables";

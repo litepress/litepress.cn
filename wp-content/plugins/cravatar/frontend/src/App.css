@@ -2497,7 +2497,7 @@ textarea.form-control-lg {
     background-color: var(--bs-btn-disabled-bg);
     border-color: var(--bs-btn-disabled-border-color);
     opacity: var(--bs-btn-disabled-opacity); }
- 
+
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #0274be;
@@ -2945,7 +2945,7 @@ textarea.form-control-lg {
 
 .dropdown-menu {
   --bs-dropdown-min-width: 10rem;
-  --bs-dropdown-padding-x: 0;
+  --bs-dropdown-padding-x: 0.5rem;
   --bs-dropdown-padding-y: 0.5rem;
   --bs-dropdown-spacer: 0.125rem;
   --bs-dropdown-font-size: 1rem;
@@ -2955,7 +2955,7 @@ textarea.form-control-lg {
   --bs-dropdown-border-radius: 0.375rem;
   --bs-dropdown-border-width: 0;
   --bs-dropdown-inner-border-radius: 0.375rem;
-  --bs-dropdown-divider-bg: var(--bs-border-color-translucent);
+  --bs-dropdown-divider-bg: rgba(231, 234, 243, 0.7);
   --bs-dropdown-divider-margin-y: 0.5rem;
   --bs-dropdown-box-shadow: 0 0.6125rem 2.5rem 0.6125rem rgba(140, 152, 164, 0.18);
   --bs-dropdown-link-color: #212529;
@@ -3177,7 +3177,7 @@ textarea.form-control-lg {
   --bs-dropdown-box-shadow: ;
   --bs-dropdown-link-color: #dee2e6;
   --bs-dropdown-link-hover-color: #fff;
-  --bs-dropdown-divider-bg: var(--bs-border-color-translucent);
+  --bs-dropdown-divider-bg: rgba(231, 234, 243, 0.7);
   --bs-dropdown-link-hover-bg: rgba(255, 255, 255, 0.15);
   --bs-dropdown-link-active-color: #fff;
   --bs-dropdown-link-active-bg: #0274be;
