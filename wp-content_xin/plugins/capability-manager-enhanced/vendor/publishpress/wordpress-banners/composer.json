@@ -1,0 +1,22 @@
+{
+  "name": "publishpress/wordpress-banners",
+  "description": "Display banners in admin pages of PublishPress Plugins.",
+  "type": "library",
+  "license": "GPL-3.0-or-later",
+  "homepage": "http://publishpress.com/",
+  "require": {
+    "php": ">=5.6.20"
+  },
+  "authors": [
+    {
+      "name": "PublishPress",
+      "email": "help@publishpress.com"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "BannersMain.php"
+    ]
+  },
+  "minimum-stability": "dev"
+}

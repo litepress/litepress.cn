@@ -51,6 +51,7 @@ if ( mysqli_connect_error() ) {
 	);
 
 	// 输出错误信息到浏览器
+	header('Cache-Control: no-cache');
 	http_response_code( 500 );
 	echo <<<HTML
 <!DOCTYPE html>
@@ -153,14 +154,13 @@ function get_remote_image( string $hash, string $url, string $type = 'gravatar',
  * URL 组成：https://cravatar.cn/avatar/邮箱 MD5.图像扩展名?查询参数
  * 此处需要提取 MD5 和头像扩展名
  */
+$hash = $_GET['hash'] ?? ''; // 重写后的头像hash地址
 $image_ext      = 'png'; // 请求响应的图片扩展名
-$url_path_array = explode( '.', parse_url( $_SERVER["REQUEST_URI"], PHP_URL_PATH ) );
+$url_path_array = explode( '.', $hash );
 $image_ext      = $url_path_array[1] ?? 'png';
 $image_ext      = in_array( $image_ext, array( 'jpg', 'jpeg', 'png', 'gif' ) ) ? $image_ext : 'png';
 $image_ext      = $image_ext === 'jpg' ? 'jpeg' : $image_ext;
-// 取 URL 路径最后一位作为 md5
-$url_path_array = explode( '/', $url_path_array[0] ?? '' );
-$md5            = $url_path_array[ count( $url_path_array ) - 1 ] ?? '';
+$md5            = $url_path_array[0] ?? '';
 
 /**
  * 从 URL Query 读取头像参数
@@ -197,7 +197,7 @@ $default = $_GET['default'] ?? $default;
  */
 $force_default = $_GET['f'] ?? $force_default;
 $force_default = $_GET['forcedefault'] ?? $force_default;
-$force_default = in_array( $force_default, array( 'y', 'yes' ) ) ? $default : false;
+$force_default = in_array( $force_default, array( 'y', 'yes' ) ) ? $force_default : false;
 
 /**
  * 开始准备要返回的头像文件
@@ -239,7 +239,7 @@ if ( 'y' !== $force_default ) {
 
 // 尝试检索 Gravatar 头像
 if ( empty( $image_path ) && 'y' !== $force_default ) {
-	$url        = "http://gravatar.litepress.cn/avatar/{$md5}.png?s=400&r=g&d=404";
+	$url        = "http://gravatar.cdn.wepublish.cn/avatar/{$md5}.png?s=400&r=g&d=404";
 	$image_path = get_remote_image( $md5, $url );
 	if ( ! empty( $image_path ) ) {
 		$avatar_from = 'gravatar';
@@ -253,8 +253,12 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 	 */
 	// 计算出当前的邮箱 MD5 存储在哪个表中
 	// 需要记录 qq 号读取失败的日志
-	/*
-	$table = 'email_hash_' . ( hexdec( substr( $md5, 0, 10 ) ) ) % 5001 + 1;
+
+    /**
+     * TODO 在PHP81下，下一行在数据不规范时会抛出Deprecated，需要修复
+     */
+	
+	$table = 'email_hash_' . ( hexdec( substr( $md5, 0, 10 ) ) ) % 5000 + 1;
 
 	$conn = mysqli_connect( LOW_DB_HOST, LOW_DB_USER, LOW_DB_PASSWORD, LOW_DB_NAME );
 
@@ -267,10 +271,6 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 			$qq = $row['qq'];
 		}
 	}
-*/
-
-	// 这里先添加个测试 QQ 号，后面正式上线再从数据库提取 QQ 号
-	$qq = '1642491905';
 
 	if ( ! empty( $qq ) ) {
 		/**
@@ -309,7 +309,7 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 if ( empty( $image_path ) ) {
 	// 如果用户要求直接返回 404 的话就设置 404 状态码并终止执行程序
 	if ( '404' === $default ) {
-		status_header( 404 );
+        http_response_code( 404 );
 		exit;
 	}
 
@@ -384,7 +384,11 @@ if ( 'qq' !== $avatar_from ) {
 		$nextrun = $start + 10;
 		$sql     = $db->prepare( 'INSERT INTO wp_cavalcade_jobs( site, hook, args, start, nextrun ) VALUES ( 9, "lpcn_sensitive_content_recognition", ?, ?, ? )' );
 		$sql->bind_param( 'sss', $args, $start, $nextrun );
-		$sql->execute();
+		/**
+		 * TODO 修复SQL语句报错
+		 * Uncaught mysqli_sql_exception: Incorrect datetime value: '1663525584' for column 'start' at row 1 in /www/wwwroot/wordpress/wp-content/plugins/cravatar/pages/avatar.php:383
+		 */
+		//$sql->execute();
 		$sql->close();
 	}
 
