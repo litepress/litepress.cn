@@ -91,7 +91,7 @@ ul, li {
     min-height: 93vh !important; }
 
   .min-vh-lg-100 {
-    min-height: 100vh !important; } } 
+    min-height: 100vh !important; } }
 .masthead-notice {
   background-color: var(--bd-accent);
   box-shadow: inset 0 -1px 1px rgba(var(--bs-body-color-rgb), 0.15), 0 0.25rem 1.5rem rgba(var(--bs-body-bg-rgb), 0.75); }
