@@ -88,7 +88,7 @@ class Login extends Base {
 		}
 
 		// 需要在登录成功后设置此 Cookie 以绕过 ols 的缓存
-		setcookie( '_lscache_vary', 'abc', time() + ( 365 * 24 * 60 * 60 ), '/' );
+		//setcookie( '_lscache_vary', 'abc', time() + ( 365 * 24 * 60 * 60 ), '/' );
 
 		return $this->success( '登录成功' );
 	}
