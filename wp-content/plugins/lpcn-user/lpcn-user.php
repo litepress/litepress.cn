@@ -29,8 +29,8 @@ if ( ! class_exists( '\LitePress\Router\Router', false ) ) {
 
 require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/inc/helpers.php';
-require __DIR__ . '/inc/pages/user.php';
-require __DIR__ . '/inc/pages/new-bind.php';
+require __DIR__ . '/pages/user.php';
+require __DIR__ . '/pages/new-bind.php';
 require __DIR__ . '/inc/oauth/qq/api/qqConnectAPI.php';
 require __DIR__ . '/inc/oauth/qq/index.php';
 require __DIR__ . '/inc/oauth/qq/callback.php';

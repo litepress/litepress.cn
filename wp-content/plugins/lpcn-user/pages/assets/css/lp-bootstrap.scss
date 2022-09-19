@@ -1,0 +1,198 @@
+// Custom.assets
+// Option B: Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../../node_modules/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+$primary: #0274be;
+$gray-150: #f0f2f5;
+$gray-400: #ced4da !default;
+$gray-550: rgba(0, 0, 0, .7);
+$font-family-sans-serif: 'PingFang SC', 'WenQuanYi Micro Hei', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$modal-sm: 440px;
+$input-focus-box-shadow: none;
+$btn-focus-box-shadow: none;
+$link-decoration: inherit;
+/*card*/
+$card-box-shadow: 0px 3px 8px 0px #00000014;
+
+/*nav*/
+$nav-tabs-border-width: 0;
+$nav-link-color: $gray-550;
+$nav-tabs-link-active-color: $primary;
+$nav-tabs-link-active-border-color: $primary;
+
+$modal-header-padding: 1rem 2rem;
+$modal-backdrop-bg: rgba(33, 50, 91, .25);
+$modal-backdrop-opacity: 1;
+$modal-content-border-color: transparent;
+$modal-content-border-width: .0625rem;
+
+$form-feedback-valid-color:$gray-400;
+// 3. Include remainder of required Bootstrap stylesheets
+@import "../../node_modules/bootstrap/scss/variables";
+
+// 4. Include any default map overrides here
+// Create your own map
+$custom-colors: (
+        "gray-150": $gray-150,
+        "gray-550": $gray-550
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+// 5. Include remainder of required parts
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";
+
+// 6. Optionally include any other parts as needed
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+.input-group {
+  &.form-floating label {
+    z-index: 3;
+  }
+  .input-group-text {
+    &.right {
+      border-radius: 0 .25rem .25rem 0 !important;
+      background: none;
+      text-decoration: none;
+    }
+  }
+}
+.was-validated .form-check-input:valid:checked, .form-check-input.is-valid:checked {
+  background-color: $primary;
+}
+.was-validated .form-check-input:valid ~ .form-check-label, .form-check-input.is-valid ~ .form-check-label {
+  color: inherit;
+}
+.was-validated .form-control:valid:focus, .form-control.is-valid:focus {
+  border-color: $primary;
+  box-shadow: none;
+}
+.form-floating.input-group > .form-control:focus, .form-floating.input-group > .form-select:focus, .input-group .form-control.is-invalid {
+  z-index: 0;
+}
+.form-control {
+  &.is-valid {
+    background-image: none;
+  }
+  &.is-invalid {
+    border-color: $danger!important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 12 12%27 width=%2712%27 height=%2712%27 fill=%27none%27 stroke=%27%23dc3545%27%3e%3ccircle cx=%276%27 cy=%276%27 r=%274.5%27/%3e%3cpath stroke-linejoin=%27round%27 d=%27M5.8 3.6h.4L6 6.5z%27/%3e%3ccircle cx=%276%27 cy=%278.2%27 r=%27.6%27 fill=%27%23dc3545%27 stroke=%27none%27/%3e%3c/svg%3e")!important;
+  }
+}
+button {
+  &:disabled {
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    color: rgba(33, 37, 41, 25%);
+  }
+}
+html, body {
+  height: 100%;
+}
+.modal-s {
+  max-width: 440px;
+}
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: auto;
+}
+
+.divider-content-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  padding-left: .5rem;
+  padding-right: .5rem;
+  background-color: var(--bs-white);
+  white-space: nowrap;
+}
+
+.bg-soft-dark {
+  background-color: rgba(33, 50, 91, .1);
+}
+
+.card {
+  box-shadow: $card-box-shadow;
+  border: 0;
+}
+.card-title.h5{
+  font-size:unset;
+  margin-bottom: 0;
+}
+.modal-title.h4{
+  font-size: 1.25rem;
+}
+.text-cap {
+  display: block;
+  color: #1e2022;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: $spacer;
+}
+
+.nav.flex-column {
+  -ms-flex-direction: column;
+  flex-direction: column;
+
+  .nav-link {
+    padding-left: $spacer * 1.5;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-link.active {
+    border-left: 3px solid;
+    border-radius: 0;
+  }
+
+  .nav-link-badge {
+    margin-left: auto;
+    line-height: normal;
+  }
+}
+
+.account-body-card{
+  h5{
+    margin: 0;
+  }
+}
+
+.modal-dialog .site-logo{
+  display: block;
+  margin: auto
+}
+
+
+
+.lp-nav-tabs.nav-tabs .nav-item.show .nav-link, .lp-nav-tabs.nav-tabs .nav-link.active{
+  border: 0;
+  color: $primary;
+  background: none;
+  position: relative;
+
+}
+
+.lp-nav-tabs.nav-tabs .nav-item.show .nav-link, .lp-nav-tabs.nav-tabs .nav-link.active:before {
+  content: '';
+  position: absolute;
+  display: block;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  transition: opacity 0.15s;
+  -moz-transition: opacity 0.15s;
+  -webkit-transition: opacity 0.15s;
+  background-color: $primary;
+}
