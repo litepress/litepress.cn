@@ -12,8 +12,11 @@
 
 use LitePress\Logger\Logger;
 
-add_action( 'plugin_loaded', 'enable_debug', 1 );
-add_action( 'shutdown', 'disable_debug', 1000000 );
+// 判断是不是cli环境，cli下不加载调试
+if ( php_sapi_name() != 'cli' ) {
+	add_action( 'plugin_loaded', 'enable_debug', 1 );
+	add_action( 'shutdown', 'disable_debug', 1000000 );
+}
 
 function enable_debug() {
 	xhprof_enable( XHPROF_FLAGS_CPU +
