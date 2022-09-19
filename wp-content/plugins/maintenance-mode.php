@@ -10,9 +10,10 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-if ( defined( 'MAINTENANCE_MODE' ) && MAINTENANCE_MODE ) {
+if ( defined( 'MAINTENANCE_MODE' ) && MAINTENANCE_MODE && ! current_user_can( 'manage_options' ) ) {
 	add_action( 'init', 'maintenance_mode' );
 }
+
 function maintenance_mode(): void {
 	echo <<<HTML
 <!DOCTYPE html>
