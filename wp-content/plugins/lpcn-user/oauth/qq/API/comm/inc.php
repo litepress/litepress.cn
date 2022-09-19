@@ -1,0 +1,2 @@
+<?php die('forbidden'); ?>
+{"appid":"101996059","appkey":"b47e03df55090070f9353b2bd8463428","callback":"https://litepress.cn/auth/qq/callback","scope":"get_user_info","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test"}

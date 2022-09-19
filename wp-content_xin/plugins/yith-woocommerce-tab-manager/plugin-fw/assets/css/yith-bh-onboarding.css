@@ -1,0 +1,171 @@
+/* === YITH BH Onboarding Modal Style === */
+#nfd-ecommerce {
+    overflow-x: hidden;
+}
+
+#yith-bh-onboarding {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px 20px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+#yith-bh-onboarding header {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 40px;
+}
+#yith-bh-onboarding header .logo{
+    margin-bottom: 10px;
+}
+#yith-bh-onboarding .yith-bh-onboarding-plugin-description {
+    flex: 1;
+}
+
+#yith-bh-onboarding header div .claim {
+    color: #2C5DB4;
+    width: 100%;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+#yith-bh-onboarding header div .plugin-description {
+    width: 100%;
+    text-align: right;
+    font-size: 10px;
+}
+
+#yith-bh-onboarding table {
+    margin-bottom: 20px !important;
+}
+
+#yith-bh-onboarding .submit-area {
+    padding: 0 30px 30px;
+    text-align: right;
+}
+
+#yith-bh-onboarding .submit-area button {
+    padding: 3px 50px;
+    background-color: #2C5DB4;
+}
+
+#yith-bh-onboarding .yith-bh-onboarding-tabs.yith-plugin-ui {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+#yith-bh-onboarding ul.yith-bh-onboarding-tabs__nav {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-top: 0;
+    overflow: hidden;
+}
+
+#yith-bh-onboarding ul.yith-bh-onboarding-tabs__nav li {
+    width: 50%;
+    background-color: #536E8B;
+    color: #fff;
+    padding: 13px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#yith-bh-onboarding ul.yith-bh-onboarding-tabs__nav li:first-child {
+    border-top-left-radius: 10px;
+}
+
+#yith-bh-onboarding ul.yith-bh-onboarding-tabs__nav li:last-child {
+    border-top-right-radius: 10px;
+}
+
+#yith-bh-onboarding ul.yith-bh-onboarding-tabs__nav li a {
+    text-decoration: none;
+}
+
+#yith-bh-onboarding ul.yith-bh-onboarding-tabs__nav li.selected {
+    background-color: #fff;
+    color: #2C5DB4;
+}
+
+#yith-bh-onboarding .yith-bh-onboarding-tabs__content .yith-bh-onboarding-tabs__tab {
+    display: none;
+}
+
+#yith-bh-onboarding .yith-bh-onboarding-tabs__content p.yith-bh-onboarding-tab-description {
+    padding: 9px 20px;
+}
+
+#yith-bh-onboarding .yith-bh-onboarding-tabs__content .form-table {
+    border: 0 !important;
+}
+
+#yith-bh-onboarding ul.yith-bh-onboarding-connect-list {
+    width: 70%;
+    margin: 0 auto 60px;
+}
+
+#yith-bh-onboarding ul.yith-bh-onboarding-connect-list li {
+    padding-left: 35px;
+    margin: 0 auto 40px;
+    position: relative;
+}
+
+#yith-bh-onboarding ul.yith-bh-onboarding-connect-list li h3 {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#yith-bh-onboarding ul.yith-bh-onboarding-connect-list li:before {
+    content: "";
+    width: 35px;
+    height: 35px;
+    display: block;
+    position: absolute;
+    left: -35px;
+    top: -5px;
+    background: url("../images/bh-onboarding/check.svg") no-repeat center center;
+}
+
+#yith-bh-onboarding ul.yith-bh-onboarding-connect-list p {
+    font-size: 13px;
+    line-height: 1.6em;
+    padding-left:10px;
+}
+
+#yith-bh-onboarding .yith-bh-onboarding-connect-cta {
+    width: calc(70% + 70px);
+    margin: 20px auto;
+    border-radius: 10px;
+    background-color: #f6f6f6;
+    padding: 30px 0 45px;
+    text-align: center;
+}
+
+#yith-bh-onboarding .yith-bh-onboarding-connect-cta p {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+#yith-bh-onboarding .yith-bh-onboarding-connect-cta a {
+    text-decoration: none;
+    font-size: 13px;
+    color: white;
+    background-color: #2C5DB4;
+    padding: 10px 30px;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 782px){
+
+    #yith-bh-onboarding header {
+        display: block;
+    }
+    #yith-bh-onboarding header div .plugin-description{
+        text-align: left;
+        margin-top: 20px;
+    }
+}

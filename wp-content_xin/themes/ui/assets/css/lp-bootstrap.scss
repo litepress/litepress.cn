@@ -1,0 +1,135 @@
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+$primary: #0274be;
+$light:#f7faff;
+
+$gray-50: rgba(33, 50, 91, .1);
+$gray-150: #f0f2f5;
+$gray-400: #ced4da !default;
+$gray-550: rgba(0, 0, 0, .7);
+$gray-650: #677788;
+$font-family-sans-serif: 'PingFang SC', 'WenQuanYi Micro Hei', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$modal-sm: 440px;
+$input-focus-box-shadow: none;
+$btn-focus-box-shadow: none;
+$btn-hover-border-color:rgba(231,234,243,.7);
+$link-decoration: inherit;
+/*card*/
+$card-box-shadow: 0px 3px 8px 0px #00000014;
+$border-color-translucent: rgba(0, 0, 0, 0.125);
+$card-title-spacer-y: 0;
+$card-cap-bg: transparent;
+
+/*nav*/
+$nav-tabs-border-width: 0;
+$nav-link-color: $gray-550;
+$nav-tabs-link-active-color: $primary;
+$nav-tabs-link-active-border-color: $primary;
+
+/*modal*/
+$modal-header-padding: 1rem 2rem;
+$modal-backdrop-bg: rgba(33, 50, 91, .25);
+$modal-backdrop-opacity: 1;
+$modal-content-border-color: transparent;
+$modal-content-border-width: .0625rem;
+
+/*form*/
+$form-feedback-valid-color: $gray-400;
+
+/*list-group*/
+$list-group-border-color: #e7eaf3;
+
+/*dropdown*/
+$dropdown-box-shadow: 0 0.6125rem 2.5rem 0.6125rem rgba(140, 152, 164, .18);
+$dropdown-border-width: 0;
+$dropdown-link-hover-bg: rgba(189, 197, 209, .2);
+$dropdown-divider-bg:rgba(231,234,243,.7);
+$dropdown-padding-x:                .5rem;
+$dropdown-padding-y:                .5rem;
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "../bootstrap/scss/variables";
+
+// 4. Include any default map overrides here
+// Create your own map
+$custom-colors: (
+        "gray-50": $gray-50,
+        "gray-150": $gray-150,
+        "gray-550": $gray-550,
+        "gray-650": $gray-650
+);
+
+$spacer: 1rem;
+$spacers: (
+        0: 0,
+        1: $spacer * .25,
+        2: $spacer * .5,
+        3: $spacer,
+        4: $spacer * 1.5,
+        5: $spacer * 3,
+        6: $spacer * 4.5,
+        7: $spacer * 6,
+);
+
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// 5. Include remainder of required parts
+@import "../bootstrap/scss/maps";
+@import "../bootstrap/scss/mixins";
+@import "../bootstrap/scss/root";
+
+// 6. Optionally include any other parts as needed
+@import "../bootstrap/scss/bootstrap";
+
+.card {
+  border-width: 0;
+  box-shadow: 0 0.375rem 1.5rem 0 hsla(210, 12%, 60%, 0.13);
+}
+
+.btn-white {
+  background-color: #fff;
+  border-color: rgba(231,234,243,.7);
+  &.dropdown-toggle {
+    &::after {
+      background-image: url("data:image/svg+xml,%3csvg width='24' height='24' viewBox='0 0 24 24' fill='%2371869d' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.72,15.78a.75.75,0,0,1-.53.22h-.38a.77.77,0,0,1-.53-.22L6.15,10.64a.5.5,0,0,1,0-.71l.71-.71a.49.49,0,0,1,.7,0L12,13.67l4.44-4.45a.5.5,0,0,1,.71,0l.7.71a.5.5,0,0,1,0,.71Z'/%3e%3c/svg%3e");
+      transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+  }
+}
+
+.btn-check:focus+.btn-white,.btn-white:focus,.btn-white:hover {
+  color: #1366ff;
+  box-shadow: 0 3px 6px -2px rgba(140,152,164,.25);
+  border-color: $btn-hover-border-color;
+}
+
+.btn-check:focus+.btn-white.dropdown-toggle::after,.btn-white:focus.dropdown-toggle::after,.btn-white:hover.dropdown-toggle::after {
+  background-image: url("data:image/svg+xml,%3csvg width='24' height='24' viewBox='0 0 24 24' fill='%23377dff' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.72,15.78a.75.75,0,0,1-.53.22h-.38a.77.77,0,0,1-.53-.22L6.15,10.64a.5.5,0,0,1,0-.71l.71-.71a.49.49,0,0,1,.7,0L12,13.67l4.44-4.45a.5.5,0,0,1,.71,0l.7.71a.5.5,0,0,1,0,.71Z'/%3e%3c/svg%3e")
+}
+
+.btn-white.disabled,.btn-white:disabled {
+  color: #bdc5d1;
+  background-color: rgba(231,234,243,.5)
+}
+
+.divider-center {
+  display: flex;
+  align-items: center;
+  color: #8c98a4;
+  &::before {
+    margin-right: 1.5rem;
+  }
+  &::after {
+    margin-left: 1.5rem;
+  }
+  &::after,&::before{
+    flex: 1 1 0%;
+    border-top: .0625rem solid rgba(231,234,243,.7);
+    margin-top: .0625rem;
+    content: '';
+  }
+}

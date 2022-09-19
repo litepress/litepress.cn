@@ -1,0 +1,4 @@
+.phplint-cache
+
+.idea/
+vendor/
