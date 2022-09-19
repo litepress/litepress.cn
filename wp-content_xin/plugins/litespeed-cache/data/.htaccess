@@ -1,7 +1,0 @@
-Order Deny,Allow
-Deny from All
-
-<IfModule LiteSpeed>
-RewriteEngine on
-RewriteRule .* - [F,L]
-</IfModule>

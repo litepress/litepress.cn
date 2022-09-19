@@ -1,5 +1,0 @@
-{
-    "require": {
-        "tencentcloud/sms": "^3.0"
-    }
-}
