@@ -104,6 +104,12 @@ final class Upyun {
 			'flow_source' => 'cdn',
 		) );
 
+        if ( is_wp_error($r) ) {
+            Logger::error( Logger::GLOBAL, '获取又拍云 CDN 流量数据失败，出现WordPress错误', $r );
+
+            return false;
+        }
+
 		$r_array = json_decode( $r, true );
 		if ( empty( $r_array ) ) {
 			Logger::error( Logger::GLOBAL, '获取又拍云 CDN 流量数据失败：接口返回空数据', $r_array );
