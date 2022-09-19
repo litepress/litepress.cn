@@ -16,17 +16,24 @@ add_action( 'plugin_loaded', 'enable_debug', 1 );
 add_action( 'shutdown', 'disable_debug', 1000000 );
 
 function enable_debug() {
-    xhprof_enable(XHPROF_FLAGS_CPU +
-             XHPROF_FLAGS_MEMORY);
+	xhprof_enable( XHPROF_FLAGS_CPU +
+	               XHPROF_FLAGS_MEMORY );
 }
+
 function disable_debug() {
-    $data = xhprof_disable();   //返回运行数据
-    if ( isset( $data['main()'] ) && $data['main()']['wt'] / 1000000 > 30 ) {
-        include 'xhprof/utils/xhprof_lib.php';
-        include 'xhprof/utils/xhprof_runs.php';
-        $objXhprofRun = new XHProfRuns_Default();
-        $time = microtime();
-        Logger::error( Logger::GLOBAL, "检测到脚本运行过慢，已存储log为" . $time, $_SERVER );
-        $objXhprofRun->save_run($data, $time); //test 表示文件后缀
-    }
+	$data = xhprof_disable();// 取运行数据
+	// 检查主函数是否存在
+	if ( isset( $data['main()'] ) ) {
+		// 检查主函数的运行时间是否大于10秒，内存是否大于100M
+		if ( $data['main()']['wt'] / 1000000 > 30 || $data['main()']['pmu'] / 1048576 > 100 ) {
+			include 'xhprof/utils/xhprof_lib.php';
+			include 'xhprof/utils/xhprof_runs.php';
+			$objXhprofRun = new XHProfRuns_Default();
+			// 生成唯一id
+			$id = uniqid();
+			// 记录请求参数
+			Logger::error( Logger::GLOBAL, "检测到脚本运行过慢，已存储log为" . $id, $_SERVER ?? '无SERVER变量' );
+			$objXhprofRun->save_run( $data, 'slow', $id );
+		}
+	}
 }
