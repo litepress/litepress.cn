@@ -448,6 +448,10 @@ if ( empty( $cache_img_ext ) || empty( $info ) ) {
 	) );
 }
 
+// 删除 PNG 文件中无效的 iCCP 块，防止 imagecreatefrompng 函数抛出异常
+if ( 'png' === $cache_img_ext ) {
+	system( "mogrify $image_path" );
+}
 $fun      = "imagecreatefrom{$cache_img_ext}";
 $img_info = $fun( $image_path );
 
