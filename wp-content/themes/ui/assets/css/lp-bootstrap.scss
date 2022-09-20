@@ -116,6 +116,10 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   background-color: rgba(231,234,243,.5)
 }
 
+.min-vh-93 {
+  min-height: 93vh !important;
+}
+
 .divider-center {
   display: flex;
   align-items: center;

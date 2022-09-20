@@ -3,7 +3,7 @@
 /*modal*/
 /*form*/
 /*list-group*/
-/*dropdown*/
+/*dropdown*/ 
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -10385,6 +10385,9 @@ textarea.form-control-lg {
 .btn-white.disabled, .btn-white:disabled {
   color: #bdc5d1;
   background-color: rgba(231, 234, 243, 0.5); }
+
+.min-vh-93 {
+  min-height: 93vh !important; }
 
 .divider-center {
   display: flex;

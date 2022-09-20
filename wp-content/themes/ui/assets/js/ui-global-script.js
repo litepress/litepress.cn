@@ -824,7 +824,9 @@ $("#form-sign-in").on("click", "[data-type='submit']", function () {
                         } else {
                             $this.closest(".modal").modal('hide');
                             alert_success(s.message)
-                            window.location.reload()
+                           // console.log()
+                            const oldurl = document.referrer
+                            location.href =  $.UrlUpdateParams(oldurl, "login_token", s.data.login_token)
                         }
                     },
                     //调用出错执行的函数

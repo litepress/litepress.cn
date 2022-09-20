@@ -8,7 +8,15 @@
 </head>
 <body>
 
+<header class="position-sticky p-2 p-lg-0">
+    <div class="d-flex d-lg-none justify-content-center">
+        <a href="/">
+            <img class="img-fluid" src="/wp-content/themes/ui/assets/img/logo.svg" alt="litepress"  style="width: 150px">
+        </a>
 
+
+    </div>
+</header>
 <main role="main" class="main pt-0" id="sign-in">
     <!-- Content -->
     <div class="container-fluid px-3">
@@ -19,7 +27,7 @@
                     <div class="d-none d-lg-flex justify-content-between">
                         <a href="/">
                             <img class="w-100" src="/wp-content/themes/ui/assets/img/logo.svg" alt="litepress"
-                                 style="max-width: 200px">
+                                 style="max-width: 250px">
                             <!--<img class="w-100" src="./assets/svg/logos-light/logo.svg" alt="Image Description" data-hs-theme-appearance="dark" style="min-width: 7rem; max-width: 7rem;">
                         --></a>
 
@@ -31,7 +39,7 @@
                 <div style="max-width: 23rem;">
                     <div class="text-center mb-5">
                         <img class="img-fluid"
-                             src="wp-content/plugins/lpcn-user/pages/assets/img/oc-chatting.svg"
+                             src="/wp-content/plugins/lpcn-user/pages/assets/img/oc-chatting.svg"
                              alt="litepress" style="width: 12rem;" >
                         <!--<img class="img-fluid" src="./assets/svg/illustrations-light/oc-chatting.svg" alt="Image Description" style="width: 12rem;" data-hs-theme-appearance="dark">
                     --></div>
@@ -55,12 +63,18 @@
             </div>
             <!-- End Col -->
 
-            <div class="col-lg-6 d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-6 d-flex justify-content-center align-items-center  min-vh-lg-100 ">
+
+
+
                 <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 25rem;">
                     <!-- Form -->
 
-                    <div class="text-center">
+                    <div class="text-center ">
 
+                        <div class="mb-5 d-block d-lg-none pt-4">
+                            <h2 class="display-6">登录你的 LitePress.cn 账号</h2>
+                        </div>
 
                         <div class="d-grid mb-4">
                             <a class="btn btn-white " href="/user/oauth/qq"
@@ -85,7 +99,7 @@
                     </div>
 
                     <!-- Form -->
-                    <section class="form-sign ">
+                    <section class="form-sign pb-5 pb-lg-0">
 
                         <!-- Nav tabs -->
 
