@@ -2,7 +2,7 @@
 // Option B: Include parts of Bootstrap
 
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
-@import "../../node_modules/bootstrap/scss/functions";
+@import "../../../../../../node_modules/bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
 $primary: #0274be;
@@ -31,7 +31,7 @@ $modal-content-border-width: .0625rem;
 
 $form-feedback-valid-color:$gray-400;
 // 3. Include remainder of required Bootstrap stylesheets
-@import "../../node_modules/bootstrap/scss/variables";
+@import "../../../../../../node_modules/bootstrap/scss/variables";
 
 // 4. Include any default map overrides here
 // Create your own map
@@ -43,12 +43,12 @@ $custom-colors: (
 // Merge the maps
 $theme-colors: map-merge($theme-colors, $custom-colors);
 // 5. Include remainder of required parts
-@import "../../node_modules/bootstrap/scss/maps";
-@import "../../node_modules/bootstrap/scss/mixins";
-@import "../../node_modules/bootstrap/scss/root";
+@import "../../../../../../node_modules/bootstrap/scss/maps";
+@import "../../../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../../../../node_modules/bootstrap/scss/root";
 
 // 6. Optionally include any other parts as needed
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../../../../../node_modules/bootstrap/scss/bootstrap";
 
 .input-group {
   &.form-floating label {
@@ -172,6 +172,8 @@ html, body {
   display: block;
   margin: auto
 }
+
+
 
 
 

@@ -23,7 +23,7 @@ if ( empty( $keyword ) ) {
             <nav class="row">
                 <section class="mt-11 text-center">
 
-                    <section class=" "><img src="https://litepress.cn/wp-content/uploads/2021/05/logo.svg"
+                    <section class=" "><img src="wp-content/themes/ui/assets/img/logo.svg"
                                             alt="LitePress 社区"
                                             width="200">
                         <p class="my-3">通过我们的搜索引擎,你可以在全平台检索内容</p>

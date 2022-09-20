@@ -1,5 +1,5 @@
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
-@import "../bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
 $primary: #0274be;
@@ -50,7 +50,7 @@ $dropdown-padding-x:                .5rem;
 $dropdown-padding-y:                .5rem;
 
 // 3. Include remainder of required Bootstrap stylesheets
-@import "../bootstrap/scss/variables";
+@import "../../../../../node_modules/bootstrap/scss/variables";
 
 // 4. Include any default map overrides here
 // Create your own map
@@ -78,12 +78,12 @@ $spacers: (
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
 // 5. Include remainder of required parts
-@import "../bootstrap/scss/maps";
-@import "../bootstrap/scss/mixins";
-@import "../bootstrap/scss/root";
+@import "../../../../../node_modules/bootstrap/scss/maps";
+@import "../../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../../../node_modules/bootstrap/scss/root";
 
 // 6. Optionally include any other parts as needed
-@import "../bootstrap/scss/bootstrap";
+@import "../../../../../node_modules/bootstrap/scss/bootstrap";
 
 .card {
   border-width: 0;

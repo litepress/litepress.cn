@@ -62,7 +62,7 @@ export default function App() {
                                 </thead>
                                 <tbody>
                                 {Users && Users.map((user, index) => <tr key={index}>
-                                    <td className={"text-center"}><Card as={"img"} className={"lp-avatar"} src={"https://litepress.cn/cravatar/wp-content/uploads/sites/9/2021/07/default.png"}  onLoad={(e) => {
+                                    <td className={"text-center"}><Card as={"img"} className={"lp-avatar"} src={"/wp-content/plugins/cravatar/assets/image/default-avatar/default.png"}  onLoad={(e) => {
                                         e.target.src = user.image
                                     }} /></td>
                                     <td>{user.email}</td>

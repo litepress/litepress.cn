@@ -20,3 +20,4 @@ add_theme_support( 'bbpress' );
 add_theme_support( 'woocommerce' );
 
 require_once 'load.php';
+
