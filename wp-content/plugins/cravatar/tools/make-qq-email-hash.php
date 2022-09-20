@@ -7,10 +7,11 @@
 ini_set( 'memory_limit', '10240M' );
 
 $conn = mysqli_init();
-mysqli_options( $conn, MYSQLI_OPT_LOCAL_INFILE, true );
-mysqli_real_connect( $conn, "127.0.0.1", '', "", '' );
 
+mysqli_real_connect( $conn, "127.0.0.1", '', "", '' );
+mysqli_options( $conn, MYSQLI_OPT_LOCAL_INFILE, true );
 mysqli_query( $conn, 'set sql_log_bin = 0;' );
+mysqli_query( $conn, 'SET GLOBAL local_infile = true;' );
 
 const TABLE_NUM = 5000;
 
@@ -57,7 +58,7 @@ for ( $i = 1; $i <= TABLE_NUM; $i ++ ) {
           md5 VARCHAR(32),
           qq BIGINT,
           PRIMARY KEY ( `md5` )
-          );";
+          ) ENGINE = MyISAM;";
 
 	mysqli_query( $conn, $sql );
 }

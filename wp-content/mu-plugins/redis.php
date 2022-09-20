@@ -50,8 +50,6 @@ class Redis {
 				Logger::error( Logger::GLOBAL, 'Redis 连接失败：' . $this->redis->getLastError() );
 
 				return false;
-			} else {
-			    $this->redis->auth( 'RNzm3uGsoD' );
 			}
 		}
 
