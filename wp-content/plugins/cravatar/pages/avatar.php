@@ -54,7 +54,7 @@ if ( mysqli_connect_error() ) {
 	);
 
 	// 输出错误信息到浏览器
-	header('Cache-Control: no-cache');
+	header( 'Cache-Control: no-cache' );
 	http_response_code( 500 );
 	echo <<<HTML
 <!DOCTYPE html>
@@ -157,7 +157,7 @@ function get_remote_image( string $hash, string $url, string $type = 'gravatar',
  * URL 组成：https://cravatar.cn/avatar/邮箱 MD5.图像扩展名?查询参数
  * 此处需要提取 MD5 和头像扩展名
  */
-$hash = $_GET['hash'] ?? ''; // 重写后的头像hash地址
+$hash           = $_GET['hash'] ?? ''; // 重写后的头像hash地址
 $image_ext      = 'png'; // 请求响应的图片扩展名
 $url_path_array = explode( '.', $hash );
 $image_ext      = $url_path_array[1] ?? 'png';
@@ -257,10 +257,10 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 	// 计算出当前的邮箱 MD5 存储在哪个表中
 	// 需要记录 qq 号读取失败的日志
 
-    /**
-     * TODO 在PHP81下，下一行在数据不规范时会抛出Deprecated，需要修复
-     */
-	
+	/**
+	 * TODO 在PHP81下，下一行在数据不规范时会抛出Deprecated，需要修复
+	 */
+
 	$table = 'email_hash_' . ( hexdec( substr( $md5, 0, 10 ) ) ) % 5000 + 1;
 
 	$conn = mysqli_connect( LOW_DB_HOST, LOW_DB_USER, LOW_DB_PASSWORD, LOW_DB_NAME );
@@ -312,7 +312,7 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 if ( empty( $image_path ) ) {
 	// 如果用户要求直接返回 404 的话就设置 404 状态码并终止执行程序
 	if ( '404' === $default ) {
-        http_response_code( 404 );
+		http_response_code( 404 );
 		exit;
 	}
 
