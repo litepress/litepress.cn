@@ -37,7 +37,7 @@ class Login extends Base {
 		}
 
 		if ( ! check_tncode() ) {
-			//return $this->error( '滑块验证码错误' );
+			return $this->error( '滑块验证码错误' );
 		}
 
 		$login_data['user_login']    = $params['username'];
