@@ -124,8 +124,8 @@ class Avatar {
 			'%s',
 		) );
 
-		if ( ! $r ) {
-			return new WP_Error( 'insert_database_failed', '数据入库失败' );
+		if ( ! is_integer( $r ) ) {
+			return new WP_Error( 'insert_database_failed', '数据更新失败' );
 		}
 
 		// 成功更换头像后需要刷新 CDN 缓存
