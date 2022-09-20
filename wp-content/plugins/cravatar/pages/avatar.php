@@ -48,7 +48,7 @@ function write_log( string $level, string $message, array $data = array() ): boo
 	}
 
 	file_put_contents(
-		ABSPATH . 'wp-content/logs/run.log',
+		LOG_FILE,
 		"[$datetime] Cravatar.$level: $message $data []" . PHP_EOL,
 		FILE_APPEND
 	);
@@ -172,7 +172,7 @@ set_exception_handler( function ( $exception ) {
 	) );
 } );
 
-set_error_handler( function ( $errno, $errStr, $errFile, $errLine ) {
+$error_handler = set_error_handler( function ( $errno, $errStr, $errFile, $errLine ) {
 	c_die( $errStr, array(
 		'file' => $errFile,
 		'line' => $errLine
