@@ -40,6 +40,6 @@ Autoload\register_class_path( __NAMESPACE__ . '\Inc', __DIR__ . '/inc' );
 Autoload\register_class_path( __NAMESPACE__ . '\Inc\Api', __DIR__ . '/inc/api' );
 Autoload\register_class_path( __NAMESPACE__ . '\Inc\Api\User_Center', __DIR__ . '/inc/api/user-center' );
 
-Router\register_route( '/sso/login', PLUGIN_DIR . '/inc/pages/login.php' );
+Router\register_route( '/sso/login', PLUGIN_DIR . '/pages/login.php' );
 
 Plugin::get_instance();
