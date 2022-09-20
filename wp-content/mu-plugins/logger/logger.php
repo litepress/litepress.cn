@@ -38,6 +38,7 @@ class Logger {
 	const CRAVATAR = 'Cravatar';
 	const API = 'Api';
 	const GLOBAL = 'Global';
+	const PHP = 'PHP';
 
 	/**
 	 * @var array
@@ -54,7 +55,7 @@ class Logger {
 
 		if ( ! key_exists( $name, self::$instances ) || ! ( self::$instances[ $name ] instanceof Logger_Lib ) ) {
 			$log = new Logger_Lib( $name );
-			$log->pushHandler( new StreamHandler( WP_CONTENT_DIR . '/run.log', self::LEVEL ) );
+			$log->pushHandler( new StreamHandler( LOG_FILE, self::LEVEL ) );
 			self::$instances[ $name ] = $log;
 		}
 
