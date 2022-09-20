@@ -5,9 +5,12 @@
 
 use JetBrains\PhpStorm\NoReturn;
 
-// 此页不显示错误输出，防止头像格式错误（比如一些警告信息就会破坏头像输出格式）
-ini_set( 'display_errors', 0 );
-
+// 只有在调试模式下才输出错误详情，防止头像格式错误（比如一些警告信息就会破坏头像输出格式）
+if ( isset( $_GET['debug'] ) ) {
+	ini_set( 'display_errors', 1 );
+} else {
+	ini_set( 'display_errors', 0 );
+}
 // 载入配置文件
 require '../../../../cravatar-config.php';
 
