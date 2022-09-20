@@ -48,7 +48,7 @@ if ( mysqli_connect_error() ) {
 	}
 
 	file_put_contents(
-		ABSPATH . 'wp-content/run.log',
+		ABSPATH . 'wp-content/logs/run.log',
 		"[$datetime] Cravatar.ERROR: $message $data []" . PHP_EOL,
 		FILE_APPEND
 	);
