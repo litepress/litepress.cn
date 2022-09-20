@@ -9,8 +9,8 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 use function LitePress\Helper\check_tncode;
-use function LitePress\User\Inc\check_sms_code;
-use function LitePress\User\Inc\check_email_code;
+use function LitePress\Helper\check_sms_code;
+use function LitePress\Helper\check_email_code;
 
 /**
  * Class Security
