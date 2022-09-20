@@ -137,11 +137,12 @@ $type_str = [
 // 捕获全部异常
 $error_handler = set_error_handler( function ( $code, $message, $file, $line ): bool {
 	global $type_str;
-	Logger::error( 'PHP', '出现PHP脚本错误', array(
+	Logger::error( 'PHP', '出现致命性PHP脚本错误', array(
 		'type'    => $type_str[ $code ] ?? $code,
 		'file'    => $file,
 		'line'    => $line,
 		'message' => $message,
+		'server'  => $_SERVER ?? '',
 	) );
 
 	return true;
@@ -149,10 +150,31 @@ $error_handler = set_error_handler( function ( $code, $message, $file, $line ): 
 set_exception_handler( function ( $exception ) {
 	global $type_str;
 	Logger::error( 'PHP', '出现可捕获的PHP脚本错误', array(
-		'type'    => $type_str[ $exception->getCode() ] ?? $code,
+		'type'    => $type_str[ $exception->getCode() ] ?? $exception->getCode(),
 		'file'    => $exception->getFile(),
 		'line'    => $exception->getLine(),
 		'message' => $exception->getMessage(),
 		'trace'   => $exception->getTraceAsString(),
+		'server'  => $_SERVER ?? '',
 	) );
 } );
+register_shutdown_function(
+	function () use ( $error_handler ) {
+		global $type_str;
+		$error = error_get_last();
+		if ( ! $error ) {
+			return;
+		}
+		Logger::error( 'PHP', '出现非致命性PHP脚本错误', array(
+			'type'    => $type_str[ $error['type'] ] ?? $error['type'],
+			'file'    => $error['file'],
+			'line'    => $error['line'],
+			'message' => $error['message'],
+			'server'  => $_SERVER ?? '',
+		) );
+
+		if ( $error_handler ) {
+			restore_error_handler();
+		}
+	}
+);
