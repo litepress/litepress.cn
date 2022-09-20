@@ -126,7 +126,7 @@ function get_remote_image( string $hash, string $url, string $type = 'gravatar',
 	if ( ! file_exists( $file_path ) || filemtime( $file_path ) < ( time() - 1313280 ) || $force ) {
 		$image_data = http_get( $url );
 		if ( empty( $image_data ) ) {
-			return '';
+			return C_ROOT_PATH . '/assets/image/default-avatar/default.png';
 		}
 
 		if ( ! file_put_contents( $file_path, $image_data ) ) {
@@ -138,7 +138,7 @@ function get_remote_image( string $hash, string $url, string $type = 'gravatar',
 
 		// 有部分图片是禁止使用的，比如 QQ 的小企鹅默认头，这里需要手工排除掉这部分图片
 		if ( in_array( $avatar_hash, DENY_IMAGE ) ) {
-			return '';
+			return C_ROOT_PATH . '/assets/image/default-avatar/default.png';
 		}
 	}
 
@@ -147,10 +147,10 @@ function get_remote_image( string $hash, string $url, string $type = 'gravatar',
 
 /**
  * ===========================================================================================================
- * 统一处理 Fatal error/Exception
+ * 统一处理 Fatal error
  * ===========================================================================================================
  */
-set_exception_handler( function ( Exception $exception ) {
+set_exception_handler( function ( $exception ) {
 	c_die( $exception->getMessage(), array(
 		'file' => $exception->getFile(),
 		'line' => $exception->getLine()
@@ -378,7 +378,7 @@ if ( empty( $image_path ) ) {
  * 对于表中不存在图，则在检查的同时录入数据。系统会有一个 Cron 进程，每天定时检查新图是否违规并更新状态。
  */
 // 不对 QQ 头像检查违规图，成本顶不住，而且考虑到腾讯也有实名认证
-if ( 'qq' !== $avatar_from ) {
+if ( 'qq' !== $avatar_from && ! empty( $image_path ) ) {
 	$image_hash = md5_file( $image_path );
 	$sql        = $db->prepare( 'SELECT status FROM wp_9_avatar_verify WHERE image_md5=?' );
 	$sql->bind_param( 's', $image_hash );
