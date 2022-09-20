@@ -11,7 +11,7 @@ export const ImageGallery = forwardRef((props, ref) => {
 
     /*公共*/
     const [Imgsrc, setImgsrc] = useState()
-    const [activeImg, setactiveImg] = useState("https://dev.litepress.cn/cravatar/wp-content/uploads/sites/9/2022/06/img1.png")
+    const [activeImg, setactiveImg] = useState("/cravatar/wp-content/uploads/sites/9/2022/06/img1.png")
     const [activeImgid, setactiveImgid] = useState("112")
     const [Imgid, setImgid] = useState()
 

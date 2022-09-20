@@ -18,7 +18,7 @@
             <div class="modal-body pt-0">
                 <main class="form-sign p-3 pt-0">
                     <img class="mb-4" alt="" width="100%"
-                         src="https://dev.litepress.cn/wp-content/uploads/2021/05/logo.svg">
+                         src="/wp-content/uploads/2021/05/logo.svg">
                     <!-- Nav tabs -->
                     <ul class="nav lp-nav-tabs nav-tabs mb-3 border-0" id="sign-tab" role="tablist">
                         <li class="nav-item" role="presentation">
