@@ -6,7 +6,8 @@ use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
-use function LitePress\User\Inc\check_sms_code;
+use function LitePress\Helper\check_sms_code;
+use function LitePress\User\Inc\generate_login_token;
 
 /**
  * Class Login_By_Mobile
@@ -62,10 +63,9 @@ class Login_By_Mobile extends Base {
 		wp_set_current_user( $user_id );
 		wp_set_auth_cookie( $user_id, true );
 
-		// 需要在登录成功后设置此 Cookie 以绕过 ols 的缓存
-		//setcookie( '_lscache_vary', 'abc', time() + ( 365 * 24 * 60 * 60 ), '/' );
-
-		return $this->success( '登录成功' );
+		return $this->success( '登录成功', array(
+			'login_token' => generate_login_token( $user_id ),
+		)  );
 	}
 
 	private function prepare_params( array $params ): array|WP_Error {

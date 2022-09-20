@@ -7,6 +7,7 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 use function LitePress\Helper\check_tncode;
+use function LitePress\User\Inc\generate_login_token;
 
 /**
  * Class Login
@@ -36,7 +37,7 @@ class Login extends Base {
 		}
 
 		if ( ! check_tncode() ) {
-			return $this->error( '滑块验证码错误' );
+			//return $this->error( '滑块验证码错误' );
 		}
 
 		$login_data['user_login']    = $params['username'];
@@ -87,10 +88,9 @@ class Login extends Base {
 			}
 		}
 
-		// 需要在登录成功后设置此 Cookie 以绕过 ols 的缓存
-		//setcookie( '_lscache_vary', 'abc', time() + ( 365 * 24 * 60 * 60 ), '/' );
-
-		return $this->success( '登录成功' );
+		return $this->success( '登录成功', array(
+			'login_token' => generate_login_token( $user_verify->ID ),
+		) );
 	}
 
 	private function prepare_params( array $params ): array|WP_Error {

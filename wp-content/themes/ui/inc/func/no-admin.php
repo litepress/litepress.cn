@@ -536,41 +536,6 @@ HTML;
 } );
 
 /**
- * 如果用户在 URL 上拼接了 login_token 查询参数，则尝试解析 token 并使用其对应的用户来登录（如果已经登录其他用户则会切换为 token 对应的用户）
- */
-add_action( 'wp_loaded', function () {
-	if ( ! isset( $_GET['login_token'] ) || empty( $_GET['login_token'] ) ) {
-		return;
-	}
-	$login_token = sanitize_text_field( $_GET['login_token'] );
-
-	// 解析 token
-	if ( ! class_exists( 'Jwt_Auth' ) || ! class_exists( 'Jwt_Auth_Public' ) ) {
-		return;
-	}
-	$jwt        = new Jwt_Auth();
-	$jwt_public = new Jwt_Auth_Public( $jwt->get_plugin_name(), $jwt->get_version() );
-
-	$r = $jwt_public->validate_token( false, $login_token );
-	if ( is_wp_error( $r ) ) {
-		Logger::warning( 'Auth', '用户在网页端使用 login_token 登录时遇到了错误', array(
-			'token' => $login_token,
-			'error' => $r,
-		) );
-
-		return;
-	}
-
-	$user_id = (int) $r?->data?->user?->id;
-	if ( empty( $user_id ) ) {
-		return;
-	}
-
-	wp_set_current_user( $user_id );
-	wp_set_auth_cookie( $user_id );
-} );
-
-/**
  * 按当前子站点的 Slug 为标准去主题的 sub_templates 目录下引用子模板
  *
  * @param string $father_template_name
