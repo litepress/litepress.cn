@@ -14,7 +14,7 @@ use LitePress\Logger\Logger;
 
 // 判断是不是cli环境，cli下不加载调试
 if ( php_sapi_name() != 'cli' ) {
-	add_action( 'plugin_loaded', 'enable_debug', 1 );
+	add_action( 'muplugins_loaded', 'enable_debug', 1 );
 	add_action( 'shutdown', 'disable_debug', 1000000 );
 }
 
