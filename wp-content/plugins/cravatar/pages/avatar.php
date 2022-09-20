@@ -41,8 +41,8 @@ function write_log( string $level, string $message, array $data = array() ): boo
 
 	$data = json_encode( $data, JSON_UNESCAPED_UNICODE );
 	try {
-		$datetime = new DateTime( date( "Y-m-d H:i:s" ) );
-		$datetime = $datetime->format( DateTimeInterface::ATOM );
+		$datetime = new DateTime();
+		$datetime = $datetime->format( 'Y-m-d\TH:i:s.uP' );
 	} catch ( Exception $e ) {
 		$datetime = date( "Y-m-d H:i:s" );
 	}
