@@ -126,7 +126,7 @@ function get_remote_image( string $hash, string $url, string $type = 'gravatar',
 	if ( ! file_exists( $file_path ) || filemtime( $file_path ) < ( time() - 1313280 ) || $force ) {
 		$image_data = http_get( $url );
 		if ( empty( $image_data ) ) {
-			return C_ROOT_PATH . '/assets/image/default-avatar/default.png';
+			return '';
 		}
 
 		if ( ! file_put_contents( $file_path, $image_data ) ) {
@@ -138,7 +138,7 @@ function get_remote_image( string $hash, string $url, string $type = 'gravatar',
 
 		// 有部分图片是禁止使用的，比如 QQ 的小企鹅默认头，这里需要手工排除掉这部分图片
 		if ( in_array( $avatar_hash, DENY_IMAGE ) ) {
-			return C_ROOT_PATH . '/assets/image/default-avatar/default.png';
+			return '';
 		}
 	}
 
@@ -327,6 +327,7 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 
 // 检索默认头像
 if ( empty( $image_path ) ) {
+	$avatar_from = 'default';
 	// 如果用户要求直接返回 404 的话就设置 404 状态码并终止执行程序
 	if ( '404' === $default ) {
 		http_response_code( 404 );
@@ -363,11 +364,11 @@ if ( empty( $image_path ) ) {
 			str_contains( $default, '.png' )
 		) {
 			$image_path = get_remote_image( md5( $default ), $default, 'custom' );
+			if ( empty( $image_path ) ) {
+				$image_path = C_ROOT_PATH . '/assets/image/default-avatar/default.png';
+				// 需要记录获取远程头像错误的日志
+			}
 		}
-	}
-
-	if ( ! empty( $image_path ) ) {
-		$avatar_from = 'default';
 	}
 }
 
