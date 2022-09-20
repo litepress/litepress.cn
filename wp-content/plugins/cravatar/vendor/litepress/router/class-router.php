@@ -54,7 +54,7 @@ class Router {
 		$current_path = parse_url( add_query_arg( array() ), PHP_URL_PATH );
 
 		if ( key_exists( $current_path, $this->routes ) ) {
-			header( 'HTTP/1.1 200 OK' );
+			http_response_code( 200 );
 
 			return $this->routes[ $current_path ];
 		}
