@@ -273,24 +273,22 @@ if ( empty( $image_path ) && 'y' !== $force_default ) {
 	/**
 	 * 我们需要先尝试从邮箱 MD5 解析出 QQ 号码，之后才能调取到 QQ 头像
 	 */
-	// 计算出当前的邮箱 MD5 存储在哪个表中
-	// 需要记录 qq 号读取失败的日志
 
-	/**
-	 * TODO 在PHP81下，下一行在数据不规范时会抛出Deprecated，需要修复
-	 */
+	// 需要判断下传入的邮箱 MD5 是否是32位，如果不是则不进行查询
+	if ( strlen( $md5 ) == 32 ) {
+		// 计算出当前的邮箱 MD5 存储在哪个表中
+		$table = 'email_hash_' . ( hexdec( substr( $md5, 0, 10 ) ) ) % 5000 + 1;
 
-	$table = 'email_hash_' . ( hexdec( substr( $md5, 0, 10 ) ) ) % 5000 + 1;
+		$conn = mysqli_connect( LOW_DB_HOST, LOW_DB_USER, LOW_DB_PASSWORD, LOW_DB_NAME );
 
-	$conn = mysqli_connect( LOW_DB_HOST, LOW_DB_USER, LOW_DB_PASSWORD, LOW_DB_NAME );
+		$sql   = "select qq from {$table} where md5='{$md5}';";
+		$query = mysqli_query( $conn, $sql );
+		if ( ! is_bool( $query ) ) {
+			$row = mysqli_fetch_array( $query, MYSQLI_ASSOC );
 
-	$sql   = "select qq from {$table} where md5='{$md5}';";
-	$query = mysqli_query( $conn, $sql );
-	if ( ! is_bool( $query ) ) {
-		$row = mysqli_fetch_array( $query, MYSQLI_ASSOC );
-
-		if ( isset( $row['qq'] ) && ! empty( $row['qq'] ) ) {
-			$qq = $row['qq'];
+			if ( isset( $row['qq'] ) && ! empty( $row['qq'] ) ) {
+				$qq = $row['qq'];
+			}
 		}
 	}
 
@@ -404,13 +402,13 @@ if ( 'qq' !== $avatar_from ) {
 		) );
 		$start   = time();
 		$nextrun = $start + 10;
+		// 将时间戳转化成datetime格式
+		$start   = date( 'Y-m-d H:i:s', $start );
+		$nextrun = date( 'Y-m-d H:i:s', $nextrun );
 		$sql     = $db->prepare( 'INSERT INTO wp_cavalcade_jobs( site, hook, args, start, nextrun ) VALUES ( 9, "lpcn_sensitive_content_recognition", ?, ?, ? )' );
 		$sql->bind_param( 'sss', $args, $start, $nextrun );
-		/**
-		 * TODO 修复SQL语句报错
-		 * Uncaught mysqli_sql_exception: Incorrect datetime value: '1663525584' for column 'start' at row 1 in /www/wwwroot/wordpress/wp-content/plugins/cravatar/pages/avatar.php:383
-		 */
-		//$sql->execute();
+
+		$sql->execute();
 		$sql->close();
 	}
 
