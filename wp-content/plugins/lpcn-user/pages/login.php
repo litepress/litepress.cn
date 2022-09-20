@@ -17,9 +17,9 @@
                 <!-- Logo & Language -->
                 <div class="position-absolute top-0 start-0 end-0 mt-3 mx-3">
                     <div class="d-none d-lg-flex justify-content-between">
-                        <a href="./index.html">
-                            <img class="w-100" src="/wp-content/uploads/2021/05/logo.svg" alt="Image Description"
-                                 data-hs-theme-appearance="default" style="min-width: 7rem; max-width: 7rem;">
+                        <a href="/">
+                            <img class="w-100" src="/wp-content/themes/ui/assets/img/logo.svg" alt="litepress"
+                                 style="max-width: 200px">
                             <!--<img class="w-100" src="./assets/svg/logos-light/logo.svg" alt="Image Description" data-hs-theme-appearance="dark" style="min-width: 7rem; max-width: 7rem;">
                         --></a>
 

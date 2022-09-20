@@ -23,7 +23,7 @@ wp_body_open();
         <a class="navbar-brand" href="/">
             <a class="navbar-brand" href="/" aria-label="Space">
                 <img class="navbar-brand-logo mb-2"
-                     src="/cravatar/wp-content/uploads/sites/9/2022/06/资源-6.png" alt="">
+                     src="wp-content/themes/cravatar/assets/img/Cravatar-logo.png" alt="">
             </a>
             <?php
             /*            $custom_logo_id = get_theme_mod( 'custom_logo' );

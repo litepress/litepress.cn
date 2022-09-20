@@ -118,7 +118,7 @@ export function ChangeAvatar(props) {
                                                 }}
                                                 onError={(e) => {
                                                     e.target.onerror = null;
-                                                    e.target.src = "https://litepress.cn/cravatar/wp-content/uploads/sites/9/2021/07/default.png"
+                                                    e.target.src = "/wp-content/plugins/cravatar/assets/image/default-avatar/default.png"
                                                 }}/>
                                         </li>
                                     </Card>

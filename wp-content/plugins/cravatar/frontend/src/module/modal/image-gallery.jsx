@@ -11,7 +11,7 @@ export const ImageGallery = forwardRef((props, ref) => {
 
     /*公共*/
     const [Imgsrc, setImgsrc] = useState()
-    const [activeImg, setactiveImg] = useState("/cravatar/wp-content/uploads/sites/9/2022/06/img1.png")
+    const [activeImg, setactiveImg] = useState("wp-content/themes/cravatar/assets/img/img1.png")
     const [activeImgid, setactiveImgid] = useState("112")
     const [Imgid, setImgid] = useState()
 
@@ -126,7 +126,7 @@ export const ImageGallery = forwardRef((props, ref) => {
                                                             }}
                                                             onError={(e) => {
                                                                 e.target.onerror = null;
-                                                                e.target.src = "https://litepress.cn/cravatar/wp-content/uploads/sites/9/2021/07/default.png"
+                                                                e.target.src = "/wp-content/plugins/cravatar/assets/image/default-avatar/default.png"
                                                             }}/>
                                                     </li>
                                                 </Card>
