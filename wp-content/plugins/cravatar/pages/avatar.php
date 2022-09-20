@@ -147,6 +147,25 @@ function get_remote_image( string $hash, string $url, string $type = 'gravatar',
 
 /**
  * ===========================================================================================================
+ * 统一处理 Fatal error/Exception
+ * ===========================================================================================================
+ */
+set_exception_handler( function ( Exception $exception ) {
+	c_die( $exception->getMessage(), array(
+		'file' => $exception->getFile(),
+		'line' => $exception->getLine()
+	) );
+} );
+
+set_error_handler( function ( $errno, $errStr, $errFile, $errLine ) {
+	c_die( $errStr, array(
+		'file' => $errFile,
+		'line' => $errLine
+	) );
+} );
+
+/**
+ * ===========================================================================================================
  * 开始处理头像输出逻辑
  * ===========================================================================================================
  */
