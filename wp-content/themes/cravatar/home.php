@@ -17,9 +17,9 @@ $is_login = is_user_logged_in();
 
                         <a class="d-flex flex-column flex-lg-row justify-content-center  align-items-center mb-6 text-dark lh-sm text-decoration-none"
                            href="https://blog.getbootstrap.com/2022/05/13/bootstrap-5-2-0-beta/">
-                            <strong class="d-sm-inline-block p-2 me-2 mb-2 mb-lg-0 rounded-3 masthead-notice">UI 风格升级
-                                2.0</strong>
-                            <span class="text-muted">前端底层改用 React-Bootstrap 重构</span>
+                            <strong class="d-sm-inline-block p-2 me-2 mb-2 mb-lg-0 rounded-3 masthead-notice"> 账号系统正在维护 请耐心等待 预计今天之内恢复</strong>
+                            <span class="text-muted">UI 风格升级
+                                2.0 前端底层改用 React-Bootstrap 重构</span>
                         </a>
 
                         <h1 class="mb-3 fw-semibold text-center">                  <span
