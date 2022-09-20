@@ -54,11 +54,13 @@ ul, li {
   height: 40px;
   left: 0;
   margin: 0 auto;
-  position: absolute;
   right: 0;
   width: 25px;
   cursor: pointer;
   transition: all .3s linear; }
+  @media screen and (min-width: 768px) {
+    .m-mouse-icon {
+      position: absolute; } }
   .m-mouse-icon .m-wheel {
     animation: 1.5s ease 0s normal none infinite magic-mouse-icon;
     border-radius: 100%;

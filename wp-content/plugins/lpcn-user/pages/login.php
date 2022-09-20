@@ -55,7 +55,7 @@
             </div>
             <!-- End Col -->
 
-            <div class="col-lg-6 d-flex justify-content-center align-items-center min-vh-lg-100">
+            <div class="col-lg-6 d-flex justify-content-center align-items-center h-100">
                 <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 25rem;">
                     <!-- Form -->
 
