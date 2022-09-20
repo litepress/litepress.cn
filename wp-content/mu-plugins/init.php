@@ -39,7 +39,7 @@ add_action( 'user_register', function ( $user_id ) {
 	}
 
 	$address = strtolower( trim( $_POST['user_email-3'] ) );
-	$wpdb->replace( 'wp_9_avatar_email', array(
+	$wpdb->replace( 'wp_9_avatar', array(
 		'md5'       => md5( $address ),
 		'email'     => $address,
 		'user_id'   => $user_id,
@@ -50,7 +50,7 @@ add_action( 'user_register', function ( $user_id ) {
 } );
 
 /**
- * 用户更新邮箱自动添加邮箱hash到lavatar的头像服务
+ * 用户更新邮箱自动添加邮箱hash到cavatar的头像服务
  */
 add_action( 'profile_update', function ( int $user_id, WP_User $old_user_data ) {
 	global $wpdb;
@@ -59,7 +59,7 @@ add_action( 'profile_update', function ( int $user_id, WP_User $old_user_data ) 
 	$new_address = strtolower( trim( $new_user->user_email ) );
 	$old_address = strtolower( trim( $old_user_data->user_email ) );
 
-	$wpdb->replace( 'wp_9_avatar_email', array(
+	$wpdb->replace( 'wp_9_avatar', array(
 		'md5'       => md5( $new_address ),
 		'email'     => $new_address,
 		'user_id'   => $user_id,
@@ -112,4 +112,47 @@ add_action( 'wp_loaded', function () {
 
 	wp_set_current_user( $user_id );
 	wp_set_auth_cookie( $user_id );
+} );
+
+/**
+ * 统一使用LitePress的日志服务记录PHP错误
+ */
+$type_str = [
+	1     => 'ERROR',
+	2     => 'WARNING',
+	4     => 'PARSE',
+	8     => 'NOTICE',
+	16    => 'CORE_ERROR',
+	32    => 'CORE_WARNING',
+	64    => 'COMPILE_ERROR',
+	128   => 'COMPILE_WARNING',
+	256   => 'USER_ERROR',
+	512   => 'USER_WARNING',
+	1024  => 'USER_NOTICE',
+	2048  => 'STRICT',
+	4096  => 'RECOVERABLE_ERROR',
+	8192  => 'DEPRECATED',
+	16384 => 'USER_DEPRECATED',
+];
+// 捕获全部异常
+$error_handler = set_error_handler( function ( $code, $message, $file, $line ): bool {
+	global $type_str;
+	Logger::error( 'PHP', '出现PHP脚本错误', array(
+		'type'    => $type_str[ $code ] ?? $code,
+		'file'    => $file,
+		'line'    => $line,
+		'message' => $message,
+	) );
+
+	return true;
+} );
+set_exception_handler( function ( $exception ) {
+	global $type_str;
+	Logger::error( 'PHP', '出现可捕获的PHP脚本错误', array(
+		'type'    => $type_str[ $exception->getCode() ] ?? $code,
+		'file'    => $exception->getFile(),
+		'line'    => $exception->getLine(),
+		'message' => $exception->getMessage(),
+		'trace'   => $exception->getTraceAsString(),
+	) );
 } );
