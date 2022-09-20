@@ -12,7 +12,7 @@
                 <!-- Logo -->
                 <div class="mb-3">
                     <a class="navbar-brand" href="./index.html" aria-label="Space">
-                        <img class="navbar-brand-logo" src="https://dev.litepress.cn/cravatar/wp-content/uploads/sites/9/2022/06/资源-6.png" alt="">
+                        <img class="navbar-brand-logo" src="/cravatar/wp-content/uploads/sites/9/2022/06/资源-6.png" alt="">
                     </a>
                 </div>
                 <!-- End Logo -->
