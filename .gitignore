@@ -7,3 +7,4 @@
 !/wp-content/themes
 /*.php
 !/system-preload.php
+.DS_Store
