@@ -28,17 +28,17 @@ if ( mysqli_connect_error() ) {
  * 定义一些帮助类函数
  * ===========================================================================================================
  */
+function write_log( string $level, string $message, array $data = array() ): bool {
+	// 统一在日志里面插入当前访问的头像 URL
+	$avatar_url = $_SERVER['HTTP_AVATAR_URL'] ?? '';
+	$hash       = $_GET['hash'] ?? '';
 
-/**
- * 终止脚本执行并显示错误信息
- *
- * @param string $message
- * @param array $data
- *
- * @return void
- */
-#[NoReturn] function c_die( string $message, array $data = array() ) {
-	// 记录到本地的错误日志
+	// 去掉 hash 参数（这是由网关加入用来标识用户邮箱哈希的，并非用户传递的参数）
+	$avatar_url = str_replace( "&hash={$hash}", '', $avatar_url );
+	$avatar_url = str_replace( "hash={$hash}", '', $avatar_url );
+
+	$data['avatar_url'] = 'https://cravatar.cn' . $avatar_url;
+
 	$data = json_encode( $data, JSON_UNESCAPED_UNICODE );
 	try {
 		$datetime = new DateTime( date( "Y-m-d H:i:s" ) );
@@ -49,9 +49,24 @@ if ( mysqli_connect_error() ) {
 
 	file_put_contents(
 		ABSPATH . 'wp-content/logs/run.log',
-		"[$datetime] Cravatar.ERROR: $message $data []" . PHP_EOL,
+		"[$datetime] Cravatar.$level: $message $data []" . PHP_EOL,
 		FILE_APPEND
 	);
+
+	return true;
+}
+
+/**
+ * 终止脚本执行并显示错误信息
+ *
+ * @param string $message
+ * @param array $data
+ *
+ * @return void
+ */
+#[NoReturn] function c_die( string $message, array $data = array() ): void {
+	// 记录到本地的错误日志
+	write_log( 'ERROR', $message, $data );
 
 	// 输出错误信息到浏览器
 	header( 'Cache-Control: no-cache' );
@@ -367,6 +382,9 @@ if ( empty( $image_path ) ) {
 			if ( empty( $image_path ) ) {
 				$image_path = C_ROOT_PATH . '/assets/image/default-avatar/default.png';
 				// 需要记录获取远程头像错误的日志
+				write_log( 'INFO', '用户指定的默认头像获取失败', array(
+					'url' => $default
+				) );
 			}
 		}
 	}

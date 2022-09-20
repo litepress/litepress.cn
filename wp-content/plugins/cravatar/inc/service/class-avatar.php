@@ -39,7 +39,7 @@ class Avatar {
 			$avatars[] = array(
 				'id'    => $item->md5,
 				'email' => $item->email,
-				'image' => sprintf( "/cravatar/avatar/%s?s=400&r=G&d=mp&ver=" . $now, md5( $item->email ) ),
+				'image' => sprintf( "/avatar/%s?s=400&r=G&d=mp&ver=" . $now, md5( $item->email ) ),
 			);
 		}
 
@@ -124,8 +124,8 @@ class Avatar {
 			'%s',
 		) );
 
-		if ( ! $r ) {
-			return new WP_Error( 'insert_database_failed', '数据入库失败' );
+		if ( ! is_integer( $r ) ) {
+			return new WP_Error( 'insert_database_failed', '数据更新失败' );
 		}
 
 		// 成功更换头像后需要刷新 CDN 缓存
