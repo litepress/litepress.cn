@@ -117,7 +117,7 @@ add_action( 'wp_loaded', function () {
 /**
  * 统一使用LitePress的日志服务记录PHP错误
  */
-$type_str = [
+$types = [
 	1     => 'ERROR',
 	2     => 'WARNING',
 	4     => 'PARSE',
@@ -134,43 +134,45 @@ $type_str = [
 	8192  => 'DEPRECATED',
 	16384 => 'USER_DEPRECATED',
 ];
+
 // 捕获全部异常
 $error_handler = set_error_handler( function ( $code, $message, $file, $line ): bool {
-	global $type_str;
-	Logger::error( 'PHP', '出现致命性PHP脚本错误', array(
-		'type'    => $type_str[ $code ] ?? $code,
-		'file'    => $file,
-		'line'    => $line,
-		'message' => $message,
-		'server'  => $_SERVER ?? '',
+	global $types;
+
+	Logger::error( Logger::GLOBAL, $message, array(
+		'type'   => $types[ $code ] ?? $code,
+		'file'   => $file,
+		'line'   => $line,
+		'server' => $_SERVER ?? [],
 	) );
 
 	return true;
 } );
+
 set_exception_handler( function ( $exception ) {
-	global $type_str;
-	Logger::error( 'PHP', '出现可捕获的PHP脚本错误', array(
-		'type'    => $type_str[ $exception->getCode() ] ?? $exception->getCode(),
-		'file'    => $exception->getFile(),
-		'line'    => $exception->getLine(),
-		'message' => $exception->getMessage(),
-		'trace'   => $exception->getTraceAsString(),
-		'server'  => $_SERVER ?? '',
+	global $types;
+
+	Logger::error( Logger::GLOBAL, $exception->getMessage(), array(
+		'type'   => $types[ $exception->getCode() ] ?? $exception->getCode(),
+		'file'   => $exception->getFile(),
+		'line'   => $exception->getLine(),
+		'trace'  => $exception->getTraceAsString(),
+		'server' => $_SERVER ?? [],
 	) );
 } );
 register_shutdown_function(
 	function () use ( $error_handler ) {
-		global $type_str;
+		global $types;
+
 		$error = error_get_last();
 		if ( ! $error ) {
 			return;
 		}
-		Logger::error( 'PHP', '出现非致命性PHP脚本错误', array(
-			'type'    => $type_str[ $error['type'] ] ?? $error['type'],
-			'file'    => $error['file'],
-			'line'    => $error['line'],
-			'message' => $error['message'],
-			'server'  => $_SERVER ?? '',
+		Logger::warning( Logger::GLOBAL, $error['message'], array(
+			'type'   => $types[ $error['type'] ] ?? $error['type'],
+			'file'   => $error['file'],
+			'line'   => $error['line'],
+			'server' => $_SERVER ?? [],
 		) );
 
 		if ( $error_handler ) {
