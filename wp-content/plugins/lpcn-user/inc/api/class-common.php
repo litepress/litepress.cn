@@ -20,13 +20,13 @@ use function LitePress\Helper\send_email_code;
 class Common extends Base {
 
 	public function __construct() {
-		register_rest_route( 'common', 'send-sms-code', array(
+		register_rest_route( 'lpcn/user', 'send_sms_code', array(
 			'methods'             => WP_REST_Server::CREATABLE,
 			'callback'            => array( $this, 'send_sms_code' ),
 			'permission_callback' => '__return_true',
 		) );
 
-		register_rest_route( 'common', 'send-email-code', array(
+		register_rest_route( 'lpcn/user', 'send_email_code', array(
 			'methods'             => WP_REST_Server::CREATABLE,
 			'callback'            => array( $this, 'send_email_code' ),
 			'permission_callback' => '__return_true',

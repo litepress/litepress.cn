@@ -440,7 +440,7 @@ function send_sms_code( string $tel ): bool|WP_Error {
 
 		// 实例化要请求产品(以sms为例)的client对象,clientProfile是可选的
 		// 第二个参数是地域信息，可以直接填写字符串ap-guangzhou，支持的地域列表参考 https://cloud.tencent.com/document/api/382/52071#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8
-		$client = new SmsClient( $cred, "ap-guangzhou", $clientProfile );
+		$client = new SmsClient( $cred, "ap-beijing", $clientProfile );
 
 		// 实例化一个 sms 发送短信请求对象,每个接口都会对应一个request对象。
 		$req = new SendSmsRequest();
@@ -457,7 +457,7 @@ function send_sms_code( string $tel ): bool|WP_Error {
 		/* 用户的 session 内容: 可以携带用户侧 ID 等上下文信息，server 会原样返回 */
 		$req->SessionContext = "xxx";
 		/* 模板 ID: 必须填写已审核通过的模板 ID。模板ID可登录 [短信控制台] 查看 */
-		$req->TemplateId = "1334636";
+		$req->TemplateId = SMS_TEMPLATE_ID;
 		/* 模板参数: 若无模板参数，则设置为空*/
 		$req->TemplateParamSet = array( (string) $code, '5' );
 
