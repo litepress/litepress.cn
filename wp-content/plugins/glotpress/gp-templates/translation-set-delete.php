@@ -18,7 +18,7 @@ gp_title(
 gp_breadcrumb(
 	array(
 		gp_project_links_from_root( $project ),
-		gp_link_get( $query_url, $locale->english_name . ( 'default' !== $set->slug ? ' ' . $set->name : '' ) ),
+		gp_link_get( $url, $locale->english_name . ( 'default' !== $set->slug ? ' ' . $set->name : '' ) ),
 	)
 );
 gp_tmpl_header();
@@ -28,10 +28,10 @@ gp_tmpl_header();
 	<p>
 		<?php _e( 'Note this will delete all translations associated with this set!', 'glotpress' ); ?>
 	</p>
-	<p>
-		<input type="submit" name="submit" value="<?php esc_attr_e( 'Delete', 'glotpress' ); ?>" id="submit" />
-		<span class="or-cancel"><?php _e( 'or', 'glotpress' ); ?> <a href="<?php echo esc_url( gp_url_project_locale( $project, $locale->slug, $set->slug ) ); ?>"><?php _e( 'Cancel', 'glotpress' ); ?></a></span>
-	</p>
+	<div class="button-group">
+		<input class="button is-destructive" type="submit" name="submit" value="<?php esc_attr_e( 'Delete', 'glotpress' ); ?>" id="submit" />
+		<a class="button is-link" href="<?php echo esc_url( gp_url_project_locale( $project, $locale->slug, $set->slug ) ); ?>"><?php _e( 'Cancel', 'glotpress' ); ?></a>
+	</div>
 	<?php gp_route_nonce_field( 'delete-translation-set_' . $set->id ); ?>
 </form>
 <?php

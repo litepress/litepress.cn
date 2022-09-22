@@ -8,7 +8,6 @@ gp_title(
 );
 gp_breadcrumb_project( $project );
 gp_enqueue_scripts( array( 'gp-editor', 'tablesorter' ) );
-gp_enqueue_style( 'tablesorter-theme' );
 $edit_link   = gp_link_project_edit_get( $project, _x( '(edit)', 'project', 'glotpress' ) );
 $delete_link = gp_link_project_delete_get( $project, _x( '(delete)', 'project', 'glotpress' ) );
 
@@ -25,15 +24,16 @@ if ( $project->active ) {
 
 gp_tmpl_header();
 ?>
-<h2>
+
+<div class="gp-heading">
+	<h2><?php echo esc_html( $project->name ); ?></h2>
 	<?php
-	echo esc_html( $project->name );
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo $edit_link;
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo $delete_link;
 	?>
-</h2>
+</div>
 
 <?php
 /**
@@ -55,7 +55,7 @@ if ( $project_description ) {
 
 <?php if ( $can_write ) : ?>
 
-<div class="actionlist">
+<div>
 	<a href="#" class="project-actions" id="project-actions-toggle"><?php echo __( 'Project actions', 'glotpress' ) . ' &darr;'; ?></a>
 	<div class="project-actions hide-if-js">
 		<?php gp_project_actions( $project, $translation_sets ); ?>
@@ -71,29 +71,25 @@ $project_class = $sub_projects ? 'with-sub-projects' : '';
 <?php if ( $translation_sets ) : ?>
 <div id="translation-sets">
 	<h3><?php _e( 'Translations', 'glotpress' ); ?></h3>
-	<table class="translation-sets tablesorter tablesorter-glotpress">
+	<table class="gp-table translation-sets">
 		<thead>
-			<tr class="tablesorter-headerRow">
-				<th class="header tablesorter-header tablesorter-headerUnSorted"><?php _e( 'Locale', 'glotpress' ); ?></th>
-				<th class="header tablesorter-header tablesorter-headerUnSorted"><?php _ex( '%', 'locale translation percent header', 'glotpress' ); ?></th>
-				<th class="header tablesorter-header tablesorter-headerDesc"><?php _e( 'Translated', 'glotpress' ); ?></th>
-				<th class="header tablesorter-header tablesorter-headerUnSorted"><?php _e( 'Fuzzy', 'glotpress' ); ?></th>
-				<th class="header tablesorter-header tablesorter-headerUnSorted"><?php _e( 'Untranslated', 'glotpress' ); ?></th>
-				<th class="header tablesorter-header tablesorter-headerUnSorted"><?php _e( 'Waiting', 'glotpress' ); ?></th>
+			<tr>
+				<th class="gp-column-locale"><?php _e( 'Locale', 'glotpress' ); ?></th>
+				<th class="gp-column-percent"><?php _ex( '%', 'locale translation percent header', 'glotpress' ); ?></th>
+				<th class="gp-column-translated"><?php _e( 'Translated', 'glotpress' ); ?></th>
+				<th class="gp-column-fuzzy"><?php _e( 'Fuzzy', 'glotpress' ); ?></th>
+				<th class="gp-column-untranslated"><?php _e( 'Untranslated', 'glotpress' ); ?></th>
+				<th class="gp-column-waiting"><?php _e( 'Waiting', 'glotpress' ); ?></th>
 				<?php if ( has_action( 'gp_project_template_translation_set_extra' ) ) : ?>
-				<th class="header tablesorter-header tablesorter-headerUnSorted extra"><?php _e( 'Extra', 'glotpress' ); ?></th>
+					<th class="gp-column-extra"><?php _e( 'Extra', 'glotpress' ); ?></th>
 				<?php endif; ?>
 			</tr>
 		</thead>
 		<tbody>
 		<?php
-		$class = '';
-
 		foreach ( $translation_sets as $set ) :
-			$class = ( 'odd' === $class ) ? 'even' : 'odd';
-
 		?>
-			<tr class="<?php echo esc_attr( $class ); ?>">
+			<tr>
 				<td>
 					<strong><?php gp_link( gp_url_project( $project, gp_url_join( $set->locale, $set->slug ) ), $set->name_with_locale() ); ?></strong>
 					<?php
@@ -111,8 +107,7 @@ $project_class = $sub_projects ? 'with-sub-projects' : '';
 							$project,
 							gp_url_join( $set->locale, $set->slug ),
 							array(
-								'filters[translated]' => 'yes',
-								'filters[status]'     => 'current',
+								'filters[status]' => 'current',
 							)
 						),
 						number_format_i18n( $set->current_count )
@@ -126,8 +121,7 @@ $project_class = $sub_projects ? 'with-sub-projects' : '';
 							$project,
 							gp_url_join( $set->locale, $set->slug ),
 							array(
-								'filters[translated]' => 'yes',
-								'filters[status]'     => 'fuzzy',
+								'filters[status]' => 'fuzzy',
 							)
 						),
 						number_format_i18n( $set->fuzzy_count )
@@ -155,8 +149,7 @@ $project_class = $sub_projects ? 'with-sub-projects' : '';
 							$project,
 							gp_url_join( $set->locale, $set->slug ),
 							array(
-								'filters[translated]' => 'yes',
-								'filters[status]'     => 'waiting',
+								'filters[status]' => 'waiting',
 							)
 						),
 						number_format_i18n( $set->waiting_count )
@@ -248,8 +241,7 @@ $project_class = $sub_projects ? 'with-sub-projects' : '';
 				0: {
 					sorter: 'text'
 				}
-			},
-			widgets: ['zebra']
+			}
 		});
 	});
 </script>

@@ -11,19 +11,19 @@ return array(
 		'path'    => array( $vendorDir . '/composer/installers/src/Composer/Installers' )
 	),
 	'Automattic\\WooCommerce\\StoreApi\\' => array(
-		'version' => '8.0.0.0',
+		'version' => '8.3.2.0',
 		'path'    => array( $baseDir . '/src/StoreApi' )
 	),
 	'Automattic\\WooCommerce\\Blocks\\Tests\\' => array(
-		'version' => '8.0.0.0',
+		'version' => '8.3.2.0',
 		'path'    => array( $baseDir . '/tests/php' )
 	),
 	'Automattic\\WooCommerce\\Blocks\\' => array(
-		'version' => '8.0.0.0',
+		'version' => '8.3.2.0',
 		'path'    => array( $baseDir . '/src' )
 	),
 	'Automattic\\Jetpack\\Autoloader\\' => array(
-		'version' => '2.10.7.0',
+		'version' => '2.11.6.0',
 		'path'    => array( $vendorDir . '/automattic/jetpack-autoloader/src' )
 	),
 );

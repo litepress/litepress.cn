@@ -611,10 +611,10 @@ function gp_project_options_form( $project ) {
 						) . '</small>
 					</dd>
 				</dl>
-				<p>
-					<input type="submit" name="submit" value="' . esc_attr__( 'Save &rarr;', 'glotpress' ) . '" id="save" />
-					<a class="ternary" href="#" onclick="jQuery(\'#personal-options-toggle\').click();return false;">' . __( 'Cancel', 'glotpress' ) . '</a>
-				</p>
+				<div class="button-group">
+					<input class="button is-primary" type="submit" name="submit" value="' . esc_attr__( 'Save', 'glotpress' ) . '" id="save" />
+					<a class="button is-link" href="#" onclick="jQuery(\'#personal-options-toggle\').click();return false;">' . __( 'Cancel', 'glotpress' ) . '</a>
+				</div>
 				' . gp_route_nonce_field( 'set-personal-options_' . $project->id, false ) . '
 				</form>
 			</div>';
@@ -622,9 +622,9 @@ function gp_project_options_form( $project ) {
 
 function gp_entry_actions( $seperator = ' &bull; ' ) {
 	$actions = array(
-		'<button class="copy" tabindex="-1" title="' . __( 'Copy the original string to the translation area (overwrites existing text).', 'glotpress' ) . '">' . __( 'Copy from original', 'glotpress' ) . '</button> ' .
-		'<button class="inserttab" tabindex="-1" title="' . __( 'Insert tab (\t) at the current cursor position.', 'glotpress' ) . '">' . __( 'Insert tab', 'glotpress' ) . '</button> ' .
-		'<button class="insertnl" tabindex="-1" title="' . __( 'Insert newline (\n) at the current cursor position.', 'glotpress' ) . '">' . __( 'Insert newline', 'glotpress' ) . '</button>',
+		'<div class="button-group entry-actions"><button type="button" class="button is-small copy" tabindex="-1" title="' . __( 'Copy the original string to the translation area (overwrites existing text).', 'glotpress' ) . '">' . __( 'Copy from original', 'glotpress' ) . '</button> ' .
+		'<button type="button"  class="button is-small inserttab" tabindex="-1" title="' . __( 'Insert tab (\t) at the current cursor position.', 'glotpress' ) . '">' . __( 'Insert tab', 'glotpress' ) . '</button> ' .
+		'<button type="button" class="button is-small insertnl" tabindex="-1" title="' . __( 'Insert newline (\n) at the current cursor position.', 'glotpress' ) . '">' . __( 'Insert newline', 'glotpress' ) . '</button></div>',
 	);
 
 	/**
@@ -655,10 +655,6 @@ function gp_get_translation_row_classes( $translation ) {
 	$classes[] = 'priority-' . gp_array_get( GP::$original->get_static( 'priorities' ), $translation->priority );
 	$classes[] = $translation->warnings ? 'has-warnings' : 'no-warnings';
 	$classes[] = count( array_filter( $translation->translations, 'gp_is_not_null' ) ) > 0 ? 'has-translations' : 'no-translations';
-
-	if ( property_exists( $translation, 'root_translation_set_id' ) ) {
-		$classes[] = $translation->translation_set_id === $translation->root_translation_set_id ? 'root-translation' : '';
-	}
 
 	/**
 	 * Filters the list of CSS classes for a translation row

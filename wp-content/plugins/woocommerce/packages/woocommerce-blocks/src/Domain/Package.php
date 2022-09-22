@@ -1,8 +1,9 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\Domain;
 
-use Automattic\WooCommerce\Blocks\Package as NewPackage;
+use Automattic\WooCommerce\Blocks\Options;
 use Automattic\WooCommerce\Blocks\Domain\Services\FeatureGating;
+
 
 /**
  * Main package class.
@@ -64,6 +65,24 @@ class Package {
 	}
 
 	/**
+	 * Returns the version of the plugin stored in the database.
+	 *
+	 * @return string
+	 */
+	public function get_version_stored_on_db() {
+		return get_option( Options::WC_BLOCK_VERSION, '' );
+	}
+
+	/**
+	 * Set the version of the plugin stored in the database.
+	 * This is useful during the first installation or after the upgrade process.
+	 */
+	public function set_version_stored_on_db() {
+		update_option( Options::WC_BLOCK_VERSION, $this->get_version() );
+
+	}
+
+	/**
 	 * Returns the path to the plugin directory.
 	 *
 	 * @param string $relative_path  If provided, the relative path will be
@@ -115,7 +134,13 @@ class Package {
 	 *
 	 * @return boolean
 	 */
-	public function is_feature_plugin_build() {
-		return $this->feature()->is_feature_plugin_build();
-	}
+	// phpcs:disable Squiz.PHP.CommentedOutCode
+	// phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
+	// phpcs:disable Squiz.Commenting.InlineComment.SpacingBefore
+	//	public function is_feature_plugin_build() {
+	//		return $this->feature()->is_feature_plugin_build();
+	//	}
+	// phpcs:enable Squiz.PHP.CommentedOutCode
+	// phpcs:enable Squiz.Commenting.InlineComment.InvalidEndChar
+	// phpcs:enable Squiz.Commenting.InlineComment.SpacingBefore
 }

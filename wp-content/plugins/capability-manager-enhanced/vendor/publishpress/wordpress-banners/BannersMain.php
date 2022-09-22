@@ -25,7 +25,7 @@ namespace PublishPress\WordPressBanners;
 use Exception;
 
 if (! defined('PP_WP_BANNERS_VERSION')) {
-    define('PP_WP_BANNERS_VERSION', '1.3.0');
+    define('PP_WP_BANNERS_VERSION', '1.3.1');
 }
 
 if (! class_exists('\\PublishPress\\WordPressBanners\\BannersMain')) {

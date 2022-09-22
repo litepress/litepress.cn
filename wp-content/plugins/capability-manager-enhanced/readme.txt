@@ -1,13 +1,13 @@
 === PublishPress Capabilities - User Role Access, Editor Permissions, Admin Menus ===
 
-Contributors: publishpress, kevinB, stevejburge, andergmartins
+Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Author: PublishPress
 Author URI: https://publishpress.com
 Tags: user roles, capabilities, permissions, admin menus, post editing, post types, taxonomies
 Requires at least: 4.9.7
 Tested up to: 6.0
 Requires PHP: 5.6.20
-Stable tag: 2.5.0
+Stable tag: 2.5.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -408,6 +408,16 @@ Fixed : Non-administrators with user editing capabilities could add new Administ
 Fixed : Security issue. Please update.
 
 == Changelog ==
+
+= 2.5.1 - 13 Sep 2022 =
+  * Added : Ability to block user login by role #510
+  * Update : Add disable WooCommerce admin restrictions in role settings #549
+  * Update : Hide taxonomy screen option for editor features #554
+  * Update : Hide metabox screen option for editor features #556
+  * Fixed : It's possible to access customize page even after blocking with admin menu #559
+  * Fixed : Uncaught error: Illegal offset type in isset or empty #564
+  * Update : Translation Note Suggestion for "Editor" #567
+  * Update : Capability-FR-IT-Translation_updates-August15_2022 #551
 
 = 2.5.0 - 11 Aug 2022 =
   * Update : Admin Features UI design consistency #466

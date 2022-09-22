@@ -10,6 +10,9 @@
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
+use function WePublish\IPUA\Inc\get_ip_address;
+use function WePublish\IPUA\Inc\get_ua_info;
+
 ?>
 
 <div class="bbp-reply-author-avatar">
@@ -38,6 +41,11 @@ defined( 'ABSPATH' ) || exit;
         $user_meta = get_user_meta($user_id, '', true);
         $user_name = @$user_meta['nickname'][0] ?: '已注销';
         $user_slug = @$user_meta['um_user_profile_url_slug_user_login'];
+        $comment_meta = get_post_meta( bbp_get_reply_id(), '_bbp_akismet_as_submitted' );
+        $ip_meta = get_post_meta( bbp_get_reply_id(), '_bbp_author_ip' );
+        $user_ip = $ip_meta[0] ?? '';
+        $user_agent = $comment_meta[0]['user_agent'] ?? '';
+
         if ( is_array( $user_slug ) && ! empty( $user_slug ) ) {
 	        $user_slug = $user_slug[0];
         } else {
@@ -60,6 +68,13 @@ defined( 'ABSPATH' ) || exit;
                 <?php do_action( 'bbp_theme_after_reply_author_admin_details' ); ?>
 
             <?php endif; ?>
+
+            <span class="bbp-reply-post-date">
+                IP属地: <?php echo get_ip_address($user_ip) . " "; ?>
+                <?php if ( ! empty($user_agent) ) : ?>
+                <?php echo get_ua_info($user_agent); ?>
+                <?php endif; ?>
+	        </span>
 
             <span class="bbp-reply-post-date"><?php bbp_reply_post_date(); ?></span>
 

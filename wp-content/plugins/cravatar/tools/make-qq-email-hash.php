@@ -8,13 +8,13 @@ ini_set( 'memory_limit', '10240M' );
 
 $conn = mysqli_init();
 
-mysqli_real_connect( $conn, "127.0.0.1", '', "", '' );
+mysqli_real_connect( $conn, "localhost", 'root', "GFj5ZxA4Y37RHjdm", 'hash' );
 mysqli_options( $conn, MYSQLI_OPT_LOCAL_INFILE, true );
 mysqli_query( $conn, 'set sql_log_bin = 0;' );
 mysqli_query( $conn, 'SET GLOBAL local_infile = true;' );
 
 const TABLE_NUM = 5000;
-
+/*
 for ( $i = 1; $i <= TABLE_NUM; $i ++ ) {
 	$table_name = 'email_hash_' . $i;
 
@@ -22,6 +22,7 @@ for ( $i = 1; $i <= TABLE_NUM; $i ++ ) {
 
 	mysqli_query( $conn, $sql );
 }
+
 
 for ( $i = 1; $i <= TABLE_NUM; $i ++ ) {
 	$table_name = 'email_hash_' . $i;
@@ -33,16 +34,18 @@ for ( $i = 1; $i <= TABLE_NUM; $i ++ ) {
           );";
 
 	mysqli_query( $conn, $sql );
-}
+}*/
+
 
 for ( $i = 1; $i <= TABLE_NUM; $i ++ ) {
 	$sql = "LOAD DATA LOCAL INFILE '/data2/sql/email_hash_{$i}.csv' INTO TABLE email_hash_{$i} FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\n';";
 
 	$r = mysqli_query( $conn, $sql );
 	var_dump( mysqli_error( $conn ) );
+	echo $i.PHP_EOL;
 }
 
-/*
+/**
 for ( $i = 1; $i <= TABLE_NUM; $i ++ ) {
 	$table_name = 'email_hash_' . $i;
 
@@ -61,8 +64,8 @@ for ( $i = 1; $i <= TABLE_NUM; $i ++ ) {
           ) ENGINE = MyISAM;";
 
 	mysqli_query( $conn, $sql );
-}
-*/
+}*/
+
 /**
  * QQ号生成范围：50000-5000000000
  */

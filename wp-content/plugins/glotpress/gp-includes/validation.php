@@ -11,7 +11,7 @@
  *
  * Uses magic methods in the format of [field]_[rule].
  *
- * The below is a list of all magic methods called to ensure Scrutinizer recognizes them.
+ * The below is a list of all magic methods called.
  * Note that once a method has been defined from one file it will not be redefine in subsequent file sections.
  *
  * From gp_includes/things/administrative-permissions.php:
@@ -108,10 +108,13 @@ class GP_Validation_Rules {
 		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 		trigger_error(
 			sprintf(
-				/* translators: 1: Class name, 2: method name.  */
-				'Call to undefined method: %1$::%2$().',
-				esc_html( get_class( $this ) ),
-				esc_html( $name )
+				/* translators: %s: Method name. */
+				esc_html__( 'Call to undefined method: %s.', 'glotpress' ),
+				sprintf(
+					'%1$s::%2$s()',
+					esc_html( get_class( $this ) ),
+					esc_html( $name )
+				)
 			),
 			E_USER_ERROR
 		);
@@ -166,7 +169,7 @@ class GP_Validation_Rules {
 						$this->errors[] = $this->construct_error_message( $rule );
 						$verdict        = false;
 					}
-				} elseif ( ! $callback['negativ']( ...$args ) ) {
+				} elseif ( ! $callback['negative']( ...$args ) ) {
 					$this->errors[] = $this->construct_error_message( $rule );
 					$verdict        = false;
 				}
@@ -222,3 +225,6 @@ GP_Validators::register( 'int', 'gp_is_int' );
 GP_Validators::register( 'null', 'gp_is_null' );
 GP_Validators::register( 'between', 'gp_is_between' );
 GP_Validators::register( 'between_exclusive', 'gp_is_between_exclusive' );
+GP_Validators::register( 'one_of', 'gp_is_one_of' );
+GP_Validators::register( 'consisting_only_of_ASCII_characters', 'gp_is_ascii_string' );
+GP_Validators::register( 'starting_and_ending_with_a_word_character', 'gp_is_starting_and_ending_with_a_word_character' );
