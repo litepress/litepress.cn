@@ -111,9 +111,20 @@ function http_get( $url ): bool|string {
 	$aStatus  = curl_getinfo( $oCurl );
 	curl_close( $oCurl );
 
-	if ( intval( $aStatus["http_code"] ) === 200 ) {
+	if ( 200 === intval( $aStatus["http_code"] ) ) {
 		return $sContent;
 	} else {
+		// 如果用户指定查询未匹配时返回404状态的头像，则不记录404状态码的日志
+		if ( str_contains( $url, 'd=404' ) && 404 === $aStatus["http_code"] ) {
+			return false;
+		}
+
+		write_log( 'ERROR', '取源失败', array(
+			'source_url' => $url,
+			'body'       => $sContent,
+			'status'     => $aStatus["http_code"],
+		) );
+
 		return false;
 	}
 }
