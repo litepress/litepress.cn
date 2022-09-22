@@ -225,7 +225,7 @@
                                     <div class="row mb-3">
 
                                         <div class=" col text-end">
-                                            <a target="_blank" href="/password-reset">忘记密码？</a>
+                                            <a target="_blank" href="https://litepress.cn/wp-login.php?action=lostpassword">忘记密码？</a>
                                         </div>
                                     </div>
                                     <button class="w-100 btn btn-lg btn-primary btn_loading" data-type="submit"
