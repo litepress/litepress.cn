@@ -94,6 +94,8 @@ class Avatar {
 			return new WP_Error( 'insert_database_failed', '数据入库失败' );
 		}
 
+		// 刷新CDN缓存
+		purge_avatar_cache( array( md5( $email ) ), false );
 		return true;
 	}
 
@@ -154,6 +156,9 @@ class Avatar {
 		if ( ! $r ) {
 			return new WP_Error( 'insert_database_failed', '数据入库失败' );
 		}
+
+		// 刷新CDN缓存
+		purge_avatar_cache( array( $md5 ), false );
 
 		return true;
 	}
