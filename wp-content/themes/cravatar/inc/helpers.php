@@ -175,7 +175,7 @@ function get_qqavatar_to_file( string $hash, string $qq ): string {
 function get_avatar_to_file( string $hash, string $url, string $type = 'gravatar' ): string|false {
 	global $wpdb;
 
-	$file_path = "/www/cravatar-cache/$type/$hash.png";
+	$file_path = "/www/cravatar_cache/$type/$hash.png";
 
 	/**
 	 * 不存在缓存或缓存是15天前创建的就从Gravatar获取数据
@@ -417,7 +417,7 @@ function purge_avatar_cache( array $emails, bool $purge_local = true, bool $only
 			continue;
 		}
 
-		$local_paths[] = "/www/cravatar-cache/$type/$hash.png";
+		$local_paths[] = "/www/cravatar_cache/$type/$hash.png";
 		$urls[]        = "https://cravatar.cn/avatar/{$hash}*";
 	}
 

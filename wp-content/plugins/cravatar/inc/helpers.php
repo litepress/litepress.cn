@@ -27,7 +27,7 @@ function purge_avatar_cache( array $emails, bool $purge_local = true, bool $only
 			continue;
 		}
 
-		$local_paths[] = "/www/cravatar-cache/$type/$hash.png";
+		$local_paths[] = "/www/cravatar_cache/$type/$hash.png";
 		$urls[]        = "https://cravatar.cn/avatar/{$hash}*";
 	}
 
