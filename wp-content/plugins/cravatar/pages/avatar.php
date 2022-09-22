@@ -276,7 +276,7 @@ if ( 'y' !== $force_default ) {
 
 // 尝试检索 Gravatar 头像
 if ( empty( $image_path ) && 'y' !== $force_default ) {
-	$url        = "http://gravatar.cdn.wepublish.cn/avatar/{$md5}.png?s=400&r=g&d=404";
+	$url        = "http://gravatar.litepress.cn/avatar/{$md5}.png?s=400&r=g&d=404";
 	$image_path = get_remote_image( $md5, $url );
 	if ( ! empty( $image_path ) ) {
 		$avatar_from = 'gravatar';
