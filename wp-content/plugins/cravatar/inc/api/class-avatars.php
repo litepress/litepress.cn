@@ -123,7 +123,7 @@ class Avatars extends Base {
 			return $this->error( $r->get_error_message() );
 		}
 
-		return $this->success( '修改成功' );
+		return $this->success( '修改成功，缓存将在10分钟内全网刷新。' );
 	}
 
 	private function prepare_edit_params( array $params ): array|WP_Error {

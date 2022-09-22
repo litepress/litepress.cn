@@ -82,7 +82,7 @@ PUT /wp-json/cravatar/avatars/<id>
 
 ```json
 {
-  "message": "修改成功",
+  "message": "修改成功，缓存将在10分钟内全网刷新。",
   "status": 0
 }
 ```
