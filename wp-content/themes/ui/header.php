@@ -115,8 +115,7 @@ switch_to_blog( 1 );
                         echo '<nav class=""> 
                         <ul class="navbar-nav menu">
                             <li class="btn-sign-in">
-                                <a href="/login" class="nav-link" data-bs-toggle="modal"
-                                   data-bs-target="#sign-in"><i class="fa-duotone fa-fw fa-right-to-bracket"></i>
+                                <a href="/user/sso/login" class="nav-link"><i class="fa-duotone fa-fw fa-right-to-bracket"></i>
                                     登录/注册</a>
                             </li>
                         </ul>

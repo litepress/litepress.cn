@@ -435,6 +435,43 @@ function gp_is_between_exclusive( $value, $start, $end ) {
 }
 
 /**
+ * Checks if the passed value is one of the values in the list.
+ *
+ * @since 3.0.0
+ *
+ * @param string $value The value you want to check.
+ * @param array  $list  The list of values you want to check against.
+ * @return bool
+ */
+function gp_is_one_of( $value, $list ) {
+	return in_array( $value, $list, true );
+}
+
+/**
+ * Checks if the passed value has only ASCII characters.
+ *
+ * @since 3.0.0
+ *
+ * @param string $value The value you want to check.
+ * @return bool
+ */
+function gp_is_ascii_string( $value ) {
+	return preg_replace( "/[^\x20-\x7E\p{L}]/", '', $value ) === $value;
+}
+
+/**
+ * Checks if the passed value starts and ends with a word character.
+ *
+ * @since 3.0.0
+ *
+ * @param string $value The value you want to check.
+ * @return bool
+ */
+function gp_is_starting_and_ending_with_a_word_character( $value ) {
+	return (bool) preg_match( '/\b' . preg_quote( $value, '/' ) . '\b/i', $value );
+}
+
+/**
  * Acts the same as core PHP setcookie() but its arguments are run through the gp_set_cookie filter.
  *
  * If the filter returns false, setcookie() isn't called.
@@ -574,6 +611,7 @@ function gp_wp_profile_options_update( $user_id ) {
 
 	$is_user_gp_admin = GP::$permission->user_can( $user_id, 'admin' );
 
+	// phpcs:ignore WordPress.Security.NonceVerification.Missing
 	if ( array_key_exists( 'gp_administrator', $_POST ) && ! $is_user_gp_admin ) {
 		GP::$administrator_permission->create(
 			array(
@@ -584,6 +622,7 @@ function gp_wp_profile_options_update( $user_id ) {
 		);
 	}
 
+	// phpcs:ignore WordPress.Security.NonceVerification.Missing
 	if ( ! array_key_exists( 'gp_administrator', $_POST ) && $is_user_gp_admin ) {
 		$current_perm = GP::$administrator_permission->find_one(
 			array(
@@ -604,31 +643,35 @@ function gp_wp_profile_options_update( $user_id ) {
  */
 function gp_get_sort_by_fields() {
 	$sort_fields = array(
-		'original_date_added'    => array(
+		'original_date_added'       => array(
 			'title'       => __( 'Date added (original)', 'glotpress' ),
 			'sql_sort_by' => 'o.date_added %s',
 		),
-		'translation_date_added' => array(
+		'translation_date_added'    => array(
 			'title'       => __( 'Date added (translation)', 'glotpress' ),
 			'sql_sort_by' => 't.date_added %s',
 		),
-		'original'               => array(
+		'translation_date_modified' => array(
+			'title'       => __( 'Date modified (translation)', 'glotpress' ),
+			'sql_sort_by' => 't.date_modified %s',
+		),
+		'original'                  => array(
 			'title'       => __( 'Original string', 'glotpress' ),
 			'sql_sort_by' => 'o.singular %s',
 		),
-		'translation'            => array(
+		'translation'               => array(
 			'title'       => __( 'Translation', 'glotpress' ),
 			'sql_sort_by' => 't.translation_0 %s',
 		),
-		'priority'               => array(
+		'priority'                  => array(
 			'title'       => __( 'Priority', 'glotpress' ),
 			'sql_sort_by' => 'o.priority %s, o.date_added DESC',
 		),
-		'references'             => array(
+		'references'                => array(
 			'title'       => __( 'Filename in source', 'glotpress' ),
 			'sql_sort_by' => 'o.references',
 		),
-		'random'                 => array(
+		'random'                    => array(
 			'title'       => __( 'Random', 'glotpress' ),
 			'sql_sort_by' => 'o.priority DESC, RAND()',
 		),
@@ -649,4 +692,15 @@ function gp_get_sort_by_fields() {
 	 * }
 	 */
 	return apply_filters( 'gp_sort_by_fields', $sort_fields );
+}
+
+/**
+ * Sets the maximum memory limit available for translations imports.
+ *
+ * @since 3.0.0
+ *
+ * @return string The maximum memory limit.
+ */
+function gp_set_translations_import_max_memory_limit() {
+	return '256M';
 }

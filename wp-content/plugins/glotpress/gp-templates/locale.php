@@ -19,6 +19,7 @@ gp_breadcrumb( $breadcrumb );
 gp_tmpl_header();
 ?>
 
+<div class="gp-heading">
 	<h2>
 		<?php
 		printf(
@@ -27,18 +28,19 @@ gp_tmpl_header();
 			esc_html( $locale->english_name )
 		);
 		?>
-		<?php if ( $locale_glossary ) : ?>
-			<a href="<?php echo esc_url( gp_url_join( gp_url( '/languages' ), $locale->slug, $current_set_slug, 'glossary' ) ); ?>" class="glossary-link"><?php _e( 'Locale Glossary', 'glotpress' ); ?></a>
-		<?php elseif ( $can_create_locale_glossary ) : ?>
-			<a href="<?php echo esc_url( gp_url_join( gp_url( '/languages' ), $locale->slug, $current_set_slug, 'glossary' ) ); ?>" class="glossary-link"><?php _e( 'Create Locale Glossary', 'glotpress' ); ?></a>
-		<?php endif; ?>
 	</h2>
+	<?php if ( $locale_glossary ) : ?>
+		<a href="<?php echo esc_url( gp_url_join( gp_url( '/languages' ), $locale->slug, $current_set_slug, 'glossary' ) ); ?>" class="glossary-link"><?php _e( 'Locale Glossary', 'glotpress' ); ?></a>
+	<?php elseif ( $can_create_locale_glossary ) : ?>
+		<a href="<?php echo esc_url( gp_url_join( gp_url( '/languages' ), $locale->slug, $current_set_slug, 'glossary' ) ); ?>" class="glossary-link"><?php _e( 'Create Locale Glossary', 'glotpress' ); ?></a>
+	<?php endif; ?>
+</div>
 
 <?php if ( count( $set_list ) > 1 ) : ?>
-	<p class="actionlist secondary">
+	<p class="actionlist">
 		<?php
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in GP_Route_Locale::single().
-		echo implode( ' &bull;&nbsp;', $set_list );
+		echo implode( ' &bull; ', $set_list );
 		?>
 	</p>
 <?php endif; ?>
@@ -49,38 +51,30 @@ if ( empty( $projects_data ) ) {
 }
 ?>
 
-<?php foreach ( $projects_data as $project_id => $sub_projects ) : ?>
+<?php
+foreach ( $projects_data as $project_id => $sub_projects ) :
+	$count_sub_projects = count( $sub_projects );
+	$has_sub_projects   = $count_sub_projects > 1;
+	?>
 	<div class="locale-project">
 		<h3><?php echo esc_html( $projects[ $project_id ]->name ); ?></h3>
-		<table class="locale-sub-projects">
+		<table class="gp-table locale-sub-projects">
 			<thead>
-			<tr>
-				<th class="header"
-					<?php
-					if ( count( $sub_projects ) > 1 ) {
-						echo 'rowspan="' . count( $sub_projects ) . '"';
-					}
-					?>
-					>
-					<?php
-					if ( count( $sub_projects ) > 1 ) {
-						_e( 'Project', 'glotpress' );
-					}
-					?>
-				</th>
-				<th class="header"><?php _e( 'Set / Sub Project', 'glotpress' ); ?></th>
-				<th><?php _e( 'Translated', 'glotpress' ); ?></th>
-				<th><?php _e( 'Fuzzy', 'glotpress' ); ?></th>
-				<th><?php _e( 'Untranslated', 'glotpress' ); ?></th>
-				<th><?php _e( 'Waiting', 'glotpress' ); ?></th>
-			</tr>
+				<tr>
+					<th class="gp-column-project-stats" rowspan="<?php echo esc_attr( $count_sub_projects ); ?>"><?php _e( 'Project / Stats', 'glotpress' ); ?></th>
+					<th class="gp-column-set-sub-projects"><?php _e( 'Set / Sub Project', 'glotpress' ); ?></th>
+					<th class="gp-column-translated"><?php _e( 'Translated', 'glotpress' ); ?></th>
+					<th class="gp-column-fuzzy"><?php _e( 'Fuzzy', 'glotpress' ); ?></th>
+					<th class="gp-column-untranslated"><?php _e( 'Untranslated', 'glotpress' ); ?></th>
+					<th class="gp-column-waiting"><?php _e( 'Waiting', 'glotpress' ); ?></th>
+				</tr>
 			</thead>
 			<tbody>
 			<?php foreach ( $sub_projects as $sub_project_id => $data ) : ?>
 				<tr>
 				<th class="sub-project" rowspan="<?php echo count( $data['sets'] ); ?>">
 					<?php
-					if ( count( $sub_projects ) > 1 ) {
+					if ( $has_sub_projects ) {
 						echo esc_html( $projects[ $sub_project_id ]->name );
 					}
 					?>
@@ -132,8 +126,7 @@ if ( empty( $projects_data ) ) {
 								$set_data->project_path,
 								gp_url_join( $locale->slug, $set_data->slug ),
 								array(
-									'filters[translated]' => 'yes',
-									'filters[status]'     => 'current',
+									'filters[status]' => 'current',
 								)
 							),
 							number_format_i18n( $set_data->current_count )
@@ -175,8 +168,7 @@ if ( empty( $projects_data ) ) {
 								$set_data->project_path,
 								gp_url_join( $locale->slug, $set_data->slug ),
 								array(
-									'filters[translated]' => 'yes',
-									'filters[status]'     => 'waiting',
+									'filters[status]' => 'waiting',
 								)
 							),
 							number_format_i18n( $set_data->waiting_count )
@@ -192,7 +184,7 @@ if ( empty( $projects_data ) ) {
 	</div>
 <?php endforeach; // Top projects. ?>
 
-	<p class="actionlist secondary">
+	<p class="actionlist">
 		<?php gp_link( gp_url( '/projects' ), __( 'All projects', 'glotpress' ) ); ?>
 	</p>
 

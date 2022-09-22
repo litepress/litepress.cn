@@ -32,8 +32,9 @@ class GP_Glossary_Entry extends GP_Thing {
 
 
 	public function __construct( $fields = array() ) {
-		parent::__construct( $fields );
 		$this->setup_pos();
+
+		parent::__construct( $fields );
 	}
 
 	/**
@@ -65,6 +66,7 @@ class GP_Glossary_Entry extends GP_Thing {
 			'preposition'  => _x( 'preposition', 'part-of-speech', 'glotpress' ),
 			'pronoun'      => _x( 'pronoun', 'part-of-speech', 'glotpress' ),
 			'expression'   => _x( 'expression', 'part-of-speech', 'glotpress' ),
+			'abbreviation' => _x( 'abbreviation', 'part-of-speech', 'glotpress' ),
 		);
 	}
 
@@ -77,7 +79,10 @@ class GP_Glossary_Entry extends GP_Thing {
 	 */
 	public function restrict_fields( $rules ) {
 		$rules->term_should_not_be( 'empty' );
+		$rules->term_should_be( 'consisting_only_of_ASCII_characters' );
+		$rules->term_should_be( 'starting_and_ending_with_a_word_character' );
 		$rules->part_of_speech_should_not_be( 'empty' );
+		$rules->part_of_speech_should_be( 'one_of', array_keys( $this->parts_of_speech ) );
 		$rules->glossary_id_should_be( 'positive_int' );
 		$rules->last_edited_by_should_be( 'positive_int' );
 	}

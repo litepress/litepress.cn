@@ -100,23 +100,33 @@ class Pp_Roles_Admin
      */
     public static function get_fields_tabs($current, $role_edit, $role_copy)
     {
-        $fields_tabs = [
-            'general'     => [
-                'label'    => esc_html__('General', 'capsman-enhanced'),
-                'icon'     => 'dashicons dashicons-admin-tools',
-            ],
-            'editing'     => [
-                'label'    => esc_html__('Editing', 'capsman-enhanced'),
-                'icon'     => 'dashicons dashicons-edit-page',
-            ],
-            'redirects'     => [
-                'label'    => esc_html__('Redirects', 'capsman-enhanced'),
-                'icon'     => 'dashicons dashicons-admin-links',
-            ],
-            'advanced'  => [
-                'label' => esc_html__('Advanced', 'capsman-enhanced'),
-                'icon'     => 'dashicons dashicons-admin-generic',
-            ],
+        $fields_tabs = [];
+
+        $fields_tabs['general'] = [
+            'label' => esc_html__('General', 'capsman-enhanced'),
+            'icon'  => 'dashicons dashicons-admin-tools',
+        ];
+
+        $fields_tabs['editing'] = [
+            'label'    => esc_html__('Editing', 'capsman-enhanced'),
+            'icon'     => 'dashicons dashicons-edit-page',
+        ];
+
+        $fields_tabs['redirects'] = [
+            'label'    => esc_html__('Redirects', 'capsman-enhanced'),
+            'icon'     => 'dashicons dashicons-admin-links',
+        ];
+
+        if (defined('WC_PLUGIN_FILE')) {
+            $fields_tabs['woocommerce'] = [
+                'label'    => esc_html__('WooCommerce', 'capsman-enhanced'),
+                'icon'     => 'dashicons dashicons-products',
+            ];
+        }
+        
+        $fields_tabs['advanced'] = [
+            'label' => esc_html__('Advanced', 'capsman-enhanced'),
+            'icon'     => 'dashicons dashicons-admin-generic',
         ];
 
         if ($role_edit && !$current['is_system']) {
@@ -155,7 +165,12 @@ class Pp_Roles_Admin
             $editor_options['classic_editor'] = esc_html__('Classic editor', 'capsman-enhanced');
         }
 
+        $show_block_control = true;
         $fields = [];
+
+        if ($role_edit && $current && isset($current['role']) && $current['role'] === 'administrator') {
+            $show_block_control = false;
+        }
 
         //add role_name
         $fields['role_name'] = [
@@ -177,6 +192,19 @@ class Pp_Roles_Admin
             'editable'  => ($role_edit) ? false : true,
             'required'  => false,
         ];
+
+        if ($show_block_control) {
+            //add disable_role_user_login
+            $fields['disable_role_user_login'] = [
+                'label'        => esc_html__('Block Login', 'capsman-enhanced'),
+                'description'  => esc_html__('Block users in this role from logging into the site.', 'capsman-enhanced'),
+                'type'         => 'checkbox',
+                'value_key'    => 'disable_role_user_login',
+                'tab'          => 'advanced',
+                'editable'     => true,
+                'required'     => false,
+            ];
+        }
 
         //add role_level
         $fields['role_level'] = [
@@ -235,8 +263,8 @@ class Pp_Roles_Admin
 
         //add disable_code_editor
         $fields['disable_code_editor'] = [
-            'label'        => esc_html__('Disable Code Editor', 'capsman-enhanced'),
-            'description'  => esc_html__('Disable the "Code editor" option for the Gutenberg block editor.', 'capsman-enhanced'),
+            'label'        => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Disable Code Editor', 'capsman-enhanced'),
+            'description'  => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Disable the "Code editor" option for the Gutenberg block editor.', 'capsman-enhanced'),
             'type'         => 'checkbox',
             'value_key'    => 'disable_code_editor',
             'tab'          => 'editing',
@@ -247,14 +275,27 @@ class Pp_Roles_Admin
         if (count($editor_options) > 1) {
             //add role_editor
             $fields['role_editor'] = [
-                'label'       => esc_html__('Control Allowed Editors', 'capsman-enhanced'),
-                'description' => esc_html__('Select the allowed editor options for users in this role.', 'capsman-enhanced'),
+                'label'       => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Control Allowed Editors', 'capsman-enhanced'),
+                'description' => /* Translators: "Editor" means post editor like Gutenberg */ esc_html__('Select the allowed editor options for users in this role.', 'capsman-enhanced'),
                 'type'        => 'select',
                 'multiple'    => true,
                 'value_key'   => 'role_editor',
                 'tab'         => 'editing',
                 'editable'    => true,
                 'options'     => $editor_options,
+            ];
+        }
+        
+        if (defined('WC_PLUGIN_FILE')) {
+            //add disable_woocommerce_admin_restrictions
+            $fields['disable_woocommerce_admin_restrictions'] = [
+                'label'        => esc_html__('Disable WooCommerce admin restrictions', 'capsman-enhanced'),
+                'description'  => esc_html__('WooCommerce blocks most users from accessing the WordPress admin area. When enabled, this setting will remove those restrictions.', 'capsman-enhanced'),
+                'type'         => 'checkbox',
+                'value_key'    => 'disable_woocommerce_admin_restrictions',
+                'tab'          => 'woocommerce',
+                'editable'     => true,
+                'required'     => false,
             ];
         }
         
@@ -334,8 +375,8 @@ class Pp_Roles_Admin
                             name="<?php echo esc_attr($key); ?><?php echo $args['multiple'] ? '[]' : '';?>"
                             id="<?php echo esc_attr($key.'-select'); ?>"
                             class="pp-capabilities-role-choosen"
-                            data-placeholder="<?php esc_html_e('Select allowed editor', 'capsman-enhanced'); ?>"
-                            data-message="<?php esc_attr_e('You must select at least one editor for the role when managing allowed editor.',  'capsman-enhanced'); ?>"
+                            data-placeholder="<?php /* Translators: "Editor" means post editor like Gutenberg */ esc_html_e('Select allowed editor', 'capsman-enhanced'); ?>"
+                            data-message="<?php /* Translators: "Editor" means post editor like Gutenberg */ esc_attr_e('You must select at least one editor for the role when managing allowed editor.',  'capsman-enhanced'); ?>"
                             <?php echo ($args['multiple'] ? 'multiple' : '');?>
                             <?php echo ($args['required'] ? 'required="true"' : '');?>>
                             <?php
@@ -569,7 +610,7 @@ class Pp_Roles_Admin
         $fields       = apply_filters('pp_roles_fields', self::get_fields($current, $role_edit, $role_copy), $current, $role_edit, $role_copy);
 
         if ($role_copy) {
-            pp_capabilities_roles()->notify->add('info', sprintf( esc_html__('%s role copied to editor. Please click the "Create Role" button to create this new role.', 'capsman-enhanced'), $current['name']));
+            pp_capabilities_roles()->notify->add('info', sprintf( esc_html__('%s role copied. Please click the "Create Role" button to create this new role.', 'capsman-enhanced'), $current['name']));
             //update new name and remove slug
             $current['role'] = $current['role'] . '_copy';
             $current['name'] = $current['name'] . ' Copy';

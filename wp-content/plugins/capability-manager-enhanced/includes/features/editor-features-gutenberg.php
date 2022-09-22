@@ -52,6 +52,15 @@
                         continue;
                     }
                 } else {
+                    /**
+                     * Skip this element for post type if for some reason 
+                     * global $_wp_post_type_features is empty or doesn't 
+                     * contain data for current post type
+                     */
+                    if (empty($_wp_post_type_features) || !is_array($_wp_post_type_features) || !isset($_wp_post_type_features[$type_obj->name])) {
+                        continue;
+                    }
+                    //skip this element if post type does not support feature
                     if (!post_type_supports($type_obj->name, $arr_feature['support_key'])) {
                         continue;
                     }

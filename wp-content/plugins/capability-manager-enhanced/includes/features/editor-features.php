@@ -20,7 +20,7 @@
 
 require_once (dirname(CME_FILE) . '/includes/features/restrict-editor-features.php');
 
-global $capsman;
+global $capsman, $_wp_post_type_features;
 $roles = $capsman->roles;
 
 $default_role = $capsman->get_last_role();

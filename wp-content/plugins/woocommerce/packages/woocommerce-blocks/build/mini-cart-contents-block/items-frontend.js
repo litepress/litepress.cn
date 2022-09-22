@@ -1,1 +1,1 @@
-(window.webpackWcBlocksJsonp=window.webpackWcBlocksJsonp||[]).push([[53],{427:function(c,e,s){"use strict";s.r(e);var n=s(0),t=s(5),a=s.n(t);e.default=c=>{let{children:e,className:s}=c;return Object(n.createElement)("div",{className:a()(s,"wc-block-mini-cart__items")},e)}}}]);
+(window.webpackWcBlocksJsonp=window.webpackWcBlocksJsonp||[]).push([[53],{425:function(c,e,n){"use strict";n.r(e);var s=n(0),t=n(4),a=n.n(t);e.default=c=>{let{children:e,className:n}=c;return Object(s.createElement)("div",{className:a()(n,"wc-block-mini-cart__items"),tabIndex:-1},e)}}}]);

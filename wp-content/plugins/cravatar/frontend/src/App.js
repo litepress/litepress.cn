@@ -101,7 +101,7 @@ export default function App() {
                             <BsModal as={"li"} modalsize={"md"} id={""} variant={""}
                                      class={"card card-body card-dashed-body card-dashed text-center mt-3 text-primary"}
                                      titleicon={'fa-duotone fa-rectangle-history-circle-user'}
-                                     icon={"fa-duotone fa-rectangle-history-circle-user fa-2x mb-2"} title={'添加图片'}
+                                     icon={"fa-duotone fa-rectangle-history-circle-user fa-2x mb-2"} title={'添加头像'}
                                      modaltitle={"添加头像"}
                                      body={<PostAvatars/>}/>
                         </Col>
