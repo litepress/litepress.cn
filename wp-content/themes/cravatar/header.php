@@ -83,7 +83,7 @@ wp_body_open();
                             <div class="dropdown-divider"></div>
                             <li><a class="dropdown-item" href="/avatars">头像管理</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="#">注销</a></li>
+                            <li><a class="dropdown-item" href="/wp-login.php?action=logout">注销</a></li>
                         </ul>
                     </li>
                 </ul>
