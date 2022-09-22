@@ -25,6 +25,8 @@ export function ChangeAvatar(props) {
 
     const [Images, setImages] = useState()
     const [active, setActive] = useState("")
+
+
     /*获取图片库*/
     const GetImage = () => {
         getImages().then(response => {

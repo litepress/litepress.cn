@@ -8,6 +8,7 @@ import {
     ChangeAvatar, PostAvatars
 } from "./module/form/avatar-form";
 import {ImageGallery} from "./module/modal/image-gallery";
+import axios from "axios";
 
 
 
@@ -21,8 +22,18 @@ export default function App() {
         })
     }
     useEffect(() => {
-        GetAvatars()
-    }, [])
+        axios({
+            method: 'get',
+            url: '/wp-json/cravatar/avatars',
+            headers: {
+                'X-WP-Nonce': window.wpApiSettings.nonce},
+        })
+            .then(res => {
+                const result = res.data.data;
+                /*console.log(response.data.data);*/
+                setUsers(result)
+            })
+    },[]);
 
 
     /*删除头像接口*/

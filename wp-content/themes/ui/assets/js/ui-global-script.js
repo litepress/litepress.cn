@@ -666,7 +666,7 @@ $("#sign-in #sms-code").on("keyup", function () {
                         /*console.log(e)*/
                          if (e.responseJSON.status===2) {
                             alert_danger(e.responseJSON.message+"，即将跳转到注册引导")
-                            window.location.href = "/auth/user/bind?type=mobile&?token="+e.responseJSON.data.token
+                            window.location.href = "/user/new/bind?type=mobile&token="+e.responseJSON.data.token
                         }
                          else {
                             alert_danger(e.responseJSON.message)
