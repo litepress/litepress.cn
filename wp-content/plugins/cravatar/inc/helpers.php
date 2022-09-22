@@ -40,6 +40,12 @@ function purge_avatar_cache( array $emails, bool $purge_local = true, bool $only
 		}
 	}
 
+	// 然后刷新又拍云缓存
+	if ( ! $only_local ) {
+		$upyun = new Upyun();
+		$upyun->batch_purge( $urls );
+	}
+
 	// 最后刷新乌鸡盾缓存
 	if ( ! $only_local ) {
 		$wjdun = new Wjdun();
