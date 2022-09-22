@@ -408,7 +408,7 @@ if ( empty( $image_path ) ) {
  * 对于表中不存在图，则在检查的同时录入数据。系统会有一个 Cron 进程，每天定时检查新图是否违规并更新状态。
  */
 // 不对 QQ 头像检查违规图，成本顶不住，而且考虑到腾讯也有实名认证
-if ( 'qq' !== $avatar_from && ! empty( $image_path ) ) {
+if ( 'qq' !== $avatar_from && 'default' !== $avatar_from && ! empty( $image_path ) ) {
 	$image_hash = md5_file( $image_path );
 	$sql        = $db->prepare( 'SELECT status FROM wp_9_avatar_verify WHERE image_md5=?' );
 	$sql->bind_param( 's', $image_hash );
