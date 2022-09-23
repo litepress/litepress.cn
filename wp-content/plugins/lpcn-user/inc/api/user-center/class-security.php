@@ -16,26 +16,31 @@ use function LitePress\Helper\check_email_code;
  * Class Security
  *
  * 用户中心的 “安全” Tab 中的设置项目及绑定项目
- * QQ 绑定功能不在此处。
  *
  * @package LitePress\User\Inc\Api\User_Cente\Security
  */
 class Security extends Base {
 
 	public function __construct() {
-		register_rest_route( 'center', 'security/bind-mobile', array(
+		register_rest_route( 'center', 'security/bind_mobile', array(
 			'methods'             => WP_REST_Server::EDITABLE,
 			'callback'            => array( $this, 'bind_mobile' ),
 			'permission_callback' => 'is_user_logged_in',
 		) );
 
-		register_rest_route( 'center', 'security/bind-email', array(
+		register_rest_route( 'center', 'security/bind_email', array(
 			'methods'             => WP_REST_Server::EDITABLE,
 			'callback'            => array( $this, 'bind_email' ),
 			'permission_callback' => 'is_user_logged_in',
 		) );
 
-		register_rest_route( 'center', 'security/reset-passwd', array(
+		register_rest_route( 'center', 'security/bind_qq', array(
+			'methods'             => WP_REST_Server::EDITABLE,
+			'callback'            => array( $this, 'bind_qq' ),
+			'permission_callback' => 'is_user_logged_in',
+		) );
+
+		register_rest_route( 'center', 'security/reset_passwd', array(
 			'methods'             => WP_REST_Server::EDITABLE,
 			'callback'            => array( $this, 'reset_passwd' ),
 			'permission_callback' => 'is_user_logged_in',
@@ -47,26 +52,63 @@ class Security extends Base {
 			'permission_callback' => 'is_user_logged_in',
 		) );
 
-		register_rest_route( 'center', 'security/unbind-qq', array(
+		register_rest_route( 'center', 'security/unbind_qq', array(
 			'methods'             => WP_REST_Server::DELETABLE,
 			'callback'            => array( $this, 'unbind_qq' ),
 			'permission_callback' => 'is_user_logged_in',
 		) );
+
+		register_rest_route( 'center', 'security/unbind_email', array(
+			'methods'             => WP_REST_Server::DELETABLE,
+			'callback'            => array( $this, 'unbind_email' ),
+			'permission_callback' => 'is_user_logged_in',
+		) );
 	}
 
+	/**
+	 * 解绑QQ
+	 *
+	 * @param WP_REST_Request $request
+	 *
+	 * @return WP_REST_Response
+	 */
 	public function unbind_qq( WP_REST_Request $request ): WP_REST_Response {
-		if ( ! is_user_logged_in() ) {
-			return $this->error( '你必须先登录。' );
-		}
 
 		$user_id = get_current_user_id();
 
 		delete_user_meta( $user_id, 'qq_openid' );
 		delete_user_meta( $user_id, 'qq_nickname' );
 
-		return $this->success( '已成功解绑' );
+		return $this->success( '已成功解绑QQ' );
 	}
 
+	/**
+	 * 解绑邮箱
+	 *
+	 * @param WP_REST_Request $request
+	 *
+	 * @return WP_REST_Response
+	 */
+	public function unbind_email( WP_REST_Request $request ): WP_REST_Response {
+
+		$user_id = get_current_user_id();
+
+		// 更新用户邮箱
+		wp_update_user( array(
+			'ID'         => $user_id,
+			'user_email' => $user_id . '@litepress.cn',
+		) );
+
+		return $this->success( '已成功解绑邮箱' );
+	}
+
+	/**
+	 * 注销账号
+	 *
+	 * @param WP_REST_Request $request
+	 *
+	 * @return WP_REST_Response
+	 */
 	public function destroy( WP_REST_Request $request ): WP_REST_Response {
 		if ( ! is_user_logged_in() ) {
 			return $this->error( '你必须先登录。' );
@@ -104,6 +146,13 @@ class Security extends Base {
 		return $this->success( '该用户已注销' );
 	}
 
+	/**
+	 * 注销账号参数验证
+	 *
+	 * @param array $params
+	 *
+	 * @return array|WP_Error
+	 */
 	private function prepare_destroy_params( array $params ): array|WP_Error {
 		$allowed = array(
 			'mobile',
@@ -123,10 +172,14 @@ class Security extends Base {
 		}, ARRAY_FILTER_USE_KEY );
 	}
 
+	/**
+	 * 绑定邮箱
+	 *
+	 * @param WP_REST_Request $request
+	 *
+	 * @return WP_REST_Response
+	 */
 	public function bind_email( WP_REST_Request $request ): WP_REST_Response {
-		if ( ! is_user_logged_in() ) {
-			return $this->error( '你必须先登录。' );
-		}
 
 		$params = $this->prepare_bind_email_params( $request->get_params() );
 		if ( is_wp_error( $params ) ) {
@@ -156,6 +209,13 @@ class Security extends Base {
 		return $this->success( '邮箱绑定成功' );
 	}
 
+	/**
+	 * 绑定邮箱参数验证
+	 *
+	 * @param array $params
+	 *
+	 * @return array|WP_Error
+	 */
 	private function prepare_bind_email_params( array $params ): array|WP_Error {
 		$allowed = array(
 			'email',
@@ -175,10 +235,14 @@ class Security extends Base {
 		}, ARRAY_FILTER_USE_KEY );
 	}
 
+	/**
+	 * 绑定手机
+	 *
+	 * @param WP_REST_Request $request
+	 *
+	 * @return WP_REST_Response
+	 */
 	public function bind_mobile( WP_REST_Request $request ): WP_REST_Response {
-		if ( ! is_user_logged_in() ) {
-			return $this->error( '你必须先登录。' );
-		}
 
 		$params = $this->prepare_bind_mobile_params( $request->get_params() );
 		if ( is_wp_error( $params ) ) {
@@ -210,6 +274,13 @@ class Security extends Base {
 		return $this->success( '手机号绑定成功' );
 	}
 
+	/**
+	 * 绑定手机参数验证
+	 *
+	 * @param array $params
+	 *
+	 * @return array|WP_Error
+	 */
 	private function prepare_bind_mobile_params( array $params ): array|WP_Error {
 		$allowed = array(
 			'mobile',
@@ -229,10 +300,14 @@ class Security extends Base {
 		}, ARRAY_FILTER_USE_KEY );
 	}
 
+	/**
+	 * 重置密码
+	 *
+	 * @param WP_REST_Request $request
+	 *
+	 * @return WP_REST_Response
+	 */
 	public function reset_passwd( WP_REST_Request $request ): WP_REST_Response {
-		if ( ! is_user_logged_in() ) {
-			return $this->error( '你必须先登录。' );
-		}
 
 		$params = $this->prepare_reset_passwd_params( $request->get_params() );
 		if ( is_wp_error( $params ) ) {
@@ -258,6 +333,13 @@ class Security extends Base {
 		return $this->success( '密码重置成功' );
 	}
 
+	/**
+	 * 重置密码参数验证
+	 *
+	 * @param array $params
+	 *
+	 * @return array|WP_Error
+	 */
 	private function prepare_reset_passwd_params( array $params ): array|WP_Error {
 		$allowed = array(
 			'old_passwd',

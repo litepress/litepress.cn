@@ -3,6 +3,7 @@
 namespace LitePress\User\Inc\Api\User_Center;
 
 use LitePress\User\Inc\Api\Base;
+use stdClass;
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
@@ -11,20 +12,20 @@ use WP_REST_Server;
 /**
  * Class Info
  *
- * 该接口用于用户登录
+ * 该接口用于获取用户信息
  *
  * @package LitePress\User\Inc\Api\User_Cente\Info
  */
 class Basic_Info extends Base {
 
 	public function __construct() {
-		register_rest_route( 'center', 'basic-info', array(
+		register_rest_route( 'center', 'basic_info', array(
 			'methods'             => WP_REST_Server::EDITABLE,
 			'callback'            => array( $this, 'edit' ),
 			'permission_callback' => 'is_user_logged_in',
 		) );
 
-		register_rest_route( 'center', 'basic-info', array(
+		register_rest_route( 'center', 'basic_info', array(
 			'methods'             => WP_REST_Server::READABLE,
 			'callback'            => array( $this, 'show' ),
 			'permission_callback' => 'is_user_logged_in',
@@ -32,9 +33,6 @@ class Basic_Info extends Base {
 	}
 
 	public function edit( WP_REST_Request $request ): WP_REST_Response {
-		if ( ! is_user_logged_in() ) {
-			return $this->error( '你必须先登录。' );
-		}
 
 		$params = $this->prepare_edit_params( $request->get_params() );
 		if ( is_wp_error( $params ) ) {
@@ -59,9 +57,6 @@ class Basic_Info extends Base {
 	}
 
 	public function show( WP_REST_Request $request ): WP_REST_Response {
-		if ( ! is_user_logged_in() ) {
-			return $this->error( '你必须先登录。' );
-		}
 
 		$params = $this->prepare_show_params( $request->get_params() );
 		if ( is_wp_error( $params ) ) {
@@ -77,13 +72,19 @@ class Basic_Info extends Base {
 		}
 
 		/**
-		 * @var  \stdClass $user_data
+		 * @var  stdClass $user_data
 		 */
 		$user_data = $user_data->data;
 
 		// 去掉敏感字段
 		unset( $user_data->user_pass );
 		unset( $user_data->user_activation_key );
+
+		// 检查邮箱是否为系统分配的，如果是则说明未绑定邮箱
+		if ( $user_data->user_email == $user_id . '@litepress.cn' ) {
+			$user_data->bind_email = false;
+			$user_data->user_email = '';
+		}
 
 		// 尝试提取用户 meta 数据
 		$user_data->nameplate_text = get_user_meta( $user_id, 'nameplate_text', true );
@@ -93,7 +94,9 @@ class Basic_Info extends Base {
 
 		// 获取用户 QQ 和手机号绑定信息
 		$user_data->qq_nickname = get_user_meta( $user_id, 'qq_nickname', true );
+		$user_data->bind_qq     = (bool) get_user_meta( $user_id, 'qq_nickname' );
 		$user_data->mobile      = get_user_meta( $user_id, 'mobile', true );
+		$user_data->bind_mobile = (bool) get_user_meta( $user_id, 'mobile' );
 
 		// 获取头像
 		$user_data->avatar = get_avatar_url( $user_data->user_email, array(
