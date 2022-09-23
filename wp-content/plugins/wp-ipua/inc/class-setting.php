@@ -12,25 +12,26 @@ if ( ! class_exists( 'Setting' ) ):
 	class Setting {
 
 		/**
-		 * settings sections array
+		 * 设置子页面数组
 		 *
 		 * @var array
 		 */
-		protected $settings_sections = array();
+		protected array $settings_sections = array();
 
 		/**
-		 * Settings fields array
+		 * 设置字段数组
 		 *
 		 * @var array
 		 */
-		protected $settings_fields = array();
+		protected array $settings_fields = array();
 
 		public function __construct() {
-			if ( ! defined( 'WES_MULTIPLE_NETWORK' ) ) {
-				define( 'WES_MULTIPLE_NETWORK', false );
+			// 判断站点网络是否开启
+			if ( ! defined( 'WPSA_MULTIPLE_NETWORK' ) ) {
+				define( 'WPSA_MULTIPLE_NETWORK', is_multisite() );
 			}
 
-			if ( WES_MULTIPLE_NETWORK ) {
+			if ( WPSA_MULTIPLE_NETWORK ) {
 				add_action( 'network_admin_edit_wsa-multiple-network-options', [ $this, 'multiple_network_options' ] );
 			}
 
@@ -38,9 +39,9 @@ if ( ! class_exists( 'Setting' ) ):
 		}
 
 		/**
-		 * Enqueue scripts and styles
+		 * 加载设置页面的样式和脚本
 		 */
-		function admin_enqueue_scripts() {
+		function admin_enqueue_scripts(): void {
 			wp_enqueue_style( 'wp-color-picker' );
 
 			wp_enqueue_media();
@@ -49,7 +50,7 @@ if ( ! class_exists( 'Setting' ) ):
 		}
 
 		/**
-		 * Set settings sections
+		 * 设置设置子页面
 		 *
 		 * @param array $sections setting sections array
 		 */
@@ -60,28 +61,38 @@ if ( ! class_exists( 'Setting' ) ):
 		}
 
 		/**
-		 * Add a single section
+		 * 添加一个设置子页面
 		 *
 		 * @param array $section
 		 */
-		function add_section( $section ) {
+		function add_section( $section ): static {
 			$this->settings_sections[] = $section;
 
 			return $this;
 		}
 
 		/**
-		 * Set settings fields
+		 * 设置设置字段
 		 *
-		 * @param array $fields settings fields array
+		 * @param array $fields
+		 *
+		 * @return $this
 		 */
-		function set_fields( $fields ) {
+		function set_fields( array $fields ): static {
 			$this->settings_fields = $fields;
 
 			return $this;
 		}
 
-		function add_field( $section, $field ) {
+		/**
+		 * 添加一个设置字段
+		 *
+		 * @param $section
+		 * @param $field
+		 *
+		 * @return $this
+		 */
+		function add_field( $section, $field ): static {
 			$defaults = array(
 				'name'  => '',
 				'label' => '',
@@ -171,12 +182,12 @@ if ( ! class_exists( 'Setting' ) ):
 		 *
 		 * @param array $args settings field args
 		 */
-		public function get_field_description( $args ) {
+		public function get_field_description( array $args ) {
 			if ( $args['type'] == 'html' ) {
 				return $args['html'];
 			}
 			if ( ! empty( $args['desc'] ) ) {
-				$desc = sprintf( '<p class="description">%s</p>', $args['desc'] );
+				$desc = __( sprintf( '<p class="description">%s</p>', $args['desc'] ), 'wp-settings-api' );
 			} else {
 				$desc = '';
 			}
@@ -185,42 +196,42 @@ if ( ! class_exists( 'Setting' ) ):
 		}
 
 		/**
-		 * Displays a text field for a settings field
+		 * 文本框回调函数
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_text( $args ) {
+		function callback_text( array $args ): void {
 
 			$value       = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size        = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
-			$type        = isset( $args['type'] ) ? $args['type'] : 'text';
+			$type        = $args['type'] ?? 'text';
 			$placeholder = empty( $args['placeholder'] ) ? '' : ' placeholder="' . $args['placeholder'] . '"';
 
 			$html = sprintf( '<input type="%1$s" class="%2$s-text" id="%3$s[%4$s]" name="%3$s[%4$s]" value="%5$s"%6$s/>',
 				$type, $size, $args['section'], $args['id'], $value, $placeholder );
 			$html .= $this->get_field_description( $args );
 
-			_e( $html, 'wp-settings' );
+			_e( $html, 'wp-settings-api' );
 		}
 
 		/**
-		 * Displays a url field for a settings field
+		 * 链接回调函数
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_url( $args ) {
+		function callback_url( array $args ): void {
 			$this->callback_text( $args );
 		}
 
 		/**
-		 * Displays a number field for a settings field
+		 * 数字选择回调函数
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_number( $args ) {
+		function callback_number( array $args ): void {
 			$value       = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size        = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
-			$type        = isset( $args['type'] ) ? $args['type'] : 'number';
+			$type        = $args['type'] ?? 'number';
 			$placeholder = empty( $args['placeholder'] ) ? '' : ' placeholder="' . $args['placeholder'] . '"';
 			$min         = ( $args['min'] == '' ) ? '' : ' min="' . $args['min'] . '"';
 			$max         = ( $args['max'] == '' ) ? '' : ' max="' . $args['max'] . '"';
@@ -230,15 +241,15 @@ if ( ! class_exists( 'Setting' ) ):
 				$type, $size, $args['section'], $args['id'], $value, $placeholder, $min, $max, $step );
 			$html .= $this->get_field_description( $args );
 
-			echo $html;
+			_e( $html, 'wp-settings-api' );
 		}
 
 		/**
-		 * Displays a checkbox for a settings field
+		 * 单选框回调函数
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_checkbox( $args ) {
+		function callback_checkbox( array $args ): void {
 
 			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 
@@ -250,15 +261,15 @@ if ( ! class_exists( 'Setting' ) ):
 			$html .= sprintf( '%1$s<p class="description">%2$s</p></label>', $args['value'], $args['desc'] );
 			$html .= '</fieldset>';
 
-			echo $html;
+			_e( $html, 'wp-settings-api' );
 		}
 
 		/**
-		 * Displays a multicheckbox for a settings field
+		 * 多选框回调函数
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_multicheck( $args ) {
+		function callback_multicheck( array $args ): void {
 
 			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$html  = '<fieldset>';
@@ -274,7 +285,7 @@ if ( ! class_exists( 'Setting' ) ):
 			$html .= $this->get_field_description( $args );
 			$html .= '</fieldset>';
 
-			echo $html;
+			_e( $html, 'wp-settings-api' );
 		}
 
 		/**
@@ -282,7 +293,7 @@ if ( ! class_exists( 'Setting' ) ):
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_radio( $args ) {
+		function callback_radio( array $args ): void {
 
 			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$html  = '<fieldset>';
@@ -297,15 +308,15 @@ if ( ! class_exists( 'Setting' ) ):
 			$html .= $this->get_field_description( $args );
 			$html .= '</fieldset>';
 
-			echo $html;
+			_e( $html, 'wp-settings-api' );
 		}
 
 		/**
-		 * Displays a selectbox for a settings field
+		 * 下拉框回调函数
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_select( $args ) {
+		function callback_select( array $args ): void {
 
 			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
@@ -319,15 +330,15 @@ if ( ! class_exists( 'Setting' ) ):
 			$html .= sprintf( '</select>' );
 			$html .= $this->get_field_description( $args );
 
-			echo $html;
+			_e( $html, 'wp-settings-api' );
 		}
 
 		/**
-		 * Displays a textarea for a settings field
+		 * 文本域回调函数
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_textarea( $args ) {
+		function callback_textarea( array $args ): void {
 
 			$value       = esc_textarea( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size        = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
@@ -337,31 +348,31 @@ if ( ! class_exists( 'Setting' ) ):
 				$size, $args['section'], $args['id'], $placeholder, $value );
 			$html .= $this->get_field_description( $args );
 
-			echo $html;
+			_e( $html, 'wp-settings-api' );
 		}
 
 		/**
-		 * Displays the html for a settings field
+		 * HTML源码回调函数
 		 *
 		 * @param array $args settings field args
 		 *
-		 * @return string
+		 * @return void
 		 */
-		function callback_html( $args ) {
-			echo $this->get_field_description( $args );
+		function callback_html( array $args ): void {
+			_e( $this->get_field_description( $args ), 'wp-settings-api' );
 		}
 
 		/**
-		 * Displays a rich text textarea for a settings field
+		 * 富文本编辑器回调函数
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_wysiwyg( $args ) {
+		function callback_wysiwyg( array $args ): void {
 
 			$value = esc_textarea( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : '500px';
 
-			echo '<div style="max-width: ' . $size . ';">';
+			echo '<div style="max-width: ' . esc_attr( $size ) . ';">';
 
 			$editor_settings = array(
 				'teeny'         => true,
@@ -377,35 +388,35 @@ if ( ! class_exists( 'Setting' ) ):
 
 			echo '</div>';
 
-			echo $this->get_field_description( $args );
+			_e( $this->get_field_description( $args ), 'wp-settings-api' );
 		}
 
 		/**
-		 * Displays a file upload field for a settings field
+		 * 文件上传回调函数
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_file( $args ) {
+		function callback_file( array $args ): void {
 
 			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
 			$id    = $args['section'] . '[' . $args['id'] . ']';
-			$label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : __( 'Choose File' );
+			$label = $args['options']['button_label'] ?? __( 'Choose File' );
 
 			$html = sprintf( '<input type="text" class="%1$s-text wpsa-url" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>',
 				$size, $args['section'], $args['id'], $value );
 			$html .= '<input type="button" class="button wpsa-browse" value="' . $label . '" />';
 			$html .= $this->get_field_description( $args );
 
-			echo $html;
+			_e( $html, 'wp-settings-api' );
 		}
 
 		/**
-		 * Displays a password field for a settings field
+		 * 密码文本框回调函数
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_password( $args ) {
+		function callback_password( array $args ): void {
 
 			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
@@ -414,15 +425,15 @@ if ( ! class_exists( 'Setting' ) ):
 				$size, $args['section'], $args['id'], $value );
 			$html .= $this->get_field_description( $args );
 
-			echo $html;
+			_e( $html, 'wp-settings-api' );
 		}
 
 		/**
-		 * Displays a color picker field for a settings field
+		 * 颜色选择器回调函数
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_color( $args ) {
+		function callback_color( array $args ): void {
 
 			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
@@ -431,16 +442,16 @@ if ( ! class_exists( 'Setting' ) ):
 				$size, $args['section'], $args['id'], $value, $args['std'] );
 			$html .= $this->get_field_description( $args );
 
-			echo $html;
+			_e( $html, 'wp-settings-api' );
 		}
 
 
 		/**
-		 * Displays a select box for creating the pages select box
+		 * WordPress页面下拉框回调函数
 		 *
 		 * @param array $args settings field args
 		 */
-		function callback_pages( $args ) {
+		function callback_pages( array $args ): void {
 
 			$dropdown_args = array(
 				'selected' => esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) ),
@@ -448,16 +459,17 @@ if ( ! class_exists( 'Setting' ) ):
 				'id'       => $args['section'] . '[' . $args['id'] . ']',
 				'echo'     => 0
 			);
-			$html          = wp_dropdown_pages( $dropdown_args );
-			echo $html;
+			_e( wp_dropdown_pages( $dropdown_args ), 'wp-settings-api' );
 		}
 
 		/**
-		 * Sanitize callback for Settings API
+		 * 消毒选项值
+		 *
+		 * @param $options
 		 *
 		 * @return mixed
 		 */
-		function sanitize_options( $options ) {
+		function sanitize_options( $options ): mixed {
 
 			if ( ! $options ) {
 				return $options;
@@ -477,13 +489,13 @@ if ( ! class_exists( 'Setting' ) ):
 		}
 
 		/**
-		 * Get sanitization callback for given option slug
+		 * 通过选项slug返回消毒后的值
 		 *
 		 * @param string $slug option slug
 		 *
-		 * @return mixed string or bool false
+		 * @return callable|false string or bool false
 		 */
-		function get_sanitize_callback( $slug = '' ) {
+		function get_sanitize_callback( string $slug = '' ): callable|bool {
 			if ( empty( $slug ) ) {
 				return false;
 			}
@@ -504,7 +516,7 @@ if ( ! class_exists( 'Setting' ) ):
 		}
 
 		/**
-		 * Get the value of a settings field
+		 * 获取设置字段的值
 		 *
 		 * @param string $option settings field name
 		 * @param string $section the section name this field belongs to
@@ -514,7 +526,7 @@ if ( ! class_exists( 'Setting' ) ):
 		 */
 		function get_option( $option, $section, $default = '' ) {
 
-			$options = WES_MULTIPLE_NETWORK ? get_site_option( $section ) : get_option( $section );
+			$options = WPSA_MULTIPLE_NETWORK ? get_site_option( $section ) : get_option( $section );
 
 			if ( isset( $options[ $option ] ) ) {
 				return $options[ $option ];
@@ -524,9 +536,7 @@ if ( ! class_exists( 'Setting' ) ):
 		}
 
 		/**
-		 * Show navigations as tab
-		 *
-		 * Shows all the settings section labels as tab
+		 * 将导航显示为标签
 		 */
 		function show_navigation() {
 			$html = '<h2 class="nav-tab-wrapper">';
@@ -544,7 +554,7 @@ if ( ! class_exists( 'Setting' ) ):
 
 			$html .= '</h2>';
 
-			echo $html;
+			_e( $html, 'wp-settings-api' );
 		}
 
 		/**
@@ -556,9 +566,9 @@ if ( ! class_exists( 'Setting' ) ):
 			?>
             <div class="metabox-holder">
 				<?php foreach ( $this->settings_sections as $form ) { ?>
-                    <div id="<?php echo $form['id']; ?>" class="group" style="display: none;">
+                    <div id="<?php echo esc_attr( $form['id'] ); ?>" class="group" style="display: none;">
                         <form method="post"
-                              action="<?php echo WES_MULTIPLE_NETWORK ? 'edit.php?action=wsa-multiple-network-options' : 'options.php' ?>">
+                              action="<?php echo WPSA_MULTIPLE_NETWORK ? 'edit.php?action=wsa-multiple-network-options' : 'options.php' ?>">
 							<?php
 							do_action( 'wsa_form_top_' . $form['id'], $form );
 							settings_fields( $form['id'] );
@@ -582,11 +592,11 @@ if ( ! class_exists( 'Setting' ) ):
 		 * 保存多站点模式下的选项
 		 */
 		function multiple_network_options() {
-            // 检查权限
-            if ( ! current_user_can( 'manage_network_options' ) ) {
-                wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-            }
-            // 消毒数据
+			// 检查权限
+			if ( ! current_user_can( 'manage_network_options' ) ) {
+				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+			}
+			// 消毒数据
 
 			$option_page = sanitize_textarea_field( $_POST['option_page'] );
 
@@ -692,28 +702,6 @@ if ( ! class_exists( 'Setting' ) ):
                 });
             </script>
 			<?php
-			$this->_style_fix();
 		}
-
-		function _style_fix() {
-			global $wp_version;
-
-			if ( version_compare( $wp_version, '3.8', '<=' ) ):
-				?>
-                <style type="text/css">
-                    /** WordPress 3.8 Fix **/
-                    .form-table th {
-                        padding: 20px 10px;
-                    }
-
-                    #wpbody-content .metabox-holder {
-                        padding-top: 5px;
-                    }
-                </style>
-			<?php
-			endif;
-		}
-
 	}
-
 endif;
