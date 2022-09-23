@@ -54,7 +54,8 @@ class Register extends Base {
 
 		// 临时的用户名，等用户插入成功后将用户名更新为用户 ID，要不然太长了。
 		$username = md5( rand( 100, 999 ) + time() );
-		$user_id  = wp_create_user( $username, '' );
+		// 创建用户
+		$user_id = wp_create_user( $username, '', '' );
 		if ( empty( $user_id ) ) {
 			return $this->error( '用户创建失败，请联系管理员处理' );
 		}
@@ -64,6 +65,7 @@ class Register extends Base {
 				'user_login'    => $user_id,
 				'user_nicename' => $user_id,
 				'display_name'  => $user_id,
+				'user_email'    => $user_id . '@litepress.cn',
 			), array(
 				'ID' => $user_id,
 			)
