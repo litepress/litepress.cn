@@ -20,16 +20,31 @@ use function LitePress\Helper\send_email_code;
 class Common extends Base {
 
 	public function __construct() {
+		/**
+		 * 发送短信验证码
+		 */
 		register_rest_route( 'lpcn/user', 'send_sms_code', array(
 			'methods'             => WP_REST_Server::CREATABLE,
 			'callback'            => array( $this, 'send_sms_code' ),
 			'permission_callback' => '__return_true',
 		) );
 
+		/**
+		 * 发送邮件验证码
+		 */
 		register_rest_route( 'lpcn/user', 'send_email_code', array(
 			'methods'             => WP_REST_Server::CREATABLE,
 			'callback'            => array( $this, 'send_email_code' ),
 			'permission_callback' => '__return_true',
+		) );
+
+		/**
+		 * 检查是否绑定手机号
+		 */
+		register_rest_route( 'lpcn/user', 'check_mobile_bind', array(
+			'methods'             => WP_REST_Server::CREATABLE,
+			'callback'            => array( $this, 'check_mobile_bind' ),
+			'permission_callback' => 'is_user_logged_in',
 		) );
 	}
 
@@ -67,6 +82,15 @@ class Common extends Base {
 		}
 
 		return $this->success( '发送成功，有效期 5 分钟' );
+	}
+
+	public function check_mobile_bind( WP_REST_Request $request ): WP_REST_Response {
+		$mobile = get_user_meta( get_current_user_id(), 'mobile', true );
+		if ( empty( $mobile ) ) {
+			return $this->error( '未绑定手机号' );
+		}
+
+		return $this->success( '已绑定手机号' );
 	}
 
 	private function prepare_send_sms_code_params( array $params ): array|WP_Error {
