@@ -42,7 +42,7 @@ class Common extends Base {
 		 * 检查是否绑定手机号
 		 */
 		register_rest_route( 'lpcn/user', 'check_mobile_bind', array(
-			'methods'             => WP_REST_Server::CREATABLE,
+			'methods'             => WP_REST_Server::READABLE,
 			'callback'            => array( $this, 'check_mobile_bind' ),
 			'permission_callback' => 'is_user_logged_in',
 		) );
