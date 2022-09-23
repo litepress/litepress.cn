@@ -51,7 +51,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Set settings sections
 		 *
-		 * @param  array  $sections  setting sections array
+		 * @param array $sections setting sections array
 		 */
 		function set_sections( $sections ) {
 			$this->settings_sections = $sections;
@@ -62,7 +62,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Add a single section
 		 *
-		 * @param  array  $section
+		 * @param array $section
 		 */
 		function add_section( $section ) {
 			$this->settings_sections[] = $section;
@@ -73,7 +73,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Set settings fields
 		 *
-		 * @param  array  $fields  settings fields array
+		 * @param array $fields settings fields array
 		 */
 		function set_fields( $fields ) {
 			$this->settings_fields = $fields;
@@ -106,7 +106,7 @@ if ( ! class_exists( 'Setting' ) ):
 		function admin_init() {
 			//register settings sections
 			foreach ( $this->settings_sections as $section ) {
-				if ( false == get_option( $section['id'] ) ) {
+				if ( ! get_option( $section['id'] ) ) {
 					add_option( $section['id'] );
 				}
 
@@ -129,31 +129,31 @@ if ( ! class_exists( 'Setting' ) ):
 				foreach ( $field as $option ) {
 
 					$name     = $option['name'];
-					$type     = isset( $option['type'] ) ? $option['type'] : 'text';
-					$label    = isset( $option['label'] ) ? $option['label'] : '';
-					$callback = isset( $option['callback'] ) ? $option['callback'] : array(
+					$type     = $option['type'] ?? 'text';
+					$label    = $option['label'] ?? '';
+					$callback = $option['callback'] ?? array(
 						$this,
 						'callback_' . $type
 					);
 
 					$args = array(
 						'id'                => $name,
-						'class'             => isset( $option['class'] ) ? $option['class'] : $name,
+						'class'             => $option['class'] ?? $name,
 						'label_for'         => "{$section}[{$name}]",
-						'desc'              => isset( $option['desc'] ) ? $option['desc'] : '',
-						'value'             => isset( $option['value'] ) ? $option['value'] : '',
+						'desc'              => $option['desc'] ?? '',
+						'value'             => $option['value'] ?? '',
 						'name'              => $label,
 						'section'           => $section,
-						'size'              => isset( $option['size'] ) ? $option['size'] : null,
-						'options'           => isset( $option['options'] ) ? $option['options'] : '',
-						'std'               => isset( $option['default'] ) ? $option['default'] : '',
-						'sanitize_callback' => isset( $option['sanitize_callback'] ) ? $option['sanitize_callback'] : '',
+						'size'              => $option['size'] ?? null,
+						'options'           => $option['options'] ?? '',
+						'std'               => $option['default'] ?? '',
+						'sanitize_callback' => $option['sanitize_callback'] ?? '',
 						'type'              => $type,
-						'placeholder'       => isset( $option['placeholder'] ) ? $option['placeholder'] : '',
-						'min'               => isset( $option['min'] ) ? $option['min'] : '',
-						'max'               => isset( $option['max'] ) ? $option['max'] : '',
-						'step'              => isset( $option['step'] ) ? $option['step'] : '',
-						'html'              => isset( $option['html'] ) ? $option['html'] : '',
+						'placeholder'       => $option['placeholder'] ?? '',
+						'min'               => $option['min'] ?? '',
+						'max'               => $option['max'] ?? '',
+						'step'              => $option['step'] ?? '',
+						'html'              => $option['html'] ?? '',
 					);
 
 					add_settings_field( "{$section}[{$name}]", $label, $callback, $section, $section, $args );
@@ -169,7 +169,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Get field description for display
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		public function get_field_description( $args ) {
 			if ( $args['type'] == 'html' ) {
@@ -187,7 +187,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays a text field for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_text( $args ) {
 
@@ -200,13 +200,13 @@ if ( ! class_exists( 'Setting' ) ):
 				$type, $size, $args['section'], $args['id'], $value, $placeholder );
 			$html .= $this->get_field_description( $args );
 
-			echo $html;
+			_e( $html, 'wp-settings' );
 		}
 
 		/**
 		 * Displays a url field for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_url( $args ) {
 			$this->callback_text( $args );
@@ -215,7 +215,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays a number field for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_number( $args ) {
 			$value       = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
@@ -236,7 +236,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays a checkbox for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_checkbox( $args ) {
 
@@ -256,11 +256,11 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays a multicheckbox for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_multicheck( $args ) {
 
-			$value = $this->get_option( $args['id'], $args['section'], $args['std'] );
+			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$html  = '<fieldset>';
 			$html  .= sprintf( '<input type="hidden" name="%1$s[%2$s]" value="" />', $args['section'], $args['id'] );
 			foreach ( $args['options'] as $key => $label ) {
@@ -280,11 +280,11 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays a radio button for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_radio( $args ) {
 
-			$value = $this->get_option( $args['id'], $args['section'], $args['std'] );
+			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$html  = '<fieldset>';
 
 			foreach ( $args['options'] as $key => $label ) {
@@ -303,7 +303,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays a selectbox for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_select( $args ) {
 
@@ -325,7 +325,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays a textarea for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_textarea( $args ) {
 
@@ -343,7 +343,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays the html for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 *
 		 * @return string
 		 */
@@ -354,11 +354,11 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays a rich text textarea for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_wysiwyg( $args ) {
 
-			$value = $this->get_option( $args['id'], $args['section'], $args['std'] );
+			$value = esc_textarea( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : '500px';
 
 			echo '<div style="max-width: ' . $size . ';">';
@@ -383,7 +383,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays a file upload field for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_file( $args ) {
 
@@ -403,7 +403,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays a password field for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_password( $args ) {
 
@@ -420,7 +420,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays a color picker field for a settings field
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_color( $args ) {
 
@@ -438,7 +438,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Displays a select box for creating the pages select box
 		 *
-		 * @param  array  $args  settings field args
+		 * @param array $args settings field args
 		 */
 		function callback_pages( $args ) {
 
@@ -479,7 +479,7 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Get sanitization callback for given option slug
 		 *
-		 * @param  string  $slug  option slug
+		 * @param string $slug option slug
 		 *
 		 * @return mixed string or bool false
 		 */
@@ -506,9 +506,9 @@ if ( ! class_exists( 'Setting' ) ):
 		/**
 		 * Get the value of a settings field
 		 *
-		 * @param  string  $option  settings field name
-		 * @param  string  $section  the section name this field belongs to
-		 * @param  string  $default  default text if it's not found
+		 * @param string $option settings field name
+		 * @param string $section the section name this field belongs to
+		 * @param string $default default text if it's not found
 		 *
 		 * @return string
 		 */
@@ -553,9 +553,7 @@ if ( ! class_exists( 'Setting' ) ):
 		 * This function displays every sections in a different form
 		 */
 		function show_forms() {
-			if ( isset( $_GET['multiple-network-settings-updated'] ) ): ?>
-                <div id="message" class="updated notice is-dismissible"><p><?php _e( 'Settings saved.' ) ?></p></div>
-			<?php endif; ?>
+			?>
             <div class="metabox-holder">
 				<?php foreach ( $this->settings_sections as $form ) { ?>
                     <div id="<?php echo $form['id']; ?>" class="group" style="display: none;">
@@ -584,7 +582,13 @@ if ( ! class_exists( 'Setting' ) ):
 		 * 保存多站点模式下的选项
 		 */
 		function multiple_network_options() {
-			$option_page = $_POST['option_page'];
+            // 检查权限
+            if ( ! current_user_can( 'manage_network_options' ) ) {
+                wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+            }
+            // 消毒数据
+
+			$option_page = sanitize_textarea_field( $_POST['option_page'] );
 
 			check_admin_referer( $option_page . '-options' );
 
@@ -593,13 +597,13 @@ if ( ! class_exists( 'Setting' ) ):
 
 			foreach ( $options as $option ) {
 				if ( isset( $_POST[ $option ] ) ) {
-					update_site_option( $option, $_POST[ $option ] );
+					update_site_option( $option, sanitize_textarea_field( $_POST[ $option ] ) );
 				} else {
 					delete_site_option( $option );
 				}
 			}
 
-			wp_redirect( add_query_arg( 'multiple-network-settings-updated', 'true', $_POST['_wp_http_referer'] ) );
+			wp_redirect( add_query_arg( 'multiple-network-settings-updated', 'true', esc_url_raw( $_POST['_wp_http_referer'] ) ) );
 			exit;
 		}
 

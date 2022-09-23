@@ -4,7 +4,7 @@ Tags: ip, ua, user-agent, user agent, china
 Requires at least: 5.5
 Tested up to: 6.0.3
 Requires PHP: 8.0
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 text-domain: wp-ipua
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -35,6 +35,10 @@ Notice: This plugin uses the api from lbs.qq.com to work, privacy URI: https://l
 
 
 == Changelog ==
+
+= 1.3.0 =
+* 支持IPV6地址解析
+* 增强设置框架的安全性
 
 = 1.2.0 =
 * 完善接口请求错误检测

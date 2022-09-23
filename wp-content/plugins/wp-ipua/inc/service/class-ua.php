@@ -29,19 +29,12 @@ class UA {
 	/**
 	 * Parses a user agent string into its important parts
 	 *
-	 * @param string|null $u_agent User agent string to parse or null. Uses $_SERVER['HTTP_USER_AGENT'] on NULL
+	 * @param string|null $u_agent User agent string to parse or null.
 	 *
 	 * @return string[] an array with 'browser', 'version' and 'platform' keys
 	 * @throws \InvalidArgumentException on not having a proper user agent to parse.
 	 */
-	function parse_user_agent( $u_agent = null ): array {
-		if ( $u_agent === null && isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
-			$u_agent = (string) $_SERVER['HTTP_USER_AGENT'];
-		}
-
-		if ( $u_agent === null ) {
-			throw new \InvalidArgumentException( 'parse_user_agent requires a user agent' );
-		}
+	function parse_user_agent( string $u_agent = null ): array {
 
 		$platform = null;
 		$browser  = null;
@@ -49,7 +42,7 @@ class UA {
 
 		$return = [ $this->platform => &$platform, $this->browser => &$browser, $this->browser_version => &$version ];
 
-		if ( ! $u_agent ) {
+		if ( empty($u_agent) ) {
 			return $return;
 		}
 

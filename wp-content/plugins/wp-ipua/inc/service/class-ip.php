@@ -52,12 +52,16 @@ class IP {
 
 	private function get_ip_info_from_cache( $ip ): bool {
 		// 通过将IP分割进行缓存，可以大大提高缓存命中率
-		list( $ip1, $ip2, $ip3, $ip4 ) = explode( ".", $ip );
-		$cache_key = "wp_ipua_{$ip1}_{$ip2}_{$ip3}";
-		if ( wp_cache_get( $cache_key ) ) {
-			$this->ip_info = wp_cache_get( $cache_key );
+		// 首先判断是ipv4还是ipv6，ipv6过于复杂，暂时不考虑缓存
+		if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
+			list( $ip1, $ip2, $ip3, $ip4 ) = explode( ".", $ip );
+			$cache_key = "wp_ipua_{$ip1}_{$ip2}_{$ip3}";
+			if ( wp_cache_get( $cache_key ) ) {
+				$this->ip_info = wp_cache_get( $cache_key );
 
-			return true;
+				return true;
+			}
+
 		}
 
 		return false;
@@ -70,9 +74,14 @@ class IP {
 			return false;
 		}
 		// 通过将IP分割进行缓存，可以大大提高缓存命中率
-		list( $ip1, $ip2, $ip3, $ip4 ) = explode( ".", $ip );
-		$cache_key = "wp_ipua_{$ip1}_{$ip2}_{$ip3}";
+		// 首先判断是ipv4还是ipv6，ipv6过于复杂，暂时不考虑缓存
+		if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
+			list( $ip1, $ip2, $ip3, $ip4 ) = explode( ".", $ip );
+			$cache_key = "wp_ipua_{$ip1}_{$ip2}_{$ip3}";
 
-		return wp_cache_set( $cache_key, $ip_info, $flag = '', $expire = 84000 * $this->setting['cache'] );
+			return wp_cache_set( $cache_key, $ip_info, $flag = '', $expire = 84000 * $this->setting['cache'] );
+		}
+
+		return false;
 	}
 }
