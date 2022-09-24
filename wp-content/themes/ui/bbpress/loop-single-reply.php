@@ -40,17 +40,21 @@ use function WePublish\IPUA\Inc\get_ua_info;
         $user_id = get_post(bbp_get_reply_id())->post_author;
         $user_meta = get_user_meta($user_id, '', true);
         $user_name = @$user_meta['nickname'][0] ?: '已注销';
-        $user_slug = @$user_meta['um_user_profile_url_slug_user_login'];
+        //$user_slug = @$user_meta['um_user_profile_url_slug_user_login'];
         $comment_meta = get_post_meta( bbp_get_reply_id(), '_bbp_akismet_as_submitted' );
         $ip_meta = get_post_meta( bbp_get_reply_id(), '_bbp_author_ip' );
         $user_ip = $ip_meta[0] ?? '';
         $user_agent = $comment_meta[0]['user_agent'] ?? '';
 
-        if ( is_array( $user_slug ) && ! empty( $user_slug ) ) {
+        /*if ( is_array( $user_slug ) && ! empty( $user_slug ) ) {
 	        $user_slug = $user_slug[0];
         } else {
             $user_slug = '';
-        }
+        }*/
+        $user_slug = $user_name;
+        /**
+         * TODO 恢复用户链接显示
+         */
         ?>
 
         <?php do_action( 'bbp_theme_before_reply_author_details' ); ?>
@@ -134,12 +138,13 @@ use function WePublish\IPUA\Inc\get_ua_info;
         $user_meta = get_user_meta($user_id, '', true);
         $user_name = @$user_meta['nickname'][0] ?: '已注销';
         $description = @$user_meta['description'][0] ?: '暂无个人简介~';
-        $user_slug = @$user_meta['um_user_profile_url_slug_user_login'];
-        if ( is_array( $user_slug ) && ! empty( $user_slug ) ) {
+        //$user_slug = @$user_meta['um_user_profile_url_slug_user_login'];
+        /*if ( is_array( $user_slug ) && ! empty( $user_slug ) ) {
 	        $user_slug = $user_slug[0];
         } else {
 	        $user_slug = '';
-        }
+        }*/
+        $user_slug = $user_name;
         ?>
 
         <?php do_action( 'bbp_theme_before_reply_author_details' ); ?>
