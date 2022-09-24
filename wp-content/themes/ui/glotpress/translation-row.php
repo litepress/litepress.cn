@@ -12,7 +12,7 @@ $can_reject_self = ( isset( $translation->user->user_login ) && $user->user_logi
 if ( is_object( $glossary ) ) {
 	if ( ! isset( $glossary_entries_terms ) ) {
 		$glossary_entries       = $glossary->get_entries();
-		$glossary_entries_terms = gp_sort_glossary_entries_terms( $glossary_entries );
+		$glossary_entries_terms = gp_glossary_add_suffixes( $glossary_entries );
 	}
 
 	$translation = map_glossary_entries_to_translation_originals( $translation, $glossary, $glossary_entries_terms );
