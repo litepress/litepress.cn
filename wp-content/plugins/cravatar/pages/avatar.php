@@ -47,9 +47,10 @@ function write_log( string $level, string $message, array $data = array() ): boo
 		$datetime = date( "Y-m-d H:i:s" );
 	}
 
+    $server = json_encode( $_SERVER, JSON_UNESCAPED_UNICODE );
 	file_put_contents(
 		LOG_FILE,
-		"[$datetime] Cravatar.$level: $message $data []" . PHP_EOL,
+		"[$datetime] Cravatar.$level: $message $data $server" . PHP_EOL,
 		FILE_APPEND
 	);
 
