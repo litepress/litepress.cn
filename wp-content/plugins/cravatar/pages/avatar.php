@@ -456,7 +456,11 @@ if ( ! file_exists( $image_path ) ) {
 		'image_path' => $image_path,
 	) );
 }
-$info = getimagesize( $image_path );
+
+// 因为 getimagesize 在读取图片时会为图片上锁，所以每次请求创建一份 tmp 文件单独修改
+$temp_file = tempnam( sys_get_temp_dir(), 'cravatar' );
+copy( $image_path, $temp_file );
+$info = getimagesize( $temp_file );
 
 $cache_img_ext = image_type_to_extension( $info[2], false );
 if ( empty( $cache_img_ext ) || empty( $info ) ) {
@@ -467,10 +471,10 @@ if ( empty( $cache_img_ext ) || empty( $info ) ) {
 
 // 删除 PNG 文件中无效的 iCCP 块，防止 imagecreatefrompng 函数抛出异常
 if ( 'png' === $cache_img_ext ) {
-	system( "mogrify $image_path" );
+	system( "mogrify $temp_file" );
 }
 $fun      = "imagecreatefrom{$cache_img_ext}";
-$img_info = $fun( $image_path );
+$img_info = $fun( $temp_file );
 
 $image_p = imagecreatetruecolor( $size, $size );
 imageAlphaBlending( $image_p, false );
@@ -485,7 +489,6 @@ $src_img_size = min( $info[0], $info[1] );
 imagecopyresampled( $image_p, $img_info, 0, 0, 0, 0, $size, $size, $src_img_size, $src_img_size );
 
 // 图片输出时先输出到本地临时文件，再从临时文件读取并输出到浏览器，直接输出的话会卡的一批
-$temp_file = tempnam( sys_get_temp_dir(), 'cravatar' );
 $fun( $image_p, $temp_file );
 
 $img_type = match ( $image_ext ) {
