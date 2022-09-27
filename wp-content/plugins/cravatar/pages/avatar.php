@@ -47,7 +47,7 @@ function write_log( string $level, string $message, array $data = array() ): boo
 		$datetime = date( "Y-m-d H:i:s" );
 	}
 
-    $server = json_encode( $_SERVER, JSON_UNESCAPED_UNICODE );
+	$server = json_encode( $_SERVER, JSON_UNESCAPED_UNICODE );
 	file_put_contents(
 		LOG_FILE,
 		"[$datetime] Cravatar.$level: $message $data $server" . PHP_EOL,
@@ -451,6 +451,11 @@ if ( 'qq' !== $avatar_from && 'default' !== $avatar_from && ! empty( $image_path
 /**
  * 按用户指定的参数生成头像数据
  */
+if ( ! file_exists( $image_path ) ) {
+	c_die( '原始图片找不到：' . $image_path, array(
+		'image_path' => $image_path,
+	) );
+}
 $info = getimagesize( $image_path );
 
 $cache_img_ext = image_type_to_extension( $info[2], false );
