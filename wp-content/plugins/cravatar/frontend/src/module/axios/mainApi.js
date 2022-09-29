@@ -3,7 +3,7 @@ import request from './request'
 /*发送邮件验证码*/
 export function  sendEmailCode(emailval){
     return request({
-        url: 'https://litepress.cn/user/lpcn/user/send_email_code ',
+        url: 'https://litepress.cn/user/wp-json/user/send_email_code ',
         method: 'post',
         data: {email:emailval}
     })

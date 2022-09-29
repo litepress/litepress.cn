@@ -22,7 +22,7 @@ if ( is_user_logged_in() ) {
         <div class="row">
             <section class="text-center w-100 ">
                 <h4 class="display-1 mb-1"></h4>
-                <h3 class="text-gray-soft text-regular mb-4">你需要 <a href="/login">登录</a> 才能添加头像! 😋</h3>
+                <h3 class="text-gray-soft text-regular mb-4">你需要 <a href="https://litepress.cn/user/sso/login">登录</a> 才能添加头像! 😋</h3>
             </section>
         </div>
     </div>

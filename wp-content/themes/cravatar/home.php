@@ -149,7 +149,7 @@ $is_login = is_user_logged_in();
                 </div>
                 <div class="col">
                     <div class="card">
-                        <a href="https://www.yfxw.cn/" target="_blank" rel="noopener" data-caption=""
+                        <a href="https://wpscale.cn/?refwps=3" target="_blank" rel="noopener" data-caption=""
                            itemprop="contentUrl">
                             <img class="uabb-gallery-img card-img"
                                  src="https://litepress.cn/wp-content/uploads/2022/09/2022091512340525.jpg"
