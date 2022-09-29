@@ -5,6 +5,7 @@
  */
 
 use LitePress\Logger\Logger;
+use LitePress\RestApi\Base;
 
 require __DIR__ . '/cavalcade/plugin.php';
 
@@ -27,6 +28,14 @@ require __DIR__ . '/library/loader.php';
  * 载入平台自定义的工具类
  */
 require __DIR__ . '/tools/loader.php';
+
+/**
+ * 载入平台公共 API 接口
+ */
+require __DIR__ . '/rest-api/class-base.php';
+add_action( 'plugins_loaded', function () {
+	add_action( 'rest_api_init', array( Base::class, 'init' ) );
+} );
 
 /**
  * 新用户注册时在用户meta信息中添加邮箱的hash值（通过md5），这样方便直接通过邮箱hash索引头像
