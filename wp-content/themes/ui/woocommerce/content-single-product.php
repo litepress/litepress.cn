@@ -86,7 +86,7 @@ if ( post_password_required() ) {
 	<?php $product_type = get_product_type_by_category_ids( $product->get_category_ids() ); ?>
 	<?php if ( exist_gp_project( $product->get_slug(), $product_type ) ): ?>
         <div class="locale-banner" dir="auto">
-            帮助改进此插件的 <a href="/translate/projects/<?php echo $product_type; ?>s/<?php echo $product->get_slug(); ?>/" target="_blank">简体中文</a> 翻译~ 同时，你可以通过安装 <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip" target="_blank">WP-China-Yes</a> 插件，并切换应用市场为“LitePress 应用市场”来接收翻译推送。
+            帮助改进此插件的 <a href="/translate/projects/<?php echo $product_type; ?>s/<?php echo $product->get_slug(); ?>/" target="_blank">简体中文</a> 翻译~ 同时，你可以通过安装 <a href="https://litepress.cn/store/?woo-free-download=273479" target="_blank">WP-China-Yes</a> 插件，并切换应用市场为“LitePress 应用市场”来接收翻译推送。
         </div>
 	<?php endif; ?>
 </section>
