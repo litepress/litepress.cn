@@ -35,9 +35,10 @@ export function ChangeAvatar(props) {
             setImages(result)
         })
     }
+    const initCount = 0;
     useEffect(() => {
         GetImage()
-    }, [])
+    }, [initCount])
 
     /*修改图片*/
     const putavatars = (e) => {

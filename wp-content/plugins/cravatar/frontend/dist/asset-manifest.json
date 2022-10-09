@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/wp-content/plugins/cravatar/frontend/dist/static/css/main.ecce57d4.css",
-    "main.js": "/wp-content/plugins/cravatar/frontend/dist/static/js/main.7edc45a8.js",
+    "main.js": "/wp-content/plugins/cravatar/frontend/dist/static/js/main.e1f3a02b.js",
     "index.html": "/wp-content/plugins/cravatar/frontend/dist/index.html",
     "main.ecce57d4.css.map": "/wp-content/plugins/cravatar/frontend/dist/static/css/main.ecce57d4.css.map",
-    "main.7edc45a8.js.map": "/wp-content/plugins/cravatar/frontend/dist/static/js/main.7edc45a8.js.map"
+    "main.e1f3a02b.js.map": "/wp-content/plugins/cravatar/frontend/dist/static/js/main.e1f3a02b.js.map"
   },
   "entrypoints": [
     "static/css/main.ecce57d4.css",
-    "static/js/main.7edc45a8.js"
+    "static/js/main.e1f3a02b.js"
   ]
 }
