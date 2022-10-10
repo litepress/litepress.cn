@@ -752,7 +752,7 @@ $("#sign-in .send-sms-code").on("click", function () {
                     /*发送验证码*/
                     type: "POST",
                     xhrFields: {withCredentials: true},
-                    url: "/user/wp-json/lpcn/user/send_sms_code",
+                    url: "/wp-json/lpcn/tools/send-sms-code",
                     data: {
                         'mobile': mobile_val,
                     },

@@ -116,7 +116,7 @@ get_header();
 
                         <!-- Buttons -->
                         <div class="text-center text-md-start mt-3 ">
-                            <a href="https://a1.wp-china-yes.net/apps/wp-china-yes.zip"
+                            <a href="https://litepress.cn/store/?woo-free-download=273479"
                                class="btn btn-primary me-3 pe-4">
                                 <section class="d-flex align-items-center">
                                                                         <span class="fa-stack me-2">  <i
