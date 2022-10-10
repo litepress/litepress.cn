@@ -1,5 +1,6 @@
 {
     "require": {
-        "imangazaliev/didom": "^1.18"
+        "imangazaliev/didom": "^1.18",
+        "tencentcloud/sms": "3.0.593"
     }
 }
