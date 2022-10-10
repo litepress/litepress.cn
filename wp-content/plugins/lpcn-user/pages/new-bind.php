@@ -5,38 +5,50 @@
  * 比如说使用手机号登录时绑定已有用户，以及使用 QQ 登录时绑定已有用户。
  */
 
-add_action( 'wp_loaded', function () {
-	list( $uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
-	if ( '/user/new/bind' === $uri ) {
-		$token = sanitize_text_field( $_GET['token'] ?? '' );
+add_action('wp_loaded', function () {
+    list($uri) = explode('?', $_SERVER['REQUEST_URI']);
+    if ('/user/new/bind' === $uri) {
+        $token = sanitize_text_field($_GET['token'] ?? '');
 
-		$token_data = get_transient( "lpcn_user_bind_{$token}" );
-		if ( empty( $token_data ) ) {
-			wp_die( 'Token 过期或不存在' );
-		}
+        $token_data = get_transient("lpcn_user_bind_{$token}");
+        if (empty($token_data)) {
+            wp_die('Token 过期或不存在');
+        }
 
-		get_header();
+        get_header();
 
-		$login_type      = sanitize_text_field( $_GET['type'] ?? '' );
-		$login_type_html = match ( $login_type ) {
-			'qq' => '<i class="fa-brands fa-qq" style="color: #4CAFE9"></i> QQ',
-			'mobile' => '<i class="fa-duotone fa-mobile"></i> 手机号',
-			default => '<i class="fa-duotone fa-question"></i> 未知',
-		};
+        $login_type      = sanitize_text_field($_GET['type'] ?? '');
+        $login_type_html = match ($login_type) {
+            'qq' => '<i class="fa-brands fa-qq" style="color: #4CAFE9"></i> QQ',
+            'mobile' => '<i class="fa-duotone fa-mobile"></i> 手机号',
+            default => '<i class="fa-duotone fa-question"></i> 未知',
+        };
 
-		echo <<<HTML
-		<main class="wp-body d-flex">
-        <div class="container" >
-                <div class="bg-white theme-boxshadow pt-5  pb-5 m-xl-0 m-3 row justify-content-center" >
-                    <div class="row justify-content-center gx-5" >
-                    	<section class="col-12 row  justify-content-center">
-                            <div class="d-flex align-items-center col-10 mb-4">
+        $content = match ($login_type) {
+            'qq' => <<<HTML
+<div class="d-flex align-items-center col-10 mb-4">
 									<img class="lp-avatar me-3" src="{$token_data["figureurl"]}" alt="{$token_data["qq_nickname"]}">
                                     <div class="text-muted">
                                         欢迎你，{$token_data["qq_nickname"]}！<br>
                                         当前你正在使用 {$login_type_html} 登录，请绑定已有帐户，或者注册新用户绑定。
                                     </div>
                             </div>
+HTML,
+            'mobile' => <<<HTML
+<div class="d-flex align-items-center col-10 mb-4"> 
+                                        当前你正在使用 {$login_type_html} 登录，请绑定已有帐户，或者注册新用户绑定。
+                                    </div>
+                            </div>
+HTML
+        };
+
+        echo <<<HTML
+		<main class="wp-body d-flex">
+        <div class="container" >
+                <div class="bg-white theme-boxshadow pt-5  pb-5 m-xl-0 m-3 row justify-content-center" >
+                    <div class="row justify-content-center gx-5" >
+                    	<section class="col-12 row  justify-content-center">
+                            $content
 						</section>
 						<hr class="mb-4">
                 <section class="col-12 col-xl-5 border-xl-end border-0">
@@ -83,8 +95,8 @@ add_action( 'wp_loaded', function () {
     </main>
 HTML;
 
-		get_footer();
-		exit;
-	}
-} );
+        get_footer();
+        exit;
+    }
+});
 
